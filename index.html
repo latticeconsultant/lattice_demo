@@ -376,6 +376,21 @@ textarea.input { min-height: 90px; resize: vertical; }
     a { color: var(--color-accent); }
     a:hover { color: var(--color-accent-700); }
     .lnx-nav::-webkit-scrollbar { height:0 }
+
+    /* Chống chữ mồ côi: không để một từ rơi xuống dòng riêng.
+       pretty cho thân bài — trình duyệt kéo thêm chữ xuống dòng cuối.
+       balance cho tiêu đề và khối CTA — chia đều các dòng.
+       Vài chỗ cột quá hẹp mà CSS không cứu được thì dùng nbsp trong nội dung. */
+    .lnx-stage { text-wrap: pretty; }
+    .lnx-stage h1, .lnx-stage h2, .lnx-stage h3, .lnx-stage h4 { text-wrap: balance; }
+    .lnx-cta p, .lnx-cta span { text-wrap: balance; }
+    /* Dòng "NEXT SOLUTIONS JSC" trong khóa logo: giãn chữ .26em làm nó rộng
+       hơn hộp chứa đúng vài phần trăm pixel ở một số bề rộng, rơi "JSC"
+       xuống dòng. Khóa lockup không được phép xuống dòng.
+       React serialize lại inline style nên phải bắt cả hai dạng viết. */
+    [style*="letter-spacing:.26em"],
+    [style*="letter-spacing: 0.26em"] { white-space: nowrap; }
+
     @media print {
       .lnx-chrome { display:none !important }
       .lnx-stage { max-width:none !important; height:auto !important; overflow:visible !important; box-shadow:none !important; margin:0 !important }
@@ -470,7 +485,7 @@ textarea.input { min-height: 90px; resize: vertical; }
         </div>
       </section>
 
-      <div style="background:var(--color-accent);color:#fff">
+      <div class="lnx-cta" style="background:var(--color-accent);color:#fff">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
             <div style="padding:30px 24px 34px 0;border-right:2px solid rgba(255,255,255,.35)">
@@ -595,7 +610,7 @@ textarea.input { min-height: 90px; resize: vertical; }
         </div>
       </section>
 
-      <div style="background:var(--color-accent);color:#fff">
+      <div class="lnx-cta" style="background:var(--color-accent);color:#fff">
         <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,5cqi,72px) clamp(16px,2.5cqi,40px);display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
           <div style="flex:1;min-width:260px">
             <h2 style="margin:0 0 10px;font-size:clamp(24px,3cqi,40px);letter-spacing:-.025em;color:#fff">Buổi chẩn đoán đầu tiên miễn phí</h2>
@@ -1175,7 +1190,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       </section>
       </sc-if>
 
-      <div style="background:var(--color-accent);color:#fff">
+      <div class="lnx-cta" style="background:var(--color-accent);color:#fff">
         <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,5cqi,72px) clamp(16px,2.5cqi,40px);display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
           <div style="flex:1;min-width:260px">
             <h2 style="margin:0 0 10px;font-size:clamp(22px,2.8cqi,36px);letter-spacing:-.025em;color:#fff">Muốn biết bộ máy này áp vào ngành của anh chị ra sao?</h2>
@@ -1953,7 +1968,7 @@ review_cycle: monthly</pre>
       </section>
       </sc-if>
 
-      <div style="background:var(--color-accent);color:#fff">
+      <div class="lnx-cta" style="background:var(--color-accent);color:#fff">
         <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,5cqi,72px) clamp(16px,2.5cqi,40px);display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
           <div style="flex:1;min-width:260px">
             <h2 style="margin:0 0 10px;font-size:clamp(22px,2.8cqi,36px);letter-spacing:-.025em;color:#fff">Khóa tám đầu vào trong 60 phút</h2>
@@ -2186,7 +2201,7 @@ review_cycle: monthly</pre>
         </div>
       </section>
 
-      <div style="background:var(--color-accent);color:#fff">
+      <div class="lnx-cta" style="background:var(--color-accent);color:#fff">
         <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,5cqi,72px) clamp(16px,2.5cqi,40px);display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
           <div style="flex:1;min-width:260px">
             <h2 style="margin:0 0 10px;font-size:clamp(24px,3cqi,40px);letter-spacing:-.025em;color:#fff">Chưa sẵn sàng liên hệ?</h2>
@@ -2252,12 +2267,12 @@ class Component extends DCLogic {
 
   CEIL = [
     ['Kinh doanh tri thức / nội dung', 85, 90, '1 người', 'Nghiên cứu, sản xuất đa định dạng, phân phối, chăm sóc cộng đồng', 'Góc nhìn, uy tín, quyết định biên tập', 'Sự độc đáo của góc nhìn'],
-    ['Nền tảng số / SaaS', 75, 85, '1–2 người', 'Thiết kế, lập trình, kiểm thử, hỗ trợ, phân tích, marketing', 'Kiến trúc, bảo mật, pháp lý, quyết định sản phẩm', 'Bảo mật và nợ kỹ thuật'],
-    ['Thương mại điện tử', 70, 85, '1–2 người', 'Gần toàn bộ chuỗi vận hành số', 'Phê duyệt chiến lược, xử lý ngoại lệ', 'Nguồn hàng và vốn tồn kho'],
-    ['Dịch vụ chuyên môn', 60, 75, '1–2 người', 'Thu thập yêu cầu, nghiên cứu, tạo sản phẩm dịch vụ, báo cáo', 'Thẩm định chuyên môn, trách nhiệm pháp lý', 'Trách nhiệm nghề nghiệp không ủy quyền được'],
+    ['Nền tảng số / SaaS', 75, 85, '1–2 người', 'Thiết kế, lập trình, kiểm thử, hỗ trợ, phân tích, marketing', 'Kiến trúc, bảo mật, pháp lý, quyết định sản phẩm', 'Bảo mật và nợ kỹ thuật'],
+    ['Thương mại điện tử', 70, 85, '1–2 người', 'Gần toàn bộ chuỗi vận hành số', 'Phê duyệt chiến lược, xử lý ngoại lệ', 'Nguồn hàng và vốn tồn kho'],
+    ['Dịch vụ chuyên môn', 60, 75, '1–2 người', 'Thu thập yêu cầu, nghiên cứu, tạo sản phẩm dịch vụ, báo cáo', 'Thẩm định chuyên môn, trách nhiệm pháp lý', 'Trách nhiệm nghề nghiệp không ủy quyền được'],
     ['Môi giới / Marketplace', 60, 75, '2 người', 'Tìm kiếm, matching, qualification, CRM, hỗ trợ giao dịch', 'Quan hệ đối tác, giao dịch phức tạp', 'Bài toán gà và trứng hai phía'],
     ['Thương mại phân phối', 55, 70, '2 người', 'Nghiên cứu thị trường, định giá, nội dung, bán hàng, tồn kho', 'Đàm phán lớn, kiểm hàng, tranh chấp', 'Kiểm hàng vật lý, vốn lưu động'],
-    ['Dịch vụ tại chỗ', 40, 55, '2–3+ người', 'Đặt lịch, điều phối, CSKH, marketing, kiểm soát chất lượng', 'Thực hiện dịch vụ vật lý, xử lý tại chỗ', 'Năng lực giờ công của người hành nghề'],
+    ['Dịch vụ tại chỗ', 40, 55, '2–3+ người', 'Đặt lịch, điều phối, CSKH, marketing, kiểm soát chất lượng', 'Thực hiện dịch vụ vật lý, xử lý tại chỗ', 'Năng lực giờ công của người hành nghề'],
     ['Sản xuất', 30, 50, '3+ người', 'Dự báo, kế hoạch, mua hàng, QC thị giác máy, bảo trì dự báo', 'Vận hành thiết bị, sự cố vật lý, quan hệ nhà cung cấp', 'Tài sản vật lý và lao động trực tiếp']
   ];
 
@@ -2651,7 +2666,7 @@ class Component extends DCLogic {
         ['Thời gian hoàn vốn trung vị', '~5,1 tháng', 'BCG / Forrester', 'Chu kỳ đầu tư ngắn, phù hợp vốn nhỏ'],
         ['Solopreneur đang dùng AI (Mỹ)', '~74%', 'Tổng hợp khảo sát', 'AI đã là mặt bằng chung, không còn là lợi thế tự thân'],
         ['Thời gian AI trả lại mỗi ngày', '10–40% quỹ thời gian', 'Khảo sát ngành', 'Lợi thế thật nằm ở việc dùng thời gian đó vào đâu'],
-        ['Tỷ trọng agent trên nhân sự, tổ chức tiên phong', 'NVIDIA: ~100 agent / 1 nhân sự', 'GTC 2026', 'Mô hình “phòng ban = agent” mở rộng vượt xa 5–10 agent'],
+        ['Tỷ trọng agent trên nhân sự, tổ chức tiên phong', 'NVIDIA: ~100 agent / 1 nhân sự', 'GTC 2026', 'Mô hình “phòng ban = agent” mở rộng vượt xa 5–10 agent'],
         ['Quy mô thị trường agentic AI', '~10–12 tỷ USD, CAGR 40–46%', 'Tổng hợp 2026', 'Hạ tầng còn rẻ đi nhanh — đừng khóa cứng một nhà cung cấp']
       ], ['a', 'b', 'c', 'd']),
 
@@ -2679,7 +2694,7 @@ class Component extends DCLogic {
         ['Gian hàng đang hoạt động', '~613.800, tăng 14,1%', 'Khác biệt nằm ở vận hành, không ở việc có mặt'],
         ['Tập trung doanh thu', 'Shop trong mall chiếm 2,79% số gian hàng nhưng tạo 34,2% doanh thu', 'Doanh thu dồn về người bán chuyên nghiệp'],
         ['TikTok Shop', 'GMV Việt Nam vượt 10 tỷ USD (2025), tăng hơn 200%', 'Video ngắn và livestream là kênh bán'],
-        ['Social commerce', '~20,98 tỷ USD năm 2026, CAGR 9,7% giai đoạn 2026–2031', 'Kênh một người vận hành được nếu có hệ thống nội dung'],
+        ['Social commerce', '~20,98 tỷ USD năm 2026, CAGR 9,7% giai đoạn 2026–2031', 'Kênh một người vận hành được nếu có hệ thống nội dung'],
         ['Nhân khẩu online', 'Hơn 72,5% người mua là Gen Z và Millennial; TikTok 45–60 phút mỗi ngày', 'Nội dung là hạ tầng phân phối']
       ], ['a', 'b', 'c']),
 
@@ -2800,7 +2815,7 @@ class Component extends DCLogic {
 
       phases: this.rows([
         ['1', 'Chuẩn hóa dữ liệu và quy trình; xây knowledge base; AI nghiên cứu, soạn thảo, báo cáo; mọi hành động ra ngoài đều cần duyệt', 'Knowledge base phủ từ 80% câu hỏi lặp lại'],
-        ['2', 'Kết nối email, CRM, website, kế toán, mạng xã hội; tự động hóa quy trình lặp; đưa tác vụ rủi ro thấp lên L2–L3', 'Từ 5 quy trình chạy ổn định ở L3'],
+        ['2', 'Kết nối email, CRM, website, kế toán, mạng xã hội; tự động hóa quy trình lặp; đưa tác vụ rủi ro thấp lên L2–L3', 'Từ 5 quy trình chạy ổn định ở L3'],
         ['3', 'Thành lập Chief of Staff và các AI Manager; agent phối hợp theo KPI chung; người quản trị ngoại lệ qua một dashboard', 'Tự xử lý trên 60%; hàng chờ phê duyệt dưới 24 giờ'],
         ['4', 'AI tự lập kế hoạch tuần và ngày, tự phân bổ nguồn lực trong ngân sách, tự đánh giá và cải tiến', '—']
       ], ['n', 'a', 'b']),

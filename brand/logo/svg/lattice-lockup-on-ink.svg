@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="128" viewBox="0 0 300 64">
+<rect width="300" height="64" fill="#201e1d"></rect>
+  <g transform="translate(8,8) scale(0.48)">
+    <path d="M50 8 L92 50 L50 92 L8 50 Z" fill="none" stroke="#ffffff" stroke-width="5" opacity="0.35"></path>
+    <path d="M50 8 L50 92 M8 50 L92 50" fill="none" stroke="#ffffff" stroke-width="5" opacity="0.35"></path>
+    <circle cx="50" cy="8" r="6" fill="none" stroke="#ffffff" stroke-width="5"></circle>
+    <circle cx="92" cy="50" r="6" fill="none" stroke="#ffffff" stroke-width="5"></circle>
+    <circle cx="50" cy="92" r="6" fill="none" stroke="#ffffff" stroke-width="5"></circle>
+    <circle cx="8" cy="50" r="6" fill="none" stroke="#ffffff" stroke-width="5"></circle>
+    <circle cx="50" cy="50" r="10" fill="#ec3013"></circle>
+  </g>
+  <text x="68" y="34" font-family="Archivo, Helvetica, Arial, sans-serif" font-weight="800" font-size="24" letter-spacing="2.9" fill="#ffffff">LATTICE</text>
+  <text x="69" y="48" font-family="Archivo, Helvetica, Arial, sans-serif" font-weight="400" font-size="7.5" letter-spacing="1.95" fill="#9b9797">NEXT SOLUTIONS JSC</text>
+</svg>

@@ -391,6 +391,25 @@ textarea.input { min-height: 90px; resize: vertical; }
     [style*="letter-spacing:.26em"],
     [style*="letter-spacing: 0.26em"] { white-space: nowrap; }
 
+    /* Ma trận quyền theo quy mô. Bốn cột ở khổ rộng; dưới 720px cột không còn
+       đủ chỗ để đọc nên xếp chồng, giấu hàng tiêu đề và trả nhãn về từng ô —
+       đúng cách bảng humanRoles bên trên đã làm. Đơn vị là container query vì
+       khung xem thử đổi bề rộng stage chứ không đổi bề rộng cửa sổ. */
+    .lnx-matrix { display: grid; gap: 2px; background: var(--color-neutral-400);
+      border-top: 2px solid var(--color-text); border-bottom: 2px solid var(--color-text); }
+    .lnx-matrix-row { background: var(--color-bg); padding: 18px 20px; display: grid;
+      grid-template-columns: minmax(170px, 1.3fr) repeat(3, minmax(140px, 1fr));
+      gap: 10px 22px; align-items: start; }
+    .lnx-matrix-head { background: var(--color-neutral-100); padding: 14px 20px;
+      font-size: 10px; letter-spacing: .16em; color: var(--color-neutral-600); }
+    .lnx-matrix-lbl { display: none; font-size: 10px; letter-spacing: .14em;
+      color: var(--color-neutral-500); margin-bottom: 5px; }
+    @container (max-width: 720px) {
+      .lnx-matrix-head { display: none; }
+      .lnx-matrix-row { grid-template-columns: 1fr; gap: 14px; }
+      .lnx-matrix-lbl { display: block; }
+    }
+
     @media print {
       .lnx-chrome { display:none !important }
       .lnx-stage { max-width:none !important; height:auto !important; overflow:visible !important; box-shadow:none !important; margin:0 !important }
@@ -559,6 +578,24 @@ textarea.input { min-height: 90px; resize: vertical; }
               <button type="button" sc-camel-on-click="{{ goEngine4 }}" style="appearance:none;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:.14em;color:var(--color-accent);text-align:left;font-weight:600" style-hover="color:var(--color-accent-700)">XEM CHI TIẾT →</button>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,5.5cqi,80px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 18px;font-weight:600">Lớp quản trị</p>
+          <h2 style="font-size:clamp(24px,3.1cqi,42px);margin:0 0 18px;letter-spacing:-.025em;color:var(--color-bg)">Bốn động cơ chạy được là nhờ lớp thứ năm</h2>
+          <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.6;max-width:70ch;margin:0 0 34px;color:var(--color-neutral-300)">Bốn động cơ tạo ra việc. Lớp quản trị quyết định ai được duyệt việc nào, ai chịu trách nhiệm khi sai, và bộ máy tự sửa ra sao. Thiếu lớp này, bốn động cơ chỉ là bốn chuỗi chatbot không sổ sách — đúng cái làm 88% pilot chết trước khi lên production.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;background:var(--color-neutral-700);border-top:2px solid var(--color-neutral-700);border-bottom:2px solid var(--color-neutral-700);margin-bottom:32px">
+            <sc-for list="{{ govLayers }}" as="g" hint-placeholder-count="4">
+              <div style="background:var(--color-text);padding:22px 20px">
+                <div style="font-size:10px;letter-spacing:.18em;color:var(--color-neutral-500);margin-bottom:9px">{{ g.n }}</div>
+                <div style="font-family:var(--font-heading);font-weight:800;font-size:15px;line-height:1.35;margin-bottom:9px">{{ g.a }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-400)">{{ g.b }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <button type="button" class="btn" sc-camel-on-click="{{ goGovernance }}" style="background:transparent;color:var(--color-bg);border:2px solid var(--color-neutral-700);font-size:12px;letter-spacing:.14em;padding:16px 24px;font-weight:600;justify-content:flex-start;text-align:left">XEM LỚP QUẢN TRỊ →</button>
         </div>
       </section>
 
@@ -1640,13 +1677,48 @@ textarea.input { min-height: 90px; resize: vertical; }
             </sc-for>
           </div>
 
-          <h4 style="font-size:19px;margin:36px 0 18px">CEO thành nút thắt cổ chai — nhận diện sớm</h4>
+          <h4 style="font-size:19px;margin:44px 0 8px">Ai quyết cái gì khi đội có 1, 3 hay 5 người</h4>
+          <p style="font-size:14px;line-height:1.65;max-width:80ch;margin:0 0 20px;color:var(--color-neutral-700)">Cùng một loại quyết định, quyền dịch chuyển khi thêm người. Bảng này để không ô nào phải hỏi lại.</p>
+          <div class="lnx-matrix">
+            <div class="lnx-matrix-row lnx-matrix-head">
+              <div>LOẠI QUYẾT ĐỊNH</div>
+              <div>1 NGƯỜI</div>
+              <div>2–3 NGƯỜI</div>
+              <div>4–5 NGƯỜI</div>
+            </div>
+            <sc-for list="{{ rightsMatrix }}" as="r" hint-placeholder-count="8">
+              <div class="lnx-matrix-row">
+                <div style="font-size:13.5px;font-weight:600;line-height:1.45">{{ r.a }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span class="lnx-matrix-lbl">1 NGƯỜI</span>{{ r.b }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span class="lnx-matrix-lbl">2–3 NGƯỜI</span>{{ r.c }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span class="lnx-matrix-lbl">4–5 NGƯỜI</span>{{ r.d }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="border-left:4px solid var(--color-accent);padding:4px 0 4px 20px;margin-top:26px;display:grid;gap:14px">
+            <p style="margin:0;font-size:14.5px;line-height:1.65;max-width:80ch"><strong>Quyền hạ mức luôn rộng hơn quyền nâng mức.</strong> Ai cũng được kéo phanh; chỉ một người được nhả phanh. Đó là lý do dòng hạ mức giống hệt nhau ở cả ba quy mô.</p>
+            <p style="margin:0;font-size:14.5px;line-height:1.65;max-width:80ch"><strong>Từ bốn người trở lên, mỗi loại quyết định phải có đúng một chủ sở hữu.</strong> Hai người cùng được duyệt nghĩa là không ai chịu trách nhiệm. Ma trận tồn tại để không ô nào ghi hai tên.</p>
+          </div>
+
+          <h4 style="font-size:19px;margin:44px 0 18px">CEO thành nút thắt cổ chai — nhận diện sớm</h4>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text)">
             <sc-for list="{{ bottleneck }}" as="r" hint-placeholder-count="4">
               <div style="background:var(--color-bg);padding:20px">
                 <div style="font-size:14px;font-weight:600;line-height:1.45;margin-bottom:10px">{{ r.a }}</div>
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:18px;color:var(--color-accent);margin-bottom:10px">{{ r.b }}</div>
                 <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)">{{ r.c }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <h4 style="font-size:19px;margin:44px 0 8px">Ngưỡng thêm người thứ 4, thứ 5</h4>
+          <p style="font-size:14px;line-height:1.65;max-width:80ch;margin:0 0 20px;color:var(--color-neutral-700)">Thêm người là quyết định đắt và khó đảo. Chỉ thêm khi chỉ báo chạm ngưỡng, không thêm vì cảm giác bận.</p>
+          <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
+            <sc-for list="{{ addPerson }}" as="r" hint-placeholder-count="3">
+              <div style="background:var(--color-bg);padding:20px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px 26px;align-items:start">
+                <div style="font-family:var(--font-heading);font-weight:800;font-size:15px;line-height:1.3">{{ r.a }}</div>
+                <div style="font-size:13.5px;line-height:1.6"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">CHỈ BÁO CHẠM NGƯỠNG</span>{{ r.b }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">NGƯỜI MỚI NHẬN GÌ</span>{{ r.c }}</div>
               </div>
             </sc-for>
           </div>
@@ -2425,6 +2497,30 @@ class Component extends DCLogic {
         ['06', 'Ba ưu tiên chiến lược hiện hành']
       ], ['n', 'a']),
 
+      govLayers: this.rows([
+        ['01', 'Ma trận quyền quyết định', 'Hai trục: hậu quả nếu sai và khả năng hoàn tác. Không phải độ phức tạp của công việc.'],
+        ['02', 'Nhịp điều hành', 'Ngày 15 phút, tuần 60 phút, tháng 2 giờ, quý nửa ngày — mỗi nhịp một đầu ra bắt buộc.'],
+        ['03', 'Bốn vòng kiểm soát', 'Agent tự kiểm, quản lý, kiểm soát độc lập, kiểm toán người. Vòng ngoài kiểm cả vòng trong.'],
+        ['04', 'Ngưỡng thêm người', 'Khi nào cần người thứ 4, thứ 5 — và khi nào thêm người là sai phân bổ vai trò.']
+      ], ['n', 'a', 'b']),
+
+      rightsMatrix: this.rows([
+        ['Đăng nội dung ra ngoài', 'CEO duyệt theo lô, một lần mỗi ngày', 'Người 3 duyệt; CEO xem mẫu ngẫu nhiên', 'Chủ động cơ Social tự duyệt trong khung đã chốt'],
+        ['Nâng mức tự chủ agent L1 → L3', 'CEO, sau hai tuần eval sạch', 'Người 3 đề xuất, CEO duyệt', 'Người 3 duyệt; chạm vùng đỏ mới lên CEO'],
+        ['Hạ mức tự chủ hoặc dừng agent', 'Ai phát hiện cũng được hạ', 'Ai phát hiện cũng được hạ', 'Ai phát hiện cũng được hạ'],
+        ['Phân quyền và truy cập dữ liệu', 'CEO', 'Người 3', 'Người 3 — CEO không override'],
+        ['Cam kết hợp đồng, nghĩa vụ pháp lý', 'CEO', 'CEO', 'CEO — không ủy quyền ở mọi quy mô'],
+        ['Chi ngoài ngân sách đã duyệt', 'CEO', 'CEO', 'CEO — không ủy quyền ở mọi quy mô'],
+        ['Thay đổi knowledge base và chính sách', 'CEO', 'Người 3', 'Chủ sở hữu vòng Learn'],
+        ['Dừng khẩn cấp khi khủng hoảng', 'CEO', 'Bất kỳ ai', 'Bất kỳ ai']
+      ], ['a', 'b', 'c', 'd']),
+
+      addPerson: this.rows([
+        ['Người thứ 4', 'Hàng chờ phê duyệt của Người 3 vượt 48 giờ hai tuần liên tiếp, hoặc eval hàng tuần bị bỏ hai kỳ liên tiếp', 'Trọn quyền duyệt một động cơ, kèm ngân sách và ngưỡng rủi ro của động cơ đó'],
+        ['Người thứ 5', 'Tỷ lệ ngoại lệ vượt 15% khối lượng ở hai động cơ khác nhau cùng lúc', 'Vòng Control: eval, audit log, hạn mức — tách khỏi người đang vận hành'],
+        ['Chưa thêm người', 'CEO còn làm việc mức L0–L2 quá 30% quỹ thời gian', 'Đây là sai phân bổ vai trò, không phải thiếu người. Sửa ma trận trước khi tuyển']
+      ], ['a', 'b', 'c']),
+
       humanRoles: this.rows([
         ['Người 1 — Owner / CEO', 'Mục tiêu, chiến lược, khẩu vị rủi ro; phê duyệt hợp đồng và giao dịch lớn; quan hệ chiến lược; trách nhiệm cuối cùng', 'Cam kết pháp lý, quyết định vốn, định vị thương hiệu', 'Hàng chờ phê duyệt trên 48 giờ'],
         ['Người 2 — Operations & Relationship Lead', 'Công việc vật lý hoặc chưa số hóa; xử lý ngoại lệ AI không giải được; kiểm tra chất lượng thực tế', 'Xác minh vật lý, xử lý khủng hoảng tại chỗ', 'Tỷ lệ ngoại lệ trên 15% khối lượng'],
@@ -2657,6 +2753,7 @@ class Component extends DCLogic {
       goBranding: () => this.go('branding'), goContact: () => this.go('contact'),
       goEngine1: () => this.go('solutions', 'e1'), goEngine2: () => this.go('solutions', 'e2'),
       goEngine3: () => this.go('solutions', 'e3'), goEngine4: () => this.go('solutions', 'e4'),
+      goGovernance: () => this.go('method', 'm1'),
 
       worldIndicators: this.rows([
         ['Ứng dụng doanh nghiệp nhúng agent chuyên biệt', '~40% cuối 2026, từ dưới 5% năm 2025', 'Gartner', 'Năng lực agent đến qua phần mềm đang dùng, không cần tự xây'],

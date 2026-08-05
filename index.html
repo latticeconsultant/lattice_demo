@@ -391,6 +391,14 @@ textarea.input { min-height: 90px; resize: vertical; }
     [style*="letter-spacing:.26em"],
     [style*="letter-spacing: 0.26em"] { white-space: nowrap; }
 
+    /* Ô ghi chú chỉ có chữ. Thân bài bị chặn measure ở 80–82ch cho dễ đọc,
+       nhưng hộp lại kéo hết bề rộng 1280 — thành ra chữ nằm bên trái, còn gần
+       500px trống bên phải nằm trong khung, đọc như lỗi. fit-content cho hộp
+       ôm sát đúng measure; khoảng trống chuyển ra NGOÀI khung, thành bố cục
+       căn trái bình thường. Chỉ áp cho hộp chữ thuần — hộp có bảng, biểu đồ
+       hay nút full-width vẫn phải rộng. */
+    .lnx-note { width: fit-content; max-width: 100%; }
+
     /* Ma trận quyền theo quy mô. Bốn cột ở khổ rộng; dưới 720px cột không còn
        đủ chỗ để đọc nên xếp chồng, giấu hàng tiêu đề và trả nhãn về từng ô —
        đúng cách bảng humanRoles bên trên đã làm. Đơn vị là container query vì
@@ -793,7 +801,7 @@ textarea.input { min-height: 90px; resize: vertical; }
             </sc-for>
           </div>
 
-          <div style="border-left:4px solid var(--color-accent);background:var(--color-bg);padding:24px 26px;margin:34px 0">
+          <div class="lnx-note" style="border-left:4px solid var(--color-accent);background:var(--color-bg);padding:24px 26px;margin:34px 0">
             <h4 style="font-size:19px;margin:0 0 12px">Đọc chính sách như một cơ hội thiết kế</h4>
             <p style="margin:0;font-size:14.5px;line-height:1.7;max-width:80ch">Việt Nam đang ép toàn bộ khu vực hộ kinh doanh — hàng triệu “doanh nghiệp một người” phi chính thức — phải minh bạch dữ liệu. Ai chuyển sang mô hình có sổ sách, hóa đơn, dữ liệu sạch thì đồng thời có luôn nền tảng dữ liệu để AI vận hành. <strong>Đây là thời điểm chi phí tuân thủ và chi phí AI-hóa hội tụ vào cùng một khoản đầu tư.</strong></p>
           </div>
@@ -898,7 +906,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 
           <p style="font-size:13px;color:var(--color-neutral-600);margin:16px 0 0;max-width:80ch">Mức tự chủ là hàm của bốn biến: tỷ lệ chính xác × giá trị giao dịch × khả năng phục hồi khi sai × rủi ro danh tiếng và pháp lý.</p>
 
-          <div style="background:var(--color-accent);color:#fff;padding:28px;margin-top:34px">
+          <div class="lnx-note" style="background:var(--color-accent);color:#fff;padding:28px;margin-top:34px">
             <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
               <h4 style="font-size:20px;margin:0;color:#fff">Nguyên tắc hạ cấp</h4>
               <span style="font-size:10px;letter-spacing:.14em;border:1px solid rgba(255,255,255,.6);padding:4px 9px">THƯỜNG BỊ BỎ QUÊN</span>
@@ -1027,7 +1035,7 @@ textarea.input { min-height: 90px; resize: vertical; }
             </sc-for>
           </div>
           <p style="font-size:12.5px;color:var(--color-neutral-600);margin:14px 0 0;max-width:90ch">MCP là hệ thần kinh kết nối · agent là nhân sự số · workflow là quy trình · knowledge và memory là trí nhớ · governance là hệ miễn dịch.</p>
-          <div style="border:2px solid var(--color-text);background:var(--color-neutral-100);padding:26px;margin-top:34px">
+          <div class="lnx-note" style="border:2px solid var(--color-text);background:var(--color-neutral-100);padding:26px;margin-top:34px">
             <h4 style="font-size:20px;margin:0 0 12px">Nguyên tắc chọn công cụ: mua trước, xây sau</h4>
             <p style="margin:0;font-size:14.5px;line-height:1.7;max-width:80ch">Dữ liệu 2026 cho thấy pilot do đối tác dẫn dắt đạt production với tỷ lệ khoảng gấp đôi so với tự xây nội bộ. Chỉ tự xây ở đúng chỗ tạo khác biệt cạnh tranh — thường là lớp 5 và 6, tức dữ liệu và tri thức riêng.</p>
           </div>
@@ -1122,7 +1130,7 @@ textarea.input { min-height: 90px; resize: vertical; }
             </sc-for>
           </div>
 
-          <div style="border:2px solid var(--color-text);background:var(--color-neutral-100);padding:28px;margin-top:40px">
+          <div class="lnx-note" style="border:2px solid var(--color-text);background:var(--color-neutral-100);padding:28px;margin-top:40px">
             <h4 style="font-size:21px;margin:0 0 14px">Bài học từ một thất bại thực tế</h4>
             <p style="margin:0 0 16px;font-size:14.5px;line-height:1.7;max-width:82ch">Một trường hợp ghi nhận trong khảo sát 2026: hệ thống AI xếp lịch chạy chiến dịch vào một ngày quốc tang — tối ưu về dữ liệu lưu lượng lịch sử, thảm họa về bối cảnh. <strong>AI xuất sắc trong nhận diện mẫu hình bên trong dữ liệu, nhưng thất bại trong suy luận về ngữ cảnh phi cấu trúc.</strong></p>
             <p style="margin:0;font-size:14.5px;line-height:1.7;max-width:82ch">Với Việt Nam: duy trì một <strong>lịch nhạy cảm văn hóa</strong> — Tết, giỗ Tổ, quốc tang, dịp tôn giáo, sự kiện chính trị — như nguồn dữ liệu bắt buộc mà mọi agent lên lịch phải kiểm tra trước khi đăng.</p>
@@ -1332,7 +1340,7 @@ textarea.input { min-height: 90px; resize: vertical; }
               </div>
             </sc-for>
           </div>
-          <div style="border:2px solid var(--color-text);background:var(--color-neutral-100);padding:26px;margin-top:34px">
+          <div class="lnx-note" style="border:2px solid var(--color-text);background:var(--color-neutral-100);padding:26px;margin-top:34px">
             <h4 style="font-size:20px;margin:0 0 14px">Hàm ý cho kiến trúc AI</h4>
             <p style="margin:0 0 16px;font-size:14.5px;line-height:1.7;max-width:82ch">Khác biệt lớn nhất giữa hai hình thức, xét từ góc độ kỹ thuật, là <strong>mức độ sạch của dữ liệu tài chính</strong> — thứ quyết định agent tài chính có làm việc được hay không. Khuyến nghị: dù chọn hình thức nào, hãy vận hành sổ sách như một doanh nghiệp ngay từ đầu.</p>
             <p style="margin:0;font-size:14.5px;line-height:1.7;max-width:82ch">Ngưỡng chuyển đổi nên đặt ở ba tín hiệu, không phải ở doanh thu: khách hàng bắt đầu yêu cầu hóa đơn VAT; xuất hiện hợp đồng có rủi ro pháp lý đáng kể; hoặc cần thuê ngoài dài hạn và ký kết với đối tác lớn.</p>

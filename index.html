@@ -215,7 +215,7 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 img { display: block; max-width: 100%; }
 figure { margin: 0; }
 figcaption {
-  font-size: 11px; margin-top: var(--space-1);
+  font-size: 14.5px; margin-top: var(--space-1);
   color: color-mix(in srgb, var(--color-text) 55%, transparent);
 }
 .text-muted { color: color-mix(in srgb, var(--color-text) 55%, transparent); }
@@ -300,14 +300,14 @@ textarea.input { min-height: 90px; resize: vertical; }
   display: flex; flex-direction: column; gap: var(--space-2);
   padding: var(--space-3); border-radius: var(--radius-md); background: var(--color-surface);
 }
-.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
+.card-kicker { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
 .card-title {
   font-family: var(--font-heading); font-weight: var(--font-heading-weight);
   font-size: 17px; line-height: 1.2;
 }
 .card-body { margin: 0; font-size: 13px; opacity: 0.8; flex: 1; }
 .card-meta {
-  display: flex; align-items: center; gap: 6px; font-size: 11px;
+  display: flex; align-items: center; gap: 6px; font-size: 14.5px;
   color: color-mix(in srgb, var(--color-text) 50%, transparent);
 }
 .elev-sm { box-shadow: var(--shadow-sm); }
@@ -316,7 +316,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 
 /* — tags — */
 .tag {
-  display: inline-flex; align-items: center; font-size: 11px;
+  display: inline-flex; align-items: center; font-size: 14.5px;
   letter-spacing: 0.02em; padding: 3px 10px;
   border-radius: calc(var(--radius-md) * 0.75);
 }
@@ -341,7 +341,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 /* — tables — */
 .table { width: 100%; border-collapse: collapse; font-size: 14px; }
 .table th {
-  text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  text-align: left; font-size: 14.5px; letter-spacing: 0.08em; text-transform: uppercase;
   color: color-mix(in srgb, var(--color-text) 60%, transparent);
   padding: var(--space-2); border-bottom: 2px solid var(--color-divider);
 }
@@ -409,8 +409,8 @@ textarea.input { min-height: 90px; resize: vertical; }
       grid-template-columns: minmax(170px, 1.3fr) repeat(3, minmax(140px, 1fr));
       gap: 10px 22px; align-items: start; }
     .lnx-matrix-head { background: var(--color-neutral-100); padding: 14px 20px;
-      font-size: 10px; letter-spacing: .16em; color: var(--color-neutral-600); }
-    .lnx-matrix-lbl { display: none; font-size: 10px; letter-spacing: .14em;
+      font-size: 13px; letter-spacing: .16em; color: var(--color-neutral-600); }
+    .lnx-matrix-lbl { display: none; font-size: 13px; letter-spacing: .14em;
       color: var(--color-neutral-500); margin-bottom: 5px; }
     @container (max-width: 720px) {
       .lnx-matrix-head { display: none; }
@@ -446,7 +446,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px);display:flex;align-items:center;gap:clamp(12px,2cqi,32px);height:74px">
         <a href="#" sc-camel-on-click="{{ goHome }}" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--color-text);flex:none">
           <svg width="34" height="34" sc-camel-view-box="0 0 100 100" style="display:block"><path d="M50 8 L92 50 L50 92 L8 50 Z" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><path d="M50 8 L50 92 M8 50 L92 50" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><circle cx="50" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="92" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="92" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="8" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="50" r="10" fill="var(--color-accent)"></circle></svg>
-          <span style="display:block"><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:19px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:8.5px;letter-spacing:.26em;margin-top:5px;color:var(--color-neutral-600)">NEXT SOLUTIONS JSC</span></span>
+          <span style="display:block"><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:19px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:11px;letter-spacing:.26em;margin-top:5px;color:var(--color-neutral-600)">NEXT SOLUTIONS JSC</span></span>
         </a>
         <nav class="lnx-nav" style="{{ navStyle }}">
           <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="7">
@@ -463,7 +463,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="7">
             <button type="button" sc-camel-on-click="{{ n.goClose }}" style="{{ n.stackSt }}">{{ n.label }}</button>
           </sc-for>
-          <button type="button" class="btn btn-primary" sc-camel-on-click="{{ goContactClose }}" style="width:100%;border:0;font-size:11px;letter-spacing:.14em;padding:18px 20px;font-weight:600;justify-content:flex-start">ĐẶT LỊCH CHẨN ĐOÁN</button>
+          <button type="button" class="btn btn-primary" sc-camel-on-click="{{ goContactClose }}" style="width:100%;border:0;font-size:14.5px;letter-spacing:.14em;padding:18px 20px;font-weight:600;justify-content:flex-start">ĐẶT LỊCH CHẨN ĐOÁN</button>
         </div>
       </sc-if>
     </header>
@@ -472,7 +472,7 @@ textarea.input { min-height: 90px; resize: vertical; }
     <div>
       <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(48px,7cqi,104px) 0 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 22px;font-weight:600">Tư vấn · Kiến trúc · Giải pháp toàn diện</p>
+          <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 22px;font-weight:600">Tư vấn · Kiến trúc · Giải pháp toàn diện</p>
           <h1 style="font-size:clamp(34px,6.4cqi,84px);line-height:1.02;letter-spacing:-.03em;margin:0 0 26px;max-width:16ch">Kiến trúc mô hình <span style="color:var(--color-accent-500)">kinh doanh mới</span></h1>
           <p style="font-size:clamp(16px,1.5cqi,21px);line-height:1.5;max-width:58ch;color:var(--color-neutral-300);margin:0 0 36px">Chúng tôi không gắn AI vào bộ máy cũ. Chúng tôi thiết kế lại bộ máy quanh AI — rồi bàn giao kèm hệ thống kiểm soát để anh chị vận hành được mà không phụ thuộc vào chúng tôi.</p>
           <div style="display:flex;gap:2px;flex-wrap:wrap;padding-bottom:clamp(40px,6cqi,84px)">
@@ -482,28 +482,28 @@ textarea.input { min-height: 90px; resize: vertical; }
         </div>
         <figure style="margin:0;border-top:2px solid var(--color-neutral-700);position:relative">
           <img class="grayscale" src="assets/img/hero-lattice.png" alt="Giàn thép mắt lưới — mặt đứng hình học" style="display:block;width:100%;aspect-ratio:1913/822;object-fit:cover;object-position:left center">
-          <figcaption style="position:absolute;left:clamp(16px,2.5cqi,40px);bottom:clamp(14px,2cqi,26px);font-size:10px;letter-spacing:.2em;color:#fff;background:var(--color-text);padding:7px 12px">GIÀN LIÊN KẾT · MỖI NÚT NỐI VỚI CÁC NÚT LÂN CẬN</figcaption>
+          <figcaption style="position:absolute;left:clamp(16px,2.5cqi,40px);bottom:clamp(14px,2cqi,26px);font-size:13px;letter-spacing:.2em;color:#fff;background:var(--color-text);padding:7px 12px">GIÀN LIÊN KẾT · MỖI NÚT NỐI VỚI CÁC NÚT LÂN CẬN</figcaption>
         </figure>
         <div style="border-top:2px solid var(--color-neutral-700)">
           <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
               <div style="padding:28px 24px 34px;border-right:2px solid var(--color-neutral-700)">
-                <b style="display:block;font-size:10px;letter-spacing:.2em;color:var(--color-accent-400);margin-bottom:14px">01 · CHẨN ĐOÁN</b>
+                <b style="display:block;font-size:13px;letter-spacing:.2em;color:var(--color-accent-400);margin-bottom:14px">01 · CHẨN ĐOÁN</b>
                 <h3 style="font-size:18px;margin:0 0 10px;color:var(--color-bg)">Đọc mô hình hiện tại</h3>
                 <p style="margin:0;font-size:13.5px;line-height:1.55;color:var(--color-neutral-400)">Kiểm kê quy trình, dữ liệu, điểm nghẽn và trần tự động hóa thực tế của từng lớp kinh doanh.</p>
               </div>
               <div style="padding:28px 24px 34px;border-right:2px solid var(--color-neutral-700)">
-                <b style="display:block;font-size:10px;letter-spacing:.2em;color:var(--color-accent-400);margin-bottom:14px">02 · KIẾN TRÚC</b>
+                <b style="display:block;font-size:13px;letter-spacing:.2em;color:var(--color-accent-400);margin-bottom:14px">02 · KIẾN TRÚC</b>
                 <h3 style="font-size:18px;margin:0 0 10px;color:var(--color-bg)">Thiết kế bộ máy</h3>
                 <p style="margin:0;font-size:13.5px;line-height:1.55;color:var(--color-neutral-400)">Ban điều hành AI, work object, mức tự chủ, ma trận quyền quyết định, hạ tầng bảy lớp.</p>
               </div>
               <div style="padding:28px 24px 34px;border-right:2px solid var(--color-neutral-700)">
-                <b style="display:block;font-size:10px;letter-spacing:.2em;color:var(--color-accent-400);margin-bottom:14px">03 · TRIỂN KHAI</b>
+                <b style="display:block;font-size:13px;letter-spacing:.2em;color:var(--color-accent-400);margin-bottom:14px">03 · TRIỂN KHAI</b>
                 <h3 style="font-size:18px;margin:0 0 10px;color:var(--color-bg)">Dựng và nối</h3>
                 <p style="margin:0;font-size:13.5px;line-height:1.55;color:var(--color-neutral-400)">Knowledge base, tích hợp MCP, agent theo lộ trình L1 lên L3, eval suite và audit log.</p>
               </div>
               <div style="padding:28px 24px 34px">
-                <b style="display:block;font-size:10px;letter-spacing:.2em;color:var(--color-accent-400);margin-bottom:14px">04 · VẬN HÀNH</b>
+                <b style="display:block;font-size:13px;letter-spacing:.2em;color:var(--color-accent-400);margin-bottom:14px">04 · VẬN HÀNH</b>
                 <h3 style="font-size:18px;margin:0 0 10px;color:var(--color-bg)">Giữ cho chạy</h3>
                 <p style="margin:0;font-size:13.5px;line-height:1.55;color:var(--color-neutral-400)">Kiểm toán định kỳ, nâng hạ mức tự chủ theo số đo, kiểm soát chi phí và tuân thủ.</p>
               </div>
@@ -538,7 +538,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <section style="background:var(--color-bg);padding:clamp(48px,6cqi,88px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <div style="height:2px;background:var(--color-text);margin-bottom:30px"></div>
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Luận điểm</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Luận điểm</p>
           <h2 style="font-size:clamp(23px,3.2cqi,46px);margin:0 0 26px;letter-spacing:-.025em;white-space:nowrap">Đơn vị mở rộng quy mô đã đổi</h2>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(24px,4cqi,64px)">
             <div>
@@ -557,33 +557,33 @@ textarea.input { min-height: 90px; resize: vertical; }
       <section style="background:var(--color-neutral-200);padding:clamp(48px,6cqi,88px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <div style="height:2px;background:var(--color-text);margin-bottom:30px"></div>
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Chúng tôi làm gì</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Chúng tôi làm gì</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 18px;letter-spacing:-.025em">Bốn động cơ, một bộ máy</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.5;max-width:64ch;margin:0 0 36px;color:var(--color-neutral-800)">Mỗi động cơ có agent riêng, KPI riêng và mức tự chủ riêng — nhưng dùng chung một lớp dữ liệu khách hàng và một lớp tri thức.</p>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;background:var(--color-neutral-400)">
             <div style="background:var(--color-bg);padding:26px 24px 24px;display:flex;flex-direction:column">
-              <span style="font-size:10px;letter-spacing:.2em;color:var(--color-accent);margin-bottom:14px;font-weight:600">ĐỘNG CƠ 01</span>
+              <span style="font-size:13px;letter-spacing:.2em;color:var(--color-accent);margin-bottom:14px;font-weight:600">ĐỘNG CƠ 01</span>
               <h3 style="font-size:19px;margin:0 0 12px">Social Media</h3>
               <p style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-700);margin:0 0 18px;flex:1">Quy trình “một gốc — nhiều nhánh”: một nội dung gốc mỗi tuần thành 8–15 mảnh phân phối đa nền tảng, có kiểm duyệt bắt buộc trước khi đăng.</p>
-              <button type="button" sc-camel-on-click="{{ goEngine1 }}" style="appearance:none;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:.14em;color:var(--color-accent);text-align:left;font-weight:600" style-hover="color:var(--color-accent-700)">XEM CHI TIẾT →</button>
+              <button type="button" sc-camel-on-click="{{ goEngine1 }}" style="appearance:none;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;font-size:14.5px;letter-spacing:.14em;color:var(--color-accent);text-align:left;font-weight:600" style-hover="color:var(--color-accent-700)">XEM CHI TIẾT →</button>
             </div>
             <div style="background:var(--color-bg);padding:26px 24px 24px;display:flex;flex-direction:column">
-              <span style="font-size:10px;letter-spacing:.2em;color:var(--color-accent);margin-bottom:14px;font-weight:600">ĐỘNG CƠ 02</span>
+              <span style="font-size:13px;letter-spacing:.2em;color:var(--color-accent);margin-bottom:14px;font-weight:600">ĐỘNG CƠ 02</span>
               <h3 style="font-size:19px;margin:0 0 12px">Marketing &amp; GEO/AEO</h3>
               <p style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-700);margin:0 0 18px;flex:1">Chuyển từ tối ưu thứ hạng sang tối ưu để được mô hình AI trích dẫn. Phễu tám tầng, mỗi tầng một agent.</p>
-              <button type="button" sc-camel-on-click="{{ goEngine2 }}" style="appearance:none;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:.14em;color:var(--color-accent);text-align:left;font-weight:600" style-hover="color:var(--color-accent-700)">XEM CHI TIẾT →</button>
+              <button type="button" sc-camel-on-click="{{ goEngine2 }}" style="appearance:none;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;font-size:14.5px;letter-spacing:.14em;color:var(--color-accent);text-align:left;font-weight:600" style-hover="color:var(--color-accent-700)">XEM CHI TIẾT →</button>
             </div>
             <div style="background:var(--color-bg);padding:26px 24px 24px;display:flex;flex-direction:column">
-              <span style="font-size:10px;letter-spacing:.2em;color:var(--color-accent);margin-bottom:14px;font-weight:600">ĐỘNG CƠ 03</span>
+              <span style="font-size:13px;letter-spacing:.2em;color:var(--color-accent);margin-bottom:14px;font-weight:600">ĐỘNG CƠ 03</span>
               <h3 style="font-size:19px;margin:0 0 12px">CRM &amp; Vòng đời</h3>
               <p style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-700);margin:0 0 18px;flex:1">Một nguồn sự thật duy nhất mà mọi agent đọc và ghi. Kịch bản vòng đời từ lead mới đến winback, có ranh giới rõ cho người.</p>
-              <button type="button" sc-camel-on-click="{{ goEngine3 }}" style="appearance:none;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:.14em;color:var(--color-accent);text-align:left;font-weight:600" style-hover="color:var(--color-accent-700)">XEM CHI TIẾT →</button>
+              <button type="button" sc-camel-on-click="{{ goEngine3 }}" style="appearance:none;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;font-size:14.5px;letter-spacing:.14em;color:var(--color-accent);text-align:left;font-weight:600" style-hover="color:var(--color-accent-700)">XEM CHI TIẾT →</button>
             </div>
             <div style="background:var(--color-bg);padding:26px 24px 24px;display:flex;flex-direction:column">
-              <span style="font-size:10px;letter-spacing:.2em;color:var(--color-accent);margin-bottom:14px;font-weight:600">ĐỘNG CƠ 04</span>
+              <span style="font-size:13px;letter-spacing:.2em;color:var(--color-accent);margin-bottom:14px;font-weight:600">ĐỘNG CƠ 04</span>
               <h3 style="font-size:19px;margin:0 0 12px">R&amp;D &amp; Đổi mới</h3>
               <p style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-700);margin:0 0 18px;flex:1">Bốn dòng nghiên cứu và nhịp thí nghiệm hai tuần. Không có R&amp;D, bộ máy chỉ vận hành hiệu quả một ý tưởng đang già đi.</p>
-              <button type="button" sc-camel-on-click="{{ goEngine4 }}" style="appearance:none;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;font-size:11px;letter-spacing:.14em;color:var(--color-accent);text-align:left;font-weight:600" style-hover="color:var(--color-accent-700)">XEM CHI TIẾT →</button>
+              <button type="button" sc-camel-on-click="{{ goEngine4 }}" style="appearance:none;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;font-size:14.5px;letter-spacing:.14em;color:var(--color-accent);text-align:left;font-weight:600" style-hover="color:var(--color-accent-700)">XEM CHI TIẾT →</button>
             </div>
           </div>
         </div>
@@ -591,13 +591,13 @@ textarea.input { min-height: 90px; resize: vertical; }
 
       <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,5.5cqi,80px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 18px;font-weight:600">Lớp quản trị</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 18px;font-weight:600">Lớp quản trị</p>
           <h2 style="font-size:clamp(24px,3.1cqi,42px);margin:0 0 18px;letter-spacing:-.025em;color:var(--color-bg)">Bốn động cơ chạy được là nhờ lớp thứ năm</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.6;max-width:70ch;margin:0 0 34px;color:var(--color-neutral-300)">Bốn động cơ tạo ra việc. Lớp quản trị quyết định ai được duyệt việc nào, ai chịu trách nhiệm khi sai, và bộ máy tự sửa ra sao. Thiếu lớp này, bốn động cơ chỉ là bốn chuỗi chatbot không sổ sách — đúng cái làm 88% pilot chết trước khi lên production.</p>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;background:var(--color-neutral-700);border-top:2px solid var(--color-neutral-700);border-bottom:2px solid var(--color-neutral-700);margin-bottom:32px">
             <sc-for list="{{ govLayers }}" as="g" hint-placeholder-count="4">
               <div style="background:var(--color-text);padding:22px 20px">
-                <div style="font-size:10px;letter-spacing:.18em;color:var(--color-neutral-500);margin-bottom:9px">{{ g.n }}</div>
+                <div style="font-size:13px;letter-spacing:.18em;color:var(--color-neutral-500);margin-bottom:9px">{{ g.n }}</div>
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:15px;line-height:1.35;margin-bottom:9px">{{ g.a }}</div>
                 <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-400)">{{ g.b }}</div>
               </div>
@@ -610,7 +610,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <section style="background:var(--color-bg);padding:clamp(48px,6cqi,88px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <div style="height:2px;background:var(--color-text);margin-bottom:30px"></div>
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Nguyên tắc làm việc</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Nguyên tắc làm việc</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 36px;letter-spacing:-.025em">Bốn điều chúng tôi cam kết</h2>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px;background:var(--color-neutral-400)">
             <div style="background:var(--color-bg);padding:26px 26px 28px">
@@ -636,7 +636,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(48px,6cqi,88px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <div style="height:2px;background:var(--color-neutral-600);margin-bottom:30px"></div>
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 18px;font-weight:600">Vì sao là bây giờ</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 18px;font-weight:600">Vì sao là bây giờ</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 36px;letter-spacing:-.025em;color:var(--color-bg)">2026 là cửa sổ hiếm ở Việt Nam</h2>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--color-neutral-700)">
             <div style="background:var(--color-text);padding:26px 24px 28px">
@@ -671,7 +671,7 @@ textarea.input { min-height: 90px; resize: vertical; }
     <div>
       <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Xu hướng tương lai</p>
+          <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Xu hướng tương lai</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Đọc thị trường bằng số, không bằng cảm giác</h1>
           <p style="font-size:clamp(15px,1.4cqi,19px);line-height:1.55;max-width:66ch;color:var(--color-neutral-400);margin:0">Tổng hợp dữ liệu công bố đến tháng 8/2026 từ Gartner, IDC, Forrester, Deloitte, BCG, Metric và các văn bản pháp lý Việt Nam. Số liệu ngành có sai lệch giữa các nguồn — nên đọc theo xu hướng, không theo con số tuyệt đối.</p>
         </div>
@@ -680,12 +680,12 @@ textarea.input { min-height: 90px; resize: vertical; }
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,88px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <div style="height:2px;background:var(--color-text);margin-bottom:30px"></div>
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Thế giới · 2025 – nửa đầu 2026</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Thế giới · 2025 – nửa đầu 2026</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 8px;letter-spacing:-.025em">Khoảng cách giữa hào hứng và kết quả</h2>
 
           <figure style="border:2px solid var(--color-text);padding:24px;margin:34px 0 0;background:var(--color-neutral-100)">
             <div style="border-bottom:2px solid var(--color-text);padding-bottom:14px;margin-bottom:22px">
-              <span style="font-size:10px;letter-spacing:.2em;color:var(--color-accent);font-weight:600">BIỂU ĐỒ 01</span>
+              <span style="font-size:13px;letter-spacing:.2em;color:var(--color-accent);font-weight:600">BIỂU ĐỒ 01</span>
               <h4 style="font-size:20px;margin:8px 0 6px">Pilot nhiều, production ít</h4>
               <p style="margin:0;font-size:13.5px;color:var(--color-neutral-700)">Ba con số hay được trích nhất trong các khảo sát 2026 về agentic AI.</p>
             </div>
@@ -708,7 +708,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 
           <figure style="border:2px solid var(--color-text);border-top:0;padding:24px;margin:0;background:var(--color-neutral-100)">
             <div style="border-bottom:2px solid var(--color-text);padding-bottom:14px;margin-bottom:22px">
-              <span style="font-size:10px;letter-spacing:.2em;color:var(--color-accent);font-weight:600">BIỂU ĐỒ 02</span>
+              <span style="font-size:13px;letter-spacing:.2em;color:var(--color-accent);font-weight:600">BIỂU ĐỒ 02</span>
               <h4 style="font-size:20px;margin:8px 0 6px">Nguyên nhân gốc của các triển khai có ROI âm</h4>
               <p style="margin:0;font-size:13.5px;color:var(--color-neutral-700)">Không nguyên nhân nào là chất lượng mô hình. Cả ba đều là vấn đề thiết kế tổ chức.</p>
             </div>
@@ -730,7 +730,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text)">
             <sc-for list="{{ worldIndicators }}" as="r" hint-placeholder-count="9">
               <div style="background:var(--color-bg);padding:20px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px 28px;align-items:start">
-                <div><div style="font-family:var(--font-heading);font-weight:800;font-size:15px;line-height:1.3">{{ r.a }}</div><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600);margin-top:8px">NGUỒN · {{ r.c }}</div></div>
+                <div><div style="font-family:var(--font-heading);font-weight:800;font-size:15px;line-height:1.3">{{ r.a }}</div><div style="font-size:14.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600);margin-top:8px">NGUỒN · {{ r.c }}</div></div>
                 <div style="font-size:14.5px;font-weight:600;line-height:1.5;color:var(--color-accent-700)">{{ r.b }}</div>
                 <div style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-700)">{{ r.d }}</div>
               </div>
@@ -742,15 +742,15 @@ textarea.input { min-height: 90px; resize: vertical; }
             <sc-for list="{{ shifts }}" as="r" hint-placeholder-count="7">
               <div style="background:var(--color-bg);padding:20px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px 28px;align-items:start">
                 <div style="display:flex;gap:12px"><span style="font-family:var(--font-heading);font-weight:800;font-size:13px;color:var(--color-accent)">{{ r.n }}</span><span style="font-family:var(--font-heading);font-weight:800;font-size:15px;line-height:1.3">{{ r.a }}</span></div>
-                <div style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-600)"><span style="font-size:10px;letter-spacing:.14em;display:block;margin-bottom:5px">2024</span>{{ r.b }}</div>
-                <div style="font-size:13.5px;line-height:1.6;color:var(--color-text)"><span style="font-size:10px;letter-spacing:.14em;display:block;margin-bottom:5px;color:var(--color-accent)">2026</span>{{ r.c }}</div>
+                <div style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-600)"><span style="font-size:13px;letter-spacing:.14em;display:block;margin-bottom:5px">2024</span>{{ r.b }}</div>
+                <div style="font-size:13.5px;line-height:1.6;color:var(--color-text)"><span style="font-size:13px;letter-spacing:.14em;display:block;margin-bottom:5px;color:var(--color-accent)">2026</span>{{ r.c }}</div>
               </div>
             </sc-for>
           </div>
 
           <figure style="border:2px solid var(--color-text);padding:24px;margin:44px 0 0;background:var(--color-neutral-100)">
             <div style="border-bottom:2px solid var(--color-text);padding-bottom:14px;margin-bottom:22px">
-              <span style="font-size:10px;letter-spacing:.2em;color:var(--color-accent);font-weight:600">BIỂU ĐỒ 03</span>
+              <span style="font-size:13px;letter-spacing:.2em;color:var(--color-accent);font-weight:600">BIỂU ĐỒ 03</span>
               <h4 style="font-size:20px;margin:8px 0 6px">Mặt tối của làn sóng solopreneur</h4>
               <p style="margin:0;font-size:13.5px;color:var(--color-neutral-700)">AI loại bỏ con người khỏi khâu thực thi nhưng giữ nguyên — thậm chí làm tăng — sức nặng của quyết định.</p>
             </div>
@@ -775,13 +775,13 @@ textarea.input { min-height: 90px; resize: vertical; }
 
       <figure style="margin:0;position:relative;border-top:2px solid var(--color-text)">
         <img class="grayscale" src="assets/img/vn-street-seller.png" alt="Người bán hàng đóng đơn tại cửa hàng nhỏ trên phố Việt Nam" style="display:block;width:100%;aspect-ratio:1914/822;object-fit:cover">
-        <figcaption style="position:absolute;left:clamp(16px,2.5cqi,40px);bottom:clamp(14px,2cqi,26px);font-size:10px;letter-spacing:.2em;color:#fff;background:var(--color-text);padding:7px 12px">HỘ KINH DOANH · NƠI CHÍNH SÁCH 2026 CHẠM VÀO TRƯỚC TIÊN</figcaption>
+        <figcaption style="position:absolute;left:clamp(16px,2.5cqi,40px);bottom:clamp(14px,2cqi,26px);font-size:13px;letter-spacing:.2em;color:#fff;background:var(--color-text);padding:7px 12px">HỘ KINH DOANH · NƠI CHÍNH SÁCH 2026 CHẠM VÀO TRƯỚC TIÊN</figcaption>
       </figure>
 
       <section style="background:var(--color-neutral-200);padding:clamp(44px,6cqi,88px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <div style="height:2px;background:var(--color-text);margin-bottom:30px"></div>
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Việt Nam · 2026</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Việt Nam · 2026</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 10px;letter-spacing:-.025em">Chính sách đang mở một cửa sổ</h2>
           <p style="font-size:13.5px;color:var(--color-neutral-700);margin:0 0 26px">Khung chính sách then chốt — nhấn từng văn bản để đọc nội dung và ảnh hưởng.</p>
           <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
@@ -793,8 +793,8 @@ textarea.input { min-height: 90px; resize: vertical; }
                 </button>
                 <sc-if value="{{ r.open }}" hint-placeholder-val="{{ false }}">
                   <div style="padding:0 22px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px 28px">
-                    <div><div style="font-size:10px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">NỘI DUNG THEN CHỐT</div><p style="margin:0;font-size:14px;line-height:1.65">{{ r.b }}</p></div>
-                    <div><div style="font-size:10px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:8px">ẢNH HƯỞNG TỚI MÔ HÌNH 1–3 NGƯỜI</div><p style="margin:0;font-size:14px;line-height:1.65">{{ r.c }}</p></div>
+                    <div><div style="font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">NỘI DUNG THEN CHỐT</div><p style="margin:0;font-size:14px;line-height:1.65">{{ r.b }}</p></div>
+                    <div><div style="font-size:13px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:8px">ẢNH HƯỞNG TỚI MÔ HÌNH 1–3 NGƯỜI</div><p style="margin:0;font-size:14px;line-height:1.65">{{ r.c }}</p></div>
                   </div>
                 </sc-if>
               </div>
@@ -808,17 +808,17 @@ textarea.input { min-height: 90px; resize: vertical; }
 
           <figure style="border:2px solid var(--color-text);padding:24px;margin:0 0 34px;background:var(--color-bg)">
             <div style="border-bottom:2px solid var(--color-text);padding-bottom:14px;margin-bottom:22px">
-              <span style="font-size:10px;letter-spacing:.2em;color:var(--color-accent);font-weight:600">BIỂU ĐỒ 04</span>
+              <span style="font-size:13px;letter-spacing:.2em;color:var(--color-accent);font-weight:600">BIỂU ĐỒ 04</span>
               <h4 style="font-size:20px;margin:8px 0 6px">Thị phần doanh thu sàn thương mại điện tử</h4>
               <p style="margin:0;font-size:13.5px;color:var(--color-neutral-700)">TikTok Shop đã đi từ kênh nhận biết thành kênh bán chính — thay đổi cấu trúc quan trọng nhất với người bán quy mô nhỏ.</p>
             </div>
-            <div style="font-size:11px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">QUÝ 3 / 2025</div>
+            <div style="font-size:14.5px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">QUÝ 3 / 2025</div>
             <div style="display:flex;gap:2px;height:44px;margin-bottom:22px">
               <div style="flex:56;background:var(--color-text);color:#fff;display:flex;align-items:center;padding:0 12px;font-size:12.5px;font-weight:600">Shopee 56–58%</div>
               <div style="flex:29;background:var(--color-accent);color:#fff;display:flex;align-items:center;padding:0 12px;font-size:12.5px;font-weight:600">TikTok Shop ~29%</div>
               <div style="flex:15;background:var(--color-neutral-300)"></div>
             </div>
-            <div style="font-size:11px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">ĐẦU 2026</div>
+            <div style="font-size:14.5px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">ĐẦU 2026</div>
             <div style="display:flex;gap:2px;height:44px">
               <div style="flex:56;background:var(--color-text);color:#fff;display:flex;align-items:center;padding:0 12px;font-size:12.5px;font-weight:600">Shopee 56–58%</div>
               <div style="flex:40;background:var(--color-accent);color:#fff;display:flex;align-items:center;padding:0 12px;font-size:12.5px;font-weight:600">TikTok Shop 39–41%</div>
@@ -844,9 +844,9 @@ textarea.input { min-height: 90px; resize: vertical; }
               <div style="background:var(--color-bg);padding:22px">
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:16px;margin-bottom:16px">{{ r.a }}</div>
                 <div style="display:grid;gap:12px">
-                  <div style="display:flex;gap:12px"><span style="font-size:10px;letter-spacing:.12em;color:var(--color-neutral-500);width:78px;flex:none;padding-top:3px">PHƯƠNG TÂY</span><span style="font-size:13.5px;line-height:1.55;color:var(--color-neutral-600)">{{ r.b }}</span></div>
-                  <div style="display:flex;gap:12px"><span style="font-size:10px;letter-spacing:.12em;color:var(--color-accent);width:78px;flex:none;padding-top:3px">VIỆT NAM</span><span style="font-size:13.5px;line-height:1.55">{{ r.c }}</span></div>
-                  <div style="display:flex;gap:12px;border-top:1px solid var(--color-neutral-300);padding-top:12px"><span style="font-size:10px;letter-spacing:.12em;color:var(--color-neutral-500);width:78px;flex:none;padding-top:3px">ĐIỀU CHỈNH</span><span style="font-size:13.5px;line-height:1.55;font-weight:600">{{ r.d }}</span></div>
+                  <div style="display:flex;gap:12px"><span style="font-size:13px;letter-spacing:.12em;color:var(--color-neutral-500);width:78px;flex:none;padding-top:3px">PHƯƠNG TÂY</span><span style="font-size:13.5px;line-height:1.55;color:var(--color-neutral-600)">{{ r.b }}</span></div>
+                  <div style="display:flex;gap:12px"><span style="font-size:13px;letter-spacing:.12em;color:var(--color-accent);width:78px;flex:none;padding-top:3px">VIỆT NAM</span><span style="font-size:13.5px;line-height:1.55">{{ r.c }}</span></div>
+                  <div style="display:flex;gap:12px;border-top:1px solid var(--color-neutral-300);padding-top:12px"><span style="font-size:13px;letter-spacing:.12em;color:var(--color-neutral-500);width:78px;flex:none;padding-top:3px">ĐIỀU CHỈNH</span><span style="font-size:13.5px;line-height:1.55;font-weight:600">{{ r.d }}</span></div>
                 </div>
               </div>
             </sc-for>
@@ -861,14 +861,14 @@ textarea.input { min-height: 90px; resize: vertical; }
     <div>
       <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Next Solutions</p>
+          <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Next Solutions</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Bộ máy AI có tổ chức, có quyền hạn, có kiểm soát</h1>
           <p style="font-size:clamp(15px,1.4cqi,19px);line-height:1.55;max-width:66ch;color:var(--color-neutral-400);margin:0 0 clamp(32px,4cqi,56px)">Không phải một tập hợp chatbot. Là một ban điều hành ảo với vai trò rõ ràng, một đơn vị công việc chuẩn, sáu mức tự chủ có điều kiện thăng cấp, và bảy lớp hạ tầng.</p>
         </div>
         <div style="border-top:2px solid var(--color-neutral-700)">
           <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px);display:flex;overflow-x:auto;scrollbar-width:none" class="lnx-nav">
             <sc-for list="{{ solTabs }}" as="t" hint-placeholder-count="8">
-              <button type="button" sc-camel-on-click="{{ t.go }}" style="{{ t.st }}"><span style="display:block;font-size:9.5px;letter-spacing:.18em;margin-bottom:6px;opacity:.75">{{ t.kicker }}</span><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:14px">{{ t.label }}</span></button>
+              <button type="button" sc-camel-on-click="{{ t.go }}" style="{{ t.st }}"><span style="display:block;font-size:12.5px;letter-spacing:.18em;margin-bottom:6px;opacity:.75">{{ t.kicker }}</span><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:14px">{{ t.label }}</span></button>
             </sc-for>
           </div>
         </div>
@@ -877,7 +877,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <sc-if value="{{ tabF1 }}" hint-placeholder-val="{{ true }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Nền tảng 01</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Nền tảng 01</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Thang tự chủ — trục xương sống</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 34px;color:var(--color-neutral-800)">Sáu mức tự chủ và ranh giới hành động. Vạch đỏ là ranh giới quan trọng nhất trong toàn bộ mô hình: từ L3 trở đi agent được hành động ra bên ngoài. Nhấn từng mức để xem điều kiện thăng cấp.</p>
 
@@ -886,11 +886,11 @@ textarea.input { min-height: 90px; resize: vertical; }
               <button type="button" sc-camel-on-click="{{ l.go }}" style="{{ l.st }}">
                 <span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:22px;letter-spacing:-.02em">{{ l.id }}</span>
                 <span style="display:block;font-size:12.5px;margin-top:8px;font-weight:600">{{ l.name }}</span>
-                <span style="display:block;font-size:10.5px;margin-top:10px;letter-spacing:.1em;opacity:.7">{{ l.short }}</span>
+                <span style="display:block;font-size:13.5px;margin-top:10px;letter-spacing:.1em;opacity:.7">{{ l.short }}</span>
               </button>
             </sc-for>
           </div>
-          <p style="font-size:11px;letter-spacing:.16em;color:var(--color-accent);margin:12px 0 0;font-weight:600">▲ TỪ L3 TRỞ ĐI · RANH GIỚI HÀNH ĐỘNG RA BÊN NGOÀI</p>
+          <p style="font-size:14.5px;letter-spacing:.16em;color:var(--color-accent);margin:12px 0 0;font-weight:600">▲ TỪ L3 TRỞ ĐI · RANH GIỚI HÀNH ĐỘNG RA BÊN NGOÀI</p>
 
           <div style="border:2px solid var(--color-text);border-top:0;background:var(--color-neutral-100);padding:26px;margin-top:26px">
             <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:20px;border-bottom:2px solid var(--color-text);padding-bottom:16px">
@@ -898,9 +898,9 @@ textarea.input { min-height: 90px; resize: vertical; }
               <span style="font-family:var(--font-heading);font-weight:800;font-size:clamp(19px,2cqi,26px)">{{ lvl.name }}</span>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px">
-              <div><div style="font-size:10px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">QUYỀN CỦA AI</div><p style="margin:0;font-size:14.5px;line-height:1.6">{{ lvl.right }}</p></div>
-              <div><div style="font-size:10px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">VÍ DỤ</div><p style="margin:0;font-size:14.5px;line-height:1.6">{{ lvl.eg }}</p></div>
-              <div><div style="font-size:10px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:8px">ĐIỀU KIỆN ĐỂ LÊN MỨC NÀY</div><p style="margin:0;font-size:14.5px;line-height:1.6;font-weight:600">{{ lvl.cond }}</p></div>
+              <div><div style="font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">QUYỀN CỦA AI</div><p style="margin:0;font-size:14.5px;line-height:1.6">{{ lvl.right }}</p></div>
+              <div><div style="font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">VÍ DỤ</div><p style="margin:0;font-size:14.5px;line-height:1.6">{{ lvl.eg }}</p></div>
+              <div><div style="font-size:13px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:8px">ĐIỀU KIỆN ĐỂ LÊN MỨC NÀY</div><p style="margin:0;font-size:14.5px;line-height:1.6;font-weight:600">{{ lvl.cond }}</p></div>
             </div>
           </div>
 
@@ -909,7 +909,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <div class="lnx-note" style="background:var(--color-accent);color:#fff;padding:28px;margin-top:34px">
             <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
               <h4 style="font-size:20px;margin:0;color:#fff">Nguyên tắc hạ cấp</h4>
-              <span style="font-size:10px;letter-spacing:.14em;border:1px solid rgba(255,255,255,.6);padding:4px 9px">THƯỜNG BỊ BỎ QUÊN</span>
+              <span style="font-size:13px;letter-spacing:.14em;border:1px solid rgba(255,255,255,.6);padding:4px 9px">THƯỜNG BỊ BỎ QUÊN</span>
             </div>
             <p style="margin:0;font-size:15px;line-height:1.7;max-width:80ch">Phải có cơ chế tự động hạ mức khi chất lượng tụt — ví dụ hai sự cố trong 30 ngày thì agent tự rơi từ L4 về L2 và chờ người xem xét. <strong>Tự chủ là quyền có thể bị thu hồi, không phải trạng thái vĩnh viễn.</strong></p>
           </div>
@@ -920,7 +920,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <sc-if value="{{ tabF2 }}" hint-placeholder-val="{{ false }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Nền tảng 02</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Nền tảng 02</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Ban điều hành AI</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 32px;color:var(--color-neutral-800)">Mười một vai trò quản lý, mỗi vai trò có KPI và mức tự chủ riêng. Dưới mỗi vai trò là các agent thực thi chuyên biệt.</p>
           <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
@@ -928,10 +928,10 @@ textarea.input { min-height: 90px; resize: vertical; }
               <div style="background:var(--color-bg);padding:20px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 28px;align-items:start">
                 <div>
                   <div style="font-family:var(--font-heading);font-weight:800;font-size:16px;line-height:1.25">{{ r.a }}</div>
-                  <div style="display:inline-block;margin-top:10px;font-size:11px;letter-spacing:.1em;padding:3px 9px;background:var(--color-accent-100);color:var(--color-accent-800);font-weight:600">TỰ CHỦ {{ r.d }}</div>
+                  <div style="display:inline-block;margin-top:10px;font-size:14.5px;letter-spacing:.1em;padding:3px 9px;background:var(--color-accent-100);color:var(--color-accent-800);font-weight:600">TỰ CHỦ {{ r.d }}</div>
                 </div>
                 <div style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-700)">{{ r.b }}</div>
-                <div style="font-size:13.5px;line-height:1.6"><span style="display:block;font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);margin-bottom:5px">KPI</span>{{ r.c }}</div>
+                <div style="font-size:13.5px;line-height:1.6"><span style="display:block;font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);margin-bottom:5px">KPI</span>{{ r.c }}</div>
               </div>
             </sc-for>
           </div>
@@ -941,7 +941,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text)">
             <sc-for list="{{ clusters }}" as="r" hint-placeholder-count="8">
               <div style="background:var(--color-bg);padding:20px 22px">
-                <div style="font-size:10px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:10px;font-weight:600">{{ r.a }}</div>
+                <div style="font-size:13px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:10px;font-weight:600">{{ r.a }}</div>
                 <div style="font-size:13.5px;line-height:1.7">{{ r.b }}</div>
               </div>
             </sc-for>
@@ -966,7 +966,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <sc-if value="{{ tabF3 }}" hint-placeholder-val="{{ false }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Nền tảng 03</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Nền tảng 03</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Work Object và ma trận quyền quyết định</h2>
           <p style="font-size:15.5px;line-height:1.7;max-width:74ch;margin:0 0 32px;color:var(--color-neutral-800)">Nhiệm vụ không được chuyển tự do giữa các agent bằng hội thoại mơ hồ. Mọi việc đi qua một đối tượng công việc có cấu trúc — nhờ vậy doanh nghiệp không biến thành một chuỗi chatbot khó kiểm soát mà thành <strong>một hệ thống có sổ sách</strong>.</p>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
@@ -982,22 +982,22 @@ textarea.input { min-height: 90px; resize: vertical; }
           <p style="font-size:13.5px;color:var(--color-neutral-700);margin:0 0 24px;max-width:74ch">Hai trục quyết định mọi thứ: hậu quả nếu sai, và khả năng hoàn tác. Không phải mức độ phức tạp của công việc.</p>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:var(--color-text);border:2px solid var(--color-text)">
             <div style="background:var(--color-neutral-100);padding:22px">
-              <div style="font-size:11px;letter-spacing:.14em;color:var(--color-neutral-600);margin-bottom:6px">KHÓ HOÀN TÁC · HẬU QUẢ THẤP</div>
+              <div style="font-size:14.5px;letter-spacing:.14em;color:var(--color-neutral-600);margin-bottom:6px">KHÓ HOÀN TÁC · HẬU QUẢ THẤP</div>
               <div style="font-family:var(--font-heading);font-weight:800;font-size:17px;margin-bottom:14px">AI + NHẬT KÝ</div>
               <div style="font-size:13.5px;line-height:1.8">Đổi giá trong biên độ<br>Ngân sách quảng cáo nhỏ<br>Báo giá chuẩn, voucher<br>Đặt hàng khi chạm ngưỡng tồn</div>
             </div>
             <div style="background:var(--color-accent-100);padding:22px">
-              <div style="font-size:11px;letter-spacing:.14em;color:var(--color-accent-700);margin-bottom:6px">KHÓ HOÀN TÁC · HẬU QUẢ CAO</div>
+              <div style="font-size:14.5px;letter-spacing:.14em;color:var(--color-accent-700);margin-bottom:6px">KHÓ HOÀN TÁC · HẬU QUẢ CAO</div>
               <div style="font-family:var(--font-heading);font-weight:800;font-size:17px;margin-bottom:14px;color:var(--color-accent-800)">BẮT BUỘC PHÊ DUYỆT</div>
               <div style="font-size:13.5px;line-height:1.8">Hợp đồng và cam kết pháp lý<br>Thanh toán lớn<br>Thay đổi chiến lược, định vị<br>Quyết định y tế, tín dụng, đầu tư</div>
             </div>
             <div style="background:var(--color-neutral-200);padding:22px">
-              <div style="font-size:11px;letter-spacing:.14em;color:var(--color-neutral-600);margin-bottom:6px">DỄ HOÀN TÁC · HẬU QUẢ THẤP</div>
+              <div style="font-size:14.5px;letter-spacing:.14em;color:var(--color-neutral-600);margin-bottom:6px">DỄ HOÀN TÁC · HẬU QUẢ THẤP</div>
               <div style="font-family:var(--font-heading);font-weight:800;font-size:17px;margin-bottom:14px">AI TỰ LÀM</div>
               <div style="font-size:13.5px;line-height:1.8">Tổng hợp và phân tích dữ liệu<br>Chuẩn bị tài liệu<br>CSKH theo chính sách<br>Cập nhật CRM, ERP, knowledge base</div>
             </div>
             <div style="background:var(--color-text);color:var(--color-bg);padding:22px">
-              <div style="font-size:11px;letter-spacing:.14em;color:var(--color-accent-400);margin-bottom:6px">DỄ HOÀN TÁC · HẬU QUẢ CAO</div>
+              <div style="font-size:14.5px;letter-spacing:.14em;color:var(--color-accent-400);margin-bottom:6px">DỄ HOÀN TÁC · HẬU QUẢ CAO</div>
               <div style="font-family:var(--font-heading);font-weight:800;font-size:17px;margin-bottom:14px;color:var(--color-bg)">CON NGƯỜI TRỰC TIẾP</div>
               <div style="font-size:13.5px;line-height:1.8;color:var(--color-neutral-300)">Công việc vật lý<br>Đàm phán chiến lược<br>Xử lý khủng hoảng<br>Trách nhiệm nghề nghiệp</div>
             </div>
@@ -1019,7 +1019,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <sc-if value="{{ tabF4 }}" hint-placeholder-val="{{ false }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Nền tảng 04</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Nền tảng 04</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Hạ tầng bảy lớp</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 32px;color:var(--color-neutral-800)">Lớp 5 là bổ sung so với thiết kế phổ biến — và là lớp quyết định agent cộng dồn giá trị hay chạm trần. Mỗi lớp đi kèm một câu hỏi kiểm tra.</p>
           <div style="display:grid;gap:2px;background:var(--color-neutral-400);border:2px solid var(--color-text)">
@@ -1030,7 +1030,7 @@ textarea.input { min-height: 90px; resize: vertical; }
                   <span style="font-family:var(--font-heading);font-weight:800;font-size:16px">{{ r.a }}</span>
                   <span style="font-size:13.5px;opacity:.75">{{ r.b }}</span>
                 </div>
-                <div style="font-size:13px;line-height:1.55;margin-top:12px;opacity:.85;max-width:80ch"><span style="letter-spacing:.14em;font-size:10px;margin-right:8px">KIỂM TRA</span>{{ r.c }}</div>
+                <div style="font-size:13px;line-height:1.55;margin-top:12px;opacity:.85;max-width:80ch"><span style="letter-spacing:.14em;font-size:13px;margin-right:8px">KIỂM TRA</span>{{ r.c }}</div>
               </div>
             </sc-for>
           </div>
@@ -1046,7 +1046,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <sc-if value="{{ tabE1 }}" hint-placeholder-val="{{ false }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Động cơ 01</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Động cơ 01</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Social Media</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 40px;color:var(--color-neutral-800)">Ở Việt Nam, mạng xã hội không phải kênh truyền thông — nó là kênh phân phối và kênh bán hàng. Đòn bẩy lớn nhất, và cũng là nơi rủi ro danh tiếng cao nhất.</p>
           <h3 style="font-size:clamp(19px,2cqi,26px);margin:0 0 20px">Kiến trúc “một gốc — nhiều nhánh”</h3>
@@ -1068,11 +1068,11 @@ textarea.input { min-height: 90px; resize: vertical; }
               <div style="background:var(--color-bg);padding:22px">
                 <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:12px">
                   <span style="font-family:var(--font-heading);font-weight:800;font-size:16px">{{ r.a }}</span>
-                  <span style="font-size:11px;letter-spacing:.1em;padding:3px 9px;background:var(--color-accent-100);color:var(--color-accent-800);font-weight:600;flex:none">{{ r.d }}</span>
+                  <span style="font-size:14.5px;letter-spacing:.1em;padding:3px 9px;background:var(--color-accent-100);color:var(--color-accent-800);font-weight:600;flex:none">{{ r.d }}</span>
                 </div>
                 <div style="font-size:12px;letter-spacing:.1em;color:var(--color-neutral-600);margin-bottom:12px">{{ r.b }}</div>
                 <div style="font-size:13.5px;line-height:1.6;margin-bottom:12px">{{ r.c }}</div>
-                <div style="font-size:13px;line-height:1.5;color:var(--color-accent-700);border-top:1px solid var(--color-neutral-300);padding-top:10px"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">RỦI RO CHÍNH</span>{{ r.e }}</div>
+                <div style="font-size:13px;line-height:1.5;color:var(--color-accent-700);border-top:1px solid var(--color-neutral-300);padding-top:10px"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">RỦI RO CHÍNH</span>{{ r.e }}</div>
               </div>
             </sc-for>
           </div>
@@ -1092,15 +1092,15 @@ textarea.input { min-height: 90px; resize: vertical; }
       <sc-if value="{{ tabE2 }}" hint-placeholder-val="{{ false }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Động cơ 02</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Động cơ 02</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 18px;letter-spacing:-.025em">Marketing &amp; GEO/AEO</h2>
           <p style="font-size:15.5px;line-height:1.7;max-width:74ch;margin:0 0 40px;color:var(--color-neutral-800)">Thay đổi lớn nhất của marketing 2025–2026: khi người dùng hỏi trợ lý AI hoặc đọc AI Overviews thay vì bấm vào liên kết, mục tiêu tối ưu đổi từ <em>thứ hạng</em> sang <em>được trích dẫn</em>. AI Overviews hiện xuất hiện ở khoảng 25% truy vấn, tăng từ 13% một năm trước.</p>
           <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
             <sc-for list="{{ geo }}" as="r" hint-placeholder-count="5">
               <div style="background:var(--color-bg);padding:18px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 24px;align-items:start">
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:14.5px">{{ r.a }}</div>
-                <div style="font-size:13.5px;line-height:1.55;color:var(--color-neutral-600)"><span style="font-size:10px;letter-spacing:.14em;display:block;margin-bottom:5px">SEO TRUYỀN THỐNG</span>{{ r.b }}</div>
-                <div style="font-size:13.5px;line-height:1.55"><span style="font-size:10px;letter-spacing:.14em;display:block;margin-bottom:5px;color:var(--color-accent)">GEO / AEO</span>{{ r.c }}</div>
+                <div style="font-size:13.5px;line-height:1.55;color:var(--color-neutral-600)"><span style="font-size:13px;letter-spacing:.14em;display:block;margin-bottom:5px">SEO TRUYỀN THỐNG</span>{{ r.b }}</div>
+                <div style="font-size:13.5px;line-height:1.55"><span style="font-size:13px;letter-spacing:.14em;display:block;margin-bottom:5px;color:var(--color-accent)">GEO / AEO</span>{{ r.c }}</div>
               </div>
             </sc-for>
           </div>
@@ -1113,7 +1113,7 @@ textarea.input { min-height: 90px; resize: vertical; }
                 <div style="{{ r.st }}">{{ r.a }}</div>
                 <div style="flex:1;min-width:220px;background:var(--color-neutral-200);padding:16px 20px;display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap">
                   <span style="font-size:14px">{{ r.b }}</span>
-                  <span style="font-size:11px;letter-spacing:.1em;padding:3px 9px;background:var(--color-bg);color:var(--color-accent-800);font-weight:600">{{ r.c }}</span>
+                  <span style="font-size:14.5px;letter-spacing:.1em;padding:3px 9px;background:var(--color-bg);color:var(--color-accent-800);font-weight:600">{{ r.c }}</span>
                 </div>
               </div>
             </sc-for>
@@ -1142,7 +1142,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <sc-if value="{{ tabE3 }}" hint-placeholder-val="{{ false }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Động cơ 03</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Động cơ 03</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">CRM &amp; dữ liệu khách hàng</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 40px;color:var(--color-neutral-800)">CRM trong doanh nghiệp AI-native không phải phần mềm lưu danh bạ. Nó là nguồn sự thật duy nhất mà mọi agent đọc và ghi.</p>
           <h3 style="font-size:clamp(19px,2cqi,26px);margin:0 0 20px">Mô hình dữ liệu tối thiểu</h3>
@@ -1151,8 +1151,8 @@ textarea.input { min-height: 90px; resize: vertical; }
               <div style="background:var(--color-bg);padding:18px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px 24px;align-items:start">
                 <div style="font-family:ui-monospace,monospace;font-size:13px;color:var(--color-accent-700)">{{ r.a }}</div>
                 <div style="font-size:13.5px;line-height:1.6">{{ r.b }}</div>
-                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">AI GHI</span>{{ r.c }}</div>
-                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">AI ĐỌC</span>{{ r.d }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">AI GHI</span>{{ r.c }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">AI ĐỌC</span>{{ r.d }}</div>
               </div>
             </sc-for>
           </div>
@@ -1162,7 +1162,7 @@ textarea.input { min-height: 90px; resize: vertical; }
             <sc-for list="{{ lifecycle }}" as="r" hint-placeholder-count="7">
               <div style="{{ r.st }}">
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:15px">{{ r.a }}</div>
-                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-600)"><span style="font-size:10px;letter-spacing:.14em;display:block;margin-bottom:4px">KÍCH HOẠT</span>{{ r.b }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-600)"><span style="font-size:13px;letter-spacing:.14em;display:block;margin-bottom:4px">KÍCH HOẠT</span>{{ r.b }}</div>
                 <div style="font-size:13.5px;line-height:1.6">{{ r.c }}</div>
                 <div style="font-size:12px;letter-spacing:.08em;font-weight:600;color:var(--color-accent-700)">{{ r.d }}</div>
               </div>
@@ -1187,7 +1187,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <sc-if value="{{ tabE4 }}" hint-placeholder-val="{{ false }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Động cơ 04</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Động cơ 04</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">R&amp;D &amp; đổi mới sáng tạo</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 40px;color:var(--color-neutral-800)">Không có R&amp;D, mô hình này chỉ là một cỗ máy vận hành hiệu quả một ý tưởng đang già đi.</p>
           <h3 style="font-size:clamp(19px,2cqi,26px);margin:0 0 20px">Bốn dòng R&amp;D</h3>
@@ -1196,7 +1196,7 @@ textarea.input { min-height: 90px; resize: vertical; }
               <div style="background:var(--color-bg);padding:22px">
                 <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:14px">
                   <span style="font-family:var(--font-heading);font-weight:800;font-size:16px">{{ r.a }}</span>
-                  <span style="font-size:11px;letter-spacing:.1em;padding:3px 9px;background:var(--color-accent-100);color:var(--color-accent-800);font-weight:600;flex:none">{{ r.d }}</span>
+                  <span style="font-size:14.5px;letter-spacing:.1em;padding:3px 9px;background:var(--color-accent-100);color:var(--color-accent-800);font-weight:600;flex:none">{{ r.d }}</span>
                 </div>
                 <div style="font-size:14px;line-height:1.6;margin-bottom:12px">{{ r.b }}</div>
                 <div style="font-size:12.5px;line-height:1.5;color:var(--color-neutral-600);border-top:1px solid var(--color-neutral-300);padding-top:10px">{{ r.c }}</div>
@@ -1251,7 +1251,7 @@ textarea.input { min-height: 90px; resize: vertical; }
     <div>
       <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Ngành &amp; Mô hình</p>
+          <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Ngành &amp; Mô hình</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:22ch;color:var(--color-bg)">Không phải ngành nào cũng chạy được với một người</h1>
           <p style="font-size:clamp(15px,1.4cqi,19px);line-height:1.55;max-width:66ch;color:var(--color-neutral-400);margin:0">Trần tự động hóa tỷ lệ nghịch với hàm lượng nguyên tử trong chuỗi giá trị. Chúng tôi nói thẳng con số này trước khi anh chị đầu tư.</p>
         </div>
@@ -1260,7 +1260,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,88px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <div style="height:2px;background:var(--color-text);margin-bottom:30px"></div>
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Biểu đồ 10</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Biểu đồ 10</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 12px;letter-spacing:-.025em">Trần tự động hóa thực tế theo nhóm doanh nghiệp</h2>
           <p style="font-size:15px;line-height:1.6;max-width:74ch;margin:0 0 30px;color:var(--color-neutral-800)">Thanh đậm là mức thận trọng, phần nhạt là biên trên ở trạng thái trưởng thành. Con số bên phải là số người tối thiểu thực tế. Nhấn từng nhóm để đọc chi tiết.</p>
           <div style="display:grid;gap:2px;background:var(--color-neutral-300);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
@@ -1275,9 +1275,9 @@ textarea.input { min-height: 90px; resize: vertical; }
           <div style="border:2px solid var(--color-text);border-top:0;background:var(--color-neutral-100);padding:26px">
             <h3 style="font-size:clamp(19px,2.2cqi,28px);margin:0 0 20px">{{ ind.a }}</h3>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px">
-              <div><div style="font-size:10px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">AI ĐẢM NHIỆM</div><p style="margin:0;font-size:14.5px;line-height:1.6">{{ ind.b }}</p></div>
-              <div><div style="font-size:10px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">CON NGƯỜI CÒN CẦN</div><p style="margin:0;font-size:14.5px;line-height:1.6">{{ ind.c }}</p></div>
-              <div><div style="font-size:10px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:8px">ĐIỂM NGHẼN</div><p style="margin:0;font-size:14.5px;line-height:1.6;font-weight:600">{{ ind.d }}</p></div>
+              <div><div style="font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">AI ĐẢM NHIỆM</div><p style="margin:0;font-size:14.5px;line-height:1.6">{{ ind.b }}</p></div>
+              <div><div style="font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">CON NGƯỜI CÒN CẦN</div><p style="margin:0;font-size:14.5px;line-height:1.6">{{ ind.c }}</p></div>
+              <div><div style="font-size:13px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:8px">ĐIỂM NGHẼN</div><p style="margin:0;font-size:14.5px;line-height:1.6;font-weight:600">{{ ind.d }}</p></div>
             </div>
           </div>
           <p style="font-size:13px;color:var(--color-neutral-700);margin:16px 0 0;max-width:90ch">Mô hình 1–3 người chỉ khả thi ở hai nhóm dưới cùng khi phần vật lý được thuê ngoài, đẩy sang OEM/ODM, hoặc tự động hóa cao. Khi đó doanh nghiệp lõi trở thành một <strong>AI Control Tower</strong>.</p>
@@ -1328,15 +1328,15 @@ textarea.input { min-height: 90px; resize: vertical; }
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,88px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <div style="height:2px;background:var(--color-text);margin-bottom:30px"></div>
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Nền tảng pháp lý</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Nền tảng pháp lý</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Hộ kinh doanh hay doanh nghiệp?</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 32px;color:var(--color-neutral-800)">“Doanh nghiệp một người” mô tả cách vận hành, không phải một tư cách pháp lý. Ở Việt Nam nó rơi vào hai lựa chọn, và lựa chọn này quyết định luôn kiến trúc dữ liệu.</p>
           <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
             <sc-for list="{{ legal }}" as="r" hint-placeholder-count="7">
               <div style="background:var(--color-bg);padding:18px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 24px;align-items:start">
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:14.5px">{{ r.a }}</div>
-                <div style="font-size:13.5px;line-height:1.6"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">HỘ KINH DOANH</span>{{ r.b }}</div>
-                <div style="font-size:13.5px;line-height:1.6"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-accent);display:block;margin-bottom:5px">CÔNG TY TNHH MTV / DN CỠ NHỎ</span>{{ r.c }}</div>
+                <div style="font-size:13.5px;line-height:1.6"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">HỘ KINH DOANH</span>{{ r.b }}</div>
+                <div style="font-size:13.5px;line-height:1.6"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-accent);display:block;margin-bottom:5px">CÔNG TY TNHH MTV / DN CỠ NHỎ</span>{{ r.c }}</div>
               </div>
             </sc-for>
           </div>
@@ -1354,7 +1354,7 @@ textarea.input { min-height: 90px; resize: vertical; }
     <div>
       <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Cách chúng tôi làm</p>
+          <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Cách chúng tôi làm</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Ít mà sâu, có số đo, bàn giao được</h1>
           <p style="font-size:clamp(15px,1.4cqi,19px);line-height:1.55;max-width:66ch;color:var(--color-neutral-400);margin:0">Triển khai thành công mất trung bình 6 tháng từ pilot đến production; các dự án thất bại kéo dài đến 18 tháng. Nguyên nhân không phải làm chậm — mà là làm quá nhiều thứ cùng lúc.</p>
         </div>
@@ -1362,7 +1362,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 
       <figure style="margin:0;position:relative">
         <img class="grayscale" src="assets/img/workshop.png" alt="Buổi làm việc thiết kế quy trình trước màn hình và bảng ghi chú" style="display:block;width:100%;aspect-ratio:1672/941;object-fit:cover;max-height:70vh">
-        <figcaption style="position:absolute;left:clamp(16px,2.5cqi,40px);bottom:clamp(14px,2cqi,26px);font-size:10px;letter-spacing:.2em;color:#fff;background:var(--color-text);padding:7px 12px">BƯỚC 02 · KIỂM KÊ QUY TRÌNH CÙNG KHÁCH HÀNG</figcaption>
+        <figcaption style="position:absolute;left:clamp(16px,2.5cqi,40px);bottom:clamp(14px,2cqi,26px);font-size:13px;letter-spacing:.2em;color:#fff;background:var(--color-text);padding:7px 12px">BƯỚC 02 · KIỂM KÊ QUY TRÌNH CÙNG KHÁCH HÀNG</figcaption>
       </figure>
 
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,88px) 0">
@@ -1401,7 +1401,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 36px;color:var(--color-neutral-800)">Chúng tôi báo giá theo phạm vi công việc sau buổi chẩn đoán, không theo bảng giá cố định — vì trần tự động hóa của mỗi mô hình khác nhau quá xa để định giá trước.</p>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:var(--color-neutral-400)">
             <div style="background:var(--color-bg);padding:28px 26px;display:flex;flex-direction:column">
-              <div style="font-size:10px;letter-spacing:.2em;color:var(--color-accent);margin-bottom:16px;font-weight:600">GÓI 01</div>
+              <div style="font-size:13px;letter-spacing:.2em;color:var(--color-accent);margin-bottom:16px;font-weight:600">GÓI 01</div>
               <h3 style="font-size:22px;margin:0 0 8px">Chẩn đoán &amp; Lộ trình</h3>
               <p style="font-size:13px;letter-spacing:.06em;color:var(--color-neutral-600);margin:0 0 22px">2–3 tuần · một lần</p>
               <div style="display:grid;gap:10px;font-size:13.5px;line-height:1.55;flex:1;margin-bottom:22px">
@@ -1414,8 +1414,8 @@ textarea.input { min-height: 90px; resize: vertical; }
               <div style="border-top:2px solid var(--color-text);padding-top:14px;font-size:13px;color:var(--color-neutral-700)">Phù hợp khi chưa chắc có nên đầu tư hay không.</div>
             </div>
             <div style="background:var(--color-text);color:var(--color-bg);padding:28px 26px;display:flex;flex-direction:column;position:relative">
-              <div style="position:absolute;top:0;left:0;background:var(--color-accent);color:#fff;font-size:9.5px;letter-spacing:.16em;padding:5px 10px;font-weight:700">PHỔ BIẾN NHẤT</div>
-              <div style="font-size:10px;letter-spacing:.2em;color:var(--color-accent-400);margin:20px 0 16px;font-weight:600">GÓI 02</div>
+              <div style="position:absolute;top:0;left:0;background:var(--color-accent);color:#fff;font-size:12.5px;letter-spacing:.16em;padding:5px 10px;font-weight:700">PHỔ BIẾN NHẤT</div>
+              <div style="font-size:13px;letter-spacing:.2em;color:var(--color-accent-400);margin:20px 0 16px;font-weight:600">GÓI 02</div>
               <h3 style="font-size:22px;margin:0 0 8px;color:var(--color-bg)">Kiến trúc &amp; Triển khai</h3>
               <p style="font-size:13px;letter-spacing:.06em;color:var(--color-neutral-500);margin:0 0 22px">3–5 tháng · theo đợt</p>
               <div style="display:grid;gap:10px;font-size:13.5px;line-height:1.55;flex:1;margin-bottom:22px;color:var(--color-neutral-300)">
@@ -1430,7 +1430,7 @@ textarea.input { min-height: 90px; resize: vertical; }
               <div style="border-top:2px solid var(--color-neutral-600);padding-top:14px;font-size:13px;color:var(--color-neutral-400)">Gói phổ biến nhất. Kết thúc là hệ thống chạy được không cần chúng tôi.</div>
             </div>
             <div style="background:var(--color-bg);padding:28px 26px;display:flex;flex-direction:column">
-              <div style="font-size:10px;letter-spacing:.2em;color:var(--color-accent);margin-bottom:16px;font-weight:600">GÓI 03</div>
+              <div style="font-size:13px;letter-spacing:.2em;color:var(--color-accent);margin-bottom:16px;font-weight:600">GÓI 03</div>
               <h3 style="font-size:22px;margin:0 0 8px">Đồng hành vận hành</h3>
               <p style="font-size:13px;letter-spacing:.06em;color:var(--color-neutral-600);margin:0 0 22px">theo tháng · hủy bất cứ lúc nào</p>
               <div style="display:grid;gap:10px;font-size:13.5px;line-height:1.55;flex:1;margin-bottom:22px">
@@ -1452,7 +1452,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 12px;letter-spacing:-.025em">Lộ trình triển khai 12 tháng</h2>
           <p style="font-size:15px;line-height:1.6;max-width:74ch;margin:0 0 30px;color:var(--color-neutral-800)">Bốn giai đoạn, chồng lấn có chủ đích. Điều kiện chuyển tiếp là số đo, không phải mốc thời gian.</p>
           <div style="border:2px solid var(--color-text);padding:24px;background:var(--color-neutral-100)">
-            <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:2px;font-size:10px;letter-spacing:.08em;color:var(--color-neutral-600);margin-bottom:10px">
+            <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:2px;font-size:13px;letter-spacing:.08em;color:var(--color-neutral-600);margin-bottom:10px">
               <span>T1</span><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>T8</span><span>T9</span><span>T10</span><span>T11</span><span>T12</span>
             </div>
             <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:6px 0;align-items:center">
@@ -1461,14 +1461,14 @@ textarea.input { min-height: 90px; resize: vertical; }
               <div style="grid-column:6 / 12;background:var(--color-text);color:#fff;padding:10px 12px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden">GĐ3 · Team AI</div>
               <div style="grid-column:10 / 13;background:var(--color-accent);color:#fff;padding:10px 12px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden">GĐ4 · Autonomous</div>
             </div>
-            <p style="font-size:10.5px;letter-spacing:.16em;color:var(--color-accent);margin:16px 0 0;font-weight:600">↑ THÁNG 11–12 · KIỂM TOÁN TOÀN HỆ THỐNG</p>
+            <p style="font-size:13.5px;letter-spacing:.16em;color:var(--color-accent);margin:16px 0 0;font-weight:600">↑ THÁNG 11–12 · KIỂM TOÁN TOÀN HỆ THỐNG</p>
           </div>
           <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text);margin-top:34px">
             <sc-for list="{{ phases }}" as="r" hint-placeholder-count="4">
               <div style="background:var(--color-bg);padding:20px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px 28px;align-items:start">
                 <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:var(--font-heading);font-weight:800;font-size:20px;color:var(--color-accent)">GĐ{{ r.n }}</span></div>
                 <div style="font-size:14px;line-height:1.65;grid-column:span 2">{{ r.a }}</div>
-                <div style="font-size:13.5px;line-height:1.6;font-weight:600"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px;font-weight:400">ĐIỀU KIỆN CHUYỂN TIẾP</span>{{ r.b }}</div>
+                <div style="font-size:13.5px;line-height:1.6;font-weight:600"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px;font-weight:400">ĐIỀU KIỆN CHUYỂN TIẾP</span>{{ r.b }}</div>
               </div>
             </sc-for>
           </div>
@@ -1479,7 +1479,7 @@ textarea.input { min-height: 90px; resize: vertical; }
               <div style="background:var(--color-bg);padding:16px 22px;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap">
                 <span style="font-family:var(--font-heading);font-weight:800;font-size:15px;color:var(--color-accent);width:44px;flex:none">T{{ r.n }}</span>
                 <div style="flex:1;min-width:220px;font-size:14px;line-height:1.6">{{ r.a }}</div>
-                <div style="flex:1;min-width:220px;font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">KẾT QUẢ KIỂM CHỨNG ĐƯỢC</span>{{ r.b }}</div>
+                <div style="flex:1;min-width:220px;font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">KẾT QUẢ KIỂM CHỨNG ĐƯỢC</span>{{ r.b }}</div>
               </div>
             </sc-for>
           </div>
@@ -1496,7 +1496,7 @@ textarea.input { min-height: 90px; resize: vertical; }
               <div style="{{ r.st }}">
                 <div style="display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;margin-bottom:8px">
                   <span style="font-family:var(--font-heading);font-weight:800;font-size:17px">Vòng {{ r.n }} · {{ r.a }}</span>
-                  <span style="font-size:11px;letter-spacing:.14em;opacity:.75">{{ r.b }}</span>
+                  <span style="font-size:14.5px;letter-spacing:.14em;opacity:.75">{{ r.b }}</span>
                 </div>
                 <div style="font-size:14px;line-height:1.6;opacity:.9">{{ r.c }}</div>
               </div>
@@ -1540,8 +1540,8 @@ textarea.input { min-height: 90px; resize: vertical; }
             <sc-for list="{{ costs }}" as="r" hint-placeholder-count="6">
               <div style="background:var(--color-bg);padding:18px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px 24px;align-items:start">
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:14.5px">{{ r.a }}</div>
-                <div style="font-size:13.5px;line-height:1.55;color:var(--color-neutral-600)"><span style="font-size:10px;letter-spacing:.14em;display:block;margin-bottom:5px">TRUYỀN THỐNG</span>{{ r.b }}</div>
-                <div style="font-size:13.5px;line-height:1.55"><span style="font-size:10px;letter-spacing:.14em;display:block;margin-bottom:5px;color:var(--color-accent)">AI-NATIVE</span>{{ r.c }}</div>
+                <div style="font-size:13.5px;line-height:1.55;color:var(--color-neutral-600)"><span style="font-size:13px;letter-spacing:.14em;display:block;margin-bottom:5px">TRUYỀN THỐNG</span>{{ r.b }}</div>
+                <div style="font-size:13.5px;line-height:1.55"><span style="font-size:13px;letter-spacing:.14em;display:block;margin-bottom:5px;color:var(--color-accent)">AI-NATIVE</span>{{ r.c }}</div>
                 <div style="font-size:12.5px;line-height:1.55;color:var(--color-neutral-700)">{{ r.d }}</div>
               </div>
             </sc-for>
@@ -1616,14 +1616,14 @@ textarea.input { min-height: 90px; resize: vertical; }
     <div>
       <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Phương pháp triển khai</p>
+          <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Phương pháp triển khai</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Từ khung chiến lược sang đề án triển khai</h1>
           <p style="font-size:clamp(15px,1.4cqi,19px);line-height:1.55;max-width:66ch;color:var(--color-neutral-400);margin:0 0 clamp(32px,4cqi,56px)">Đây là bộ khung chúng tôi dùng khi bắt tay làm: mô hình vận hành, cách chọn quy trình, hợp đồng vận hành cho từng agent, kiến trúc dữ liệu và quyền, chương trình 90 ngày có cổng nghiệm thu, và hồ sơ quản trị bắt buộc.</p>
         </div>
         <div style="border-top:2px solid var(--color-neutral-700)">
           <div class="lnx-nav" style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px);display:flex;overflow-x:auto;scrollbar-width:none">
             <sc-for list="{{ methodTabs }}" as="t" hint-placeholder-count="7">
-              <button type="button" sc-camel-on-click="{{ t.go }}" style="{{ t.st }}"><span style="display:block;font-size:9.5px;letter-spacing:.18em;margin-bottom:6px;opacity:.75">{{ t.kicker }}</span><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:14px">{{ t.label }}</span></button>
+              <button type="button" sc-camel-on-click="{{ t.go }}" style="{{ t.st }}"><span style="display:block;font-size:12.5px;letter-spacing:.18em;margin-bottom:6px;opacity:.75">{{ t.kicker }}</span><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:14px">{{ t.label }}</span></button>
             </sc-for>
           </div>
         </div>
@@ -1632,7 +1632,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <sc-if value="{{ tabM1 }}" hint-placeholder-val="{{ true }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 22</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 22</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Mô hình vận hành mục tiêu</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 34px;color:var(--color-neutral-800)">Doanh nghiệp 1–3 người không vận hành theo sơ đồ phòng ban truyền thống. Nó vận hành theo năm vòng lặp có chủ sở hữu, dữ liệu và nhịp điều hành riêng.</p>
           <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
@@ -1642,9 +1642,9 @@ textarea.input { min-height: 90px; resize: vertical; }
                   <div style="font-family:var(--font-heading);font-weight:800;font-size:18px;letter-spacing:-.01em">{{ r.a }}</div>
                   <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700);margin-top:8px">{{ r.b }}</div>
                 </div>
-                <div style="font-size:13px;line-height:1.55"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">CHỦ SỞ HỮU</span>{{ r.c }}</div>
-                <div style="font-size:13px;line-height:1.55"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">AI THỰC HIỆN</span>{{ r.d }}</div>
-                <div style="font-size:13px;line-height:1.55;color:var(--color-accent-700);font-weight:600"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-accent);display:block;margin-bottom:5px;font-weight:400">CON NGƯỜI GIỮ QUYỀN</span>{{ r.e }}</div>
+                <div style="font-size:13px;line-height:1.55"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">CHỦ SỞ HỮU</span>{{ r.c }}</div>
+                <div style="font-size:13px;line-height:1.55"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">AI THỰC HIỆN</span>{{ r.d }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-accent-700);font-weight:600"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-accent);display:block;margin-bottom:5px;font-weight:400">CON NGƯỜI GIỮ QUYỀN</span>{{ r.e }}</div>
               </div>
             </sc-for>
           </div>
@@ -1653,7 +1653,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text)">
             <sc-for list="{{ cadence }}" as="r" hint-placeholder-count="4">
               <div style="background:var(--color-bg);padding:22px">
-                <div style="font-size:10px;letter-spacing:.18em;color:var(--color-neutral-600);margin-bottom:10px">{{ r.a }}</div>
+                <div style="font-size:13px;letter-spacing:.18em;color:var(--color-neutral-600);margin-bottom:10px">{{ r.a }}</div>
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:clamp(22px,2.4cqi,32px);color:var(--color-accent);letter-spacing:-.02em;line-height:1;margin-bottom:14px">{{ r.b }}</div>
                 <div style="font-size:13.5px;line-height:1.6;margin-bottom:12px">{{ r.c }}</div>
                 <div style="font-size:12.5px;line-height:1.5;color:var(--color-neutral-700);border-top:1px solid var(--color-neutral-300);padding-top:10px">Đầu ra: {{ r.d }}</div>
@@ -1679,8 +1679,8 @@ textarea.input { min-height: 90px; resize: vertical; }
               <div style="background:var(--color-bg);padding:20px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px 26px;align-items:start">
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:15px;line-height:1.3">{{ r.a }}</div>
                 <div style="font-size:13.5px;line-height:1.6">{{ r.b }}</div>
-                <div style="font-size:13px;line-height:1.55;color:var(--color-accent-700);font-weight:600"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-accent);display:block;margin-bottom:5px;font-weight:400">KHÔNG ỦY QUYỀN CHO AI</span>{{ r.c }}</div>
-                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">CHỈ BÁO QUÁ TẢI</span>{{ r.d }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-accent-700);font-weight:600"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-accent);display:block;margin-bottom:5px;font-weight:400">KHÔNG ỦY QUYỀN CHO AI</span>{{ r.c }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">CHỈ BÁO QUÁ TẢI</span>{{ r.d }}</div>
               </div>
             </sc-for>
           </div>
@@ -1725,8 +1725,8 @@ textarea.input { min-height: 90px; resize: vertical; }
             <sc-for list="{{ addPerson }}" as="r" hint-placeholder-count="3">
               <div style="background:var(--color-bg);padding:20px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px 26px;align-items:start">
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:15px;line-height:1.3">{{ r.a }}</div>
-                <div style="font-size:13.5px;line-height:1.6"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">CHỈ BÁO CHẠM NGƯỠNG</span>{{ r.b }}</div>
-                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">NGƯỜI MỚI NHẬN GÌ</span>{{ r.c }}</div>
+                <div style="font-size:13.5px;line-height:1.6"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">CHỈ BÁO CHẠM NGƯỠNG</span>{{ r.b }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">NGƯỜI MỚI NHẬN GÌ</span>{{ r.c }}</div>
               </div>
             </sc-for>
           </div>
@@ -1751,11 +1751,11 @@ textarea.input { min-height: 90px; resize: vertical; }
       <sc-if value="{{ tabM2 }}" hint-placeholder-val="{{ false }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 23</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 23</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Chọn quy trình để AI-hóa</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 30px;color:var(--color-neutral-800)">Mỗi quy trình được chấm từ 1–5 theo bảy biến. Điểm ưu tiên quyết định thứ tự làm, không phải cảm giác về mức độ khó chịu.</p>
           <div style="background:var(--color-text);color:var(--color-bg);padding:26px;margin-bottom:30px;overflow-x:auto">
-            <div style="font-size:10px;letter-spacing:.18em;color:var(--color-accent-400);margin-bottom:14px">CÔNG THỨC ƯU TIÊN</div>
+            <div style="font-size:13px;letter-spacing:.18em;color:var(--color-accent-400);margin-bottom:14px">CÔNG THỨC ƯU TIÊN</div>
             <div style="font-size:clamp(13px,1.3cqi,17px);line-height:1.7;font-weight:600">Priority Score = (Tần suất × Thời gian × Chuẩn hóa × Giá trị dữ liệu × Khả năng phục hồi) ÷ (Rủi ro × Độ phức tạp tích hợp)</div>
           </div>
           <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
@@ -1772,7 +1772,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;background:var(--color-text);border:2px solid var(--color-text)">
             <sc-for list="{{ processGroups }}" as="r" hint-placeholder-count="4">
               <div style="{{ r.st }}">
-                <div style="font-size:11px;letter-spacing:.14em;margin-bottom:8px;opacity:.7">{{ r.a }}</div>
+                <div style="font-size:14.5px;letter-spacing:.14em;margin-bottom:8px;opacity:.7">{{ r.a }}</div>
                 <div style="font-size:13.5px;line-height:1.55;margin-bottom:16px;opacity:.9">{{ r.b }}</div>
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:17px;line-height:1.25">{{ r.c }}</div>
               </div>
@@ -1796,7 +1796,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <sc-if value="{{ tabM3 }}" hint-placeholder-val="{{ false }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 24 – 25</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 24 – 25</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Charter, dữ liệu và quyền hạn</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 30px;color:var(--color-neutral-800)">Charter là hợp đồng vận hành của agent. Prompt chỉ là một thành phần bên trong charter và không được xem là cơ chế kiểm soát.</p>
           <pre style="background:var(--color-text);color:var(--color-neutral-200);padding:26px;margin:0 0 44px;overflow-x:auto;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.75">agent_id: sales_qualification_v1
@@ -1828,8 +1828,8 @@ review_cycle: monthly</pre>
               <div style="background:var(--color-bg);padding:20px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px 26px;align-items:start">
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:15px">{{ r.a }}</div>
                 <div style="font-size:13.5px;line-height:1.6">{{ r.b }}</div>
-                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">THỜI HẠN</span>{{ r.c }}</div>
-                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">QUYỀN GHI</span>{{ r.d }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">THỜI HẠN</span>{{ r.c }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">QUYỀN GHI</span>{{ r.d }}</div>
               </div>
             </sc-for>
           </div>
@@ -1843,11 +1843,11 @@ review_cycle: monthly</pre>
               <div style="background:var(--color-bg);padding:18px 22px">
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:15px;margin-bottom:12px">{{ r.a }}</div>
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 20px;font-size:12.5px;line-height:1.5">
-                  <div><span style="font-size:9.5px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">KHÁCH HÀNG</span>{{ r.b }}</div>
-                  <div><span style="font-size:9.5px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">TÀI CHÍNH</span>{{ r.c }}</div>
-                  <div><span style="font-size:9.5px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">NỘI DUNG</span>{{ r.d }}</div>
-                  <div><span style="font-size:9.5px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">HỢP ĐỒNG</span>{{ r.e }}</div>
-                  <div><span style="font-size:9.5px;letter-spacing:.14em;color:var(--color-accent);display:block;margin-bottom:4px">GỬI RA NGOÀI</span>{{ r.f }}</div>
+                  <div><span style="font-size:12.5px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">KHÁCH HÀNG</span>{{ r.b }}</div>
+                  <div><span style="font-size:12.5px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">TÀI CHÍNH</span>{{ r.c }}</div>
+                  <div><span style="font-size:12.5px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">NỘI DUNG</span>{{ r.d }}</div>
+                  <div><span style="font-size:12.5px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:4px">HỢP ĐỒNG</span>{{ r.e }}</div>
+                  <div><span style="font-size:12.5px;letter-spacing:.14em;color:var(--color-accent);display:block;margin-bottom:4px">GỬI RA NGOÀI</span>{{ r.f }}</div>
                 </div>
               </div>
             </sc-for>
@@ -1870,15 +1870,15 @@ review_cycle: monthly</pre>
       <sc-if value="{{ tabM4 }}" hint-placeholder-val="{{ false }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 26 · 29</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 26 · 29</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Kiến trúc tối thiểu và ngân sách</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 32px;color:var(--color-neutral-800)">Tám năng lực, mỗi năng lực có một mức tối thiểu và một cái bẫy nên tránh trong giai đoạn đầu.</p>
           <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
             <sc-for list="{{ minStack }}" as="r" hint-placeholder-count="8">
               <div style="background:var(--color-bg);padding:18px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 26px;align-items:start">
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:14.5px">{{ r.a }}</div>
-                <div style="font-size:13.5px;line-height:1.6"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">YÊU CẦU TỐI THIỂU</span>{{ r.b }}</div>
-                <div style="font-size:13.5px;line-height:1.6;color:var(--color-accent-700)"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-accent);display:block;margin-bottom:5px">KHÔNG NÊN LÀM NGAY</span>{{ r.c }}</div>
+                <div style="font-size:13.5px;line-height:1.6"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:5px">YÊU CẦU TỐI THIỂU</span>{{ r.b }}</div>
+                <div style="font-size:13.5px;line-height:1.6;color:var(--color-accent-700)"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-accent);display:block;margin-bottom:5px">KHÔNG NÊN LÀM NGAY</span>{{ r.c }}</div>
               </div>
             </sc-for>
           </div>
@@ -1887,8 +1887,8 @@ review_cycle: monthly</pre>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text)">
             <sc-for list="{{ buildBuy }}" as="r" hint-placeholder-count="3">
               <div style="background:var(--color-bg);padding:22px">
-                <div style="font-size:13.5px;line-height:1.6;margin-bottom:16px"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:6px">MUA / DÙNG SẴN</span>{{ r.a }}</div>
-                <div style="font-size:13.5px;line-height:1.6;border-top:1px solid var(--color-neutral-300);padding-top:14px"><span style="font-size:10px;letter-spacing:.14em;color:var(--color-accent);display:block;margin-bottom:6px">TỰ XÂY</span>{{ r.b }}</div>
+                <div style="font-size:13.5px;line-height:1.6;margin-bottom:16px"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:6px">MUA / DÙNG SẴN</span>{{ r.a }}</div>
+                <div style="font-size:13.5px;line-height:1.6;border-top:1px solid var(--color-neutral-300);padding-top:14px"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-accent);display:block;margin-bottom:6px">TỰ XÂY</span>{{ r.b }}</div>
               </div>
             </sc-for>
           </div>
@@ -1907,7 +1907,7 @@ review_cycle: monthly</pre>
           </div>
 
           <div style="background:var(--color-text);color:var(--color-bg);padding:28px;margin-top:40px">
-            <div style="font-size:10px;letter-spacing:.18em;color:var(--color-accent-400);margin-bottom:14px">BUSINESS CASE CHO TỪNG QUY TRÌNH</div>
+            <div style="font-size:13px;letter-spacing:.18em;color:var(--color-accent-400);margin-bottom:14px">BUSINESS CASE CHO TỪNG QUY TRÌNH</div>
             <div style="font-size:clamp(13px,1.2cqi,16px);line-height:1.75;font-weight:600;margin-bottom:24px">Giá trị tháng = giờ người tiết kiệm + lỗi tránh được + doanh thu tăng thêm − chi phí AI − chi phí giám sát − chi phí duy trì</div>
             <div style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);margin-bottom:14px">CHỈ PHÊ DUYỆT KHI</div>
             <div style="display:grid;gap:11px">
@@ -1923,7 +1923,7 @@ review_cycle: monthly</pre>
       <sc-if value="{{ tabM5 }}" hint-placeholder-val="{{ false }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 27</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 27</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Ba cấu hình tham chiếu</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 34px;color:var(--color-neutral-800)">Ba bộ cấu hình ban đầu theo nhóm ngành — dùng làm điểm xuất phát, không phải khuôn cố định.</p>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
@@ -1931,12 +1931,12 @@ review_cycle: monthly</pre>
               <div style="background:var(--color-bg);padding:26px 24px">
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:clamp(20px,2.2cqi,26px);margin-bottom:20px;letter-spacing:-.015em">{{ p.name }}</div>
                 <div style="display:grid;gap:14px">
-                  <div><div style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);margin-bottom:5px">NGƯỜI</div><div style="font-size:13.5px;line-height:1.55">{{ p.people }}</div></div>
-                  <div><div style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);margin-bottom:5px">AI MANAGER</div><div style="font-size:13.5px;line-height:1.55">{{ p.managers }}</div></div>
-                  <div><div style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);margin-bottom:5px">BA QUY TRÌNH ĐẦU</div><div style="font-size:13.5px;line-height:1.55">{{ p.processes }}</div></div>
-                  <div><div style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);margin-bottom:5px">DỮ LIỆU LÕI</div><div style="font-size:13.5px;line-height:1.55">{{ p.data }}</div></div>
-                  <div><div style="font-size:10px;letter-spacing:.14em;color:var(--color-neutral-500);margin-bottom:5px">KPI CHÍNH</div><div style="font-size:13.5px;line-height:1.55">{{ p.kpi }}</div></div>
-                  <div style="border-top:2px solid var(--color-accent);padding-top:12px"><div style="font-size:10px;letter-spacing:.14em;color:var(--color-accent);margin-bottom:5px">VÙNG ĐỎ</div><div style="font-size:13.5px;line-height:1.55;font-weight:600">{{ p.red }}</div></div>
+                  <div><div style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);margin-bottom:5px">NGƯỜI</div><div style="font-size:13.5px;line-height:1.55">{{ p.people }}</div></div>
+                  <div><div style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);margin-bottom:5px">AI MANAGER</div><div style="font-size:13.5px;line-height:1.55">{{ p.managers }}</div></div>
+                  <div><div style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);margin-bottom:5px">BA QUY TRÌNH ĐẦU</div><div style="font-size:13.5px;line-height:1.55">{{ p.processes }}</div></div>
+                  <div><div style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);margin-bottom:5px">DỮ LIỆU LÕI</div><div style="font-size:13.5px;line-height:1.55">{{ p.data }}</div></div>
+                  <div><div style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);margin-bottom:5px">KPI CHÍNH</div><div style="font-size:13.5px;line-height:1.55">{{ p.kpi }}</div></div>
+                  <div style="border-top:2px solid var(--color-accent);padding-top:12px"><div style="font-size:13px;letter-spacing:.14em;color:var(--color-accent);margin-bottom:5px">VÙNG ĐỎ</div><div style="font-size:13.5px;line-height:1.55;font-weight:600">{{ p.red }}</div></div>
                 </div>
               </div>
             </sc-for>
@@ -1948,7 +1948,7 @@ review_cycle: monthly</pre>
       <sc-if value="{{ tabM6 }}" hint-placeholder-val="{{ false }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 28</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 28</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Chương trình 90 ngày</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 34px;color:var(--color-neutral-800)">Bốn giai đoạn, mỗi giai đoạn kết thúc bằng một cổng nghiệm thu. Không qua cổng thì không đi tiếp — đây là điều tách dự án thành công khỏi dự án kéo dài 18 tháng.</p>
           <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
@@ -1978,7 +1978,7 @@ review_cycle: monthly</pre>
       <sc-if value="{{ tabM7 }}" hint-placeholder-val="{{ false }}">
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 30 – 33</p>
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 30 – 33</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Scorecard, hồ sơ và điều kiện khởi động</h2>
           <h3 style="font-size:clamp(19px,2cqi,26px);margin:30px 0 20px">Scorecard của một agent</h3>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text)">
@@ -2064,7 +2064,7 @@ review_cycle: monthly</pre>
     <div>
       <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Branding</p>
+          <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Branding</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Bộ nhận diện LATTICE Next</h1>
           <p style="font-size:clamp(15px,1.4cqi,19px);line-height:1.55;max-width:66ch;color:var(--color-neutral-400);margin:0">Công ty Cổ phần Giải pháp LATTICE Next — LATTICE Next Solutions Joint Stock Company. Tư vấn, kiến trúc và cung cấp giải pháp toàn diện cho các mô hình kinh doanh mới.</p>
         </div>
@@ -2095,7 +2095,7 @@ review_cycle: monthly</pre>
           <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
             <sc-for list="{{ positioning }}" as="r" hint-placeholder-count="7">
               <div style="background:var(--color-bg);padding:18px 22px;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
-                <div style="width:190px;flex:none;font-size:10.5px;letter-spacing:.14em;color:var(--color-neutral-600);padding-top:3px">{{ r.a }}</div>
+                <div style="width:190px;flex:none;font-size:13.5px;letter-spacing:.14em;color:var(--color-neutral-600);padding-top:3px">{{ r.a }}</div>
                 <div style="flex:1;min-width:240px;font-size:14.5px;line-height:1.6">{{ r.b }}</div>
               </div>
             </sc-for>
@@ -2112,13 +2112,13 @@ review_cycle: monthly</pre>
             <div style="background:var(--color-bg);min-height:170px;display:flex;align-items:center;justify-content:center;padding:30px">
               <div style="display:flex;align-items:center;gap:14px;color:var(--color-text)">
                 <svg width="50" height="50" sc-camel-view-box="0 0 100 100" style="display:block"><path d="M50 8 L92 50 L50 92 L8 50 Z" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><path d="M50 8 L50 92 M8 50 L92 50" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><circle cx="50" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="92" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="92" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="8" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="50" r="10" fill="var(--color-accent)"></circle></svg>
-                <span style="display:block"><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:22px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:9px;letter-spacing:.26em;margin-top:6px;color:var(--color-neutral-600)">NEXT SOLUTIONS JSC</span></span>
+                <span style="display:block"><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:22px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:11.5px;letter-spacing:.26em;margin-top:6px;color:var(--color-neutral-600)">NEXT SOLUTIONS JSC</span></span>
               </div>
             </div>
             <div style="background:var(--color-text);min-height:170px;display:flex;align-items:center;justify-content:center;padding:30px">
               <div style="display:flex;align-items:center;gap:14px;color:var(--color-bg)">
                 <svg width="50" height="50" sc-camel-view-box="0 0 100 100" style="display:block"><path d="M50 8 L92 50 L50 92 L8 50 Z" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><path d="M50 8 L50 92 M8 50 L92 50" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><circle cx="50" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="92" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="92" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="8" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="50" r="10" fill="var(--color-accent-500)"></circle></svg>
-                <span style="display:block"><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:22px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:9px;letter-spacing:.26em;margin-top:6px;color:var(--color-neutral-500)">NEXT SOLUTIONS JSC</span></span>
+                <span style="display:block"><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:22px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:11.5px;letter-spacing:.26em;margin-top:6px;color:var(--color-neutral-500)">NEXT SOLUTIONS JSC</span></span>
               </div>
             </div>
             <div style="background:var(--color-accent);min-height:170px;display:flex;align-items:center;justify-content:center;padding:30px">
@@ -2152,15 +2152,15 @@ review_cycle: monthly</pre>
 
           <div style="border:2px solid var(--color-text);padding:26px;margin-bottom:34px;background:var(--color-neutral-100)">
             <div style="display:flex;gap:24px;align-items:baseline;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--color-neutral-300)">
-              <span style="width:200px;flex:none;font-size:10px;letter-spacing:.16em;color:var(--color-neutral-600)">HIỂN THỊ · ARCHIVO 800</span>
+              <span style="width:200px;flex:none;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600)">HIỂN THỊ · ARCHIVO 800</span>
               <span style="font-family:var(--font-heading);font-weight:800;font-size:clamp(22px,2.4cqi,32px);letter-spacing:-.025em">Kiến trúc mô hình kinh doanh mới</span>
             </div>
             <div style="display:flex;gap:24px;align-items:baseline;flex-wrap:wrap;padding:18px 0;border-bottom:1px solid var(--color-neutral-300)">
-              <span style="width:200px;flex:none;font-size:10px;letter-spacing:.16em;color:var(--color-neutral-600)">THÂN BÀI · ARCHIVO 400</span>
+              <span style="width:200px;flex:none;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600)">THÂN BÀI · ARCHIVO 400</span>
               <span style="font-size:16.5px;line-height:1.6">Một bộ chữ duy nhất cho cả tiêu đề và thân bài — đọc bảng dày chữ không mỏi mắt, dấu tiếng Việt đầy đủ.</span>
             </div>
             <div style="display:flex;gap:24px;align-items:baseline;flex-wrap:wrap;padding-top:18px">
-              <span style="width:200px;flex:none;font-size:10px;letter-spacing:.16em;color:var(--color-neutral-600)">DỮ LIỆU · ARCHIVO 600</span>
+              <span style="width:200px;flex:none;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600)">DỮ LIỆU · ARCHIVO 600</span>
               <span style="font-size:15px;font-weight:600;letter-spacing:.04em">L0 L1 L2 L3 L4 L5 · 88% · 44,1% · 5,1 tháng</span>
             </div>
           </div>
@@ -2169,15 +2169,15 @@ review_cycle: monthly</pre>
           <p style="font-size:15.5px;line-height:1.7;max-width:78ch;margin:0 0 26px">Ảnh tuân theo bốn quy tắc: <strong>có cấu trúc nhìn thấy được</strong> (giàn, lưới, nhịp cột, mặt đứng); <strong>ít người, không diễn</strong>; <strong>ánh sáng tự nhiên, tương phản vừa</strong>; và luôn in trắng đen. Ba ô dưới đây là vị trí ảnh đã bố trí sẵn trên website — nhấn liên kết để mở đúng từ khóa và thay ảnh vào.</p>
           <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
             <figure style="margin:0;background:var(--color-bg)">
-              <div style="height:160px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:var(--color-neutral-300);color:var(--color-neutral-700);font-size:11px;letter-spacing:.16em;line-height:2">Ô ẢNH 01 — TRANG CHỦ, KHU VỰC HERO<br>GIÀN THÉP / MẶT ĐỨNG LƯỚI HÌNH HỌC</div>
+              <div style="height:160px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:var(--color-neutral-300);color:var(--color-neutral-700);font-size:14.5px;letter-spacing:.16em;line-height:2">Ô ẢNH 01 — TRANG CHỦ, KHU VỰC HERO<br>GIÀN THÉP / MẶT ĐỨNG LƯỚI HÌNH HỌC</div>
               <figcaption style="padding:14px 18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--color-neutral-700)"><span>Tỷ lệ 21:9 · in trắng đen</span><a href="https://www.pexels.com/search/geometric%20facade/" target="_blank" rel="noopener" style="font-size:11.5px;letter-spacing:.08em;white-space:nowrap">pexels · geometric facade ↗</a></figcaption>
             </figure>
             <figure style="margin:0;background:var(--color-bg)">
-              <div style="height:160px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:var(--color-neutral-300);color:var(--color-neutral-700);font-size:11px;letter-spacing:.16em;line-height:2">Ô ẢNH 02 — XU HƯỚNG, PHẦN VIỆT NAM<br>ĐƯỜNG PHỐ / CỬA HÀNG NHỎ / NGƯỜI BÁN HÀNG ONLINE</div>
+              <div style="height:160px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:var(--color-neutral-300);color:var(--color-neutral-700);font-size:14.5px;letter-spacing:.16em;line-height:2">Ô ẢNH 02 — XU HƯỚNG, PHẦN VIỆT NAM<br>ĐƯỜNG PHỐ / CỬA HÀNG NHỎ / NGƯỜI BÁN HÀNG ONLINE</div>
               <figcaption style="padding:14px 18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--color-neutral-700)"><span>Tỷ lệ 21:9 · ưu tiên ảnh chụp tại Việt Nam</span><a href="https://www.pexels.com/search/vietnam%20small%20business/" target="_blank" rel="noopener" style="font-size:11.5px;letter-spacing:.08em;white-space:nowrap">pexels · vietnam small business ↗</a></figcaption>
             </figure>
             <figure style="margin:0;background:var(--color-bg)">
-              <div style="height:160px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:var(--color-neutral-300);color:var(--color-neutral-700);font-size:11px;letter-spacing:.16em;line-height:2">Ô ẢNH 03 — NEXT SOLUTIONS, ĐỘNG CƠ SOCIAL<br>NGƯỜI QUAY VIDEO SẢN PHẨM / LIVESTREAM TẠI CHỖ LÀM VIỆC</div>
+              <div style="height:160px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:var(--color-neutral-300);color:var(--color-neutral-700);font-size:14.5px;letter-spacing:.16em;line-height:2">Ô ẢNH 03 — NEXT SOLUTIONS, ĐỘNG CƠ SOCIAL<br>NGƯỜI QUAY VIDEO SẢN PHẨM / LIVESTREAM TẠI CHỖ LÀM VIỆC</div>
               <figcaption style="padding:14px 18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--color-neutral-700)"><span>Tỷ lệ 16:9 · một người, không diễn · ánh sáng tự nhiên</span><a href="https://www.pexels.com/search/live%20streaming%20seller/" target="_blank" rel="noopener" style="font-size:11.5px;letter-spacing:.08em;white-space:nowrap">pexels · live streaming seller ↗</a></figcaption>
             </figure>
           </div>
@@ -2190,7 +2190,7 @@ review_cycle: monthly</pre>
     <div>
       <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
-          <p style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Liên hệ</p>
+          <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Liên hệ</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Bắt đầu bằng 60 phút chẩn đoán</h1>
           <p style="font-size:clamp(15px,1.4cqi,19px);line-height:1.55;max-width:66ch;color:var(--color-neutral-400);margin:0">Buổi đầu miễn phí. Kết thúc buổi này anh chị nhận được ba quy trình nên tự động hóa trước và ước lượng trần tự động hóa của mô hình — kể cả khi không làm việc tiếp với chúng tôi.</p>
         </div>
@@ -2203,10 +2203,10 @@ review_cycle: monthly</pre>
               <h3 style="font-size:clamp(20px,2.2cqi,28px);margin:0 0 24px">Gửi yêu cầu chẩn đoán</h3>
               <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
               <div style="display:grid;gap:18px">
-                <label style="display:block"><span style="display:block;font-size:10px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">HỌ VÀ TÊN</span><input type="text" placeholder="Nguyễn Văn A" style="width:100%;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0"></label>
-                <label style="display:block"><span style="display:block;font-size:10px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">ĐƠN VỊ / HỘ KINH DOANH</span><input type="text" placeholder="Tên đơn vị" style="width:100%;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0"></label>
-                <label style="display:block"><span style="display:block;font-size:10px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">ĐIỆN THOẠI HOẶC ZALO</span><input type="tel" placeholder="09xx xxx xxx" style="width:100%;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0"></label>
-                <label style="display:block"><span style="display:block;font-size:10px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">NHÓM MÔ HÌNH KINH DOANH</span>
+                <label style="display:block"><span style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">HỌ VÀ TÊN</span><input type="text" placeholder="Nguyễn Văn A" style="width:100%;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0"></label>
+                <label style="display:block"><span style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">ĐƠN VỊ / HỘ KINH DOANH</span><input type="text" placeholder="Tên đơn vị" style="width:100%;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0"></label>
+                <label style="display:block"><span style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">ĐIỆN THOẠI HOẶC ZALO</span><input type="tel" placeholder="09xx xxx xxx" style="width:100%;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0"></label>
+                <label style="display:block"><span style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">NHÓM MÔ HÌNH KINH DOANH</span>
                   <sc-raw-select style="width:100%;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0">
                     <option>Kinh doanh tri thức / nội dung</option>
                     <option>Nền tảng số / SaaS</option>
@@ -2219,12 +2219,12 @@ review_cycle: monthly</pre>
                     <option>Mô hình lai / chưa rõ</option>
                   </sc-raw-select>
                 </label>
-                <label style="display:block"><span style="display:block;font-size:10px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">QUY MÔ HIỆN TẠI</span>
+                <label style="display:block"><span style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">QUY MÔ HIỆN TẠI</span>
                   <sc-raw-select style="width:100%;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0">
                     <option>1 người</option><option>2–3 người</option><option>4–10 người</option><option>11–30 người</option><option>Trên 30 người</option>
                   </sc-raw-select>
                 </label>
-                <label style="display:block"><span style="display:block;font-size:10px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">QUY TRÌNH NÀO ĐANG TỐN THỜI GIAN NHẤT?</span><textarea placeholder="Mô tả ngắn gọn — càng cụ thể càng dễ chuẩn bị cho buổi chẩn đoán." style="width:100%;min-height:110px;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0;resize:vertical"></textarea></label>
+                <label style="display:block"><span style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">QUY TRÌNH NÀO ĐANG TỐN THỜI GIAN NHẤT?</span><textarea placeholder="Mô tả ngắn gọn — càng cụ thể càng dễ chuẩn bị cho buổi chẩn đoán." style="width:100%;min-height:110px;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0;resize:vertical"></textarea></label>
                 <button type="button" sc-camel-on-click="{{ submit }}" class="btn btn-primary" style="border:0;font-size:12px;letter-spacing:.14em;padding:17px 24px;font-weight:600;justify-content:flex-start">GỬI YÊU CẦU CHẨN ĐOÁN</button>
                 <p style="font-size:12.5px;color:var(--color-neutral-600);margin:0">Thông tin chỉ dùng để chuẩn bị buổi chẩn đoán. Chúng tôi không chia sẻ với bên thứ ba.</p>
               </div>
@@ -2240,12 +2240,12 @@ review_cycle: monthly</pre>
             <div style="background:var(--color-bg);padding:clamp(24px,3cqi,36px)">
               <h3 style="font-size:clamp(20px,2.2cqi,28px);margin:0 0 24px">Thông tin liên hệ</h3>
               <div style="display:grid;gap:0;border-top:1px solid var(--color-neutral-300)">
-                <div style="padding:16px 0;border-bottom:1px solid var(--color-neutral-300)"><b style="display:block;font-size:10px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:7px;font-weight:600">TÊN PHÁP LÝ</b><span style="font-size:14.5px;line-height:1.55">Công ty Cổ phần Giải pháp LATTICE Next<br>LATTICE Next Solutions Joint Stock Company</span></div>
-                <div style="padding:16px 0;border-bottom:1px solid var(--color-neutral-300)"><b style="display:block;font-size:10px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:7px;font-weight:600">EMAIL</b><span style="font-size:14.5px;color:var(--color-neutral-600)">[chưa cấu hình — điền địa chỉ chính thức]</span></div>
-                <div style="padding:16px 0;border-bottom:1px solid var(--color-neutral-300)"><b style="display:block;font-size:10px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:7px;font-weight:600">ĐIỆN THOẠI / ZALO</b><span style="font-size:14.5px;color:var(--color-neutral-600)">[chưa cấu hình]</span></div>
-                <div style="padding:16px 0;border-bottom:1px solid var(--color-neutral-300)"><b style="display:block;font-size:10px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:7px;font-weight:600">ĐỊA CHỈ</b><span style="font-size:14.5px;color:var(--color-neutral-600)">[chưa cấu hình]</span></div>
-                <div style="padding:16px 0;border-bottom:1px solid var(--color-neutral-300)"><b style="display:block;font-size:10px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:7px;font-weight:600">GIỜ LÀM VIỆC</b><span style="font-size:14.5px">Thứ Hai – Thứ Sáu, 09:00 – 18:00 (GMT+7)</span></div>
-                <div style="padding:16px 0"><b style="display:block;font-size:10px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:7px;font-weight:600">NGÔN NGỮ LÀM VIỆC</b><span style="font-size:14.5px">Tiếng Việt · English · 한국어</span></div>
+                <div style="padding:16px 0;border-bottom:1px solid var(--color-neutral-300)"><b style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:7px;font-weight:600">TÊN PHÁP LÝ</b><span style="font-size:14.5px;line-height:1.55">Công ty Cổ phần Giải pháp LATTICE Next<br>LATTICE Next Solutions Joint Stock Company</span></div>
+                <div style="padding:16px 0;border-bottom:1px solid var(--color-neutral-300)"><b style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:7px;font-weight:600">EMAIL</b><span style="font-size:14.5px;color:var(--color-neutral-600)">[chưa cấu hình — điền địa chỉ chính thức]</span></div>
+                <div style="padding:16px 0;border-bottom:1px solid var(--color-neutral-300)"><b style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:7px;font-weight:600">ĐIỆN THOẠI / ZALO</b><span style="font-size:14.5px;color:var(--color-neutral-600)">[chưa cấu hình]</span></div>
+                <div style="padding:16px 0;border-bottom:1px solid var(--color-neutral-300)"><b style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:7px;font-weight:600">ĐỊA CHỈ</b><span style="font-size:14.5px;color:var(--color-neutral-600)">[chưa cấu hình]</span></div>
+                <div style="padding:16px 0;border-bottom:1px solid var(--color-neutral-300)"><b style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:7px;font-weight:600">GIỜ LÀM VIỆC</b><span style="font-size:14.5px">Thứ Hai – Thứ Sáu, 09:00 – 18:00 (GMT+7)</span></div>
+                <div style="padding:16px 0"><b style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-accent);margin-bottom:7px;font-weight:600">NGÔN NGỮ LÀM VIỆC</b><span style="font-size:14.5px">Tiếng Việt · English · 한국어</span></div>
               </div>
               <div style="border:2px solid var(--color-text);padding:22px;margin-top:30px">
                 <h4 style="font-size:18px;margin:0 0 16px">Trước buổi chẩn đoán, nên chuẩn bị</h4>
@@ -2299,13 +2299,13 @@ review_cycle: monthly</pre>
           <div style="min-width:240px">
             <div style="display:flex;align-items:center;gap:12px;color:var(--color-bg);margin-bottom:20px">
               <svg width="38" height="38" sc-camel-view-box="0 0 100 100" style="display:block"><path d="M50 8 L92 50 L50 92 L8 50 Z" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><path d="M50 8 L50 92 M8 50 L92 50" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><circle cx="50" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="92" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="92" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="8" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="50" r="10" fill="var(--color-accent)"></circle></svg>
-              <span style="display:block"><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:19px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:8.5px;letter-spacing:.26em;margin-top:5px;color:var(--color-neutral-500)">NEXT SOLUTIONS JSC</span></span>
+              <span style="display:block"><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:19px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:11px;letter-spacing:.26em;margin-top:5px;color:var(--color-neutral-500)">NEXT SOLUTIONS JSC</span></span>
             </div>
             <p style="font-size:13px;margin:0 0 10px;line-height:1.6">Kiến trúc mô hình kinh doanh mới.<br>Structure for what comes next.</p>
             <p style="font-size:13px;margin:0;color:var(--color-neutral-600)">Công ty Cổ phần Giải pháp LATTICE Next</p>
           </div>
           <div>
-            <h4 style="font-size:10px;letter-spacing:.2em;color:var(--color-accent-400);margin:0 0 16px;font-weight:600">NỘI DUNG</h4>
+            <h4 style="font-size:13px;letter-spacing:.2em;color:var(--color-accent-400);margin:0 0 16px;font-weight:600">NỘI DUNG</h4>
             <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
               <button type="button" sc-camel-on-click="{{ goTrends }}" style="appearance:none;background:none;border:0;padding:0;color:inherit;cursor:pointer;font-family:inherit;font-size:13.5px;text-align:left" style-hover="color:var(--color-accent-400)">Xu hướng tương lai</button>
               <button type="button" sc-camel-on-click="{{ goSolutions }}" style="appearance:none;background:none;border:0;padding:0;color:inherit;cursor:pointer;font-family:inherit;font-size:13.5px;text-align:left" style-hover="color:var(--color-accent-400)">Next Solutions</button>
@@ -2313,7 +2313,7 @@ review_cycle: monthly</pre>
             </div>
           </div>
           <div>
-            <h4 style="font-size:10px;letter-spacing:.2em;color:var(--color-accent-400);margin:0 0 16px;font-weight:600">CÔNG TY</h4>
+            <h4 style="font-size:13px;letter-spacing:.2em;color:var(--color-accent-400);margin:0 0 16px;font-weight:600">CÔNG TY</h4>
             <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
               <button type="button" sc-camel-on-click="{{ goProcess }}" style="appearance:none;background:none;border:0;padding:0;color:inherit;cursor:pointer;font-family:inherit;font-size:13.5px;text-align:left" style-hover="color:var(--color-accent-400)">Cách chúng tôi làm</button>
               <button type="button" sc-camel-on-click="{{ goMethod }}" style="appearance:none;background:none;border:0;padding:0;color:inherit;cursor:pointer;font-family:inherit;font-size:13.5px;text-align:left" style-hover="color:var(--color-accent-400)">Phương pháp triển khai</button>
@@ -2322,7 +2322,7 @@ review_cycle: monthly</pre>
             </div>
           </div>
           <div>
-            <h4 style="font-size:10px;letter-spacing:.2em;color:var(--color-accent-400);margin:0 0 16px;font-weight:600">BỐN ĐỘNG CƠ</h4>
+            <h4 style="font-size:13px;letter-spacing:.2em;color:var(--color-accent-400);margin:0 0 16px;font-weight:600">BỐN ĐỘNG CƠ</h4>
             <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
               <button type="button" sc-camel-on-click="{{ goEngine1 }}" style="appearance:none;background:none;border:0;padding:0;color:inherit;cursor:pointer;font-family:inherit;font-size:13.5px;text-align:left" style-hover="color:var(--color-accent-400)">Social Media</button>
               <button type="button" sc-camel-on-click="{{ goEngine2 }}" style="appearance:none;background:none;border:0;padding:0;color:inherit;cursor:pointer;font-family:inherit;font-size:13.5px;text-align:left" style-hover="color:var(--color-accent-400)">Marketing &amp; GEO/AEO</button>
@@ -2447,9 +2447,9 @@ class Component extends DCLogic {
       setLaptop: () => this.setDevice('laptop'), setTablet: () => this.setDevice('tablet'), setPhone: () => this.setDevice('phone'),
       doPrint: () => window.print(),
       deviceNote: d === 'tablet' ? 'CHẾ ĐỘ XEM TABLET · 834 PX' : d === 'phone' ? 'CHẾ ĐỘ XEM SMARTPHONE · 390 PX' : '',
-      noteStyle: 'text-align:center;font-size:10px;letter-spacing:.2em;color:#7d7979;margin:0;padding:0 0 24px' + (d === 'laptop' ? ';display:none' : ''),
+      noteStyle: 'text-align:center;font-size:13px;letter-spacing:.2em;color:#7d7979;margin:0;padding:0 0 24px' + (d === 'laptop' ? ';display:none' : ''),
       navStyle: narrow ? 'display:none' : 'flex:1;min-width:0;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none',
-      ctaStyle: 'flex:none;font-size:11px;letter-spacing:.14em;padding:13px 18px;font-weight:600;border:0;margin-left:auto;'
+      ctaStyle: 'flex:none;font-size:14.5px;letter-spacing:.14em;padding:13px 18px;font-weight:600;border:0;margin-left:auto;'
         + (narrow ? 'display:none' : 'display:inline-flex'),
       burgerStyle: 'flex:none;margin-left:auto;appearance:none;background:transparent;border:2px solid var(--color-text);color:var(--color-text);padding:9px 11px;cursor:pointer;'
         + (narrow ? 'display:block' : 'display:none'),

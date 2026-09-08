@@ -871,7 +871,7 @@ textarea.input { min-height: 90px; resize: vertical; }
         <div class="lnx-lock-inner">
           <p class="lnx-lock-kicker">Khu vực hạn chế</p>
           <h2 class="lnx-lock-title">Phần còn lại của website cần mật khẩu</h2>
-          <p class="lnx-lock-p">Tài liệu nền tảng phía trên xem tự do. Bảy trang còn lại — Next Solutions, Ngành &amp; Mô hình, Phương pháp triển khai, Branding và các trang khác — đang ở chế độ hạn chế.</p>
+          <p class="lnx-lock-p">Tài liệu nền tảng phía trên xem tự do. Tám trang còn lại — Next Solutions, Ngành &amp; Mô hình, Phương pháp triển khai, Academy, Branding và các trang khác — đang ở chế độ hạn chế.</p>
           <div class="lnx-lock-row">
             <input id="lnx-pw" type="password" class="lnx-lock-input" placeholder="Nhập mật khẩu" autocomplete="current-password" aria-label="Mật khẩu">
             <button type="button" class="lnx-lock-btn" sc-camel-on-click="{{ tryUnlock }}">MỞ KHÓA →</button>
@@ -1014,6 +1014,26 @@ textarea.input { min-height: 90px; resize: vertical; }
             </sc-for>
           </div>
           <button type="button" class="btn" sc-camel-on-click="{{ goGovernance }}" style="background:transparent;color:var(--color-bg);border:2px solid var(--color-neutral-700);font-size:12px;letter-spacing:.14em;padding:16px 24px;font-weight:600;justify-content:flex-start;text-align:left">XEM LỚP QUẢN TRỊ →</button>
+        </div>
+      </section>
+
+      <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Định vị</p>
+          <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 16px;letter-spacing:-.025em">Ai đang phục vụ doanh nghiệp 1–30 người?</h2>
+          <p style="font-size:15.5px;line-height:1.6;max-width:76ch;margin:0 0 32px;color:var(--color-neutral-800)">Hai trục quyết định: chiều sâu tổ chức của giải pháp, và mức phù hợp với quy mô nhỏ. Góc có cả hai hiện gần như trống ở Việt Nam.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
+            <sc-for list="{{ positions }}" as="r" hint-placeholder-count="4">
+              <div style="background:var(--color-bg);padding:24px 20px">
+                <div style="font-family:var(--font-heading);font-weight:800;font-size:16px;line-height:1.35;margin-bottom:9px">{{ r.a }}</div>
+                <div style="font-size:13px;letter-spacing:.1em;color:var(--color-neutral-500);margin-bottom:11px">{{ r.b }}</div>
+                <div style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-700)">{{ r.c }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div class="lnx-note" style="border-left:4px solid var(--color-accent);background:var(--color-bg);padding:24px 26px;margin-top:26px">
+            <p style="margin:0;font-size:clamp(15px,1.5cqi,18px);line-height:1.65"><strong>Phương pháp của tư vấn lớn, đóng gói cho túi tiền và nhịp độ của doanh nghiệp nhỏ.</strong> Đó là chỗ chúng tôi đứng.</p>
+          </div>
         </div>
       </section>
 
@@ -1262,6 +1282,111 @@ textarea.input { min-height: 90px; resize: vertical; }
             </sc-for>
           </div>
           <p style="font-size:15.5px;line-height:1.7;max-width:74ch;margin:30px 0 0">Điểm cuối quan trọng nhất: ở Việt Nam, một doanh nghiệp hoàn toàn vô danh do AI vận hành sẽ chạm trần niềm tin rất sớm. Chiến lược đúng là <strong>AI vận hành phía sau, con người có tên và có mặt phía trước.</strong></p>
+        </div>
+      </section>
+
+      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Cơ hội mở · Tương lai</p>
+          <h2 style="font-size:clamp(26px,3.6cqi,50px);line-height:1.06;letter-spacing:-.03em;margin:0 0 22px;max-width:22ch;color:var(--color-bg)">Khi tài sản mã hóa được hợp pháp hóa</h2>
+          <p style="font-size:clamp(16px,1.5cqi,20px);line-height:1.55;max-width:70ch;color:var(--color-neutral-300);margin:0 0 14px">Việt Nam vừa đi trước phần lớn thế giới ở một điểm: luật hóa tài sản số <em>trước</em> khi thị trường bùng nổ. Điều đó mở ra khả năng khép kín phần cuối cùng còn thiếu của mô hình doanh nghiệp một người — <strong style="color:var(--color-bg)">dòng tiền</strong>.</p>
+          <p style="font-size:14.5px;line-height:1.65;max-width:70ch;color:var(--color-neutral-500);margin:0">Đây là <strong style="color:var(--color-neutral-300)">cơ hội mở</strong> — một hướng nghiên cứu và chuẩn bị năng lực, không phải sản phẩm đang bán. Chúng tôi trình bày như một kịch bản, không như một cam kết.</p>
+        </div>
+      </section>
+
+      <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <h3 style="font-size:clamp(19px,2cqi,26px);margin:0 0 8px">Các mốc pháp lý đã có</h3>
+          <p style="font-size:14px;line-height:1.6;max-width:74ch;margin:0 0 24px;color:var(--color-neutral-700)">Khung định nghĩa pháp lý, cơ chế thí điểm 5 năm và hướng dẫn kế toán ban đầu đều đã ban hành.</p>
+          <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text);margin-bottom:36px">
+            <sc-for list="{{ cryptoMiles }}" as="r" hint-placeholder-count="5">
+              <div style="background:var(--color-bg);padding:18px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 26px;align-items:start">
+                <div style="font-family:var(--font-heading);font-weight:800;font-size:15px;color:var(--color-accent-700)">{{ r.a }}</div>
+                <div style="font-size:14px;line-height:1.55;font-weight:600">{{ r.b }}</div>
+                <div style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-700)">{{ r.c }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
+            <div style="background:var(--color-bg);padding:22px 20px">
+              <div style="font-size:13px;letter-spacing:.16em;color:var(--color-accent);font-weight:600;margin-bottom:10px">ĐÃ CÓ</div>
+              <div style="font-size:14px;line-height:1.65">Khung định nghĩa pháp lý, cơ chế thí điểm 5 năm, và hướng dẫn kế toán ban đầu cho tổ chức tham gia thị trường.</div>
+            </div>
+            <div style="background:var(--color-bg);padding:22px 20px">
+              <div style="font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);font-weight:600;margin-bottom:10px">CHƯA CÓ</div>
+              <div style="font-size:14px;line-height:1.65">Chuẩn mực kế toán độc lập cho tài sản mã hóa; cơ chế thanh toán doanh nghiệp thường ngày; khung thuế chi tiết cho giao dịch on-chain.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:var(--color-neutral-100);padding:clamp(44px,6cqi,84px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <h3 style="font-size:clamp(19px,2cqi,26px);margin:0 0 8px">Mảnh ghép cuối: khép kín dòng tiền</h3>
+          <p style="font-size:15px;line-height:1.7;max-width:80ch;margin:0 0 26px">Bộ máy AI hiện đã khép kín ở luồng <strong>thông tin</strong>: agent đọc dữ liệu, ra quyết định, ghi lại bằng chứng. Nhưng luồng <strong>giá trị</strong> vẫn đứt — mọi khoản tiền phải qua thao tác thủ công ở ngân hàng, và sổ sách được đối chiếu sau khi sự việc đã xảy ra.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text);margin-bottom:26px">
+            <sc-for list="{{ cryptoLoop }}" as="r" hint-placeholder-count="6">
+              <div style="background:var(--color-bg);padding:20px 18px">
+                <div style="font-size:13px;letter-spacing:.14em;color:var(--color-accent);font-weight:600;margin-bottom:9px">{{ r.a }}</div>
+                <div style="font-size:13.5px;line-height:1.55">{{ r.b }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div class="lnx-note" style="border-left:4px solid var(--color-accent);background:var(--color-bg);padding:24px 26px">
+            <p style="margin:0;font-size:clamp(15px,1.5cqi,18px);line-height:1.65">Điểm then chốt: <strong>chặng 4 không biến mất.</strong> Blockchain làm việc ghi nhận trở nên tự động và không sửa được — nó không thay con người quyết định khoản nào đáng chi.</p>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <h3 style="font-size:clamp(19px,2cqi,26px);margin:0 0 8px">Sáu năng lực tài chính thay đổi bản chất</h3>
+          <p style="font-size:14px;line-height:1.6;max-width:74ch;margin:0 0 22px;color:var(--color-neutral-700)">Cột cuối là mức tự chủ mà agent tài chính có thể đạt khi dòng tiền lên sổ cái chung.</p>
+          <div class="lnx-matrix">
+            <div class="lnx-matrix-row lnx-matrix-head">
+              <div>NĂNG LỰC</div><div>HÔM NAY</div><div>KHI KHÉP KÍN TRÊN SỔ CÁI</div><div>TỰ CHỦ AI</div>
+            </div>
+            <sc-for list="{{ cryptoCaps }}" as="r" hint-placeholder-count="6">
+              <div class="lnx-matrix-row">
+                <div style="font-size:13.5px;font-weight:600;line-height:1.45">{{ r.a }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span class="lnx-matrix-lbl">HÔM NAY</span>{{ r.b }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span class="lnx-matrix-lbl">KHI KHÉP KÍN</span>{{ r.c }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-accent-700);font-weight:600"><span class="lnx-matrix-lbl">TỰ CHỦ AI</span>{{ r.d }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <p style="font-size:15px;line-height:1.7;max-width:80ch;margin:26px 0 0">Ở phần xu hướng, ba rủi ro cấu trúc của mô hình một người là <strong>khó vay vốn</strong>, <strong>chi phí tuân thủ tăng</strong> và <strong>không ai kiểm tra chéo người chủ</strong>. Cả ba đều là bài toán về niềm tin và ghi nhận — chính là thứ một sổ cái chung giải quyết tốt hơn bất kỳ phần mềm kế toán nào.</p>
+        </div>
+      </section>
+
+      <section style="background:var(--color-neutral-100);padding:clamp(44px,6cqi,84px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <h3 style="font-size:clamp(19px,2cqi,26px);margin:0 0 8px">Chuẩn bị chứ không đánh cược</h3>
+          <p style="font-size:14px;line-height:1.6;max-width:74ch;margin:0 0 24px;color:var(--color-neutral-700)">Ba tầng chuẩn bị — tầng nào cũng có giá trị riêng kể cả khi không bao giờ đi tới tầng cuối.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text);margin-bottom:40px">
+            <sc-for list="{{ cryptoTiers }}" as="r" hint-placeholder-count="3">
+              <div style="background:var(--color-bg);padding:24px 20px">
+                <div style="font-size:13px;letter-spacing:.14em;color:var(--color-accent);font-weight:600;margin-bottom:10px">{{ r.a }}</div>
+                <div style="font-family:var(--font-heading);font-weight:800;font-size:16.5px;line-height:1.35;margin-bottom:10px">{{ r.b }}</div>
+                <div style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-700)">{{ r.c }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <h4 style="font-size:19px;margin:0 0 18px">Bốn ranh giới không vượt</h4>
+          <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
+            <sc-for list="{{ cryptoLimits }}" as="r" hint-placeholder-count="4">
+              <div style="background:var(--color-bg);padding:20px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 26px;align-items:start">
+                <div style="font-family:var(--font-heading);font-weight:800;font-size:15px;line-height:1.35;color:var(--color-accent-700)">{{ r.a }}</div>
+                <div style="font-size:13.5px;line-height:1.65">{{ r.b }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div class="lnx-note" style="border:2px solid var(--color-text);background:var(--color-bg);padding:26px;margin-top:34px">
+            <h4 style="font-size:20px;margin:0 0 12px">Vị thế của LATTICE Next</h4>
+            <p style="margin:0;font-size:14.5px;line-height:1.7">Theo dõi qua <strong>Regulatory Monitor</strong> — một trong bốn dòng R&amp;D thường trực — và chuẩn bị mẫu kiến trúc sẵn sàng. Khi khung pháp lý mở, khách hàng đã có dữ liệu sạch và bộ máy kiểm soát sẽ chuyển đổi trong vài tuần thay vì vài năm.</p>
+          </div>
         </div>
       </section>
     </div>
@@ -1757,6 +1882,35 @@ textarea.input { min-height: 90px; resize: vertical; }
           </div>
         </div>
       </section>
+
+      <section style="background:var(--color-neutral-100);padding:clamp(44px,6cqi,84px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Thị trường</p>
+          <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 16px;letter-spacing:-.025em">Chúng tôi phục vụ ai</h2>
+          <div class="lnx-matrix" style="margin-bottom:34px">
+            <div class="lnx-matrix-row lnx-matrix-head">
+              <div>PHÂN KHÚC</div><div>ĐẶC ĐIỂM</div><div>ĐIỂM ĐAU CHÍNH</div><div>DÒNG PHÙ HỢP</div>
+            </div>
+            <sc-for list="{{ segments }}" as="r" hint-placeholder-count="5">
+              <div class="lnx-matrix-row">
+                <div style="font-size:13.5px;font-weight:600;line-height:1.45">{{ r.a }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span class="lnx-matrix-lbl">ĐẶC ĐIỂM</span>{{ r.b }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span class="lnx-matrix-lbl">ĐIỂM ĐAU</span>{{ r.c }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-accent-700);font-weight:600"><span class="lnx-matrix-lbl">DÒNG PHÙ HỢP</span>{{ r.d }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
+            <sc-for list="{{ mktSize }}" as="r" hint-placeholder-count="4">
+              <div style="background:var(--color-bg);padding:24px 20px">
+                <b style="display:block;font-family:var(--font-heading);font-size:clamp(24px,2.8cqi,36px);font-weight:800;line-height:1;letter-spacing:-.02em;color:var(--color-accent-700)">{{ r.a }}</b>
+                <span style="display:block;font-size:13px;margin-top:11px;line-height:1.5;color:var(--color-neutral-700)">{{ r.b }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <p style="font-size:15px;line-height:1.7;max-width:80ch;margin:26px 0 0">Chúng tôi không nhắm phục vụ toàn bộ quy mô này. Chiến lược là <strong>đi sâu vào 2–3 ngành trước</strong> — nơi thư viện kiến trúc mẫu tích lũy nhanh nhất — rồi mở rộng bằng Academy và mạng lưới đối tác.</p>
+        </div>
+      </section>
     </div>
     </sc-if>
 
@@ -2016,6 +2170,83 @@ textarea.input { min-height: 90px; resize: vertical; }
                 <div style="display:flex;gap:12px"><span style="width:12px;height:12px;border:2px solid var(--color-accent);flex:none;margin-top:4px"></span><span>Rà soát tuân thủ và đặt lịch với cố vấn</span></div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:var(--color-neutral-100);padding:clamp(44px,6cqi,84px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Tổng quan định hướng</p>
+          <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 16px;letter-spacing:-.025em">Bốn dòng kinh doanh</h2>
+          <p style="font-size:15.5px;line-height:1.6;max-width:78ch;margin:0 0 32px;color:var(--color-neutral-800)">Ba dòng đầu là chuỗi giá trị tự nhiên: chẩn đoán dẫn tới triển khai, triển khai cần đào tạo để bàn giao được. Dòng thứ tư là kết quả tích lũy của ba dòng trên.</p>
+          <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
+            <sc-for list="{{ bizLines }}" as="r" hint-placeholder-count="4">
+              <div style="background:var(--color-bg);padding:24px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 28px;align-items:start">
+                <div>
+                  <div style="font-size:13px;letter-spacing:.18em;color:var(--color-accent);font-weight:600;margin-bottom:8px">{{ r.n }}</div>
+                  <div style="font-family:var(--font-heading);font-weight:800;font-size:16.5px;line-height:1.35">{{ r.a }}</div>
+                </div>
+                <div style="font-size:13.5px;line-height:1.65">{{ r.b }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)">{{ r.c }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <h3 style="font-size:clamp(19px,2cqi,26px);margin:44px 0 18px">Hệ sinh thái LATTICE</h3>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
+            <sc-for list="{{ ecoParts }}" as="r" hint-placeholder-count="3">
+              <div style="background:var(--color-bg);padding:24px 20px">
+                <div style="font-family:var(--font-heading);font-weight:800;font-size:16px;line-height:1.35;margin-bottom:10px">{{ r.a }}</div>
+                <div style="font-size:13.5px;line-height:1.65;color:var(--color-neutral-700)">{{ r.b }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div class="lnx-note" style="border-left:4px solid var(--color-accent);background:var(--color-bg);padding:24px 26px;margin-top:26px">
+            <p style="margin:0;font-size:clamp(15px,1.5cqi,18px);line-height:1.65">Mẫu kiến trúc và eval tích lũy quay lại rút ngắn chẩn đoán. Học viên Academy trở thành khách hàng và người giới thiệu. <strong>Bốn dòng nuôi nhau.</strong></p>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 16px;letter-spacing:-.025em">Bốn nguồn doanh thu, bốn nhịp khác nhau</h2>
+          <div class="lnx-matrix" style="margin-bottom:26px">
+            <div class="lnx-matrix-row lnx-matrix-head">
+              <div>NGUỒN</div><div>HÌNH THỨC</div><div>NHỊP</div><div>VAI TRÒ TRONG DANH MỤC</div>
+            </div>
+            <sc-for list="{{ revStreams }}" as="r" hint-placeholder-count="5">
+              <div class="lnx-matrix-row">
+                <div style="font-size:13.5px;font-weight:600;line-height:1.45">{{ r.a }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span class="lnx-matrix-lbl">HÌNH THỨC</span>{{ r.b }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span class="lnx-matrix-lbl">NHỊP</span>{{ r.c }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span class="lnx-matrix-lbl">VAI TRÒ</span>{{ r.d }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div class="lnx-note" style="border:2px solid var(--color-text);background:var(--color-neutral-100);padding:26px">
+            <h4 style="font-size:20px;margin:0 0 12px">Nguyên tắc định giá</h4>
+            <p style="margin:0 0 14px;font-size:14.5px;line-height:1.7">Báo giá theo phạm vi công việc sau buổi chẩn đoán, không theo bảng giá cố định — vì trần tự động hóa của mỗi mô hình khác nhau quá xa để định giá trước. <strong>Buổi chẩn đoán đầu tiên miễn phí và khách hàng nhận được kết quả dùng được kể cả khi không hợp tác tiếp.</strong></p>
+            <p style="margin:0;font-size:13.5px;line-height:1.7;color:var(--color-neutral-700)">Chỉ số theo dõi nội bộ: doanh thu trên người · tỷ lệ chuyển đổi từ chẩn đoán sang triển khai · tỷ lệ khách hàng chuyển sang gói đồng hành · số mẫu kiến trúc tích lũy theo ngành · tỷ lệ học viên Academy trở thành khách hàng.</p>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:var(--color-neutral-100);padding:clamp(44px,6cqi,84px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 16px;letter-spacing:-.025em">Lộ trình ba giai đoạn</h2>
+          <p style="font-size:15.5px;line-height:1.6;max-width:74ch;margin:0 0 30px;color:var(--color-neutral-800)">Từ dịch vụ dự án sang tài sản có đòn bẩy.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
+            <sc-for list="{{ compPhases }}" as="r" hint-placeholder-count="3">
+              <div style="background:var(--color-bg);padding:24px 20px">
+                <div style="font-size:13px;letter-spacing:.14em;color:var(--color-accent);font-weight:600;margin-bottom:10px">{{ r.a }}</div>
+                <div style="font-family:var(--font-heading);font-weight:800;font-size:16.5px;line-height:1.35;margin-bottom:12px">{{ r.b }}</div>
+                <div style="font-size:13.5px;line-height:1.6;margin-bottom:12px">{{ r.c }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-accent-700);font-weight:600">{{ r.d }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div class="lnx-note" style="border-left:4px solid var(--color-accent);background:var(--color-bg);padding:24px 26px;margin-top:26px">
+            <p style="margin:0;font-size:clamp(15px,1.5cqi,18px);line-height:1.65"><strong>Không tăng quy mô nhanh hơn tốc độ tích lũy phương pháp.</strong> Một công ty tư vấn AI mà tự mình vi phạm nguyên tắc "ít mà sâu" sẽ mất chính thứ mình đang bán.</p>
           </div>
         </div>
       </section>
@@ -2470,6 +2701,89 @@ review_cycle: monthly</pre>
     </div>
     </sc-if>
 
+    <sc-if value="{{ isAcademy }}" hint-placeholder-val="{{ false }}">
+    <div>
+      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Dòng 03 · LATTICE Academy</p>
+          <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Đào tạo người vận hành bộ máy AI</h1>
+          <p style="font-size:clamp(16px,1.5cqi,21px);line-height:1.5;max-width:62ch;color:var(--color-neutral-300);margin:0">Không phải dạy dùng công cụ. Dạy thiết kế quyền hạn, đọc số đo, và quyết định khi nào nên tin AI.</p>
+        </div>
+      </section>
+
+      <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Vì sao có dòng này</p>
+          <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 20px;letter-spacing:-.025em">Đào tạo không phải dịch vụ bán thêm</h2>
+          <div class="lnx-note" style="border-left:4px solid var(--color-accent);background:var(--color-bg);padding:24px 26px;margin:0 0 34px">
+            <p style="margin:0;font-size:clamp(16px,1.6cqi,20px);line-height:1.6">Trong mô hình 1–3 người, người chủ vừa là CEO vừa là người vận hành hệ thống. Nếu họ không hiểu vì sao một agent được đặt ở L2 chứ không phải L3, họ sẽ hoặc không dám dùng, hoặc dùng sai. <strong>Đào tạo là điều kiện để bàn giao thành công.</strong></p>
+          </div>
+          <p style="font-size:15.5px;line-height:1.7;max-width:80ch;margin:0">Không có dòng này thì bàn giao chỉ là chuyển giao tài khoản — hệ thống sẽ chết sau vài tháng. Đó là lý do Academy đứng ngang hàng với tư vấn và triển khai, không nằm ở phần phụ lục.</p>
+        </div>
+      </section>
+
+      <section style="background:var(--color-neutral-100);padding:clamp(44px,6cqi,84px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Ba lộ trình</h2>
+          <p style="font-size:15.5px;line-height:1.6;max-width:74ch;margin:0 0 32px;color:var(--color-neutral-800)">Ba mức độ, ba đối tượng khác nhau. Lộ trình C đồng thời là chương trình đào tạo đối tác nhượng quyền.</p>
+          <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
+            <sc-for list="{{ acadTracks }}" as="r" hint-placeholder-count="3">
+              <div style="background:var(--color-bg);padding:26px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px 30px;align-items:start">
+                <div>
+                  <div style="font-size:13px;letter-spacing:.18em;color:var(--color-accent);font-weight:600;margin-bottom:8px">{{ r.a }}</div>
+                  <div style="font-family:var(--font-heading);font-weight:800;font-size:clamp(19px,2cqi,25px);letter-spacing:-.015em">{{ r.b }}</div>
+                </div>
+                <div style="font-size:13.5px;line-height:1.6"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:6px">DÀNH CHO</span>{{ r.c }}</div>
+                <div style="font-size:14px;line-height:1.65">{{ r.d }}</div>
+                <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-700)"><span style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);display:block;margin-bottom:6px">ĐIỀU KIỆN</span>{{ r.e }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section style="background:var(--color-bg);padding:clamp(44px,6cqi,84px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Chuyên đề theo ngành và theo động cơ</h2>
+          <p style="font-size:15.5px;line-height:1.6;max-width:74ch;margin:0 0 30px;color:var(--color-neutral-800)">Học phần ngắn, đi thẳng vào một động cơ hoặc một nghĩa vụ tuân thủ cụ thể.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text);margin-bottom:44px">
+            <sc-for list="{{ acadTopics }}" as="r" hint-placeholder-count="4">
+              <div style="background:var(--color-bg);padding:22px 20px">
+                <div style="font-family:var(--font-heading);font-weight:800;font-size:15.5px;line-height:1.35;margin-bottom:10px">{{ r.a }}</div>
+                <div style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-700)">{{ r.b }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <h3 style="font-size:clamp(19px,2cqi,26px);margin:0 0 18px">Hình thức</h3>
+          <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
+            <sc-for list="{{ acadFormats }}" as="r" hint-placeholder-count="4">
+              <div style="background:var(--color-bg);padding:18px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px 26px;align-items:start">
+                <div style="font-family:var(--font-heading);font-weight:800;font-size:14.5px">{{ r.a }}</div>
+                <div style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-700)">{{ r.b }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div class="lnx-note" style="border:2px solid var(--color-text);background:var(--color-neutral-100);padding:26px;margin-top:34px">
+            <h4 style="font-size:20px;margin:0 0 12px">Đối tượng mở rộng</h4>
+            <p style="margin:0;font-size:14.5px;line-height:1.7">Hiệp hội ngành nghề, chương trình hỗ trợ doanh nghiệp nhỏ của địa phương, trường đại học và trung tâm khởi nghiệp — những kênh đưa phương pháp tới số đông mà không cần tăng tuyến tính nhân sự tư vấn.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="lnx-cta" style="background:var(--color-accent);color:#fff">
+        <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,5cqi,72px) clamp(16px,2.5cqi,40px);display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
+          <div style="flex:1;min-width:260px">
+            <h2 style="margin:0 0 10px;font-size:clamp(22px,2.8cqi,36px);letter-spacing:-.025em;color:#fff">Academy là dòng doanh thu lặp lại, biên cao</h2>
+            <p style="margin:0;font-size:15.5px;line-height:1.55;max-width:60ch">Mở rộng được mà không tăng tuyến tính nhân sự — và là kênh nuôi khách hàng cho hai dòng còn lại.</p>
+          </div>
+          <button type="button" class="btn" sc-camel-on-click="{{ goContact }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:13px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">ĐĂNG KÝ ĐÀO TẠO →</button>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
     <sc-if value="{{ isBranding }}" hint-placeholder-val="{{ false }}">
     <div>
       <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
@@ -2488,7 +2802,7 @@ review_cycle: monthly</pre>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text)">
             <div style="background:var(--color-bg);padding:26px 24px">
               <h4 style="font-size:18px;margin:0 0 12px">Bền nhờ liên kết, không nhờ khối lượng</h4>
-              <p style="margin:0;font-size:14px;line-height:1.65;color:var(--color-neutral-700)">Giàn tinh thể chịu lực tốt hơn khối đặc cùng trọng lượng. Doanh nghiệp một người cũng vậy: sức mạnh nằm ở cách các nút được nối, không ở số nhân sự.</p>
+              <p style="margin:0;font-size:14px;line-height:1.65;color:var(--color-neutral-700)">Tháp Eiffel nặng 7.300 tấn thép, nhưng nấu chảy đổ vừa chân tháp thì lớp thép chỉ dày chừng 6 cm. Nó đứng nhờ cấu trúc, không nhờ khối lượng. Doanh nghiệp một người cũng vậy: sức mạnh nằm ở cách các nút được nối, không ở số nhân sự.</p>
             </div>
             <div style="background:var(--color-bg);padding:26px 24px">
               <h4 style="font-size:18px;margin:0 0 12px">Mở rộng bằng cách lặp một đơn vị đơn giản</h4>
@@ -2700,6 +3014,23 @@ review_cycle: monthly</pre>
           <button type="button" class="btn" sc-camel-on-click="{{ goTrends }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">XEM XU HƯỚNG →</button>
         </div>
       </div>
+
+      <section style="background:var(--color-neutral-100);padding:clamp(44px,6cqi,84px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Lời mời hợp tác</p>
+          <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 30px;letter-spacing:-.025em">Ba cách đồng hành cùng LATTICE Next</h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
+            <sc-for list="{{ invites }}" as="r" hint-placeholder-count="3">
+              <div style="background:var(--color-bg);padding:26px 22px">
+                <div style="font-size:13px;letter-spacing:.18em;color:var(--color-accent);font-weight:600;margin-bottom:10px">{{ r.a }}</div>
+                <div style="font-family:var(--font-heading);font-weight:800;font-size:16.5px;line-height:1.35;margin-bottom:13px">{{ r.b }}</div>
+                <div style="font-size:13.5px;line-height:1.7;color:var(--color-neutral-700)">{{ r.c }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <p style="font-size:14px;line-height:1.7;max-width:80ch;margin:26px 0 0;color:var(--color-neutral-700)">Hồ sơ chi tiết theo từng nhóm — phương pháp luận đầy đủ, dự toán tài chính, kế hoạch triển khai — được cung cấp trong buổi làm việc trực tiếp.</p>
+        </div>
+      </section>
     </div>
     </sc-if>
 
@@ -2859,7 +3190,7 @@ class Component extends DCLogic {
     const showBranding = this.props.showBrandingPage !== false;
     const nav = [
       ['home', 'Trang chủ'], ['trends', 'Xu hướng tương lai'], ['solutions', 'Next Solutions'],
-      ['industries', 'Ngành & Mô hình'], ['process', 'Cách chúng tôi làm'], ['method', 'Phương pháp triển khai'], ['branding', 'Branding'], ['contact', 'Liên hệ']
+      ['industries', 'Ngành & Mô hình'], ['process', 'Cách chúng tôi làm'], ['method', 'Phương pháp triển khai'], ['academy', 'Academy'], ['branding', 'Branding'], ['contact', 'Liên hệ']
     ].filter(n => showBranding || n[0] !== 'branding');
     const narrow = (this.state.w || 1280) < 940;
     const navBase = 'appearance:none;border:0;background:transparent;cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:500;padding:10px 12px;white-space:nowrap;border-bottom:3px solid transparent;';
@@ -2897,8 +3228,9 @@ class Component extends DCLogic {
       })),
       isHome: p === 'home', isTrends: p === 'trends', isSolutions: p === 'solutions',
       isIndustries: p === 'industries', isProcess: p === 'process', isBranding: p === 'branding', isContact: p === 'contact',
-      isMethod: p === 'method',
+      isMethod: p === 'method', isAcademy: p === 'academy',
       goMethod: () => this.go('method'),
+      goAcademy: () => this.go('academy'),
       methodTabs: [
         ['m1', 'MỤC 22', 'Mô hình vận hành'], ['m2', 'MỤC 23', 'Chọn quy trình'],
         ['m3', 'MỤC 24–25', 'Charter & dữ liệu'], ['m4', 'MỤC 26 · 29', 'Kiến trúc & ngân sách'],
@@ -2936,6 +3268,120 @@ class Component extends DCLogic {
         ['05', 'Chất lượng agent, sự cố và chi phí'],
         ['06', 'Ba ưu tiên chiến lược hiện hành']
       ], ['n', 'a']),
+
+      revStreams: this.rows([
+        ['Chẩn đoán & Lộ trình', 'Phí trọn gói theo phạm vi', 'Một lần · 2–3 tuần', 'Điểm vào, chi phí thấp cho khách hàng thử'],
+        ['Kiến trúc & Triển khai', 'Phí theo dự án, chia đợt theo cột mốc', 'Một lần · 3–5 tháng', 'Doanh thu lõi, giá trị hợp đồng lớn nhất'],
+        ['Đồng hành vận hành', 'Phí thuê bao theo tháng', 'Lặp lại', 'Doanh thu ổn định, giữ quan hệ dài hạn'],
+        ['Academy', 'Học phí theo khóa và theo doanh nghiệp', 'Lặp lại · mở rộng được', 'Biên cao, nuôi khách cho ba dòng trên'],
+        ['Ecosystem · giai đoạn 2', 'Cấp phép mẫu kiến trúc · phí giới thiệu đối tác · nhượng quyền triển khai', 'Lặp lại', 'Đòn bẩy dài hạn, không tăng tuyến tính nhân sự']
+      ], ['a', 'b', 'c', 'd']),
+
+      compPhases: this.rows([
+        ['Giai đoạn 1 · 2026', 'Chứng minh phương pháp', 'Hoàn thiện phương pháp trên số ít khách hàng thật, thuộc 2–3 ngành. Xây thư viện kiến trúc mẫu và bộ eval đầu tiên.', 'Đo bằng số dự án lên được production, không phải số hợp đồng ký'],
+        ['Giai đoạn 2 · 2027–2028', 'Nhân rộng qua Academy', 'Đóng gói phương pháp thành ba lộ trình đào tạo. Mở rộng qua hiệp hội ngành nghề và chương trình hỗ trợ doanh nghiệp nhỏ.', 'Bắt đầu tách doanh thu khỏi giờ công tư vấn'],
+        ['Giai đoạn 3 · 2029+', 'Hệ sinh thái & nhượng quyền', 'Cấp phép mẫu kiến trúc và đào tạo đối tác triển khai theo vùng và theo ngành. Mở rộng ra thị trường khu vực.', 'Bắt đầu từ hành lang có sẵn quan hệ']
+      ], ['a', 'b', 'c', 'd']),
+
+      segments: this.rows([
+        ['Hộ kinh doanh đang chính thức hóa', 'Doanh thu quanh ngưỡng 1 tỷ đồng/năm, vừa phải chuyển sang tự kê khai và hóa đơn điện tử', 'Chi phí tuân thủ tăng đột ngột, chưa có sổ sách sạch', 'Academy + Advisory'],
+        ['Doanh nghiệp 1–10 người, kinh doanh số', 'Thương mại điện tử, nội dung, dịch vụ chuyên môn', 'Chủ là nút thắt cổ chai; không mở rộng được nếu không thuê thêm', 'Toàn bộ ba dòng'],
+        ['Doanh nghiệp 10–30 người muốn tái cấu trúc', 'Đã có quy trình nhưng chi phí nhân sự tăng nhanh hơn doanh thu', 'Không biết chức năng nào nên giao cho AI, sợ mất kiểm soát', 'Advisory + Architecture'],
+        ['Đơn vị mở mô hình kinh doanh mới', 'Startup, dự án nội bộ của tập đoàn, thương hiệu mới', 'Muốn thiết kế AI-native ngay từ đầu thay vì cải tạo sau', 'Architecture + Ecosystem'],
+        ['Nhà đầu tư và quỹ', 'Cần thẩm định năng lực vận hành của đối tượng đầu tư', 'Không có khung đánh giá độ trưởng thành AI của doanh nghiệp nhỏ', 'Advisory']
+      ], ['a', 'b', 'c', 'd']),
+
+      mktSize: this.rows([
+        ['~5 triệu', 'hộ kinh doanh trên cả nước — nhóm chịu tác động trực tiếp của thay đổi thuế 2026'],
+        ['2 triệu', 'mục tiêu số doanh nghiệp đến 2030 theo Nghị quyết 68'],
+        ['613.800', 'gian hàng thương mại điện tử đang hoạt động'],
+        ['>90%', 'doanh nghiệp Việt Nam thuộc nhóm nhỏ và siêu nhỏ']
+      ], ['a', 'b']),
+
+      positions: this.rows([
+        ['Tư vấn chuyển đổi số lớn', 'Chiều sâu cao · phù hợp quy mô nhỏ thấp', 'Phương pháp tốt, chiều sâu tổ chức. Nhưng chi phí và chu kỳ dự án vượt xa khả năng của doanh nghiệp nhỏ.'],
+        ['Công cụ & agency đơn lẻ', 'Chiều sâu thấp · phù hợp quy mô nhỏ cao', 'Giải quyết một tác vụ. Không ai thiết kế quyền hạn, kiểm soát hay trí nhớ dùng chung.'],
+        ['Tự học · cộng đồng', 'Chiều sâu thấp · phù hợp quy mô nhỏ cao', 'Rẻ và dễ tiếp cận. Nhưng không có phương pháp, không ai chịu trách nhiệm kết quả.'],
+        ['LATTICE Next', 'Chiều sâu cao · phù hợp quy mô nhỏ cao', 'Chiều sâu kiến trúc tổ chức nhưng đóng gói cho quy mô 1–30 người. Bàn giao được, không khóa chân, kèm đào tạo để tự vận hành.']
+      ], ['a', 'b', 'c']),
+
+      invites: this.rows([
+        ['Khách hàng', 'Bắt đầu bằng buổi chẩn đoán 60 phút miễn phí', 'Đọc mô hình hiện tại · ba quy trình nên tự động hóa trước · ước lượng trần tự động hóa · nhận kết quả dùng được kể cả khi không hợp tác tiếp'],
+        ['Đối tác', 'Chúng tôi tìm mắt xích thực thi mà mình không tự làm', 'Dịch vụ kế toán và tư vấn pháp lý · sản xuất nội dung và video · OEM/ODM, logistics, vận hành kho · hiệp hội ngành nghề · đơn vị triển khai muốn đào tạo theo Lộ trình C'],
+        ['Nhà đầu tư', 'Điều đáng xem xét nhất ở mô hình này', 'Thị trường được chính sách thúc đẩy, không phụ thuộc chu kỳ hào hứng công nghệ · chuỗi giá trị khép kín Advisory → Architecture → Academy → Ecosystem · tài sản tích lũy là phương pháp và thư viện mẫu, không phải phần mềm dễ sao chép · đường mở rộng không tăng tuyến tính nhân sự']
+      ], ['a', 'b', 'c']),
+
+      bizLines: this.rows([
+        ['Dòng 01', 'Advisory · Tư vấn & Chẩn đoán', 'Kiểm kê quy trình, đánh giá chất lượng dữ liệu, xác định trần tự động hóa từng lớp kinh doanh, rà soát tuân thủ, lộ trình 12 tháng có điều kiện chuyển tiếp bằng số.', 'Chu kỳ 2–3 tuần · điểm vào của mọi khách hàng'],
+        ['Dòng 02', 'Architecture & Build · Kiến trúc & Triển khai', 'Thiết kế ban điều hành AI, work object, ma trận quyền quyết định, bảy lớp hạ tầng. Dựng knowledge base, tích hợp MCP, eval suite, audit log, kill switch.', 'Chu kỳ 3–5 tháng · doanh thu lõi'],
+        ['Dòng 03', 'LATTICE Academy · Đào tạo', 'Chuyển giao năng lực vận hành cho chủ doanh nghiệp và đội ngũ. Không có dòng này thì bàn giao chỉ là chuyển giao tài khoản — hệ thống sẽ chết sau vài tháng.', 'Lặp lại · biên lợi nhuận cao · mở rộng được'],
+        ['Dòng 04', 'Ecosystem · Hệ sinh thái', 'Thư viện kiến trúc mẫu theo ngành, bộ eval chuẩn, mạng lưới đối tác thực thi (kế toán, pháp lý, sản xuất, logistics) và cộng đồng người vận hành.', 'Tích lũy dài hạn · tài sản không sao chép được']
+      ], ['n', 'a', 'b', 'c']),
+
+      acadTracks: this.rows([
+        ['Lộ trình A', 'Nền tảng', 'Chủ hộ kinh doanh và doanh nghiệp nhỏ', 'Đọc mô hình của chính mình, nhận diện quy trình đáng tự động hóa, viết SOP, hiểu thang tự chủ và biết khi nào phải nói không với AI.', 'Không yêu cầu nền tảng kỹ thuật'],
+        ['Lộ trình B', 'Vận hành', 'Người trực tiếp quản trị hệ thống', 'Dựng và bảo trì knowledge base, cấu hình work object, đọc audit log và eval, xử lý ngoại lệ, kiểm soát chi phí token, vận hành kill switch và rollback.', 'Cần đã qua Lộ trình A hoặc tương đương'],
+        ['Lộ trình C', 'Kiến trúc', 'Đội ngũ kỹ thuật và đối tác triển khai', 'Thiết kế ban điều hành AI, phân tách quyền đọc, tích hợp MCP, xây eval suite, thiết kế cơ chế thăng và hạ mức tự chủ.', 'Đây cũng là lộ trình đào tạo đối tác nhượng quyền']
+      ], ['a', 'b', 'c', 'd', 'e']),
+
+      acadTopics: this.rows([
+        ['Social Media cho thương mại điện tử', 'Quy trình một gốc — nhiều nhánh, kiểm duyệt trước khi đăng, bản đồ kênh Việt Nam'],
+        ['GEO/AEO và marketing được AI trích dẫn', 'Chuyển từ tối ưu thứ hạng sang tối ưu để được mô hình AI trích dẫn'],
+        ['CRM và vòng đời khách hàng', 'Một nguồn sự thật duy nhất, kịch bản vòng đời, ranh giới phải có con người'],
+        ['Tuân thủ Việt Nam 2026', 'Hóa đơn điện tử, xác minh danh tính livestream, dữ liệu cá nhân']
+      ], ['a', 'b']),
+
+      acadFormats: this.rows([
+        ['Workshop tại chỗ', 'Tại văn phòng khách hàng, theo đúng quy trình thật của họ'],
+        ['Lớp trực tuyến nhóm nhỏ', 'Theo lộ trình, có bài tập trên dữ liệu của chính học viên'],
+        ['Kèm cặp trong dự án', 'Đào tạo lồng vào giai đoạn triển khai — học trên hệ thống đang dựng'],
+        ['Thư viện tài liệu và bộ mẫu', 'SOP mẫu, prompt mẫu, checklist eval, cấu hình quyền hạn tham chiếu']
+      ], ['a', 'b']),
+
+      ecoParts: this.rows([
+        ['Thư viện kiến trúc mẫu', 'Mỗi dự án hoàn thành làm giàu thêm bộ mẫu theo ngành. Dự án thứ hai mươi trong cùng một ngành rẻ hơn và chắc hơn dự án đầu tiên.'],
+        ['Mạng lưới đối tác thực thi', 'Kế toán, tư vấn pháp lý, OEM/ODM, logistics, đơn vị sản xuất nội dung — những mắt xích khách hàng cần nhưng chúng tôi không tự làm.'],
+        ['Cộng đồng người vận hành', 'Peer group cho chủ doanh nghiệp một người — trực tiếp giải quyết rủi ro cô lập đã nêu ở phần xu hướng.']
+      ], ['a', 'b']),
+
+      cryptoMiles: this.rows([
+        ['14/6/2025', 'Quốc hội thông qua Luật Công nghiệp công nghệ số', 'Nước đầu tiên ban hành một đạo luật riêng về công nghiệp công nghệ số. Chương V lần đầu định nghĩa "tài sản số" và "tài sản mã hóa" trong pháp luật Việt Nam.'],
+        ['9/9/2025', 'Nghị quyết 05/2025 — thí điểm 5 năm', 'Cơ chế thí điểm thị trường tài sản mã hóa, điều kiện tham gia rất chặt.'],
+        ['1/1/2026', 'Luật có hiệu lực', 'Công nhận tài sản số và tài sản mã hóa như một loại tài sản.'],
+        ['2026', 'Thông tư 15/2026/TT-BTC', 'Nguyên tắc kế toán ban đầu cho tổ chức tham gia thị trường.'],
+        ['2027–2030', 'Tổng kết thí điểm', 'Hoàn thiện khung pháp lý dựa trên kết quả 5 năm.']
+      ], ['a', 'b', 'c']),
+
+      cryptoLoop: this.rows([
+        ['1 · Thu', 'Doanh thu vào ví doanh nghiệp'],
+        ['2 · Phân bổ tự động', 'Hợp đồng thông minh chia quỹ'],
+        ['3 · Chi trong hạn mức', 'Agent chi theo chính sách'],
+        ['4 · Cửa phê duyệt', 'Người ký khoản vượt ngưỡng'],
+        ['5 · Ghi sổ tức thì', 'Không còn đối soát sau'],
+        ['6 · Báo cáo & dự báo', 'Agent tài chính đọc thời gian thực']
+      ], ['a', 'b']),
+
+      cryptoCaps: this.rows([
+        ['Quản lý vốn', 'Vốn nằm rải ở nhiều tài khoản; chủ tự nhớ khoản nào cho việc gì', 'Quỹ tách bằng hợp đồng thông minh: quỹ thuế, vận hành, tăng trưởng, dự phòng — không thể tiêu nhầm quỹ', 'L4'],
+        ['Dòng tiền', 'Biết số dư hôm qua; dự báo dựa trên ước lượng', 'Số dư và cam kết chi hiển thị tức thời; dự báo chạy trên dữ liệu thật thay vì bảng tính', 'L3–L4'],
+        ['Quản lý chi phí', 'Ghi nhận sau khi chi; phát hiện bất thường chậm hàng tuần', 'Hạn mức là quy tắc chặn trước, không phải cảnh báo sau. Vượt trần thì giao dịch không thực hiện được', 'L4'],
+        ['Thanh toán chuỗi cung ứng', 'Công nợ, đối soát COD, chờ xác nhận giao hàng', 'Thanh toán tự động khi điều kiện được xác nhận — ký quỹ giải phóng theo bằng chứng giao nhận', 'L3 + phê duyệt'],
+        ['Huy động vốn', 'Vay ngân hàng khó vì thiếu tài sản bảo đảm và lịch sử sổ sách', 'Lịch sử vận hành minh bạch, kiểm chứng được trở thành hồ sơ tín dụng. Token hóa tài sản thực mở kênh vốn mới', 'L1 · người quyết'],
+        ['Kiểm toán & minh bạch', 'Kiểm toán là hoạt động định kỳ, tốn công, nhìn về quá khứ', 'Kiểm toán trở thành trạng thái thường trực. Đối tác và cơ quan thuế xem được lát cắt đúng phần được cấp quyền', 'L4']
+      ], ['a', 'b', 'c', 'd']),
+
+      cryptoTiers: this.rows([
+        ['Tầng 0 · Nay', 'Sạch dữ liệu trước đã', 'Sổ sách chuẩn, hóa đơn điện tử, một nguồn sự thật cho giao dịch. Không có dữ liệu sạch thì lên sổ cái chỉ là ghi nhận cái sai nhanh hơn.'],
+        ['Tầng 1 · Lai', 'Ghi nhận song song', 'Giữ nguyên dòng tiền pháp định, nhưng ghi dấu vết giao dịch và bằng chứng thực hiện lên sổ cái. Được lợi ích minh bạch mà chưa nhận rủi ro biến động giá.'],
+        ['Tầng 2 · Khép kín', 'Dòng giá trị lên sổ cái', 'Chỉ triển khai khi khung pháp lý cho thanh toán doanh nghiệp và khung thuế đủ rõ. Bắt đầu từ luồng ít rủi ro nhất: thanh toán nội bộ và tách quỹ, không phải doanh thu khách hàng.']
+      ], ['a', 'b', 'c']),
+
+      cryptoLimits: this.rows([
+        ['Không tư vấn đầu cơ', 'Chúng tôi quan tâm blockchain như hạ tầng ghi nhận và tự động hóa, không như kênh đầu tư. Biến động giá là rủi ro cần tránh, không phải cơ hội cần khai thác.'],
+        ['Không đi trước pháp luật', 'Nghị quyết 05 nêu rõ việc tự ý giao dịch ngoài hệ thống chính thức có thể bị truy cứu trách nhiệm hình sự. Với khách hàng quy mô nhỏ, một sai lầm pháp lý là chấm hết.'],
+        ['Không bỏ cửa phê duyệt của con người', 'Hợp đồng thông minh làm việc thực thi trở nên chắc chắn, nhưng cũng không thể rút lại. Phải giữ nguyên ma trận quyền quyết định và bổ sung cơ chế dừng khẩn.'],
+        ['Không hứa thời điểm', 'Thí điểm kéo dài 5 năm với điều kiện rất chặt — vốn điều lệ tối thiểu 10.000 tỷ đồng, sở hữu nước ngoài tối đa 49%, hạ tầng an toàn cấp độ 4. Đây là cuộc chơi của tổ chức lớn.']
+      ], ['a', 'b']),
 
       govLayers: this.rows([
         ['01', 'Ma trận quyền quyết định', 'Hai trục: hậu quả nếu sai và khả năng hoàn tác. Không phải độ phức tạp của công việc.'],
@@ -3216,6 +3662,9 @@ class Component extends DCLogic {
       lockAgain: () => {
         try { localStorage.removeItem('lnx-unlocked'); } catch (e) {}
         document.documentElement.classList.add('lnx-locked');
+        // Phải về trang chủ: bảng nhập mật khẩu nằm trong nhánh trang chủ, khóa
+        // lại khi đang ở trang khác sẽ ra màn hình trắng không có đường vào.
+        this.go('home');
         window.scrollTo({ top: 0 });
       },
       // LƯU PDF: bật cờ in riêng tài liệu, gọi hộp thoại in của trình duyệt

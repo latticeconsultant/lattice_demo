@@ -3,7 +3,7 @@
 Công ty Cổ phần Giải pháp LATTICE Next
 *Kiến trúc mô hình kinh doanh mới. — Structure for what comes next.*
 
-Website giới thiệu 8 trang, chạy hoàn toàn tĩnh (không cần backend, không cần build).
+Website giới thiệu 9 trang, chạy hoàn toàn tĩnh (không cần backend, không cần build).
 
 **Demo:** https://lattice.business/demo/
 
@@ -19,6 +19,7 @@ Website giới thiệu 8 trang, chạy hoàn toàn tĩnh (không cần backend, 
 | Ngành & Mô hình | Tám nhóm mô hình kinh doanh và trần tự động hóa của từng nhóm |
 | Cách chúng tôi làm | Phương pháp, cam kết, cách đo kết quả |
 | Phương pháp triển khai | Từ khung chiến lược sang đề án triển khai |
+| Academy | Ba lộ trình đào tạo A/B/C, chuyên đề theo ngành, hình thức |
 | Branding | Bộ nhận diện LATTICE Next |
 | Liên hệ | Biểu mẫu đặt lịch chẩn đoán 60 phút, FAQ |
 
@@ -89,7 +90,7 @@ File `.nojekyll` để GitHub phục vụ nguyên trạng, không qua Jekyll.
 ## 5. Rào mật khẩu — và giới hạn của nó
 
 Khối **Tài liệu nền tảng** ở đầu trang chủ xem tự do. Toàn bộ phần còn lại — header,
-bảy trang khác, footer — bị ẩn cho tới khi nhập đúng mật khẩu. Trạng thái mở khóa
+tám trang khác, footer — bị ẩn cho tới khi nhập đúng mật khẩu. Trạng thái mở khóa
 lưu ở `localStorage`, nên chỉ cần nhập một lần trên mỗi trình duyệt.
 
 Nút **KHÓA LẠI KHU VỰC HẠN CHẾ** ở chân trang đưa về trạng thái khóa — dùng khi

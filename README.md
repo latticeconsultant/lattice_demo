@@ -5,7 +5,7 @@ Công ty Cổ phần Giải pháp LATTICE Next
 
 Website giới thiệu 8 trang, chạy hoàn toàn tĩnh (không cần backend, không cần build).
 
-**Demo:** https://koalaland-workplace.github.io/LATTICE/
+**Demo:** https://latticeconsultant.github.io/lattice_demo/
 
 ---
 
@@ -58,8 +58,10 @@ Không có bước build, không có dependency cần cài. Mọi thứ đã n�
 
 ## 4. Deploy GitHub Pages
 
-Settings → Pages → Source: **Deploy from a branch** → Branch `main`, thư mục `/ (root)` → Save.
-Khoảng 1–2 phút sau site lên tại https://koalaland-workplace.github.io/LATTICE/
+Pages đã bật sẵn: nhánh `main`, thư mục `/ (root)`. Mỗi lần push lên `main` là site tự
+cập nhật sau 1–2 phút, không cần thao tác gì thêm.
+
+Nếu cần bật lại: Settings → Pages → Source **Deploy from a branch** → `main` + `/ (root)`.
 
 File `.nojekyll` đã có sẵn để GitHub phục vụ nguyên trạng, không qua Jekyll.
 

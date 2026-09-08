@@ -3,7 +3,7 @@
 Công ty Cổ phần Giải pháp LATTICE Next
 *Kiến trúc mô hình kinh doanh mới. — Structure for what comes next.*
 
-Website giới thiệu 9 trang, chạy hoàn toàn tĩnh (không cần backend, không cần build).
+Website giới thiệu 10 trang, chạy hoàn toàn tĩnh (không cần backend, không cần build).
 
 **Demo:** https://lattice.business/demo/
 
@@ -19,6 +19,7 @@ Website giới thiệu 9 trang, chạy hoàn toàn tĩnh (không cần backend, 
 | Ngành & Mô hình | Tám nhóm mô hình kinh doanh và trần tự động hóa của từng nhóm |
 | Cách chúng tôi làm | Phương pháp, cam kết, cách đo kết quả |
 | Phương pháp triển khai | Từ khung chiến lược sang đề án triển khai |
+| Blockchain & Công nghệ tài chính | Mốc pháp lý tài sản số, vòng khép kín dòng tiền, sáu năng lực tài chính, ba tầng chuẩn bị |
 | Academy | Ba lộ trình đào tạo A/B/C, chuyên đề theo ngành, hình thức |
 | Branding | Bộ nhận diện LATTICE Next |
 | Liên hệ | Biểu mẫu đặt lịch chẩn đoán 60 phút, FAQ |

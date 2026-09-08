@@ -5,7 +5,7 @@ Công ty Cổ phần Giải pháp LATTICE Next
 
 Website giới thiệu 8 trang, chạy hoàn toàn tĩnh (không cần backend, không cần build).
 
-**Demo:** https://latticeconsultant.github.io/lattice_demo/
+**Demo:** https://lattice.business/demo/
 
 ---
 
@@ -56,14 +56,24 @@ offline/                    bản một-file tự giải nén
 
 Không có bước build, không có dependency cần cài. Mọi thứ đã nằm trong repo.
 
-## 4. Deploy GitHub Pages
+## 4. Site đang chạy ở đâu
 
-Pages đã bật sẵn: nhánh `main`, thư mục `/ (root)`. Mỗi lần push lên `main` là site tự
-cập nhật sau 1–2 phút, không cần thao tác gì thêm.
+```
+push lên main
+      ↓
+GitHub Pages  ──  https://latticeconsultant.github.io/lattice_demo/   (nguồn)
+      ↓
+Cloudflare Worker "lattice-demo"  route lattice.business/demo*
+      ↓
+https://lattice.business/demo/                                        (địa chỉ chính)
+```
 
-Nếu cần bật lại: Settings → Pages → Source **Deploy from a branch** → `main` + `/ (root)`.
+**Push lên `main` là cả hai địa chỉ tự cập nhật sau 1–2 phút.** Không phải deploy lại
+Worker — nó chỉ lấy nội dung từ GitHub Pages về, không giữ bản sao.
 
-File `.nojekyll` đã có sẵn để GitHub phục vụ nguyên trạng, không qua Jekyll.
+Chỉ deploy lại Worker khi sửa `cloudflare/worker.js`. Xem `cloudflare/README.md`.
+
+File `.nojekyll` để GitHub phục vụ nguyên trạng, không qua Jekyll.
 
 ## 5. Việc còn phải làm trước khi công bố chính thức
 

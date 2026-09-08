@@ -86,7 +86,41 @@ Chỉ deploy lại Worker khi sửa `cloudflare/worker.js`. Xem `cloudflare/READ
 
 File `.nojekyll` để GitHub phục vụ nguyên trạng, không qua Jekyll.
 
-## 5. Việc còn phải làm trước khi công bố chính thức
+## 5. Rào mật khẩu — và giới hạn của nó
+
+Khối **Tài liệu nền tảng** ở đầu trang chủ xem tự do. Toàn bộ phần còn lại — header,
+bảy trang khác, footer — bị ẩn cho tới khi nhập đúng mật khẩu. Trạng thái mở khóa
+lưu ở `localStorage`, nên chỉ cần nhập một lần trên mỗi trình duyệt.
+
+Nút **KHÓA LẠI KHU VỰC HẠN CHẾ** ở chân trang đưa về trạng thái khóa — dùng khi
+muốn diễn lại cho khách xem.
+
+### Đây KHÔNG phải bảo mật
+
+Cần nói thẳng để không ai hiểu nhầm:
+
+- Website là file tĩnh. **Toàn bộ nội dung 8 trang nằm trong `index.html`** — bấm
+  `Ctrl+U` xem mã nguồn, hoặc `curl` địa chỉ trang, là đọc được hết mà không cần
+  mật khẩu.
+- Repo `latticeconsultant/lattice_demo` đang **public**. Ai vào GitHub cũng đọc
+  được `index.html`.
+- Mật khẩu lưu dạng băm SHA-256 nên không lộ ngay khi xem mã nguồn, nhưng điều đó
+  chỉ ngăn người đọc lười — nội dung vẫn phơi ra.
+
+Nói gọn: đây là **tấm rèm che, không phải ổ khóa**. Nó ngăn người vào tình cờ bấm
+lung tung, không ngăn được người thật sự muốn xem.
+
+### Muốn khóa thật thì cần
+
+1. Chuyển repo sang **private** và bỏ GitHub Pages (Pages cho repo private cần gói
+   trả phí).
+2. Đưa nội dung cần bảo vệ ra khỏi nơi công khai — nhúng vào Cloudflare Worker,
+   KV hoặc R2.
+3. Chặn ở tầng máy chủ: **Cloudflare Access** (Zero Trust, miễn phí tới 50 người)
+   hoặc Basic Auth ngay trong Worker, kiểm tra trước khi trả nội dung.
+4. Tách tài liệu công khai thành trang riêng để nó vẫn xem tự do.
+
+## 6. Việc còn phải làm trước khi công bố chính thức
 
 Đây là **bản mô tả giao diện** — hai chỗ còn để trống, cần điền trước khi đưa cho khách hàng thật:
 
@@ -95,7 +129,7 @@ File `.nojekyll` để GitHub phục vụ nguyên trạng, không qua Jekyll.
 
 Ngoài ra, ba ảnh PNG nặng ~2 MB mỗi file; nếu cần tải nhanh hơn nên chuyển sang WebP trước khi chạy quảng cáo.
 
-## 6. Thương hiệu
+## 7. Thương hiệu
 
 Đọc `brand/README.md` trước khi dùng logo hoặc màu. Ba quy tắc hay bị vi phạm nhất:
 

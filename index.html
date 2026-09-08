@@ -15,6 +15,13 @@
 <link rel="icon" type="image/png" sizes="192x192" href="brand/logo/favicon/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="brand/logo/favicon/favicon-180.png">
 <script>
+  // Cờ khóa phải đặt trước khi trang vẽ, nếu đợi React mount thì nội dung
+  // sẽ lóe ra một nhịp rồi mới bị che — người xem kịp đọc và kịp chụp màn hình.
+  try {
+    if (localStorage.getItem('lnx-unlocked') !== '1') document.documentElement.classList.add('lnx-locked');
+  } catch (e) { document.documentElement.classList.add('lnx-locked'); }
+</script>
+<script>
   // Bản bundle gốc ánh xạ CDN sang blob URL. Bản tĩnh này trỏ thẳng vào
   // bản React đã kèm trong repo, nên trang chạy được cả khi offline.
   window.__resources = {
@@ -417,6 +424,42 @@ textarea.input { min-height: 90px; resize: vertical; }
       .lnx-matrix-row { grid-template-columns: 1fr; gap: 14px; }
       .lnx-matrix-lbl { display: block; }
     }
+
+    /* ── Rào mật khẩu ───────────────────────────────────────────────────────
+       CHÚ Ý: đây là rào che phía trình duyệt, KHÔNG phải bảo mật. Toàn bộ nội
+       dung 8 trang vẫn nằm trong index.html — xem mã nguồn là đọc được hết.
+       Muốn khóa thật thì phải chặn ở tầng máy chủ và đưa nội dung ra khỏi nơi
+       công khai. Xem README mục 6. */
+    html.lnx-locked .lnx-stage > header,
+    html.lnx-locked .lnx-stage > footer { display: none !important; }
+    html.lnx-locked .lnx-stage > div > *:not(.lnx-docwrap):not(.lnx-lock) { display: none !important; }
+    .lnx-lock { display: none; }
+    html.lnx-locked .lnx-lock { display: block; }
+
+    .lnx-lock { background: var(--color-text); color: var(--color-bg);
+      padding: clamp(40px,5cqi,80px) clamp(16px,2.5cqi,40px); }
+    .lnx-lock-inner { max-width: 1120px; margin: 0 auto; }
+    .lnx-lock-kicker { font-size: 13px; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--color-accent-400); font-weight: 600; margin: 0 0 16px; }
+    .lnx-lock-title { font-family: var(--font-heading); font-weight: 800;
+      font-size: clamp(24px,3cqi,40px); line-height: 1.1; letter-spacing: -.025em;
+      margin: 0 0 14px; color: var(--color-bg); }
+    .lnx-lock-p { font-size: clamp(15px,1.5cqi,18px); line-height: 1.6; max-width: 62ch;
+      margin: 0 0 30px; color: var(--color-neutral-300); }
+    .lnx-lock-row { display: flex; gap: 2px; flex-wrap: wrap; max-width: 560px; }
+    .lnx-lock-input { flex: 1; min-width: 200px; appearance: none; font-family: inherit;
+      font-size: 16px; padding: 15px 16px; border: 2px solid var(--color-neutral-700);
+      background: transparent; color: var(--color-bg); }
+    .lnx-lock-input:focus { outline: 0; border-color: var(--color-accent); }
+    .lnx-lock-btn { flex: none; appearance: none; cursor: pointer; font-family: inherit;
+      font-size: 13px; letter-spacing: .14em; font-weight: 600; padding: 15px 24px;
+      background: var(--color-accent); color: #fff; border: 0; }
+    .lnx-lock-btn:hover { background: var(--color-accent-700); }
+    .lnx-lock-msg { font-size: 14px; color: var(--color-accent-400); margin: 12px 0 0; min-height: 1em; }
+    .lnx-lock-note { font-size: 14px; line-height: 1.6; color: var(--color-neutral-500);
+      margin: 26px 0 0; padding-top: 20px; border-top: 2px solid var(--color-neutral-700); max-width: 62ch; }
+
+    @media print { html.lnx-locked .lnx-lock { display: none !important; } }
 
     /* ── Khung đọc tài liệu "Doanh nghiệp một người" ────────────────────────
        Tài liệu dài 21 mục. Đặt nguyên vào trang chủ thì đẩy toàn bộ nội dung
@@ -823,6 +866,20 @@ textarea.input { min-height: 90px; resize: vertical; }
         </div>
       </section>
       <!-- DOC:END -->
+
+      <section class="lnx-lock">
+        <div class="lnx-lock-inner">
+          <p class="lnx-lock-kicker">Khu vực hạn chế</p>
+          <h2 class="lnx-lock-title">Phần còn lại của website cần mật khẩu</h2>
+          <p class="lnx-lock-p">Tài liệu nền tảng phía trên xem tự do. Bảy trang còn lại — Next Solutions, Ngành &amp; Mô hình, Phương pháp triển khai, Branding và các trang khác — đang ở chế độ hạn chế.</p>
+          <div class="lnx-lock-row">
+            <input id="lnx-pw" type="password" class="lnx-lock-input" placeholder="Nhập mật khẩu" autocomplete="current-password" aria-label="Mật khẩu">
+            <button type="button" class="lnx-lock-btn" sc-camel-on-click="{{ tryUnlock }}">MỞ KHÓA →</button>
+          </div>
+          <p id="lnx-pw-msg" class="lnx-lock-msg"></p>
+          <p class="lnx-lock-note">Chưa có mật khẩu? Liên hệ LATTICE Next Solutions để được cấp quyền xem.</p>
+        </div>
+      </section>
       <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(48px,7cqi,104px) 0 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 22px;font-weight:600">Tư vấn · Kiến trúc · Giải pháp toàn diện</p>
@@ -2684,7 +2741,8 @@ review_cycle: monthly</pre>
             </div>
           </div>
         </div>
-        <p style="padding-top:26px;font-size:11.5px;line-height:1.7;color:var(--color-neutral-600);margin:0;max-width:110ch">Số liệu tổng hợp từ nguồn công bố đến tháng 8/2026: Gartner, IDC, Forrester, Deloitte, BCG, McKinsey, Metric và các văn bản pháp lý được dẫn. Số liệu ngành có sai lệch giữa các nguồn do phương pháp khảo sát khác nhau — nên đọc theo xu hướng, không theo con số tuyệt đối. Đây là bản mô tả giao diện website; thông tin liên hệ và biểu mẫu chưa được cấu hình.</p>
+        <button type="button" sc-camel-on-click="{{ lockAgain }}" style="appearance:none;background:none;border:0;padding:0;margin-top:26px;color:var(--color-neutral-600);cursor:pointer;font-family:inherit;font-size:11.5px;letter-spacing:.1em;text-align:left" style-hover="color:var(--color-accent-400)">KHÓA LẠI KHU VỰC HẠN CHẾ</button>
+        <p style="padding-top:14px;font-size:11.5px;line-height:1.7;color:var(--color-neutral-600);margin:0;max-width:110ch">Số liệu tổng hợp từ nguồn công bố đến tháng 8/2026: Gartner, IDC, Forrester, Deloitte, BCG, McKinsey, Metric và các văn bản pháp lý được dẫn. Số liệu ngành có sai lệch giữa các nguồn do phương pháp khảo sát khác nhau — nên đọc theo xu hướng, không theo con số tuyệt đối. Đây là bản mô tả giao diện website; thông tin liên hệ và biểu mẫu chưa được cấu hình.</p>
       </div>
     </footer>
 
@@ -2721,6 +2779,15 @@ class Component extends DCLogic {
   componentDidMount() {
     // Mục lục tài liệu: neo #id mặc định làm trình duyệt cuộn cả trang thay vì
     // cuộn khung đọc. Bắt click và tự cuộn đúng khung, cũng để URL không dính hash.
+    // Enter trong ô mật khẩu = bấm nút. Ô không nằm trong <form> nên trình duyệt
+    // không tự gửi; thiếu cái này người dùng gõ xong nhấn Enter sẽ tưởng hỏng.
+    document.addEventListener('keydown', e => {
+      if (e.key !== 'Enter' || !e.target || e.target.id !== 'lnx-pw') return;
+      e.preventDefault();
+      const btn = document.querySelector('.lnx-lock-btn');
+      if (btn) btn.click();
+    });
+
     document.addEventListener('click', e => {
       const a = e.target && e.target.closest && e.target.closest('.lnx-doc-toc a[href^="#"]');
       if (!a) return;
@@ -3127,6 +3194,30 @@ class Component extends DCLogic {
       goEngine1: () => this.go('solutions', 'e1'), goEngine2: () => this.go('solutions', 'e2'),
       goEngine3: () => this.go('solutions', 'e3'), goEngine4: () => this.go('solutions', 'e4'),
       goGovernance: () => this.go('method', 'm1'),
+      // Mở khóa phần website. So hash chứ không so chuỗi thẳng: mật khẩu để trần
+      // trong mã nguồn thì chỉ cần Ctrl+U là thấy. (Xem README — đây là rào che
+      // phía trình duyệt, không phải bảo mật thật.)
+      tryUnlock: async () => {
+        const el = document.getElementById('lnx-pw');
+        const box = document.getElementById('lnx-pw-msg');
+        const v = el ? el.value : '';
+        const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+        const hex = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+        if (hex === '9495fdbebb5a464647e1a2619b119a9558164e0909e27cb7ed97a07756e14803') {
+          try { localStorage.setItem('lnx-unlocked', '1'); } catch (e) {}
+          document.documentElement.classList.remove('lnx-locked');
+          if (box) box.textContent = '';
+          window.scrollTo({ top: 0 });
+        } else if (box) {
+          box.textContent = 'Mật khẩu không đúng.';
+          if (el) { el.value = ''; el.focus(); }
+        }
+      },
+      lockAgain: () => {
+        try { localStorage.removeItem('lnx-unlocked'); } catch (e) {}
+        document.documentElement.classList.add('lnx-locked');
+        window.scrollTo({ top: 0 });
+      },
       // LƯU PDF: bật cờ in riêng tài liệu, gọi hộp thoại in của trình duyệt
       // (người dùng chọn "Save as PDF"), rồi gỡ cờ khi in xong. Dùng afterprint
       // thay vì setTimeout để không gỡ sớm khi hộp thoại còn mở.

@@ -424,7 +424,7 @@ textarea.input { min-height: 90px; resize: vertical; }
        thanh trượt riêng. Mục lục dính bên trái ở khổ rộng, xếp trên ở khổ hẹp.
        Nội dung sinh tự động từ docs/doanh-nghiep-mot-nguoi.md — xem tools/build-doc.py */
     .lnx-docwrap { background: var(--color-neutral-100); padding: clamp(28px,3.5cqi,56px) clamp(16px,2.5cqi,40px); }
-    .lnx-doc { max-width: 1280px; margin: 0 auto; border: 2px solid var(--color-text);
+    .lnx-doc { max-width: 1120px; margin: 0 auto; border: 2px solid var(--color-text);
       background: var(--color-bg); display: flex; flex-direction: column;
       height: min(78vh, 860px); min-height: 460px; }
 
@@ -465,7 +465,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 
     .doc-title { font-family: var(--font-heading); font-weight: 800; font-size: clamp(26px,3.4cqi,44px);
       line-height: 1.05; letter-spacing: -.03em; margin: 0 0 10px; }
-    .doc-subtitle { font-size: clamp(16px,1.6cqi,21px); line-height: 1.45; max-width: 60ch;
+    .doc-subtitle { font-size: clamp(17px,1.7cqi,22px); line-height: 1.45; max-width: 46ch;
       color: var(--color-neutral-700); margin: 0 0 18px; }
     .doc-part { font-family: var(--font-heading); font-weight: 800; font-size: clamp(13px,1.3cqi,15px);
       letter-spacing: .2em; text-transform: uppercase; color: var(--color-accent);
@@ -475,17 +475,17 @@ textarea.input { min-height: 90px; resize: vertical; }
       padding-top: 16px; border-top: 2px solid var(--color-text); }
     .doc-h3 { font-size: clamp(16px,1.7cqi,21px); margin: 32px 0 12px; letter-spacing: -.012em; }
     .doc-h4 { font-size: 16px; margin: 24px 0 10px; }
-    .doc-p { font-size: 14.5px; line-height: 1.75; max-width: 78ch; margin: 0 0 16px; }
+    .doc-p { font-size: clamp(15.5px, 1.9cqi, 19px); line-height: 1.7; margin: 0 0 20px; }
     .doc-meta { font-size: 13px; letter-spacing: .16em; text-transform: uppercase;
       color: var(--color-neutral-600); margin: 0 0 4px; }
-    .doc-note { font-size: 13.5px; line-height: 1.7; max-width: 78ch; margin: 24px 0 0;
+    .doc-note { font-size: clamp(14px, 1.6cqi, 16px); line-height: 1.7; margin: 28px 0 0;
       color: var(--color-neutral-700); padding-top: 16px; border-top: 2px solid var(--color-neutral-400); }
-    .doc-list { font-size: 14.5px; line-height: 1.7; max-width: 78ch; margin: 0 0 16px; padding-left: 20px; }
+    .doc-list { font-size: clamp(15.5px, 1.9cqi, 19px); line-height: 1.7; margin: 0 0 20px; padding-left: 24px; }
     .doc-list li { margin-bottom: 7px; }
     .doc-quote { margin: 20px 0; padding: 4px 0 4px 20px; border-left: 4px solid var(--color-accent);
-      font-size: clamp(15px,1.5cqi,18px); line-height: 1.6; max-width: 74ch; }
+      font-size: clamp(16px,1.6cqi,19px); line-height: 1.6; }
     .doc-rule { border: 0; border-top: 2px solid var(--color-neutral-400); margin: 40px 0; }
-    .doc-flow { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12.5px;
+    .doc-flow { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px;
       line-height: 1.75; background: var(--color-neutral-100); padding: 18px 20px;
       border-left: 4px solid var(--color-text); margin: 0 0 16px; overflow-x: auto; white-space: pre; }
     .lnx-doc-main code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .9em;
@@ -494,7 +494,7 @@ textarea.input { min-height: 90px; resize: vertical; }
     /* Bảng: cuộn ngang trong khung riêng, không đẩy rộng cả trang */
     .doc-tablewrap { overflow-x: auto; margin: 0 0 22px; border-top: 2px solid var(--color-text);
       border-bottom: 2px solid var(--color-text); }
-    .doc-table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 13px; }
+    .doc-table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: clamp(13.5px, 1.4cqi, 15px); }
     .doc-table th { text-align: left; vertical-align: bottom; font-weight: 600; font-size: 13px;
       letter-spacing: .1em; text-transform: uppercase; color: var(--color-neutral-600);
       padding: 12px 14px; border-bottom: 2px solid var(--color-text); background: var(--color-neutral-100); }

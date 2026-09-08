@@ -56,6 +56,17 @@ offline/                    bản một-file tự giải nén
 
 Không có bước build, không có dependency cần cài. Mọi thứ đã nằm trong repo.
 
+**Ngoại lệ duy nhất — khối tài liệu ở đầu trang chủ.** Khung đọc "Doanh nghiệp một
+người" được sinh từ `docs/doanh-nghiep-mot-nguoi.md`. Sửa nội dung thì sửa file
+markdown rồi chạy:
+
+```bash
+python3 tools/build-doc.py
+```
+
+Script ghi đè phần giữa hai mốc `<!-- DOC:START -->` và `<!-- DOC:END -->` trong
+`index.html`. Đừng sửa tay đoạn đó — lần chạy sau sẽ mất.
+
 ## 4. Site đang chạy ở đâu
 
 ```

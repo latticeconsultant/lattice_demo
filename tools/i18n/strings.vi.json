@@ -1,0 +1,5437 @@
+[
+ {
+  "vi": "LATTICE Next Solutions — Kiến trúc mô hình kinh doanh mới",
+  "en": "LATTICE Next Solutions — Structure for what comes next",
+  "nguon": "markup"
+ },
+ {
+  "vi": "LATTICE Next Solutions JSC · bản mô tả website · chọn chế độ hiển thị",
+  "en": "LATTICE Next Solutions JSC · website preview · choose a display mode",
+  "nguon": "markup"
+ },
+ {
+  "vi": "IN / PDF",
+  "en": "PRINT / PDF",
+  "nguon": "markup"
+ },
+ {
+  "vi": "NEXT SOLUTIONS JSC",
+  "en": "NEXT SOLUTIONS JSC",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐẶT LỊCH CHẨN ĐOÁN",
+  "en": "BOOK A DIAGNOSTIC",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Khu vực hạn chế",
+  "en": "Restricted area",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Phần còn lại của website cần mật khẩu",
+  "en": "The rest of this site requires a password",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tài liệu nền tảng phía trên xem tự do. Chín trang còn lại — Next Solutions, Ngành &amp; Mô hình, Phương pháp triển khai, Blockchain &amp; Công nghệ tài chính, Academy, Branding và các trang khác — đang ở chế độ hạn chế.",
+  "en": "The foundation document above is open to read. The remaining nine pages — Next Solutions, Sectors &amp; Models, Delivery Method, Blockchain &amp; Financial Technology, Academy, Branding and the rest — are restricted.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "MỞ KHÓA →",
+  "en": "UNLOCK →",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chưa có mật khẩu? Liên hệ LATTICE Next Solutions để được cấp quyền xem.",
+  "en": "No password? Contact LATTICE Next Solutions to request access.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tư vấn · Kiến trúc · Giải pháp toàn diện",
+  "en": "Advisory · Architecture · End-to-end delivery",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiến trúc mô hình",
+  "en": "Structure for what",
+  "nguon": "markup"
+ },
+ {
+  "vi": "kinh doanh mới",
+  "en": "comes next",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chúng tôi không gắn AI vào bộ máy cũ. Chúng tôi thiết kế lại bộ máy quanh AI — rồi bàn giao kèm hệ thống kiểm soát để anh chị vận hành được mà không phụ thuộc vào chúng tôi.",
+  "en": "We do not bolt AI onto the old machine. We redesign the machine around AI — then hand it over with the control system, so you can run it without depending on us.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐẶT LỊCH CHẨN ĐOÁN 60 PHÚT",
+  "en": "BOOK A 60-MINUTE DIAGNOSTIC",
+  "nguon": "markup"
+ },
+ {
+  "vi": "XEM NEXT SOLUTIONS",
+  "en": "SEE NEXT SOLUTIONS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GIÀN LIÊN KẾT · MỖI NÚT NỐI VỚI CÁC NÚT LÂN CẬN",
+  "en": "A CONNECTED LATTICE · EVERY NODE TIED TO ITS NEIGHBOURS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đọc mô hình hiện tại",
+  "en": "Read the current model",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiểm kê quy trình, dữ liệu, điểm nghẽn và trần tự động hóa thực tế của từng lớp kinh doanh.",
+  "en": "An inventory of processes, data, bottlenecks and the real automation ceiling of each business layer.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thiết kế bộ máy",
+  "en": "Design the machine",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ban điều hành AI, work object, mức tự chủ, ma trận quyền quyết định, hạ tầng bảy lớp.",
+  "en": "The AI executive team, work objects, autonomy levels, the decision-rights matrix, the seven-layer stack.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dựng và nối",
+  "en": "Build and connect",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Knowledge base, tích hợp MCP, agent theo lộ trình L1 lên L3, eval suite và audit log.",
+  "en": "Knowledge base, MCP integration, agents moving L1 to L3, eval suite and audit log.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Giữ cho chạy",
+  "en": "Keep it running",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiểm toán định kỳ, nâng hạ mức tự chủ theo số đo, kiểm soát chi phí và tuân thủ.",
+  "en": "Periodic audits, autonomy raised or revoked on measurement, cost and compliance control.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "pilot AI không lên được production — IDC",
+  "en": "of AI pilots never reach production — IDC",
+  "nguon": "markup"
+ },
+ {
+  "vi": "tăng trưởng doanh thu 4 sàn TMĐT Việt Nam, nửa đầu 2026",
+  "en": "growth in global social-commerce revenue, H1 2026",
+  "nguon": "markup"
+ },
+ {
+  "vi": "hoàn vốn trung vị của một triển khai agent",
+  "en": "median payback on an agent deployment",
+  "nguon": "markup"
+ },
+ {
+  "vi": "hộ kinh doanh chuyển sang tự kê khai theo doanh thu thực",
+  "en": "micro-businesses moving to self-assessment on actual revenue",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Luận điểm",
+  "en": "The thesis",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đơn vị mở rộng quy mô đã đổi",
+  "en": "The unit of scale has changed",
+  "nguon": "markup"
+ },
+ {
+  "vi": "SƠ ĐỒ 01",
+  "en": "FIGURE 01",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hai đường cong chi phí",
+  "en": "Two cost curves",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chi phí biên của đầu ra số theo hai mô hình.",
+  "en": "Marginal cost of digital output under two models.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CHI PHÍ",
+  "en": "COST",
+  "nguon": "markup"
+ },
+ {
+  "vi": "SẢN LƯỢNG →",
+  "en": "OUTPUT →",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Truyền thống: thuê thêm người",
+  "en": "Traditional: hire more people",
+  "nguon": "markup"
+ },
+ {
+  "vi": "AI-native: hạ tầng + kiểm soát",
+  "en": "AI-native: infrastructure + control",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Khoảng cách giữa hai đường là biên lợi nhuận của mô hình mới. Đường truyền thống đi theo bậc vì mỗi bậc là một lần tuyển người.",
+  "en": "The gap between the two curves is the margin of the new model. The traditional line steps because every step is another hire.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Từ “số nhân sự” sang “số agent nhân với chất lượng hệ thống kiểm soát”. Một người ngồi ở trung tâm một hệ thống AI đúng thiết kế có thể tạo ra sản lượng của một đội 10–20 người.",
+  "en": "From “headcount” to “number of agents multiplied by the quality of the control system”. One person at the centre of a well-designed AI system can produce the output of a team of 10–20.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nhưng gần chín trên mười nỗ lực triển khai agent thất bại — và nguyên nhân gần như không bao giờ là chất lượng mô hình. Đó là tiêu chí không rõ, dữ liệu không tới, quyền hạn không sạch.",
+  "en": "But nearly nine in ten agent deployments fail — and the cause is almost never model quality. It is undefined criteria, data that never arrives, and permissions that were never clean.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thất bại là vấn đề thiết kế tổ chức, không phải vấn đề công nghệ.",
+  "en": "Failure is an organisational design problem, not a technology problem.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Toàn bộ phương pháp của LATTICE Next được xây quanh nhận định này.",
+  "en": "The entire LATTICE Next method is built around this finding.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "AI thực hiện — hệ thống kiểm soát — con người quyết định ngoại lệ.",
+  "en": "AI executes — the control system governs — humans decide the exceptions.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chúng tôi làm gì",
+  "en": "What we do",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn động cơ, một bộ máy",
+  "en": "Four engines, one machine",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mỗi động cơ có agent riêng, KPI riêng và mức tự chủ riêng — nhưng dùng chung một lớp dữ liệu khách hàng và một lớp tri thức.",
+  "en": "Each engine has its own agents, KPIs and autonomy level — but they share one customer-data layer and one knowledge layer.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐỘNG CƠ 01",
+  "en": "ENGINE 01",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Social Media",
+  "en": "Social Media",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Quy trình “một gốc — nhiều nhánh”: một nội dung gốc mỗi tuần thành 8–15 mảnh phân phối đa nền tảng, có kiểm duyệt bắt buộc trước khi đăng.",
+  "en": "The “one root — many branches” process: one original piece a week becomes 8–15 fragments distributed across platforms, with mandatory review before publishing.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "XEM CHI TIẾT →",
+  "en": "SEE DETAIL →",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐỘNG CƠ 02",
+  "en": "ENGINE 02",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Marketing &amp; GEO/AEO",
+  "en": "Marketing &amp; GEO/AEO",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chuyển từ tối ưu thứ hạng sang tối ưu để được mô hình AI trích dẫn. Phễu tám tầng, mỗi tầng một agent.",
+  "en": "Shifting from optimising for rank to optimising to be cited by AI models. An eight-stage funnel, one agent per stage.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐỘNG CƠ 03",
+  "en": "ENGINE 03",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CRM &amp; Vòng đời",
+  "en": "CRM &amp; Lifecycle",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Một nguồn sự thật duy nhất mà mọi agent đọc và ghi. Kịch bản vòng đời từ lead mới đến winback, có ranh giới rõ cho người.",
+  "en": "A single source of truth every agent reads and writes. Lifecycle playbooks from new lead to win-back, with clear human boundaries.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐỘNG CƠ 04",
+  "en": "ENGINE 04",
+  "nguon": "markup"
+ },
+ {
+  "vi": "R&amp;D &amp; Đổi mới",
+  "en": "R&amp;D &amp; Innovation",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn dòng nghiên cứu và nhịp thí nghiệm hai tuần. Không có R&amp;D, bộ máy chỉ vận hành hiệu quả một ý tưởng đang già đi.",
+  "en": "Four research streams on a two-week experiment cadence. Without R&amp;D, the machine only runs an ageing idea efficiently.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Lớp quản trị",
+  "en": "The governance layer",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn động cơ chạy được là nhờ lớp thứ năm",
+  "en": "The four engines run because of a fifth layer",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn động cơ tạo ra việc. Lớp quản trị quyết định ai được duyệt việc nào, ai chịu trách nhiệm khi sai, và bộ máy tự sửa ra sao. Thiếu lớp này, bốn động cơ chỉ là bốn chuỗi chatbot không sổ sách — đúng cái làm 88% pilot chết trước khi lên production.",
+  "en": "The four engines generate work. The governance layer decides who may approve what, who is accountable when it goes wrong, and how the machine corrects itself. Without it, the four engines are just four chains of chatbots with no ledger — exactly what kills 88% of pilots before production.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "XEM LỚP QUẢN TRỊ →",
+  "en": "SEE THE GOVERNANCE LAYER →",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Định vị",
+  "en": "Positioning",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ai đang phục vụ doanh nghiệp 1–30 người?",
+  "en": "Who serves businesses of 1–30 people?",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hai trục quyết định: chiều sâu tổ chức của giải pháp, và mức phù hợp với quy mô nhỏ. Góc có cả hai hiện gần như trống ở Việt Nam.",
+  "en": "Two axes decide it: the organisational depth of the offer, and its fit for small scale. The corner holding both is still largely empty.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Phương pháp của tư vấn lớn, đóng gói cho túi tiền và nhịp độ của doanh nghiệp nhỏ.",
+  "en": "The method of large consultancies, packaged for the budget and pace of a small business.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đó là chỗ chúng tôi đứng.",
+  "en": "That is where we stand.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nguyên tắc làm việc",
+  "en": "How we work",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn điều chúng tôi cam kết",
+  "en": "Four things we commit to",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ít mà sâu, không nhiều mà nông",
+  "en": "Few and deep, not many and shallow",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba quy trình chạy ở mức tự chủ L3 với đầy đủ log, eval và rollback tạo ra nhiều giá trị hơn hai mươi agent chạy ở L1. Chúng tôi sẽ từ chối làm dàn trải, kể cả khi khách hàng yêu cầu.",
+  "en": "Three processes running at L3 with full logging, evals and rollback create more value than twenty agents at L1. We will decline to spread thin, even when a client asks us to.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bàn giao được, không khóa chân",
+  "en": "Handed over, never locked in",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dữ liệu, knowledge base, prompt và cấu hình thuộc về khách hàng. Chúng tôi trừu tượng hóa lớp mô hình để anh chị đổi nhà cung cấp AI mà không phải làm lại.",
+  "en": "The data, knowledge base, prompts and configuration belong to you. We abstract the model layer so you can change AI vendor without rebuilding.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nói thẳng cả điều bất lợi",
+  "en": "We say the inconvenient part out loud",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Có những ngành mà mô hình một người đơn giản là không khả thi. Chúng tôi nói điều đó ở buổi chẩn đoán đầu tiên, trước khi anh chị chi tiền.",
+  "en": "There are sectors where the one-person model simply does not work. We say so in the first diagnostic, before you spend anything.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Không có eval thì không nâng tự chủ",
+  "en": "No eval, no autonomy increase",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mức tự chủ chỉ được nâng khi có số đo, không phải khi có cảm giác. Và nó có thể bị thu hồi tự động khi chất lượng tụt.",
+  "en": "Autonomy rises only on measurement, never on instinct. And it can be revoked automatically when quality drops.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Vì sao là bây giờ",
+  "en": "Why now",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chính sách ép minh bạch dữ liệu",
+  "en": "Regulation is forcing data transparency",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Từ 01/01/2026 hộ kinh doanh tự kê khai theo doanh thu thực; hóa đơn điện tử từ máy tính tiền. Chi phí tuân thủ và chi phí AI-hóa hội tụ vào cùng một khoản đầu tư.",
+  "en": "Micro-businesses are moving to self-assessment on actual revenue, with electronic invoicing at point of sale. Compliance cost and AI-adoption cost converge into one investment.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thị trường vẫn tăng trên 40%",
+  "en": "The market is still growing above 40%",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Doanh thu bốn sàn lớn nửa đầu 2026 tăng 44,1%. Nhưng doanh thu đang dồn về người bán vận hành chuyên nghiệp, không về người có mặt sớm.",
+  "en": "Social-commerce revenue grew 44.1% in H1 2026. But revenue is concentrating among sellers who operate professionally, not among those who arrived early.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Cửa sổ đóng theo hai hướng",
+  "en": "The window closes from two directions",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Khi mọi người đều dùng AI, lợi thế chuyển từ",
+  "en": "Once everyone uses AI, the advantage moves from",
+  "nguon": "markup"
+ },
+ {
+  "vi": "có AI",
+  "en": "having AI",
+  "nguon": "markup"
+ },
+ {
+  "vi": "có hệ thống và dữ liệu riêng mà AI vận hành trên đó",
+  "en": "owning the system and the data the AI runs on",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Buổi chẩn đoán đầu tiên miễn phí",
+  "en": "The first diagnostic is free",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐẶT LỊCH NGAY",
+  "en": "BOOK NOW",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Xu hướng tương lai",
+  "en": "Market Outlook",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đọc thị trường bằng số, không bằng cảm giác",
+  "en": "Read the market in numbers, not in feelings",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tổng hợp dữ liệu công bố đến tháng 8/2026 từ Gartner, IDC, Forrester, Deloitte, BCG, Metric và các văn bản pháp lý Việt Nam. Số liệu ngành có sai lệch giữa các nguồn — nên đọc theo xu hướng, không theo con số tuyệt đối.",
+  "en": "Compiled from data published to August 2026 by Gartner, IDC, Forrester, Deloitte, BCG and market research firms, together with the regulatory instruments cited. Industry figures vary between sources — read the trend, not the absolute number.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thế giới · 2025 – nửa đầu 2026",
+  "en": "Global · 2025 – H1 2026",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Khoảng cách giữa hào hứng và kết quả",
+  "en": "The gap between enthusiasm and results",
+  "nguon": "markup"
+ },
+ {
+  "vi": "BIỂU ĐỒ 01",
+  "en": "CHART 01",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Pilot nhiều, production ít",
+  "en": "Many pilots, few in production",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba con số hay được trích nhất trong các khảo sát 2026 về agentic AI.",
+  "en": "The three most-quoted figures from 2026 surveys on agentic AI.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Pilot AI không lên được production",
+  "en": "AI pilots that never reach production",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dự án agentic bị hủy trước hết 2027",
+  "en": "Agentic projects cancelled before end-2027",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tổ chức đã đưa agent vào production",
+  "en": "Organisations with agents in production",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nguồn: IDC, Gartner, Deloitte. Phần nhạt là khoảng dao động giữa các khảo sát.",
+  "en": "Source: IDC, Gartner, Deloitte. The lighter band is the spread across surveys.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "BIỂU ĐỒ 02",
+  "en": "CHART 02",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nguyên nhân gốc của các triển khai có ROI âm",
+  "en": "Root causes of deployments with negative ROI",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Không nguyên nhân nào là chất lượng mô hình. Cả ba đều là vấn đề thiết kế tổ chức.",
+  "en": "None of the causes is model quality. All three are organisational design problems.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tiêu chí thành công không rõ ràng",
+  "en": "Success criteria were never defined",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thiếu quyền truy cập dữ liệu và công cụ",
+  "en": "No access to the data and tools required",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Sai lệch trong phạm vi đánh giá",
+  "en": "Misalignment in evaluation scope",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nguồn: Forrester, phân tích nhóm triển khai agent báo cáo ROI âm sau 12 tháng.",
+  "en": "Source: Forrester, analysis of agent deployments reporting negative ROI after 12 months.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chỉ báo định lượng thế giới",
+  "en": "Global quantitative indicators",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chín chỉ báo và hàm ý cho doanh nghiệp quy mô nhỏ.",
+  "en": "Nine indicators and what they mean for a small business.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bảy chuyển dịch định tính",
+  "en": "Seven qualitative shifts",
+  "nguon": "markup"
+ },
+ {
+  "vi": "BIỂU ĐỒ 03",
+  "en": "CHART 03",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mặt tối của làn sóng solopreneur",
+  "en": "The dark side of the solopreneur wave",
+  "nguon": "markup"
+ },
+ {
+  "vi": "AI loại bỏ con người khỏi khâu thực thi nhưng giữ nguyên — thậm chí làm tăng — sức nặng của quyết định.",
+  "en": "AI removes the human from execution but leaves — and even increases — the weight of the decision.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Solopreneur có mức căng thẳng cao — so với 26% ở nhóm có nhân viên",
+  "en": "of solopreneurs report high stress — against 26% of owners with employees",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Toàn bộ nhóm khảo sát có dưới 6 tháng tiền dự phòng",
+  "en": "of those surveyed hold less than six months of runway",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Vượt mốc 1 triệu USD/năm. Phần còn lại: thu nhập trung vị ~39.000 USD",
+  "en": "pass USD 1M a year. For the rest, median income is about USD 39,000",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hệ quả thiết kế: “vành đai người bên ngoài” — kế toán, luật sư, cố vấn, peer group — là thành phần bắt buộc của kiến trúc, không phải tùy chọn.",
+  "en": "The design consequence: an “outer ring of people” — accountant, lawyer, advisor, peer group — is a mandatory component of the architecture, not an option.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "HỘ KINH DOANH · NƠI CHÍNH SÁCH 2026 CHẠM VÀO TRƯỚC TIÊN",
+  "en": "MICRO-BUSINESSES · WHERE 2026 REGULATION LANDS FIRST",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Việt Nam · 2026",
+  "en": "Global · 2026",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chính sách đang mở một cửa sổ",
+  "en": "Regulation is opening a window",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Khung chính sách then chốt — nhấn từng văn bản để đọc nội dung và ảnh hưởng.",
+  "en": "The key regulatory frameworks — tap each one to read its substance and its impact.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "NỘI DUNG THEN CHỐT",
+  "en": "KEY PROVISION",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ẢNH HƯỞNG TỚI MÔ HÌNH 1–3 NGƯỜI",
+  "en": "IMPACT ON THE 1–3 PERSON MODEL",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đọc chính sách như một cơ hội thiết kế",
+  "en": "Reading regulation as a design opportunity",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Việt Nam đang ép toàn bộ khu vực hộ kinh doanh — hàng triệu “doanh nghiệp một người” phi chính thức — phải minh bạch dữ liệu. Ai chuyển sang mô hình có sổ sách, hóa đơn, dữ liệu sạch thì đồng thời có luôn nền tảng dữ liệu để AI vận hành.",
+  "en": "Regulators across several markets are forcing the micro-business sector — millions of informal “one-person businesses” — into data transparency. Anyone who moves to proper books, invoicing and clean data simultaneously acquires the data foundation an AI system needs to run.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đây là thời điểm chi phí tuân thủ và chi phí AI-hóa hội tụ vào cùng một khoản đầu tư.",
+  "en": "This is the moment when compliance cost and AI-adoption cost converge into one investment.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "BIỂU ĐỒ 04",
+  "en": "CHART 04",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thị phần doanh thu sàn thương mại điện tử",
+  "en": "Revenue share across e-commerce channels",
+  "nguon": "markup"
+ },
+ {
+  "vi": "TikTok Shop đã đi từ kênh nhận biết thành kênh bán chính — thay đổi cấu trúc quan trọng nhất với người bán quy mô nhỏ.",
+  "en": "Social commerce has moved from an awareness channel to a primary sales channel — the most important structural change for small sellers.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "QUÝ 3 / 2025",
+  "en": "Q3 / 2025",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Shopee 56–58%",
+  "en": "Marketplaces 56–58%",
+  "nguon": "markup"
+ },
+ {
+  "vi": "TikTok Shop ~29%",
+  "en": "Social commerce ~29%",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐẦU 2026",
+  "en": "EARLY 2026",
+  "nguon": "markup"
+ },
+ {
+  "vi": "TikTok Shop 39–41%",
+  "en": "Social commerce 39–41%",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Vùng xám là Lazada, Tiki và các sàn còn lại. Tỷ lệ minh họa xu hướng; các nguồn công bố khoảng dao động khác nhau.",
+  "en": "The grey band covers the remaining marketplaces. The proportions illustrate the trend; published sources give different ranges.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thị trường số Việt Nam",
+  "en": "The global digital market",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn khác biệt phải thiết kế riêng cho Việt Nam",
+  "en": "Four differences that demand local design",
+  "nguon": "markup"
+ },
+ {
+  "vi": "PHƯƠNG TÂY",
+  "en": "MATURE MARKETS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "VIỆT NAM",
+  "en": "EMERGING MARKETS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐIỀU CHỈNH",
+  "en": "DESIGN ADJUSTMENT",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Điểm cuối quan trọng nhất: ở Việt Nam, một doanh nghiệp hoàn toàn vô danh do AI vận hành sẽ chạm trần niềm tin rất sớm. Chiến lược đúng là",
+  "en": "The most important point: a wholly anonymous, AI-run business hits a trust ceiling very early in almost every market. The right strategy is",
+  "nguon": "markup"
+ },
+ {
+  "vi": "AI vận hành phía sau, con người có tên và có mặt phía trước.",
+  "en": "AI runs behind the scenes; a named human stands in front.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Còn một xu hướng nữa: dòng tiền lên sổ cái",
+  "en": "One more shift: cash moving onto the ledger",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Việt Nam luật hóa tài sản số trước khi thị trường bùng nổ. Đó là mảnh ghép cuối để khép kín mô hình doanh nghiệp một người.",
+  "en": "Several jurisdictions legislated digital assets before the market took off. That is the final piece needed to close the one-person model.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "BLOCKCHAIN &amp; CN TÀI CHÍNH →",
+  "en": "BLOCKCHAIN &amp; FINTECH →",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Next Solutions",
+  "en": "Next Solutions",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bộ máy AI có tổ chức, có quyền hạn, có kiểm soát",
+  "en": "An AI machine with structure, permissions and control",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Không phải một tập hợp chatbot. Là một ban điều hành ảo với vai trò rõ ràng, một đơn vị công việc chuẩn, sáu mức tự chủ có điều kiện thăng cấp, và bảy lớp hạ tầng.",
+  "en": "Not a collection of chatbots. A virtual executive team with defined roles, a standard unit of work, six autonomy levels with promotion conditions, and a seven-layer stack.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "SƠ ĐỒ 04",
+  "en": "FIGURE 04",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba tầng của một doanh nghiệp AI-native",
+  "en": "Three layers of an AI-native business",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tầng dưới rộng vì nó mở rộng gần như không giới hạn. Tầng trên hẹp và cố định.",
+  "en": "The bottom layer is wide because it scales almost without limit. The top layer is narrow and fixed.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "TẦNG CON NGƯỜI · 1–3 NGƯỜI",
+  "en": "HUMAN LAYER · 1–3 PEOPLE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chiến lược · khẩu vị rủi ro · cam kết pháp lý · quan hệ · ngoại lệ",
+  "en": "Strategy · risk appetite · legal commitments · relationships · exceptions",
+  "nguon": "markup"
+ },
+ {
+  "vi": "TẦNG KIỂM SOÁT",
+  "en": "CONTROL LAYER",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Work object · mức tự chủ · ma trận quyền · eval · audit log · kill switch",
+  "en": "Work object · autonomy level · rights matrix · eval · audit log · kill switch",
+  "nguon": "markup"
+ },
+ {
+  "vi": "TẦNG THỰC HIỆN · TEAM AI",
+  "en": "EXECUTION LAYER · AI TEAM",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ops · Finance · Growth · Social · Sales · CRM · CS · Product · R&amp;D · Risk",
+  "en": "Ops · Finance · Growth · Social · Sales · CRM · CS · Product · R&amp;D · Risk",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tầng trên hẹp là điểm mạnh, không phải hạn chế: càng ít người phải quyết định thì càng ít điểm nghẽn — với điều kiện tầng giữa đủ chặt.",
+  "en": "A narrow top layer is a strength, not a limitation: the fewer people who must decide, the fewer bottlenecks — provided the middle layer is tight enough.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nền tảng 01",
+  "en": "Foundation 01",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thang tự chủ — trục xương sống",
+  "en": "The autonomy ladder — the spine",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Sáu mức tự chủ và ranh giới hành động. Vạch đỏ là ranh giới quan trọng nhất trong toàn bộ mô hình: từ L3 trở đi agent được hành động ra bên ngoài. Nhấn từng mức để xem điều kiện thăng cấp.",
+  "en": "Six autonomy levels and the boundary of action. The red line is the most important boundary in the whole model: from L3 onward, an agent may act on the outside world. Tap any level for its promotion conditions.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "▲ TỪ L3 TRỞ ĐI · RANH GIỚI HÀNH ĐỘNG RA BÊN NGOÀI",
+  "en": "▲ FROM L3 ONWARD · THE BOUNDARY OF OUTBOUND ACTION",
+  "nguon": "markup"
+ },
+ {
+  "vi": "QUYỀN CỦA AI",
+  "en": "WHAT THE AI MAY DO",
+  "nguon": "markup"
+ },
+ {
+  "vi": "VÍ DỤ",
+  "en": "EXAMPLE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐIỀU KIỆN ĐỂ LÊN MỨC NÀY",
+  "en": "CONDITION TO REACH THIS LEVEL",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mức tự chủ là hàm của bốn biến: tỷ lệ chính xác × giá trị giao dịch × khả năng phục hồi khi sai × rủi ro danh tiếng và pháp lý.",
+  "en": "Autonomy is a function of four variables: accuracy × transaction value × recoverability when wrong × reputational and legal risk.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nguyên tắc hạ cấp",
+  "en": "The demotion rule",
+  "nguon": "markup"
+ },
+ {
+  "vi": "THƯỜNG BỊ BỎ QUÊN",
+  "en": "USUALLY OVERLOOKED",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Phải có cơ chế tự động hạ mức khi chất lượng tụt — ví dụ hai sự cố trong 30 ngày thì agent tự rơi từ L4 về L2 và chờ người xem xét.",
+  "en": "There must be an automatic demotion mechanism when quality drops — two incidents in 30 days, say, and the agent falls from L4 to L2 and waits for human review.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tự chủ là quyền có thể bị thu hồi, không phải trạng thái vĩnh viễn.",
+  "en": "Autonomy is a revocable privilege, not a permanent state.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nền tảng 02",
+  "en": "Foundation 02",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ban điều hành AI",
+  "en": "The AI executive team",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mười một vai trò quản lý, mỗi vai trò có KPI và mức tự chủ riêng. Dưới mỗi vai trò là các agent thực thi chuyên biệt.",
+  "en": "Eleven management roles, each with its own KPI and autonomy level. Under each sit specialist execution agents.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tầng agent chuyên môn",
+  "en": "The specialist agent layer",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Danh sách tham chiếu, không phải danh sách phải xây hết.",
+  "en": "A reference list, not a list you must build in full.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Sáu điều kiện để thành lập một agent",
+  "en": "Six conditions before an agent may exist",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bộ lọc quan trọng nhất trong toàn bộ phương pháp — phòng ngừa đúng nguyên nhân thất bại số một ở Biểu đồ 02.",
+  "en": "The single most important filter in the method — it prevents the number-one failure cause shown in Chart 02.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Không trả lời được cả sáu —",
+  "en": "Cannot answer all six —",
+  "nguon": "markup"
+ },
+ {
+  "vi": "đừng tạo agent, hãy viết SOP trước.",
+  "en": "do not build the agent — write the SOP first.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nền tảng 03",
+  "en": "Foundation 03",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Work Object và ma trận quyền quyết định",
+  "en": "The work object and the decision-rights matrix",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nhiệm vụ không được chuyển tự do giữa các agent bằng hội thoại mơ hồ. Mọi việc đi qua một đối tượng công việc có cấu trúc — nhờ vậy doanh nghiệp không biến thành một chuỗi chatbot khó kiểm soát mà thành",
+  "en": "Tasks are never passed between agents through loose conversation. Everything moves through a structured work object — which is what stops the business becoming an unmanageable chain of chatbots and makes it",
+  "nguon": "markup"
+ },
+ {
+  "vi": "một hệ thống có sổ sách",
+  "en": "a system with a proper ledger",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ai được quyết cái gì",
+  "en": "Who decides what",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hai trục quyết định mọi thứ: hậu quả nếu sai, và khả năng hoàn tác. Không phải mức độ phức tạp của công việc.",
+  "en": "Two axes decide everything: the consequence of being wrong, and how reversible it is. Not how complex the task is.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "KHÓ HOÀN TÁC · HẬU QUẢ THẤP",
+  "en": "HARD TO REVERSE · LOW IMPACT",
+  "nguon": "markup"
+ },
+ {
+  "vi": "AI + NHẬT KÝ",
+  "en": "AI + MANDATORY LOG",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đổi giá trong biên độ",
+  "en": "Price changes within range",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ngân sách quảng cáo nhỏ",
+  "en": "Small ad-budget shifts",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Báo giá chuẩn, voucher",
+  "en": "Standard quotes, vouchers",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đặt hàng khi chạm ngưỡng tồn",
+  "en": "Reorder at stock threshold",
+  "nguon": "markup"
+ },
+ {
+  "vi": "KHÓ HOÀN TÁC · HẬU QUẢ CAO",
+  "en": "HARD TO REVERSE · HIGH IMPACT",
+  "nguon": "markup"
+ },
+ {
+  "vi": "BẮT BUỘC PHÊ DUYỆT",
+  "en": "HUMAN APPROVAL REQUIRED",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hợp đồng và cam kết pháp lý",
+  "en": "Contracts and legal commitments",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thanh toán lớn",
+  "en": "Large payments",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thay đổi chiến lược, định vị",
+  "en": "Changes to strategy or positioning",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Quyết định y tế, tín dụng, đầu tư",
+  "en": "Medical, credit and investment decisions",
+  "nguon": "markup"
+ },
+ {
+  "vi": "DỄ HOÀN TÁC · HẬU QUẢ THẤP",
+  "en": "EASY TO REVERSE · LOW IMPACT",
+  "nguon": "markup"
+ },
+ {
+  "vi": "AI TỰ LÀM",
+  "en": "AI ACTS ALONE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tổng hợp và phân tích dữ liệu",
+  "en": "Aggregating and analysing data",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chuẩn bị tài liệu",
+  "en": "Document preparation",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CSKH theo chính sách",
+  "en": "Support within policy",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Cập nhật CRM, ERP, knowledge base",
+  "en": "Updating CRM, ERP, knowledge base",
+  "nguon": "markup"
+ },
+ {
+  "vi": "DỄ HOÀN TÁC · HẬU QUẢ CAO",
+  "en": "EASY TO REVERSE · HIGH IMPACT",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CON NGƯỜI TRỰC TIẾP",
+  "en": "HUMAN ONLY",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Công việc vật lý",
+  "en": "Physical work",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đàm phán chiến lược",
+  "en": "Strategic negotiation",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Xử lý khủng hoảng",
+  "en": "Crisis handling",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Trách nhiệm nghề nghiệp",
+  "en": "Professional liability",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn ranh giới riêng cho Việt Nam 2026 đều nằm ở nửa phải: livestream, công bố sản phẩm sức khỏe, hóa đơn thuế, và dữ liệu cá nhân.",
+  "en": "Four regulated boundaries all sit on the right half: live selling, health-product claims, tax invoicing, and personal data.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn ranh giới riêng cho Việt Nam 2026",
+  "en": "Four boundaries set by regulation",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nền tảng 04",
+  "en": "Foundation 04",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hạ tầng bảy lớp",
+  "en": "The seven-layer stack",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Lớp 5 là bổ sung so với thiết kế phổ biến — và là lớp quyết định agent cộng dồn giá trị hay chạm trần. Mỗi lớp đi kèm một câu hỏi kiểm tra.",
+  "en": "Layer 5 is an addition to the common design — and it decides whether agents compound value or hit a ceiling. Each layer comes with a test question.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "SƠ ĐỒ 05",
+  "en": "FIGURE 05",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bảy lớp hạ tầng",
+  "en": "The seven-layer stack",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Lớp 5 quyết định agent cộng dồn giá trị hay chạm trần.",
+  "en": "Layer 5 decides whether agents compound value or hit a ceiling.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Business Interface",
+  "en": "Business Interface",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Agent Orchestration",
+  "en": "Agent Orchestration",
+  "nguon": "markup"
+ },
+ {
+  "vi": "MCP / Integration",
+  "en": "MCP / Integration",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Business Process",
+  "en": "Business Process",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Identity & Memory",
+  "en": "Identity &amp; Memory",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Enterprise Knowledge",
+  "en": "Enterprise Knowledge",
+  "nguon": "markup"
+ },
+ {
+  "vi": "MCP là hệ thần kinh · agent là nhân sự số · knowledge và memory là trí nhớ · governance là hệ miễn dịch.",
+  "en": "MCP is the nervous system · agents are the digital staff · knowledge and memory are the memory · governance is the immune system.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "KIỂM TRA",
+  "en": "TEST QUESTION",
+  "nguon": "markup"
+ },
+ {
+  "vi": "MCP là hệ thần kinh kết nối · agent là nhân sự số · workflow là quy trình · knowledge và memory là trí nhớ · governance là hệ miễn dịch.",
+  "en": "MCP is the connective nervous system · agents are the digital staff · workflow is the process · knowledge and memory are the memory · governance is the immune system.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nguyên tắc chọn công cụ: mua trước, xây sau",
+  "en": "Tool principle: buy first, build later",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dữ liệu 2026 cho thấy pilot do đối tác dẫn dắt đạt production với tỷ lệ khoảng gấp đôi so với tự xây nội bộ. Chỉ tự xây ở đúng chỗ tạo khác biệt cạnh tranh — thường là lớp 5 và 6, tức dữ liệu và tri thức riêng.",
+  "en": "2026 data shows partner-led pilots reach production at roughly twice the rate of in-house builds. Build in-house only where it creates competitive difference — usually layers 5 and 6, your own data and knowledge.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Động cơ 01",
+  "en": "Engine 01",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ở Việt Nam, mạng xã hội không phải kênh truyền thông — nó là kênh phân phối và kênh bán hàng. Đòn bẩy lớn nhất, và cũng là nơi rủi ro danh tiếng cao nhất.",
+  "en": "Social platforms are no longer a communications channel — they are a distribution and sales channel. The greatest leverage, and the highest reputational risk.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiến trúc “một gốc — nhiều nhánh”",
+  "en": "The “one root — many branches” architecture",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Vòng lặp này giữ con người ở đúng chỗ duy nhất không thay thế được:",
+  "en": "This loop keeps the human in the one place that cannot be replaced:",
+  "nguon": "markup"
+ },
+ {
+  "vi": "nguồn gốc của góc nhìn.",
+  "en": "the origin of the point of view.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bản đồ kênh cho thị trường Việt Nam",
+  "en": "A channel map for your market",
+  "nguon": "markup"
+ },
+ {
+  "vi": "RỦI RO CHÍNH",
+  "en": "MAIN RISK",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba lằn ranh không được vượt",
+  "en": "Three lines never to cross",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Động cơ 02",
+  "en": "Engine 02",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thay đổi lớn nhất của marketing 2025–2026: khi người dùng hỏi trợ lý AI hoặc đọc AI Overviews thay vì bấm vào liên kết, mục tiêu tối ưu đổi từ",
+  "en": "The biggest marketing shift of 2025–2026: when users ask an AI assistant or read AI Overviews instead of clicking a link, the optimisation target moves from",
+  "nguon": "markup"
+ },
+ {
+  "vi": "thứ hạng",
+  "en": "ranking",
+  "nguon": "markup"
+ },
+ {
+  "vi": "được trích dẫn",
+  "en": "being cited",
+  "nguon": "markup"
+ },
+ {
+  "vi": ". AI Overviews hiện xuất hiện ở khoảng 25% truy vấn, tăng từ 13% một năm trước.",
+  "en": ". AI Overviews now appear on roughly 25% of queries, up from 13% a year earlier.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "SEO TRUYỀN THỐNG",
+  "en": "CLASSIC SEO",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GEO / AEO",
+  "en": "GEO / AEO",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Phễu và agent phụ trách từng tầng",
+  "en": "The funnel and the agent owning each stage",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mỗi tầng có agent riêng, KPI riêng và mức tự chủ riêng — không có một “agent marketing” chung chung.",
+  "en": "Each stage has its own agent, its own KPI and its own autonomy level — there is no generic “marketing agent”.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Phân bổ ngân sách marketing tham chiếu cho quy mô nhỏ",
+  "en": "A reference marketing budget split for small operators",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nội dung gốc là khoản duy nhất không cắt được — đó là nguồn khác biệt.",
+  "en": "Original content is the one line you cannot cut — it is the source of difference.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bài học từ một thất bại thực tế",
+  "en": "A lesson from a real failure",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Một trường hợp ghi nhận trong khảo sát 2026: hệ thống AI xếp lịch chạy chiến dịch vào một ngày quốc tang — tối ưu về dữ liệu lưu lượng lịch sử, thảm họa về bối cảnh.",
+  "en": "A case recorded in a 2026 survey: an AI scheduler ran a campaign on a national day of mourning — optimal on historical traffic data, catastrophic in context.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "AI xuất sắc trong nhận diện mẫu hình bên trong dữ liệu, nhưng thất bại trong suy luận về ngữ cảnh phi cấu trúc.",
+  "en": "AI excels at recognising patterns inside data and fails at reasoning about unstructured context.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Với Việt Nam: duy trì một",
+  "en": "In practice: maintain a",
+  "nguon": "markup"
+ },
+ {
+  "vi": "lịch nhạy cảm văn hóa",
+  "en": "cultural sensitivity calendar",
+  "nguon": "markup"
+ },
+ {
+  "vi": "— Tết, giỗ Tổ, quốc tang, dịp tôn giáo, sự kiện chính trị — như nguồn dữ liệu bắt buộc mà mọi agent lên lịch phải kiểm tra trước khi đăng.",
+  "en": "— public holidays, national days of mourning, religious observances, political events — as a mandatory data source every scheduling agent must check before publishing.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Động cơ 03",
+  "en": "Engine 03",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CRM &amp; dữ liệu khách hàng",
+  "en": "CRM &amp; customer data",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CRM trong doanh nghiệp AI-native không phải phần mềm lưu danh bạ. Nó là nguồn sự thật duy nhất mà mọi agent đọc và ghi.",
+  "en": "In an AI-native business, CRM is not contact-storage software. It is the single source of truth every agent reads from and writes to.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mô hình dữ liệu tối thiểu",
+  "en": "The minimum data model",
+  "nguon": "markup"
+ },
+ {
+  "vi": "AI GHI",
+  "en": "AI WRITES",
+  "nguon": "markup"
+ },
+ {
+  "vi": "AI ĐỌC",
+  "en": "AI READS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kịch bản vòng đời do AI vận hành",
+  "en": "AI-run lifecycle playbooks",
+  "nguon": "markup"
+ },
+ {
+  "vi": "KÍCH HOẠT",
+  "en": "TRIGGER",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hai dòng in đậm là ranh giới quan trọng nhất:",
+  "en": "The two bold rows are the most important boundary:",
+  "nguon": "markup"
+ },
+ {
+  "vi": "những khoảnh khắc quyết định số phận mối quan hệ phải có con người.",
+  "en": "the moments that decide the fate of a relationship must involve a human.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tự động hóa việc giữ chân một khách hàng đang thất vọng là cách nhanh nhất để mất họ vĩnh viễn.",
+  "en": "Automating the retention of a disappointed customer is the fastest way to lose them for good.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chất lượng dữ liệu — vòng kiểm tra hàng tuần",
+  "en": "Data quality — the weekly check loop",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Động cơ 04",
+  "en": "Engine 04",
+  "nguon": "markup"
+ },
+ {
+  "vi": "R&amp;D &amp; đổi mới sáng tạo",
+  "en": "R&amp;D &amp; innovation",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Không có R&amp;D, mô hình này chỉ là một cỗ máy vận hành hiệu quả một ý tưởng đang già đi.",
+  "en": "Without R&amp;D, this model is just a machine efficiently running an idea that is ageing.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn dòng R&amp;D",
+  "en": "Four R&amp;D streams",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dòng thứ tư đặc biệt quan trọng ở Việt Nam trong 2026, khi khung pháp lý về thuế hộ kinh doanh, hóa đơn điện tử và thương mại điện tử đều thay đổi trong cùng một năm.",
+  "en": "The fourth stream matters most where several frameworks move at once — AI liability, digital-asset rules and platform accountability have all shifted within a single year.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Quy trình thí nghiệm chuẩn",
+  "en": "The standard experiment loop",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bước 6 là bước hầu hết doanh nghiệp nhỏ bỏ qua và tạo giá trị cộng dồn lớn nhất:",
+  "en": "Step 6 is the one most small businesses skip, and the one that compounds most:",
+  "nguon": "markup"
+ },
+ {
+  "vi": "thí nghiệm thất bại có ghi chép còn giá trị hơn thí nghiệm thành công không ghi chép.",
+  "en": "a failed experiment that is written down is worth more than a successful one that is not.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Quản trị tri thức và tài sản trí tuệ",
+  "en": "Knowledge and intellectual-property governance",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tài sản trí tuệ giá trị nhất thường không phải sản phẩm mà là",
+  "en": "The most valuable intellectual property is usually not the product but",
+  "nguon": "markup"
+ },
+ {
+  "vi": "hệ thống vận hành",
+  "en": "the operating system",
+  "nguon": "markup"
+ },
+ {
+  "vi": "— quy trình, prompt, cấu hình quyền hạn, bộ eval và knowledge base đã tinh chỉnh qua hàng nghìn lần chạy. Cái đó không sao chép được bằng cách nhìn từ bên ngoài.",
+  "en": "— the processes, prompts, permission configuration, eval suite and knowledge base refined over thousands of runs. None of that can be copied by looking from the outside.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Muốn biết bộ máy này áp vào ngành của anh chị ra sao?",
+  "en": "Want to see how this machine maps onto your sector?",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Xem trần tự động hóa thực tế của tám nhóm doanh nghiệp và ba kiến trúc mẫu.",
+  "en": "See the real automation ceilings for eight business types and three reference architectures.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "NGÀNH &amp; MÔ HÌNH →",
+  "en": "SECTORS &amp; MODELS →",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ngành &amp; Mô hình",
+  "en": "Sectors &amp; Models",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Không phải ngành nào cũng chạy được với một người",
+  "en": "Not every sector can run on one person",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Trần tự động hóa tỷ lệ nghịch với hàm lượng nguyên tử trong chuỗi giá trị. Chúng tôi nói thẳng con số này trước khi anh chị đầu tư.",
+  "en": "The automation ceiling is inversely proportional to how much physical matter sits in the value chain. We give you this number before you invest.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Biểu đồ 10",
+  "en": "Chart 10",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Trần tự động hóa thực tế theo nhóm doanh nghiệp",
+  "en": "Real automation ceilings by business type",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thanh đậm là mức thận trọng, phần nhạt là biên trên ở trạng thái trưởng thành. Con số bên phải là số người tối thiểu thực tế. Nhấn từng nhóm để đọc chi tiết.",
+  "en": "The solid bar is the conservative figure, the lighter band the upper bound at maturity. The number on the right is the realistic minimum headcount. Tap any group for detail.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "AI ĐẢM NHIỆM",
+  "en": "AI HANDLES",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CON NGƯỜI CÒN CẦN",
+  "en": "STILL NEEDS A HUMAN",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐIỂM NGHẼN",
+  "en": "BOTTLENECK",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mô hình 1–3 người chỉ khả thi ở hai nhóm dưới cùng khi phần vật lý được thuê ngoài, đẩy sang OEM/ODM, hoặc tự động hóa cao. Khi đó doanh nghiệp lõi trở thành một",
+  "en": "For the bottom two groups, the 1–3 person model only works when the physical part is outsourced, pushed to OEM/ODM, or heavily automated. The core business then becomes an",
+  "nguon": "markup"
+ },
+ {
+  "vi": "AI Control Tower",
+  "en": "AI Control Tower",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba kiến trúc mẫu",
+  "en": "Three reference architectures",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thương mại và thương mại điện tử",
+  "en": "Trade and e-commerce",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nghiên cứu thị trường",
+  "en": "Market research",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tìm nguồn hàng",
+  "en": "Sourcing",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dự báo nhu cầu",
+  "en": "Demand forecasting",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tạo nội dung",
+  "en": "Content production",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bán hàng đa kênh",
+  "en": "Multichannel selling",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Xử lý đơn",
+  "en": "Order handling",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hậu mãi",
+  "en": "After-sales",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tái mua",
+  "en": "Repeat purchase",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Con người tập trung: chọn sản phẩm, quan hệ nhà cung cấp, kiểm hàng, quyết định vốn tồn kho. Điểm nghẽn thật là",
+  "en": "Humans focus on: product selection, supplier relationships, inspection, inventory capital decisions. The real bottleneck is",
+  "nguon": "markup"
+ },
+ {
+  "vi": "vốn lưu động",
+  "en": "working capital",
+  "nguon": "markup"
+ },
+ {
+  "vi": ", không phải năng lực vận hành.",
+  "en": ", not operating capability.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dịch vụ",
+  "en": "Services",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thu hút khách",
+  "en": "Attract clients",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Xác định nhu cầu",
+  "en": "Qualify the need",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Báo giá",
+  "en": "Quote",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đặt lịch",
+  "en": "Schedule",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chuẩn bị dịch vụ",
+  "en": "Prepare delivery",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thực hiện",
+  "en": "Deliver",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiểm tra chất lượng",
+  "en": "Quality check",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chăm sóc sau dịch vụ",
+  "en": "Post-service care",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Điểm nghẽn thật là",
+  "en": "The real bottleneck is",
+  "nguon": "markup"
+ },
+ {
+  "vi": "giờ công của người có chuyên môn",
+  "en": "the billable hours of a qualified expert",
+  "nguon": "markup"
+ },
+ {
+  "vi": "— chiến lược phải là đóng gói tri thức thành sản phẩm số để bán được ngoài giờ công.",
+  "en": "— the strategy must be to package expertise into digital products that sell outside billable hours.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Sản xuất theo mô hình Control Tower",
+  "en": "Manufacturing on a control-tower model",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kế hoạch sản xuất",
+  "en": "Production planning",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mua nguyên liệu",
+  "en": "Raw material purchasing",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Điều phối máy và người",
+  "en": "Machine and labour scheduling",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Giao hàng",
+  "en": "Delivery",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bảo trì",
+  "en": "Maintenance",
+  "nguon": "markup"
+ },
+ {
+  "vi": "kiểm soát chất lượng từ xa",
+  "en": "remote quality control",
+  "nguon": "markup"
+ },
+ {
+  "vi": "— cần agent QC bằng hình ảnh cộng kiểm tra thực địa định kỳ bởi người.",
+  "en": "— it needs a vision-based QC agent plus periodic on-site checks by a human.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mô hình lai phải tách lớp, không đánh giá gộp",
+  "en": "Hybrid models must be assessed layer by layer, not in aggregate",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ví dụ một nền tảng vật lý trị liệu — bốn lớp có bốn trần khác nhau:",
+  "en": "Take a physiotherapy platform — four layers with four different ceilings:",
+  "nguon": "markup"
+ },
+ {
+  "vi": "AI-hóa tối đa ba lớp trên để nuôi và bảo vệ giờ công đắt nhất ở lớp thứ tư. Mỗi lớp có kiến trúc AI riêng, nhưng",
+  "en": "Automate the top three layers as far as possible to fund and protect the most expensive hours in the fourth. Each layer gets its own AI architecture, but",
+  "nguon": "markup"
+ },
+ {
+  "vi": "dùng chung một lớp dữ liệu khách hàng và một lớp tri thức",
+  "en": "sharing one customer-data layer and one knowledge layer",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nền tảng pháp lý",
+  "en": "Legal foundation",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hộ kinh doanh hay doanh nghiệp?",
+  "en": "Sole trader or incorporated company?",
+  "nguon": "markup"
+ },
+ {
+  "vi": "“Doanh nghiệp một người” mô tả cách vận hành, không phải một tư cách pháp lý. Ở Việt Nam nó rơi vào hai lựa chọn, và lựa chọn này quyết định luôn kiến trúc dữ liệu.",
+  "en": "“One-person business” describes a way of operating, not a legal status. In most jurisdictions it comes down to two options, and that choice determines the data architecture.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "HỘ KINH DOANH",
+  "en": "SOLE TRADER",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CÔNG TY TNHH MTV / DN CỠ NHỎ",
+  "en": "LIMITED COMPANY / SMALL BUSINESS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hàm ý cho kiến trúc AI",
+  "en": "What this means for AI architecture",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Khác biệt lớn nhất giữa hai hình thức, xét từ góc độ kỹ thuật, là",
+  "en": "The biggest difference between the two, seen technically, is",
+  "nguon": "markup"
+ },
+ {
+  "vi": "mức độ sạch của dữ liệu tài chính",
+  "en": "how clean the financial data is",
+  "nguon": "markup"
+ },
+ {
+  "vi": "— thứ quyết định agent tài chính có làm việc được hay không. Khuyến nghị: dù chọn hình thức nào, hãy vận hành sổ sách như một doanh nghiệp ngay từ đầu.",
+  "en": "— which determines whether a finance agent can function at all. Our recommendation: whichever legal form you choose, keep the books like a company from day one.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ngưỡng chuyển đổi nên đặt ở ba tín hiệu, không phải ở doanh thu: khách hàng bắt đầu yêu cầu hóa đơn VAT; xuất hiện hợp đồng có rủi ro pháp lý đáng kể; hoặc cần thuê ngoài dài hạn và ký kết với đối tác lớn.",
+  "en": "The threshold to incorporate should sit on three signals, not on revenue: customers start requiring VAT invoices; contracts carrying material legal risk appear; or you need long-term subcontracting and agreements with large partners.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thị trường",
+  "en": "Market",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chúng tôi phục vụ ai",
+  "en": "Who we serve",
+  "nguon": "markup"
+ },
+ {
+  "vi": "PHÂN KHÚC",
+  "en": "SEGMENT",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐẶC ĐIỂM",
+  "en": "PROFILE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐIỂM ĐAU CHÍNH",
+  "en": "PRIMARY PAIN",
+  "nguon": "markup"
+ },
+ {
+  "vi": "DÒNG PHÙ HỢP",
+  "en": "BEST-FIT LINE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐIỂM ĐAU",
+  "en": "PAIN",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chúng tôi không nhắm phục vụ toàn bộ quy mô này. Chiến lược là",
+  "en": "We do not aim to serve this entire market. The strategy is",
+  "nguon": "markup"
+ },
+ {
+  "vi": "đi sâu vào 2–3 ngành trước",
+  "en": "going deep in 2–3 sectors first",
+  "nguon": "markup"
+ },
+ {
+  "vi": "— nơi thư viện kiến trúc mẫu tích lũy nhanh nhất — rồi mở rộng bằng Academy và mạng lưới đối tác.",
+  "en": "— where the pattern library accumulates fastest — then expanding through Academy and the partner network.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Cách chúng tôi làm",
+  "en": "How We Work",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ít mà sâu, có số đo, bàn giao được",
+  "en": "Few, deep, measured, and handed over",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Triển khai thành công mất trung bình 6 tháng từ pilot đến production; các dự án thất bại kéo dài đến 18 tháng. Nguyên nhân không phải làm chậm — mà là làm quá nhiều thứ cùng lúc.",
+  "en": "A successful deployment takes about six months from pilot to production; failed ones drag on for eighteen. The cause is not working slowly — it is working on too many things at once.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "BƯỚC 02 · KIỂM KÊ QUY TRÌNH CÙNG KHÁCH HÀNG",
+  "en": "STEP 02 · PROCESS INVENTORY WITH THE CLIENT",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Quy trình hợp tác — năm bước",
+  "en": "How we work together — five steps",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chẩn đoán · 60 phút, miễn phí",
+  "en": "Model read · 60 minutes, free",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nghe mô hình hiện tại, hỏi về quy trình tốn thời gian nhất, ước lượng trần tự động hóa của từng lớp. Kết thúc buổi này anh chị nhận được ba quy trình nên tự động hóa trước — kể cả khi không làm việc tiếp với chúng tôi.",
+  "en": "We listen to how the business runs today, ask which processes consume the most time, and estimate the automation ceiling of each layer. You leave with the three processes to automate first — even if we never work together again.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiểm kê &amp; đánh giá sẵn sàng · 1–2 tuần",
+  "en": "Inventory &amp; readiness assessment · 1–2 weeks",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiểm kê toàn bộ quy trình kèm thời gian tiêu tốn; đánh giá chất lượng dữ liệu; rà soát tuân thủ hóa đơn, thuế, dữ liệu cá nhân. Đầu ra là một báo cáo có số, không phải một bản đề xuất bán hàng.",
+  "en": "A full process inventory with time consumed; a data-quality assessment; a compliance review of invoicing, tax and personal data. The output is a report with numbers in it, not a sales proposal.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thiết kế kiến trúc · 2–3 tuần",
+  "en": "Architecture design · 2–3 weeks",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ban điều hành AI, work object, ma trận quyền quyết định, bảy lớp hạ tầng, và mức tự chủ mục tiêu cho từng quy trình. Kèm dự toán chi phí vận hành hằng tháng.",
+  "en": "The AI executive team, work objects, the decision-rights matrix, the seven-layer stack, and a target autonomy level per process. With a monthly running-cost estimate.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Triển khai theo đợt · 8–16 tuần",
+  "en": "Phased delivery · 8–16 weeks",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba quy trình đầu tiên lên L1–L2, kết nối tích hợp, dựng knowledge base, eval suite, audit log, kill switch. Chỉ nâng lên L3 khi đạt ngưỡng số liệu đã cam kết.",
+  "en": "The first three processes reach L1–L2, integrations connected, knowledge base, eval suite, audit log and kill switch built. L3 only once the agreed numeric thresholds are met.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bàn giao &amp; đồng hành · theo tháng",
+  "en": "Handover &amp; support · monthly",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chuyển giao toàn bộ tài khoản, cấu hình, tài liệu vận hành. Sau đó là kiểm toán định kỳ và quyết định nâng hoặc hạ mức tự chủ — anh chị có thể dừng bất cứ lúc nào mà hệ thống vẫn chạy.",
+  "en": "Full handover of accounts, configuration and operating documentation. Then periodic audits and decisions to raise or revoke autonomy — you can stop at any time and the system keeps running.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "SƠ ĐỒ 08",
+  "en": "FIGURE 08",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hai trục: chiều sâu tổ chức của giải pháp, và mức phù hợp với quy mô nhỏ.",
+  "en": "Two axes: the organisational depth of the offer, and its fit for small scale.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "TƯ VẤN CHUYỂN ĐỔI SỐ LỚN",
+  "en": "LARGE DIGITAL-TRANSFORMATION FIRMS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Phương pháp tốt, chiều sâu tổ chức. Nhưng chi phí và chu kỳ dự án vượt xa khả năng của doanh nghiệp nhỏ.",
+  "en": "Good method, real organisational depth. But the cost and project cycle sit far beyond a small business.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "LATTICE NEXT",
+  "en": "LATTICE NEXT",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chiều sâu kiến trúc tổ chức nhưng đóng gói cho quy mô 1–30 người. Bàn giao được, không khóa chân, kèm đào tạo để tự vận hành.",
+  "en": "Organisational architecture depth, packaged for 1–30 people. Handed over, never locked in, with training so you run it yourself.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "TỰ HỌC · CỘNG ĐỒNG",
+  "en": "SELF-TAUGHT · COMMUNITY",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Rẻ và dễ tiếp cận. Nhưng không có phương pháp, không ai chịu trách nhiệm kết quả.",
+  "en": "Cheap and easy to reach. But no method, and nobody accountable for the outcome.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CÔNG CỤ &amp; AGENCY ĐƠN LẺ",
+  "en": "POINT TOOLS &amp; SINGLE AGENCIES",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Giải quyết một tác vụ. Không ai thiết kế quyền hạn, kiểm soát hay trí nhớ dùng chung.",
+  "en": "Solves a single task. Nobody designs permissions, control, or shared memory.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "← PHÙ HỢP QUY MÔ NHỎ: THẤP",
+  "en": "← FIT FOR SMALL SCALE: LOW",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CAO →",
+  "en": "HIGH →",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Góc trên bên phải hiện gần như trống ở Việt Nam: phương pháp của tư vấn lớn, đóng gói cho túi tiền và nhịp độ của doanh nghiệp nhỏ.",
+  "en": "The top-right corner is still largely empty: the method of large consultancies, packaged for the budget and pace of a small business.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba gói dịch vụ",
+  "en": "Three engagement packages",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chúng tôi báo giá theo phạm vi công việc sau buổi chẩn đoán, không theo bảng giá cố định — vì trần tự động hóa của mỗi mô hình khác nhau quá xa để định giá trước.",
+  "en": "We quote on scope after the diagnostic, not from a fixed price list — because automation ceilings differ far too much between models to price in advance.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GÓI 01",
+  "en": "PACKAGE 01",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chẩn đoán &amp; Lộ trình",
+  "en": "Diagnostic &amp; Roadmap",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiểm kê quy trình có số liệu thời gian",
+  "en": "A process inventory with time data",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đánh giá chất lượng dữ liệu và mức sẵn sàng",
+  "en": "Assess data quality and readiness",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bản đồ trần tự động hóa từng lớp kinh doanh",
+  "en": "An automation-ceiling map for each business layer",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Rà soát tuân thủ hóa đơn, thuế, dữ liệu cá nhân",
+  "en": "Review invoicing, tax and personal-data compliance",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Lộ trình 12 tháng có điều kiện chuyển tiếp bằng số",
+  "en": "A 12-month roadmap with numeric gates between phases",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Phù hợp khi chưa chắc có nên đầu tư hay không.",
+  "en": "Right when you are unsure whether to invest at all.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "PHỔ BIẾN NHẤT",
+  "en": "MOST CHOSEN",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GÓI 02",
+  "en": "PACKAGE 02",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiến trúc &amp; Triển khai",
+  "en": "Architecture &amp; Build",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Toàn bộ Gói 01",
+  "en": "Everything in Package 01",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thiết kế ban điều hành AI và ma trận quyền quyết định",
+  "en": "Design the AI executive team and the decision-rights matrix",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dựng knowledge base và lớp dữ liệu khách hàng",
+  "en": "Build the knowledge base and the customer-data layer",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kết nối 3–5 tích hợp thiết yếu qua MCP",
+  "en": "Connect 3–5 essential integrations over MCP",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba quy trình chạy ổn định, ít nhất một quy trình lên L3",
+  "en": "Three processes running stably, at least one at L3",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Eval suite, audit log, kill switch, trần chi phí",
+  "en": "Eval suite, audit log, kill switch, spend ceiling",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đào tạo vận hành và bàn giao tài liệu",
+  "en": "Operator training and documentation handover",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Gói phổ biến nhất. Kết thúc là hệ thống chạy được không cần chúng tôi.",
+  "en": "The most chosen package. It ends with a system that runs without us.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GÓI 03",
+  "en": "PACKAGE 03",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đồng hành vận hành",
+  "en": "Ongoing operations support",
+  "nguon": "markup"
+ },
+ {
+  "vi": "theo tháng · hủy bất cứ lúc nào",
+  "en": "monthly · cancel any time",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiểm toán eval và audit log hàng tuần",
+  "en": "Weekly eval and audit-log review",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Quyết định nâng hoặc hạ mức tự chủ",
+  "en": "Deciding to raise or revoke autonomy",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Theo dõi chi phí AI trên doanh thu",
+  "en": "Track AI cost as a share of revenue",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Cảnh báo sớm thay đổi pháp lý và thị trường",
+  "en": "Early warning on regulatory and market change",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mở rộng thêm quy trình theo nhịp quý",
+  "en": "Add processes on a quarterly cadence",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dành cho đơn vị đã qua Gói 02 hoặc đã có hệ thống sẵn.",
+  "en": "For organisations that have completed Package 02 or already run a system.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Lộ trình triển khai 12 tháng",
+  "en": "The 12-month delivery roadmap",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn giai đoạn, chồng lấn có chủ đích. Điều kiện chuyển tiếp là số đo, không phải mốc thời gian.",
+  "en": "Four phases, deliberately overlapping. The gate between them is a measurement, not a date.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GĐ1 · AI hỗ trợ",
+  "en": "P1 · AI assists",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GĐ2 · AI workflow",
+  "en": "P2 · AI workflow",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GĐ3 · Team AI",
+  "en": "P3 · AI team",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GĐ4 · Autonomous",
+  "en": "P4 · Autonomous",
+  "nguon": "markup"
+ },
+ {
+  "vi": "↑ THÁNG 11–12 · KIỂM TOÁN TOÀN HỆ THỐNG",
+  "en": "↑ MONTHS 11–12 · FULL SYSTEM AUDIT",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐIỀU KIỆN CHUYỂN TIẾP",
+  "en": "GATE TO NEXT PHASE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kế hoạch 12 tháng",
+  "en": "The 12-month plan",
+  "nguon": "markup"
+ },
+ {
+  "vi": "KẾT QUẢ KIỂM CHỨNG ĐƯỢC",
+  "en": "VERIFIABLE OUTCOME",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiểm soát và an toàn",
+  "en": "Control and safety",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiến trúc kiểm soát đồng tâm. Vòng 3 kiểm tra cả agent thực thi lẫn AI Manager — đây là điểm khác biệt với mô hình phân cấp thông thường.",
+  "en": "Concentric control architecture. Ring 3 checks both the execution agents and the AI managers — that is what separates it from a conventional hierarchy.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CEO chỉ nhận bốn loại thông tin: quyết định cần phê duyệt · ngoại lệ vượt quyền · rủi ro mới · báo cáo hiệu quả và đề xuất chiến lược. Đây là",
+  "en": "The CEO receives only four kinds of information: decisions needing approval · exceptions beyond delegated authority · newly surfaced risk · performance reports and strategic proposals. This is",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Management by Exception",
+  "en": "Management by exception",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bộ công cụ an toàn tối thiểu",
+  "en": "The minimum safety toolkit",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Rủi ro và chống mong manh",
+  "en": "Risk and antifragility",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Doanh nghiệp một người phải chấp nhận",
+  "en": "A one-person business has to accept",
+  "nguon": "markup"
+ },
+ {
+  "vi": "kém hiệu quả một cách có chủ đích",
+  "en": "deliberate inefficiency",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ở vài chỗ để đổi lấy khả năng chống chịu — dự trữ tiền mặt cao hơn mức tối ưu, đa kênh dù tốn hơn, giữ quan hệ con người dù AI làm được.",
+  "en": "in a few places in exchange for resilience — more cash reserve than is optimal, multi-channel even when it costs more, human relationships even where AI could cope.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bộ chỉ số điều hành và kinh tế học",
+  "en": "The operating scorecard and unit economics",
+  "nguon": "markup"
+ },
+ {
+  "vi": "So sánh cấu trúc chi phí — minh họa cho doanh thu 3–10 tỷ VNĐ mỗi năm.",
+  "en": "Cost-structure comparison — illustrative for revenue of USD 120k–400k a year.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "TRUYỀN THỐNG",
+  "en": "TRADITIONAL",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Giá trị lớn nhất của mô hình AI-native với doanh nghiệp nhỏ",
+  "en": "The greatest value of the AI-native model for a small business",
+  "nguon": "markup"
+ },
+ {
+  "vi": "không nằm ở việc cắt giảm nhân sự",
+  "en": "is not headcount reduction",
+  "nguon": "markup"
+ },
+ {
+  "vi": "— doanh nghiệp nhỏ vốn đã không có nhân sự để cắt — mà ở việc",
+  "en": "— a small business had no headcount to cut in the first place — but in",
+  "nguon": "markup"
+ },
+ {
+  "vi": "có được những chức năng trước đây chỉ doanh nghiệp lớn mới đủ sức duy trì.",
+  "en": "gaining functions only large companies could previously afford to maintain.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bộ chỉ số điều hành",
+  "en": "The operating scorecard",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Sáu chỉ số kinh tế và ngưỡng lành mạnh",
+  "en": "Six economic metrics and their healthy ranges",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Checklist 30 / 60 / 90 ngày để tự làm",
+  "en": "A 30 / 60 / 90-day checklist to run yourself",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nếu anh chị muốn bắt đầu một mình, đây là thứ tự chúng tôi khuyên — và cũng là thứ tự chúng tôi làm khi đồng hành.",
+  "en": "If you want to start on your own, this is the order we recommend — and the order we follow when we work alongside you.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Liệt kê quy trình hiện tại kèm thời gian tiêu tốn",
+  "en": "List every current process with the time it consumes",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chọn đúng ba quy trình: nhiều lặp lại, rủi ro thấp, đo được",
+  "en": "Pick exactly three processes: highly repeated, low risk, measurable",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Viết SOP",
+  "en": "Write the SOP",
+  "nguon": "markup"
+ },
+ {
+  "vi": "trước khi",
+  "en": "before",
+  "nguon": "markup"
+ },
+ {
+  "vi": "tạo bất kỳ agent nào",
+  "en": "creating any agent",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Gom dữ liệu khách hàng về một chỗ",
+  "en": "Consolidate customer data into one place",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thiết lập trần chi phí AI",
+  "en": "Set a hard AI spend ceiling",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba agent ở L1–L2, đo tỷ lệ đầu ra được duyệt",
+  "en": "Three agents at L1–L2, measure approval rate",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kết nối 3–5 tích hợp: email, CRM, kế toán, Zalo, sàn",
+  "en": "Connect 3–5 integrations: email, CRM, accounting, messaging, marketplaces",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Knowledge base: chính sách, sản phẩm, câu hỏi thường gặp",
+  "en": "Knowledge base: policies, products, frequently asked questions",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thiết lập audit log và kill switch",
+  "en": "Set up the audit log and kill switch",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ký hợp đồng kế toán ngoài và tư vấn pháp lý",
+  "en": "Engage an external accountant and legal counsel",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nâng ít nhất một quy trình lên L3 có rollback",
+  "en": "Raise at least one process to L3 with rollback",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chạy eval suite lần đầu, ghi lại điểm gốc",
+  "en": "Run the eval suite once, record the baseline",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Khởi động quy trình nội dung một gốc nhiều nhánh",
+  "en": "Start the one-root-many-branches content process",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Báo cáo ngoại lệ hàng tuần cho CEO",
+  "en": "Weekly exception report to the CEO",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Rà soát tuân thủ và đặt lịch với cố vấn",
+  "en": "Compliance review and advisor scheduling",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tổng quan định hướng",
+  "en": "Strategic overview",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn dòng kinh doanh",
+  "en": "Four business lines",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba dòng đầu là chuỗi giá trị tự nhiên: chẩn đoán dẫn tới triển khai, triển khai cần đào tạo để bàn giao được. Dòng thứ tư là kết quả tích lũy của ba dòng trên.",
+  "en": "The first three lines form a natural value chain: the diagnostic leads to delivery, and delivery needs training to be handed over. The fourth line is what the first three accumulate.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hệ sinh thái LATTICE",
+  "en": "The LATTICE ecosystem",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mẫu kiến trúc và eval tích lũy quay lại rút ngắn chẩn đoán. Học viên Academy trở thành khách hàng và người giới thiệu.",
+  "en": "Accumulated patterns and evals feed back and shorten the diagnostic. Academy graduates become clients and referrers.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn dòng nuôi nhau.",
+  "en": "Four lines feeding each other.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "SƠ ĐỒ 06",
+  "en": "FIGURE 06",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn dòng nuôi nhau như thế nào",
+  "en": "How the four lines feed each other",
+  "nguon": "markup"
+ },
+ {
+  "vi": "↑ Mẫu kiến trúc và eval tích lũy quay lại rút ngắn chẩn đoán",
+  "en": "↑ Accumulated patterns and evals feed back and shorten the diagnostic",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chẩn đoán · lộ trình",
+  "en": "Diagnostic · roadmap",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thiết kế · triển khai",
+  "en": "Design · build",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chuyển giao năng lực",
+  "en": "Capability transfer",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mẫu · eval · đối tác",
+  "en": "Patterns · evals · partners",
+  "nguon": "markup"
+ },
+ {
+  "vi": "↓ Học viên Academy trở thành khách hàng và người giới thiệu",
+  "en": "↓ Academy graduates become clients and referrers",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn nguồn doanh thu, bốn nhịp khác nhau",
+  "en": "Four revenue streams, four different cadences",
+  "nguon": "markup"
+ },
+ {
+  "vi": "NGUỒN",
+  "en": "SOURCE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "HÌNH THỨC",
+  "en": "FORMAT",
+  "nguon": "markup"
+ },
+ {
+  "vi": "NHỊP",
+  "en": "CADENCE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "VAI TRÒ TRONG DANH MỤC",
+  "en": "ROLE IN THE PORTFOLIO",
+  "nguon": "markup"
+ },
+ {
+  "vi": "VAI TRÒ",
+  "en": "ROLE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nguyên tắc định giá",
+  "en": "Pricing principle",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Báo giá theo phạm vi công việc sau buổi chẩn đoán, không theo bảng giá cố định — vì trần tự động hóa của mỗi mô hình khác nhau quá xa để định giá trước.",
+  "en": "We quote on scope after the diagnostic, not from a fixed price list — because automation ceilings differ far too much between models to price in advance.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Buổi chẩn đoán đầu tiên miễn phí và khách hàng nhận được kết quả dùng được kể cả khi không hợp tác tiếp.",
+  "en": "The first diagnostic is free, and you leave with something usable even if we never work together again.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chỉ số theo dõi nội bộ: doanh thu trên người · tỷ lệ chuyển đổi từ chẩn đoán sang triển khai · tỷ lệ khách hàng chuyển sang gói đồng hành · số mẫu kiến trúc tích lũy theo ngành · tỷ lệ học viên Academy trở thành khách hàng.",
+  "en": "Internal metrics: revenue per person · conversion from diagnostic to delivery · share of clients moving onto ongoing support · architecture patterns accumulated per sector · share of Academy participants who become clients.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Lộ trình ba giai đoạn",
+  "en": "A three-phase roadmap",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Từ dịch vụ dự án sang tài sản có đòn bẩy.",
+  "en": "From project services to leveraged assets.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "SƠ ĐỒ 12",
+  "en": "FIGURE 12",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Từ dịch vụ dự án sang tài sản có đòn bẩy",
+  "en": "From project services to leveraged assets",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba giai đoạn, mỗi giai đoạn đổi một thứ: phương pháp, cách nhân rộng, rồi cấu trúc doanh thu.",
+  "en": "Three phases, each changing one thing: the method, the way it scales, then the revenue structure.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GĐ 1 · CHỨNG MINH PHƯƠNG PHÁP",
+  "en": "P1 · PROVE THE METHOD",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hoàn thiện phương pháp trên số ít khách hàng thật, 2–3 ngành",
+  "en": "Refine the method on a handful of real clients across 2–3 sectors",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GĐ 2 · NHÂN RỘNG QUA ACADEMY",
+  "en": "P2 · SCALE THROUGH ACADEMY",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đóng gói thành ba lộ trình đào tạo, tách doanh thu khỏi giờ công",
+  "en": "Package the method into three training tracks; decouple revenue from billable hours",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GĐ 3 · HỆ SINH THÁI &amp; NHƯỢNG QUYỀN",
+  "en": "P3 · ECOSYSTEM &amp; LICENSING",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Cấp phép mẫu kiến trúc, đào tạo đối tác theo vùng và ngành",
+  "en": "License architecture patterns, train partners by region and sector",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nguyên tắc xuyên suốt: không tăng quy mô nhanh hơn tốc độ tích lũy phương pháp. Một công ty tư vấn AI mà tự vi phạm nguyên tắc “ít mà sâu” sẽ mất chính thứ mình đang bán.",
+  "en": "The principle throughout: never scale faster than the method accumulates. An AI consultancy that breaks its own “few and deep” rule loses the very thing it sells.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Không tăng quy mô nhanh hơn tốc độ tích lũy phương pháp.",
+  "en": "Never scale faster than the method accumulates.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Một công ty tư vấn AI mà tự mình vi phạm nguyên tắc \"ít mà sâu\" sẽ mất chính thứ mình đang bán.",
+  "en": "An AI consultancy that breaks its own \"few and deep\" principle loses the very thing it sells.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Phương pháp triển khai",
+  "en": "Delivery Method",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Từ khung chiến lược sang đề án triển khai",
+  "en": "From strategy frame to delivery plan",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đây là bộ khung chúng tôi dùng khi bắt tay làm: mô hình vận hành, cách chọn quy trình, hợp đồng vận hành cho từng agent, kiến trúc dữ liệu và quyền, chương trình 90 ngày có cổng nghiệm thu, và hồ sơ quản trị bắt buộc.",
+  "en": "This is the frame we use when we start work: the operating model, how processes are chosen, an operating contract per agent, the data and permission architecture, a 90-day programme with acceptance gates, and the mandatory governance records.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mục 22",
+  "en": "Section 22",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mô hình vận hành mục tiêu",
+  "en": "The target operating model",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Doanh nghiệp 1–3 người không vận hành theo sơ đồ phòng ban truyền thống. Nó vận hành theo năm vòng lặp có chủ sở hữu, dữ liệu và nhịp điều hành riêng.",
+  "en": "A business of 1–3 people does not run on a traditional departmental chart. It runs on five loops, each with its own owner, data and operating cadence.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CHỦ SỞ HỮU",
+  "en": "OWNER",
+  "nguon": "markup"
+ },
+ {
+  "vi": "AI THỰC HIỆN",
+  "en": "AI EXECUTES",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CON NGƯỜI GIỮ QUYỀN",
+  "en": "HUMAN RETAINS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nhịp điều hành tối thiểu",
+  "en": "The minimum operating cadence",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dashboard CEO chỉ có sáu khối",
+  "en": "The CEO dashboard has only six blocks",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mọi báo cáo không làm thay đổi một trong sáu khối này không được đẩy lên CEO theo thời gian thực.",
+  "en": "Any report that does not change one of these six blocks must not reach the CEO in real time.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tầng con người",
+  "en": "The human layer",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Trong doanh nghiệp một người, ba vai trò hợp nhất. Rủi ro lớn nhất khi đó là CEO trở thành nút thắt cổ chai.",
+  "en": "In a one-person business the three roles merge. The greatest risk then is the CEO becoming the bottleneck.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "KHÔNG ỦY QUYỀN CHO AI",
+  "en": "NEVER DELEGATED TO AI",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CHỈ BÁO QUÁ TẢI",
+  "en": "OVERLOAD SIGNAL",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ai quyết cái gì khi đội có 1, 3 hay 5 người",
+  "en": "Who decides what at 1, 3 or 5 people",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Cùng một loại quyết định, quyền dịch chuyển khi thêm người. Bảng này để không ô nào phải hỏi lại.",
+  "en": "For the same decision type, authority shifts as people are added. This table exists so no cell needs a second ask.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "LOẠI QUYẾT ĐỊNH",
+  "en": "DECISION TYPE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Quyền hạ mức luôn rộng hơn quyền nâng mức.",
+  "en": "The right to demote is always broader than the right to promote.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ai cũng được kéo phanh; chỉ một người được nhả phanh. Đó là lý do dòng hạ mức giống hệt nhau ở cả ba quy mô.",
+  "en": "Anyone may pull the brake; only one person may release it. That is why the demotion row is identical at all three sizes.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Từ bốn người trở lên, mỗi loại quyết định phải có đúng một chủ sở hữu.",
+  "en": "From four people onward, every decision type must have exactly one owner.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hai người cùng được duyệt nghĩa là không ai chịu trách nhiệm. Ma trận tồn tại để không ô nào ghi hai tên.",
+  "en": "Two people able to approve means nobody is accountable. The matrix exists so no cell carries two names.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CEO thành nút thắt cổ chai — nhận diện sớm",
+  "en": "The CEO as bottleneck — spotting it early",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ngưỡng thêm người thứ 4, thứ 5",
+  "en": "When to add the 4th and 5th person",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thêm người là quyết định đắt và khó đảo. Chỉ thêm khi chỉ báo chạm ngưỡng, không thêm vì cảm giác bận.",
+  "en": "Adding a person is expensive and hard to undo. Add only when an indicator crosses its threshold, never because you feel busy.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CHỈ BÁO CHẠM NGƯỠNG",
+  "en": "THRESHOLD SIGNAL",
+  "nguon": "markup"
+ },
+ {
+  "vi": "NGƯỜI MỚI NHẬN GÌ",
+  "en": "WHAT THE NEW HIRE OWNS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Vành đai người bên ngoài",
+  "en": "The outer ring of people",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Doanh nghiệp một người vẫn cần một mạng lưới cố định, dù không phải nhân viên. Đây là thành phần bắt buộc của kiến trúc, không phải tùy chọn.",
+  "en": "A one-person business still needs a fixed network, even without employees. This is a mandatory component of the architecture, not an option.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mục 23",
+  "en": "Section 23",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chọn quy trình để AI-hóa",
+  "en": "Choosing which processes to automate",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mỗi quy trình được chấm từ 1–5 theo bảy biến. Điểm ưu tiên quyết định thứ tự làm, không phải cảm giác về mức độ khó chịu.",
+  "en": "Each process is scored 1–5 across seven variables. The priority score sets the order of work, not how annoying it feels.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CÔNG THỨC ƯU TIÊN",
+  "en": "PRIORITY FORMULA",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Priority Score = (Tần suất × Thời gian × Chuẩn hóa × Giá trị dữ liệu × Khả năng phục hồi) ÷ (Rủi ro × Độ phức tạp tích hợp)",
+  "en": "Priority Score = (Frequency × Time × Standardisation × Data value × Recoverability) ÷ (Risk × Integration complexity)",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Quy tắc chọn danh mục đầu tiên:",
+  "en": "Rule for choosing the first portfolio:",
+  "nguon": "markup"
+ },
+ {
+  "vi": "chọn đúng ba quy trình có điểm cao, nhưng không chọn quá một quy trình thuộc vùng tài chính, pháp lý hoặc sức khỏe.",
+  "en": "pick exactly three high-scoring processes, but no more than one from the finance, legal or health domains.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn nhóm xử lý",
+  "en": "Four treatment groups",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Process Passport — hộ chiếu quy trình",
+  "en": "Process Passport",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mỗi quy trình phải có một hồ sơ đầy đủ tám nhóm trường trước khi được chuyển lên L2.",
+  "en": "Every process needs a complete record across eight field groups before it can move to L2.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mục 24 – 25",
+  "en": "Sections 24 – 25",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Charter, dữ liệu và quyền hạn",
+  "en": "Charter, data and permissions",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Charter là hợp đồng vận hành của agent. Prompt chỉ là một thành phần bên trong charter và không được xem là cơ chế kiểm soát.",
+  "en": "The charter is the agent's operating contract. A prompt is only one component inside it and is never a control mechanism.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "agent_id: sales_qualification_v1 mission: Đánh giá lead và đề xuất bước tiếp theo owner: ai_sales_manager business_kpi: qualified_lead_rate allowed_inputs: - crm.lead_profile - crm.interactions allowed_actions: - crm.update_score - crm.create_followup_draft forbidden_actions: - send_contract - approve_discount - access_payment_data autonomy_level: L2 budget_limit_per_run: defined_by_policy escalate_when: - requested_discount_above_policy - legal_or_health_claim_detected eval_suite: sales_qualification_eval_v1 rollback: restore_previous_crm_state review_cycle: monthly",
+  "en": "agent_id: sales_qualification_v1 mission: Đánh giá lead và đề xuất bước tiếp theo owner: ai_sales_manager business_kpi: qualified_lead_rate allowed_inputs: - crm.lead_profile - crm.interactions allowed_actions: - crm.update_score - crm.create_followup_draft forbidden_actions: - send_contract - approve_discount - access_payment_data autonomy_level: L2 budget_limit_per_run: defined_by_policy escalate_when: - requested_discount_above_policy - legal_or_health_claim_detected eval_suite: sales_qualification_eval_v1 rollback: restore_previous_crm_state review_cycle: monthly",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn loại bộ nhớ phải tách biệt",
+  "en": "Four kinds of memory must stay separate",
+  "nguon": "markup"
+ },
+ {
+  "vi": "THỜI HẠN",
+  "en": "DEADLINE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "QUYỀN GHI",
+  "en": "WRITE ACCESS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Không đưa dữ liệu giao dịch chính thức vào vector database rồi xem đó là sổ cái. Vector store hỗ trợ truy xuất; nó không thay thế CRM, ERP hay hệ thống kế toán.",
+  "en": "Do not push transactional records into a vector database and treat it as the ledger. A vector store supports retrieval; it does not replace CRM, ERP or the accounting system.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ma trận quyền tối thiểu",
+  "en": "The minimum permission matrix",
+  "nguon": "markup"
+ },
+ {
+  "vi": "KHÁCH HÀNG",
+  "en": "CUSTOMERS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "TÀI CHÍNH",
+  "en": "FINANCE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "NỘI DUNG",
+  "en": "CONTENT",
+  "nguon": "markup"
+ },
+ {
+  "vi": "HỢP ĐỒNG",
+  "en": "CONTRACTS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GỬI RA NGOÀI",
+  "en": "OUTBOUND SEND",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nguyên tắc: cấp quyền cho hành động cụ thể, không cấp quyền theo danh xưng rộng như “manager” hoặc “admin”.",
+  "en": "Principle: grant permission for a specific action, never by broad title such as “manager” or “admin”.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Data Readiness Gate",
+  "en": "Data Readiness Gate",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Một quy trình chưa được kết nối agent nếu:",
+  "en": "A process is not ready for an agent if:",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mục 26 · 29",
+  "en": "Sections 26 · 29",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiến trúc tối thiểu và ngân sách",
+  "en": "Minimum architecture and budget",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tám năng lực, mỗi năng lực có một mức tối thiểu và một cái bẫy nên tránh trong giai đoạn đầu.",
+  "en": "Eight capabilities, each with a minimum bar and a trap to avoid early on.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "YÊU CẦU TỐI THIỂU",
+  "en": "MINIMUM REQUIREMENT",
+  "nguon": "markup"
+ },
+ {
+  "vi": "KHÔNG NÊN LÀM NGAY",
+  "en": "DO NOT START WITH",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mua hay xây",
+  "en": "Buy or build",
+  "nguon": "markup"
+ },
+ {
+  "vi": "MUA / DÙNG SẴN",
+  "en": "BUY / USE EXISTING",
+  "nguon": "markup"
+ },
+ {
+  "vi": "TỰ XÂY",
+  "en": "BUILD IN-HOUSE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Quy tắc kinh tế:",
+  "en": "Economic rule:",
+  "nguon": "markup"
+ },
+ {
+  "vi": "nếu một năng lực không tạo khác biệt và chi phí mua dưới chi phí của 40 giờ xây cộng bảo trì sáu tháng, ưu tiên mua.",
+  "en": "if a capability creates no differentiation and costs less to buy than 40 hours of build plus six months of maintenance, buy it.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba gói ngân sách",
+  "en": "Three budget tiers",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ngân sách phải được quyết định theo giá trị quy trình, không theo số lượng agent.",
+  "en": "Budget must follow the value of the process, not the number of agents.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "BUSINESS CASE CHO TỪNG QUY TRÌNH",
+  "en": "BUSINESS CASE PER PROCESS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Giá trị tháng = giờ người tiết kiệm + lỗi tránh được + doanh thu tăng thêm − chi phí AI − chi phí giám sát − chi phí duy trì",
+  "en": "Monthly value = human hours saved + errors avoided + incremental revenue − AI cost − supervision cost − maintenance cost",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CHỈ PHÊ DUYỆT KHI",
+  "en": "APPROVE ONLY IF",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mục 27",
+  "en": "Section 27",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba cấu hình tham chiếu",
+  "en": "Three reference configurations",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba bộ cấu hình ban đầu theo nhóm ngành — dùng làm điểm xuất phát, không phải khuôn cố định.",
+  "en": "Three starting configurations by sector — a point of departure, not a fixed template.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "NGƯỜI",
+  "en": "PEOPLE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "AI MANAGER",
+  "en": "AI MANAGERS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "BA QUY TRÌNH ĐẦU",
+  "en": "FIRST THREE PROCESSES",
+  "nguon": "markup"
+ },
+ {
+  "vi": "DỮ LIỆU LÕI",
+  "en": "CORE DATA",
+  "nguon": "markup"
+ },
+ {
+  "vi": "KPI CHÍNH",
+  "en": "PRIMARY KPI",
+  "nguon": "markup"
+ },
+ {
+  "vi": "VÙNG ĐỎ",
+  "en": "RED ZONE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mục 28",
+  "en": "Section 28",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chương trình 90 ngày",
+  "en": "The 90-day programme",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn giai đoạn, mỗi giai đoạn kết thúc bằng một cổng nghiệm thu. Không qua cổng thì không đi tiếp — đây là điều tách dự án thành công khỏi dự án kéo dài 18 tháng.",
+  "en": "Four phases, each ending at an acceptance gate. No gate, no progression — this is what separates a successful project from one that drags on for 18 months.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mục 30 – 33",
+  "en": "Sections 30 – 33",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Scorecard, hồ sơ và điều kiện khởi động",
+  "en": "Scorecards, records and start conditions",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Scorecard của một agent",
+  "en": "An agent scorecard",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Trigger hạ cấp bắt buộc",
+  "en": "Mandatory demotion triggers",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Agent tự động rơi về L2 hoặc dừng khi có một trong các điều kiện sau:",
+  "en": "An agent drops automatically to L2 or halts if any of these occurs:",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Việc khôi phục mức tự chủ cần có root-cause analysis, sửa rule/eval và phê duyệt của người.",
+  "en": "Restoring autonomy requires root-cause analysis, a rule or eval fix, and human approval.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chín hồ sơ quản trị bắt buộc",
+  "en": "Nine mandatory governance records",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Business Continuity Pack",
+  "en": "Business Continuity Pack",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Sổ nguồn tối thiểu đã đối chiếu",
+  "en": "Minimum source ledger, reconciled",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Các số liệu còn lại ở phần Xu hướng cần được hoàn thiện thành sổ nguồn có URL, ngày truy cập, phạm vi khảo sát và mức tin cậy trước khi phát hành ra bên ngoài.",
+  "en": "The remaining figures in the Outlook section need to be completed into a source register with URLs, access dates, survey scope and confidence level before external release.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tám đầu vào để khởi động",
+  "en": "Eight inputs to get started",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Để biến khung này thành thiết kế cho một doanh nghiệp cụ thể, chỉ cần khóa tám đầu vào.",
+  "en": "To turn this frame into a design for one specific business, you only need to lock eight inputs.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Sau khi có tám đầu vào, đầu ra thiết kế chi tiết gồm: sơ đồ Target Operating Model, bản đồ agent, ma trận quyền, kiến trúc dữ liệu và tích hợp, ba Process Passport đầu tiên, backlog 90 ngày, ngân sách và bộ KPI nghiệm thu.",
+  "en": "Once the eight inputs are locked, the detailed design output includes: a target operating model diagram, an agent map, the permission matrix, the data and integration architecture, the first three Process Passports, a 90-day backlog, the budget, and the acceptance KPIs.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Khóa tám đầu vào trong 60 phút",
+  "en": "Lock the eight inputs in 60 minutes",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Buổi chẩn đoán đầu tiên chính là để thu đủ tám đầu vào này và trả lại cho anh chị một baseline có số.",
+  "en": "The first diagnostic exists to collect exactly these eight inputs and hand you back a baseline with numbers in it.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐẶT LỊCH CHẨN ĐOÁN →",
+  "en": "BOOK A DIAGNOSTIC →",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Blockchain &amp; Công nghệ tài chính",
+  "en": "Blockchain &amp; Financial Technology",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Khi tài sản mã hóa được hợp pháp hóa",
+  "en": "When digital assets become lawful",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Việt Nam vừa đi trước phần lớn thế giới ở một điểm: luật hóa tài sản số",
+  "en": "A handful of jurisdictions have moved ahead of the rest: they legislated digital assets",
+  "nguon": "markup"
+ },
+ {
+  "vi": "trước",
+  "en": "before",
+  "nguon": "markup"
+ },
+ {
+  "vi": "khi thị trường bùng nổ. Điều đó mở ra khả năng khép kín phần cuối cùng còn thiếu của mô hình doanh nghiệp một người —",
+  "en": "before the market took off. That opens the possibility of closing the last missing piece of the one-person model —",
+  "nguon": "markup"
+ },
+ {
+  "vi": "dòng tiền",
+  "en": "cash flow",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đây là",
+  "en": "This is",
+  "nguon": "markup"
+ },
+ {
+  "vi": "cơ hội mở",
+  "en": "an open opportunity",
+  "nguon": "markup"
+ },
+ {
+  "vi": "— một hướng nghiên cứu và chuẩn bị năng lực, không phải sản phẩm đang bán. Chúng tôi trình bày như một kịch bản, không như một cam kết.",
+  "en": "— a research direction and a capability we are preparing, not a product we sell today. We present it as a scenario, not a commitment.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Các mốc pháp lý đã có",
+  "en": "The legal milestones already in place",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Khung định nghĩa pháp lý, cơ chế thí điểm 5 năm và hướng dẫn kế toán ban đầu đều đã ban hành.",
+  "en": "Legal definitions, a five-year pilot mechanism and initial accounting guidance have all been issued.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐÃ CÓ",
+  "en": "ALREADY IN PLACE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Khung định nghĩa pháp lý, cơ chế thí điểm 5 năm, và hướng dẫn kế toán ban đầu cho tổ chức tham gia thị trường.",
+  "en": "Legal definitions, a five-year pilot mechanism, and initial accounting guidance for market participants.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CHƯA CÓ",
+  "en": "NOT YET IN PLACE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chuẩn mực kế toán độc lập cho tài sản mã hóa; cơ chế thanh toán doanh nghiệp thường ngày; khung thuế chi tiết cho giao dịch on-chain.",
+  "en": "A standalone accounting standard for crypto-assets; an everyday corporate payment rail; a detailed tax framework for on-chain transactions.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mảnh ghép cuối: khép kín dòng tiền",
+  "en": "The final piece: closing the cash loop",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bộ máy AI hiện đã khép kín ở luồng",
+  "en": "The AI machine already closes the loop on",
+  "nguon": "markup"
+ },
+ {
+  "vi": "thông tin",
+  "en": "information",
+  "nguon": "markup"
+ },
+ {
+  "vi": ": agent đọc dữ liệu, ra quyết định, ghi lại bằng chứng. Nhưng luồng",
+  "en": ": agents read data, decide, and record evidence. But the flow of",
+  "nguon": "markup"
+ },
+ {
+  "vi": "giá trị",
+  "en": "value",
+  "nguon": "markup"
+ },
+ {
+  "vi": "vẫn đứt — mọi khoản tiền phải qua thao tác thủ công ở ngân hàng, và sổ sách được đối chiếu sau khi sự việc đã xảy ra.",
+  "en": "is still broken — every payment passes through a manual step at the bank, and the books are reconciled after the fact.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "SƠ ĐỒ 07",
+  "en": "FIGURE 07",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Vòng khép kín tài chính khi dòng tiền lên sổ cái",
+  "en": "The closed financial loop once cash moves on-ledger",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Sáu chặng, mỗi chặng ghi nhận tức thời và kiểm toán được. Cửa phê duyệt của con người vẫn nằm đúng chỗ cũ.",
+  "en": "Six stages, each recorded instantly and auditable. The human approval gate stays exactly where it was.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Doanh thu vào ví doanh nghiệp",
+  "en": "Revenue lands in the company wallet",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hợp đồng thông minh chia quỹ",
+  "en": "Smart contracts split the funds",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Agent chi theo chính sách",
+  "en": "Agent spends within policy",
+  "nguon": "markup"
+ },
+ {
+  "vi": "MỘT SỔ CÁI",
+  "en": "ONE LEDGER",
+  "nguon": "markup"
+ },
+ {
+  "vi": "cho cả AI lẫn người",
+  "en": "for both AI and people",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Agent tài chính đọc thời gian thực",
+  "en": "The finance agent reads in real time",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Không còn đối soát sau",
+  "en": "No month-end reconciliation",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Người ký khoản vượt ngưỡng",
+  "en": "A human signs above threshold",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Điểm then chốt: chặng 4",
+  "en": "The key point: stage 4",
+  "nguon": "markup"
+ },
+ {
+  "vi": "không biến mất",
+  "en": "does not disappear",
+  "nguon": "markup"
+ },
+ {
+  "vi": ". Blockchain làm cho việc ghi nhận trở nên tự động và không sửa được — nó không thay con người quyết định khoản nào đáng chi.",
+  "en": ". Blockchain makes recording automatic and tamper-proof — it does not replace the human deciding which spend is worth making.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Điểm then chốt:",
+  "en": "The key point:",
+  "nguon": "markup"
+ },
+ {
+  "vi": "chặng 4 không biến mất.",
+  "en": "stage 4 does not disappear.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Blockchain làm việc ghi nhận trở nên tự động và không sửa được — nó không thay con người quyết định khoản nào đáng chi.",
+  "en": "Blockchain makes recording automatic and tamper-proof — it does not replace the human deciding which spend is worth making.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Sáu năng lực tài chính thay đổi bản chất",
+  "en": "Six financial capabilities change in kind",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Cột cuối là mức tự chủ mà agent tài chính có thể đạt khi dòng tiền lên sổ cái chung.",
+  "en": "The last column is the autonomy a finance agent can reach once cash sits on a shared ledger.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "NĂNG LỰC",
+  "en": "CAPABILITY",
+  "nguon": "markup"
+ },
+ {
+  "vi": "HÔM NAY",
+  "en": "TODAY",
+  "nguon": "markup"
+ },
+ {
+  "vi": "KHI KHÉP KÍN TRÊN SỔ CÁI",
+  "en": "ONCE CLOSED ON-LEDGER",
+  "nguon": "markup"
+ },
+ {
+  "vi": "TỰ CHỦ AI",
+  "en": "AI AUTONOMY",
+  "nguon": "markup"
+ },
+ {
+  "vi": "KHI KHÉP KÍN",
+  "en": "ONCE CLOSED ON-LEDGER",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ở phần xu hướng, ba rủi ro cấu trúc của mô hình một người là",
+  "en": "In the outlook section, the three structural risks of the one-person model are",
+  "nguon": "markup"
+ },
+ {
+  "vi": "khó vay vốn",
+  "en": "hard to raise credit",
+  "nguon": "markup"
+ },
+ {
+  "vi": "chi phí tuân thủ tăng",
+  "en": "rising compliance cost",
+  "nguon": "markup"
+ },
+ {
+  "vi": "và",
+  "en": "and",
+  "nguon": "markup"
+ },
+ {
+  "vi": "không ai kiểm tra chéo người chủ",
+  "en": "no one cross-checks the owner",
+  "nguon": "markup"
+ },
+ {
+  "vi": ". Cả ba đều là bài toán về niềm tin và ghi nhận — chính là thứ một sổ cái chung giải quyết tốt hơn bất kỳ phần mềm kế toán nào.",
+  "en": ". All three are problems of trust and record-keeping — precisely what a shared ledger solves better than any accounting package.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chuẩn bị chứ không đánh cược",
+  "en": "Prepare, do not gamble",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba tầng chuẩn bị — tầng nào cũng có giá trị riêng kể cả khi không bao giờ đi tới tầng cuối.",
+  "en": "Three tiers of preparation — each is worth doing even if you never reach the last one.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bốn ranh giới không vượt",
+  "en": "Four lines we do not cross",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Vị thế của LATTICE Next",
+  "en": "Where LATTICE Next stands",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Theo dõi qua",
+  "en": "Monitored through",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Regulatory Monitor",
+  "en": "Regulatory Monitor",
+  "nguon": "markup"
+ },
+ {
+  "vi": "— một trong bốn dòng R&amp;D thường trực — và chuẩn bị mẫu kiến trúc sẵn sàng. Khi khung pháp lý mở, khách hàng đã có dữ liệu sạch và bộ máy kiểm soát sẽ chuyển đổi trong vài tuần thay vì vài năm.",
+  "en": "— one of four standing R&amp;D streams — and keeping architecture patterns ready. When the legal framework opens, a client with clean data and a working control system converts in weeks rather than years.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dòng 03 · LATTICE Academy",
+  "en": "Line 03 · LATTICE Academy",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đào tạo người vận hành bộ máy AI",
+  "en": "Training the people who run the AI machine",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Không phải dạy dùng công cụ. Dạy thiết kế quyền hạn, đọc số đo, và quyết định khi nào nên tin AI.",
+  "en": "Not how to use tools. How to design permissions, read the numbers, and decide when the AI can be trusted.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Vì sao có dòng này",
+  "en": "Why this line exists",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đào tạo không phải dịch vụ bán thêm",
+  "en": "Training is not an upsell",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Trong mô hình 1–3 người, người chủ vừa là CEO vừa là người vận hành hệ thống. Nếu họ không hiểu vì sao một agent được đặt ở L2 chứ không phải L3, họ sẽ hoặc không dám dùng, hoặc dùng sai.",
+  "en": "In a 1–3 person model the owner is both CEO and system operator. If they do not understand why an agent sits at L2 rather than L3, they will either be afraid to use it or use it wrongly.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đào tạo là điều kiện để bàn giao thành công.",
+  "en": "Training is the precondition for a successful handover.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Không có dòng này thì bàn giao chỉ là chuyển giao tài khoản — hệ thống sẽ chết sau vài tháng. Đó là lý do Academy đứng ngang hàng với tư vấn và triển khai, không nằm ở phần phụ lục.",
+  "en": "Without this line, a handover is just a transfer of account credentials — and the system dies within months. That is why Academy sits alongside advisory and delivery, not in an appendix.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba lộ trình",
+  "en": "Three tracks",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba mức độ, ba đối tượng khác nhau. Lộ trình C đồng thời là chương trình đào tạo đối tác nhượng quyền.",
+  "en": "Three levels for three different audiences. Track C doubles as the training programme for licensed partners.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "DÀNH CHO",
+  "en": "FOR",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐIỀU KIỆN",
+  "en": "PREREQUISITE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chuyên đề theo ngành và theo động cơ",
+  "en": "Sector and engine specialisations",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Học phần ngắn, đi thẳng vào một động cơ hoặc một nghĩa vụ tuân thủ cụ thể.",
+  "en": "Short modules that go straight into one engine or one specific compliance duty.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hình thức",
+  "en": "Formats",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đối tượng mở rộng",
+  "en": "Wider audiences",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hiệp hội ngành nghề, chương trình hỗ trợ doanh nghiệp nhỏ của địa phương, trường đại học và trung tâm khởi nghiệp — những kênh đưa phương pháp tới số đông mà không cần tăng tuyến tính nhân sự tư vấn.",
+  "en": "Trade associations, local small-business support programmes, universities and startup centres — channels that carry the method to scale without adding consultants linearly.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Academy là dòng doanh thu lặp lại, biên cao",
+  "en": "Academy is recurring, high-margin revenue",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mở rộng được mà không tăng tuyến tính nhân sự — và là kênh nuôi khách hàng cho hai dòng còn lại.",
+  "en": "It scales without adding headcount linearly — and it feeds clients into the other two lines.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐĂNG KÝ ĐÀO TẠO →",
+  "en": "ENQUIRE ABOUT TRAINING →",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bộ nhận diện LATTICE Next",
+  "en": "The LATTICE Next identity",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Công ty Cổ phần Giải pháp LATTICE Next — LATTICE Next Solutions Joint Stock Company. Tư vấn, kiến trúc và cung cấp giải pháp toàn diện cho các mô hình kinh doanh mới.",
+  "en": "LATTICE Next Solutions Joint Stock Company. Advisory, architecture and end-to-end delivery for the next generation of business models.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Vì sao là “Lattice Next”",
+  "en": "Why “Lattice Next”",
+  "nguon": "markup"
+ },
+ {
+  "vi": "là giàn tinh thể — cấu trúc mắt lưới trong đó mỗi nút liên kết với các nút lân cận theo một quy luật lặp lại. Ba đặc tính của nó chính là ba luận điểm của công ty:",
+  "en": "is a crystal lattice — a mesh in which every node connects to its neighbours by a repeating rule. Its three properties are the firm's three propositions:",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bền nhờ liên kết, không nhờ khối lượng",
+  "en": "Strong through connection, not through mass",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tháp Eiffel nặng 7.300 tấn thép, nhưng nấu chảy đổ vừa chân tháp thì lớp thép chỉ dày chừng 6 cm. Nó đứng nhờ cấu trúc, không nhờ khối lượng. Doanh nghiệp một người cũng vậy: sức mạnh nằm ở cách các nút được nối, không ở số nhân sự.",
+  "en": "The Eiffel Tower holds 7,300 tonnes of iron, yet melted down across its own footprint it would form a layer only about 6 cm deep. It stands through structure, not mass. A one-person business is the same: the strength is in how the nodes connect, not in headcount.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mở rộng bằng cách lặp một đơn vị đơn giản",
+  "en": "Scales by repeating one simple unit",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thêm năng lực là thêm một ô lưới giống hệt, không phải xây lại từ đầu. Đó đúng là cách một Team AI lớn lên.",
+  "en": "Adding capability means adding one identical cell, not rebuilding from scratch. That is exactly how an AI team grows.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Vừa là kiến trúc, vừa là mạng lưới",
+  "en": "Both a structure and a network",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hai từ khóa trong định vị công ty nằm gọn trong một hình. Tên gọi không cần giải thích thêm.",
+  "en": "Both positioning keywords sit inside one shape. The name needs no further explanation.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Vì sao thêm “Next”.",
+  "en": "Why add “Next”.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Lattice mô tả",
+  "en": "Lattice describes",
+  "nguon": "markup"
+ },
+ {
+  "vi": "cấu trúc",
+  "en": "structure",
+  "nguon": "markup"
+ },
+ {
+  "vi": "; Next mô tả",
+  "en": "; Next describes",
+  "nguon": "markup"
+ },
+ {
+  "vi": "thời điểm",
+  "en": "timing",
+  "nguon": "markup"
+ },
+ {
+  "vi": ". Khách hàng tìm đến công ty không phải để tối ưu mô hình đang chạy mà để dựng mô hình kế tiếp — thứ chưa có tiền lệ trong ngành của họ. Ghép lại, tên đọc thành một lời hứa cụ thể: cấu trúc cho cái sắp tới.",
+  "en": ". Clients come to us not to optimise the model they already run but to build the next one — something without precedent in their sector. Together the name reads as a specific promise: structure for what comes next.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Định vị và thông điệp",
+  "en": "Positioning and message",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hệ thống logo",
+  "en": "The logo system",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dấu hiệu là một ô lưới hình thoi: bốn nút rỗng ở bốn đỉnh là các agent, nút đặc màu đỏ ở tâm là con người — người giữ quyền quyết định. Cấu trúc này đọc được ở mọi kích thước và là nguồn gốc của toàn bộ hoa văn nền.",
+  "en": "The mark is a diamond lattice cell: four open nodes at the vertices are the agents, the solid red node at the centre is the human — the one who holds the decision. The structure reads at any size and is the origin of every background pattern.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Vùng an toàn quanh logo bằng đường kính một nút. Kích thước nhỏ nhất: dấu hiệu 20&nbsp;px, khóa ngang 120&nbsp;px chiều rộng.",
+  "en": "Clear space around the logo equals one node diameter. Minimum sizes: mark 20&nbsp;px, horizontal lockup 120&nbsp;px wide.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Không được làm",
+  "en": "What not to do",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đổi màu nút tâm sang màu khác đỏ — nút tâm luôn là con người.",
+  "en": "Changing the centre node to any colour but red — the centre node is always the human.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kéo giãn, nghiêng, thêm đổ bóng hoặc gradient lên dấu hiệu.",
+  "en": "Stretching, skewing, or adding shadow or gradient to the mark.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đặt logo lên ảnh nhiều chi tiết mà không có lớp phủ mực.",
+  "en": "Placing the logo on a busy image without an ink overlay.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Viết tên là “Lattice” chữ thường trong văn bản chính thức — luôn là LATTICE.",
+  "en": "Writing the name as “Lattice” in lower case in official text — it is always LATTICE.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Màu, chữ và hình ảnh",
+  "en": "Colour, type and imagery",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đỏ tín hiệu · con người",
+  "en": "Signal red · people",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mực · chữ và cấu trúc",
+  "en": "Ink · type and structure",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Trung tính 700 · dữ liệu phụ",
+  "en": "Neutral 700 · secondary data",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Trung tính 400 · đường kẻ",
+  "en": "Neutral 400 · rules and borders",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nền phụ · khối nội dung",
+  "en": "Secondary ground · content blocks",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nền chủ đạo",
+  "en": "Primary background",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Quy tắc dùng màu:",
+  "en": "Colour rule:",
+  "nguon": "markup"
+ },
+ {
+  "vi": "mực và các bậc trung tính mang toàn bộ cấu trúc và dữ liệu. Đỏ tín hiệu là màu hiếm — chỉ dùng cho ba thứ: con người, ngưỡng cần chú ý, và ranh giới quyền quyết định. Nếu đỏ xuất hiện nhiều hơn 5% diện tích, nó không còn nghĩa.",
+  "en": "ink and the neutral steps carry all structure and data. Signal red is a rare colour — used for three things only: people, thresholds that demand attention, and the boundary of decision rights. If red covers more than 5% of the area, it stops meaning anything.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "HIỂN THỊ · ARCHIVO 800",
+  "en": "DISPLAY · ARCHIVO 800",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiến trúc mô hình kinh doanh mới",
+  "en": "Structure for what comes next",
+  "nguon": "markup"
+ },
+ {
+  "vi": "THÂN BÀI · ARCHIVO 400",
+  "en": "BODY · ARCHIVO 400",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Một bộ chữ duy nhất cho cả tiêu đề và thân bài — đọc bảng dày chữ không mỏi mắt, dấu tiếng Việt đầy đủ.",
+  "en": "A single typeface for both headings and body — dense tables stay readable, with full diacritic coverage.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "DỮ LIỆU · ARCHIVO 600",
+  "en": "DATA · ARCHIVO 600",
+  "nguon": "markup"
+ },
+ {
+  "vi": "L0 L1 L2 L3 L4 L5 · 88% · 44,1% · 5,1 tháng",
+  "en": "L0 L1 L2 L3 L4 L5 · 88% · 44.1% · 5.1 months",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Định hướng nhiếp ảnh",
+  "en": "Photography direction",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ảnh tuân theo bốn quy tắc:",
+  "en": "Photography follows four rules:",
+  "nguon": "markup"
+ },
+ {
+  "vi": "có cấu trúc nhìn thấy được",
+  "en": "visible structure",
+  "nguon": "markup"
+ },
+ {
+  "vi": "(giàn, lưới, nhịp cột, mặt đứng);",
+  "en": "(trusses, lattices, column rhythm, façades);",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ít người, không diễn",
+  "en": "few people, nothing staged",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ánh sáng tự nhiên, tương phản vừa",
+  "en": "natural light, moderate contrast",
+  "nguon": "markup"
+ },
+ {
+  "vi": "; và luôn in trắng đen. Ba ô dưới đây là vị trí ảnh đã bố trí sẵn trên website — nhấn liên kết để mở đúng từ khóa và thay ảnh vào.",
+  "en": "; and always in black and white. The three slots below are the image positions already laid out on the site — follow the link for the right search term and drop the image in.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ô ẢNH 01 — TRANG CHỦ, KHU VỰC HERO",
+  "en": "IMAGE 01 — HOME PAGE, HERO AREA",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GIÀN THÉP / MẶT ĐỨNG LƯỚI HÌNH HỌC",
+  "en": "STEEL TRUSS / GEOMETRIC LATTICE FAÇADE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tỷ lệ 21:9 · in trắng đen",
+  "en": "21:9 · black and white",
+  "nguon": "markup"
+ },
+ {
+  "vi": "pexels · geometric facade ↗",
+  "en": "pexels · geometric facade ↗",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ô ẢNH 02 — XU HƯỚNG, PHẦN VIỆT NAM",
+  "en": "IMAGE 02 — OUTLOOK, MARKET SECTION",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐƯỜNG PHỐ / CỬA HÀNG NHỎ / NGƯỜI BÁN HÀNG ONLINE",
+  "en": "STREET / SMALL SHOP / ONLINE SELLER",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tỷ lệ 21:9 · ưu tiên ảnh chụp tại Việt Nam",
+  "en": "21:9 · prefer photography shot on location",
+  "nguon": "markup"
+ },
+ {
+  "vi": "pexels · vietnam small business ↗",
+  "en": "pexels · small business owner ↗",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ô ẢNH 03 — NEXT SOLUTIONS, ĐỘNG CƠ SOCIAL",
+  "en": "IMAGE 03 — NEXT SOLUTIONS, SOCIAL ENGINE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "NGƯỜI QUAY VIDEO SẢN PHẨM / LIVESTREAM TẠI CHỖ LÀM VIỆC",
+  "en": "SOMEONE FILMING PRODUCT VIDEO / LIVESTREAM AT THEIR WORKSPACE",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tỷ lệ 16:9 · một người, không diễn · ánh sáng tự nhiên",
+  "en": "16:9 · one person, nothing staged · natural light",
+  "nguon": "markup"
+ },
+ {
+  "vi": "pexels · live streaming seller ↗",
+  "en": "pexels · live streaming seller ↗",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Liên hệ",
+  "en": "Contact",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Bắt đầu bằng 60 phút chẩn đoán",
+  "en": "Start with a 60-minute diagnostic",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Buổi đầu miễn phí. Kết thúc buổi này anh chị nhận được ba quy trình nên tự động hóa trước và ước lượng trần tự động hóa của mô hình — kể cả khi không làm việc tiếp với chúng tôi.",
+  "en": "The first session is free. You leave with the three processes to automate first and an estimate of your model's automation ceiling — even if we never work together again.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Gửi yêu cầu chẩn đoán",
+  "en": "Request a diagnostic",
+  "nguon": "markup"
+ },
+ {
+  "vi": "HỌ VÀ TÊN",
+  "en": "FULL NAME",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐƠN VỊ / HỘ KINH DOANH",
+  "en": "ORGANISATION / SOLE TRADER",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐIỆN THOẠI HOẶC ZALO",
+  "en": "PHONE OR MESSAGING APP",
+  "nguon": "markup"
+ },
+ {
+  "vi": "NHÓM MÔ HÌNH KINH DOANH",
+  "en": "BUSINESS MODEL GROUP",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kinh doanh tri thức / nội dung",
+  "en": "Knowledge and content businesses",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Nền tảng số / SaaS",
+  "en": "Digital platform / SaaS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thương mại điện tử",
+  "en": "E-commerce",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dịch vụ chuyên môn",
+  "en": "Professional services",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Môi giới / Marketplace",
+  "en": "Brokerage / Marketplace",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thương mại phân phối",
+  "en": "Trade and distribution",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dịch vụ tại chỗ",
+  "en": "On-site services",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Sản xuất",
+  "en": "Manufacturing",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mô hình lai / chưa rõ",
+  "en": "Hybrid / not yet clear",
+  "nguon": "markup"
+ },
+ {
+  "vi": "QUY MÔ HIỆN TẠI",
+  "en": "CURRENT HEADCOUNT",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Trên 30 người",
+  "en": "More than 30",
+  "nguon": "markup"
+ },
+ {
+  "vi": "QUY TRÌNH NÀO ĐANG TỐN THỜI GIAN NHẤT?",
+  "en": "WHICH PROCESS EATS THE MOST TIME?",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GỬI YÊU CẦU CHẨN ĐOÁN",
+  "en": "SEND THE REQUEST",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thông tin chỉ dùng để chuẩn bị buổi chẩn đoán. Chúng tôi không chia sẻ với bên thứ ba.",
+  "en": "Used only to prepare the diagnostic. We do not share it with third parties.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đã ghi nhận yêu cầu",
+  "en": "Request received",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đây là bản mô tả giao diện — biểu mẫu chưa nối với hệ thống nhận yêu cầu. Khi triển khai thật, yêu cầu sẽ được gửi tới hộp thư chẩn đoán và phản hồi trong một ngày làm việc.",
+  "en": "This is an interface preview — the form is not yet connected to an intake system. In production, requests go to the diagnostic inbox and receive a reply within one working day.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "← GỬI YÊU CẦU KHÁC",
+  "en": "← SEND ANOTHER REQUEST",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thông tin liên hệ",
+  "en": "Contact details",
+  "nguon": "markup"
+ },
+ {
+  "vi": "TÊN PHÁP LÝ",
+  "en": "LEGAL NAME",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Công ty Cổ phần Giải pháp LATTICE Next",
+  "en": "LATTICE Next Solutions Joint Stock Company",
+  "nguon": "markup"
+ },
+ {
+  "vi": "LATTICE Next Solutions Joint Stock Company",
+  "en": "LATTICE Next Solutions Joint Stock Company",
+  "nguon": "markup"
+ },
+ {
+  "vi": "[chưa cấu hình — điền địa chỉ chính thức]",
+  "en": "[to be configured — add the official address]",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐIỆN THOẠI / ZALO",
+  "en": "PHONE / MESSAGING",
+  "nguon": "markup"
+ },
+ {
+  "vi": "[chưa cấu hình]",
+  "en": "[to be configured]",
+  "nguon": "markup"
+ },
+ {
+  "vi": "ĐỊA CHỈ",
+  "en": "ADDRESS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "GIỜ LÀM VIỆC",
+  "en": "OFFICE HOURS",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Thứ Hai – Thứ Sáu, 09:00 – 18:00 (GMT+7)",
+  "en": "Monday – Friday, 09:00 – 18:00 (GMT+7)",
+  "nguon": "markup"
+ },
+ {
+  "vi": "NGÔN NGỮ LÀM VIỆC",
+  "en": "WORKING LANGUAGES",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Tiếng Việt · English · 한국어",
+  "en": "Vietnamese · English · Korean",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Trước buổi chẩn đoán, nên chuẩn bị",
+  "en": "Before the diagnostic, please prepare",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Danh sách 5–10 việc lặp lại nhiều nhất trong tuần",
+  "en": "A list of the 5–10 most repeated tasks in your week",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ước lượng thời gian mỗi việc chiếm bao nhiêu giờ",
+  "en": "An estimate of how many hours each task consumes",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Các phần mềm đang dùng: bán hàng, kế toán, chat, sàn",
+  "en": "The software you use today: sales, accounting, chat, marketplaces",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Dữ liệu khách hàng hiện đang nằm ở đâu",
+  "en": "Where your customer data currently lives",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Câu hỏi thường gặp",
+  "en": "Frequently asked questions",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Chưa sẵn sàng liên hệ?",
+  "en": "Not ready to get in touch?",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Đọc phần Xu hướng tương lai để tự đánh giá xem thời điểm này có phù hợp với mô hình của anh chị hay không.",
+  "en": "Read the Market Outlook to judge for yourself whether this is the right moment for your model.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "XEM XU HƯỚNG →",
+  "en": "SEE THE OUTLOOK →",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Lời mời hợp tác",
+  "en": "An invitation to work together",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Ba cách đồng hành cùng LATTICE Next",
+  "en": "Three ways to work with LATTICE Next",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Hồ sơ chi tiết theo từng nhóm — phương pháp luận đầy đủ, dự toán tài chính, kế hoạch triển khai — được cung cấp trong buổi làm việc trực tiếp.",
+  "en": "Detailed materials for each audience — full methodology, financial projections, delivery plan — are provided in a direct working session.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Kiến trúc mô hình kinh doanh mới.",
+  "en": "Structure for what comes next.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Structure for what comes next.",
+  "en": "Structure for what comes next.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "CÔNG TY",
+  "en": "COMPANY",
+  "nguon": "markup"
+ },
+ {
+  "vi": "BỐN ĐỘNG CƠ",
+  "en": "FOUR ENGINES",
+  "nguon": "markup"
+ },
+ {
+  "vi": "KHÓA LẠI KHU VỰC HẠN CHẾ",
+  "en": "LOCK THE RESTRICTED AREA AGAIN",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Số liệu tổng hợp từ nguồn công bố đến tháng 8/2026: Gartner, IDC, Forrester, Deloitte, BCG, McKinsey, Metric và các văn bản pháp lý được dẫn. Số liệu ngành có sai lệch giữa các nguồn do phương pháp khảo sát khác nhau — nên đọc theo xu hướng, không theo con số tuyệt đối. Đây là bản mô tả giao diện website; thông tin liên hệ và biểu mẫu chưa được cấu hình.",
+  "en": "Compiled from data published to August 2026: Gartner, IDC, Forrester, Deloitte, BCG, McKinsey and market research firms, together with the regulatory instruments cited. Industry figures differ between sources because survey methods differ — read the trend, not the absolute number. This is an interface preview; contact details and forms are not yet configured.",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Mở menu",
+  "en": "Open menu",
+  "nguon": "thuoc-tinh"
+ },
+ {
+  "vi": "Nhập mật khẩu",
+  "en": "Enter password",
+  "nguon": "thuoc-tinh"
+ },
+ {
+  "vi": "Mật khẩu",
+  "en": "Password",
+  "nguon": "thuoc-tinh"
+ },
+ {
+  "vi": "Giàn thép mắt lưới — mặt đứng hình học",
+  "en": "Steel lattice truss — geometric façade",
+  "nguon": "thuoc-tinh"
+ },
+ {
+  "vi": "Hai đường cong chi phí: truyền thống tăng theo bậc, AI-native phẳng dần",
+  "en": "Two cost curves: the traditional one steps up, the AI-native one flattens",
+  "nguon": "thuoc-tinh"
+ },
+ {
+  "vi": "Người bán hàng đóng đơn tại cửa hàng nhỏ trên phố Việt Nam",
+  "en": "A seller packing orders in a small street-front shop",
+  "nguon": "thuoc-tinh"
+ },
+ {
+  "vi": "Buổi làm việc thiết kế quy trình trước màn hình và bảng ghi chú",
+  "en": "A process-design working session at a screen and a note wall",
+  "nguon": "thuoc-tinh"
+ },
+ {
+  "vi": "Nguyễn Văn A",
+  "en": "Jane Doe",
+  "nguon": "thuoc-tinh"
+ },
+ {
+  "vi": "Tên đơn vị",
+  "en": "Organisation name",
+  "nguon": "thuoc-tinh"
+ },
+ {
+  "vi": "Mô tả ngắn gọn — càng cụ thể càng dễ chuẩn bị cho buổi chẩn đoán.",
+  "en": "Describe it briefly — the more specific, the better we can prepare the diagnostic.",
+  "nguon": "thuoc-tinh"
+ },
+ {
+  "vi": ") document.documentElement.classList.add(",
+  "en": ") document.documentElement.classList.add(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "); } catch (e) { document.documentElement.classList.add(",
+  "en": "); } catch (e) { document.documentElement.classList.add(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Nghiên cứu, sản xuất đa định dạng, phân phối, chăm sóc cộng đồng",
+  "en": "Research, multi-format production, distribution, community care",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Góc nhìn, uy tín, quyết định biên tập",
+  "en": "Point of view, credibility, editorial judgement",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Sự độc đáo của góc nhìn",
+  "en": "The originality of the viewpoint",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Thiết kế, lập trình, kiểm thử, hỗ trợ, phân tích, marketing",
+  "en": "Design, engineering, testing, support, analytics, marketing",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Kiến trúc, bảo mật, pháp lý, quyết định sản phẩm",
+  "en": "Architecture, security, legal, product decisions",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Bảo mật và nợ kỹ thuật",
+  "en": "Security and technical debt",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Gần toàn bộ chuỗi vận hành số",
+  "en": "Nearly the entire digital operation",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Phê duyệt chiến lược, xử lý ngoại lệ",
+  "en": "Strategic approval, exception handling",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Nguồn hàng và vốn tồn kho",
+  "en": "Sourcing and inventory capital",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Thu thập yêu cầu, nghiên cứu, tạo sản phẩm dịch vụ, báo cáo",
+  "en": "Requirements gathering, research, service production, reporting",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Thẩm định chuyên môn, trách nhiệm pháp lý",
+  "en": "Expert judgement, legal liability",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Trách nhiệm nghề nghiệp không ủy quyền được",
+  "en": "Professional liability cannot be delegated",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Tìm kiếm, matching, qualification, CRM, hỗ trợ giao dịch",
+  "en": "Search, matching, qualification, CRM, transaction support",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Quan hệ đối tác, giao dịch phức tạp",
+  "en": "Partnerships, complex transactions",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Bài toán gà và trứng hai phía",
+  "en": "The two-sided chicken-and-egg problem",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Nghiên cứu thị trường, định giá, nội dung, bán hàng, tồn kho",
+  "en": "Market research, pricing, content, selling, inventory",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Đàm phán lớn, kiểm hàng, tranh chấp",
+  "en": "Major negotiation, inspection, disputes",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Kiểm hàng vật lý, vốn lưu động",
+  "en": "Physical inspection, working capital",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Đặt lịch, điều phối, CSKH, marketing, kiểm soát chất lượng",
+  "en": "Scheduling, dispatch, support, marketing, quality control",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Thực hiện dịch vụ vật lý, xử lý tại chỗ",
+  "en": "Physical service delivery, on-site handling",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Năng lực giờ công của người hành nghề",
+  "en": "The practitioner's available hours",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Dự báo, kế hoạch, mua hàng, QC thị giác máy, bảo trì dự báo",
+  "en": "Forecasting, planning, purchasing, machine-vision QC, predictive maintenance",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Vận hành thiết bị, sự cố vật lý, quan hệ nhà cung cấp",
+  "en": "Running equipment, physical incidents, supplier relationships",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Tài sản vật lý và lao động trực tiếp",
+  "en": "Physical assets and direct labour",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Quan sát",
+  "en": "Observe",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "báo cáo",
+  "en": "report",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Chỉ thu thập và báo cáo",
+  "en": "Collects and reports only",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Báo cáo doanh thu, cảnh báo tồn kho",
+  "en": "Revenue reports, stock alerts",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Có nguồn dữ liệu ổn định",
+  "en": "A stable data source exists",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Đề xuất",
+  "en": "Recommend",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "phương án",
+  "en": "options",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Phân tích và đưa phương án",
+  "en": "Analyses and proposes options",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Đề xuất điều chỉnh giá",
+  "en": "Recommend a price change",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Tối thiểu 30 mẫu, chính xác từ 70%",
+  "en": "At least 30 samples, 70%+ accuracy",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Chuẩn bị",
+  "en": "Prepare",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "chờ duyệt",
+  "en": "awaiting approval",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Tạo đầu ra, chờ phê duyệt",
+  "en": "Produces output, awaits approval",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Soạn hợp đồng, nội dung, báo giá",
+  "en": "Drafts contracts, content, quotes",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Đầu ra được duyệt không sửa từ 60%",
+  "en": "60%+ of output approved without edits",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "≥90% / 100 GD",
+  "en": "≥90% / 100 txns",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Tự thực hiện trong chính sách",
+  "en": "Acts on its own within policy",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Email chăm sóc, hoàn tiền nhỏ, đổi lịch",
+  "en": "Nurture emails, small refunds, rescheduling",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Từ 90% chính xác trên 100 giao dịch; có rollback",
+  "en": "90%+ accuracy over 100 transactions; rollback in place",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Tự vận hành",
+  "en": "Self-operating",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "≥95% + trần",
+  "en": "≥95% + ceiling",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Tự lập kế hoạch và tối ưu",
+  "en": "Plans and optimises on its own",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Vận hành chiến dịch trong ngân sách",
+  "en": "Runs campaigns within budget",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Từ 95% chính xác; có trần ngân sách và kill switch",
+  "en": "95%+ accuracy; budget ceiling and kill switch in place",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Tự chủ",
+  "en": "Autonomous",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "kiểm toán",
+  "en": "audited",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Điều hành cả chức năng, người kiểm toán",
+  "en": "Runs a whole function, humans audit",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Bộ phận CSKH tự vận hành",
+  "en": "A self-running support function",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "Kiểm toán đạt; không sự cố nghiêm trọng trong 90 ngày",
+  "en": "Audit passed; no serious incident in 90 days",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ".lnx-doc-toc a[href^=\"#\"]",
+  "en": ".lnx-doc-toc a[href^=\"#\"]",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "; o.toggle = () => this.toggle(key); return o; }); } renderVals() { const d = this.state.device, p = this.state.page || this.props.startPage ||",
+  "en": "; o.toggle = () => this.toggle(key); return o; }); } renderVals() { const d = this.state.device, p = this.state.page || this.props.startPage ||",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "; const showBranding = this.props.showBrandingPage !== false; const nav = [ [",
+  "en": "; const showBranding = this.props.showBrandingPage !== false; const nav = [ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "] ].filter(n => showBranding || n[0] !==",
+  "en": "] ].filter(n => showBranding || n[0] !==",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "); const narrow = (this.state.w || 1280) < 940; const navBase =",
+  "en": "); const narrow = (this.state.w || 1280) < 940; const navBase =",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "; const stackBase =",
+  "en": "; const stackBase =",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "; const dvBase =",
+  "en": "; const dvBase =",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "; const dv = on => dvBase + (on ?",
+  "en": "; const dv = on => dvBase + (on ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "); const stage =",
+  "en": "); const stage =",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (d ===",
+  "en": "+ (d ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ")); const bar = this.props.showDeviceToolbar !== false; return { stageRef: this.stageRef, stageStyle: stage, barStyle:",
+  "en": ")); const bar = this.props.showDeviceToolbar !== false; return { stageRef: this.stageRef, stageStyle: stage, barStyle:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (bar ?",
+  "en": "+ (bar ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), viewportStyle:",
+  "en": "), viewportStyle:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), dvLaptop: dv(d ===",
+  "en": "), dvLaptop: dv(d ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), dvTablet: dv(d ===",
+  "en": "), dvTablet: dv(d ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), dvPhone: dv(d ===",
+  "en": "), dvPhone: dv(d ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), setLaptop: () => this.setDevice(",
+  "en": "), setLaptop: () => this.setDevice(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), setTablet: () => this.setDevice(",
+  "en": "), setTablet: () => this.setDevice(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), setPhone: () => this.setDevice(",
+  "en": "), setPhone: () => this.setDevice(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), doPrint: () => window.print(), deviceNote: d ===",
+  "en": "), doPrint: () => window.print(), deviceNote: d ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ": d ===",
+  "en": ": d ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", noteStyle:",
+  "en": ", noteStyle:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), navStyle: narrow ?",
+  "en": "), navStyle: narrow ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", ctaStyle:",
+  "en": ", ctaStyle:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (narrow ?",
+  "en": "+ (narrow ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), burgerStyle:",
+  "en": "), burgerStyle:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), menuOpen: narrow && !!this.state.menu, toggleMenu: () => this.setState(s => ({ menu: !s.menu })), goContactClose: () => this.go(",
+  "en": "), menuOpen: narrow && !!this.state.menu, toggleMenu: () => this.setState(s => ({ menu: !s.menu })), goContactClose: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), navItems: nav.map(n => ({ label: n[1], go: () => this.go(n[0]), goClose: () => this.go(n[0]), st: navBase + (p === n[0] ?",
+  "en": "), navItems: nav.map(n => ({ label: n[1], go: () => this.go(n[0]), goClose: () => this.go(n[0]), st: navBase + (p === n[0] ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), stackSt: stackBase + (p === n[0] ?",
+  "en": "), stackSt: stackBase + (p === n[0] ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ") })), isHome: p ===",
+  "en": ") })), isHome: p ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", isTrends: p ===",
+  "en": ", isTrends: p ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", isSolutions: p ===",
+  "en": ", isSolutions: p ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", isIndustries: p ===",
+  "en": ", isIndustries: p ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", isProcess: p ===",
+  "en": ", isProcess: p ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", isBranding: p ===",
+  "en": ", isBranding: p ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", isContact: p ===",
+  "en": ", isContact: p ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", isMethod: p ===",
+  "en": ", isMethod: p ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", isAcademy: p ===",
+  "en": ", isAcademy: p ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", isFintech: p ===",
+  "en": ", isFintech: p ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", goMethod: () => this.go(",
+  "en": ", goMethod: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), goAcademy: () => this.go(",
+  "en": "), goAcademy: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), goFintech: () => this.go(",
+  "en": "), goFintech: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), methodTabs: [ [",
+  "en": "), methodTabs: [ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "] ].map(t => ({ kicker: t[1], label: t[2], go: () => this.setState({ mtab: t[0] }), st:",
+  "en": "] ].map(t => ({ kicker: t[1], label: t[2], go: () => this.setState({ mtab: t[0] }), st:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ ((this.state.mtab ||",
+  "en": "+ ((this.state.mtab ||",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ") === t[0] ?",
+  "en": ") === t[0] ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ") })), tabM1: (this.state.mtab ||",
+  "en": ") })), tabM1: (this.state.mtab ||",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", tabM2: this.state.mtab ===",
+  "en": ", tabM2: this.state.mtab ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", tabM3: this.state.mtab ===",
+  "en": ", tabM3: this.state.mtab ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", tabM4: this.state.mtab ===",
+  "en": ", tabM4: this.state.mtab ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", tabM5: this.state.mtab ===",
+  "en": ", tabM5: this.state.mtab ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", tabM6: this.state.mtab ===",
+  "en": ", tabM6: this.state.mtab ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", tabM7: this.state.mtab ===",
+  "en": ", tabM7: this.state.mtab ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", loops: this.rows([ [",
+  "en": ", loops: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), cadence: this.rows([ [",
+  "en": "]), cadence: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), dashboard: this.rows([ [",
+  "en": "]), dashboard: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), revStreams: this.rows([ [",
+  "en": "]), revStreams: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), compPhases: this.rows([ [",
+  "en": "]), compPhases: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), segments: this.rows([ [",
+  "en": "]), segments: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), mktSize: this.rows([ [",
+  "en": "]), mktSize: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), positions: this.rows([ [",
+  "en": "]), positions: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), invites: this.rows([ [",
+  "en": "]), invites: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), bizLines: this.rows([ [",
+  "en": "]), bizLines: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), acadTracks: this.rows([ [",
+  "en": "]), acadTracks: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), acadTopics: this.rows([ [",
+  "en": "]), acadTopics: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), acadFormats: this.rows([ [",
+  "en": "]), acadFormats: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), ecoParts: this.rows([ [",
+  "en": "]), ecoParts: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), cryptoMiles: this.rows([ [",
+  "en": "]), cryptoMiles: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), cryptoLoop: this.rows([ [",
+  "en": "]), cryptoLoop: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), cryptoCaps: this.rows([ [",
+  "en": "]), cryptoCaps: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), cryptoTiers: this.rows([ [",
+  "en": "]), cryptoTiers: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), cryptoLimits: this.rows([ [",
+  "en": "]), cryptoLimits: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), govLayers: this.rows([ [",
+  "en": "]), govLayers: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), rightsMatrix: this.rows([ [",
+  "en": "]), rightsMatrix: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), addPerson: this.rows([ [",
+  "en": "]), addPerson: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), humanRoles: this.rows([ [",
+  "en": "]), humanRoles: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), bottleneck: this.rows([ [",
+  "en": "]), bottleneck: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), outerRing: this.rows([ [",
+  "en": "]), outerRing: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), priorityVars: this.rows([ [",
+  "en": "]), priorityVars: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), processGroups: [ [",
+  "en": "]), processGroups: [ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", 0] ].map(g => ({ a: g[0], b: g[1], c: g[2], st:",
+  "en": ", 0] ].map(g => ({ a: g[0], b: g[1], c: g[2], st:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (g[3] === 2 ?",
+  "en": "+ (g[3] === 2 ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ": g[3] === 1 ?",
+  "en": ": g[3] === 1 ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ") })), passport: this.rows([ [",
+  "en": ") })), passport: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), memory: this.rows([ [",
+  "en": "]), memory: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), perms: this.rows([ [",
+  "en": "]), perms: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), dataGate: this.rows([ [",
+  "en": "]), dataGate: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), minStack: this.rows([ [",
+  "en": "]), minStack: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), buildBuy: this.rows([ [",
+  "en": "]), buildBuy: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), budgetTiers: this.rows([ [",
+  "en": "]), budgetTiers: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), approve: this.rows([ [",
+  "en": "]), approve: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), pods: [ { name:",
+  "en": "]), pods: [ { name:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", people:",
+  "en": ", people:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", managers:",
+  "en": ", managers:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", processes:",
+  "en": ", processes:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", data:",
+  "en": ", data:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", kpi:",
+  "en": ", kpi:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", red:",
+  "en": ", red:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "}, { name:",
+  "en": "}, { name:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "} ], stages: [ [",
+  "en": "} ], stages: [ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "] ]] ].map(s => ({ letter: s[0], name: s[1], days: s[2], gate: s[3], gateText: s[4], items: s[5].map(i => ({ a: i[0], b: i[1] })) })), scorecard: this.rows([ [",
+  "en": "] ]] ].map(s => ({ letter: s[0], name: s[1], days: s[2], gate: s[3], gateText: s[4], items: s[5].map(i => ({ a: i[0], b: i[1] })) })), scorecard: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), downgrade: this.rows([ [",
+  "en": "]), downgrade: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), registers: this.rows([ [",
+  "en": "]), registers: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), bcp: this.rows([ [",
+  "en": "]), bcp: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), sources: [ [",
+  "en": "]), sources: [ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "] ].map(s => ({ a: s[0], b: s[1], c: s[2], url: s[3] })), inputs8: this.rows([ [",
+  "en": "] ].map(s => ({ a: s[0], b: s[1], c: s[2], url: s[3] })), inputs8: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), goHome: e => { if (e && e.preventDefault) e.preventDefault(); this.go(",
+  "en": "]), goHome: e => { if (e && e.preventDefault) e.preventDefault(); this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "); }, goTrends: () => this.go(",
+  "en": "); }, goTrends: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), goSolutions: () => this.go(",
+  "en": "), goSolutions: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), goIndustries: () => this.go(",
+  "en": "), goIndustries: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), goProcess: () => this.go(",
+  "en": "), goProcess: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), goBranding: () => this.go(",
+  "en": "), goBranding: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), goContact: () => this.go(",
+  "en": "), goContact: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), goEngine1: () => this.go(",
+  "en": "), goEngine1: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), goEngine2: () => this.go(",
+  "en": "), goEngine2: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), goEngine3: () => this.go(",
+  "en": "), goEngine3: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), goEngine4: () => this.go(",
+  "en": "), goEngine4: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), goGovernance: () => this.go(",
+  "en": "), goGovernance: () => this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), // Mở khóa phần website. So hash chứ không so chuỗi thẳng: mật khẩu để trần // trong mã nguồn thì chỉ cần Ctrl+U là thấy. (Xem README — đây là rào che // phía trình duyệt, không phải bảo mật thật.) tryUnlock: async () => { const el = document.getElementById(",
+  "en": "), // Mở khóa phần website. So hash chứ không so chuỗi thẳng: mật khẩu để trần // trong mã nguồn thì chỉ cần Ctrl+U là thấy. (Xem README — đây là rào che // phía trình duyệt, không phải bảo mật thật.) tryUnlock: async () => { const el = document.getElementById(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "); const box = document.getElementById(",
+  "en": "); const box = document.getElementById(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "); const v = el ? el.value :",
+  "en": "); const v = el ? el.value :",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "; const buf = await crypto.subtle.digest(",
+  "en": "; const buf = await crypto.subtle.digest(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", new TextEncoder().encode(v)); const hex = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,",
+  "en": ", new TextEncoder().encode(v)); const hex = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "); if (hex ===",
+  "en": "); if (hex ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ") { try { localStorage.setItem(",
+  "en": ") { try { localStorage.setItem(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "); } catch (e) {} document.documentElement.classList.remove(",
+  "en": "); } catch (e) {} document.documentElement.classList.remove(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "); if (box) box.textContent =",
+  "en": "); if (box) box.textContent =",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "; window.scrollTo({ top: 0 }); } else if (box) { box.textContent =",
+  "en": "; window.scrollTo({ top: 0 }); } else if (box) { box.textContent =",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "; if (el) { el.value =",
+  "en": "; if (el) { el.value =",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "; el.focus(); } } }, lockAgain: () => { try { localStorage.removeItem(",
+  "en": "; el.focus(); } } }, lockAgain: () => { try { localStorage.removeItem(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "); } catch (e) {} document.documentElement.classList.add(",
+  "en": "); } catch (e) {} document.documentElement.classList.add(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "); // Phải về trang chủ: bảng nhập mật khẩu nằm trong nhánh trang chủ, khóa // lại khi đang ở trang khác sẽ ra màn hình trắng không có đường vào. this.go(",
+  "en": "); // Phải về trang chủ: bảng nhập mật khẩu nằm trong nhánh trang chủ, khóa // lại khi đang ở trang khác sẽ ra màn hình trắng không có đường vào. this.go(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "); window.scrollTo({ top: 0 }); }, // LƯU PDF: bật cờ in riêng tài liệu, gọi hộp thoại in của trình duyệt // (người dùng chọn \"Save as PDF\"), rồi gỡ cờ khi in xong. Dùng afterprint // thay vì setTimeout để không gỡ sớm khi hộp thoại còn mở. savePdf: () => { const b = document.body; b.classList.add(",
+  "en": "); window.scrollTo({ top: 0 }); }, // LƯU PDF: bật cờ in riêng tài liệu, gọi hộp thoại in của trình duyệt // (người dùng chọn \"Save as PDF\"), rồi gỡ cờ khi in xong. Dùng afterprint // thay vì setTimeout để không gỡ sớm khi hộp thoại còn mở. savePdf: () => { const b = document.body; b.classList.add(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "); const done = () => { b.classList.remove(",
+  "en": "); const done = () => { b.classList.remove(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "); window.removeEventListener(",
+  "en": "); window.removeEventListener(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", done); }; window.addEventListener(",
+  "en": ", done); }; window.addEventListener(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", done); window.print(); }, worldIndicators: this.rows([ [",
+  "en": ", done); window.print(); }, worldIndicators: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), shifts: this.rows([ [",
+  "en": "]), shifts: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), policies: this.acc(",
+  "en": "]), policies: this.acc(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), vnMarket: this.rows([ [",
+  "en": "]), vnMarket: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), solTabs: [ [",
+  "en": "]), solTabs: [ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "] ].map(t => ({ kicker: t[1], label: t[2], go: () => this.setState({ tab: t[0] }), st:",
+  "en": "] ].map(t => ({ kicker: t[1], label: t[2], go: () => this.setState({ tab: t[0] }), st:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (this.state.tab === t[0] ?",
+  "en": "+ (this.state.tab === t[0] ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ") })), tabF1: this.state.tab ===",
+  "en": ") })), tabF1: this.state.tab ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", tabF2: this.state.tab ===",
+  "en": ", tabF2: this.state.tab ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", tabF3: this.state.tab ===",
+  "en": ", tabF3: this.state.tab ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", tabF4: this.state.tab ===",
+  "en": ", tabF4: this.state.tab ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", tabE1: this.state.tab ===",
+  "en": ", tabE1: this.state.tab ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", tabE2: this.state.tab ===",
+  "en": ", tabE2: this.state.tab ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", tabE3: this.state.tab ===",
+  "en": ", tabE3: this.state.tab ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", tabE4: this.state.tab ===",
+  "en": ", tabE4: this.state.tab ===",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", levels: this.LEVELS.map((l, i) => ({ id: l[0], name: l[1], short: l[2], go: () => this.setState({ level: i }), st:",
+  "en": ", levels: this.LEVELS.map((l, i) => ({ id: l[0], name: l[1], short: l[2], go: () => this.setState({ level: i }), st:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (this.state.level === i ?",
+  "en": "+ (this.state.level === i ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ") })), lvl: { id: this.LEVELS[this.state.level][0], name: this.LEVELS[this.state.level][1], right: this.LEVELS[this.state.level][3], eg: this.LEVELS[this.state.level][4], cond: this.LEVELS[this.state.level][5] }, roles: this.rows([ [",
+  "en": ") })), lvl: { id: this.LEVELS[this.state.level][0], name: this.LEVELS[this.state.level][1], right: this.LEVELS[this.state.level][3], eg: this.LEVELS[this.state.level][4], cond: this.LEVELS[this.state.level][5] }, roles: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), clusters: this.rows([ [",
+  "en": "]), clusters: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), agentConds: this.rows([ [",
+  "en": "]), agentConds: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), workObject: this.rows([ [",
+  "en": "]), workObject: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), vnLines: this.rows([ [",
+  "en": "]), vnLines: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), layers: [ [",
+  "en": "]), layers: [ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", 6] ].map(l => ({ n: l[0], a: l[1], b: l[2], c: l[3], st:",
+  "en": ", 6] ].map(l => ({ n: l[0], a: l[1], b: l[2], c: l[3], st:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (l[4] === 4 ?",
+  "en": "+ (l[4] === 4 ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ") })), sent: this.state.sent, notSent: !this.state.sent, submit: () => this.setState({ sent: true }), resetForm: () => this.setState({ sent: false }), faqs: this.acc(",
+  "en": ") })), sent: this.state.sent, notSent: !this.state.sent, submit: () => this.setState({ sent: true }), resetForm: () => this.setState({ sent: false }), faqs: this.acc(",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), positioning: this.rows([ [",
+  "en": "]), positioning: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), phases: this.rows([ [",
+  "en": "]), phases: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), months: this.rows([ [",
+  "en": "]), months: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), rings: [ [",
+  "en": "]), rings: [ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", 0] ].map(r => ({ n: r[0], a: r[1], b: r[2], c: r[3], st:",
+  "en": ", 0] ].map(r => ({ n: r[0], a: r[1], b: r[2], c: r[3], st:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (r[4] ?",
+  "en": "+ (r[4] ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ") })), safety: this.rows([ [",
+  "en": ") })), safety: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), risks: [ [",
+  "en": "]), risks: [ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", 1] ].map(r => ({ a: r[0], b: r[1], c: r[2], tag:",
+  "en": ", 1] ].map(r => ({ a: r[0], b: r[1], c: r[2], tag:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (r[3] === 2 ?",
+  "en": "+ (r[3] === 2 ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ": r[3] === 1 ?",
+  "en": ": r[3] === 1 ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ") })), costs: this.rows([ [",
+  "en": ") })), costs: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), econ: this.rows([ [",
+  "en": "]), econ: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), metrics: this.rows([ [",
+  "en": "]), metrics: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), ceilings: this.CEIL.map((c, i) => ({ a: c[0], pct: c[1] +",
+  "en": "]), ceilings: this.CEIL.map((c, i) => ({ a: c[0], pct: c[1] +",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ c[2] +",
+  "en": "+ c[2] +",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", people: c[3], go: () => this.setState({ ind: i }), st:",
+  "en": ", people: c[3], go: () => this.setState({ ind: i }), st:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (this.state.ind === i ?",
+  "en": "+ (this.state.ind === i ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), bar:",
+  "en": "), bar:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ c[1] +",
+  "en": "+ c[1] +",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "), bar2:",
+  "en": "), bar2:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (c[2] - c[1]) +",
+  "en": "+ (c[2] - c[1]) +",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "})), ind: { a: this.CEIL[this.state.ind][0], b: this.CEIL[this.state.ind][4], c: this.CEIL[this.state.ind][5], d: this.CEIL[this.state.ind][6] }, hybrid: this.rows([ [",
+  "en": "})), ind: { a: this.CEIL[this.state.ind][0], b: this.CEIL[this.state.ind][4], c: this.CEIL[this.state.ind][5], d: this.CEIL[this.state.ind][6] }, hybrid: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), legal: this.rows([ [",
+  "en": "]), legal: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), socialSteps: this.rows([ [",
+  "en": "]), socialSteps: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), channels: this.rows([ [",
+  "en": "]), channels: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), socialLines: this.rows([ [",
+  "en": "]), socialLines: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), geo: this.rows([ [",
+  "en": "]), geo: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), funnel: [ [",
+  "en": "]), funnel: [ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", 36] ].map((f, i) => ({ a: f[0], b: f[1], c: f[2], st:",
+  "en": ", 36] ].map((f, i) => ({ a: f[0], b: f[1], c: f[2], st:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ f[3] +",
+  "en": "+ f[3] +",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (1 - i * 0.13) })), budget: [ [",
+  "en": "+ (1 - i * 0.13) })), budget: [ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", 15, 0] ].map(b => ({ a: b[0], b: b[1], bar:",
+  "en": ", 15, 0] ].map(b => ({ a: b[0], b: b[1], bar:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (b[2] * 2.4) +",
+  "en": "+ (b[2] * 2.4) +",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (b[3] ?",
+  "en": "+ (b[3] ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ") })), crmModel: this.rows([ [",
+  "en": ") })), crmModel: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), lifecycle: [ [",
+  "en": "]), lifecycle: [ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ", 1] ].map(l => ({ a: l[0], b: l[1], c: l[2], d: l[3], st:",
+  "en": ", 1] ].map(l => ({ a: l[0], b: l[1], c: l[2], d: l[3], st:",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "+ (l[4] ?",
+  "en": "+ (l[4] ?",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": ") })), dataQuality: this.rows([ [",
+  "en": ") })), dataQuality: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), rndLines: this.rows([ [",
+  "en": "]), rndLines: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), experiment: this.rows([ [",
+  "en": "]), experiment: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), ip: this.rows([ [",
+  "en": "]), ip: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "]), vnDiffs: this.rows([ [",
+  "en": "]), vnDiffs: this.rows([ [",
+  "nguon": "du-lieu"
+ },
+ {
+  "vi": "01 · CHẨN ĐOÁN",
+  "en": "01 · DIAGNOSTIC",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "02 · KIẾN TRÚC",
+  "en": "02 · ARCHITECTURE",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "03 · TRIỂN KHAI",
+  "en": "03 · DELIVERY",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "04 · VẬN HÀNH",
+  "en": "04 · OPERATIONS",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "5,1 tháng",
+  "en": "5.1 months",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "2026 là cửa sổ hiếm ở Việt Nam",
+  "en": "2026 is a rare window",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "11 vai trò quản lý AI · hàng chục agent chuyên môn",
+  "en": "11 AI management roles · dozens of specialist agents",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "TỰ CHỦ {{ r.d }}",
+  "en": "AUTONOMY {{ r.d }}",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "2–3 tuần · một lần",
+  "en": "2–3 weeks · one-off",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "3–5 tháng · theo đợt",
+  "en": "3–5 months · phased",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "GĐ{{ r.n }}",
+  "en": "P{{ r.n }}",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "Vòng {{ r.n }} · {{ r.a }}",
+  "en": "Ring {{ r.n }} · {{ r.a }}",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "30 ngày đầu",
+  "en": "First 30 days",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "60 ngày",
+  "en": "60 days",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "90 ngày",
+  "en": "90 days",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "Đầu ra: {{ r.d }}",
+  "en": "Output: {{ r.d }}",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "Điểm cao nghĩa là: {{ r.b }}",
+  "en": "A high score means: {{ r.b }}",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "Phù hợp: {{ r.c }}",
+  "en": "Best fit: {{ r.c }}",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "2 · PHÂN BỔ TỰ ĐỘNG",
+  "en": "2 · AUTOMATIC ALLOCATION",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "3 · CHI TRONG HẠN MỨC",
+  "en": "3 · SPEND WITHIN LIMITS",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "6 · BÁO CÁO & DỰ BÁO",
+  "en": "6 · REPORTING & FORECAST",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "5 · GHI SỔ TỨC THÌ",
+  "en": "5 · INSTANT BOOKING",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "4 · CỬA PHÊ DUYỆT",
+  "en": "4 · APPROVAL GATE",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "1 · THU",
+  "en": "1 · INFLOW",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "1 người",
+  "en": "1 person",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "2–3 người",
+  "en": "2–3 people",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "4–10 người",
+  "en": "4–10 people",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "11–30 người",
+  "en": "11–30 people",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "Trang chủ",
+  "en": "Home",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "Ngành & Mô hình",
+  "en": "Sectors & Models",
+  "nguon": "bo-sung"
+ },
+ {
+  "vi": "Blockchain & Công nghệ tài chính",
+  "en": "Blockchain & Financial Technology",
+  "nguon": "bo-sung"
+ }
+]

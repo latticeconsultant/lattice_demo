@@ -447,6 +447,18 @@ textarea.input { min-height: 90px; resize: vertical; }
     .lnx-head > .lnx-nav { order: 3; flex-basis: 100% !important; flex-grow: 0 !important;
       border-top: 2px solid var(--color-neutral-400); }
 
+    /* gap của .lnx-head là gap hai chiều, nên khi nav xuống hàng thì cả 30px
+       khoảng cách rơi xuống dưới hàng 1, phía trên còn 0 — logo, nút EN và nút
+       CTA dính sát mép trên. Bỏ row-gap rồi chia đôi khoảng cách đó thành
+       padding-top của header và margin-top của nav, hàng 1 về giữa theo chiều
+       cao. Chỉ áp dụng ở khổ có nav hai hàng; khổ hẹp nav thành burger, header
+       một hàng và đã tự căn giữa nhờ min-height. Mốc 940px khớp với ngưỡng
+       narrow trong logic component. */
+    @container (min-width: 940px) {
+      .lnx-head { row-gap: 0 !important; padding-top: 15px !important; }
+      .lnx-head > .lnx-nav { margin-top: 15px; }
+    }
+
     /* ── Rào mật khẩu ───────────────────────────────────────────────────────
        CHÚ Ý: đây là rào che phía trình duyệt, KHÔNG phải bảo mật. Toàn bộ nội
        dung 8 trang vẫn nằm trong index.html — xem mã nguồn là đọc được hết.

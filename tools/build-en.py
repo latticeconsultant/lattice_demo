@@ -72,6 +72,14 @@ def thay_trong_markup(doan, tu_dien):
     return doan, dem
 
 
+# Chuỗi nằm giữa một khối nhiều dòng (ví dụ <pre> YAML) — không thể coi là trọn
+# một đơn vị, vì thay cả khối sẽ làm mất xuống dòng. Thay đúng một dòng, nguyên văn.
+THAY_THEM = [
+    ('mission: Đánh giá lead và đề xuất bước tiếp theo',
+     'mission: qualify the lead and recommend the next step'),
+]
+
+
 def kiem_cu_phap(t):
     """Chạy node --check trên mọi script inline. Trả về danh sách lỗi."""
     loi = []
@@ -113,6 +121,14 @@ def main():
         tong += n
     t = ''.join(phan)
 
+    thieu = []
+    for vi, en in THAY_THEM:
+        if vi not in t:
+            thieu.append(vi)
+        else:
+            t = t.replace(vi, en)
+            tong += 1
+
     # đường dẫn tài nguyên lùi một cấp
     for thu_muc in ('assets/', 'brand/'):
         t = re.sub(r'(?<=["\'(])' + thu_muc, '../' + thu_muc, t)
@@ -120,17 +136,34 @@ def main():
 
     # ngôn ngữ trang và nút chuyển ngữ
     t = t.replace('<html lang="vi">', '<html lang="en">', 1)
-    t = t.replace(
-        '<a class="lnx-lang" href="en/" hreflang="en" aria-label="English version">EN</a>',
-        '<a class="lnx-lang" href="../" hreflang="vi" aria-label="Phien ban tieng Viet">VI</a>')
-    t = t.replace(
-        '<a class="lnx-lang lnx-lang-menu" href="en/" hreflang="en">EN &middot; ENGLISH VERSION</a>',
-        '<a class="lnx-lang lnx-lang-menu" href="../" hreflang="vi">VI &middot; PHIEN BAN TIENG VIET</a>')
+    for vi_html, en_html in (
+        ('<a class="lnx-lang" href="en/" hreflang="en" aria-label="English version">EN</a>',
+         '<a class="lnx-lang" href="../" hreflang="vi" aria-label="Vietnamese version">VI</a>'),
+        ('<a class="lnx-lang lnx-lang-menu" href="en/" hreflang="en">EN · ENGLISH VERSION</a>',
+         '<a class="lnx-lang lnx-lang-menu" href="../" hreflang="vi">VI · PHIÊN BẢN TIẾNG VIỆT</a>'),
+    ):
+        if vi_html not in t:
+            thieu.append(vi_html[:76])
+        t = t.replace(vi_html, en_html)
 
     loi = kiem_cu_phap(t)
 
     os.makedirs(OUT_DIR, exist_ok=True)
     io.open(OUT, 'w', encoding='utf-8').write(t)
+
+    # Tài liệu nhúng có nguồn markdown riêng cho từng ngôn ngữ. Thay khối
+    # DOC:START/END trong bản EN bằng bản dựng từ markdown tiếng Anh.
+    md_en = os.path.join(ROOT, 'docs', 'one-person-business.en.md')
+    if os.path.exists(md_en):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            'build_doc', os.path.join(ROOT, 'tools', 'build-doc.py'))
+        bd = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(bd)
+        so_muc, so_ky_tu = bd.build(md_en, OUT, 'en')
+        print('  tai lieu EN    : %d muc, %s ky tu' % (so_muc, format(so_ky_tu, ',')))
+    else:
+        print('  tai lieu EN    : CHUA CO %s' % md_en)
 
     print('Da sinh %s' % OUT)
     print('  luot thay      : %d' % tong)
@@ -138,6 +171,10 @@ def main():
     if chua_dich:
         print('  CHUA DICH      : %d' % len(chua_dich))
         for s in chua_dich[:10]:
+            print('     - %s' % s[:76])
+    if thieu:
+        print('  THAY_THEM khong tim thay:')
+        for s in thieu:
             print('     - %s' % s[:76])
     if loi:
         print('  LOI CU PHAP JS :')

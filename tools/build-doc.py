@@ -87,7 +87,7 @@ def convert(md):
         if m:
             level, text = len(m.group(1)), m.group(2).strip()
             body = inline(text)
-            if level == 1 and text.startswith('PHẦN'):
+            if level == 1 and text.startswith(('PHẦN', 'PART')):
                 sid = slug(text)
                 toc.append((1, text, sid))
                 out.append(f'<h2 class="doc-part" id="{sid}">{body}</h2>')
@@ -181,26 +181,45 @@ def build_toc(toc):
     return '\n'.join(items)
 
 
-def main():
-    with open(MD, encoding='utf-8') as f:
+NHAN = {
+    'vi': {
+        'kicker': 'Tài liệu nền tảng',
+        'ten': 'Doanh nghiệp một người — kiến trúc AI-native cho quy mô 1–3 người',
+        'luu': 'LƯU PDF ↓',
+        'muc_luc': 'Mục lục',
+        'nhan_muc_luc': 'Mục lục tài liệu',
+    },
+    'en': {
+        'kicker': 'Foundation paper',
+        'ten': 'The one-person business — AI-native architecture at a scale of 1–3 people',
+        'luu': 'SAVE PDF ↓',
+        'muc_luc': 'Contents',
+        'nhan_muc_luc': 'Document contents',
+    },
+}
+
+
+def build(md_path, target_path, lang='vi'):
+    with open(md_path, encoding='utf-8') as f:
         md = f.read()
 
     body, toc = convert(md)
     nav = build_toc(toc)
+    L = NHAN[lang]
 
     block = f'''{START}
       <section class="lnx-docwrap">
         <div class="lnx-doc" id="lnx-doc">
           <div class="lnx-doc-bar">
             <div class="lnx-doc-bar-txt">
-              <span class="lnx-doc-kicker">Tài liệu nền tảng</span>
-              <span class="lnx-doc-name">Doanh nghiệp một người — kiến trúc AI-native cho quy mô 1–3 người</span>
+              <span class="lnx-doc-kicker">{L['kicker']}</span>
+              <span class="lnx-doc-name">{L['ten']}</span>
             </div>
-            <button type="button" class="lnx-doc-save" sc-camel-on-click="{{{{ savePdf }}}}">LƯU PDF ↓</button>
+            <button type="button" class="lnx-doc-save" sc-camel-on-click="{{{{ savePdf }}}}">{L['luu']}</button>
           </div>
           <div class="lnx-doc-body">
-            <nav class="lnx-doc-toc" aria-label="Mục lục tài liệu">
-              <span class="doc-toc-head">Mục lục</span>
+            <nav class="lnx-doc-toc" aria-label="{L['nhan_muc_luc']}">
+              <span class="doc-toc-head">{L['muc_luc']}</span>
 {nav}
             </nav>
             <article class="lnx-doc-main">
@@ -211,20 +230,26 @@ def main():
       </section>
       {END}'''
 
-    with open(TARGET, encoding='utf-8') as f:
+    with open(target_path, encoding='utf-8') as f:
         page = f.read()
 
     if START not in page or END not in page:
-        sys.exit('Không tìm thấy mốc DOC:START / DOC:END trong index.html')
+        sys.exit('Không tìm thấy mốc DOC:START / DOC:END trong %s' % target_path)
 
     a = page.index(START)
     b = page.index(END) + len(END)
     page = page[:a] + block + page[b:]
 
-    with open(TARGET, 'w', encoding='utf-8') as f:
+    with open(target_path, 'w', encoding='utf-8') as f:
         f.write(page)
 
-    print(f'Đã sinh khối tài liệu: {len(toc)} mục trong mục lục, {len(block):,} ký tự')
+    return len(toc), len(block)
+
+
+def main():
+    so_muc, so_ky_tu = build(MD, TARGET, 'vi')
+    print('Đã sinh khối tài liệu: %d mục trong mục lục, %s ký tự'
+          % (so_muc, format(so_ky_tu, ',')))
 
 
 if __name__ == '__main__':

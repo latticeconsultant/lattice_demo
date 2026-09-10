@@ -1002,10 +1002,16 @@ textarea.input { min-height: 90px; resize: vertical; }
                       fill="none" stroke="var(--color-neutral-600)" stroke-width="3"/>
                 <path d="M52 238 C 170 224, 300 206, 400 198 S 560 190, 610 188"
                       fill="none" stroke="var(--color-accent)" stroke-width="4"/>
-                <text x="46" y="26" text-anchor="end" font-size="15" fill="var(--color-neutral-700)" font-family="Archivo, sans-serif">COST</text>
+                <!-- Vị trí nhãn đã đo cho cả bản VI lẫn EN (nhãn EN dài xấp xỉ): mọi
+                     nhãn cách nét vẽ gần nhất ≥10 đơn vị và nằm trọn trong viewBox.
+                     Nhãn trục tung đặt bên phải trục vì neo "end" tại x=46 làm chữ
+                     tràn qua mép trái viewBox và bị cắt. Nhãn đường truyền thống đặt
+                     ở vùng trống phía trên-trái bậc thang; đặt giữa biểu đồ thì cạnh
+                     đứng tại x=444 cắt ngang chữ. -->
+                <text x="62" y="30" font-size="15" fill="var(--color-neutral-700)" font-family="Archivo, sans-serif">COST</text>
                 <text x="616" y="272" text-anchor="end" font-size="15" fill="var(--color-neutral-700)" font-family="Archivo, sans-serif">OUTPUT →</text>
-                <text x="300" y="88" font-size="15" fill="var(--color-neutral-700)" font-family="Archivo, sans-serif">Traditional: hire more people</text>
-                <text x="300" y="228" font-size="15" fill="var(--color-accent-700)" font-weight="600" font-family="Archivo, sans-serif">AI-native: infrastructure + control</text>
+                <text x="334" y="132" text-anchor="end" font-size="15" fill="var(--color-neutral-700)" font-family="Archivo, sans-serif">Traditional: hire more people</text>
+                <text x="300" y="234" font-size="15" fill="var(--color-accent-700)" font-weight="600" font-family="Archivo, sans-serif">AI-native: infrastructure + control</text>
               </svg>
             </div>
             <figcaption style="margin-top:16px;font-size:14px;line-height:1.65;color:var(--color-neutral-700);max-width:80ch">The gap between the two curves is the margin of the new model. The traditional line steps because every step is another hire.</figcaption>

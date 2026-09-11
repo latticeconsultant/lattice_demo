@@ -31,11 +31,27 @@ export default {
     const rest = url.pathname.slice(PREFIX.length);
     const target = UPSTREAM + rest + url.search;
 
+    // 'manual', không phải 'follow'. Thư mục con thiếu gạch chéo (/demo/en) thì
+    // GitHub trả 301 sang /en/. Nếu Worker tự đi theo, nội dung được trả ngay tại
+    // /demo/en và "../assets/…" bị giải thành lattice.business/assets/… — gốc tên
+    // miền trả HTML cho mọi đường dẫn nên React, font, ảnh đều hỏng. Phải chuyển
+    // tiếp chuyển hướng cho trình duyệt, đổi địa chỉ GitHub về lại /demo.
     const upstream = await fetch(target, {
       method: request.method,
       headers: request.headers,
-      redirect: 'follow',
+      redirect: 'manual',
     });
+
+    const location = upstream.headers.get('location');
+    if (upstream.status >= 300 && upstream.status < 400 && location) {
+      const to = new URL(location, target);
+      if (to.origin + to.pathname.slice(0, '/lattice_demo'.length) === UPSTREAM) {
+        url.pathname = PREFIX + to.pathname.slice('/lattice_demo'.length);
+        url.search = to.search;
+        return Response.redirect(url.toString(), upstream.status);
+      }
+      return Response.redirect(to.toString(), upstream.status);
+    }
 
     // Sao chép response để sửa được header.
     const res = new Response(upstream.body, upstream);

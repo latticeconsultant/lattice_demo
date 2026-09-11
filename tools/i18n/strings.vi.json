@@ -6206,7 +6206,7 @@
  },
  {
   "vi": "Nghị định 68/2026/NĐ-CP",
-  "en": "Platform reporting rules (DAC7)",
+  "en": "Platform reporting rules — Directive (EU) 2021/514 (DAC7)",
   "nguon": "bang"
  },
  {
@@ -6216,7 +6216,7 @@
  },
  {
   "vi": "Nghị định 141/2026/NĐ-CP",
-  "en": "Amending instrument",
+  "en": "EU AI Act — Regulation (EU) 2024/1689",
   "nguon": "bang"
  },
  {
@@ -6971,7 +6971,7 @@
  },
  {
   "vi": "Đã đối chiếu thông cáo",
-  "en": "Reconciled against public filings",
+  "en": "Checked against the press release",
   "nguon": "bang"
  },
  {
@@ -7881,7 +7881,7 @@
  },
  {
   "vi": "Sửa đổi Nghị định 68/2026/NĐ-CP",
-  "en": "Amendment to the platform reporting rules",
+  "en": "Risk-based obligations for AI systems",
   "nguon": "bang"
  },
  {
@@ -8506,7 +8506,7 @@
  },
  {
   "vi": "Luật 122/2025/QH15 về Thương mại điện tử",
-  "en": "The EU Digital Services Act",
+  "en": "EU Digital Services Act — Regulation (EU) 2022/2065",
   "nguon": "bo-sung"
  },
  {
@@ -9406,7 +9406,7 @@
  },
  {
   "vi": "Chính sách thuế và quản lý thuế đối với hộ và cá nhân kinh doanh",
-  "en": "Tax policy and administration for sole traders",
+  "en": "Marketplaces report seller income to tax authorities",
   "nguon": "bo-sung"
  },
  {
@@ -10563,5 +10563,20 @@
   "vi": "LATTICE Next Solutions JSC không gắn AI vào bộ máy cũ. Chúng tôi thiết kế lại bộ máy quanh AI — chẩn đoán, kiến trúc, triển khai, vận hành — kèm hệ thống kiểm soát để doanh nghiệp tự vận hành.",
   "en": "LATTICE Next Solutions JSC does not bolt AI onto the old machine. We redesign the machine around AI — diagnosis, architecture, build, operations — with the control system that lets the business run itself.",
   "nguon": "bo-sung"
+ },
+ {
+  "vi": "https://vanban.chinhphu.vn/?docid=217111&pageid=27160",
+  "en": "https://eur-lex.europa.eu/eli/dir/2021/514/oj",
+  "nguon": "link-nguon"
+ },
+ {
+  "vi": "https://vanban.chinhphu.vn/?docid=217960&pageid=27160",
+  "en": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+  "nguon": "link-nguon"
+ },
+ {
+  "vi": "https://vanban.chinhphu.vn/?classid=1&docid=216503&pageid=27160&typegroupid=3",
+  "en": "https://eur-lex.europa.eu/eli/reg/2022/2065/oj",
+  "nguon": "link-nguon"
  }
 ]

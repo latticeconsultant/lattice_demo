@@ -26,7 +26,12 @@ Quy trình khi sửa tiếng Việt:
   1. sửa index.html
   2. python3 tools/extract-strings.py   chuỗi mới hiện ra với en rỗng
   3. dịch các chuỗi mới
-  4. python3 tools/build-en.py          script báo chuỗi nào chưa dịch
+  4. python3 tools/build-en.py          quét bản EN, liệt kê mọi chữ Việt còn sót
+
+Bước 4 là chốt kiểm tra thật. extract-strings.py bỏ sót chuỗi viết xuống nhiều
+dòng, chuỗi mở đầu bằng chữ số và chuỗi có {{ }} — chính vì vậy bản đầu lọt
+gần 900 chuỗi. Chữ Việt nào bước 4 báo mà không có trong từ điển thì thêm tay
+một mục {"vi": ..., "en": ...} vào strings.vi.json.
 """
 
 import io
@@ -95,6 +100,31 @@ def kiem_cu_phap(t):
             dong = [x for x in r.stderr.split('\n') if 'Error' in x or '^' in x]
             loi.append('script #%d: %s' % (i, ' '.join(dong)[:200]))
     return loi
+
+
+CHU_VIET = re.compile('[àáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ'
+                      'ÀÁẢÃẠĂẰẮẲẴẶÂẦẤẨẪẬĐÈÉẺẼẸÊỀẾỂỄỆÌÍỈĨỊÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢÙÚỦŨỤƯỪỨỬỮỰỲÝỶỸỴ]')
+
+# Chữ Việt được phép còn lại trong bản EN: nút quay về bản Việt, và nhãn nhóm
+# trong manifest của trình biên tập dc-runtime (thuộc tính ẩn, người xem không thấy).
+CHO_PHEP = ('VI · PHIÊN BẢN TIẾNG VIỆT', '&quot;Hiển thị&quot;')
+
+
+def con_tieng_viet(t):
+    """Mọi đoạn còn chữ Việt trong trang, trừ comment.
+
+    Cắt trang theo dấu nháy và ngoặc thẻ thay vì ghép cặp dấu nháy: chỉ cần một
+    dấu nháy lẻ trong comment là cách ghép cặp lệch hết phần sau và bỏ sót."""
+    t = re.sub(r'/\*.*?\*/', ' ', t, flags=re.S)
+    t = re.sub(r'<!--.*?-->', ' ', t, flags=re.S)
+    t = re.sub(r"(?m)^\s*//[^'\n]*$", ' ', t)
+    ra = []
+    for doan in re.split(r'[\'"<>]', t):
+        s = re.sub(r'\s+', ' ', doan).strip()
+        if len(s) > 1 and CHU_VIET.search(s) and s not in ra \
+                and not any(c in s for c in CHO_PHEP):
+            ra.append(s)
+    return ra
 
 
 def main():
@@ -176,13 +206,20 @@ def main():
         print('  THAY_THEM khong tim thay:')
         for s in thieu:
             print('     - %s' % s[:76])
+    sot = con_tieng_viet(io.open(OUT, encoding='utf-8').read())
+    if sot:
+        print('  CON CHU VIET   : %d doan — them vao strings.vi.json' % len(sot))
+        for s in sorted(sot, key=len)[:15]:
+            print('     - %s' % s[:76])
+    else:
+        print('  chu Viet con   : 0')
     if loi:
         print('  LOI CU PHAP JS :')
         for e in loi:
             print('     - %s' % e)
         return 1
     print('  cu phap JS     : hop le')
-    return 1 if chua_dich else 0
+    return 1 if (chua_dich or sot) else 0
 
 
 if __name__ == '__main__':

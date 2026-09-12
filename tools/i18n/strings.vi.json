@@ -10693,5 +10693,30 @@
   "vi": "Bắt buộc có email, vì thư xác nhận, lịch làm việc và bảng câu hỏi đều gửi qua địa chỉ đó.",
   "en": "An email address is required: the confirmation, the scheduling and the questionnaire all go to that address.",
   "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Chẩn đoán · miễn phí",
+  "en": "Diagnostic · free of charge",
+  "nguon": "bo-60-phut"
+ },
+ {
+  "vi": "Khóa tám đầu vào ngay từ buổi đầu",
+  "en": "Lock the eight inputs from the first session",
+  "nguon": "bo-60-phut"
+ },
+ {
+  "vi": "Bắt đầu bằng một buổi chẩn đoán",
+  "en": "Start with a diagnostic",
+  "nguon": "bo-60-phut"
+ },
+ {
+  "vi": "Bắt đầu bằng buổi chẩn đoán miễn phí",
+  "en": "Start with a free diagnostic",
+  "nguon": "bo-60-phut"
+ },
+ {
+  "vi": "Chúng tôi đọc mô hình hiện tại, chỉ ra ba quy trình đáng tự động hóa trước, và nói thẳng nếu chúng tôi cho rằng anh chị chưa nên bắt đầu.",
+  "en": "We read your current model, name the three processes worth automating first, and tell you plainly if we think you should not start yet.",
+  "nguon": "bo-60-phut"
  }
 ]

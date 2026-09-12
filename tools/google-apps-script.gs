@@ -7,7 +7,8 @@
  *     Bảng này nằm trong Google Drive của tài khoản đang đăng nhập.
  *  2. Trong bảng tính: menu Tiện ích mở rộng (Extensions) → Apps Script.
  *  3. Xóa hết nội dung mẫu, dán toàn bộ file này vào.
- *  4. Sửa EMAIL_BAO ở dưới thành email muốn nhận thông báo. Để trống thì không gửi.
+ *  4. EMAIL_BAO đã điền sẵn lattice.consultant@gmail.com. Đổi ở dưới nếu muốn
+ *     địa chỉ khác; để trống thì không gửi thông báo.
  *  5. Bấm Triển khai (Deploy) → Tùy chọn triển khai mới (New deployment)
  *       Loại (Type)            : Ứng dụng web (Web app)
  *       Thực thi với tư cách   : Tôi (Me)
@@ -23,7 +24,7 @@
  * hiện có → Phiên bản: Mới. Nếu tạo triển khai mới thì URL đổi, phải dán lại.
  */
 
-var EMAIL_BAO = '';           // email nhận thông báo mỗi khi có đăng ký mới
+var EMAIL_BAO = 'lattice.consultant@gmail.com';   // nhận thông báo mỗi khi có đăng ký mới
 var TEN_TRANG_TINH = 'Đăng ký';
 
 // Thứ tự cột trong bảng. Khóa phải khớp thuộc tính name= của ô trên form.

@@ -108,8 +108,16 @@ mã QR, nếu không mã cũ trỏ vào trang không còn tồn tại.
 
 ### Nối dữ liệu về Google Drive
 
-Dữ liệu đăng ký ghi vào một Google Sheet trên Drive qua Google Apps Script. Các bước
-làm một lần, khoảng 5 phút — hướng dẫn chi tiết nằm ngay đầu file
+**Đã nối xong** — biến `ENDPOINT` trong hai trang biểu mẫu đã trỏ về Apps Script
+web app, dữ liệu ghi vào Google Sheet trên Drive và gửi email báo về
+`lattice.consultant@gmail.com`. Chỉ đọc tiếp phần dưới khi cần dựng lại từ đầu
+hoặc chuyển sang tài khoản Google khác.
+
+Endpoint là địa chỉ công khai (phải vậy thì biểu mẫu công khai mới gửi được). Nếu
+sau này bị gửi rác, thêm một ô bẫy ẩn trong form và cho Apps Script bỏ qua bản ghi
+nào có ô đó được điền.
+
+Các bước làm một lần, khoảng 5 phút — hướng dẫn chi tiết nằm ngay đầu file
 `tools/google-apps-script.gs`. Tóm tắt:
 
 1. Tạo bảng tính mới trên Google Sheets.
@@ -118,8 +126,9 @@ làm một lần, khoảng 5 phút — hướng dẫn chi tiết nằm ngay đ�
 4. Copy URL web app, dán vào biến `ENDPOINT` trong **cả hai** file `dang-ky/index.html`
    và `register/index.html`, rồi push.
 
-Chưa dán URL thì nút gửi báo "Form chưa được nối với nơi nhận dữ liệu" — người dùng
-không mất dữ liệu một cách im lặng.
+Chưa dán URL thì nút gửi báo "Form chưa được nối với nơi nhận dữ liệu"; mất mạng thì
+báo "Không gửi được, có thể do mạng" và mở lại nút — người dùng không mất dữ liệu một
+cách im lặng.
 
 ## 6. Site đang chạy ở đâu
 

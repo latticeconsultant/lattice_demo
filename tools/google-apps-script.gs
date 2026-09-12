@@ -83,6 +83,18 @@ function doPost(e) {
     var p = (e && e.parameter) || {};
     var nhieu = (e && e.parameters) || {};
 
+    // Khách bấm "Tôi đã chuyển khoản" ở bước 3. Ghi lại để đối chiếu tay khi
+    // đối soát tự động không khớp — khách gõ sai nội dung, hoặc chuyển từ tài
+    // khoản mang tên người khác. KHÔNG tự đổi trạng thái sang đã thu: lời khách
+    // nói không phải bằng chứng tiền về.
+    if (p.da_chuyen && p.ma_ho_so && timDong_(p.ma_ho_so)) {
+      if (!daGhiNhatKy_(p.ma_ho_so, 'khach_bao_da_ck')) {
+        ghiNhatKy_(p.ma_ho_so, 'khach_bao_da_ck', 'Khách bấm "Tôi đã chuyển khoản"');
+        capNhatDong_(p.ma_ho_so, { ghi_chu_noi_bo: 'Khách báo đã chuyển lúc ' + new Date().toISOString() });
+      }
+      return ket_('OK');
+    }
+
     // Gửi hai lần thì đừng ghi hai dòng, nhưng phải gửi bù thư nếu lần đầu hụt.
     if (p.ma_ho_so && timDong_(p.ma_ho_so)) {
       if (!daGhiNhatKy_(p.ma_ho_so, 'thu_dang_ky')) thuXacNhan_(p);
@@ -304,42 +316,74 @@ function thanHtml_(p, en, banChu) {
   var t = CH.taiKhoan;
   var tien = GIA[p.goi] || Number(p.so_tien) || 0;
   var noiDung = p.noi_dung_ck || p.ma_ho_so || '';
+  var ten = String(p.nguoi_dai_dien || '').trim();
   var qr = 'https://img.vietqr.io/image/' + t.bin + '-' + t.so + '-compact2.png'
     + '?amount=' + tien
     + '&addInfo=' + encodeURIComponent(noiDung)
     + '&accountName=' + encodeURIComponent(t.chu);
 
-  var nhan = en
-    ? { td: 'Complete your registration', gt: 'Your registration is recorded. It becomes active once payment arrives.',
-        goi: 'Package', tien: 'Amount', nh: 'Bank', stk: 'Account', chu: 'Account name', nd: 'Reference',
-        quet: 'Scan to pay — the amount and reference are already filled in.',
-        cuoi: 'After payment we send a receipt straight away, then the preparation questionnaire.' }
-    : { td: 'Hoàn tất đăng ký', gt: 'Đăng ký của anh chị đã được ghi nhận. Hồ sơ mở khi tiền về.',
-        goi: 'Gói', tien: 'Số tiền', nh: 'Ngân hàng', stk: 'Số tài khoản', chu: 'Chủ tài khoản', nd: 'Nội dung',
-        quet: 'Quét mã để chuyển khoản — số tiền và nội dung đã điền sẵn.',
-        cuoi: 'Tiền về là chúng tôi gửi phiếu thu ngay, sau đó gửi bảng câu hỏi chuẩn bị.' };
+  var v = en
+    ? { chao: 'Dear ', tag: 'Structure for what comes next',
+        d1: 'LATTICE Next Solutions has received your registration <b>' + p.ma_ho_so + '</b> for the <b>' +
+            (p.goi || '') + '</b> package.',
+        d2: 'Your place is held. Please complete the transfer so we can open your file and start work:',
+        tieu: 'PAYMENT DETAILS', nh: 'Bank', stk: 'Account number', chu: 'Account name',
+        tien: 'Amount', nd: 'Reference',
+        quet: 'Scan the QR with your banking app — the amount and reference are already filled in.',
+        d3: 'As soon as the money arrives, the system sends you a receipt automatically and we send the preparation questionnaire.',
+        tt: 'Kind regards,' }
+    : { chao: 'Kính gửi anh/chị ', tag: 'Kiến trúc mô hình kinh doanh mới',
+        d1: 'LATTICE Next Solutions đã nhận phiếu đăng ký <b>' + p.ma_ho_so + '</b> cho gói <b>' +
+            (p.goi || '') + '</b>.',
+        d2: 'Hồ sơ của anh chị đang được giữ. Xin hoàn tất chuyển khoản để chúng tôi mở hồ sơ và bắt đầu làm việc:',
+        tieu: 'THÔNG TIN CHUYỂN KHOẢN', nh: 'Ngân hàng', stk: 'Số tài khoản', chu: 'Chủ tài khoản',
+        tien: 'Số tiền', nd: 'Nội dung',
+        quet: 'Quét mã QR bằng ứng dụng ngân hàng — số tiền và nội dung đã điền sẵn.',
+        d3: 'Ngay khi tiền về, hệ thống tự gửi phiếu thu cho anh chị, và chúng tôi gửi bảng câu hỏi chuẩn bị.',
+        tt: 'Trân trọng,' };
 
-  var hang = function (a, b) {
-    return '<tr><td style="padding:7px 14px 7px 0;color:#605D5D;font-size:13px;white-space:nowrap">' + a +
-           '</td><td style="padding:7px 0;font-size:15px;color:#201E1D"><strong>' + b + '</strong></td></tr>';
+  var dong = function (nhan, giaTri, do_) {
+    return '<p style="margin:0 0 7px;font-size:14.5px;color:#201E1D">' + nhan + ': <b' +
+      (do_ ? ' style="color:#AE1800"' : '') + '>' + giaTri + '</b></p>';
   };
 
-  return '<div style="font-family:Arial,Helvetica,sans-serif;color:#201E1D;line-height:1.6;max-width:620px">' +
-    '<pre style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;white-space:pre-wrap;margin:0 0 24px">' +
-      banChu.split('\n\n').slice(0, 2).join('\n\n') + '</pre>' +
-    '<div style="border:2px solid #201E1D;padding:20px">' +
-      '<h3 style="margin:0 0 4px;font-size:17px">' + nhan.td + '</h3>' +
-      '<p style="margin:0 0 18px;font-size:14px;color:#605D5D">' + nhan.gt + '</p>' +
-      '<table style="border-collapse:collapse;margin-bottom:16px">' +
-        hang(nhan.goi, p.goi || '') + hang(nhan.tien, tienChu_(tien)) +
-        hang(nhan.nh, t.nganHang) + hang(nhan.stk, t.so) + hang(nhan.chu, t.chu) +
-        hang(nhan.nd, noiDung) +
-      '</table>' +
-      '<img src="' + qr + '" width="220" alt="QR" style="display:block;border:1px solid #D7D3D3">' +
-      '<p style="margin:12px 0 0;font-size:13.5px;color:#605D5D">' + nhan.quet + '</p>' +
+  return '' +
+  '<div style="background:#F3F2F2;padding:24px 12px;font-family:Arial,Helvetica,sans-serif">' +
+    '<div style="max-width:600px;margin:0 auto;background:#FFFFFF">' +
+
+      '<div style="background:#201E1D;padding:22px 26px">' +
+        '<div style="font-size:16px;font-weight:bold;letter-spacing:2px;color:#FFFFFF">LATTICE NEXT SOLUTIONS</div>' +
+        '<div style="font-size:13px;color:#BAB6B6;margin-top:5px">' + v.tag + '</div>' +
+      '</div>' +
+
+      '<div style="padding:26px">' +
+        '<p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#201E1D">' +
+          v.chao + '<b>' + (ten || '') + '</b>,</p>' +
+        '<p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#201E1D">' + v.d1 + '</p>' +
+        '<p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#201E1D">' + v.d2 + '</p>' +
+
+        '<div style="background:#FAF7F2;border:1px solid #E5DFD3;padding:20px">' +
+          '<div style="font-size:12px;letter-spacing:1.5px;font-weight:bold;color:#605D5D;margin-bottom:14px">' +
+            v.tieu + '</div>' +
+          dong(v.nh, t.nganHang) + dong(v.stk, t.so) + dong(v.chu, t.chu) +
+          dong(v.tien, tienChu_(tien), true) + dong(v.nd, noiDung, true) +
+          '<img src="' + qr + '" width="200" alt="QR" ' +
+            'style="display:block;margin:16px 0 10px;border:1px solid #D7D3D3;background:#fff">' +
+          '<div style="font-size:12.5px;line-height:1.5;color:#807C7C">' + v.quet + '</div>' +
+        '</div>' +
+
+        '<p style="margin:20px 0 20px;font-size:15px;line-height:1.6;color:#201E1D">' + v.d3 + '</p>' +
+        '<p style="margin:0;font-size:15px;line-height:1.6;color:#201E1D">' + v.tt + '<br>' +
+          '<b>LATTICE Next Solutions</b></p>' +
+      '</div>' +
+
+      '<div style="background:#F3F2F2;padding:16px 26px;font-size:12.5px;line-height:1.6;color:#807C7C">' +
+        'Công ty Cổ phần Giải pháp LATTICE Next · ' + CH.emailBao + ' · 0853 999 566<br>' +
+        '<a href="https://lattice.business/" style="color:#605D5D">lattice.business</a>' +
+      '</div>' +
+
     '</div>' +
-    '<p style="margin:20px 0 0;font-size:14px;color:#605D5D">' + nhan.cuoi + '</p>' +
-    '</div>';
+  '</div>';
 }
 
 function thuDaThu_(d) {

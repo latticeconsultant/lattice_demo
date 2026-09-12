@@ -32,6 +32,48 @@
 @font-face { font-family: 'Archivo'; font-style: normal; font-weight: 800; font-stretch: 100%; font-display: swap;
   src: url("../assets/fonts/archivo-latin.woff2") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* ── Thanh bốn bước ─────────────────────────────────────────────────────── */
+.buoc { display:flex; border:2px solid var(--ink); background:var(--bg); margin:0 0 24px; overflow:hidden; }
+.buoc div { flex:1; padding:12px 8px; text-align:center; font-size:12.5px; font-weight:600;
+  color:var(--n600); border-right:1px solid var(--n300); line-height:1.35; }
+.buoc div:last-child { border-right:0; }
+.buoc div.dang { background:var(--ink); color:#fff; }
+.buoc div.xong { color:var(--ink); }
+.buoc b { display:block; font-size:11px; letter-spacing:.1em; opacity:.7; font-weight:600; }
+@media (max-width:520px){ .buoc div { font-size:11px; padding:10px 4px; } }
+
+.man { display:none; }
+.man.hien { display:block; }
+
+/* ── Bước xác nhận ──────────────────────────────────────────────────────── */
+.xn { border:2px solid var(--ink); background:var(--bg); }
+.xn-h { background:var(--ink); color:#fff; padding:13px 16px; font-size:13px;
+  letter-spacing:.14em; font-weight:600; }
+.xn-ds div { display:flex; gap:14px; padding:11px 16px; border-bottom:1px solid var(--n300);
+  flex-wrap:wrap; }
+.xn-ds div:last-child { border-bottom:0; }
+.xn-ds b { flex:none; width:min(190px,100%); font-size:12.5px; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--n600); font-weight:600; }
+.xn-ds span { flex:1; min-width:170px; font-size:15px; line-height:1.5; word-break:break-word; }
+.xn-tong { background:var(--n200); padding:14px 16px; display:flex; justify-content:space-between;
+  gap:14px; flex-wrap:wrap; font-weight:800; font-size:17px; }
+.xn-tong .to { color:var(--red-dark); }
+
+/* ── Nút điều hướng ─────────────────────────────────────────────────────── */
+.dieu { display:flex; gap:10px; margin-top:22px; flex-wrap:wrap; }
+.dieu button { appearance:none; cursor:pointer; font:inherit; font-size:13.5px; letter-spacing:.1em;
+  font-weight:600; padding:17px 20px; border:2px solid var(--ink); background:var(--bg); color:var(--ink); }
+.dieu button.tien { flex:1; min-width:220px; background:var(--red); color:#fff; border-color:var(--red); }
+.dieu button.tien:hover { background:var(--red-dark); border-color:var(--red-dark); }
+.dieu button[disabled] { opacity:.55; cursor:wait; }
+
+/* ── Nút sao chép trong bảng chuyển khoản ───────────────────────────────── */
+.tt-tin div { align-items:center; }
+.chep { appearance:none; cursor:pointer; font:inherit; font-size:11.5px; letter-spacing:.08em;
+  font-weight:600; padding:5px 9px; margin-left:auto; border:1px solid var(--n400);
+  background:var(--bg); color:var(--n700); white-space:nowrap; }
+.chep:hover { border-color:var(--ink); color:var(--ink); }
+
 /* ── Popup chính sách ───────────────────────────────────────────────────── */
 .pop { position:fixed; inset:0; z-index:90; background:rgba(32,30,29,.74); overflow-y:auto;
   display:none; align-items:flex-start; justify-content:center; padding:clamp(12px,4vh,48px) 14px; }
@@ -204,6 +246,13 @@ footer a { color: var(--n700); }
   <p class="note">About two minutes to complete. What you tell us is kept confidential and used only to prepare and run the session — never for any other purpose, and never passed to a third party.</p>
   <p class="dot1"><strong>Round 1 closes on 15 September 2026.</strong> Files received in this round start processing on <strong>18 September 2026</strong> — every committed deadline runs from that date, not from the date of payment. The next round will be announced later. Currently available in Vietnam.</p>
 
+  <div class="buoc" id="buocBar">
+    <div class="dang"><b>1</b>Details</div>
+    <div><b>2</b>Review</div>
+    <div><b>3</b>Transfer</div>
+    <div><b>4</b>Done</div>
+  </div>
+
   <form id="frm" action="" method="post" target="lnx-sink" novalidate>
 
 
@@ -362,16 +411,27 @@ footer a { color: var(--n700); }
     <input type="hidden" name="ngon_ngu" id="ngon_ngu" value="en">
     <input type="hidden" name="thoi_gian" id="thoi_gian" value="">
 
-    <button type="submit" id="btn">SUBMIT REGISTRATION</button>
-    <p class="priv">We use this only to prepare the diagnostic. We do not share it with third parties.</p>
     <p class="err" id="err"></p>
+    <div class="dieu">
+      <button type="submit" class="tien" id="btn">CONTINUE →</button>
+    </div>
+    <p class="priv">We use this only to prepare the diagnostic. We do not share it with third parties.</p>
   </form>
 
-  <section class="done" id="done" tabindex="-1">
-    <h2>Thank you. We have your registration.</h2>
-    <p>A <strong>confirmation email</strong> has just gone to the address you entered. If it does not arrive, please check your spam folder.</p>
-    <p>We will write again with the next steps: agreeing a time and sending the <strong>preparation questionnaire</strong> for you to complete beforehand, so the session goes to analysis rather than basic questions.</p>
-    <p>Your information is kept confidential and is not passed to any third party. If you need to reach us sooner, message us on <a href="tel:+84853999566">+84 853 999 566</a>.</p>
+  <section class="man" id="m2">
+    <div class="xn">
+      <div class="xn-h">CHECK YOUR DETAILS BEFORE SENDING</div>
+      <div class="xn-ds" id="xnDs"></div>
+      <div class="xn-tong"><span id="xnGoi">—</span><span class="to" id="xnTien">—</span></div>
+    </div>
+    <p class="err" id="err2"></p>
+    <div class="dieu">
+      <button type="button" id="lui2">← BACK TO EDIT</button>
+      <button type="button" class="tien" id="gui">CONFIRM AND SEND →</button>
+    </div>
+  </section>
+
+  <section class="man" id="m3">
     <div class="tt" id="tt">
         <h3>Payment by bank transfer</h3>
         <p class="phu">Scanning the code fills in the amount and the reference for you. You can transfer before or after submitting this form — we reconcile by the file reference.</p>
@@ -380,20 +440,34 @@ footer a { color: var(--n700); }
           <div class="tt-tin">
             <div><b>Amount</b><span class="to" id="ttTien">—</span></div>
             <div><b>Bank</b><span>ACB — Asia Commercial Bank, Vietnam</span></div>
-            <div><b>Account</b><span id="ttStk">50359267</span></div>
+            <div><b>Account</b><span id="ttStk">50359267</span><button type="button" class="chep" data-chep="ttStk">COPY</button></div>
             <div><b>Account name</b><span>DANG QUOC TUAN</span></div>
-            <div><b>Reference</b><span id="ttNd">—</span></div>
+            <div><b>Reference</b><span id="ttNd">—</span><button type="button" class="chep" data-chep="ttNd">COPY</button></div>
           </div>
         </div>
         <div class="tt-nut">
           <button type="button" id="ttLuu">SAVE THE QR IMAGE</button>
-          <button type="button" id="ttChep">COPY THE REFERENCE</button>
         </div>
         <p class="tt-ghi"><strong>Your file reference: <span id="ttMa">—</span></strong><br>If you type the transfer by hand, put this reference in the message. Without it we have to match by hand and your file moves slower.</p>
       </div>
-
-    <a class="back" href="../en/">BACK TO THE SITE</a>
+    <p class="err" id="err3"></p>
+    <div class="dieu">
+      <button type="button" id="lui3">← BACK</button>
+      <button type="button" class="tien" id="daCk">I HAVE TRANSFERRED →</button>
+    </div>
   </section>
+
+  <section class="man" id="m4">
+    <div class="done" style="display:block">
+      <h2>All done. Thank you.</h2>
+      <p>Your registration is recorded and a <strong>confirmation email with the payment details</strong> has gone to the address you entered. If it does not arrive, please check your spam folder.</p>
+      <p>As soon as the money arrives, the system sends a <strong>receipt</strong> automatically. We then create your file, send the <strong>preparation questionnaire</strong>, and agree a time with you.</p>
+      <p>Your information is kept confidential and is not passed to any third party. If you need to reach us sooner, message us on <a href="tel:+84853999566">+84 853 999 566</a>.</p>
+      <a class="back" href="../en/">BACK TO THE SITE</a>
+    </div>
+  </section>
+
+  
 
   <footer>
     <p>LATTICE Next Solutions Joint Stock Company — <a href="../en/">lattice.business/en</a></p>
@@ -516,15 +590,6 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw2fp-E19x4GZqh3gUPF5z2u
     r.addEventListener('change', tinhThanhToan);
   });
 
-  document.getElementById('ttChep').addEventListener('click', function () {
-    var v = document.getElementById('ttNd').textContent;
-    var xong = function () { var b = document.getElementById('ttChep'); b.textContent = 'COPIED'; setTimeout(function () { b.textContent = 'COPY THE REFERENCE'; }, 1800); };
-    if (navigator.clipboard) { navigator.clipboard.writeText(v).then(xong, xong); return; }
-    var o = document.createElement('textarea'); o.value = v; document.body.appendChild(o);
-    o.select(); try { document.execCommand('copy'); } catch (e) {}
-    o.remove(); xong();
-  });
-
   // Trên điện thoại không quét được mã đang hiện trên chính máy đó. Cách quen
   // thuộc ở Việt Nam là lưu ảnh rồi vào app ngân hàng chọn quét từ thư viện.
   document.getElementById('ttLuu').addEventListener('click', async function () {
@@ -558,81 +623,133 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw2fp-E19x4GZqh3gUPF5z2u
   var pop = document.getElementById('pop');
   function moPop(e) { if (e) e.preventDefault(); pop.classList.add('hien'); document.getElementById('popDong').focus(); }
   function dongPop() { pop.classList.remove('hien'); }
-  Array.prototype.forEach.call(document.querySelectorAll('[data-pop]'), function (a) {
-    a.addEventListener('click', moPop);
-  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-pop]'), function (a) { a.addEventListener('click', moPop); });
   document.getElementById('popDong').addEventListener('click', dongPop);
   pop.addEventListener('click', function (e) { if (e.target === pop) dongPop(); });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && pop.classList.contains('hien')) dongPop();
   });
 
+  // ── Nút sao chép ─────────────────────────────────────────────────────────
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-chep]');
+    if (!b) return;
+    var v = document.getElementById(b.dataset.chep).textContent.trim();
+    var cu = b.textContent;
+    var xong = function () { b.textContent = 'COPIED'; setTimeout(function () { b.textContent = cu; }, 1600); };
+    if (navigator.clipboard) { navigator.clipboard.writeText(v).then(xong, xong); return; }
+    var o = document.createElement('textarea'); o.value = v; document.body.appendChild(o);
+    o.select(); try { document.execCommand('copy'); } catch (x) {}
+    o.remove(); xong();
+  });
+
+  // ── Bốn bước ─────────────────────────────────────────────────────────────
+  var man = { 1: frm, 2: document.getElementById('m2'),
+              3: document.getElementById('m3'), 4: document.getElementById('m4') };
+  var oBuoc = document.getElementById('buocBar').children;
+
+  function sangBuoc(n) {
+    for (var i = 1; i <= 4; i++) {
+      if (i === 1) frm.style.display = (n === 1) ? '' : 'none';
+      else man[i].classList.toggle('hien', i === n);
+      oBuoc[i - 1].className = (i === n) ? 'dang' : (i < n ? 'xong' : '');
+    }
+    document.getElementById('buocBar').scrollIntoView({ block: 'start' });
+  }
+
   frm.addEventListener('submit', function (e) {
+    e.preventDefault();
     err.style.display = 'none';
 
-    // Tự kiểm tra để hiện đúng ô thiếu, thay vì để trình duyệt chặn im lặng.
-    var quanTam = frm.querySelectorAll('[name=quan_tam]:checked').length;
-    if (!quanTam) {
-      e.preventDefault();
+    if (!frm.querySelectorAll('[name=quan_tam]:checked').length) {
       baoLoi('Please tick at least one area you need help with.');
       frm.querySelector('[name=quan_tam]').scrollIntoView({ block: 'center' });
       return;
     }
     if (!frm.querySelector('[name=goi]:checked')) {
-      e.preventDefault();
-      baoLoi('Please choose a package before sending.');
+      baoLoi('Please choose a package before continuing.');
       frm.querySelector('[name=goi]').scrollIntoView({ block: 'center' });
       return;
     }
-
     if (!frm.checkValidity()) {
-      e.preventDefault();
       var oSai = frm.querySelector(':invalid');
       if (oSai) { oSai.scrollIntoView({ block: 'center' }); oSai.focus(); }
       frm.reportValidity();
       return;
     }
+    tinhThanhToan();
+    veXacNhan();
+    sangBuoc(2);
+  });
 
-    if (!ENDPOINT) {
-      e.preventDefault();
-      baoLoi('This form is not connected to a data destination yet. Please contact us directly.');
-      return;
-    }
+  var NHAN = { ten_doanh_nghiep: 'Company', nguoi_dai_dien: 'Contact person',
+    chuc_danh: 'Job title', email: 'Email', dien_thoai: 'Phone / messaging',
+    website: 'Website / sales channel', loai_hinh: 'Legal form', linh_vuc: 'Sector',
+    quy_mo_nhan_su: 'Headcount', so_nam: 'Years in operation', mo_ta: 'What needs to improve' };
 
-    // Chặn form tự gửi: gửi bằng fetch để biết chính xác lúc nào xong.
-    e.preventDefault();
-    document.getElementById('ngon_ngu').value = 'en';
+  function veXacNhan() {
+    var d = new FormData(frm);
+    var lay = function (k) { return (d.get(k) || '').toString().trim(); };
+    var ra = '';
+    Object.keys(NHAN).forEach(function (k) {
+      var v = lay(k);
+      if (k === 'loai_hinh' && v === 'Other') v = lay('loai_hinh_khac') || v;
+      if (k === 'linh_vuc' && v === 'Other') v = lay('linh_vuc_khac') || v;
+      if (!v) return;
+      ra += '<div><b>' + NHAN[k] + '</b><span>' + v.replace(/</g, '&lt;') + '</span></div>';
+    });
+    ra += '<div><b>Revenue 24 · 25 · 26</b><span>' +
+      [lay('doanh_so_2024'), lay('doanh_so_2025'), lay('doanh_so_2026')].join(' · ') + '</span></div>';
+    var qt = d.getAll('quan_tam');
+    if (qt.length) ra += '<div><b>Most needed</b><span>' + qt.join(' · ') + '</span></div>';
+    document.getElementById('xnDs').innerHTML = ra;
+    document.getElementById('xnGoi').textContent = lay('goi');
+    document.getElementById('xnTien').textContent = document.getElementById('ttTien').textContent;
+  }
+
+  document.getElementById('lui2').addEventListener('click', function () { sangBuoc(1); });
+  document.getElementById('lui3').addEventListener('click', function () { sangBuoc(2); });
+
+  document.getElementById('gui').addEventListener('click', function () {
+    var nut = this;
+    document.getElementById('err2').style.display = 'none';
+    if (!ENDPOINT) { baoLoi2('This form is not connected to a data destination yet. Please contact us directly.'); return; }
     document.getElementById('thoi_gian').value = new Date().toISOString();
-    daGui = true;
-    btn.disabled = true;
-    btn.textContent = 'SENDING…';
-
-    // mode 'no-cors': Apps Script không trả header CORS nên trình duyệt không cho
-    // đọc nội dung trả về, nhưng yêu cầu vẫn được gửi và promise vẫn báo lúc xong.
-    // Đây là "yêu cầu đơn giản" (form-urlencoded) nên không có bước preflight.
-    // Trước đây gửi bằng form post vào iframe: trang Google trả về không hiển thị
-    // được trong iframe khác tên miền nên sự kiện load không nổ, người gửi phải
-    // chờ hết 8 giây dự phòng mới thấy màn cảm ơn.
-    fetch(ENDPOINT, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: new URLSearchParams(new FormData(frm))
-    }).then(hoanTat).catch(function () {
-      daGui = false;
-      baoLoi('We could not send this — it may be your connection. Please try again, or contact us directly.');
+    nut.disabled = true; nut.textContent = 'SENDING…';
+    guiLen({}).then(function () {
+      nut.disabled = false; nut.textContent = 'CONFIRM AND SEND →';
+      hienThanhToan();
+      sangBuoc(3);
+    }).catch(function () {
+      nut.disabled = false; nut.textContent = 'CONFIRM AND SEND →';
+      baoLoi2('We could not send this — it may be your connection. Please try again.');
     });
   });
 
-  function hoanTat() {
-    if (!daGui) return;
-    daGui = false;
-    frm.style.display = 'none';
-    hienThanhToan();
-    done.style.display = 'block';
-    done.focus();
-    done.scrollIntoView({ block: 'start' });
+  // Bước 3 → 4: báo cho chúng tôi biết khách đã chuyển, để đối chiếu tay khi
+  // đối soát tự động không khớp.
+  document.getElementById('daCk').addEventListener('click', function () {
+    var nut = this;
+    nut.disabled = true; nut.textContent = 'RECORDING…';
+    var xong = function () {
+      nut.disabled = false; nut.textContent = 'I HAVE TRANSFERRED →';
+      sangBuoc(4);
+    };
+    guiLen({ da_chuyen: '1' }).then(xong, xong);
+  });
+
+  // mode 'no-cors': Apps Script không trả header CORS nên không đọc được nội
+  // dung trả về, nhưng yêu cầu vẫn gửi và promise vẫn báo lúc xong.
+  function guiLen(them) {
+    var d = new URLSearchParams(new FormData(frm));
+    Object.keys(them || {}).forEach(function (k) { d.set(k, them[k]); });
+    return fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: d });
   }
 
+  function baoLoi2(msg) {
+    var o = document.getElementById('err2');
+    o.textContent = msg; o.style.display = 'block';
+  }
 })();
 </script>
 

@@ -33,6 +33,48 @@
   src: url("../assets/fonts/archivo-latin.woff2") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
+/* ── Thanh bốn bước ─────────────────────────────────────────────────────── */
+.buoc { display:flex; border:2px solid var(--ink); background:var(--bg); margin:0 0 24px; overflow:hidden; }
+.buoc div { flex:1; padding:12px 8px; text-align:center; font-size:12.5px; font-weight:600;
+  color:var(--n600); border-right:1px solid var(--n300); line-height:1.35; }
+.buoc div:last-child { border-right:0; }
+.buoc div.dang { background:var(--ink); color:#fff; }
+.buoc div.xong { color:var(--ink); }
+.buoc b { display:block; font-size:11px; letter-spacing:.1em; opacity:.7; font-weight:600; }
+@media (max-width:520px){ .buoc div { font-size:11px; padding:10px 4px; } }
+
+.man { display:none; }
+.man.hien { display:block; }
+
+/* ── Bước xác nhận ──────────────────────────────────────────────────────── */
+.xn { border:2px solid var(--ink); background:var(--bg); }
+.xn-h { background:var(--ink); color:#fff; padding:13px 16px; font-size:13px;
+  letter-spacing:.14em; font-weight:600; }
+.xn-ds div { display:flex; gap:14px; padding:11px 16px; border-bottom:1px solid var(--n300);
+  flex-wrap:wrap; }
+.xn-ds div:last-child { border-bottom:0; }
+.xn-ds b { flex:none; width:min(190px,100%); font-size:12.5px; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--n600); font-weight:600; }
+.xn-ds span { flex:1; min-width:170px; font-size:15px; line-height:1.5; word-break:break-word; }
+.xn-tong { background:var(--n200); padding:14px 16px; display:flex; justify-content:space-between;
+  gap:14px; flex-wrap:wrap; font-weight:800; font-size:17px; }
+.xn-tong .to { color:var(--red-dark); }
+
+/* ── Nút điều hướng ─────────────────────────────────────────────────────── */
+.dieu { display:flex; gap:10px; margin-top:22px; flex-wrap:wrap; }
+.dieu button { appearance:none; cursor:pointer; font:inherit; font-size:13.5px; letter-spacing:.1em;
+  font-weight:600; padding:17px 20px; border:2px solid var(--ink); background:var(--bg); color:var(--ink); }
+.dieu button.tien { flex:1; min-width:220px; background:var(--red); color:#fff; border-color:var(--red); }
+.dieu button.tien:hover { background:var(--red-dark); border-color:var(--red-dark); }
+.dieu button[disabled] { opacity:.55; cursor:wait; }
+
+/* ── Nút sao chép trong bảng chuyển khoản ───────────────────────────────── */
+.tt-tin div { align-items:center; }
+.chep { appearance:none; cursor:pointer; font:inherit; font-size:11.5px; letter-spacing:.08em;
+  font-weight:600; padding:5px 9px; margin-left:auto; border:1px solid var(--n400);
+  background:var(--bg); color:var(--n700); white-space:nowrap; }
+.chep:hover { border-color:var(--ink); color:var(--ink); }
+
 /* ── Popup chính sách ───────────────────────────────────────────────────── */
 .pop { position:fixed; inset:0; z-index:90; background:rgba(32,30,29,.74); overflow-y:auto;
   display:none; align-items:flex-start; justify-content:center; padding:clamp(12px,4vh,48px) 14px; }
@@ -206,6 +248,13 @@ footer a { color: var(--n700); }
   <p class="note">Điền khoảng 2 phút. Thông tin anh chị cung cấp được giữ kín, chỉ dùng để chuẩn bị và thực hiện buổi làm việc — không dùng cho mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.</p>
   <p class="dot1"><strong>Đợt 1 đóng đăng ký ngày 15/9/2026.</strong> Hồ sơ nhận trong đợt này bắt đầu được xử lý từ <strong>18/9/2026</strong> — mọi mốc thời gian cam kết tính từ ngày đó, không tính từ ngày thanh toán. Thời gian đăng ký đợt tiếp theo sẽ thông báo sau.</p>
 
+  <div class="buoc" id="buocBar">
+    <div class="dang"><b>1</b>Thông tin</div>
+    <div><b>2</b>Xác nhận</div>
+    <div><b>3</b>Chuyển khoản</div>
+    <div><b>4</b>Hoàn tất</div>
+  </div>
+
   <form id="frm" action="" method="post" target="lnx-sink" novalidate>
 
 
@@ -364,16 +413,27 @@ footer a { color: var(--n700); }
     <input type="hidden" name="ngon_ngu" id="ngon_ngu" value="vi">
     <input type="hidden" name="thoi_gian" id="thoi_gian" value="">
 
-    <button type="submit" id="btn">GỬI ĐĂNG KÝ</button>
-    <p class="priv">Thông tin chỉ dùng để chuẩn bị buổi chẩn đoán. Chúng tôi không chia sẻ với bên thứ ba.</p>
     <p class="err" id="err"></p>
+    <div class="dieu">
+      <button type="submit" class="tien" id="btn">TIẾP TỤC →</button>
+    </div>
+    <p class="priv">Thông tin chỉ dùng để chuẩn bị buổi chẩn đoán. Chúng tôi không chia sẻ với bên thứ ba.</p>
   </form>
 
-  <section class="done" id="done" tabindex="-1">
-    <h2>Cảm ơn anh chị. Đã nhận phiếu đăng ký.</h2>
-    <p>Một <strong>thư xác nhận</strong> vừa được gửi tới hộp thư anh chị vừa điền. Nếu không thấy, anh chị kiểm tra hộp thư rác giúp chúng tôi.</p>
-    <p>Chúng tôi sẽ thông báo cụ thể các bước tiếp theo: thống nhất lịch làm việc và gửi trước <strong>bảng câu hỏi chuẩn bị</strong> để anh chị hoàn thiện. Buổi làm việc nhờ vậy dùng vào phân tích thay vì hỏi đáp thông tin cơ bản.</p>
-    <p>Thông tin của anh chị được giữ kín và không cung cấp cho bên thứ ba. Cần trao đổi sớm, anh chị nhắn Zalo cho chúng tôi theo số <a href="tel:+84853999566">0853 999 566</a>.</p>
+  <section class="man" id="m2">
+    <div class="xn">
+      <div class="xn-h">KIỂM LẠI THÔNG TIN TRƯỚC KHI GỬI</div>
+      <div class="xn-ds" id="xnDs"></div>
+      <div class="xn-tong"><span id="xnGoi">—</span><span class="to" id="xnTien">—</span></div>
+    </div>
+    <p class="err" id="err2"></p>
+    <div class="dieu">
+      <button type="button" id="lui2">← QUAY LẠI SỬA</button>
+      <button type="button" class="tien" id="gui">XÁC NHẬN VÀ GỬI ĐĂNG KÝ →</button>
+    </div>
+  </section>
+
+  <section class="man" id="m3">
     <div class="tt" id="tt">
         <h3>Thanh toán chuyển khoản</h3>
         <p class="phu">Quét mã là số tiền và nội dung đã điền sẵn, anh chị không phải gõ gì. Có thể chuyển khoản trước hoặc sau khi gửi biểu mẫu — chúng tôi đối chiếu theo mã hồ sơ.</p>
@@ -382,20 +442,34 @@ footer a { color: var(--n700); }
           <div class="tt-tin">
             <div><b>Số tiền</b><span class="to" id="ttTien">—</span></div>
             <div><b>Ngân hàng</b><span>ACB — Ngân hàng Á Châu</span></div>
-            <div><b>Số tài khoản</b><span id="ttStk">50359267</span></div>
+            <div><b>Số tài khoản</b><span id="ttStk">50359267</span><button type="button" class="chep" data-chep="ttStk">SAO CHÉP</button></div>
             <div><b>Chủ tài khoản</b><span>DANG QUOC TUAN</span></div>
-            <div><b>Nội dung</b><span id="ttNd">—</span></div>
+            <div><b>Nội dung</b><span id="ttNd">—</span><button type="button" class="chep" data-chep="ttNd">SAO CHÉP</button></div>
           </div>
         </div>
         <div class="tt-nut">
           <button type="button" id="ttLuu">LƯU ẢNH MÃ QR</button>
-          <button type="button" id="ttChep">SAO CHÉP NỘI DUNG</button>
         </div>
         <p class="tt-ghi"><strong>Mã hồ sơ của anh chị: <span id="ttMa">—</span></strong><br>Nếu chuyển khoản bằng cách gõ tay, nhớ ghi đúng mã này vào nội dung. Thiếu mã thì chúng tôi phải dò tay và hồ sơ vào chậm hơn.</p>
       </div>
-
-    <a class="back" href="../">VỀ TRANG CHỦ</a>
+    <p class="err" id="err3"></p>
+    <div class="dieu">
+      <button type="button" id="lui3">← QUAY LẠI</button>
+      <button type="button" class="tien" id="daCk">TÔI ĐÃ CHUYỂN KHOẢN →</button>
+    </div>
   </section>
+
+  <section class="man" id="m4">
+    <div class="done" style="display:block">
+      <h2>Hoàn tất. Cảm ơn anh chị.</h2>
+      <p>Chúng tôi đã ghi nhận đăng ký và gửi <strong>thư xác nhận kèm thông tin chuyển khoản</strong> tới hộp thư anh chị vừa điền. Nếu không thấy, anh chị kiểm tra hộp thư rác giúp chúng tôi.</p>
+      <p>Ngay khi tiền về, hệ thống tự gửi <strong>phiếu thu</strong>. Sau đó chúng tôi tạo lập hồ sơ và gửi <strong>bảng câu hỏi chuẩn bị</strong>, rồi thống nhất lịch làm việc.</p>
+      <p>Thông tin của anh chị được giữ kín và không cung cấp cho bên thứ ba. Cần trao đổi sớm, anh chị nhắn Zalo theo số <a href="tel:+84853999566">0853 999 566</a>.</p>
+      <a class="back" href="../">VỀ TRANG CHỦ</a>
+    </div>
+  </section>
+
+  
 
   <footer>
     <p>Công ty Cổ phần Giải pháp LATTICE Next — <a href="../">lattice.business</a></p>
@@ -519,15 +593,6 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw2fp-E19x4GZqh3gUPF5z2u
     r.addEventListener('change', tinhThanhToan);
   });
 
-  document.getElementById('ttChep').addEventListener('click', function () {
-    var v = document.getElementById('ttNd').textContent;
-    var xong = function () { var b = document.getElementById('ttChep'); b.textContent = 'ĐÃ SAO CHÉP'; setTimeout(function () { b.textContent = 'SAO CHÉP NỘI DUNG'; }, 1800); };
-    if (navigator.clipboard) { navigator.clipboard.writeText(v).then(xong, xong); return; }
-    var o = document.createElement('textarea'); o.value = v; document.body.appendChild(o);
-    o.select(); try { document.execCommand('copy'); } catch (e) {}
-    o.remove(); xong();
-  });
-
   // Trên điện thoại không quét được mã đang hiện trên chính máy đó. Cách quen
   // thuộc ở Việt Nam là lưu ảnh rồi vào app ngân hàng chọn quét từ thư viện.
   document.getElementById('ttLuu').addEventListener('click', async function () {
@@ -561,81 +626,138 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw2fp-E19x4GZqh3gUPF5z2u
   var pop = document.getElementById('pop');
   function moPop(e) { if (e) e.preventDefault(); pop.classList.add('hien'); document.getElementById('popDong').focus(); }
   function dongPop() { pop.classList.remove('hien'); }
-  Array.prototype.forEach.call(document.querySelectorAll('[data-pop]'), function (a) {
-    a.addEventListener('click', moPop);
-  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-pop]'), function (a) { a.addEventListener('click', moPop); });
   document.getElementById('popDong').addEventListener('click', dongPop);
   pop.addEventListener('click', function (e) { if (e.target === pop) dongPop(); });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && pop.classList.contains('hien')) dongPop();
   });
 
+  // ── Nút sao chép ─────────────────────────────────────────────────────────
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-chep]');
+    if (!b) return;
+    var v = document.getElementById(b.dataset.chep).textContent.trim();
+    var cu = b.textContent;
+    var xong = function () { b.textContent = 'ĐÃ CHÉP'; setTimeout(function () { b.textContent = cu; }, 1600); };
+    if (navigator.clipboard) { navigator.clipboard.writeText(v).then(xong, xong); return; }
+    var o = document.createElement('textarea'); o.value = v; document.body.appendChild(o);
+    o.select(); try { document.execCommand('copy'); } catch (x) {}
+    o.remove(); xong();
+  });
+
+  // ── Bốn bước ─────────────────────────────────────────────────────────────
+  var man = { 1: frm, 2: document.getElementById('m2'),
+              3: document.getElementById('m3'), 4: document.getElementById('m4') };
+  var oBuoc = document.getElementById('buocBar').children;
+
+  function sangBuoc(n) {
+    for (var i = 1; i <= 4; i++) {
+      if (i === 1) frm.style.display = (n === 1) ? '' : 'none';
+      else man[i].classList.toggle('hien', i === n);
+      oBuoc[i - 1].className = (i === n) ? 'dang' : (i < n ? 'xong' : '');
+    }
+    document.getElementById('buocBar').scrollIntoView({ block: 'start' });
+  }
+
+  // Bước 1 → 2: kiểm tra rồi dựng bảng xác nhận.
   frm.addEventListener('submit', function (e) {
+    e.preventDefault();
     err.style.display = 'none';
 
-    // Tự kiểm tra để hiện đúng ô thiếu, thay vì để trình duyệt chặn im lặng.
-    var quanTam = frm.querySelectorAll('[name=quan_tam]:checked').length;
-    if (!quanTam) {
-      e.preventDefault();
+    if (!frm.querySelectorAll('[name=quan_tam]:checked').length) {
       baoLoi('Anh chị chọn ít nhất một mảng đang quan tâm.');
       frm.querySelector('[name=quan_tam]').scrollIntoView({ block: 'center' });
       return;
     }
     if (!frm.querySelector('[name=goi]:checked')) {
-      e.preventDefault();
-      baoLoi('Anh chị chọn giúp một gói trước khi gửi.');
+      baoLoi('Anh chị chọn giúp một gói trước khi tiếp tục.');
       frm.querySelector('[name=goi]').scrollIntoView({ block: 'center' });
       return;
     }
-
     if (!frm.checkValidity()) {
-      e.preventDefault();
       var oSai = frm.querySelector(':invalid');
       if (oSai) { oSai.scrollIntoView({ block: 'center' }); oSai.focus(); }
       frm.reportValidity();
       return;
     }
+    tinhThanhToan();
+    veXacNhan();
+    sangBuoc(2);
+  });
 
-    if (!ENDPOINT) {
-      e.preventDefault();
-      baoLoi('Form chưa được nối với nơi nhận dữ liệu. Anh chị vui lòng liên hệ trực tiếp giúp chúng tôi.');
-      return;
-    }
+  var NHAN = { ten_doanh_nghiep: 'Doanh nghiệp', nguoi_dai_dien: 'Người đại diện',
+    chuc_danh: 'Chức danh', email: 'Email', dien_thoai: 'Điện thoại / Zalo',
+    website: 'Website / kênh bán', loai_hinh: 'Loại hình', linh_vuc: 'Lĩnh vực',
+    quy_mo_nhan_su: 'Quy mô nhân sự', so_nam: 'Số năm hoạt động', mo_ta: 'Vấn đề cần cải thiện' };
 
-    // Chặn form tự gửi: gửi bằng fetch để biết chính xác lúc nào xong.
-    e.preventDefault();
-    document.getElementById('ngon_ngu').value = 'vi';
+  function veXacNhan() {
+    var d = new FormData(frm);
+    var lay = function (k) { return (d.get(k) || '').toString().trim(); };
+    var ra = '';
+    Object.keys(NHAN).forEach(function (k) {
+      var v = lay(k);
+      if (k === 'loai_hinh' && v === 'Khác') v = lay('loai_hinh_khac') || v;
+      if (k === 'linh_vuc' && v === 'Khác') v = lay('linh_vuc_khac') || v;
+      if (!v) return;
+      ra += '<div><b>' + NHAN[k] + '</b><span>' + v.replace(/</g, '&lt;') + '</span></div>';
+    });
+    ra += '<div><b>Doanh số 24 · 25 · 26</b><span>' +
+      [lay('doanh_so_2024'), lay('doanh_so_2025'), lay('doanh_so_2026')].join(' · ') + '</span></div>';
+    var qt = d.getAll('quan_tam');
+    if (qt.length) ra += '<div><b>Quan tâm nhất</b><span>' + qt.join(' · ') + '</span></div>';
+    document.getElementById('xnDs').innerHTML = ra;
+    document.getElementById('xnGoi').textContent = lay('goi');
+    document.getElementById('xnTien').textContent = document.getElementById('ttTien').textContent;
+  }
+
+  document.getElementById('lui2').addEventListener('click', function () { sangBuoc(1); });
+  document.getElementById('lui3').addEventListener('click', function () { sangBuoc(2); });
+
+  // Bước 2 → 3: gửi thật lên Apps Script rồi hiện thông tin chuyển khoản.
+  document.getElementById('gui').addEventListener('click', function () {
+    var nut = this;
+    document.getElementById('err2').style.display = 'none';
+    if (!ENDPOINT) { baoLoi2('Form chưa được nối với nơi nhận dữ liệu. Anh chị liên hệ trực tiếp giúp chúng tôi.'); return; }
     document.getElementById('thoi_gian').value = new Date().toISOString();
-    daGui = true;
-    btn.disabled = true;
-    btn.textContent = 'ĐANG GỬI…';
-
-    // mode 'no-cors': Apps Script không trả header CORS nên trình duyệt không cho
-    // đọc nội dung trả về, nhưng yêu cầu vẫn được gửi và promise vẫn báo lúc xong.
-    // Đây là "yêu cầu đơn giản" (form-urlencoded) nên không có bước preflight.
-    // Trước đây gửi bằng form post vào iframe: trang Google trả về không hiển thị
-    // được trong iframe khác tên miền nên sự kiện load không nổ, người gửi phải
-    // chờ hết 8 giây dự phòng mới thấy màn cảm ơn.
-    fetch(ENDPOINT, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: new URLSearchParams(new FormData(frm))
-    }).then(hoanTat).catch(function () {
-      daGui = false;
-      baoLoi('Không gửi được, có thể do mạng. Anh chị thử lại giúp, hoặc liên hệ trực tiếp với chúng tôi.');
+    nut.disabled = true; nut.textContent = 'ĐANG GỬI…';
+    guiLen({}).then(function () {
+      nut.disabled = false; nut.textContent = 'XÁC NHẬN VÀ GỬI ĐĂNG KÝ →';
+      hienThanhToan();
+      sangBuoc(3);
+    }).catch(function () {
+      nut.disabled = false; nut.textContent = 'XÁC NHẬN VÀ GỬI ĐĂNG KÝ →';
+      baoLoi2('Không gửi được, có thể do mạng. Anh chị thử lại giúp.');
     });
   });
 
-  function hoanTat() {
-    if (!daGui) return;
-    daGui = false;
-    frm.style.display = 'none';
-    hienThanhToan();
-    done.style.display = 'block';
-    done.focus();
-    done.scrollIntoView({ block: 'start' });
+  // Bước 3 → 4: báo cho chúng tôi biết khách đã chuyển, để đối chiếu tay khi
+  // đối soát tự động không khớp — khách gõ sai nội dung, hoặc chuyển từ tài
+  // khoản mang tên người khác.
+  document.getElementById('daCk').addEventListener('click', function () {
+    var nut = this;
+    nut.disabled = true; nut.textContent = 'ĐANG GHI NHẬN…';
+    var xong = function () {
+      nut.disabled = false; nut.textContent = 'TÔI ĐÃ CHUYỂN KHOẢN →';
+      sangBuoc(4);
+    };
+    // Đăng ký đã gửi ở bước trước rồi, nên lỗi ở đây cũng không chặn khách lại.
+    guiLen({ da_chuyen: '1' }).then(xong, xong);
+  });
+
+  // mode 'no-cors': Apps Script không trả header CORS nên không đọc được nội
+  // dung trả về, nhưng yêu cầu vẫn gửi và promise vẫn báo lúc xong. Body dạng
+  // form-urlencoded nên đây là "yêu cầu đơn giản", không có bước preflight.
+  function guiLen(them) {
+    var d = new URLSearchParams(new FormData(frm));
+    Object.keys(them || {}).forEach(function (k) { d.set(k, them[k]); });
+    return fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: d });
   }
 
+  function baoLoi2(msg) {
+    var o = document.getElementById('err2');
+    o.textContent = msg; o.style.display = 'block';
+  }
 })();
 </script>
 

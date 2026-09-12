@@ -10968,5 +10968,15 @@
   "vi": "Trao đổi ban đầu miễn phí và khách hàng nhận được kết quả dùng được kể cả khi không hợp tác tiếp.",
   "en": "The first exchange costs nothing, and clients leave with something usable even if they go no further with us.",
   "nguon": "goi-dich-vu"
+ },
+ {
+  "vi": "— mọi mốc thời gian cam kết bên dưới tính từ ngày đó, không tính từ ngày thanh toán. Thời gian đăng ký đợt tiếp theo sẽ thông báo sau.",
+  "en": "— every committed deadline below runs from that date, not from the date of payment. The next round will be announced later.",
+  "nguon": "goi-dich-vu"
+ },
+ {
+  "vi": "Nhận tối đa 10 hồ sơ Blueprint mỗi đợt. Hết suất thì chúng tôi hẹn đợt sau chứ không nhận rồi giao trễ.",
+  "en": "We take at most ten Blueprint files per round. Once they are gone we book you into the next round rather than accept the work and deliver it late.",
+  "nguon": "goi-dich-vu"
  }
 ]

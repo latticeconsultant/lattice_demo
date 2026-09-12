@@ -259,8 +259,9 @@ function thuXacNhan_(p) {
     if (en) {
       tieude = 'LATTICE Next — we have your registration';
       than = (ten ? 'Dear ' + ten + ',' : 'Hello,') + '\n\n' +
-        'Thank you for registering with LATTICE Next Solutions. This email confirms we have received your file' +
-        (p.ten_doanh_nghiep ? ' for ' + p.ten_doanh_nghiep : '') + '.\n\n' + tt +
+        'Thank you for registering with LATTICE Next Solutions. We have your file' +
+        (p.ten_doanh_nghiep ? ' for ' + p.ten_doanh_nghiep : '') +
+        '. To complete it, please transfer using the details below.\n\n' + tt +
         'What happens next\n' +
         '  1. Once your payment arrives we send a receipt straight away.\n' +
         '  2. We create your file and send the preparation questionnaire.\n' +
@@ -272,8 +273,9 @@ function thuXacNhan_(p) {
     } else {
       tieude = 'LATTICE Next — đã nhận phiếu đăng ký của anh chị';
       than = (ten ? 'Kính gửi ' + ten + ',' : 'Kính gửi anh chị,') + '\n\n' +
-        'Cảm ơn anh chị đã đăng ký cùng LATTICE Next Solutions. Thư này xác nhận chúng tôi đã nhận được hồ sơ' +
-        (p.ten_doanh_nghiep ? ' của ' + p.ten_doanh_nghiep : '') + '.\n\n' + tt +
+        'Cảm ơn anh chị đã đăng ký cùng LATTICE Next Solutions. Chúng tôi đã nhận được hồ sơ' +
+        (p.ten_doanh_nghiep ? ' của ' + p.ten_doanh_nghiep : '') +
+        '. Để hoàn tất, anh chị chuyển khoản theo thông tin dưới đây.\n\n' + tt +
         'Các bước tiếp theo\n' +
         '  1. Tiền về là chúng tôi gửi phiếu thu ngay.\n' +
         '  2. Chúng tôi tạo lập hồ sơ và gửi bảng câu hỏi chuẩn bị.\n' +
@@ -284,11 +286,60 @@ function thuXacNhan_(p) {
         'Công ty Cổ phần Giải pháp LATTICE Next\nhttps://lattice.business/';
     }
     MailApp.sendEmail({ to: toi, subject: tieude, body: than,
+                        htmlBody: thanHtml_(p, en, than),
                         name: 'LATTICE Next Solutions', replyTo: CH.emailBao });
     ghiNhatKy_(p.ma_ho_so || '', 'thu_dang_ky', 'Gửi tới ' + toi);
   } catch (err) {
     console.error('Không gửi được thư xác nhận: ' + err);
   }
+}
+
+/**
+ * Bản HTML của thư xác nhận, có nhúng mã QR chuyển khoản.
+ * Ảnh QR lấy từ img.vietqr.io theo địa chỉ động, số tiền và nội dung điền sẵn —
+ * khách mở thư trên điện thoại là quét được ngay, không phải gõ gì.
+ * Vẫn gửi kèm bản chữ thuần (body) cho trình đọc thư không hiện ảnh.
+ */
+function thanHtml_(p, en, banChu) {
+  var t = CH.taiKhoan;
+  var tien = GIA[p.goi] || Number(p.so_tien) || 0;
+  var noiDung = p.noi_dung_ck || p.ma_ho_so || '';
+  var qr = 'https://img.vietqr.io/image/' + t.bin + '-' + t.so + '-compact2.png'
+    + '?amount=' + tien
+    + '&addInfo=' + encodeURIComponent(noiDung)
+    + '&accountName=' + encodeURIComponent(t.chu);
+
+  var nhan = en
+    ? { td: 'Complete your registration', gt: 'Your registration is recorded. It becomes active once payment arrives.',
+        goi: 'Package', tien: 'Amount', nh: 'Bank', stk: 'Account', chu: 'Account name', nd: 'Reference',
+        quet: 'Scan to pay — the amount and reference are already filled in.',
+        cuoi: 'After payment we send a receipt straight away, then the preparation questionnaire.' }
+    : { td: 'Hoàn tất đăng ký', gt: 'Đăng ký của anh chị đã được ghi nhận. Hồ sơ mở khi tiền về.',
+        goi: 'Gói', tien: 'Số tiền', nh: 'Ngân hàng', stk: 'Số tài khoản', chu: 'Chủ tài khoản', nd: 'Nội dung',
+        quet: 'Quét mã để chuyển khoản — số tiền và nội dung đã điền sẵn.',
+        cuoi: 'Tiền về là chúng tôi gửi phiếu thu ngay, sau đó gửi bảng câu hỏi chuẩn bị.' };
+
+  var hang = function (a, b) {
+    return '<tr><td style="padding:7px 14px 7px 0;color:#605D5D;font-size:13px;white-space:nowrap">' + a +
+           '</td><td style="padding:7px 0;font-size:15px;color:#201E1D"><strong>' + b + '</strong></td></tr>';
+  };
+
+  return '<div style="font-family:Arial,Helvetica,sans-serif;color:#201E1D;line-height:1.6;max-width:620px">' +
+    '<pre style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;white-space:pre-wrap;margin:0 0 24px">' +
+      banChu.split('\n\n').slice(0, 2).join('\n\n') + '</pre>' +
+    '<div style="border:2px solid #201E1D;padding:20px">' +
+      '<h3 style="margin:0 0 4px;font-size:17px">' + nhan.td + '</h3>' +
+      '<p style="margin:0 0 18px;font-size:14px;color:#605D5D">' + nhan.gt + '</p>' +
+      '<table style="border-collapse:collapse;margin-bottom:16px">' +
+        hang(nhan.goi, p.goi || '') + hang(nhan.tien, tienChu_(tien)) +
+        hang(nhan.nh, t.nganHang) + hang(nhan.stk, t.so) + hang(nhan.chu, t.chu) +
+        hang(nhan.nd, noiDung) +
+      '</table>' +
+      '<img src="' + qr + '" width="220" alt="QR" style="display:block;border:1px solid #D7D3D3">' +
+      '<p style="margin:12px 0 0;font-size:13.5px;color:#605D5D">' + nhan.quet + '</p>' +
+    '</div>' +
+    '<p style="margin:20px 0 0;font-size:14px;color:#605D5D">' + nhan.cuoi + '</p>' +
+    '</div>';
 }
 
 function thuDaThu_(d) {

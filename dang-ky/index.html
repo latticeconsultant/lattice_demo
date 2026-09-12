@@ -33,6 +33,23 @@
   src: url("../assets/fonts/archivo-latin.woff2") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
+/* ── Popup chính sách ───────────────────────────────────────────────────── */
+.pop { position:fixed; inset:0; z-index:90; background:rgba(32,30,29,.74); overflow-y:auto;
+  display:none; align-items:flex-start; justify-content:center; padding:clamp(12px,4vh,48px) 14px; }
+.pop.hien { display:flex; }
+.pop-hop { width:100%; max-width:620px; margin:auto; background:#fff; border:2px solid var(--ink);
+  padding:clamp(20px,5vw,32px); }
+.pop-hop h2 { margin:0 0 6px; font-size:clamp(19px,4.5vw,24px); font-weight:800; letter-spacing:-.02em; }
+.pop-hop .dan { margin:0 0 20px; font-size:14.5px; line-height:1.6; color:var(--n700); }
+.pop-ds { display:grid; gap:2px; background:var(--n300); border-top:2px solid var(--n300);
+  border-bottom:2px solid var(--n300); }
+.pop-ds div { background:#fff; padding:13px 14px; display:flex; gap:14px; flex-wrap:wrap; }
+.pop-ds b { flex:none; width:min(210px,100%); font-size:13.5px; line-height:1.45; }
+.pop-ds span { flex:1; min-width:180px; font-size:14px; line-height:1.55; color:var(--n700); }
+.pop-ghi { font-size:13.5px; line-height:1.6; color:var(--n600); margin:18px 0 0; }
+.pop-dong { margin-top:22px; width:100%; appearance:none; cursor:pointer; font:inherit; font-size:13px;
+  letter-spacing:.14em; font-weight:600; padding:15px; background:var(--ink); color:#fff; border:0; }
+
 /* ── Chọn gói và thanh toán ─────────────────────────────────────────────── */
 .dot1 { border-left: 4px solid var(--red); background: #fff; padding: 15px 17px; margin: 0 0 26px;
   font-size: 14.5px; line-height: 1.6; color: var(--ink); }
@@ -187,50 +204,10 @@ footer a { color: var(--n700); }
   <p class="lead">Miễn phí. Kết thúc buổi này anh chị nhận được ba quy trình nên tự động hóa trước, ước lượng trần tự động hóa của mô hình, và câu trả lời thẳng nếu chúng tôi cho rằng anh chị chưa nên bắt đầu.</p>
 
   <p class="note">Điền khoảng 2 phút. Thông tin anh chị cung cấp được giữ kín, chỉ dùng để chuẩn bị và thực hiện buổi làm việc — không dùng cho mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.</p>
-  <p class="dot1"><strong>Đợt 1 đóng đăng ký ngày 15/9/2026.</strong> Hồ sơ nhận trong đợt này bắt đầu được xử lý từ <strong>18/9/2026</strong> — mọi mốc thời gian cam kết tính từ ngày đó, không tính từ ngày thanh toán. Đăng ký sau 15/9 chuyển sang đợt 2.</p>
+  <p class="dot1"><strong>Đợt 1 đóng đăng ký ngày 15/9/2026.</strong> Hồ sơ nhận trong đợt này bắt đầu được xử lý từ <strong>18/9/2026</strong> — mọi mốc thời gian cam kết tính từ ngày đó, không tính từ ngày thanh toán. Thời gian đăng ký đợt tiếp theo sẽ thông báo sau.</p>
 
   <form id="frm" action="" method="post" target="lnx-sink" novalidate>
 
-    <fieldset>
-      <legend>Chọn gói</legend>
-      <div class="f"><span class="lb">Gói dịch vụ <span class="req">*</span>
-        <span class="hint">Phí tạo lập hồ sơ và quản lý. Trao đổi ban đầu qua email hoặc Zalo thì không mất phí.</span></span>
-        <div class="goi">
-          <label>
-            <input type="radio" name="goi" value="LATTICE Scan" required>
-            <span class="hang"><span class="ten">LATTICE Scan</span><span class="gia">499.000đ</span></span>
-            <span class="mo-ta">Bảng câu hỏi soạn riêng theo nhóm mô hình · một buổi Zoom 60 phút có chuẩn bị trước · bản tóm tắt 1–2 trang sau buổi.</span>
-            <span class="them">Gửi bảng câu hỏi 3–5 ngày làm việc · xếp lịch 3 ngày · tài liệu 3 ngày.</span>
-          </label>
-          <label>
-            <input type="radio" name="goi" value="LATTICE Blueprint">
-            <span class="hang"><span class="ten">LATTICE Blueprint</span><span class="gia">1.499.000đ</span></span>
-            <span class="mo-ta">Toàn bộ gói Scan, thay bản tóm tắt bằng hồ sơ chẩn đoán 8–12 trang · thêm buổi rà lại 30 phút sau ba tuần · một bộ SOP mẫu · hỏi đáp email 30 ngày.</span>
-            <span class="them">Gửi bảng câu hỏi 2 ngày làm việc · xếp lịch 2 ngày · hồ sơ 5 ngày. Khấu trừ 100% vào hợp đồng triển khai nếu ký trong 60 ngày. Nhận tối đa 4 hồ sơ mỗi tháng.</span>
-          </label>
-        </div>
-      </div>
-
-      <div class="tt" id="tt">
-        <h3>Thanh toán chuyển khoản</h3>
-        <p class="phu">Quét mã là số tiền và nội dung đã điền sẵn, anh chị không phải gõ gì. Có thể chuyển khoản trước hoặc sau khi gửi biểu mẫu — chúng tôi đối chiếu theo mã hồ sơ.</p>
-        <div class="tt-than">
-          <div class="tt-qr" id="ttQr"></div>
-          <div class="tt-tin">
-            <div><b>Số tiền</b><span class="to" id="ttTien">—</span></div>
-            <div><b>Ngân hàng</b><span>ACB — Ngân hàng Á Châu</span></div>
-            <div><b>Số tài khoản</b><span id="ttStk">50359267</span></div>
-            <div><b>Chủ tài khoản</b><span>DANG QUOC TUAN</span></div>
-            <div><b>Nội dung</b><span id="ttNd">—</span></div>
-          </div>
-        </div>
-        <div class="tt-nut">
-          <button type="button" id="ttLuu">LƯU ẢNH MÃ QR</button>
-          <button type="button" id="ttChep">SAO CHÉP NỘI DUNG</button>
-        </div>
-        <p class="tt-ghi"><strong>Mã hồ sơ của anh chị: <span id="ttMa">—</span></strong><br>Nếu chuyển khoản bằng cách gõ tay, nhớ ghi đúng mã này vào nội dung. Thiếu mã thì chúng tôi phải dò tay và hồ sơ vào chậm hơn.</p>
-      </div>
-    </fieldset>
 
     <fieldset>
       <legend>Thông tin liên hệ</legend>
@@ -316,17 +293,17 @@ footer a { color: var(--n700); }
         <span class="hint">Chỉ cần khoảng. Chi phí AI hợp lý là 2–8% doanh thu, nên không có con số này chúng tôi không ước lượng được ngân sách cho anh chị.</span></span>
         <div class="rev">
           <label><span>2024</span>
-            <select name="doanh_so_2024">
+            <select name="doanh_so_2024" required>
               <option value="">—</option>
               <option>Dưới 1 tỷ</option><option>1–3 tỷ</option><option>3–10 tỷ</option><option>10–30 tỷ</option><option>30–100 tỷ</option><option>Trên 100 tỷ</option><option>Không muốn tiết lộ</option>
             </select></label>
           <label><span>2025</span>
-            <select name="doanh_so_2025">
+            <select name="doanh_so_2025" required>
               <option value="">—</option>
               <option>Dưới 1 tỷ</option><option>1–3 tỷ</option><option>3–10 tỷ</option><option>10–30 tỷ</option><option>30–100 tỷ</option><option>Trên 100 tỷ</option><option>Không muốn tiết lộ</option>
             </select></label>
           <label><span>2026</span>
-            <select name="doanh_so_2026">
+            <select name="doanh_so_2026" required>
               <option value="">—</option>
               <option>Dưới 1 tỷ</option><option>1–3 tỷ</option><option>3–10 tỷ</option><option>10–30 tỷ</option><option>30–100 tỷ</option><option>Trên 100 tỷ</option><option>Không muốn tiết lộ</option>
             </select></label>
@@ -354,10 +331,30 @@ footer a { color: var(--n700); }
       <label class="f"><span class="lb">Vấn đề cần cải thiện <span class="req">*</span>
         <span class="hint">Càng cụ thể càng dễ chuẩn bị cho buổi chẩn đoán.</span></span>
         <textarea name="mo_ta" required placeholder="Điều gì đang tốn thời gian nhất của anh chị? Việc gì lặp đi lặp lại mỗi tuần? Nếu ba tháng nữa có một thứ thay đổi được, anh chị muốn đó là gì?"></textarea></label>
+    </fieldset>
+    <fieldset>
+      <legend>Chọn gói</legend>
+      <div class="f"><span class="lb">Gói dịch vụ <span class="req">*</span>
+        <span class="hint">Phí tạo lập hồ sơ và quản lý. Trao đổi ban đầu qua email hoặc Zalo thì không mất phí.</span></span>
+        <div class="goi">
+          <label>
+            <input type="radio" name="goi" value="LATTICE Scan" required>
+            <span class="hang"><span class="ten">LATTICE Scan</span><span class="gia">499.000đ</span></span>
+            <span class="mo-ta">Bảng câu hỏi soạn riêng theo nhóm mô hình · một buổi Zoom 60 phút có chuẩn bị trước · bản tóm tắt 1–2 trang sau buổi.</span>
+            <span class="them">Gửi bảng câu hỏi 3–5 ngày làm việc · xếp lịch 3 ngày · tài liệu 3 ngày.</span>
+          </label>
+          <label>
+            <input type="radio" name="goi" value="LATTICE Blueprint">
+            <span class="hang"><span class="ten">LATTICE Blueprint</span><span class="gia">1.499.000đ</span></span>
+            <span class="mo-ta">Toàn bộ gói Scan, thay bản tóm tắt bằng hồ sơ chẩn đoán 8–12 trang · thêm buổi rà lại 30 phút sau ba tuần · một bộ SOP mẫu · hỏi đáp email 30 ngày.</span>
+            <span class="them">Gửi bảng câu hỏi 2 ngày làm việc · xếp lịch 2 ngày · hồ sơ 5 ngày. Khấu trừ 100% vào hợp đồng triển khai nếu ký trong 60 ngày. Nhận tối đa 10 hồ sơ mỗi đợt.</span>
+          </label>
+        </div>
+      </div>
 
       <div class="consent">
         <label class="chk"><input type="checkbox" name="dong_y" value="Có" required><span>Tôi đồng ý để LATTICE Next Solutions liên hệ qua email và Zalo về yêu cầu này. <span class="req">*</span></span></label>
-        <label class="chk" style="margin-top:2px"><input type="checkbox" name="dong_y_chinh_sach" value="Có" required><span>Tôi đã đọc và đồng ý với <a href="../#lien-he" target="_blank">chính sách phí và hoàn phí</a>: sau khi LATTICE đã gửi bảng câu hỏi thì không hoàn phí. <span class="req">*</span></span></label>
+        <label class="chk" style="margin-top:2px"><input type="checkbox" name="dong_y_chinh_sach" value="Có" required><span>Tôi đã đọc và đồng ý với <a href="#" data-pop="1">chính sách phí và hoàn phí</a>: sau khi LATTICE đã gửi bảng câu hỏi thì không hoàn phí. <span class="req">*</span></span></label>
       </div>
     </fieldset>
 
@@ -377,12 +374,50 @@ footer a { color: var(--n700); }
     <p>Một <strong>thư xác nhận</strong> vừa được gửi tới hộp thư anh chị vừa điền. Nếu không thấy, anh chị kiểm tra hộp thư rác giúp chúng tôi.</p>
     <p>Chúng tôi sẽ thông báo cụ thể các bước tiếp theo: thống nhất lịch làm việc và gửi trước <strong>bảng câu hỏi chuẩn bị</strong> để anh chị hoàn thiện. Buổi làm việc nhờ vậy dùng vào phân tích thay vì hỏi đáp thông tin cơ bản.</p>
     <p>Thông tin của anh chị được giữ kín và không cung cấp cho bên thứ ba. Cần trao đổi sớm, anh chị nhắn Zalo cho chúng tôi theo số <a href="tel:+84853999566">0853 999 566</a>.</p>
+    <div class="tt" id="tt">
+        <h3>Thanh toán chuyển khoản</h3>
+        <p class="phu">Quét mã là số tiền và nội dung đã điền sẵn, anh chị không phải gõ gì. Có thể chuyển khoản trước hoặc sau khi gửi biểu mẫu — chúng tôi đối chiếu theo mã hồ sơ.</p>
+        <div class="tt-than">
+          <div class="tt-qr" id="ttQr"></div>
+          <div class="tt-tin">
+            <div><b>Số tiền</b><span class="to" id="ttTien">—</span></div>
+            <div><b>Ngân hàng</b><span>ACB — Ngân hàng Á Châu</span></div>
+            <div><b>Số tài khoản</b><span id="ttStk">50359267</span></div>
+            <div><b>Chủ tài khoản</b><span>DANG QUOC TUAN</span></div>
+            <div><b>Nội dung</b><span id="ttNd">—</span></div>
+          </div>
+        </div>
+        <div class="tt-nut">
+          <button type="button" id="ttLuu">LƯU ẢNH MÃ QR</button>
+          <button type="button" id="ttChep">SAO CHÉP NỘI DUNG</button>
+        </div>
+        <p class="tt-ghi"><strong>Mã hồ sơ của anh chị: <span id="ttMa">—</span></strong><br>Nếu chuyển khoản bằng cách gõ tay, nhớ ghi đúng mã này vào nội dung. Thiếu mã thì chúng tôi phải dò tay và hồ sơ vào chậm hơn.</p>
+      </div>
+
     <a class="back" href="../">VỀ TRANG CHỦ</a>
   </section>
 
   <footer>
     <p>Công ty Cổ phần Giải pháp LATTICE Next — <a href="../">lattice.business</a></p>
   </footer>
+</div>
+
+
+<div class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="popTitle">
+  <div class="pop-hop">
+    <h2 id="popTitle">Chính sách phí và hoàn phí</h2>
+    <p class="dan">Khoản thu là <strong>phí tạo lập hồ sơ và quản lý</strong>, không phải phí tư vấn: nghiên cứu mô hình của anh chị, soạn bảng câu hỏi riêng, phân tích trước buổi làm việc và làm tài liệu sau buổi. Trao đổi ban đầu qua email hoặc Zalo không mất phí.</p>
+    <div class="pop-ds">
+      <div><b>Huỷ trước khi chúng tôi gửi bảng câu hỏi</b><span>Hoàn 100%.</span></div>
+      <div><b>Sau khi chúng tôi đã gửi bảng câu hỏi</b><span>Không hoàn phí. Đến mốc này phần việc tạo lập hồ sơ đã hoàn tất và không thu hồi được.</span></div>
+      <div><b>Chưa điền bảng câu hỏi</b><span>Bảo lưu 90 ngày. Quá hạn coi như đã sử dụng.</span></div>
+      <div><b>Xin dời lịch buổi làm việc</b><span>Miễn phí tối đa 2 lần, báo trước ít nhất 24 giờ.</span></div>
+      <div><b>Vắng mặt không báo, quá 15 phút</b><span>Tính là đã sử dụng một buổi. Được dời một lần duy nhất.</span></div>
+      <div><b>Chúng tôi lỗi hẹn</b><span>Không gửi bảng câu hỏi hoặc không xếp được lịch đúng cam kết: hoàn 100%, hoặc nâng lên gói Blueprint không thu thêm — anh chị chọn.</span></div>
+    </div>
+    <p class="pop-ghi">Chúng tôi cam kết nói thẳng cả điều bất lợi, kể cả khuyên anh chị chưa nên bắt đầu. Đó là nội dung dịch vụ, không phải lỗi dịch vụ, nên không thuộc diện hoàn phí.</p>
+    <button type="button" class="pop-dong" id="popDong">ĐÃ ĐỌC, ĐÓNG LẠI</button>
+  </div>
 </div>
 
 <!-- Chỉ dùng khi tắt JavaScript: khi đó form tự gửi thẳng, không có màn cảm ơn. -->
@@ -451,9 +486,11 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw2fp-E19x4GZqh3gUPF5z2u
       + '&accountName=' + encodeURIComponent(NGAN_HANG.chuTk);
   }
 
-  function veThanhToan() {
+  // Tính và ghi vào ô ẩn ngay khi chọn gói, nhưng KHÔNG hiện khối thanh toán:
+  // khối đó nằm trong màn cảm ơn, chỉ hiện sau khi đã gửi đăng ký.
+  function tinhThanhToan() {
     var chon = frm.querySelector('[name=goi]:checked');
-    if (!chon) { tt.classList.remove('hien'); return; }
+    if (!chon) return;
     if (!maHoSo) maHoSo = sinhMa();
 
     var tien = GOI[chon.value];
@@ -472,11 +509,14 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw2fp-E19x4GZqh3gUPF5z2u
     } else {
       o.innerHTML = '<img alt="Mã QR chuyển khoản ' + tienChu(tien) + '" src="' + urlQR(tien, noiDung) + '">';
     }
-    tt.classList.add('hien');
+  }
+
+  function hienThanhToan() {
+    if (frm.querySelector('[name=goi]:checked')) tt.classList.add('hien');
   }
 
   Array.prototype.forEach.call(frm.querySelectorAll('[name=goi]'), function (r) {
-    r.addEventListener('change', veThanhToan);
+    r.addEventListener('change', tinhThanhToan);
   });
 
   document.getElementById('ttChep').addEventListener('click', function () {
@@ -516,10 +556,38 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw2fp-E19x4GZqh3gUPF5z2u
     }
   });
 
+
+  // ── Popup chính sách ─────────────────────────────────────────────────────
+  var pop = document.getElementById('pop');
+  function moPop(e) { if (e) e.preventDefault(); pop.classList.add('hien'); document.getElementById('popDong').focus(); }
+  function dongPop() { pop.classList.remove('hien'); }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-pop]'), function (a) {
+    a.addEventListener('click', moPop);
+  });
+  document.getElementById('popDong').addEventListener('click', dongPop);
+  pop.addEventListener('click', function (e) { if (e.target === pop) dongPop(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && pop.classList.contains('hien')) dongPop();
+  });
+
   frm.addEventListener('submit', function (e) {
     err.style.display = 'none';
 
     // Tự kiểm tra để hiện đúng ô thiếu, thay vì để trình duyệt chặn im lặng.
+    var quanTam = frm.querySelectorAll('[name=quan_tam]:checked').length;
+    if (!quanTam) {
+      e.preventDefault();
+      baoLoi('Anh chị chọn ít nhất một mảng đang quan tâm.');
+      frm.querySelector('[name=quan_tam]').scrollIntoView({ block: 'center' });
+      return;
+    }
+    if (!frm.querySelector('[name=goi]:checked')) {
+      e.preventDefault();
+      baoLoi('Anh chị chọn giúp một gói trước khi gửi.');
+      frm.querySelector('[name=goi]').scrollIntoView({ block: 'center' });
+      return;
+    }
+
     if (!frm.checkValidity()) {
       e.preventDefault();
       var oSai = frm.querySelector(':invalid');
@@ -562,6 +630,7 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw2fp-E19x4GZqh3gUPF5z2u
     if (!daGui) return;
     daGui = false;
     frm.style.display = 'none';
+    hienThanhToan();
     done.style.display = 'block';
     done.focus();
     done.scrollIntoView({ block: 'start' });

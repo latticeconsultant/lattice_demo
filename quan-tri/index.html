@@ -288,9 +288,9 @@ function ve() {
     the('Chờ thanh toán', DS.filter(function (d) { return d.trang_thai === 'cho_thanh_toan'; }).length) +
     the('Đã thu', daThu.length) +
     the('Tiền đã nhận', tienChu(tong)) +
-    the('Blueprint tháng này', DS.filter(function (d) {
-      return d.goi === 'LATTICE Blueprint' && String(d.thoi_gian).slice(0, 7) === new Date().toISOString().slice(0, 7);
-    }).length + ' / 4');
+    the('Blueprint đợt này', DS.filter(function (d) {
+      return d.goi === 'LATTICE Blueprint';
+    }).length + ' / 10');
 
   $('dem').textContent = ds.length + ' / ' + DS.length + ' hồ sơ';
   $('trong').style.display = ds.length ? 'none' : 'block';

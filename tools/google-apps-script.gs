@@ -1,97 +1,112 @@
 /**
- * Nhận đăng ký chẩn đoán từ lattice.business/dang-ky/ và ghi vào Google Sheet.
+ * LATTICE Next — nhận đăng ký, đối soát thanh toán, cấp dữ liệu cho trang quản trị.
  *
- * CÁCH TRIỂN KHAI — làm một lần, khoảng 5 phút:
+ * CÁCH TRIỂN KHAI:
+ *  1. Mở Google Sheet đang dùng → Tiện ích mở rộng (Extensions) → Apps Script.
+ *  2. Xoá hết, dán toàn bộ file này vào, Lưu.
+ *  3. Triển khai → Quản lý triển khai → sửa bản đang có → Phiên bản: Mới → Triển khai.
+ *     Nếu tạo triển khai MỚI thì URL đổi và phải dán lại vào hai trang biểu mẫu.
+ *     Loại: Ứng dụng web · Thực thi với tư cách: Tôi · Ai truy cập: Bất kỳ ai.
  *
- *  1. Vào https://sheets.new tạo bảng tính mới, đặt tên "LATTICE — Đăng ký chẩn đoán".
- *     Bảng này nằm trong Google Drive của tài khoản đang đăng nhập.
- *  2. Trong bảng tính: menu Tiện ích mở rộng (Extensions) → Apps Script.
- *  3. Xóa hết nội dung mẫu, dán toàn bộ file này vào.
- *  4. EMAIL_BAO đã điền sẵn lattice.consultant@gmail.com. Đổi ở dưới nếu muốn
- *     địa chỉ khác; để trống thì không gửi thông báo.
- *  5. Bấm Triển khai (Deploy) → Tùy chọn triển khai mới (New deployment)
- *       Loại (Type)            : Ứng dụng web (Web app)
- *       Thực thi với tư cách   : Tôi (Me)
- *       Ai có quyền truy cập   : Bất kỳ ai (Anyone)   ← bắt buộc, không phải "Anyone with Google account"
- *  6. Google hỏi cấp quyền lần đầu → Nâng cao (Advanced) → Đi tới … (không an toàn) → Cho phép.
- *  7. Copy URL web app (dạng https://script.google.com/macros/s/AKfy…/exec).
- *  8. Dán URL đó vào biến ENDPOINT trong CẢ HAI file:
- *         dang-ky/index.html
- *         register/index.html
- *     rồi commit và push.
+ * BA CỬA VÀO:
+ *  - POST không kèm tham số sepay : biểu mẫu đăng ký gửi lên
+ *  - POST kèm ?sepay=<mật mã>     : webhook SePay báo tiền về
+ *  - GET kèm ?token=<mã>          : trang quản trị đọc và ghi
  *
- * LƯU Ý: mỗi lần sửa file này phải Triển khai → Quản lý triển khai → sửa bản
- * hiện có → Phiên bản: Mới. Nếu tạo triển khai mới thì URL đổi, phải dán lại.
+ * HAI BÍ MẬT nằm ở ⚙️ Cài đặt dự án → Thuộc tính tập lệnh, KHÔNG viết vào file này
+ * vì mã nguồn đi lên GitHub công khai:
+ *      ADMIN_TOKEN   mã truy cập cho trang quản trị
+ *      SEPAY_SECRET  mật mã webhook SePay
  */
 
-var EMAIL_BAO = 'lattice.consultant@gmail.com';   // nhận thông báo mỗi khi có đăng ký mới
-var TEN_TRANG_TINH = 'Đăng ký';
-var TAI_KHOAN = { nganHang: 'ACB', bin: '970416', so: '50359267', chu: 'DANG QUOC TUAN' };
+var CH = {
+  emailBao: 'lattice.consultant@gmail.com',     // nhận thông báo mỗi đăng ký mới
+  thueSuat: 0.10,                               // VAT trên giá đã niêm yết
+  taiKhoan: { nganHang: 'ACB — Ngân hàng Á Châu', bin: '970416',
+              so: '50359267', chu: 'DANG QUOC TUAN' }
+};
 
-// Thứ tự cột trong bảng. Khóa phải khớp thuộc tính name= của ô trên form.
+var TEN_DANG_KY = 'Đăng ký';
+var TEN_NHAT_KY = 'Nhật ký';
+
+var GIA = { 'LATTICE Scan': 499000, 'LATTICE Blueprint': 1499000 };
+
+// Thứ tự cột trong sheet. Khoá phải khớp thuộc tính name= của ô trên biểu mẫu.
 var COT = [
-  ['thoi_gian',       'Thời gian'],
-  ['ma_ho_so',        'Mã hồ sơ'],
-  ['goi',             'Gói'],
-  ['so_tien',         'Số tiền'],
-  ['noi_dung_ck',     'Nội dung CK'],
-  ['trang_thai',      'Trạng thái'],
-  ['ngon_ngu',        'Ngôn ngữ'],
-  ['ten_doanh_nghiep','Tên doanh nghiệp'],
-  ['nguoi_dai_dien',  'Người đại diện'],
-  ['chuc_danh',       'Chức danh'],
-  ['email',           'Email'],
-  ['dien_thoai',      'Điện thoại / Zalo'],
-  ['website',         'Website / kênh bán'],
-  ['loai_hinh',       'Loại hình'],
-  ['loai_hinh_khac',  'Loại hình — ghi rõ'],
-  ['linh_vuc',        'Lĩnh vực'],
-  ['linh_vuc_khac',   'Lĩnh vực — ghi rõ'],
-  ['quy_mo_nhan_su',  'Quy mô nhân sự'],
-  ['so_nam',          'Số năm hoạt động'],
-  ['doanh_so_2024',   'Doanh số 2024'],
-  ['doanh_so_2025',   'Doanh số 2025'],
-  ['doanh_so_2026',   'Doanh số 2026'],
-  ['quan_tam',        'Quan tâm nhất'],
-  ['mo_ta',           'Vấn đề cần cải thiện'],
-  ['dong_y',          'Đồng ý liên hệ'],
-  ['dong_y_chinh_sach', 'Đồng ý chính sách phí']
+  ['thoi_gian',        'Thời gian'],
+  ['ma_ho_so',         'Mã hồ sơ'],
+  ['goi',              'Gói'],
+  ['so_tien',          'Số tiền'],
+  ['noi_dung_ck',      'Nội dung CK'],
+  ['trang_thai',       'Trạng thái'],
+  ['ngon_ngu',         'Ngôn ngữ'],
+  ['ten_doanh_nghiep', 'Tên doanh nghiệp'],
+  ['nguoi_dai_dien',   'Người đại diện'],
+  ['chuc_danh',        'Chức danh'],
+  ['email',            'Email'],
+  ['dien_thoai',       'Điện thoại / Zalo'],
+  ['website',          'Website / kênh bán'],
+  ['loai_hinh',        'Loại hình'],
+  ['loai_hinh_khac',   'Loại hình — ghi rõ'],
+  ['linh_vuc',         'Lĩnh vực'],
+  ['linh_vuc_khac',    'Lĩnh vực — ghi rõ'],
+  ['quy_mo_nhan_su',   'Quy mô nhân sự'],
+  ['so_nam',           'Số năm hoạt động'],
+  ['doanh_so_2024',    'Doanh số 2024'],
+  ['doanh_so_2025',    'Doanh số 2025'],
+  ['doanh_so_2026',    'Doanh số 2026'],
+  ['quan_tam',         'Quan tâm nhất'],
+  ['mo_ta',            'Vấn đề cần cải thiện'],
+  ['dong_y',           'Đồng ý liên hệ'],
+  ['dong_y_chinh_sach','Đồng ý chính sách phí'],
+  ['tien_thuc',        'Tiền thực nhận'],
+  ['luc_thu',          'Lúc nhận tiền'],
+  ['lich_hen',         'Lịch làm việc'],
+  ['ghi_chu_noi_bo',   'Ghi chú nội bộ']
 ];
 
-// Cột số điện thoại phải ở dạng văn bản, nếu không Sheet nuốt số 0 đầu:
-// 0853999566 thành 853999566, gọi theo số đó là gọi nhầm người.
-var COT_VAN_BAN = ['dien_thoai', 'ma_ho_so', 'noi_dung_ck', 'so_tien'];
+// Sheet nuốt số 0 đầu: 0853999566 thành 853999566, gọi theo đó là gọi nhầm người.
+var COT_VAN_BAN = ['dien_thoai', 'ma_ho_so', 'noi_dung_ck', 'so_tien', 'tien_thuc'];
+
+var TRANG_THAI = ['cho_thanh_toan', 'da_thu', 'da_gui_bch', 'da_hen', 'xong', 'huy'];
+
+
+/* ═══ CỬA 1 · biểu mẫu đăng ký ═══════════════════════════════════════════ */
 
 function doPost(e) {
+  // Webhook SePay cũng POST vào đúng địa chỉ này — phân luồng trước khi làm gì khác.
+  if (e && e.parameter && e.parameter.sepay) return nhanTienVe_(e);
+
   var khoa = LockService.getScriptLock();
-  // Hai người gửi cùng lúc mà không khóa thì hai dòng ghi đè lên nhau.
   khoa.waitLock(30000);
   try {
     var p = (e && e.parameter) || {};
     var nhieu = (e && e.parameters) || {};
 
-    var sh = layTrangTinh_();
+    // Gửi hai lần thì đừng ghi hai dòng, nhưng phải gửi bù thư nếu lần đầu hụt.
+    if (p.ma_ho_so && timDong_(p.ma_ho_so)) {
+      if (!daGhiNhatKy_(p.ma_ho_so, 'thu_dang_ky')) thuXacNhan_(p);
+      return ket_('OK');
+    }
+
+    var sh = sheet_(TEN_DANG_KY);
     var dong = COT.map(function (c) {
       var k = c[0];
-      // quan_tam là ô tích chọn nhiều — gộp lại một ô cho dễ đọc
       if (nhieu[k] && nhieu[k].length > 1) return nhieu[k].join(' · ');
       return p[k] || '';
     });
     if (!dong[0]) dong[0] = new Date().toISOString();
-
-    // Trạng thái khởi tạo: chờ tiền về.
-    var iTt = chiSoCot_('trang_thai');
-    if (!dong[iTt]) dong[iTt] = 'cho_thanh_toan';
+    dong[iCot_('trang_thai')] = 'cho_thanh_toan';
+    // Không tin số tiền trình duyệt gửi lên — tính lại từ tên gói.
+    dong[iCot_('so_tien')] = String(GIA[p.goi] || 0);
 
     sh.appendRow(dong);
     dinhDangVanBan_(sh, sh.getLastRow());
 
-    if (EMAIL_BAO) baoEmail_(p, nhieu);
+    if (CH.emailBao) baoDangKyMoi_(p, nhieu);
     thuXacNhan_(p);
     return ket_('OK');
   } catch (err) {
-    // Vẫn trả 200 để trình duyệt người đăng ký không thấy trang lỗi của Google.
-    // Lỗi xem ở Apps Script → Nhật ký thực thi (Executions).
     console.error(err);
     return ket_('ERROR');
   } finally {
@@ -99,132 +114,371 @@ function doPost(e) {
   }
 }
 
-function doGet() {
-  return ket_('LATTICE dang ky endpoint. Gui bang POST.');
-}
 
-function layTrangTinh_() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sh = ss.getSheetByName(TEN_TRANG_TINH);
-  if (!sh) {
-    sh = ss.insertSheet(TEN_TRANG_TINH);
-    sh.appendRow(COT.map(function (c) { return c[1]; }));
-    sh.getRange(1, 1, 1, COT.length).setFontWeight('bold');
-    sh.setFrozenRows(1);
+/* ═══ CỬA 2 · webhook SePay ══════════════════════════════════════════════ */
+
+function nhanTienVe_(e) {
+  var matMa = biMat_('SEPAY_SECRET');
+  if (!matMa || e.parameter.sepay !== matMa) return ket_('SAI MAT MA');
+
+  var khoa = LockService.getScriptLock();
+  khoa.waitLock(30000);
+  try {
+    var gd = {};
+    try { gd = JSON.parse(e.postData.contents); } catch (x) { gd = e.parameter || {}; }
+
+    // ① Chỉ quan tâm tiền VÀO. Tiền ra cũng gọi webhook.
+    var vao = Number(gd.transferAmount || 0);
+    if (String(gd.transferType || '').toLowerCase() !== 'in' || vao <= 0) return ket_('BO QUA');
+
+    // ② Không mang dấu vết hồ sơ thì im lặng bỏ qua. Tài khoản còn dùng việc khác;
+    //    ghi hết thì nhật ký ngập dòng vô nghĩa, người trực quen mắt bỏ qua luôn
+    //    cả dòng thật sự cần xem.
+    var noi = chuanHoa_(gd.content || '');
+    if (noi.indexOf('LTC') < 0) return ket_('BO QUA');
+
+    // ③ Khớp theo mã hồ sơ. KHÔNG lọc theo trạng thái ở đây: SePay gọi lại cùng
+    //    một giao dịch là chuyện thường, lọc ở bước này sẽ báo "không khớp" nhầm.
+    var ds = docTatCa_();
+    var don = null;
+    for (var i = 0; i < ds.length; i++) {
+      if (ds[i].ma_ho_so && noi.indexOf(chuanHoa_(ds[i].ma_ho_so)) >= 0) { don = ds[i]; break; }
+    }
+    if (!don) {
+      ghiNhatKy_('', 'tien_khong_khop', 'Có chữ LTC nhưng không khớp mã hồ sơ: ' + (gd.content || ''));
+      return ket_('KHONG KHOP');
+    }
+
+    // ④ Xét trạng thái trước khi xét tiền.
+    if (don.trang_thai && don.trang_thai !== 'cho_thanh_toan') {
+      if (don.trang_thai === 'huy') ghiNhatKy_(don.ma_ho_so, 'tien_don_da_huy', 'Tiền về cho hồ sơ đã huỷ');
+      return ket_('DA XU LY');
+    }
+
+    // ⑤ Thiếu tiền thì không xác nhận. Thừa thì cho qua. Biên 1.000đ bỏ phí vặt.
+    var can = Number(don.so_tien || 0);
+    if (can && vao + 1000 < can) {
+      capNhatDong_(don.ma_ho_so, { ghi_chu_noi_bo: 'Nhận thiếu ' + tienChu_(vao) + ' / cần ' + tienChu_(can) });
+      ghiNhatKy_(don.ma_ho_so, 'tien_thieu', 'Đúng hồ sơ nhưng thiếu tiền');
+      return ket_('THIEU TIEN');
+    }
+
+    // ⑥ Xác nhận.
+    capNhatDong_(don.ma_ho_so, { trang_thai: 'da_thu', tien_thuc: String(vao), luc_thu: new Date().toISOString() });
+    ghiNhatKy_(don.ma_ho_so, 'tien_ve', 'Tự xác nhận ' + tienChu_(vao));
+    don.tien_thuc = String(vao);
+    thuDaThu_(don);
+    if (CH.emailBao) {
+      MailApp.sendEmail({ to: CH.emailBao,
+        subject: 'Da nhan ' + tienChu_(vao) + ' — ' + (don.ten_doanh_nghiep || don.ma_ho_so),
+        body: 'Mã hồ sơ: ' + don.ma_ho_so + '\nGói: ' + don.goi + '\nSố tiền: ' + tienChu_(vao) +
+              '\n\nĐã gửi phiếu thu cho khách. Bước tiếp theo: soạn và gửi bảng câu hỏi.' });
+    }
+    return ket_('OK');
+  } catch (err) {
+    console.error(err);
+    return ket_('ERROR');
+  } finally {
+    khoa.releaseLock();
   }
-  return sh;
 }
 
-function chiSoCot_(khoa) {
-  for (var i = 0; i < COT.length; i++) if (COT[i][0] === khoa) return i;
-  return -1;
-}
 
-function dinhDangVanBan_(sh, dong) {
-  for (var i = 0; i < COT_VAN_BAN.length; i++) {
-    var c = chiSoCot_(COT_VAN_BAN[i]);
-    if (c >= 0) sh.getRange(dong, c + 1).setNumberFormat('@');
+/* ═══ CỬA 3 · trang quản trị ═════════════════════════════════════════════ */
+
+function doGet(e) {
+  var p = (e && e.parameter) || {};
+  var token = biMat_('ADMIN_TOKEN');
+  if (!token || p.token !== token) return json_({ ok: false, loi: 'Sai mã truy cập' }, p.callback);
+
+  try {
+    if (p.viec === 'danhSach') {
+      return json_({ ok: true, don: docTatCa_(), trangThai: TRANG_THAI }, p.callback);
+    }
+
+    if (p.viec === 'capNhat') {
+      var sua = {};
+      ['trang_thai', 'lich_hen', 'ghi_chu_noi_bo', 'tien_thuc'].forEach(function (k) {
+        if (typeof p[k] !== 'undefined') sua[k] = p[k];
+      });
+      if (sua.trang_thai === 'da_thu') sua.luc_thu = new Date().toISOString();
+      capNhatDong_(p.ma, sua);
+      ghiNhatKy_(p.ma, 'sua_tay', JSON.stringify(sua));
+      return json_({ ok: true }, p.callback);
+    }
+
+    // Đánh dấu đã thu bằng tay, đồng thời gửi phiếu thu — dùng khi webhook chưa
+    // nối, hoặc khách ghi sai nội dung chuyển khoản nên không tự khớp được.
+    if (p.viec === 'xacNhanThu') {
+      var don = timDong_(p.ma);
+      if (!don) return json_({ ok: false, loi: 'Không thấy mã hồ sơ' }, p.callback);
+      var tien = Number(p.tien_thuc || don.so_tien || 0);
+      capNhatDong_(p.ma, { trang_thai: 'da_thu', tien_thuc: String(tien), luc_thu: new Date().toISOString() });
+      don.tien_thuc = String(tien);
+      thuDaThu_(don);
+      ghiNhatKy_(p.ma, 'thu_tay', 'Xác nhận tay ' + tienChu_(tien));
+      return json_({ ok: true }, p.callback);
+    }
+
+    if (p.viec === 'guiLaiThu') {
+      var d = timDong_(p.ma);
+      if (!d) return json_({ ok: false, loi: 'Không thấy mã hồ sơ' }, p.callback);
+      if (p.loai === 'phieu_thu') thuDaThu_(d); else thuXacNhan_(d);
+      return json_({ ok: true }, p.callback);
+    }
+
+    if (p.viec === 'nhatKy') {
+      var sh = sheet_(TEN_NHAT_KY);
+      var v = sh.getDataRange().getValues();
+      var ra = [];
+      for (var i = Math.max(1, v.length - 200); i < v.length; i++) {
+        ra.push({ luc: String(v[i][0]), ma: String(v[i][1]), loai: String(v[i][2]), chi_tiet: String(v[i][3]) });
+      }
+      return json_({ ok: true, nhatKy: ra.reverse() }, p.callback);
+    }
+
+    return json_({ ok: false, loi: 'Không rõ việc cần làm' }, p.callback);
+  } catch (err) {
+    console.error(err);
+    return json_({ ok: false, loi: String(err) }, p.callback);
   }
 }
 
-function baoEmail_(p, nhieu) {
-  var than = COT.map(function (c) {
-    var v = (nhieu[c[0]] && nhieu[c[0]].length > 1) ? nhieu[c[0]].join(' · ') : (p[c[0]] || '—');
-    return c[1] + ': ' + v;
-  }).join('\n');
-  MailApp.sendEmail({
-    to: EMAIL_BAO,
-    subject: 'Đăng ký chẩn đoán — ' + (p.ten_doanh_nghiep || 'không rõ tên'),
-    body: than + '\n\n— Gửi tự động từ lattice.business'
-  });
-}
 
-/**
- * Thư xác nhận gửi cho người vừa đăng ký. Gửi theo đúng ngôn ngữ họ dùng.
- * Bọc trong try riêng: email hỏng thì dòng dữ liệu vẫn phải được giữ.
- */
+/* ═══ Thư ════════════════════════════════════════════════════════════════ */
+
 function thuXacNhan_(p) {
-  var toi = (p.email || '').trim();
+  var toi = String(p.email || '').trim();
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(toi)) return;
   try {
     var en = (p.ngon_ngu === 'en');
-    var ten = (p.nguoi_dai_dien || '').trim();
+    var ten = String(p.nguoi_dai_dien || '').trim();
+    var tt = thongTinCK_(p, en);
     var tieude, than;
 
     if (en) {
       tieude = 'LATTICE Next — we have your registration';
-      than =
-        (ten ? 'Dear ' + ten + ',' : 'Hello,') + '\n\n' +
-        'Thank you for registering for a diagnostic session with LATTICE Next Solutions. ' +
-        'This email confirms that we have received your form' +
-        (p.ten_doanh_nghiep ? ' for ' + p.ten_doanh_nghiep : '') + '.\n\n' +
+      than = (ten ? 'Dear ' + ten + ',' : 'Hello,') + '\n\n' +
+        'Thank you for registering with LATTICE Next Solutions. This email confirms we have received your file' +
+        (p.ten_doanh_nghiep ? ' for ' + p.ten_doanh_nghiep : '') + '.\n\n' + tt +
         'What happens next\n' +
-        '  1. We review what you sent and come back to you with the next steps.\n' +
-        '  2. We agree a time that suits you.\n' +
-        '  3. Before the session we send a short preparation questionnaire. ' +
-        'Completing it beforehand means the session goes to analysis rather than basic questions.\n\n' +
-        (p.ma_ho_so ? thanhToanEN_(p) : '') +
-        'Your information is kept confidential. We use it only to prepare and run the session, ' +
-        'never for any other purpose, and we do not pass it to any third party.\n\n' +
-        'If you need to reach us sooner: ' + EMAIL_BAO + ' · +84 853 999 566\n\n' +
-        'LATTICE Next Solutions Joint Stock Company\n' +
-        'https://lattice.business/en/';
+        '  1. Once your payment arrives we send a receipt straight away.\n' +
+        '  2. We create your file and send the preparation questionnaire.\n' +
+        '  3. When you return it, we agree a time for the session.\n\n' +
+        'Your information is kept confidential, used only to prepare and run the session, ' +
+        'never for any other purpose, and never passed to a third party.\n\n' +
+        'Questions: ' + CH.emailBao + ' · +84 853 999 566\n\n' +
+        'LATTICE Next Solutions Joint Stock Company\nhttps://lattice.business/en/';
     } else {
       tieude = 'LATTICE Next — đã nhận phiếu đăng ký của anh chị';
-      than =
-        (ten ? 'Kính gửi ' + ten + ',' : 'Kính gửi anh chị,') + '\n\n' +
-        'Cảm ơn anh chị đã đăng ký buổi chẩn đoán cùng LATTICE Next Solutions. ' +
-        'Thư này xác nhận chúng tôi đã nhận được phiếu đăng ký' +
-        (p.ten_doanh_nghiep ? ' của ' + p.ten_doanh_nghiep : '') + '.\n\n' +
+      than = (ten ? 'Kính gửi ' + ten + ',' : 'Kính gửi anh chị,') + '\n\n' +
+        'Cảm ơn anh chị đã đăng ký cùng LATTICE Next Solutions. Thư này xác nhận chúng tôi đã nhận được hồ sơ' +
+        (p.ten_doanh_nghiep ? ' của ' + p.ten_doanh_nghiep : '') + '.\n\n' + tt +
         'Các bước tiếp theo\n' +
-        '  1. Chúng tôi xem lại thông tin anh chị gửi và phản hồi về các bước tiếp theo.\n' +
-        '  2. Hai bên thống nhất lịch làm việc phù hợp với anh chị.\n' +
-        '  3. Trước buổi làm việc, chúng tôi gửi bảng câu hỏi chuẩn bị. ' +
-        'Anh chị hoàn thiện trước để buổi làm việc dùng vào phân tích thay vì hỏi đáp thông tin cơ bản.\n\n' +
-        (p.ma_ho_so ? thanhToanVI_(p) : '') +
+        '  1. Tiền về là chúng tôi gửi phiếu thu ngay.\n' +
+        '  2. Chúng tôi tạo lập hồ sơ và gửi bảng câu hỏi chuẩn bị.\n' +
+        '  3. Anh chị gửi lại, hai bên thống nhất lịch làm việc.\n\n' +
         'Thông tin anh chị cung cấp được giữ kín, chỉ dùng để chuẩn bị và thực hiện buổi làm việc, ' +
-        'không dùng cho bất kỳ mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.\n\n' +
-        'Cần trao đổi sớm, anh chị liên hệ: ' + EMAIL_BAO + ' · 0853 999 566\n\n' +
-        'Công ty Cổ phần Giải pháp LATTICE Next\n' +
-        'https://lattice.business/';
+        'không dùng cho mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.\n\n' +
+        'Cần trao đổi: ' + CH.emailBao + ' · 0853 999 566\n\n' +
+        'Công ty Cổ phần Giải pháp LATTICE Next\nhttps://lattice.business/';
     }
-
-    MailApp.sendEmail({ to: toi, subject: tieude, body: than, name: 'LATTICE Next Solutions',
-                        replyTo: EMAIL_BAO || undefined });
+    MailApp.sendEmail({ to: toi, subject: tieude, body: than,
+                        name: 'LATTICE Next Solutions', replyTo: CH.emailBao });
+    ghiNhatKy_(p.ma_ho_so || '', 'thu_dang_ky', 'Gửi tới ' + toi);
   } catch (err) {
     console.error('Không gửi được thư xác nhận: ' + err);
   }
 }
 
-// Lặp lại thông tin chuyển khoản trong thư: khách có thể đóng trang trước khi
-// kịp chuyển tiền, và thư là chỗ họ tìm lại được.
-function thanhToanVI_(p) {
-  return 'Thông tin thanh toán\n' +
-    '  Gói          : ' + (p.goi || '—') + '\n' +
-    '  Số tiền      : ' + tienChu_(p.so_tien) + '\n' +
-    '  Ngân hàng    : ACB — Ngân hàng Á Châu\n' +
-    '  Số tài khoản : ' + TAI_KHOAN.so + '\n' +
-    '  Chủ tài khoản: ' + TAI_KHOAN.chu + '\n' +
-    '  Nội dung     : ' + (p.noi_dung_ck || p.ma_ho_so) + '\n\n' +
-    'Ghi đúng nội dung trên giúp chúng tôi ghi nhận ngay. Thiếu thì phải dò tay, hồ sơ vào chậm hơn.\n\n';
+function thuDaThu_(d) {
+  var toi = String(d.email || '').trim();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(toi)) return;
+  try {
+    var en = (d.ngon_ngu === 'en');
+    var ten = String(d.nguoi_dai_dien || '').trim();
+    var tong = Number(d.tien_thuc || d.so_tien || 0);
+    var truoc = Math.round(tong / (1 + CH.thueSuat));
+    var thue = tong - truoc;
+    var pc = Math.round(CH.thueSuat * 100);
+    var tieude, than;
+
+    if (en) {
+      tieude = 'LATTICE Next — payment received, ' + (d.goi || '') + ' (' + d.ma_ho_so + ')';
+      than = (ten ? 'Dear ' + ten + ',' : 'Hello,') + '\n\n' +
+        'We have received your payment. Your file is now open and we are starting work on it.\n\n' +
+        'RECEIPT\n' +
+        '  Receipt no.    : ' + d.ma_ho_so + '\n' +
+        '  Date           : ' + homNay_() + '\n' +
+        '  Payer          : ' + (d.ten_doanh_nghiep || ten) + '\n' +
+        '  For            : File-creation and administration fee — ' + (d.goi || '') + '\n' +
+        '  Net            : ' + tienChu_(truoc) + '\n' +
+        '  VAT ' + pc + '%       : ' + tienChu_(thue) + '\n' +
+        '  Total received : ' + tienChu_(tong) + '\n' +
+        '  Method         : bank transfer, ' + CH.taiKhoan.nganHang + '\n\n' +
+        'This receipt confirms payment. It is not a VAT invoice — if you need one, reply to this email and we will issue it.\n\n' +
+        'Next: we send the preparation questionnaire, then agree a time with you.\n\n' +
+        'LATTICE Next Solutions Joint Stock Company\nhttps://lattice.business/en/';
+    } else {
+      tieude = 'LATTICE Next — đã nhận thanh toán, ' + (d.goi || '') + ' (' + d.ma_ho_so + ')';
+      than = (ten ? 'Kính gửi ' + ten + ',' : 'Kính gửi anh chị,') + '\n\n' +
+        'Chúng tôi đã nhận được thanh toán. Hồ sơ của anh chị đã mở và chúng tôi bắt đầu làm việc.\n\n' +
+        'PHIẾU THU\n' +
+        '  Số phiếu       : ' + d.ma_ho_so + '\n' +
+        '  Ngày           : ' + homNay_() + '\n' +
+        '  Người nộp      : ' + (d.ten_doanh_nghiep || ten) + '\n' +
+        '  Nội dung       : Phí tạo lập hồ sơ và quản lý — ' + (d.goi || '') + '\n' +
+        '  Trước thuế     : ' + tienChu_(truoc) + '\n' +
+        '  Thuế GTGT ' + pc + '% : ' + tienChu_(thue) + '\n' +
+        '  Tổng đã nhận   : ' + tienChu_(tong) + '\n' +
+        '  Hình thức      : chuyển khoản, ' + CH.taiKhoan.nganHang + '\n\n' +
+        'Phiếu thu này xác nhận đã nhận tiền, KHÔNG thay thế hoá đơn giá trị gia tăng. ' +
+        'Anh chị cần hoá đơn GTGT thì trả lời thư này, chúng tôi xuất riêng.\n\n' +
+        'Tiếp theo: chúng tôi gửi bảng câu hỏi chuẩn bị, sau đó thống nhất lịch làm việc.\n\n' +
+        'Công ty Cổ phần Giải pháp LATTICE Next\nhttps://lattice.business/';
+    }
+    MailApp.sendEmail({ to: toi, subject: tieude, body: than,
+                        name: 'LATTICE Next Solutions', replyTo: CH.emailBao });
+    ghiNhatKy_(d.ma_ho_so, 'thu_phieu_thu', 'Gửi tới ' + toi);
+  } catch (err) {
+    console.error('Không gửi được phiếu thu: ' + err);
+  }
 }
 
-function thanhToanEN_(p) {
-  return 'Payment details\n' +
-    '  Package      : ' + (p.goi || '—') + '\n' +
-    '  Amount       : ' + tienChu_(p.so_tien) + '\n' +
-    '  Bank         : ACB — Asia Commercial Bank, Vietnam\n' +
-    '  Account      : ' + TAI_KHOAN.so + '\n' +
-    '  Account name : ' + TAI_KHOAN.chu + '\n' +
-    '  Reference    : ' + (p.noi_dung_ck || p.ma_ho_so) + '\n\n' +
-    'Using that exact reference lets us record your payment immediately.\n\n';
+function baoDangKyMoi_(p, nhieu) {
+  var than = COT.map(function (c) {
+    var v = (nhieu[c[0]] && nhieu[c[0]].length > 1) ? nhieu[c[0]].join(' · ') : (p[c[0]] || '—');
+    return c[1] + ': ' + v;
+  }).join('\n');
+  MailApp.sendEmail({ to: CH.emailBao,
+    subject: 'Dang ky moi — ' + (p.goi || '') + ' — ' + (p.ten_doanh_nghiep || 'không rõ tên'),
+    body: than + '\n\n— Gửi tự động từ lattice.business' });
 }
+
+function thongTinCK_(p, en) {
+  if (!p.ma_ho_so) return '';
+  var t = CH.taiKhoan;
+  if (en) {
+    return 'Payment details\n' +
+      '  Package      : ' + (p.goi || '—') + '\n' +
+      '  Amount       : ' + tienChu_(GIA[p.goi] || p.so_tien) + '\n' +
+      '  Bank         : ' + t.nganHang + '\n' +
+      '  Account      : ' + t.so + '\n' +
+      '  Account name : ' + t.chu + '\n' +
+      '  Reference    : ' + (p.noi_dung_ck || p.ma_ho_so) + '\n\n';
+  }
+  return 'Thông tin thanh toán\n' +
+    '  Gói           : ' + (p.goi || '—') + '\n' +
+    '  Số tiền       : ' + tienChu_(GIA[p.goi] || p.so_tien) + '\n' +
+    '  Ngân hàng     : ' + t.nganHang + '\n' +
+    '  Số tài khoản  : ' + t.so + '\n' +
+    '  Chủ tài khoản : ' + t.chu + '\n' +
+    '  Nội dung      : ' + (p.noi_dung_ck || p.ma_ho_so) + '\n\n';
+}
+
+
+/* ═══ Sheet ══════════════════════════════════════════════════════════════ */
+
+function sheet_(ten) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(ten);
+  if (!sh) {
+    sh = ss.insertSheet(ten);
+    var tieu = (ten === TEN_NHAT_KY)
+      ? ['Lúc', 'Mã hồ sơ', 'Loại', 'Chi tiết']
+      : COT.map(function (c) { return c[1]; });
+    sh.appendRow(tieu);
+    sh.getRange(1, 1, 1, tieu.length).setFontWeight('bold');
+    sh.setFrozenRows(1);
+  }
+  return sh;
+}
+
+function iCot_(khoa) {
+  for (var i = 0; i < COT.length; i++) if (COT[i][0] === khoa) return i;
+  return -1;
+}
+
+function dinhDangVanBan_(sh, dong) {
+  COT_VAN_BAN.forEach(function (k) {
+    var c = iCot_(k);
+    if (c >= 0) sh.getRange(dong, c + 1).setNumberFormat('@');
+  });
+}
+
+function docTatCa_() {
+  var v = sheet_(TEN_DANG_KY).getDataRange().getValues();
+  var ra = [];
+  for (var i = 1; i < v.length; i++) {
+    var o = {};
+    for (var j = 0; j < COT.length; j++) o[COT[j][0]] = v[i][j] === null ? '' : String(v[i][j]);
+    if (o.thoi_gian || o.ma_ho_so) ra.push(o);
+  }
+  return ra;
+}
+
+function timDong_(ma) {
+  if (!ma) return null;
+  var ds = docTatCa_();
+  for (var i = 0; i < ds.length; i++) if (ds[i].ma_ho_so === ma) return ds[i];
+  return null;
+}
+
+function capNhatDong_(ma, sua) {
+  var sh = sheet_(TEN_DANG_KY);
+  var v = sh.getDataRange().getValues();
+  var c = iCot_('ma_ho_so');
+  for (var i = 1; i < v.length; i++) {
+    if (String(v[i][c]) !== String(ma)) continue;
+    Object.keys(sua).forEach(function (k) {
+      var j = iCot_(k);
+      if (j >= 0) sh.getRange(i + 1, j + 1).setValue(sua[k]);
+    });
+    dinhDangVanBan_(sh, i + 1);
+    return true;
+  }
+  return false;
+}
+
+function ghiNhatKy_(ma, loai, chiTiet) {
+  try { sheet_(TEN_NHAT_KY).appendRow([new Date().toISOString(), ma || '', loai, chiTiet || '']); }
+  catch (e) { console.error(e); }
+}
+
+function daGhiNhatKy_(ma, loai) {
+  var v = sheet_(TEN_NHAT_KY).getDataRange().getValues();
+  for (var i = 1; i < v.length; i++) if (String(v[i][1]) === ma && String(v[i][2]) === loai) return true;
+  return false;
+}
+
+
+/* ═══ Vặt ════════════════════════════════════════════════════════════════ */
+
+function biMat_(ten) {
+  return PropertiesService.getScriptProperties().getProperty(ten) || '';
+}
+
+function chuanHoa_(s) { return String(s).toUpperCase().replace(/[^A-Z0-9]/g, ''); }
 
 function tienChu_(v) {
   var n = Number(v) || 0;
-  return n ? n.toLocaleString('vi-VN') + 'đ' : '—';
+  return n ? n.toLocaleString('vi-VN') + 'đ' : '0đ';
+}
+
+function homNay_() {
+  return Utilities.formatDate(new Date(), 'Asia/Ho_Chi_Minh', 'dd/MM/yyyy');
 }
 
 function ket_(s) {
   return ContentService.createTextOutput(s).setMimeType(ContentService.MimeType.TEXT);
+}
+
+// Apps Script không đặt được header CORS, nên trang quản trị ở tên miền khác
+// phải gọi bằng JSONP qua thẻ <script>.
+function json_(o, callback) {
+  var s = JSON.stringify(o);
+  return callback
+    ? ContentService.createTextOutput(callback + '(' + s + ')')
+        .setMimeType(ContentService.MimeType.JAVASCRIPT)
+    : ContentService.createTextOutput(s).setMimeType(ContentService.MimeType.JSON);
 }

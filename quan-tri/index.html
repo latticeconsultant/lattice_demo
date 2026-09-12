@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quản trị — LATTICE Next Solutions</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="../brand/logo/favicon/favicon-32.png">
+
+<!-- Khoá ngay trong <head>, trước cả khi thân trang dựng xong: nếu đợi JS chạy
+     mới ẩn thì có một khoảnh khắc dữ liệu loé lên trước mắt người chưa đăng nhập. -->
+<style>
+html.khoa body > *:not(#cong) { display: none !important; }
+html.khoa #cong { display: flex !important; }
+#cong { display: none; }
+</style>
+<script>document.documentElement.className = 'khoa';</script>
+
+<style>
+:root { --ink:#201E1D; --paper:#F3F2F2; --bg:#fff; --red:#EC3013; --red-dark:#AE1800;
+  --n200:#EAE9E9; --n300:#D7D3D3; --n400:#BAB6B6; --n600:#807C7C; --n700:#605D5D;
+  --xanh:#166534; --vang:#854D0E; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font-size:14px; line-height:1.5;
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+a { color: var(--red-dark); }
+
+/* ── Cổng đăng nhập ─────────────────────────────────────────────────────── */
+#cong { position:fixed; inset:0; z-index:100; background:var(--ink);
+  align-items:center; justify-content:center; padding:20px; }
+#cong .hop { width:100%; max-width:400px; }
+#cong h1 { color:#fff; font-size:22px; font-weight:800; letter-spacing:-.02em; margin:0 0 6px; }
+#cong p { color:var(--n400); font-size:13.5px; line-height:1.6; margin:0 0 22px; }
+#cong label { display:block; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--n400); font-weight:600; margin:0 0 6px; }
+#cong input { width:100%; font:inherit; font-size:16px; padding:13px 14px; margin-bottom:14px;
+  border:2px solid #4a4646; background:transparent; color:#fff; border-radius:0; }
+#cong input:focus { outline:0; border-color:var(--red); }
+#cong button { width:100%; font:inherit; font-size:13px; letter-spacing:.14em; font-weight:600;
+  padding:15px; background:var(--red); color:#fff; border:0; cursor:pointer; }
+#cong .loi { color:#ff8a73; font-size:13.5px; min-height:1.2em; margin-top:12px; }
+
+/* ── Thanh trên ─────────────────────────────────────────────────────────── */
+header { background:var(--ink); color:#fff; padding:12px 18px; display:flex; gap:14px;
+  align-items:center; flex-wrap:wrap; position:sticky; top:0; z-index:20; }
+header .ten { font-weight:800; letter-spacing:.1em; font-size:14px; }
+header .dem { font-size:12.5px; color:var(--n400); }
+header .phai { margin-left:auto; display:flex; gap:8px; flex-wrap:wrap; }
+header button { font:inherit; font-size:12px; letter-spacing:.1em; font-weight:600; padding:8px 12px;
+  background:transparent; border:1px solid #4a4646; color:#bab6b6; cursor:pointer; }
+header button:hover { border-color:#fff; color:#fff; }
+
+.wrap { padding:18px; max-width:1500px; margin:0 auto; }
+
+/* ── Thẻ số ─────────────────────────────────────────────────────────────── */
+.so { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:2px;
+  background:var(--n300); border:2px solid var(--ink); margin-bottom:18px; }
+.so div { background:var(--bg); padding:13px 15px; }
+.so b { display:block; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--n600); font-weight:600; margin-bottom:5px; }
+.so span { font-size:21px; font-weight:800; letter-spacing:-.02em; }
+
+/* ── Bộ lọc ─────────────────────────────────────────────────────────────── */
+.loc { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; align-items:center; }
+.loc button { font:inherit; font-size:12.5px; padding:8px 12px; border:2px solid var(--n400);
+  background:var(--bg); cursor:pointer; }
+.loc button.chon { background:var(--ink); color:#fff; border-color:var(--ink); }
+.loc input { font:inherit; font-size:14px; padding:8px 11px; border:2px solid var(--n400);
+  background:var(--bg); min-width:180px; }
+
+/* ── Bảng ───────────────────────────────────────────────────────────────── */
+.cuon { overflow-x:auto; border:2px solid var(--ink); background:var(--bg); }
+table { border-collapse:collapse; width:100%; min-width:980px; }
+th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--n300); vertical-align:top; }
+th { background:var(--n200); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--n700); position:sticky; top:0; white-space:nowrap; }
+tbody tr:hover { background:#fbfafa; }
+td.ma { font-family:ui-monospace,Menlo,monospace; font-size:13px; white-space:nowrap; }
+td.tien { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.nho { display:block; color:var(--n600); font-size:12.5px; }
+.tt { display:inline-block; font-size:11.5px; font-weight:600; letter-spacing:.06em; padding:3px 8px;
+  white-space:nowrap; border:1px solid; }
+.tt.cho_thanh_toan { color:var(--vang); border-color:#e5c07b; background:#fdf6e3; }
+.tt.da_thu        { color:var(--xanh); border-color:#86c79a; background:#eefbf2; }
+.tt.da_gui_bch    { color:#1e40af; border-color:#93b4f0; background:#eff4fe; }
+.tt.da_hen        { color:#6b21a8; border-color:#c4a3e8; background:#f8f1fe; }
+.tt.xong          { color:var(--n700); border-color:var(--n400); background:var(--n200); }
+.tt.huy           { color:var(--red-dark); border-color:#f0a595; background:#fdf0ed; }
+.nut { display:flex; gap:5px; flex-wrap:wrap; }
+.nut button { font:inherit; font-size:11.5px; padding:6px 9px; border:1px solid var(--n400);
+  background:var(--bg); cursor:pointer; white-space:nowrap; }
+.nut button:hover { border-color:var(--ink); }
+.nut button.chinh { background:var(--red); color:#fff; border-color:var(--red); }
+select.tt-chon, input.lich { font:inherit; font-size:12.5px; padding:5px 7px;
+  border:1px solid var(--n400); background:var(--bg); max-width:150px; }
+
+.trong { padding:36px 18px; text-align:center; color:var(--n600); }
+.bao { position:fixed; left:50%; transform:translateX(-50%); bottom:20px; z-index:60;
+  background:var(--ink); color:#fff; padding:12px 18px; font-size:13.5px; max-width:90vw; }
+.bao.loi { background:var(--red-dark); }
+</style>
+</head>
+<body>
+
+<div id="cong">
+  <div class="hop">
+    <h1>LATTICE Next — Quản trị</h1>
+    <p>Trang nội bộ. Dữ liệu khách hàng nằm sau mã truy cập của Apps Script, không nằm trong trang này.</p>
+    <label for="u">Tên đăng nhập</label>
+    <input id="u" type="text" autocomplete="username" autocapitalize="off" spellcheck="false">
+    <label for="mk">Mật khẩu</label>
+    <input id="mk" type="password" autocomplete="current-password">
+    <button type="button" id="vao">ĐĂNG NHẬP</button>
+    <p class="loi" id="congLoi"></p>
+  </div>
+</div>
+
+<header>
+  <span class="ten">LATTICE · QUẢN TRỊ</span>
+  <span class="dem" id="dem">đang tải…</span>
+  <span class="phai">
+    <button type="button" id="taiLai">TẢI LẠI</button>
+    <button type="button" id="thoat">THOÁT</button>
+  </span>
+</header>
+
+<div class="wrap">
+  <div class="so" id="so"></div>
+
+  <div class="loc" id="loc">
+    <button type="button" data-tt="" class="chon">Tất cả</button>
+    <button type="button" data-tt="cho_thanh_toan">Chờ thanh toán</button>
+    <button type="button" data-tt="da_thu">Đã thu</button>
+    <button type="button" data-tt="da_gui_bch">Đã gửi bảng câu hỏi</button>
+    <button type="button" data-tt="da_hen">Đã hẹn lịch</button>
+    <button type="button" data-tt="xong">Xong</button>
+    <input type="search" id="tim" placeholder="Tìm tên, email, mã hồ sơ…">
+  </div>
+
+  <div class="cuon">
+    <table>
+      <thead><tr>
+        <th>Mã hồ sơ</th><th>Doanh nghiệp</th><th>Liên hệ</th><th>Gói</th>
+        <th style="text-align:right">Số tiền</th><th>Trạng thái</th><th>Lịch làm việc</th><th>Việc</th>
+      </tr></thead>
+      <tbody id="than"></tbody>
+    </table>
+  </div>
+  <p class="trong" id="trong" style="display:none">Chưa có hồ sơ nào.</p>
+</div>
+
+<script>
+/* Bốn dòng dưới sinh bằng:
+   node tools/make-admin-key.mjs <user> <pass> <muối> <ADMIN_TOKEN>
+   Mật khẩu và mã truy cập KHÔNG nằm trong đây. */
+var BAM    = 'f76cc2182ad5fa1b075f605b0b5019063d60974e6765c62531c9818c8d2314a1';
+var MUOI   = ':LATTICE-QT-2026';
+var KHO_MA = { muoi: 'HhuOW6T++1p9kpQOzd7aKg==', iv: 'BeFX3nI3jzTK59WB', ma: 'JhEtbnDQUDJ7TuIv6TX4dO4EJdp+lBobl22qw6z+ZNJxxZ126zpzj5PycnVjUgl3' };
+
+var API = 'https://script.google.com/macros/s/AKfycbwLYjiIyfh9LdNnY2zRPmm6aS3By0rlxzVLigxdPlfXNm6bQZC866stTjA_MywM2wCm/exec';
+
+var PHIEN = 'lnx_qt_phien';
+var HAN = 8 * 60 * 60 * 1000;
+var TOKEN = '';
+var DS = [];
+var LOC = '';
+var saiLan = 0;
+
+var $ = function (id) { return document.getElementById(id); };
+var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+  return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+
+function bao(chu, loi) {
+  var o = document.createElement('div');
+  o.className = 'bao' + (loi ? ' loi' : '');
+  o.textContent = chu;
+  document.body.appendChild(o);
+  setTimeout(function () { o.remove(); }, 3600);
+}
+
+function tienChu(v) { var n = Number(v) || 0; return n ? n.toLocaleString('vi-VN') + 'đ' : '—'; }
+
+function ngay(s) {
+  if (!s) return '';
+  var d = new Date(s);
+  if (isNaN(d)) return String(s);
+  return d.toLocaleDateString('vi-VN') + ' ' + d.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+}
+
+/* ── Đăng nhập ─────────────────────────────────────────────────────────── */
+
+async function bam(chuoi) {
+  var d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(chuoi));
+  return [].map.call(new Uint8Array(d), function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+}
+
+var tuB64 = function (t) { return Uint8Array.from(atob(t), function (c) { return c.charCodeAt(0); }); };
+
+async function moKhoa(matKhau) {
+  try {
+    var goc = await crypto.subtle.importKey('raw', new TextEncoder().encode(matKhau), 'PBKDF2', false, ['deriveKey']);
+    var khoa = await crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt: tuB64(KHO_MA.muoi), iterations: 210000, hash: 'SHA-256' },
+      goc, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    var ro = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: tuB64(KHO_MA.iv) }, khoa, tuB64(KHO_MA.ma));
+    return new TextDecoder().decode(ro);
+  } catch (e) { return ''; }   // sai mật khẩu → chuỗi rỗng, không ném lỗi
+}
+
+async function dangNhap() {
+  if (!crypto.subtle) {
+    $('congLoi').textContent = 'Trang phải mở qua https mới đăng nhập được.';
+    return;
+  }
+  if (saiLan >= 3) { $('congLoi').textContent = 'Sai quá 3 lần. Chờ 30 giây.'; return; }
+  var u = $('u').value.trim(), mk = $('mk').value;
+  $('congLoi').textContent = 'Đang kiểm tra…';
+  var b = await bam(u + ':' + mk + MUOI);
+  if (b !== BAM) {
+    saiLan++;
+    $('congLoi').textContent = 'Sai tên đăng nhập hoặc mật khẩu.';
+    if (saiLan >= 3) setTimeout(function () { saiLan = 0; $('congLoi').textContent = ''; }, 30000);
+    return;
+  }
+  TOKEN = await moKhoa(mk);
+  if (!TOKEN) { $('congLoi').textContent = 'Không mở được mã truy cập.'; return; }
+  try { sessionStorage.setItem(PHIEN, JSON.stringify({ t: TOKEN, han: Date.now() + HAN })); } catch (e) {}
+  document.documentElement.className = '';
+  tai();
+}
+
+function thuPhienCu() {
+  try {
+    var o = JSON.parse(sessionStorage.getItem(PHIEN) || 'null');
+    if (o && o.han > Date.now() && o.t) { TOKEN = o.t; return true; }
+  } catch (e) {}
+  return false;
+}
+
+/* ── Gọi Apps Script bằng JSONP ────────────────────────────────────────────
+   Apps Script không đặt được header CORS, trang này lại ở tên miền khác, nên
+   fetch bị chặn. JSONP đi vòng qua thẻ <script>. Ba thứ không được bỏ: hẹn giờ
+   (JSONP không có catch), dọn hàm và thẻ sau khi xong, và onerror. */
+function goi(thamSo, xong) {
+  var fn = 'cb' + Math.random().toString(36).slice(2, 9);
+  var hen = setTimeout(function () { don(); xong({ ok: false, loi: 'Không nhận được phản hồi' }); }, 20000);
+  function don() {
+    delete window[fn];
+    var el = document.getElementById(fn);
+    if (el) el.remove();
+  }
+  window[fn] = function (kq) { clearTimeout(hen); don(); xong(kq); };
+  var q = Object.keys(thamSo).map(function (k) { return k + '=' + encodeURIComponent(thamSo[k]); }).join('&');
+  var sc = document.createElement('script');
+  sc.id = fn;
+  sc.src = API + '?token=' + encodeURIComponent(TOKEN) + '&callback=' + fn + '&' + q;
+  sc.onerror = function () { clearTimeout(hen); don(); xong({ ok: false, loi: 'Không gọi được Apps Script' }); };
+  document.body.appendChild(sc);
+}
+
+/* ── Tải và vẽ ─────────────────────────────────────────────────────────── */
+
+function tai(im) {
+  if (!im) $('dem').textContent = 'đang tải…';
+  goi({ viec: 'danhSach' }, function (kq) {
+    if (!kq.ok) { bao(kq.loi || 'Không tải được', true); $('dem').textContent = 'lỗi tải'; return; }
+    var truoc = DS.filter(function (d) { return d.trang_thai === 'da_thu'; }).length;
+    DS = (kq.don || []).slice().reverse();
+    var sau = DS.filter(function (d) { return d.trang_thai === 'da_thu'; }).length;
+    if (im && sau > truoc) bao('Có ' + (sau - truoc) + ' hồ sơ vừa nhận được tiền.');
+    ve();
+  });
+}
+
+function ve() {
+  var tim = ($('tim').value || '').toLowerCase().trim();
+  var ds = DS.filter(function (d) {
+    if (LOC && d.trang_thai !== LOC) return false;
+    if (!tim) return true;
+    return (d.ma_ho_so + ' ' + d.ten_doanh_nghiep + ' ' + d.nguoi_dai_dien + ' ' + d.email + ' ' + d.dien_thoai)
+      .toLowerCase().indexOf(tim) >= 0;
+  });
+
+  var daThu = DS.filter(function (d) { return ['da_thu', 'da_gui_bch', 'da_hen', 'xong'].indexOf(d.trang_thai) >= 0; });
+  var tong = daThu.reduce(function (s, d) { return s + (Number(d.tien_thuc) || 0); }, 0);
+  $('so').innerHTML =
+    the('Tổng hồ sơ', DS.length) +
+    the('Chờ thanh toán', DS.filter(function (d) { return d.trang_thai === 'cho_thanh_toan'; }).length) +
+    the('Đã thu', daThu.length) +
+    the('Tiền đã nhận', tienChu(tong)) +
+    the('Blueprint tháng này', DS.filter(function (d) {
+      return d.goi === 'LATTICE Blueprint' && String(d.thoi_gian).slice(0, 7) === new Date().toISOString().slice(0, 7);
+    }).length + ' / 4');
+
+  $('dem').textContent = ds.length + ' / ' + DS.length + ' hồ sơ';
+  $('trong').style.display = ds.length ? 'none' : 'block';
+
+  $('than').innerHTML = ds.map(function (d) {
+    var tt = d.trang_thai || 'cho_thanh_toan';
+    return '<tr>' +
+      '<td class="ma">' + esc(d.ma_ho_so) + '<span class="nho">' + esc(ngay(d.thoi_gian)) + '</span></td>' +
+      '<td>' + esc(d.ten_doanh_nghiep) + '<span class="nho">' + esc(d.linh_vuc) + ' · ' + esc(d.quy_mo_nhan_su) + '</span></td>' +
+      '<td>' + esc(d.nguoi_dai_dien) + '<span class="nho">' + esc(d.chuc_danh) + '</span>' +
+        '<span class="nho"><a href="mailto:' + esc(d.email) + '">' + esc(d.email) + '</a></span>' +
+        '<span class="nho"><a href="tel:' + esc(d.dien_thoai) + '">' + esc(d.dien_thoai) + '</a></span></td>' +
+      '<td>' + esc((d.goi || '').replace('LATTICE ', '')) + '</td>' +
+      '<td class="tien">' + tienChu(d.so_tien) +
+        (d.tien_thuc ? '<span class="nho">nhận ' + tienChu(d.tien_thuc) + '</span>' : '') + '</td>' +
+      '<td><span class="tt ' + esc(tt) + '">' + nhan(tt) + '</span>' +
+        '<select class="tt-chon" data-ma="' + esc(d.ma_ho_so) + '">' +
+        ['cho_thanh_toan', 'da_thu', 'da_gui_bch', 'da_hen', 'xong', 'huy'].map(function (x) {
+          return '<option value="' + x + '"' + (x === tt ? ' selected' : '') + '>' + nhan(x) + '</option>';
+        }).join('') + '</select></td>' +
+      '<td><input class="lich" type="text" value="' + esc(d.lich_hen) + '" data-ma="' + esc(d.ma_ho_so) + '" placeholder="20/9 14:00"></td>' +
+      '<td><div class="nut">' +
+        (tt === 'cho_thanh_toan' ? '<button type="button" class="chinh" data-thu="' + esc(d.ma_ho_so) + '">ĐÃ NHẬN TIỀN</button>' : '') +
+        '<button type="button" data-thu-lai="' + esc(d.ma_ho_so) + '">GỬI LẠI THƯ</button>' +
+      '</div></td>' +
+      '</tr>';
+  }).join('');
+}
+
+function the(t, v) { return '<div><b>' + t + '</b><span>' + v + '</span></div>'; }
+
+function nhan(t) {
+  return { cho_thanh_toan: 'Chờ thanh toán', da_thu: 'Đã thu', da_gui_bch: 'Đã gửi BCH',
+           da_hen: 'Đã hẹn lịch', xong: 'Xong', huy: 'Huỷ' }[t] || t;
+}
+
+/* ── Thao tác ──────────────────────────────────────────────────────────── */
+
+document.addEventListener('change', function (e) {
+  var s = e.target.closest('select.tt-chon');
+  if (s) {
+    goi({ viec: 'capNhat', ma: s.dataset.ma, trang_thai: s.value }, function (kq) {
+      if (!kq.ok) return bao(kq.loi || 'Không lưu được', true);
+      bao('Đã đổi trạng thái ' + s.dataset.ma); tai(true);
+    });
+  }
+});
+
+document.addEventListener('blur', function (e) {
+  var i = e.target.closest && e.target.closest('input.lich');
+  if (!i) return;
+  goi({ viec: 'capNhat', ma: i.dataset.ma, lich_hen: i.value }, function (kq) {
+    if (!kq.ok) return bao(kq.loi || 'Không lưu được', true);
+    bao('Đã lưu lịch ' + i.dataset.ma);
+  });
+}, true);
+
+document.addEventListener('click', function (e) {
+  var b = e.target.closest('button');
+  if (!b) return;
+
+  if (b.dataset.thu) {
+    if (!confirm('Xác nhận đã nhận tiền cho ' + b.dataset.thu + '?\nHệ thống sẽ gửi phiếu thu cho khách.')) return;
+    b.disabled = true;
+    goi({ viec: 'xacNhanThu', ma: b.dataset.thu }, function (kq) {
+      b.disabled = false;
+      if (!kq.ok) return bao(kq.loi || 'Không xác nhận được', true);
+      bao('Đã ghi nhận và gửi phiếu thu.'); tai(true);
+    });
+  }
+
+  if (b.dataset.thuLai) {
+    var loai = confirm('OK = gửi lại PHIẾU THU.\nHuỷ = gửi lại thư xác nhận đăng ký.') ? 'phieu_thu' : 'dang_ky';
+    goi({ viec: 'guiLaiThu', ma: b.dataset.thuLai, loai: loai }, function (kq) {
+      bao(kq.ok ? 'Đã gửi lại thư.' : (kq.loi || 'Không gửi được'), !kq.ok);
+    });
+  }
+});
+
+$('loc').addEventListener('click', function (e) {
+  var b = e.target.closest('button[data-tt]');
+  if (!b) return;
+  LOC = b.dataset.tt;
+  [].forEach.call(this.querySelectorAll('button'), function (x) { x.classList.toggle('chon', x === b); });
+  ve();
+});
+$('tim').addEventListener('input', ve);
+$('taiLai').addEventListener('click', function () { tai(); });
+$('thoat').addEventListener('click', function () {
+  try { sessionStorage.removeItem(PHIEN); } catch (e) {}
+  location.reload();
+});
+$('vao').addEventListener('click', dangNhap);
+$('mk').addEventListener('keydown', function (e) { if (e.key === 'Enter') dangNhap(); });
+
+// Webhook cập nhật thẳng vào Sheet, trang không tự biết. Người trực ngồi nhìn
+// màn hình sẽ tưởng chưa có gì trong khi tiền đã về.
+setInterval(function () {
+  if (document.hidden || document.documentElement.className === 'khoa') return;
+  if (document.activeElement && /INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) return;
+  tai(true);
+}, 45000);
+
+if (thuPhienCu()) { document.documentElement.className = ''; tai(); }
+else { setTimeout(function () { $('u').focus(); }, 60); }
+</script>
+
+</body>
+</html>

@@ -439,6 +439,36 @@ textarea.input { min-height: 90px; resize: vertical; }
       justify-content: flex-start; }
     html.lnx-locked .lnx-lang-menu { display: none; }
 
+    /* ── Hai gói dịch vụ ────────────────────────────────────────────────────
+       Hai thẻ cạnh nhau ở khổ rộng, xếp chồng ở khổ hẹp. Thẻ Blueprint có nhãn
+       và nền khác để mắt dừng ở đó trước — đây là gói muốn bán. */
+    .lnx-goi { display: grid; gap: 2px; background: var(--color-neutral-400);
+      border-top: 2px solid var(--color-text); border-bottom: 2px solid var(--color-text);
+      grid-template-columns: repeat(2, 1fr); }
+    @container (max-width: 820px) { .lnx-goi { grid-template-columns: 1fr; } }
+    .lnx-goi-o { background: var(--color-bg); padding: clamp(22px, 3cqi, 34px);
+      display: flex; flex-direction: column; }
+    .lnx-goi-o.nhan { background: var(--color-neutral-100); }
+    .lnx-goi-ten { font-family: var(--font-heading); font-weight: 800; letter-spacing: -.02em;
+      font-size: clamp(21px, 2.4cqi, 28px); margin: 0 0 4px; }
+    .lnx-goi-phu { font-size: 13px; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--color-neutral-600); font-weight: 600; margin: 0 0 18px; }
+    .lnx-goi-gia { font-family: var(--font-heading); font-weight: 800; letter-spacing: -.02em;
+      font-size: clamp(26px, 3.2cqi, 38px); line-height: 1; margin: 0; color: var(--color-accent-700); }
+    .lnx-goi-gia small { font-family: var(--font-body); font-weight: 400; font-size: 14px;
+      letter-spacing: 0; color: var(--color-neutral-700); display: block; margin-top: 9px; line-height: 1.5; }
+    .lnx-goi-ds { list-style: none; margin: 22px 0 0; padding: 0;
+      border-top: 2px solid var(--color-neutral-300); }
+    .lnx-goi-ds li { border-bottom: 1px solid var(--color-neutral-300); padding: 11px 0 11px 24px;
+      position: relative; font-size: 14.5px; line-height: 1.55; color: var(--color-neutral-800); }
+    .lnx-goi-ds li::before { content: ""; position: absolute; left: 3px; top: 19px;
+      width: 8px; height: 8px; background: var(--color-accent); }
+    .lnx-goi-tem { align-self: flex-start; font-size: 12px; letter-spacing: .18em; font-weight: 600;
+      text-transform: uppercase; color: #fff; background: var(--color-accent); padding: 5px 10px;
+      margin-bottom: 14px; }
+    .lnx-goi-tem.mo { color: var(--color-neutral-700); background: transparent;
+      border: 2px solid var(--color-neutral-400); padding: 3px 8px; }
+
     /* ── Hộp thoại đăng ký chẩn đoán ────────────────────────────────────────
        Nút CTA trước đây nhảy thẳng sang trang Liên hệ. Giờ mở hộp thoại nói rõ
        buổi chẩn đoán là gì và cần chuẩn bị gì, rồi mới dẫn sang biểu mẫu ở trang
@@ -1216,7 +1246,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <div class="lnx-cta" style="background:var(--color-accent);color:#fff">
         <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,5cqi,72px) clamp(16px,2.5cqi,40px);display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
           <div style="flex:1;min-width:260px">
-            <h2 style="margin:0 0 10px;font-size:clamp(24px,3cqi,40px);letter-spacing:-.025em;color:#fff">The first diagnostic is free</h2>
+            <h2 style="margin:0 0 10px;font-size:clamp(24px,3cqi,40px);letter-spacing:-.025em;color:#fff">The first exchange is free</h2>
             <p style="margin:0;font-size:15.5px;line-height:1.55;max-width:58ch">We read your current model, name the three processes worth automating first, and tell you plainly if we think you should not start yet.</p>
           </div>
           <button type="button" class="btn" sc-camel-on-click="{{ openDlg }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">BOOK NOW</button>
@@ -2007,7 +2037,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
             <div style="background:var(--color-bg);padding:26px 22px;display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap">
               <span style="font-family:var(--font-heading);font-weight:800;font-size:clamp(30px,3cqi,42px);color:var(--color-accent);line-height:1;width:64px;flex:none">01</span>
-              <div style="flex:1;min-width:260px"><h4 style="font-size:19px;margin:0 0 8px">Diagnostic · free of charge</h4><p style="margin:0;font-size:14.5px;line-height:1.65;color:var(--color-neutral-700);max-width:80ch">We listen to how the business runs today, ask which processes consume the most time, and estimate the automation ceiling of each layer. You leave with the three processes to automate first — even if we never work together again.</p></div>
+              <div style="flex:1;min-width:260px"><h4 style="font-size:19px;margin:0 0 8px">Diagnostic · Scan or Blueprint</h4><p style="margin:0;font-size:14.5px;line-height:1.65;color:var(--color-neutral-700);max-width:80ch">We listen to how the business runs today, ask which processes consume the most time, and estimate the automation ceiling of each layer. You leave with the three processes to automate first — even if we never work together again.</p></div>
             </div>
             <div style="background:var(--color-bg);padding:26px 22px;display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap">
               <span style="font-family:var(--font-heading);font-weight:800;font-size:clamp(30px,3cqi,42px);color:var(--color-accent);line-height:1;width:64px;flex:none">02</span>
@@ -2332,7 +2362,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           </div>
           <div class="lnx-note" style="border:2px solid var(--color-text);background:var(--color-neutral-100);padding:26px">
             <h4 style="font-size:20px;margin:0 0 12px">Pricing principle</h4>
-            <p style="margin:0 0 14px;font-size:14.5px;line-height:1.7">We quote on scope after the diagnostic, not from a fixed price list — because automation ceilings differ far too much between models to price in advance.<strong>The first diagnostic is free, and you leave with something usable even if we never work together again.</strong></p>
+            <p style="margin:0 0 14px;font-size:14.5px;line-height:1.7">We quote on scope after the diagnostic, not from a fixed price list — because automation ceilings differ far too much between models to price in advance.<strong>The first exchange costs nothing, and clients leave with something usable even if they go no further with us.</strong></p>
             <p style="margin:0;font-size:13.5px;line-height:1.7;color:var(--color-neutral-700)">Internal metrics: revenue per person · conversion from diagnostic to delivery · share of clients moving onto ongoing support · architecture patterns accumulated per sector · share of Academy participants who become clients.</p>
           </div>
         </div>
@@ -3160,9 +3190,81 @@ review_cycle: monthly</pre>
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Contact</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Start with a diagnostic</h1>
-          <p style="font-size:clamp(15px,1.4cqi,19px);line-height:1.55;max-width:66ch;color:var(--color-neutral-400);margin:0">The first session is free. You leave with the three processes to automate first and an estimate of your model's automation ceiling — even if we never work together again.</p>
+          <p style="font-size:clamp(15px,1.4cqi,19px);line-height:1.55;max-width:66ch;color:var(--color-neutral-400);margin:0">The first exchange is free — ask by email or messaging app, and we will answer and say plainly whether this is a fit. To go further, pick one of the two packages below.</p>
         </div>
       </section>
+
+      <section style="background:var(--color-bg);padding:clamp(44px,6cqi,88px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <div style="height:2px;background:var(--color-text);margin-bottom:30px"></div>
+          <p style="font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 16px;font-weight:600">Packages and fees</p>
+          <h2 style="font-size:clamp(24px,3.2cqi,44px);margin:0 0 18px;letter-spacing:-.025em">Talking is free. The fee is for the file.</h2>
+          <p style="font-size:clamp(15px,1.5cqi,17.5px);line-height:1.65;color:var(--color-neutral-800);max-width:78ch;margin:0 0 26px">Asking a quick question by email or messaging app costs nothing — we answer, and we say plainly whether this is a fit. The fee below is<strong>a file-creation and administration fee</strong>: studying your model, writing a questionnaire for your model group, analysing it before the session and producing the documents afterwards. That is real work, not a consulting charge.</p>
+
+          <div style="border-left:4px solid var(--color-accent);background:var(--color-neutral-100);padding:18px 20px;margin:0 0 34px;max-width:82ch">
+            <p style="margin:0;font-size:15px;line-height:1.65;color:var(--color-text)"><strong>Round 1 closes on 15 September 2026.</strong>Files received in this round start processing on<strong>18/9/2026</strong>— every committed deadline below runs from that date, not from the date of payment. Registrations after 15 September move to round 2.</p>
+          </div>
+
+          <div class="lnx-goi">
+            <div class="lnx-goi-o">
+              <span class="lnx-goi-tem mo">Reads where you are</span>
+              <h3 class="lnx-goi-ten">LATTICE Scan</h3>
+              <p class="lnx-goi-phu">Structural scan</p>
+              <p class="lnx-goi-gia">499,000 VND<small>File-creation and administration fee</small></p>
+              <ul class="lnx-goi-ds">
+                <li>A diagnostic questionnaire written for your business model group</li>
+                <li>One 60-minute Zoom session, with your file read before we start</li>
+                <li>A 1–2 page summary afterwards: the three processes to automate first</li>
+                <li>Questionnaire within 3–5 working days · scheduling within 3 working days · documents within 3 working days</li>
+              </ul>
+            </div>
+
+            <div class="lnx-goi-o nhan">
+              <span class="lnx-goi-tem">You keep the drawing</span>
+              <h3 class="lnx-goi-ten">LATTICE Blueprint</h3>
+              <p class="lnx-goi-phu">The blueprint</p>
+              <p class="lnx-goi-gia">1,499,000 VND<small>Credited in full against a delivery contract signed within 60 days</small></p>
+              <ul class="lnx-goi-ds">
+                <li>Everything in the Scan package</li>
+                <li><strong>An 8–12 page diagnostic report</strong>: a map of your current processes, an automation-ceiling chart for your business, and a 90-day roadmap</li>
+                <li>Plus a 30-minute review session after three weeks, to see how far you got</li>
+                <li>One template SOP set for the process you pick</li>
+                <li>Email questions for 30 days, up to five of them</li>
+                <li>Questionnaire within 2 working days · scheduling within 2 working days · report within 5 working days</li>
+              </ul>
+              <p style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-700);margin:18px 0 0;padding-top:16px;border-top:2px solid var(--color-neutral-300)">We take at most four Blueprint files a month. Once they are gone we book you into the next month rather than accept the work and deliver it late.</p>
+            </div>
+          </div>
+
+          <div class="lnx-dlg-act" style="margin-top:30px">
+            <a class="lnx-dlg-go" href="../register/">CHOOSE A PACKAGE AND REGISTER →</a>
+            <div class="lnx-dlg-qr">
+              <img src="../assets/img/qr-register.svg" alt="QR code for the registration page" width="84" height="84">
+              <span>Or scan the code<br>to fill it in on your phone</span>
+            </div>
+          </div>
+
+          <p style="font-size:14.5px;line-height:1.65;color:var(--color-neutral-700);margin:24px 0 0;max-width:78ch">Not sure which package fits? Ask first, it costs nothing:<a href="mailto:lattice.consultant@gmail.com" style="color:var(--color-accent-700)">lattice.consultant@gmail.com</a>or messaging app<a href="tel:+84853999566" style="color:var(--color-accent-700)">+84 853 999 566</a>.</p>
+        </div>
+      </section>
+
+      <section style="background:var(--color-neutral-100);padding:clamp(44px,6cqi,88px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
+          <div style="height:2px;background:var(--color-text);margin-bottom:30px"></div>
+          <h2 style="font-size:clamp(22px,2.8cqi,36px);margin:0 0 18px;letter-spacing:-.025em">Fee and refund policy</h2>
+          <p style="font-size:15px;line-height:1.65;color:var(--color-neutral-800);max-width:78ch;margin:0 0 28px">The cut-off for refunds is tied to a specific delivery — the moment we send you the questionnaire — not to the moment we receive the money.</p>
+          <div style="display:grid;gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
+            <div style="background:var(--color-bg);padding:20px 22px;display:flex;gap:22px;flex-wrap:wrap"><b style="flex:none;width:clamp(200px,26cqi,320px);font-size:14.5px">After payment, before we send the questionnaire</b><span style="flex:1;min-width:240px;font-size:14.5px;line-height:1.6;color:var(--color-neutral-800)">Full refund.</span></div>
+            <div style="background:var(--color-bg);padding:20px 22px;display:flex;gap:22px;flex-wrap:wrap"><b style="flex:none;width:clamp(200px,26cqi,320px);font-size:14.5px">After we have sent the questionnaire</b><span style="flex:1;min-width:240px;font-size:14.5px;line-height:1.6;color:var(--color-neutral-800)">No refund. By this point the file-creation work is complete and cannot be recovered.</span></div>
+            <div style="background:var(--color-bg);padding:20px 22px;display:flex;gap:22px;flex-wrap:wrap"><b style="flex:none;width:clamp(200px,26cqi,320px);font-size:14.5px">You have not completed the questionnaire</b><span style="flex:1;min-width:240px;font-size:14.5px;line-height:1.6;color:var(--color-neutral-800)">Held for 90 days. After that it counts as used.</span></div>
+            <div style="background:var(--color-bg);padding:20px 22px;display:flex;gap:22px;flex-wrap:wrap"><b style="flex:none;width:clamp(200px,26cqi,320px);font-size:14.5px">You ask to move the session</b><span style="flex:1;min-width:240px;font-size:14.5px;line-height:1.6;color:var(--color-neutral-800)">Free up to twice, with at least 24 hours' notice.</span></div>
+            <div style="background:var(--color-bg);padding:20px 22px;display:flex;gap:22px;flex-wrap:wrap"><b style="flex:none;width:clamp(200px,26cqi,320px);font-size:14.5px">No-show without notice, past 15 minutes</b><span style="flex:1;min-width:240px;font-size:14.5px;line-height:1.6;color:var(--color-neutral-800)">Counts as a session used. One reschedule only.</span></div>
+            <div style="background:var(--color-bg);padding:20px 22px;display:flex;gap:22px;flex-wrap:wrap"><b style="flex:none;width:clamp(200px,26cqi,320px);font-size:14.5px">We miss a commitment</b><span style="flex:1;min-width:240px;font-size:14.5px;line-height:1.6;color:var(--color-neutral-800)">If we fail to send the questionnaire or to schedule within the stated time: a full refund, or an upgrade to Blueprint at no extra charge — your choice.</span></div>
+          </div>
+          <p style="font-size:14px;line-height:1.65;color:var(--color-neutral-700);margin:24px 0 0;max-width:78ch">We commit to saying the inconvenient thing, including advising you not to start yet. That is the service working, not failing, so it is not grounds for a refund.</p>
+        </div>
+      </section>
+
 
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,88px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
@@ -3531,7 +3633,7 @@ class Component extends DCLogic {
       ], ['a', 'b', 'c']),
 
       invites: this.rows([
-        ['Clients', 'Start with a free diagnostic', 'Read the current model · the three processes to automate first · an automation-ceiling estimate · usable output even if you go no further'],
+        ['Clients', 'Start with a diagnostic', 'Read the current model · the three processes to automate first · an automation-ceiling estimate · usable output even if you go no further'],
         ['Partners', 'We look for delivery links we do not perform ourselves', 'Accounting and legal services · content and video production · OEM/ODM, logistics, warehousing · industry associations · delivery firms seeking Track C training'],
         ['Investors', 'What is most worth examining in this model', 'A market driven by policy rather than by the technology hype cycle · a closed value chain from Advisory → Architecture → Academy → Ecosystem · assets that compound as method and pattern library, not as easily copied software · a growth path that does not scale headcount linearly']
       ], ['a', 'b', 'c']),

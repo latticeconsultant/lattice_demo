@@ -26,10 +26,16 @@
 
 var EMAIL_BAO = 'lattice.consultant@gmail.com';   // nhận thông báo mỗi khi có đăng ký mới
 var TEN_TRANG_TINH = 'Đăng ký';
+var TAI_KHOAN = { nganHang: 'ACB', bin: '970416', so: '50359267', chu: 'DANG QUOC TUAN' };
 
 // Thứ tự cột trong bảng. Khóa phải khớp thuộc tính name= của ô trên form.
 var COT = [
   ['thoi_gian',       'Thời gian'],
+  ['ma_ho_so',        'Mã hồ sơ'],
+  ['goi',             'Gói'],
+  ['so_tien',         'Số tiền'],
+  ['noi_dung_ck',     'Nội dung CK'],
+  ['trang_thai',      'Trạng thái'],
   ['ngon_ngu',        'Ngôn ngữ'],
   ['ten_doanh_nghiep','Tên doanh nghiệp'],
   ['nguoi_dai_dien',  'Người đại diện'],
@@ -48,8 +54,13 @@ var COT = [
   ['doanh_so_2026',   'Doanh số 2026'],
   ['quan_tam',        'Quan tâm nhất'],
   ['mo_ta',           'Vấn đề cần cải thiện'],
-  ['dong_y',          'Đồng ý liên hệ']
+  ['dong_y',          'Đồng ý liên hệ'],
+  ['dong_y_chinh_sach', 'Đồng ý chính sách phí']
 ];
+
+// Cột số điện thoại phải ở dạng văn bản, nếu không Sheet nuốt số 0 đầu:
+// 0853999566 thành 853999566, gọi theo số đó là gọi nhầm người.
+var COT_VAN_BAN = ['dien_thoai', 'ma_ho_so', 'noi_dung_ck', 'so_tien'];
 
 function doPost(e) {
   var khoa = LockService.getScriptLock();
@@ -67,7 +78,13 @@ function doPost(e) {
       return p[k] || '';
     });
     if (!dong[0]) dong[0] = new Date().toISOString();
+
+    // Trạng thái khởi tạo: chờ tiền về.
+    var iTt = chiSoCot_('trang_thai');
+    if (!dong[iTt]) dong[iTt] = 'cho_thanh_toan';
+
     sh.appendRow(dong);
+    dinhDangVanBan_(sh, sh.getLastRow());
 
     if (EMAIL_BAO) baoEmail_(p, nhieu);
     thuXacNhan_(p);
@@ -96,6 +113,18 @@ function layTrangTinh_() {
     sh.setFrozenRows(1);
   }
   return sh;
+}
+
+function chiSoCot_(khoa) {
+  for (var i = 0; i < COT.length; i++) if (COT[i][0] === khoa) return i;
+  return -1;
+}
+
+function dinhDangVanBan_(sh, dong) {
+  for (var i = 0; i < COT_VAN_BAN.length; i++) {
+    var c = chiSoCot_(COT_VAN_BAN[i]);
+    if (c >= 0) sh.getRange(dong, c + 1).setNumberFormat('@');
+  }
 }
 
 function baoEmail_(p, nhieu) {
@@ -134,6 +163,7 @@ function thuXacNhan_(p) {
         '  2. We agree a time that suits you.\n' +
         '  3. Before the session we send a short preparation questionnaire. ' +
         'Completing it beforehand means the session goes to analysis rather than basic questions.\n\n' +
+        (p.ma_ho_so ? thanhToanEN_(p) : '') +
         'Your information is kept confidential. We use it only to prepare and run the session, ' +
         'never for any other purpose, and we do not pass it to any third party.\n\n' +
         'If you need to reach us sooner: ' + EMAIL_BAO + ' · +84 853 999 566\n\n' +
@@ -151,6 +181,7 @@ function thuXacNhan_(p) {
         '  2. Hai bên thống nhất lịch làm việc phù hợp với anh chị.\n' +
         '  3. Trước buổi làm việc, chúng tôi gửi bảng câu hỏi chuẩn bị. ' +
         'Anh chị hoàn thiện trước để buổi làm việc dùng vào phân tích thay vì hỏi đáp thông tin cơ bản.\n\n' +
+        (p.ma_ho_so ? thanhToanVI_(p) : '') +
         'Thông tin anh chị cung cấp được giữ kín, chỉ dùng để chuẩn bị và thực hiện buổi làm việc, ' +
         'không dùng cho bất kỳ mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.\n\n' +
         'Cần trao đổi sớm, anh chị liên hệ: ' + EMAIL_BAO + ' · 0853 999 566\n\n' +
@@ -163,6 +194,35 @@ function thuXacNhan_(p) {
   } catch (err) {
     console.error('Không gửi được thư xác nhận: ' + err);
   }
+}
+
+// Lặp lại thông tin chuyển khoản trong thư: khách có thể đóng trang trước khi
+// kịp chuyển tiền, và thư là chỗ họ tìm lại được.
+function thanhToanVI_(p) {
+  return 'Thông tin thanh toán\n' +
+    '  Gói          : ' + (p.goi || '—') + '\n' +
+    '  Số tiền      : ' + tienChu_(p.so_tien) + '\n' +
+    '  Ngân hàng    : ACB — Ngân hàng Á Châu\n' +
+    '  Số tài khoản : ' + TAI_KHOAN.so + '\n' +
+    '  Chủ tài khoản: ' + TAI_KHOAN.chu + '\n' +
+    '  Nội dung     : ' + (p.noi_dung_ck || p.ma_ho_so) + '\n\n' +
+    'Ghi đúng nội dung trên giúp chúng tôi ghi nhận ngay. Thiếu thì phải dò tay, hồ sơ vào chậm hơn.\n\n';
+}
+
+function thanhToanEN_(p) {
+  return 'Payment details\n' +
+    '  Package      : ' + (p.goi || '—') + '\n' +
+    '  Amount       : ' + tienChu_(p.so_tien) + '\n' +
+    '  Bank         : ACB — Asia Commercial Bank, Vietnam\n' +
+    '  Account      : ' + TAI_KHOAN.so + '\n' +
+    '  Account name : ' + TAI_KHOAN.chu + '\n' +
+    '  Reference    : ' + (p.noi_dung_ck || p.ma_ho_so) + '\n\n' +
+    'Using that exact reference lets us record your payment immediately.\n\n';
+}
+
+function tienChu_(v) {
+  var n = Number(v) || 0;
+  return n ? n.toLocaleString('vi-VN') + 'đ' : '—';
 }
 
 function ket_(s) {

@@ -33,6 +33,46 @@
   src: url("../assets/fonts/archivo-latin.woff2") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
+/* ── Chọn gói và thanh toán ─────────────────────────────────────────────── */
+.dot1 { border-left: 4px solid var(--red); background: #fff; padding: 15px 17px; margin: 0 0 26px;
+  font-size: 14.5px; line-height: 1.6; color: var(--ink); }
+.goi { display: grid; gap: 2px; margin-top: 12px; }
+.goi label { display: block; border: 2px solid var(--n300); background: var(--bg);
+  padding: 16px 17px; cursor: pointer; }
+.goi label:has(input:checked) { border-color: var(--ink); background: #fff; }
+.goi label:has(input:focus-visible) { outline: 2px solid var(--red); outline-offset: 2px; }
+.goi input { position: absolute; opacity: 0; width: 0; height: 0; }
+.goi .hang { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.goi .ten { font-weight: 800; font-size: 17.5px; letter-spacing: -.01em; }
+.goi .gia { margin-left: auto; font-weight: 800; font-size: 17.5px; color: var(--red-dark); }
+.goi .mo-ta { display: block; font-size: 14px; line-height: 1.55; color: var(--n700); margin-top: 7px; }
+.goi .them { display: block; font-size: 13px; line-height: 1.5; color: var(--n600); margin-top: 6px; }
+
+.tt { display: none; border: 2px solid var(--ink); background: #fff; padding: clamp(16px,4vw,24px); margin-top: 22px; }
+.tt.hien { display: block; }
+.tt h3 { margin: 0 0 4px; font-size: 17px; font-weight: 800; letter-spacing: -.01em; }
+.tt .phu { margin: 0 0 18px; font-size: 13.5px; color: var(--n600); line-height: 1.5; }
+.tt-than { display: flex; gap: 22px; flex-wrap: wrap; align-items: flex-start; }
+.tt-qr { flex: none; width: 210px; }
+.tt-qr img { display: block; width: 100%; height: auto; border: 2px solid var(--n300); background: #fff; }
+.tt-no { display: flex; align-items: center; justify-content: center; text-align: center;
+  width: 100%; aspect-ratio: 27/32; border: 2px dashed var(--n400); color: var(--n600);
+  font-size: 13.5px; line-height: 1.5; padding: 16px; }
+.tt-tin { flex: 1; min-width: 230px; display: grid; gap: 2px;
+  background: var(--n300); border-top: 2px solid var(--n300); border-bottom: 2px solid var(--n300); }
+.tt-tin div { background: #fff; padding: 10px 12px; display: flex; gap: 12px; flex-wrap: wrap; }
+.tt-tin b { flex: none; width: 108px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--n600); font-weight: 600; padding-top: 2px; }
+.tt-tin span { flex: 1; min-width: 120px; font-size: 15px; line-height: 1.45; word-break: break-word; }
+.tt-tin .to { font-weight: 800; font-size: 17px; color: var(--red-dark); }
+.tt-nut { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.tt-nut button { appearance: none; cursor: pointer; font-family: inherit; font-size: 13px;
+  letter-spacing: .08em; font-weight: 600; padding: 12px 15px; background: var(--bg);
+  color: var(--ink); border: 2px solid var(--n400); }
+.tt-nut button:hover { border-color: var(--ink); }
+.tt-ghi { font-size: 13.5px; line-height: 1.6; color: var(--n700); margin: 16px 0 0;
+  border-top: 2px solid var(--n300); padding-top: 14px; }
+
 :root { --ink: #201E1D; --paper: #F3F2F2; --bg: #FFFFFF; --red: #EC3013; --red-dark: #AE1800;
   --n300: #D7D3D3; --n400: #BAB6B6; --n600: #807C7C; --n700: #605D5D; }
 * { box-sizing: border-box; }
@@ -147,8 +187,50 @@ footer a { color: var(--n700); }
   <p class="lead">Miễn phí. Kết thúc buổi này anh chị nhận được ba quy trình nên tự động hóa trước, ước lượng trần tự động hóa của mô hình, và câu trả lời thẳng nếu chúng tôi cho rằng anh chị chưa nên bắt đầu.</p>
 
   <p class="note">Điền khoảng 2 phút. Thông tin anh chị cung cấp được giữ kín, chỉ dùng để chuẩn bị và thực hiện buổi làm việc — không dùng cho mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.</p>
+  <p class="dot1"><strong>Đợt 1 đóng đăng ký ngày 15/9/2026.</strong> Hồ sơ nhận trong đợt này bắt đầu được xử lý từ <strong>18/9/2026</strong> — mọi mốc thời gian cam kết tính từ ngày đó, không tính từ ngày thanh toán. Đăng ký sau 15/9 chuyển sang đợt 2.</p>
 
   <form id="frm" action="" method="post" target="lnx-sink" novalidate>
+
+    <fieldset>
+      <legend>Chọn gói</legend>
+      <div class="f"><span class="lb">Gói dịch vụ <span class="req">*</span>
+        <span class="hint">Phí tạo lập hồ sơ và quản lý. Trao đổi ban đầu qua email hoặc Zalo thì không mất phí.</span></span>
+        <div class="goi">
+          <label>
+            <input type="radio" name="goi" value="LATTICE Scan" required>
+            <span class="hang"><span class="ten">LATTICE Scan</span><span class="gia">499.000đ</span></span>
+            <span class="mo-ta">Bảng câu hỏi soạn riêng theo nhóm mô hình · một buổi Zoom 60 phút có chuẩn bị trước · bản tóm tắt 1–2 trang sau buổi.</span>
+            <span class="them">Gửi bảng câu hỏi 3–5 ngày làm việc · xếp lịch 3 ngày · tài liệu 3 ngày.</span>
+          </label>
+          <label>
+            <input type="radio" name="goi" value="LATTICE Blueprint">
+            <span class="hang"><span class="ten">LATTICE Blueprint</span><span class="gia">1.499.000đ</span></span>
+            <span class="mo-ta">Toàn bộ gói Scan, thay bản tóm tắt bằng hồ sơ chẩn đoán 8–12 trang · thêm buổi rà lại 30 phút sau ba tuần · một bộ SOP mẫu · hỏi đáp email 30 ngày.</span>
+            <span class="them">Gửi bảng câu hỏi 2 ngày làm việc · xếp lịch 2 ngày · hồ sơ 5 ngày. Khấu trừ 100% vào hợp đồng triển khai nếu ký trong 60 ngày. Nhận tối đa 4 hồ sơ mỗi tháng.</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="tt" id="tt">
+        <h3>Thanh toán chuyển khoản</h3>
+        <p class="phu">Quét mã là số tiền và nội dung đã điền sẵn, anh chị không phải gõ gì. Có thể chuyển khoản trước hoặc sau khi gửi biểu mẫu — chúng tôi đối chiếu theo mã hồ sơ.</p>
+        <div class="tt-than">
+          <div class="tt-qr" id="ttQr"></div>
+          <div class="tt-tin">
+            <div><b>Số tiền</b><span class="to" id="ttTien">—</span></div>
+            <div><b>Ngân hàng</b><span>ACB — Ngân hàng Á Châu</span></div>
+            <div><b>Số tài khoản</b><span id="ttStk">50359267</span></div>
+            <div><b>Chủ tài khoản</b><span>DANG QUOC TUAN</span></div>
+            <div><b>Nội dung</b><span id="ttNd">—</span></div>
+          </div>
+        </div>
+        <div class="tt-nut">
+          <button type="button" id="ttLuu">LƯU ẢNH MÃ QR</button>
+          <button type="button" id="ttChep">SAO CHÉP NỘI DUNG</button>
+        </div>
+        <p class="tt-ghi"><strong>Mã hồ sơ của anh chị: <span id="ttMa">—</span></strong><br>Nếu chuyển khoản bằng cách gõ tay, nhớ ghi đúng mã này vào nội dung. Thiếu mã thì chúng tôi phải dò tay và hồ sơ vào chậm hơn.</p>
+      </div>
+    </fieldset>
 
     <fieldset>
       <legend>Thông tin liên hệ</legend>
@@ -275,9 +357,13 @@ footer a { color: var(--n700); }
 
       <div class="consent">
         <label class="chk"><input type="checkbox" name="dong_y" value="Có" required><span>Tôi đồng ý để LATTICE Next Solutions liên hệ qua email và Zalo về yêu cầu này. <span class="req">*</span></span></label>
+        <label class="chk" style="margin-top:2px"><input type="checkbox" name="dong_y_chinh_sach" value="Có" required><span>Tôi đã đọc và đồng ý với <a href="../#lien-he" target="_blank">chính sách phí và hoàn phí</a>: sau khi LATTICE đã gửi bảng câu hỏi thì không hoàn phí. <span class="req">*</span></span></label>
       </div>
     </fieldset>
 
+    <input type="hidden" name="ma_ho_so" id="ma_ho_so" value="">
+    <input type="hidden" name="so_tien" id="so_tien" value="">
+    <input type="hidden" name="noi_dung_ck" id="noi_dung_ck" value="">
     <input type="hidden" name="ngon_ngu" id="ngon_ngu" value="vi">
     <input type="hidden" name="thoi_gian" id="thoi_gian" value="">
 
@@ -332,6 +418,107 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwLYjiIyfh9LdNnY2zRPmm6a
     btn.disabled = false;
     btn.textContent = 'GỬI ĐĂNG KÝ';
   }
+
+
+  // ── Chọn gói và mã QR thanh toán ─────────────────────────────────────────
+  // Mã hồ sơ sinh ngay ở trình duyệt lúc chọn gói, rồi nhúng thẳng vào mã QR.
+  // Nhờ vậy khách quét là xong, không phải gõ nội dung chuyển khoản — mà nội
+  // dung gõ tay chính là chỗ hỏng đối soát: kinh nghiệm từ một hệ thống đang
+  // chạy thật cho thấy giao dịch nào khách tự gõ là gần như không khớp được.
+  var NGAN_HANG = { bin: '970416', soTk: '50359267', chuTk: 'DANG QUOC TUAN', ten: 'ACB' };
+  var GOI = { 'LATTICE Scan': 499000, 'LATTICE Blueprint': 1499000 };
+
+  var tt = document.getElementById('tt');
+  var maHoSo = '';
+
+  function sinhMa() {
+    var d = new Date();
+    var s = String(d.getDate()).padStart(2, '0') + String(d.getMonth() + 1).padStart(2, '0');
+    return 'LTC' + s + String(Math.floor(Math.random() * 9000) + 1000);
+  }
+
+  function sdtGon() {
+    var v = (frm.querySelector('[name=dien_thoai]').value || '').replace(/[^0-9]/g, '');
+    return v.slice(-10);
+  }
+
+  function tienChu(n) { return n.toLocaleString('vi-VN') + 'đ'; }
+
+  function urlQR(tien, noiDung) {
+    return 'https://img.vietqr.io/image/' + NGAN_HANG.bin + '-' + NGAN_HANG.soTk + '-compact2.png'
+      + '?amount=' + tien
+      + '&addInfo=' + encodeURIComponent(noiDung)
+      + '&accountName=' + encodeURIComponent(NGAN_HANG.chuTk);
+  }
+
+  function veThanhToan() {
+    var chon = frm.querySelector('[name=goi]:checked');
+    if (!chon) { tt.classList.remove('hien'); return; }
+    if (!maHoSo) maHoSo = sinhMa();
+
+    var tien = GOI[chon.value];
+    var sdt = sdtGon();
+    var noiDung = maHoSo + (sdt ? ' ' + sdt : '');
+
+    document.getElementById('ma_ho_so').value = maHoSo;
+    document.getElementById('so_tien').value = tien;
+    document.getElementById('noi_dung_ck').value = noiDung;
+    document.getElementById('ttTien').textContent = tienChu(tien);
+    document.getElementById('ttNd').textContent = noiDung;
+    document.getElementById('ttMa').textContent = maHoSo;
+
+    var o = document.getElementById('ttQr');
+    if (!NGAN_HANG.bin || !NGAN_HANG.soTk) {
+      o.innerHTML = '<div class="tt-no">Chúng tôi gửi thông tin thanh toán kèm thư xác nhận.</div>';
+    } else {
+      o.innerHTML = '<img alt="Mã QR chuyển khoản ' + tienChu(tien) + '" src="' + urlQR(tien, noiDung) + '">';
+    }
+    tt.classList.add('hien');
+  }
+
+  Array.prototype.forEach.call(frm.querySelectorAll('[name=goi]'), function (r) {
+    r.addEventListener('change', veThanhToan);
+  });
+  frm.querySelector('[name=dien_thoai]').addEventListener('blur', function () {
+    if (frm.querySelector('[name=goi]:checked')) veThanhToan();
+  });
+
+  document.getElementById('ttChep').addEventListener('click', function () {
+    var v = document.getElementById('ttNd').textContent;
+    var xong = function () { var b = document.getElementById('ttChep'); b.textContent = 'ĐÃ SAO CHÉP'; setTimeout(function () { b.textContent = 'SAO CHÉP NỘI DUNG'; }, 1800); };
+    if (navigator.clipboard) { navigator.clipboard.writeText(v).then(xong, xong); return; }
+    var o = document.createElement('textarea'); o.value = v; document.body.appendChild(o);
+    o.select(); try { document.execCommand('copy'); } catch (e) {}
+    o.remove(); xong();
+  });
+
+  // Trên điện thoại không quét được mã đang hiện trên chính máy đó. Cách quen
+  // thuộc ở Việt Nam là lưu ảnh rồi vào app ngân hàng chọn quét từ thư viện.
+  document.getElementById('ttLuu').addEventListener('click', async function () {
+    var anh = document.querySelector('#ttQr img');
+    if (!anh) return;
+    var nut = this;
+    try {
+      var res = await fetch(anh.src);
+      var blob = await res.blob();
+      var ten = 'LATTICE-' + (maHoSo || 'thanh-toan') + '.png';
+      var tep = new File([blob], ten, { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [tep] })) {
+        await navigator.share({ files: [tep] });
+      } else {
+        var u = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = u; a.download = ten;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(u); }, 4000);
+      }
+    } catch (e) {
+      // Bấm Huỷ ở bảng chia sẻ cũng rơi vào đây — đó không phải lỗi, đừng doạ người dùng.
+      if (e && e.name === 'AbortError') return;
+      nut.textContent = 'KHÔNG LƯU ĐƯỢC — BẤM GIỮ VÀO ẢNH';
+      setTimeout(function () { nut.textContent = 'LƯU ẢNH MÃ QR'; }, 3000);
+    }
+  });
 
   frm.addEventListener('submit', function (e) {
     err.style.display = 'none';

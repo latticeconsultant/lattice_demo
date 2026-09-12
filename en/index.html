@@ -3212,7 +3212,7 @@ review_cycle: monthly</pre>
           <p style="font-size:clamp(15px,1.5cqi,17.5px);line-height:1.65;color:var(--color-neutral-800);max-width:78ch;margin:0 0 26px">Asking a quick question by email or messaging app costs nothing — we answer, and we say plainly whether this is a fit. The fee below is<strong>a file-creation and administration fee</strong>: studying your model, writing a questionnaire for your model group, analysing it before the session and producing the documents afterwards. That is real work, not a consulting charge.</p>
 
           <div style="border-left:4px solid var(--color-accent);background:var(--color-neutral-100);padding:18px 20px;margin:0 0 34px;max-width:82ch">
-            <p style="margin:0;font-size:15px;line-height:1.65;color:var(--color-text)"><strong>Round 1 closes at midnight on 30 September 2026.</strong>Files received in this round start processing on<strong>3/10/2026</strong>— every committed deadline below runs from that date, not from the date of payment. Currently available in Vietnam.<span class="lnx-dem" id="lnx-dem" aria-live="polite"></span></p>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:var(--color-text)"><strong>Round 1 closes at midnight on 30 September 2026.</strong>Files received in this round start processing on<strong>21 September 2026</strong>— every committed deadline below runs from that date or from the date of payment, whichever is later. Currently available in Vietnam.<span class="lnx-dem" id="lnx-dem" aria-live="polite"></span></p>
           </div>
 
           <div class="lnx-goi">
@@ -4428,7 +4428,10 @@ class Component extends DCLogic {
     var con = HAN - Date.now();
     if (con <= 0) {
       var hop = o.parentElement;
-      if (hop && hop.innerHTML.indexOf('30/9/2026') >= 0) hop.innerHTML = HET;
+      // Dò theo chính ô đếm ngược, không dò theo chuỗi ngày: bản tiếng Anh ghi
+      // ngày dạng "30 September 2026" nên dò chuỗi "30/9/2026" sẽ không bao giờ
+      // khớp, và tới hạn trang EN không đổi sang thông báo đã đóng.
+      if (hop && hop.contains(o)) hop.innerHTML = HET;
       return;
     }
     var g = Math.floor(con / 1000);

@@ -11023,5 +11023,15 @@
   "vi": "GIÂY",
   "en": "SEC",
   "nguon": "dem-nguoc"
+ },
+ {
+  "vi": "— mọi mốc thời gian cam kết bên dưới tính từ ngày đó hoặc từ ngày thanh toán, tuỳ ngày nào muộn hơn.",
+  "en": "— every committed deadline below runs from that date or from the date of payment, whichever is later. Currently available in Vietnam.",
+  "nguon": "goi-dich-vu"
+ },
+ {
+  "vi": "21/09/2026",
+  "en": "21 September 2026",
+  "nguon": "goi-dich-vu"
  }
 ]

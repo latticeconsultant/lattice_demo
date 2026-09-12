@@ -3210,7 +3210,7 @@ review_cycle: monthly</pre>
           <p style="font-size:clamp(15px,1.5cqi,17.5px);line-height:1.65;color:var(--color-neutral-800);max-width:78ch;margin:0 0 26px">Hỏi nhanh qua email hoặc Zalo thì không mất gì — chúng tôi trả lời và nói thẳng có phù hợp hay không. Khoản phí dưới đây là <strong>phí tạo lập hồ sơ và quản lý</strong>: nghiên cứu mô hình của anh chị, soạn bảng câu hỏi riêng theo nhóm mô hình, phân tích trước buổi làm việc và làm tài liệu sau buổi. Đó là công việc có thật, không phải phí tư vấn.</p>
 
           <div style="border-left:4px solid var(--color-accent);background:var(--color-neutral-100);padding:18px 20px;margin:0 0 34px;max-width:82ch">
-            <p style="margin:0;font-size:15px;line-height:1.65;color:var(--color-text)"><strong>Đợt 1 đóng đăng ký lúc 24:00 ngày 30/9/2026.</strong> Hồ sơ nhận trong đợt này bắt đầu được xử lý từ <strong>3/10/2026</strong> — mọi mốc thời gian cam kết bên dưới tính từ ngày đó, không tính từ ngày thanh toán.<span class="lnx-dem" id="lnx-dem" aria-live="polite"></span></p>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:var(--color-text)"><strong>Đợt 1 đóng đăng ký lúc 24:00 ngày 30/9/2026.</strong> Hồ sơ nhận trong đợt này bắt đầu được xử lý từ <strong>21/09/2026</strong> — mọi mốc thời gian cam kết bên dưới tính từ ngày đó hoặc từ ngày thanh toán, tuỳ ngày nào muộn hơn.<span class="lnx-dem" id="lnx-dem" aria-live="polite"></span></p>
           </div>
 
           <div class="lnx-goi">
@@ -4426,7 +4426,10 @@ class Component extends DCLogic {
     var con = HAN - Date.now();
     if (con <= 0) {
       var hop = o.parentElement;
-      if (hop && hop.innerHTML.indexOf('30/9/2026') >= 0) hop.innerHTML = HET;
+      // Dò theo chính ô đếm ngược, không dò theo chuỗi ngày: bản tiếng Anh ghi
+      // ngày dạng "30 September 2026" nên dò chuỗi "30/9/2026" sẽ không bao giờ
+      // khớp, và tới hạn trang EN không đổi sang thông báo đã đóng.
+      if (hop && hop.contains(o)) hop.innerHTML = HET;
       return;
     }
     var g = Math.floor(con / 1000);

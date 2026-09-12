@@ -22,7 +22,7 @@
 // Dấu phiên bản: đổi mỗi lần sửa file này. Gọi ?token=...&viec=phienBan để biết
 // chắc bản nào đang chạy — Apps Script phục vụ bản ĐÃ TRIỂN KHAI, không phải mã
 // vừa lưu, nên dán xong mà quên chọn "Phiên bản: Mới" là vẫn chạy mã cũ.
-var PHIEN_BAN = '2026-09-13 · 5';
+var PHIEN_BAN = '2026-09-13 · 7';
 
 var CH = {
   emailBao: 'lattice.consultant@gmail.com',     // nhận thông báo mỗi đăng ký mới
@@ -181,7 +181,10 @@ function nhanTienVe_(e) {
     }
 
     // ⑥ Xác nhận.
-    capNhatDong_(don.ma_ho_so, { trang_thai: 'da_thu', tien_thuc: String(vao), luc_thu: new Date().toISOString() });
+    // Xoá ghi chú "nhận thiếu" của lần chuyển trước, nếu có — để lại thì người
+    // trực đọc nhầm là hồ sơ đang thiếu tiền trong khi đã thu đủ.
+    capNhatDong_(don.ma_ho_so, { trang_thai: 'da_thu', tien_thuc: String(vao),
+                                 luc_thu: new Date().toISOString(), ghi_chu_noi_bo: '' });
     ghiNhatKy_(don.ma_ho_so, 'tien_ve', 'Tự xác nhận ' + tienChu_(vao));
     don.tien_thuc = String(vao);
     thuDaThu_(don);
@@ -238,11 +241,14 @@ function doGet(e) {
       var don = timDong_(p.ma);
       if (!don) return json_({ ok: false, loi: 'Không thấy mã hồ sơ' }, p.callback);
       var tien = Number(p.tien_thuc || don.so_tien || 0);
-      capNhatDong_(p.ma, { trang_thai: 'da_thu', tien_thuc: String(tien), luc_thu: new Date().toISOString() });
+      capNhatDong_(p.ma, { trang_thai: 'da_thu', tien_thuc: String(tien),
+                           luc_thu: new Date().toISOString(), ghi_chu_noi_bo: '' });
       don.tien_thuc = String(tien);
-      thuDaThu_(don);
-      ghiNhatKy_(p.ma, 'thu_tay', 'Xác nhận tay ' + tienChu_(tien));
-      return json_({ ok: true }, p.callback);
+      var daGui = thuDaThu_(don);
+      ghiNhatKy_(p.ma, 'thu_tay', 'Xác nhận tay ' + tienChu_(tien) + (daGui ? '' : ' · KHÔNG gửi được phiếu thu'));
+      return json_({ ok: true, daGuiThu: daGui,
+        loi: daGui ? '' : 'Đã ghi nhận đã thu, nhưng hồ sơ này không có email hợp lệ nên chưa gửi được phiếu thu.'
+      }, p.callback);
     }
 
     if (p.viec === 'guiLaiThu') {
@@ -343,6 +349,7 @@ function thanHtml_(p, en, banChu) {
         tieu: 'PAYMENT DETAILS', nh: 'Bank', stk: 'Account number', chu: 'Account name',
         tien: 'Amount', nd: 'Reference',
         quet: 'Scan the QR with your banking app — the amount and reference are already filled in.',
+        alt: 'Open the payment QR code',
         d3: 'As soon as the money arrives, the system sends you a receipt automatically and we send the preparation questionnaire.',
         tt: 'Kind regards,' }
     : { chao: 'Kính gửi anh/chị ', tag: 'Kiến trúc mô hình kinh doanh mới',
@@ -352,6 +359,7 @@ function thanHtml_(p, en, banChu) {
         tieu: 'THÔNG TIN CHUYỂN KHOẢN', nh: 'Ngân hàng', stk: 'Số tài khoản', chu: 'Chủ tài khoản',
         tien: 'Số tiền', nd: 'Nội dung',
         quet: 'Quét mã QR bằng ứng dụng ngân hàng — số tiền và nội dung đã điền sẵn.',
+        alt: 'Bấm để mở mã QR chuyển khoản',
         d3: 'Ngay khi tiền về, hệ thống tự gửi phiếu thu cho anh chị, và chúng tôi gửi bảng câu hỏi chuẩn bị.',
         tt: 'Trân trọng,' };
 
@@ -380,8 +388,12 @@ function thanHtml_(p, en, banChu) {
             v.tieu + '</div>' +
           dong(v.nh, t.nganHang) + dong(v.stk, t.so) + dong(v.chu, t.chu) +
           dong(v.tien, tienChu_(tien), true) + dong(v.nd, noiDung, true) +
-          '<img src="' + qr + '" width="200" alt="QR" ' +
-            'style="display:block;margin:16px 0 10px;border:1px solid #D7D3D3;background:#fff">' +
+          // Bọc ảnh trong liên kết: nhiều trình đọc thư chặn ảnh từ xa, lúc đó
+          // người nhận vẫn bấm vào chữ thay thế để mở mã QR ra xem.
+          '<a href="' + qr + '" style="text-decoration:none">' +
+            '<img src="' + qr + '" width="200" alt="' + v.alt + '" ' +
+              'style="display:block;margin:16px 0 10px;border:1px solid #D7D3D3;background:#fff">' +
+          '</a>' +
           '<div style="font-size:12.5px;line-height:1.5;color:#807C7C">' + v.quet + '</div>' +
         '</div>' +
 
@@ -401,7 +413,9 @@ function thanHtml_(p, en, banChu) {
 
 function thuDaThu_(d) {
   var toi = String(d.email || '').trim();
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(toi)) return;
+  // Hồ sơ thiếu email thì không gửi được. Trả về false để nơi gọi báo cho người
+  // trực biết, thay vì lặng lẽ bỏ qua rồi tưởng khách đã nhận phiếu thu.
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(toi)) return false;
   try {
     var en = (d.ngon_ngu === 'en');
     var ten = String(d.nguoi_dai_dien || '').trim();
@@ -448,8 +462,11 @@ function thuDaThu_(d) {
     MailApp.sendEmail({ to: toi, subject: tieude, body: than,
                         name: 'LATTICE Next Solutions', replyTo: CH.emailBao });
     ghiNhatKy_(d.ma_ho_so, 'thu_phieu_thu', 'Gửi tới ' + toi);
+    return true;
   } catch (err) {
     console.error('Không gửi được phiếu thu: ' + err);
+    ghiNhatKy_(d.ma_ho_so, 'loi_gui_phieu_thu', String(err).slice(0, 120));
+    return false;
   }
 }
 

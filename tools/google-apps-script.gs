@@ -19,6 +19,11 @@
  *      SEPAY_SECRET  mật mã webhook SePay
  */
 
+// Dấu phiên bản: đổi mỗi lần sửa file này. Gọi ?token=...&viec=phienBan để biết
+// chắc bản nào đang chạy — Apps Script phục vụ bản ĐÃ TRIỂN KHAI, không phải mã
+// vừa lưu, nên dán xong mà quên chọn "Phiên bản: Mới" là vẫn chạy mã cũ.
+var PHIEN_BAN = '2026-09-13 · 5';
+
 var CH = {
   emailBao: 'lattice.consultant@gmail.com',     // nhận thông báo mỗi đăng ký mới
   thueSuat: 0.10,                               // VAT trên giá đã niêm yết
@@ -200,10 +205,18 @@ function nhanTienVe_(e) {
 
 function doGet(e) {
   var p = (e && e.parameter) || {};
+  // Cho xem dấu phiên bản mà không cần mã truy cập: chỉ là một chuỗi ngày tháng,
+  // không lộ gì, mà lại giúp kiểm tra xem đã triển khai đúng bản chưa.
+  if (p.viec === 'phienBanCongKhai') return ket_('LATTICE ' + PHIEN_BAN);
+
   var token = biMat_('ADMIN_TOKEN');
   if (!token || p.token !== token) return json_({ ok: false, loi: 'Sai mã truy cập' }, p.callback);
 
   try {
+    if (p.viec === 'phienBan') {
+      return json_({ ok: true, phienBan: PHIEN_BAN }, p.callback);
+    }
+
     if (p.viec === 'danhSach') {
       return json_({ ok: true, don: docTatCa_(), trangThai: TRANG_THAI }, p.callback);
     }

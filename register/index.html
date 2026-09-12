@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book a 60-minute diagnostic — LATTICE Next Solutions</title>
+<meta name="description" content="Book a free 60-minute diagnostic with LATTICE Next Solutions. Fill in the basics and we will reply by email as soon as we can.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../brand/logo/favicon/favicon-32.png">
+<link rel="apple-touch-icon" href="../brand/logo/favicon/favicon-180.png">
+
+<!-- Trang đứng riêng, không dùng dc-runtime hay React: quét QR bằng điện thoại
+     thì phải mở nhanh kể cả mạng yếu, và không được vướng rào mật khẩu của site.
+     Toàn bộ CSS/JS nằm trong file này, chỉ nạp thêm font từ assets/. -->
+<style>
+@font-face { font-family: 'Archivo'; font-style: normal; font-weight: 400; font-stretch: 100%; font-display: swap;
+  src: url("../assets/fonts/archivo-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: 'Archivo'; font-style: normal; font-weight: 400; font-stretch: 100%; font-display: swap;
+  src: url("../assets/fonts/archivo-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Archivo'; font-style: normal; font-weight: 600; font-stretch: 100%; font-display: swap;
+  src: url("../assets/fonts/archivo-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: 'Archivo'; font-style: normal; font-weight: 600; font-stretch: 100%; font-display: swap;
+  src: url("../assets/fonts/archivo-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Archivo'; font-style: normal; font-weight: 800; font-stretch: 100%; font-display: swap;
+  src: url("../assets/fonts/archivo-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: 'Archivo'; font-style: normal; font-weight: 800; font-stretch: 100%; font-display: swap;
+  src: url("../assets/fonts/archivo-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+:root { --ink: #201E1D; --paper: #F3F2F2; --bg: #FFFFFF; --red: #EC3013; --red-dark: #AE1800;
+  --n300: #D7D3D3; --n400: #BAB6B6; --n600: #807C7C; --n700: #605D5D; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink);
+  font-family: Archivo, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 16px; line-height: 1.6; }
+
+.wrap { max-width: 680px; margin: 0 auto; padding: 0 18px 64px; }
+
+header { border-bottom: 2px solid var(--ink); background: var(--paper); }
+.head { max-width: 680px; margin: 0 auto; padding: 16px 18px; display: flex; align-items: center; gap: 12px; }
+.head a { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink); }
+.head .nm { font-weight: 800; font-size: 17px; letter-spacing: .12em; line-height: 1; display: block; }
+.head .sub { font-size: 10px; letter-spacing: .24em; color: var(--n600); display: block; margin-top: 4px; }
+.lang { margin-left: auto; font-size: 12px; letter-spacing: .14em; font-weight: 600; text-decoration: none;
+  color: var(--ink); border: 2px solid var(--n400); padding: 8px 11px; }
+.lang:hover { border-color: var(--ink); }
+
+h1 { font-size: clamp(25px, 6.5vw, 38px); font-weight: 800; letter-spacing: -.025em; line-height: 1.12;
+  margin: 34px 0 14px; text-wrap: balance; }
+.kicker { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--red-dark);
+  font-weight: 600; margin: 30px 0 0; }
+.lead { font-size: 16.5px; line-height: 1.6; color: var(--n700); margin: 0 0 8px; max-width: 60ch; }
+
+.note { border-left: 4px solid var(--red); padding: 2px 0 2px 16px; margin: 22px 0 30px;
+  font-size: 15px; line-height: 1.6; color: var(--n700); }
+
+form { background: var(--bg); border: 2px solid var(--ink); padding: clamp(18px, 5vw, 30px); }
+fieldset { border: 0; margin: 0 0 30px; padding: 0; }
+fieldset:last-of-type { margin-bottom: 22px; }
+legend { padding: 0; font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+  font-weight: 600; color: var(--red-dark); margin-bottom: 4px; }
+
+.f { display: block; margin-top: 20px; }
+.f > span.lb { display: block; font-size: 12.5px; letter-spacing: .13em; text-transform: uppercase;
+  color: var(--n700); font-weight: 600; margin-bottom: 7px; }
+.f .hint { display: block; text-transform: none; letter-spacing: 0; font-weight: 400;
+  font-size: 13.5px; color: var(--n600); margin-top: 3px; }
+.req { color: var(--red-dark); }
+
+input[type=text], input[type=email], input[type=tel], input[type=url], select, textarea {
+  width: 100%; appearance: none; font-family: inherit; font-size: 16px; /* 16px: iOS không tự phóng to */
+  line-height: 1.4; padding: 13px 14px; border: 2px solid var(--n400); border-radius: 0;
+  background: var(--bg); color: var(--ink); }
+select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23605D5D' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; }
+textarea { min-height: 130px; resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: 0; border-color: var(--red); }
+input:user-invalid, select:user-invalid, textarea:user-invalid { border-color: var(--red-dark); }
+
+.rev { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.rev label { display: block; }
+.rev span { display: block; font-size: 12.5px; letter-spacing: .1em; color: var(--n700); font-weight: 600; margin-bottom: 6px; }
+@media (max-width: 480px) { .rev { grid-template-columns: 1fr; } }
+
+.checks { display: grid; gap: 2px; margin-top: 10px; }
+.chk { display: flex; align-items: flex-start; gap: 11px; padding: 11px 13px; border: 2px solid var(--n300);
+  font-size: 15px; line-height: 1.45; cursor: pointer; background: var(--bg); }
+.chk:has(input:checked) { border-color: var(--ink); }
+.chk input { width: 20px; height: 20px; margin: 0; flex: none; accent-color: var(--red); }
+.chk:has(input:focus-visible) { outline: 2px solid var(--red); outline-offset: 2px; }
+
+.consent { margin-top: 26px; border-top: 2px solid var(--n300); padding-top: 22px; }
+
+button[type=submit] { width: 100%; appearance: none; cursor: pointer; font-family: inherit;
+  font-size: 14px; letter-spacing: .14em; font-weight: 600; padding: 19px 22px; margin-top: 4px;
+  background: var(--red); color: #fff; border: 0; text-align: left; }
+button[type=submit]:hover { background: var(--red-dark); }
+button[type=submit][disabled] { background: var(--n400); cursor: wait; }
+
+.priv { font-size: 13.5px; line-height: 1.6; color: var(--n600); margin: 16px 0 0; }
+.err { display: none; margin: 16px 0 0; padding: 13px 15px; border: 2px solid var(--red-dark);
+  color: var(--red-dark); font-size: 14.5px; line-height: 1.55; }
+
+.done { display: none; background: var(--ink); color: var(--paper); padding: clamp(26px, 6vw, 44px); }
+.done h2 { font-size: clamp(22px, 5.5vw, 31px); font-weight: 800; letter-spacing: -.02em; line-height: 1.2;
+  margin: 0 0 16px; color: #fff; }
+.done p { font-size: 15.5px; line-height: 1.65; color: var(--n300); margin: 0 0 14px; max-width: 58ch; }
+.done strong { color: #fff; }
+.done a { color: #fff; }
+.done .back { display: inline-block; margin-top: 12px; font-size: 13px; letter-spacing: .14em;
+  font-weight: 600; color: #fff; text-decoration: none; border: 2px solid var(--n600); padding: 14px 18px; }
+.done .back:hover { border-color: #fff; }
+
+footer { border-top: 2px solid var(--n400); margin-top: 40px; padding-top: 20px;
+  font-size: 13.5px; color: var(--n600); }
+footer a { color: var(--n700); }
+
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head">
+    <a href="../en/">
+      <svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true" style="display:block"><path d="M50 8 L92 50 L50 92 L8 50 Z" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><path d="M50 8 L50 92 M8 50 L92 50" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><circle cx="50" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="92" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="92" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="8" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="50" r="10" fill="#EC3013"></circle></svg>
+      <span><span class="nm">LATTICE</span><span class="sub">NEXT SOLUTIONS JSC</span></span>
+    </a>
+    <a class="lang" href="../dang-ky/" hreflang="vi">VI</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <p class="kicker">Registration</p>
+  <h1>The 60-minute diagnostic</h1>
+  <p class="lead">Free of charge. You leave with the three processes worth automating first, an estimate of your model’s automation ceiling, and a straight answer if we think you should not start yet.</p>
+
+  <p class="note">About two minutes to complete. Once we receive it we reply by email and attach the eight-point preparation questionnaire — filling it in beforehand keeps the 60 minutes for analysis rather than basic questions.</p>
+
+  <form id="frm" action="" method="post" target="lnx-sink" novalidate>
+
+    <fieldset>
+      <legend>Contact details</legend>
+
+      <label class="f"><span class="lb">Company or trading name <span class="req">*</span></span>
+        <input type="text" name="ten_doanh_nghiep" required autocomplete="organization" placeholder="Your organisation"></label>
+
+      <label class="f"><span class="lb">Contact person <span class="req">*</span></span>
+        <input type="text" name="nguoi_dai_dien" required autocomplete="name" placeholder="Jane Doe"></label>
+
+      <label class="f"><span class="lb">Job title <span class="req">*</span>
+        <span class="hint">A diagnostic only produces decisions if the person attending can decide on budget.</span></span>
+        <input type="text" name="chuc_danh" required autocomplete="organization-title" placeholder="Owner / Director / Manager"></label>
+
+      <label class="f"><span class="lb">Email <span class="req">*</span>
+        <span class="hint">We send the invitation and the questionnaire to this address.</span></span>
+        <input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@company.com"></label>
+
+      <label class="f"><span class="lb">Phone or messaging app <span class="req">*</span></span>
+        <input type="tel" name="dien_thoai" required autocomplete="tel" inputmode="tel" placeholder="09xx xxx xxx"></label>
+
+      <label class="f"><span class="lb">Website or main sales channel
+        <span class="hint">Website, social page, TikTok, marketplace storefront — any channel works.</span></span>
+        <input type="text" name="website" autocomplete="url" inputmode="url" placeholder="lattice.business or facebook.com/..."></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>About the business</legend>
+
+      <label class="f"><span class="lb">Legal form <span class="req">*</span></span>
+        <select name="loai_hinh" required data-other="loai_hinh_khac">
+          <option value="">— Select —</option>
+          <option>Sole trader</option>
+          <option>Sole proprietorship</option>
+          <option>Single-member limited company</option>
+          <option>Multi-member limited company</option>
+          <option>Joint stock company</option>
+          <option>Cooperative</option>
+          <option>Not registered, trading as an individual</option>
+          <option value="Other">Other</option>
+        </select></label>
+      <label class="f" id="wrap_loai_hinh_khac" hidden><span class="lb">Please specify</span>
+        <input type="text" name="loai_hinh_khac" placeholder="Your legal form"></label>
+
+      <label class="f"><span class="lb">Main sector <span class="req">*</span>
+        <span class="hint">Pick the sector that generates most of your revenue.</span></span>
+        <select name="linh_vuc" required data-other="linh_vuc_khac">
+          <option value="">— Select —</option>
+          <option>E-commerce and online selling</option>
+          <option>Trading, distribution, retail</option>
+          <option>Professional services (consulting, accounting, legal, marketing, technology)</option>
+          <option>On-site services (healthcare, spa, repair, F&amp;B, transport)</option>
+          <option>Manufacturing and contract production</option>
+          <option>Knowledge, content and training businesses</option>
+          <option>Digital platform or software (SaaS)</option>
+          <option>Brokerage or marketplace</option>
+          <option value="Other">Other</option>
+        </select></label>
+      <label class="f" id="wrap_linh_vuc_khac" hidden><span class="lb">Please specify</span>
+        <input type="text" name="linh_vuc_khac" placeholder="Your sector"></label>
+
+      <label class="f"><span class="lb">Current headcount <span class="req">*</span></span>
+        <select name="quy_mo_nhan_su" required>
+          <option value="">— Select —</option>
+          <option>1 person</option>
+          <option>2–3 people</option>
+          <option>4–10 people</option>
+          <option>11–30 people</option>
+          <option>More than 30 people</option>
+        </select></label>
+
+      <label class="f"><span class="lb">Years in operation <span class="req">*</span></span>
+        <select name="so_nam" required>
+          <option value="">— Select —</option>
+          <option>Under 1 year</option>
+          <option>1–3 years</option>
+          <option>3–5 years</option>
+          <option>5–10 years</option>
+          <option>More than 10 years</option>
+        </select></label>
+
+      <div class="f"><span class="lb">Revenue, last three years
+        <span class="hint">A range is enough. A sensible AI budget is 2–8% of revenue, so without this we cannot estimate a budget for you.</span></span>
+        <div class="rev">
+          <label><span>2024</span>
+            <select name="doanh_so_2024">
+              <option value="">—</option>
+              <option>Under USD 40k</option><option>USD 40k–120k</option><option>USD 120k–400k</option><option>USD 400k–1.2m</option><option>USD 1.2m–4m</option><option>Over USD 4m</option><option>Prefer not to say</option>
+            </select></label>
+          <label><span>2025</span>
+            <select name="doanh_so_2025">
+              <option value="">—</option>
+              <option>Under USD 40k</option><option>USD 40k–120k</option><option>USD 120k–400k</option><option>USD 400k–1.2m</option><option>USD 1.2m–4m</option><option>Over USD 4m</option><option>Prefer not to say</option>
+            </select></label>
+          <label><span>2026</span>
+            <select name="doanh_so_2026">
+              <option value="">—</option>
+              <option>Under USD 40k</option><option>USD 40k–120k</option><option>USD 120k–400k</option><option>USD 400k–1.2m</option><option>USD 1.2m–4m</option><option>Over USD 4m</option><option>Prefer not to say</option>
+            </select></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>What you need</legend>
+
+      <div class="f"><span class="lb">Where do you most need help?
+        <span class="hint">Select as many as apply.</span></span>
+        <div class="checks">
+          <label class="chk"><input type="checkbox" name="quan_tam" value="Sales and finding customers"><span>Sales and finding customers</span></label>
+          <label class="chk"><input type="checkbox" name="quan_tam" value="Marketing and content"><span>Marketing and content</span></label>
+          <label class="chk"><input type="checkbox" name="quan_tam" value="Customer support"><span>Customer support</span></label>
+          <label class="chk"><input type="checkbox" name="quan_tam" value="Operations, orders, scheduling"><span>Operations, orders, scheduling</span></label>
+          <label class="chk"><input type="checkbox" name="quan_tam" value="Finance, accounting, invoicing"><span>Finance, accounting, invoicing</span></label>
+          <label class="chk"><input type="checkbox" name="quan_tam" value="Reporting and data"><span>Reporting and data</span></label>
+          <label class="chk"><input type="checkbox" name="quan_tam" value="Legal compliance"><span>Legal compliance</span></label>
+          <label class="chk"><input type="checkbox" name="quan_tam" value="Not sure yet, need advice"><span>Not sure yet, need advice</span></label>
+        </div>
+      </div>
+
+      <label class="f"><span class="lb">What needs to improve <span class="req">*</span>
+        <span class="hint">The more specific you are, the better we can prepare.</span></span>
+        <textarea name="mo_ta" required placeholder="What takes the most of your time? What repeats every week? If one thing could change three months from now, what would you want it to be?"></textarea></label>
+
+      <div class="consent">
+        <label class="chk"><input type="checkbox" name="dong_y" value="Yes" required><span>I agree that LATTICE Next Solutions may contact me by email and messaging app about this request. <span class="req">*</span></span></label>
+      </div>
+    </fieldset>
+
+    <input type="hidden" name="ngon_ngu" id="ngon_ngu" value="en">
+    <input type="hidden" name="thoi_gian" id="thoi_gian" value="">
+
+    <button type="submit" id="btn">SUBMIT REGISTRATION</button>
+    <p class="priv">We use this only to prepare the diagnostic. We do not share it with third parties.</p>
+    <p class="err" id="err"></p>
+  </form>
+
+  <section class="done" id="done" tabindex="-1">
+    <h2>We have your registration.</h2>
+    <p>We will reply by <strong>email</strong> as soon as we can to arrange the 60-minute diagnostic.</p>
+    <p>With the invitation we attach the <strong>eight-point preparation questionnaire</strong>. Filling it in beforehand keeps the 60 minutes for analysis rather than basic questions.</p>
+    <p>If nothing arrives within two working days, please check your spam folder or message us.</p>
+    <a class="back" href="../en/">BACK TO THE SITE</a>
+  </section>
+
+  <footer>
+    <p>LATTICE Next Solutions Joint Stock Company — <a href="../en/">lattice.business/demo/en</a></p>
+  </footer>
+</div>
+
+<iframe name="lnx-sink" id="sink" title="submission sink" style="display:none" aria-hidden="true"></iframe>
+
+<script>
+// Nơi nhận dữ liệu: Google Apps Script Web App ghi vào Google Sheet trên Drive.
+// Dán URL sau khi triển khai — xem tools/google-apps-script.gs và README mục 9.
+var ENDPOINT = '';
+
+(function () {
+  var frm = document.getElementById('frm');
+  var btn = document.getElementById('btn');
+  var err = document.getElementById('err');
+  var done = document.getElementById('done');
+  var sink = document.getElementById('sink');
+  var daGui = false;
+
+  // Ô "Khác" chỉ hiện khi thật sự chọn Khác.
+  Array.prototype.forEach.call(document.querySelectorAll('select[data-other]'), function (sel) {
+    var o = document.getElementById('wrap_' + sel.dataset.other);
+    sel.addEventListener('change', function () {
+      var hien = sel.value === 'Other';
+      o.hidden = !hien;
+      o.querySelector('input').required = hien;
+      if (hien) o.querySelector('input').focus();
+    });
+  });
+
+  function baoLoi(msg) {
+    err.textContent = msg;
+    err.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'SUBMIT REGISTRATION';
+  }
+
+  frm.addEventListener('submit', function (e) {
+    err.style.display = 'none';
+
+    // Tự kiểm tra để hiện đúng ô thiếu, thay vì để trình duyệt chặn im lặng.
+    if (!frm.checkValidity()) {
+      e.preventDefault();
+      var oSai = frm.querySelector(':invalid');
+      if (oSai) { oSai.scrollIntoView({ block: 'center' }); oSai.focus(); }
+      frm.reportValidity();
+      return;
+    }
+
+    if (!ENDPOINT) {
+      e.preventDefault();
+      baoLoi('This form is not connected to a data destination yet. Please contact us directly.');
+      return;
+    }
+
+    frm.action = ENDPOINT;
+    document.getElementById('ngon_ngu').value = 'en';
+    document.getElementById('thoi_gian').value = new Date().toISOString();
+    daGui = true;
+    btn.disabled = true;
+    btn.textContent = 'SENDING…';
+
+    // Gửi qua iframe ẩn, không dùng fetch: Apps Script không trả header CORS nên
+    // fetch báo lỗi ngay cả khi dữ liệu đã ghi xong. Form post vào iframe thì
+    // trình duyệt không chặn, và sự kiện load của iframe cho biết đã gửi xong.
+    setTimeout(function () {
+      if (btn.disabled) hoanTat();   // mạng chậm thì vẫn báo xong sau 8 giây
+    }, 8000);
+  });
+
+  function hoanTat() {
+    if (!daGui) return;
+    daGui = false;
+    frm.style.display = 'none';
+    done.style.display = 'block';
+    done.focus();
+    done.scrollIntoView({ block: 'start' });
+  }
+
+  sink.addEventListener('load', hoanTat);
+})();
+</script>
+
+</body>
+</html>

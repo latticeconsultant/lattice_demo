@@ -438,6 +438,43 @@ textarea.input { min-height: 90px; resize: vertical; }
       justify-content: flex-start; }
     html.lnx-locked .lnx-lang-menu { display: none; }
 
+    /* ── Hộp thoại đăng ký chẩn đoán ────────────────────────────────────────
+       Nút CTA trước đây nhảy thẳng sang trang Liên hệ. Giờ mở hộp thoại nói rõ
+       buổi chẩn đoán là gì và cần chuẩn bị gì, rồi mới dẫn sang biểu mẫu ở trang
+       riêng /dang-ky/ — trang đó nằm ngoài rào mật khẩu để quét QR bằng điện
+       thoại là vào thẳng. position:fixed để phủ cả khung xem thử thiết bị. */
+    .lnx-dlg { position: fixed; inset: 0; z-index: 200; display: flex; align-items: flex-start;
+      justify-content: center; padding: clamp(12px, 4vh, 48px) 16px; overflow-y: auto;
+      background: rgba(32, 30, 29, .74); }
+    .lnx-dlg-box { width: 100%; max-width: 660px; margin: auto; background: var(--color-bg);
+      border: 2px solid var(--color-text); padding: clamp(22px, 4cqi, 38px); }
+    .lnx-dlg-kicker { font-size: 12.5px; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--color-accent-700); font-weight: 600; margin: 0 0 12px; }
+    .lnx-dlg-title { font-family: var(--font-heading); font-weight: 800; letter-spacing: -.025em;
+      font-size: clamp(21px, 2.6cqi, 30px); line-height: 1.15; margin: 0 0 14px; text-wrap: balance; }
+    .lnx-dlg-p { font-size: 15.5px; line-height: 1.65; color: var(--color-neutral-800);
+      margin: 0 0 18px; max-width: 62ch; }
+    .lnx-dlg-list { margin: 0 0 24px; padding: 0; list-style: none;
+      border-top: 2px solid var(--color-neutral-300); }
+    .lnx-dlg-list li { border-bottom: 2px solid var(--color-neutral-300); padding: 12px 0 12px 26px;
+      position: relative; font-size: 14.5px; line-height: 1.55; color: var(--color-neutral-800); }
+    .lnx-dlg-list li::before { content: ""; position: absolute; left: 4px; top: 20px;
+      width: 9px; height: 9px; background: var(--color-accent); }
+    .lnx-dlg-act { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+    .lnx-dlg-go { flex: 1; min-width: 250px; display: inline-flex; align-items: center;
+      text-decoration: none; font-family: inherit; font-size: 14px; letter-spacing: .14em;
+      font-weight: 600; padding: 18px 22px; background: var(--color-accent); color: #fff; border: 0; }
+    .lnx-dlg-go:hover { background: var(--color-accent-700); }
+    .lnx-dlg-qr { display: flex; align-items: center; gap: 13px; }
+    .lnx-dlg-qr img { display: block; width: 84px; height: 84px; border: 2px solid var(--color-neutral-300); }
+    .lnx-dlg-qr span { font-size: 12.5px; line-height: 1.5; color: var(--color-neutral-700); }
+    .lnx-dlg-close { appearance: none; background: none; border: 0; cursor: pointer; margin: 22px 0 0;
+      padding: 0; font-family: inherit; font-size: 12.5px; letter-spacing: .14em; font-weight: 600;
+      color: var(--color-neutral-700); }
+    .lnx-dlg-close:hover { color: var(--color-text); }
+    @container (max-width: 560px) { .lnx-dlg-qr { display: none; } }
+    @media print { .lnx-dlg { display: none !important; } }
+
     /* ── Header hai hàng ────────────────────────────────────────────────────
        Nav có 10 mục. Ở một hàng, logo và nút CTA chiếm mất chỗ nên nav chỉ còn
        719px cho 1228px nội dung — năm mục cuối biến mất sau vùng cuộn ngang mà
@@ -647,7 +684,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           </sc-for>
         </nav>
         <a class="lnx-lang" href="en/" hreflang="en" aria-label="English version">EN</a>
-        <button type="button" class="btn btn-primary" sc-camel-on-click="{{ goContact }}" style="{{ ctaStyle }};justify-content:flex-start;text-align:left">ĐẶT LỊCH CHẨN ĐOÁN</button>
+        <button type="button" class="btn btn-primary" sc-camel-on-click="{{ openDlg }}" style="{{ ctaStyle }};justify-content:flex-start;text-align:left">ĐẶT LỊCH CHẨN ĐOÁN</button>
         <button type="button" sc-camel-on-click="{{ toggleMenu }}" aria-label="Mở menu" style="{{ burgerStyle }}">
           <svg width="20" height="20" sc-camel-view-box="0 0 24 24" style="display:block;stroke:currentColor;fill:none;stroke-width:2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
         </button>
@@ -658,10 +695,33 @@ textarea.input { min-height: 90px; resize: vertical; }
             <button type="button" sc-camel-on-click="{{ n.goClose }}" style="{{ n.stackSt }}">{{ n.label }}</button>
           </sc-for>
           <a class="lnx-lang lnx-lang-menu" href="en/" hreflang="en">EN · ENGLISH VERSION</a>
-            <button type="button" class="btn btn-primary" sc-camel-on-click="{{ goContactClose }}" style="width:100%;border:0;font-size:14.5px;letter-spacing:.14em;padding:18px 20px;font-weight:600;justify-content:flex-start">ĐẶT LỊCH CHẨN ĐOÁN</button>
+            <button type="button" class="btn btn-primary" sc-camel-on-click="{{ openDlgClose }}" style="width:100%;border:0;font-size:14.5px;letter-spacing:.14em;padding:18px 20px;font-weight:600;justify-content:flex-start">ĐẶT LỊCH CHẨN ĐOÁN</button>
         </div>
       </sc-if>
     </header>
+
+    <sc-if value="{{ dlgOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="lnx-dlg" sc-camel-on-click="{{ closeDlg }}">
+      <div class="lnx-dlg-box" sc-camel-on-click="{{ stopDlg }}" role="dialog" aria-modal="true" aria-label="Đăng ký buổi chẩn đoán">
+        <p class="lnx-dlg-kicker">Đăng ký chẩn đoán</p>
+        <h3 class="lnx-dlg-title">Trước khi điền, ba điều cần biết</h3>
+        <p class="lnx-dlg-p">Buổi chẩn đoán kéo dài 60 phút và miễn phí. Kết thúc buổi này anh chị nhận được ba quy trình nên tự động hóa trước, ước lượng trần tự động hóa của mô hình, và câu trả lời thẳng nếu chúng tôi cho rằng anh chị chưa nên bắt đầu.</p>
+        <ul class="lnx-dlg-list">
+          <li>Biểu mẫu điền khoảng hai phút — thông tin cơ bản về doanh nghiệp và điều anh chị cần cải thiện.</li>
+          <li>Bắt buộc có email: chúng tôi gửi thư hẹn và bảng câu hỏi chuẩn bị 8 mục qua địa chỉ đó.</li>
+          <li>Thông tin chỉ dùng để chuẩn bị buổi làm việc, không chia sẻ với bên thứ ba.</li>
+        </ul>
+        <div class="lnx-dlg-act">
+          <a class="lnx-dlg-go" href="dang-ky/">TIẾP TỤC ĐIỀN THÔNG TIN →</a>
+          <div class="lnx-dlg-qr">
+            <img src="assets/img/qr-dang-ky.svg" alt="Mã QR mở trang đăng ký" width="84" height="84">
+            <span>Hoặc quét mã<br>để điền trên điện thoại</span>
+          </div>
+        </div>
+        <button type="button" class="lnx-dlg-close" sc-camel-on-click="{{ closeDlg }}">← ĐỂ SAU</button>
+      </div>
+    </div>
+    </sc-if>
 
     <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
     <div>
@@ -922,7 +982,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <h1 style="font-size:clamp(34px,6.4cqi,84px);line-height:1.02;letter-spacing:-.03em;margin:0 0 26px;max-width:16ch">Kiến trúc mô hình <span style="color:var(--color-accent-500)">kinh doanh mới</span></h1>
           <p style="font-size:clamp(16px,1.5cqi,21px);line-height:1.5;max-width:58ch;color:var(--color-neutral-300);margin:0 0 36px">Chúng tôi không gắn AI vào bộ máy cũ. Chúng tôi thiết kế lại bộ máy quanh AI — rồi bàn giao kèm hệ thống kiểm soát để anh chị vận hành được mà không phụ thuộc vào chúng tôi.</p>
           <div style="display:flex;gap:2px;flex-wrap:wrap;padding-bottom:clamp(40px,6cqi,84px)">
-            <button type="button" class="btn btn-primary" sc-camel-on-click="{{ goContact }}" style="border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">ĐẶT LỊCH CHẨN ĐOÁN 60 PHÚT</button>
+            <button type="button" class="btn btn-primary" sc-camel-on-click="{{ openDlg }}" style="border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">ĐẶT LỊCH CHẨN ĐOÁN 60 PHÚT</button>
             <button type="button" class="btn" sc-camel-on-click="{{ goSolutions }}" style="background:transparent;color:var(--color-bg);border:2px solid var(--color-neutral-700);font-size:12px;letter-spacing:.14em;padding:16px 24px;font-weight:600;justify-content:flex-start;text-align:left">XEM NEXT SOLUTIONS</button>
           </div>
         </div>
@@ -1155,7 +1215,7 @@ textarea.input { min-height: 90px; resize: vertical; }
             <h2 style="margin:0 0 10px;font-size:clamp(24px,3cqi,40px);letter-spacing:-.025em;color:#fff">Buổi chẩn đoán đầu tiên miễn phí</h2>
             <p style="margin:0;font-size:15.5px;line-height:1.55;max-width:58ch">60 phút để đọc mô hình hiện tại, chỉ ra ba quy trình đáng tự động hóa trước, và nói thẳng nếu chúng tôi cho rằng anh chị chưa nên bắt đầu.</p>
           </div>
-          <button type="button" class="btn" sc-camel-on-click="{{ goContact }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">ĐẶT LỊCH NGAY</button>
+          <button type="button" class="btn" sc-camel-on-click="{{ openDlg }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">ĐẶT LỊCH NGAY</button>
         </div>
       </div>
     </div>
@@ -2752,7 +2812,7 @@ review_cycle: monthly</pre>
             <h2 style="margin:0 0 10px;font-size:clamp(22px,2.8cqi,36px);letter-spacing:-.025em;color:#fff">Khóa tám đầu vào trong 60 phút</h2>
             <p style="margin:0;font-size:15.5px;line-height:1.55;max-width:60ch">Buổi chẩn đoán đầu tiên chính là để thu đủ tám đầu vào này và trả lại cho anh chị một baseline có số.</p>
           </div>
-          <button type="button" class="btn" sc-camel-on-click="{{ goContact }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">ĐẶT LỊCH CHẨN ĐOÁN →</button>
+          <button type="button" class="btn" sc-camel-on-click="{{ openDlg }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">ĐẶT LỊCH CHẨN ĐOÁN →</button>
         </div>
       </div>
     </div>
@@ -3104,42 +3164,16 @@ review_cycle: monthly</pre>
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
             <div style="background:var(--color-neutral-100);padding:clamp(24px,3cqi,36px)">
-              <h3 style="font-size:clamp(20px,2.2cqi,28px);margin:0 0 24px">Gửi yêu cầu chẩn đoán</h3>
-              <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
-              <div style="display:grid;gap:18px">
-                <label style="display:block"><span style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">HỌ VÀ TÊN</span><input type="text" placeholder="Nguyễn Văn A" style="width:100%;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0"></label>
-                <label style="display:block"><span style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">ĐƠN VỊ / HỘ KINH DOANH</span><input type="text" placeholder="Tên đơn vị" style="width:100%;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0"></label>
-                <label style="display:block"><span style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">ĐIỆN THOẠI HOẶC ZALO</span><input type="tel" placeholder="09xx xxx xxx" style="width:100%;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0"></label>
-                <label style="display:block"><span style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">NHÓM MÔ HÌNH KINH DOANH</span>
-                  <sc-raw-select style="width:100%;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0">
-                    <option>Kinh doanh tri thức / nội dung</option>
-                    <option>Nền tảng số / SaaS</option>
-                    <option>Thương mại điện tử</option>
-                    <option>Dịch vụ chuyên môn</option>
-                    <option>Môi giới / Marketplace</option>
-                    <option>Thương mại phân phối</option>
-                    <option>Dịch vụ tại chỗ</option>
-                    <option>Sản xuất</option>
-                    <option>Mô hình lai / chưa rõ</option>
-                  </sc-raw-select>
-                </label>
-                <label style="display:block"><span style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">QUY MÔ HIỆN TẠI</span>
-                  <sc-raw-select style="width:100%;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0">
-                    <option>1 người</option><option>2–3 người</option><option>4–10 người</option><option>11–30 người</option><option>Trên 30 người</option>
-                  </sc-raw-select>
-                </label>
-                <label style="display:block"><span style="display:block;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:7px">QUY TRÌNH NÀO ĐANG TỐN THỜI GIAN NHẤT?</span><textarea placeholder="Mô tả ngắn gọn — càng cụ thể càng dễ chuẩn bị cho buổi chẩn đoán." style="width:100%;min-height:110px;padding:12px 14px;border:1px solid var(--color-neutral-400);background:var(--color-bg);font-family:inherit;font-size:14.5px;color:var(--color-text);border-radius:0;resize:vertical"></textarea></label>
-                <button type="button" sc-camel-on-click="{{ submit }}" class="btn btn-primary" style="border:0;font-size:12px;letter-spacing:.14em;padding:17px 24px;font-weight:600;justify-content:flex-start">GỬI YÊU CẦU CHẨN ĐOÁN</button>
-                <p style="font-size:12.5px;color:var(--color-neutral-600);margin:0">Thông tin chỉ dùng để chuẩn bị buổi chẩn đoán. Chúng tôi không chia sẻ với bên thứ ba.</p>
+              <h3 style="font-size:clamp(20px,2.2cqi,28px);margin:0 0 18px">Gửi yêu cầu chẩn đoán</h3>
+              <p style="font-size:15.5px;line-height:1.65;color:var(--color-neutral-800);margin:0 0 20px;max-width:62ch">Biểu mẫu đăng ký nằm ở trang riêng, điền khoảng hai phút. Bắt buộc có email — chúng tôi gửi thư hẹn và bảng câu hỏi chuẩn bị 8 mục qua địa chỉ đó.</p>
+              <div class="lnx-dlg-act">
+                <a class="lnx-dlg-go" href="dang-ky/">MỞ BIỂU MẪU ĐĂNG KÝ →</a>
+                <div class="lnx-dlg-qr">
+                  <img src="assets/img/qr-dang-ky.svg" alt="Mã QR mở trang đăng ký" width="84" height="84">
+                  <span>Hoặc quét mã<br>để điền trên điện thoại</span>
+                </div>
               </div>
-              </sc-if>
-              <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
-              <div style="border:2px solid var(--color-accent);padding:26px">
-                <h4 style="font-size:20px;margin:0 0 12px;color:var(--color-accent-700)">Đã ghi nhận yêu cầu</h4>
-                <p style="margin:0 0 18px;font-size:14.5px;line-height:1.65">Đây là bản mô tả giao diện — biểu mẫu chưa nối với hệ thống nhận yêu cầu. Khi triển khai thật, yêu cầu sẽ được gửi tới hộp thư chẩn đoán và phản hồi trong một ngày làm việc.</p>
-                <button type="button" sc-camel-on-click="{{ resetForm }}" style="appearance:none;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;font-size:11.5px;letter-spacing:.14em;color:var(--color-accent);font-weight:600">← GỬI YÊU CẦU KHÁC</button>
-              </div>
-              </sc-if>
+              <p style="font-size:13.5px;line-height:1.6;color:var(--color-neutral-600);margin:20px 0 0">Thông tin chỉ dùng để chuẩn bị buổi chẩn đoán. Chúng tôi không chia sẻ với bên thứ ba.</p>
             </div>
             <div style="background:var(--color-bg);padding:clamp(24px,3cqi,36px)">
               <h3 style="font-size:clamp(20px,2.2cqi,28px);margin:0 0 24px">Thông tin liên hệ</h3>
@@ -3264,7 +3298,7 @@ review_cycle: monthly</pre>
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900},&quot;startPage&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;trends&quot;,&quot;solutions&quot;,&quot;industries&quot;,&quot;process&quot;,&quot;method&quot;,&quot;branding&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hiển thị&quot;},&quot;showDeviceToolbar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hiển thị&quot;},&quot;showBrandingPage&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hiển thị&quot;}}">
 class Component extends DCLogic {
-  state = { page: null, device: 'laptop', level: 3, tab: 'f1', ind: 0, sent: false, open: { faq0: true, pol2: true } };
+  state = { page: null, device: 'laptop', level: 3, tab: 'f1', ind: 0, dlg: false, open: { faq0: true, pol2: true } };
   stageRef = React.createRef();
 
   CEIL = [
@@ -3293,6 +3327,7 @@ class Component extends DCLogic {
     // Enter trong ô mật khẩu = bấm nút. Ô không nằm trong <form> nên trình duyệt
     // không tự gửi; thiếu cái này người dùng gõ xong nhấn Enter sẽ tưởng hỏng.
     document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && this.state.dlg) this.setState({ dlg: false });
       if (e.key !== 'Enter' || !e.target || e.target.id !== 'lnx-pw') return;
       e.preventDefault();
       const btn = document.querySelector('.lnx-lock-btn');
@@ -3397,6 +3432,12 @@ class Component extends DCLogic {
       burgerStyle: 'flex:none;margin-left:auto;appearance:none;background:transparent;border:2px solid var(--color-text);color:var(--color-text);padding:9px 11px;cursor:pointer;'
         + (narrow ? 'display:block' : 'display:none'),
       menuOpen: narrow && !!this.state.menu,
+      dlgOpen: !!this.state.dlg,
+      openDlg: () => this.setState({ dlg: true }),
+      openDlgClose: () => this.setState({ dlg: true, menu: false }),
+      closeDlg: () => this.setState({ dlg: false }),
+      // Bấm trong hộp không được nổi bọt lên nền, nếu không hộp tự đóng ngay.
+      stopDlg: e => { if (e && e.stopPropagation) e.stopPropagation(); },
       toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
       goContactClose: () => this.go('contact'),
       navItems: nav.map(n => ({
@@ -3989,9 +4030,6 @@ class Component extends DCLogic {
         st: 'padding:20px 22px;' + (l[4] === 4 ? 'background:var(--color-accent);color:#fff' : 'background:var(--color-bg);color:var(--color-text)')
       })),
 
-      sent: this.state.sent, notSent: !this.state.sent,
-      submit: () => this.setState({ sent: true }),
-      resetForm: () => this.setState({ sent: false }),
 
       faqs: this.acc('faq', [
         ['Doanh nghiệp tôi chỉ có một mình tôi, có làm được không?', 'Tùy nhóm mô hình. Kinh doanh tri thức, SaaS và thương mại điện tử thì một người là khả thi. Dịch vụ tại chỗ và sản xuất thì cần tối thiểu 2–3 người vì có phần việc vật lý không ủy quyền được cho AI. Biểu đồ 10 ở trang Ngành & Mô hình cho con số cụ thể của tám nhóm.'],

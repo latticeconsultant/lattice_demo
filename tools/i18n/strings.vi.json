@@ -10578,5 +10578,85 @@
   "vi": "https://vanban.chinhphu.vn/?classid=1&docid=216503&pageid=27160&typegroupid=3",
   "en": "https://eur-lex.europa.eu/eli/reg/2022/2065/oj",
   "nguon": "link-nguon"
+ },
+ {
+  "vi": "Đăng ký chẩn đoán",
+  "en": "Book a diagnostic",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Trước khi điền, ba điều cần biết",
+  "en": "Three things before you start",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Buổi chẩn đoán kéo dài 60 phút và miễn phí. Kết thúc buổi này anh chị nhận được ba quy trình nên tự động hóa trước, ước lượng trần tự động hóa của mô hình, và câu trả lời thẳng nếu chúng tôi cho rằng anh chị chưa nên bắt đầu.",
+  "en": "The diagnostic runs 60 minutes and is free of charge. You leave with the three processes worth automating first, an estimate of your model’s automation ceiling, and a straight answer if we think you should not start yet.",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Biểu mẫu điền khoảng hai phút — thông tin cơ bản về doanh nghiệp và điều anh chị cần cải thiện.",
+  "en": "The form takes about two minutes — basic facts about the business and what you need to improve.",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Bắt buộc có email: chúng tôi gửi thư hẹn và bảng câu hỏi chuẩn bị 8 mục qua địa chỉ đó.",
+  "en": "An email address is required: that is where we send the invitation and the eight-point preparation questionnaire.",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Thông tin chỉ dùng để chuẩn bị buổi làm việc, không chia sẻ với bên thứ ba.",
+  "en": "We use this only to prepare the session, and share it with no one else.",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "TIẾP TỤC ĐIỀN THÔNG TIN →",
+  "en": "CONTINUE TO THE FORM →",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "MỞ BIỂU MẪU ĐĂNG KÝ →",
+  "en": "OPEN THE REGISTRATION FORM →",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Mã QR mở trang đăng ký",
+  "en": "QR code for the registration page",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Hoặc quét mã",
+  "en": "Or scan the code",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "để điền trên điện thoại",
+  "en": "to fill it in on your phone",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "← ĐỂ SAU",
+  "en": "← NOT NOW",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Đăng ký buổi chẩn đoán",
+  "en": "Book a diagnostic session",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Biểu mẫu đăng ký nằm ở trang riêng, điền khoảng hai phút. Bắt buộc có email — chúng tôi gửi thư hẹn và bảng câu hỏi chuẩn bị 8 mục qua địa chỉ đó.",
+  "en": "The registration form sits on its own page and takes about two minutes. An email address is required — that is where we send the invitation and the eight-point preparation questionnaire.",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "dang-ky/",
+  "en": "../register/",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "assets/img/qr-dang-ky.svg",
+  "en": "assets/img/qr-register.svg",
+  "nguon": "hop-thoai"
  }
 ]

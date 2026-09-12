@@ -11,7 +11,7 @@ Website giới thiệu 10 trang, song ngữ Việt / Anh, chạy hoàn toàn tĩ
 
 ## 1. Nội dung website
 
-Đầu trang chủ là khung đọc **Tài liệu nền tảng** "Doanh nghiệp một người" (21 mục, có mục lục và nút lưu PDF) — xem tự do. Mười trang dưới đây nằm sau rào mật khẩu (xem mục 6).
+Đầu trang chủ là khung đọc **Tài liệu nền tảng** "Doanh nghiệp một người" (21 mục, có mục lục và nút lưu PDF) — xem tự do. Mười trang dưới đây nằm sau rào mật khẩu (xem mục 7).
 
 | Trang | Nội dung |
 | --- | --- |
@@ -86,7 +86,42 @@ python3 tools/build-en.py           # bản Anh → en/index.html
 
 Hai script ghi đè phần giữa `<!-- DOC:START -->` và `<!-- DOC:END -->`. Đừng sửa tay đoạn đó — lần chạy sau sẽ mất.
 
-## 5. Site đang chạy ở đâu
+## 5. Đăng ký chẩn đoán — luồng và cách nối dữ liệu
+
+Bấm bất kỳ nút **ĐẶT LỊCH CHẨN ĐOÁN** nào trên site → hiện hộp thoại nói rõ buổi
+chẩn đoán là gì và cần chuẩn bị gì → nút **TIẾP TỤC ĐIỀN THÔNG TIN** hoặc **mã QR**
+để điền trên điện thoại → trang biểu mẫu.
+
+| | Bản Việt | Bản Anh |
+| --- | --- | --- |
+| Trang biểu mẫu | `dang-ky/index.html` | `register/index.html` |
+| Địa chỉ | lattice.business/demo/dang-ky/ | lattice.business/demo/register/ |
+| Mã QR | `assets/img/qr-dang-ky.svg` | `assets/img/qr-register.svg` |
+
+Hai trang biểu mẫu **viết tay, không qua `build-en.py`** — chúng là HTML tĩnh thuần,
+không dùng dc-runtime hay React, để quét QR bằng điện thoại là mở được ngay cả khi
+mạng yếu. Sửa bản Việt thì sửa bản Anh tương ứng bằng tay.
+
+Hai trang này **nằm ngoài rào mật khẩu** — người quét QR vào thẳng, không phải hỏi
+mật khẩu. Đổi địa chỉ trang thì phải chạy lại `python3 tools/make-qr.py` để sinh lại
+mã QR, nếu không mã cũ trỏ vào trang không còn tồn tại.
+
+### Nối dữ liệu về Google Drive
+
+Dữ liệu đăng ký ghi vào một Google Sheet trên Drive qua Google Apps Script. Các bước
+làm một lần, khoảng 5 phút — hướng dẫn chi tiết nằm ngay đầu file
+`tools/google-apps-script.gs`. Tóm tắt:
+
+1. Tạo bảng tính mới trên Google Sheets.
+2. Extensions → Apps Script, dán nội dung `tools/google-apps-script.gs`.
+3. Deploy → New deployment → Web app, quyền truy cập chọn **Anyone**.
+4. Copy URL web app, dán vào biến `ENDPOINT` trong **cả hai** file `dang-ky/index.html`
+   và `register/index.html`, rồi push.
+
+Chưa dán URL thì nút gửi báo "Form chưa được nối với nơi nhận dữ liệu" — người dùng
+không mất dữ liệu một cách im lặng.
+
+## 6. Site đang chạy ở đâu
 
 ```
 push lên main
@@ -105,7 +140,7 @@ Chỉ deploy lại Worker khi sửa `cloudflare/worker.js`. Xem `cloudflare/READ
 
 File `.nojekyll` để GitHub phục vụ nguyên trạng, không qua Jekyll.
 
-## 6. Rào mật khẩu — và giới hạn của nó
+## 7. Rào mật khẩu — và giới hạn của nó
 
 Khối **Tài liệu nền tảng** ở đầu trang chủ xem tự do. Toàn bộ phần còn lại — header,
 mười trang, footer — bị ẩn cho tới khi nhập đúng mật khẩu. Trạng thái mở khóa
@@ -140,7 +175,7 @@ lung tung, không ngăn được người thật sự muốn xem.
    hoặc Basic Auth ngay trong Worker, kiểm tra trước khi trả nội dung.
 4. Tách tài liệu công khai thành trang riêng để nó vẫn xem tự do.
 
-## 7. Việc còn phải làm trước khi công bố chính thức
+## 8. Việc còn phải làm trước khi công bố chính thức
 
 Đây là **bản mô tả giao diện** — còn mấy chỗ cần xử lý trước khi đưa cho khách hàng thật:
 
@@ -149,7 +184,7 @@ lung tung, không ngăn được người thật sự muốn xem.
 - **Repo cũ `koalaland-workplace/LATTICE`** vẫn public — cần chủ tài khoản đó chuyển sang private.
 - **Ảnh**: ba ảnh PNG nặng ~2 MB mỗi file; nên chuyển sang WebP trước khi chạy quảng cáo. Bản Anh vẫn dùng ảnh người bán hàng trên phố Việt Nam (`vn-street-seller.png`) — cân nhắc thay ảnh trung tính hơn nếu muốn bản Anh hoàn toàn mang bối cảnh quốc tế.
 
-## 8. Thương hiệu
+## 9. Thương hiệu
 
 Đọc `Brand-kit/README.md` trước khi dùng logo hoặc màu. Ba quy tắc hay bị vi phạm nhất:
 

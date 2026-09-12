@@ -1,0 +1,113 @@
+/**
+ * Nhận đăng ký chẩn đoán từ lattice.business/demo/dang-ky/ và ghi vào Google Sheet.
+ *
+ * CÁCH TRIỂN KHAI — làm một lần, khoảng 5 phút:
+ *
+ *  1. Vào https://sheets.new tạo bảng tính mới, đặt tên "LATTICE — Đăng ký chẩn đoán".
+ *     Bảng này nằm trong Google Drive của tài khoản đang đăng nhập.
+ *  2. Trong bảng tính: menu Tiện ích mở rộng (Extensions) → Apps Script.
+ *  3. Xóa hết nội dung mẫu, dán toàn bộ file này vào.
+ *  4. Sửa EMAIL_BAO ở dưới thành email muốn nhận thông báo. Để trống thì không gửi.
+ *  5. Bấm Triển khai (Deploy) → Tùy chọn triển khai mới (New deployment)
+ *       Loại (Type)            : Ứng dụng web (Web app)
+ *       Thực thi với tư cách   : Tôi (Me)
+ *       Ai có quyền truy cập   : Bất kỳ ai (Anyone)   ← bắt buộc, không phải "Anyone with Google account"
+ *  6. Google hỏi cấp quyền lần đầu → Nâng cao (Advanced) → Đi tới … (không an toàn) → Cho phép.
+ *  7. Copy URL web app (dạng https://script.google.com/macros/s/AKfy…/exec).
+ *  8. Dán URL đó vào biến ENDPOINT trong CẢ HAI file:
+ *         dang-ky/index.html
+ *         register/index.html
+ *     rồi commit và push.
+ *
+ * LƯU Ý: mỗi lần sửa file này phải Triển khai → Quản lý triển khai → sửa bản
+ * hiện có → Phiên bản: Mới. Nếu tạo triển khai mới thì URL đổi, phải dán lại.
+ */
+
+var EMAIL_BAO = '';           // email nhận thông báo mỗi khi có đăng ký mới
+var TEN_TRANG_TINH = 'Đăng ký';
+
+// Thứ tự cột trong bảng. Khóa phải khớp thuộc tính name= của ô trên form.
+var COT = [
+  ['thoi_gian',       'Thời gian'],
+  ['ngon_ngu',        'Ngôn ngữ'],
+  ['ten_doanh_nghiep','Tên doanh nghiệp'],
+  ['nguoi_dai_dien',  'Người đại diện'],
+  ['chuc_danh',       'Chức danh'],
+  ['email',           'Email'],
+  ['dien_thoai',      'Điện thoại / Zalo'],
+  ['website',         'Website / kênh bán'],
+  ['loai_hinh',       'Loại hình'],
+  ['loai_hinh_khac',  'Loại hình — ghi rõ'],
+  ['linh_vuc',        'Lĩnh vực'],
+  ['linh_vuc_khac',   'Lĩnh vực — ghi rõ'],
+  ['quy_mo_nhan_su',  'Quy mô nhân sự'],
+  ['so_nam',          'Số năm hoạt động'],
+  ['doanh_so_2024',   'Doanh số 2024'],
+  ['doanh_so_2025',   'Doanh số 2025'],
+  ['doanh_so_2026',   'Doanh số 2026'],
+  ['quan_tam',        'Quan tâm nhất'],
+  ['mo_ta',           'Vấn đề cần cải thiện'],
+  ['dong_y',          'Đồng ý liên hệ']
+];
+
+function doPost(e) {
+  var khoa = LockService.getScriptLock();
+  // Hai người gửi cùng lúc mà không khóa thì hai dòng ghi đè lên nhau.
+  khoa.waitLock(30000);
+  try {
+    var p = (e && e.parameter) || {};
+    var nhieu = (e && e.parameters) || {};
+
+    var sh = layTrangTinh_();
+    var dong = COT.map(function (c) {
+      var k = c[0];
+      // quan_tam là ô tích chọn nhiều — gộp lại một ô cho dễ đọc
+      if (nhieu[k] && nhieu[k].length > 1) return nhieu[k].join(' · ');
+      return p[k] || '';
+    });
+    if (!dong[0]) dong[0] = new Date().toISOString();
+    sh.appendRow(dong);
+
+    if (EMAIL_BAO) baoEmail_(p, nhieu);
+    return ket_('OK');
+  } catch (err) {
+    // Vẫn trả 200 để trình duyệt người đăng ký không thấy trang lỗi của Google.
+    // Lỗi xem ở Apps Script → Nhật ký thực thi (Executions).
+    console.error(err);
+    return ket_('ERROR');
+  } finally {
+    khoa.releaseLock();
+  }
+}
+
+function doGet() {
+  return ket_('LATTICE dang ky endpoint. Gui bang POST.');
+}
+
+function layTrangTinh_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(TEN_TRANG_TINH);
+  if (!sh) {
+    sh = ss.insertSheet(TEN_TRANG_TINH);
+    sh.appendRow(COT.map(function (c) { return c[1]; }));
+    sh.getRange(1, 1, 1, COT.length).setFontWeight('bold');
+    sh.setFrozenRows(1);
+  }
+  return sh;
+}
+
+function baoEmail_(p, nhieu) {
+  var than = COT.map(function (c) {
+    var v = (nhieu[c[0]] && nhieu[c[0]].length > 1) ? nhieu[c[0]].join(' · ') : (p[c[0]] || '—');
+    return c[1] + ': ' + v;
+  }).join('\n');
+  MailApp.sendEmail({
+    to: EMAIL_BAO,
+    subject: 'Đăng ký chẩn đoán — ' + (p.ten_doanh_nghiep || 'không rõ tên'),
+    body: than + '\n\n— Gửi tự động từ lattice.business/demo'
+  });
+}
+
+function ket_(s) {
+  return ContentService.createTextOutput(s).setMimeType(ContentService.MimeType.TEXT);
+}

@@ -437,10 +437,10 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw2fp-E19x4GZqh3gUPF5z2u
     return 'LTC' + s + String(Math.floor(Math.random() * 9000) + 1000);
   }
 
-  function sdtGon() {
-    var v = (frm.querySelector('[name=dien_thoai]').value || '').replace(/[^0-9]/g, '');
-    return v.slice(-10);
-  }
+  // Nội dung chuyển khoản: mã hồ sơ + tên gói viết tắt. Mã đã mang ngày tháng và
+  // phần ngẫu nhiên nên luôn duy nhất; tên gói để nhìn sao kê là biết ngay. Giữ
+  // dưới 25 ký tự — đó là giới hạn của trường này theo chuẩn EMV.
+  function goiGon(ten) { return String(ten || '').replace('LATTICE ', '').toUpperCase(); }
 
   function tienChu(n) { return n.toLocaleString('vi-VN') + 'đ'; }
 
@@ -457,8 +457,7 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw2fp-E19x4GZqh3gUPF5z2u
     if (!maHoSo) maHoSo = sinhMa();
 
     var tien = GOI[chon.value];
-    var sdt = sdtGon();
-    var noiDung = maHoSo + (sdt ? ' ' + sdt : '');
+    var noiDung = maHoSo + ' ' + goiGon(chon.value);
 
     document.getElementById('ma_ho_so').value = maHoSo;
     document.getElementById('so_tien').value = tien;
@@ -478,9 +477,6 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw2fp-E19x4GZqh3gUPF5z2u
 
   Array.prototype.forEach.call(frm.querySelectorAll('[name=goi]'), function (r) {
     r.addEventListener('change', veThanhToan);
-  });
-  frm.querySelector('[name=dien_thoai]').addEventListener('blur', function () {
-    if (frm.querySelector('[name=goi]:checked')) veThanhToan();
   });
 
   document.getElementById('ttChep').addEventListener('click', function () {

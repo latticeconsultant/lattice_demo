@@ -67,6 +67,9 @@ legend { padding: 0; font-size: 12px; letter-spacing: .2em; text-transform: uppe
   font-weight: 600; color: var(--red-dark); margin-bottom: 4px; }
 
 .f { display: block; margin-top: 20px; }
+/* Phải đặt sau .f: [hidden] của trình duyệt chỉ là display:none không hạng nào,
+   nên .f { display:block } đè mất và ô "ghi rõ" vẫn hiện dù đã gắn hidden. */
+[hidden] { display: none !important; }
 .f > span.lb { display: block; font-size: 12.5px; letter-spacing: .13em; text-transform: uppercase;
   color: var(--n700); font-weight: 600; margin-bottom: 7px; }
 .f .hint { display: block; text-transform: none; letter-spacing: 0; font-weight: 400;
@@ -142,7 +145,7 @@ footer a { color: var(--n700); }
   <h1>The 60-minute diagnostic</h1>
   <p class="lead">Free of charge. You leave with the three processes worth automating first, an estimate of your model’s automation ceiling, and a straight answer if we think you should not start yet.</p>
 
-  <p class="note">About two minutes to complete. Once we receive it we reply by email and attach the eight-point preparation questionnaire — filling it in beforehand keeps the 60 minutes for analysis rather than basic questions.</p>
+  <p class="note">About two minutes to complete. What you tell us is kept confidential and used only to prepare and run the session — never for any other purpose, and never passed to a third party.</p>
 
   <form id="frm" action="" method="post" target="lnx-sink" novalidate>
 
@@ -283,10 +286,10 @@ footer a { color: var(--n700); }
   </form>
 
   <section class="done" id="done" tabindex="-1">
-    <h2>We have your registration.</h2>
-    <p>We will reply by <strong>email</strong> as soon as we can to arrange the 60-minute diagnostic.</p>
-    <p>With the invitation we attach the <strong>eight-point preparation questionnaire</strong>. Filling it in beforehand keeps the 60 minutes for analysis rather than basic questions.</p>
-    <p>If nothing arrives within two working days, please check your spam folder or message us on <a href="tel:+84853999566">+84 853 999 566</a>.</p>
+    <h2>Thank you. We have your registration.</h2>
+    <p>A <strong>confirmation email</strong> has just gone to the address you entered. If it does not arrive, please check your spam folder.</p>
+    <p>We will write again with the next steps: agreeing a time and sending the <strong>preparation questionnaire</strong> for you to complete beforehand, so the session goes to analysis rather than basic questions.</p>
+    <p>Your information is kept confidential and is not passed to any third party. If you need to reach us sooner, message us on <a href="tel:+84853999566">+84 853 999 566</a>.</p>
     <a class="back" href="../en/">BACK TO THE SITE</a>
   </section>
 

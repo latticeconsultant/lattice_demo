@@ -10663,5 +10663,35 @@
   "vi": "0853 999 566",
   "en": "+84 853 999 566",
   "nguon": "lien-he"
+ },
+ {
+  "vi": "Cảm ơn anh chị đã quan tâm",
+  "en": "Thank you for your interest",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Phiếu đăng ký giúp chúng tôi hiểu mô hình của anh chị trước, để buổi làm việc đi thẳng vào việc thay vì mất thời gian hỏi đáp thông tin cơ bản.",
+  "en": "The registration form lets us understand your model in advance, so the session goes straight to the substance instead of spending time on basic questions.",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Thông tin anh chị cung cấp được giữ kín, chỉ dùng để chuẩn bị và thực hiện buổi làm việc.",
+  "en": "What you tell us is kept confidential and used only to prepare and run the session.",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Chúng tôi không dùng thông tin cho bất kỳ mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.",
+  "en": "We do not use it for any other purpose and we do not pass it to any third party.",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Nhận được phiếu, chúng tôi gửi thư xác nhận ngay, sau đó thống nhất lịch làm việc và gửi trước bảng câu hỏi để anh chị hoàn thiện.",
+  "en": "On receipt we send a confirmation email straight away, then agree a time with you and send the preparation questionnaire in advance.",
+  "nguon": "hop-thoai"
+ },
+ {
+  "vi": "Bắt buộc có email, vì thư xác nhận, lịch làm việc và bảng câu hỏi đều gửi qua địa chỉ đó.",
+  "en": "An email address is required: the confirmation, the scheduling and the questionnaire all go to that address.",
+  "nguon": "hop-thoai"
  }
 ]

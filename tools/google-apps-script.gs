@@ -70,6 +70,7 @@ function doPost(e) {
     sh.appendRow(dong);
 
     if (EMAIL_BAO) baoEmail_(p, nhieu);
+    thuXacNhan_(p);
     return ket_('OK');
   } catch (err) {
     // Vẫn trả 200 để trình duyệt người đăng ký không thấy trang lỗi của Google.
@@ -107,6 +108,61 @@ function baoEmail_(p, nhieu) {
     subject: 'Đăng ký chẩn đoán — ' + (p.ten_doanh_nghiep || 'không rõ tên'),
     body: than + '\n\n— Gửi tự động từ lattice.business/demo'
   });
+}
+
+/**
+ * Thư xác nhận gửi cho người vừa đăng ký. Gửi theo đúng ngôn ngữ họ dùng.
+ * Bọc trong try riêng: email hỏng thì dòng dữ liệu vẫn phải được giữ.
+ */
+function thuXacNhan_(p) {
+  var toi = (p.email || '').trim();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(toi)) return;
+  try {
+    var en = (p.ngon_ngu === 'en');
+    var ten = (p.nguoi_dai_dien || '').trim();
+    var tieude, than;
+
+    if (en) {
+      tieude = 'LATTICE Next — we have your registration';
+      than =
+        (ten ? 'Dear ' + ten + ',' : 'Hello,') + '\n\n' +
+        'Thank you for registering for a diagnostic session with LATTICE Next Solutions. ' +
+        'This email confirms that we have received your form' +
+        (p.ten_doanh_nghiep ? ' for ' + p.ten_doanh_nghiep : '') + '.\n\n' +
+        'What happens next\n' +
+        '  1. We review what you sent and come back to you with the next steps.\n' +
+        '  2. We agree a time that suits you.\n' +
+        '  3. Before the session we send a short preparation questionnaire. ' +
+        'Completing it beforehand means the session goes to analysis rather than basic questions.\n\n' +
+        'Your information is kept confidential. We use it only to prepare and run the session, ' +
+        'never for any other purpose, and we do not pass it to any third party.\n\n' +
+        'If you need to reach us sooner: ' + EMAIL_BAO + ' · +84 853 999 566\n\n' +
+        'LATTICE Next Solutions Joint Stock Company\n' +
+        'https://lattice.business/demo/en/';
+    } else {
+      tieude = 'LATTICE Next — đã nhận phiếu đăng ký của anh chị';
+      than =
+        (ten ? 'Kính gửi ' + ten + ',' : 'Kính gửi anh chị,') + '\n\n' +
+        'Cảm ơn anh chị đã đăng ký buổi chẩn đoán cùng LATTICE Next Solutions. ' +
+        'Thư này xác nhận chúng tôi đã nhận được phiếu đăng ký' +
+        (p.ten_doanh_nghiep ? ' của ' + p.ten_doanh_nghiep : '') + '.\n\n' +
+        'Các bước tiếp theo\n' +
+        '  1. Chúng tôi xem lại thông tin anh chị gửi và phản hồi về các bước tiếp theo.\n' +
+        '  2. Hai bên thống nhất lịch làm việc phù hợp với anh chị.\n' +
+        '  3. Trước buổi làm việc, chúng tôi gửi bảng câu hỏi chuẩn bị. ' +
+        'Anh chị hoàn thiện trước để buổi làm việc dùng vào phân tích thay vì hỏi đáp thông tin cơ bản.\n\n' +
+        'Thông tin anh chị cung cấp được giữ kín, chỉ dùng để chuẩn bị và thực hiện buổi làm việc, ' +
+        'không dùng cho bất kỳ mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.\n\n' +
+        'Cần trao đổi sớm, anh chị liên hệ: ' + EMAIL_BAO + ' · 0853 999 566\n\n' +
+        'Công ty Cổ phần Giải pháp LATTICE Next\n' +
+        'https://lattice.business/demo/';
+    }
+
+    MailApp.sendEmail({ to: toi, subject: tieude, body: than, name: 'LATTICE Next Solutions',
+                        replyTo: EMAIL_BAO || undefined });
+  } catch (err) {
+    console.error('Không gửi được thư xác nhận: ' + err);
+  }
 }
 
 function ket_(s) {

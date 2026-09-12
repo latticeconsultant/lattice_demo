@@ -67,6 +67,9 @@ legend { padding: 0; font-size: 12px; letter-spacing: .2em; text-transform: uppe
   font-weight: 600; color: var(--red-dark); margin-bottom: 4px; }
 
 .f { display: block; margin-top: 20px; }
+/* Phải đặt sau .f: [hidden] của trình duyệt chỉ là display:none không hạng nào,
+   nên .f { display:block } đè mất và ô "ghi rõ" vẫn hiện dù đã gắn hidden. */
+[hidden] { display: none !important; }
 .f > span.lb { display: block; font-size: 12.5px; letter-spacing: .13em; text-transform: uppercase;
   color: var(--n700); font-weight: 600; margin-bottom: 7px; }
 .f .hint { display: block; text-transform: none; letter-spacing: 0; font-weight: 400;
@@ -142,7 +145,7 @@ footer a { color: var(--n700); }
   <h1>Buổi chẩn đoán 60 phút</h1>
   <p class="lead">Miễn phí. Kết thúc buổi này anh chị nhận được ba quy trình nên tự động hóa trước, ước lượng trần tự động hóa của mô hình, và câu trả lời thẳng nếu chúng tôi cho rằng anh chị chưa nên bắt đầu.</p>
 
-  <p class="note">Điền khoảng 2 phút. Sau khi nhận đăng ký, chúng tôi liên hệ qua email và gửi kèm bảng câu hỏi chuẩn bị 8 mục — điền trước buổi làm việc để 60 phút dùng vào phân tích thay vì hỏi đáp thông tin cơ bản.</p>
+  <p class="note">Điền khoảng 2 phút. Thông tin anh chị cung cấp được giữ kín, chỉ dùng để chuẩn bị và thực hiện buổi làm việc — không dùng cho mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.</p>
 
   <form id="frm" action="" method="post" target="lnx-sink" novalidate>
 
@@ -283,10 +286,10 @@ footer a { color: var(--n700); }
   </form>
 
   <section class="done" id="done" tabindex="-1">
-    <h2>Đã nhận đăng ký của anh chị.</h2>
-    <p>Chúng tôi sẽ liên hệ qua <strong>email</strong> trong thời gian sớm nhất để hẹn buổi chẩn đoán 60 phút.</p>
-    <p>Cùng với thư hẹn, chúng tôi gửi kèm <strong>bảng câu hỏi chuẩn bị 8 mục</strong>. Anh chị điền trước buổi làm việc để 60 phút dùng vào phân tích thay vì hỏi đáp thông tin cơ bản.</p>
-    <p>Nếu sau 2 ngày làm việc chưa thấy thư, anh chị kiểm tra hộp thư rác hoặc nhắn Zalo cho chúng tôi theo số <a href="tel:+84853999566">0853 999 566</a>.</p>
+    <h2>Cảm ơn anh chị. Đã nhận phiếu đăng ký.</h2>
+    <p>Một <strong>thư xác nhận</strong> vừa được gửi tới hộp thư anh chị vừa điền. Nếu không thấy, anh chị kiểm tra hộp thư rác giúp chúng tôi.</p>
+    <p>Chúng tôi sẽ thông báo cụ thể các bước tiếp theo: thống nhất lịch làm việc và gửi trước <strong>bảng câu hỏi chuẩn bị</strong> để anh chị hoàn thiện. Buổi làm việc nhờ vậy dùng vào phân tích thay vì hỏi đáp thông tin cơ bản.</p>
+    <p>Thông tin của anh chị được giữ kín và không cung cấp cho bên thứ ba. Cần trao đổi sớm, anh chị nhắn Zalo cho chúng tôi theo số <a href="tel:+84853999566">0853 999 566</a>.</p>
     <a class="back" href="../">VỀ TRANG CHỦ</a>
   </section>
 

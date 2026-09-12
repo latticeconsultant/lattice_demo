@@ -1,5 +1,5 @@
 /**
- * Nhận đăng ký chẩn đoán từ lattice.business/demo/dang-ky/ và ghi vào Google Sheet.
+ * Nhận đăng ký chẩn đoán từ lattice.business/dang-ky/ và ghi vào Google Sheet.
  *
  * CÁCH TRIỂN KHAI — làm một lần, khoảng 5 phút:
  *
@@ -106,7 +106,7 @@ function baoEmail_(p, nhieu) {
   MailApp.sendEmail({
     to: EMAIL_BAO,
     subject: 'Đăng ký chẩn đoán — ' + (p.ten_doanh_nghiep || 'không rõ tên'),
-    body: than + '\n\n— Gửi tự động từ lattice.business/demo'
+    body: than + '\n\n— Gửi tự động từ lattice.business'
   });
 }
 
@@ -138,7 +138,7 @@ function thuXacNhan_(p) {
         'never for any other purpose, and we do not pass it to any third party.\n\n' +
         'If you need to reach us sooner: ' + EMAIL_BAO + ' · +84 853 999 566\n\n' +
         'LATTICE Next Solutions Joint Stock Company\n' +
-        'https://lattice.business/demo/en/';
+        'https://lattice.business/en/';
     } else {
       tieude = 'LATTICE Next — đã nhận phiếu đăng ký của anh chị';
       than =
@@ -155,7 +155,7 @@ function thuXacNhan_(p) {
         'không dùng cho bất kỳ mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.\n\n' +
         'Cần trao đổi sớm, anh chị liên hệ: ' + EMAIL_BAO + ' · 0853 999 566\n\n' +
         'Công ty Cổ phần Giải pháp LATTICE Next\n' +
-        'https://lattice.business/demo/';
+        'https://lattice.business/';
     }
 
     MailApp.sendEmail({ to: toi, subject: tieude, body: than, name: 'LATTICE Next Solutions',

@@ -25,8 +25,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(ROOT, 'assets', 'img')
 
 MUC = [
-    ('qr-dang-ky.svg', 'https://lattice.business/demo/dang-ky/'),
-    ('qr-register.svg', 'https://lattice.business/demo/register/'),
+    ('qr-dang-ky.svg', 'https://lattice.business/dang-ky/'),
+    ('qr-register.svg', 'https://lattice.business/register/'),
 ]
 
 MUC_IN = '#201E1D'   # màu mực thương hiệu

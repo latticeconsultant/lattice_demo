@@ -5,7 +5,7 @@ Công ty Cổ phần Giải pháp LATTICE Next
 
 Website giới thiệu 10 trang, song ngữ Việt / Anh, chạy hoàn toàn tĩnh (không cần backend).
 
-**Demo:** https://lattice.business/demo/ · bản tiếng Anh: https://lattice.business/demo/en/
+**Demo:** https://lattice.business/ · bản tiếng Anh: https://lattice.business/en/
 
 ---
 
@@ -58,7 +58,7 @@ assets/
   fonts/                    Archivo woff2 — latin, latin-ext, vietnamese
   img/                      3 ảnh nội dung (đã in trắng đen theo brand)
 brand/logo/                 chỉ các file trang đang dùng: 3 favicon + ảnh chia sẻ og:image
-cloudflare/                 Worker phục vụ site ở lattice.business/demo — xem cloudflare/README.md
+cloudflare/                 Worker phục vụ site ở lattice.business — xem cloudflare/README.md
 ```
 
 Bộ nhận diện đầy đủ (logo SVG/PNG mọi kích thước, bảng màu, hướng dẫn) nằm ngoài repo, ở thư mục `Brand-kit/` cạnh thư mục này.
@@ -95,7 +95,7 @@ chẩn đoán là gì và cần chuẩn bị gì → nút **TIẾP TỤC ĐIỀN
 | | Bản Việt | Bản Anh |
 | --- | --- | --- |
 | Trang biểu mẫu | `dang-ky/index.html` | `register/index.html` |
-| Địa chỉ | lattice.business/demo/dang-ky/ | lattice.business/demo/register/ |
+| Địa chỉ | lattice.business/dang-ky/ | lattice.business/register/ |
 | Mã QR | `assets/img/qr-dang-ky.svg` | `assets/img/qr-register.svg` |
 
 Hai trang biểu mẫu **viết tay, không qua `build-en.py`** — chúng là HTML tĩnh thuần,
@@ -137,9 +137,9 @@ push lên main
       ↓
 GitHub Pages  ──  https://latticeconsultant.github.io/lattice_demo/   (nguồn)
       ↓
-Cloudflare Worker "lattice-demo"  route lattice.business/demo*
+Cloudflare Worker "lattice-demo"  route lattice.business*
       ↓
-https://lattice.business/demo/                                        (địa chỉ chính)
+https://lattice.business/                                        (địa chỉ chính)
 ```
 
 **Push lên `main` là cả hai địa chỉ tự cập nhật sau 1–2 phút.** Không phải deploy lại

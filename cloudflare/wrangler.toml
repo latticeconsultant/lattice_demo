@@ -2,8 +2,8 @@ name = "lattice-demo"
 main = "worker.js"
 compatibility_date = "2026-09-08"
 
-# Route: mọi yêu cầu tới lattice.business/demo* đều đi qua Worker này.
+# Route: mọi yêu cầu tới lattice.business đều đi qua Worker này.
 # zone_name phải là tên miền đã được thêm vào Cloudflare và đã trỏ nameserver.
 [[routes]]
-pattern = "lattice.business/demo*"
+pattern = "lattice.business/*"
 zone_name = "lattice.business"

@@ -506,7 +506,13 @@ function docTatCa_() {
   var ra = [];
   for (var i = 1; i < v.length; i++) {
     var o = {};
-    for (var j = 0; j < COT.length; j++) o[COT[j][0]] = v[i][j] === null ? '' : String(v[i][j]);
+    for (var j = 0; j < COT.length; j++) {
+      // getDataRange() chỉ trả về vùng đã dùng. Mấy cột cuối còn trống ở MỌI dòng
+      // thì nằm ngoài vùng đó, v[i][j] là undefined, String() biến thành chữ
+      // "undefined" hiện lên trang quản trị.
+      var c = v[i][j];
+      o[COT[j][0]] = (c === null || typeof c === 'undefined') ? '' : String(c);
+    }
     if (o.thoi_gian || o.ma_ho_so) ra.push(o);
   }
   return ra;

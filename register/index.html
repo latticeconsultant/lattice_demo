@@ -295,6 +295,7 @@ footer a { color: var(--n700); }
   </footer>
 </div>
 
+<!-- Chỉ dùng khi tắt JavaScript: khi đó form tự gửi thẳng, không có màn cảm ơn. -->
 <iframe name="lnx-sink" id="sink" title="submission sink" style="display:none" aria-hidden="true"></iframe>
 
 <script>
@@ -346,19 +347,28 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxj2Zhwqqkgr5O8tiuVpvN5s
       return;
     }
 
-    frm.action = ENDPOINT;
+    // Chặn form tự gửi: gửi bằng fetch để biết chính xác lúc nào xong.
+    e.preventDefault();
     document.getElementById('ngon_ngu').value = 'en';
     document.getElementById('thoi_gian').value = new Date().toISOString();
     daGui = true;
     btn.disabled = true;
     btn.textContent = 'SENDING…';
 
-    // Gửi qua iframe ẩn, không dùng fetch: Apps Script không trả header CORS nên
-    // fetch báo lỗi ngay cả khi dữ liệu đã ghi xong. Form post vào iframe thì
-    // trình duyệt không chặn, và sự kiện load của iframe cho biết đã gửi xong.
-    setTimeout(function () {
-      if (btn.disabled) hoanTat();   // mạng chậm thì vẫn báo xong sau 8 giây
-    }, 8000);
+    // mode 'no-cors': Apps Script không trả header CORS nên trình duyệt không cho
+    // đọc nội dung trả về, nhưng yêu cầu vẫn được gửi và promise vẫn báo lúc xong.
+    // Đây là "yêu cầu đơn giản" (form-urlencoded) nên không có bước preflight.
+    // Trước đây gửi bằng form post vào iframe: trang Google trả về không hiển thị
+    // được trong iframe khác tên miền nên sự kiện load không nổ, người gửi phải
+    // chờ hết 8 giây dự phòng mới thấy màn cảm ơn.
+    fetch(ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: new URLSearchParams(new FormData(frm))
+    }).then(hoanTat).catch(function () {
+      daGui = false;
+      baoLoi('We could not send this — it may be your connection. Please try again, or contact us directly.');
+    });
   });
 
   function hoanTat() {
@@ -370,7 +380,6 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxj2Zhwqqkgr5O8tiuVpvN5s
     done.scrollIntoView({ block: 'start' });
   }
 
-  sink.addEventListener('load', hoanTat);
 })();
 </script>
 

@@ -100,6 +100,14 @@
   .ss-gia td { font-size: 13.5px; }
 }
 
+/* ── Đồng hồ đếm ngược ──────────────────────────────────────────────────── */
+.dem { display:flex; gap:6px; flex-wrap:wrap; margin:12px 0 0; }
+.dem b { display:block; font-size:20px; font-weight:800; letter-spacing:-.02em; line-height:1;
+  font-variant-numeric:tabular-nums; }
+.dem span { flex:1; min-width:62px; text-align:center; background:var(--ink); color:#fff;
+  padding:9px 6px; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; }
+.dot1.het { border-left-color:var(--n400); }
+
 /* ── Popup chính sách ───────────────────────────────────────────────────── */
 .pop { position:fixed; inset:0; z-index:90; background:rgba(32,30,29,.74); overflow-y:auto;
   display:none; align-items:flex-start; justify-content:center; padding:clamp(12px,4vh,48px) 14px; }
@@ -271,7 +279,8 @@ footer a { color: var(--n700); }
   <p class="lead">Miễn phí. Kết thúc buổi này anh chị nhận được ba quy trình nên tự động hóa trước, ước lượng trần tự động hóa của mô hình, và câu trả lời thẳng nếu chúng tôi cho rằng anh chị chưa nên bắt đầu.</p>
 
   <p class="note">Điền khoảng 2 phút. Thông tin anh chị cung cấp được giữ kín, chỉ dùng để chuẩn bị và thực hiện buổi làm việc — không dùng cho mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.</p>
-  <p class="dot1"><strong>Đợt 1 đóng đăng ký ngày 15/9/2026.</strong> Hồ sơ nhận trong đợt này bắt đầu được xử lý từ <strong>18/9/2026</strong> — mọi mốc thời gian cam kết tính từ ngày đó, không tính từ ngày thanh toán. Thời gian đăng ký đợt tiếp theo sẽ thông báo sau.</p>
+  <p class="dot1"><strong>Đợt 1 đóng đăng ký lúc 24:00 ngày 30/9/2026.</strong> Hồ sơ nhận trong đợt này bắt đầu được xử lý từ <strong>3/10/2026</strong> — mọi mốc thời gian cam kết tính từ ngày đó, không tính từ ngày thanh toán.
+    <span class="dem" id="dem" aria-live="polite"></span></p>
 
   <div class="buoc" id="buocBar">
     <div class="dang"><b>1</b>Thông tin</div>
@@ -677,6 +686,44 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycby61sDogcLksAPSoPgvE1S0j
   });
 
 
+
+
+  // ── Đếm ngược tới khi đóng đăng ký ───────────────────────────────────────
+  // 24:00 ngày 30/9 nghĩa là 00:00 ngày 1/10, giờ Việt Nam (+07:00).
+  var HAN = new Date('2026-10-01T00:00:00+07:00').getTime();
+  var NHAN_DEM = ["NGÀY", "GIỜ", "PHÚT", "GIÂY"];
+  var oDem = document.getElementById('dem');
+
+  function veDem() {
+    var con = HAN - Date.now();
+    if (con <= 0) { dongDangKy(); return; }
+    var g = Math.floor(con / 1000);
+    var so = [Math.floor(g / 86400), Math.floor(g / 3600) % 24, Math.floor(g / 60) % 60, g % 60];
+    oDem.innerHTML = so.map(function (v, i) {
+      return '<span><b>' + (i ? String(v).padStart(2, '0') : v) + '</b>' + NHAN_DEM[i] + '</span>';
+    }).join('');
+  }
+
+  // Hết hạn thì đóng hẳn biểu mẫu, không chỉ đổi chữ: để khách điền xong rồi mới
+  // biết là đã đóng thì vừa mất công của họ vừa tạo hồ sơ không xử lý được.
+  function dongDangKy() {
+    var o = document.querySelector('.dot1');
+    if (o) { o.className = 'dot1 het'; o.innerHTML = '<strong>Đợt 1 đã đóng đăng ký.</strong> Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email hoặc Zalo — phần trao đổi ban đầu không mất phí.'; }
+    var an = [frm, document.getElementById('m2'), document.getElementById('m3'),
+              document.getElementById('buocBar')];
+    an.forEach(function (x) { if (x) x.style.display = 'none'; });
+    var m4 = document.getElementById('m4');
+    if (m4) {
+      m4.classList.add('hien');
+      m4.querySelector('h2').textContent = 'Đã đóng đăng ký đợt 1';
+      var ps = m4.querySelectorAll('p');
+      ps[0].innerHTML = 'Chúng tôi sẽ thông báo thời gian mở đợt tiếp theo. Trong lúc chờ, anh chị cứ gửi câu hỏi qua email hoặc Zalo — trao đổi ban đầu không mất phí.';
+      for (var i = 1; i < ps.length; i++) ps[i].style.display = 'none';
+    }
+  }
+
+  veDem();
+  setInterval(veDem, 1000);
 
   // ── Popup so sánh gói ────────────────────────────────────────────────────
   var popSs = document.getElementById('popSs');

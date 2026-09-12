@@ -439,6 +439,16 @@ textarea.input { min-height: 90px; resize: vertical; }
       justify-content: flex-start; }
     html.lnx-locked .lnx-lang-menu { display: none; }
 
+    /* ── Đếm ngược tới khi đóng đăng ký ─────────────────────────────────────
+       Cập nhật bằng một script riêng ở cuối trang, không qua dc-runtime: mỗi
+       giây ghi lại nội dung theo id. React có vẽ lại thì giây sau ghi đè tiếp,
+       nên không cần đụng vào vòng đời của component. */
+    .lnx-dem { display: flex; gap: 6px; flex-wrap: wrap; margin: 14px 0 0; max-width: 420px; }
+    .lnx-dem span { flex: 1; min-width: 66px; text-align: center; background: var(--color-text);
+      color: #fff; padding: 9px 6px; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; }
+    .lnx-dem b { display: block; font-size: 21px; font-weight: 800; letter-spacing: -.02em;
+      line-height: 1; font-variant-numeric: tabular-nums; }
+
     /* ── Hai gói dịch vụ ────────────────────────────────────────────────────
        Hai thẻ cạnh nhau ở khổ rộng, xếp chồng ở khổ hẹp. Thẻ Blueprint có nhãn
        và nền khác để mắt dừng ở đó trước — đây là gói muốn bán. */
@@ -3200,7 +3210,7 @@ review_cycle: monthly</pre>
           <p style="font-size:clamp(15px,1.5cqi,17.5px);line-height:1.65;color:var(--color-neutral-800);max-width:78ch;margin:0 0 26px">Hỏi nhanh qua email hoặc Zalo thì không mất gì — chúng tôi trả lời và nói thẳng có phù hợp hay không. Khoản phí dưới đây là <strong>phí tạo lập hồ sơ và quản lý</strong>: nghiên cứu mô hình của anh chị, soạn bảng câu hỏi riêng theo nhóm mô hình, phân tích trước buổi làm việc và làm tài liệu sau buổi. Đó là công việc có thật, không phải phí tư vấn.</p>
 
           <div style="border-left:4px solid var(--color-accent);background:var(--color-neutral-100);padding:18px 20px;margin:0 0 34px;max-width:82ch">
-            <p style="margin:0;font-size:15px;line-height:1.65;color:var(--color-text)"><strong>Đợt 1 đóng đăng ký ngày 15/9/2026.</strong> Hồ sơ nhận trong đợt này bắt đầu được xử lý từ <strong>18/9/2026</strong> — mọi mốc thời gian cam kết bên dưới tính từ ngày đó, không tính từ ngày thanh toán. Thời gian đăng ký đợt tiếp theo sẽ thông báo sau.</p>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:var(--color-text)"><strong>Đợt 1 đóng đăng ký lúc 24:00 ngày 30/9/2026.</strong> Hồ sơ nhận trong đợt này bắt đầu được xử lý từ <strong>3/10/2026</strong> — mọi mốc thời gian cam kết bên dưới tính từ ngày đó, không tính từ ngày thanh toán.<span class="lnx-dem" id="lnx-dem" aria-live="polite"></span></p>
           </div>
 
           <div class="lnx-goi">
@@ -4395,4 +4405,36 @@ class Component extends DCLogic {
 </script>
 
 
+
+<script>
+// Đếm ngược tới 24:00 ngày 30/9/2026 giờ Việt Nam, tức 00:00 ngày 1/10.
+// Ghi theo id mỗi giây thay vì gắn vào vòng đời component: dc-runtime vẽ lại
+// lúc nào cũng được, giây kế tiếp ghi đè lại là xong.
+(function () {
+  var HAN = new Date('2026-10-01T00:00:00+07:00').getTime();
+  var NHAN = ['NGÀY', 'GIỜ', 'PHÚT', 'GIÂY'];
+  var NHAN_EN = ['DAYS', 'HOURS', 'MIN', 'SEC'];
+  var en = document.documentElement.lang === 'en';
+  var nhan = en ? NHAN_EN : NHAN;
+  var HET = en
+    ? '<strong>Round 1 is closed.</strong> We will announce the next round. In the meantime, ask us anything by email or messaging app — the first exchange is free.'
+    : '<strong>Đợt 1 đã đóng đăng ký.</strong> Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email hoặc Zalo — phần trao đổi ban đầu không mất phí.';
+
+  setInterval(function () {
+    var o = document.getElementById('lnx-dem');
+    if (!o) return;
+    var con = HAN - Date.now();
+    if (con <= 0) {
+      var hop = o.parentElement;
+      if (hop && hop.innerHTML.indexOf('30/9/2026') >= 0) hop.innerHTML = HET;
+      return;
+    }
+    var g = Math.floor(con / 1000);
+    var so = [Math.floor(g / 86400), Math.floor(g / 3600) % 24, Math.floor(g / 60) % 60, g % 60];
+    o.innerHTML = so.map(function (v, i) {
+      return '<span><b>' + (i ? String(v).padStart(2, '0') : v) + '</b>' + nhan[i] + '</span>';
+    }).join('');
+  }, 1000);
+})();
+</script>
 </body></html>

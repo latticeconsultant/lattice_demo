@@ -10978,5 +10978,50 @@
   "vi": "Nhận tối đa 10 hồ sơ Blueprint mỗi đợt. Hết suất thì chúng tôi hẹn đợt sau chứ không nhận rồi giao trễ.",
   "en": "We take at most ten Blueprint files per round. Once they are gone we book you into the next round rather than accept the work and deliver it late.",
   "nguon": "goi-dich-vu"
+ },
+ {
+  "vi": "— mọi mốc thời gian cam kết bên dưới tính từ ngày đó, không tính từ ngày thanh toán.",
+  "en": "— every committed deadline below runs from that date, not from the date of payment. Currently available in Vietnam.",
+  "nguon": "goi-dich-vu"
+ },
+ {
+  "vi": "Đợt 1 đóng đăng ký lúc 24:00 ngày 30/9/2026.",
+  "en": "Round 1 closes at midnight on 30 September 2026.",
+  "nguon": "goi-dich-vu"
+ },
+ {
+  "vi": "Đợt 1 đã đóng đăng ký.",
+  "en": "Round 1 is closed.",
+  "nguon": "dem-nguoc"
+ },
+ {
+  "vi": "Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email hoặc Zalo — phần trao đổi ban đầu không mất phí.",
+  "en": "We will announce the next round. In the meantime, ask us anything by email or messaging app — the first exchange is free.",
+  "nguon": "dem-nguoc"
+ },
+ {
+  "vi": "<strong>Đợt 1 đã đóng đăng ký.</strong> Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email hoặc Zalo — phần trao đổi ban đầu không mất phí.",
+  "en": "<strong>Round 1 is closed.</strong> We will announce the next round. In the meantime, ask us anything by email or messaging app — the first exchange is free.",
+  "nguon": "dem-nguoc"
+ },
+ {
+  "vi": "NGÀY",
+  "en": "DAYS",
+  "nguon": "dem-nguoc"
+ },
+ {
+  "vi": "GIỜ",
+  "en": "HOURS",
+  "nguon": "dem-nguoc"
+ },
+ {
+  "vi": "PHÚT",
+  "en": "MIN",
+  "nguon": "dem-nguoc"
+ },
+ {
+  "vi": "GIÂY",
+  "en": "SEC",
+  "nguon": "dem-nguoc"
  }
 ]

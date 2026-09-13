@@ -98,6 +98,25 @@ select.tt-chon, input.lich { font:inherit; font-size:12.5px; padding:5px 7px;
 .bao { position:fixed; left:50%; transform:translateX(-50%); bottom:20px; z-index:60;
   background:var(--ink); color:#fff; padding:12px 18px; font-size:13.5px; max-width:90vw; }
 .bao.loi { background:var(--red-dark); }
+
+/* ── Hộp đổi mật khẩu ───────────────────────────────────────────────────── */
+#doiMk { position:fixed; inset:0; z-index:50; background:rgba(32,30,29,.72); display:none;
+  align-items:center; justify-content:center; padding:18px; }
+#doiMk.hien { display:flex; }
+#doiMk .hop { background:var(--bg); border:2px solid var(--ink); width:100%; max-width:420px; padding:22px; }
+#doiMk h2 { margin:0 0 4px; font-size:18px; font-weight:800; letter-spacing:-.01em; }
+#doiMk p { margin:0 0 16px; color:var(--n700); font-size:13px; line-height:1.55; }
+#doiMk label { display:block; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--n600); font-weight:600; margin:0 0 5px; }
+#doiMk input { width:100%; font:inherit; font-size:16px; padding:10px 12px; margin-bottom:12px;
+  border:2px solid var(--n400); border-radius:0; }
+#doiMk input:focus { outline:0; border-color:var(--ink); }
+#doiMk .hang { display:flex; gap:8px; margin-top:6px; }
+#doiMk .hang button { flex:1; font:inherit; font-size:12.5px; letter-spacing:.1em; font-weight:600;
+  padding:12px; border:2px solid var(--ink); background:var(--bg); cursor:pointer; }
+#doiMk .hang button.chinh { background:var(--red); border-color:var(--red); color:#fff; }
+#doiMk .hang button:disabled { opacity:.55; cursor:default; }
+#doiMk .loi { color:var(--red-dark); font-size:13px; min-height:1.2em; margin:4px 0 0; }
 </style>
 </head>
 <body>
@@ -120,9 +139,30 @@ select.tt-chon, input.lich { font:inherit; font-size:12.5px; padding:5px 7px;
   <span class="dem" id="dem">đang tải…</span>
   <span class="phai">
     <button type="button" id="taiLai">TẢI LẠI</button>
+    <button type="button" id="moDoiMk">ĐỔI MẬT KHẨU</button>
     <button type="button" id="thoat">THOÁT</button>
   </span>
 </header>
+
+<div id="doiMk" role="dialog" aria-modal="true" aria-labelledby="doiMkTieuDe">
+  <div class="hop">
+    <h2 id="doiMkTieuDe">Đổi mật khẩu</h2>
+    <p>Mật khẩu mới tối thiểu 10 ký tự, có cả chữ và số. Đổi xong trang tự đăng xuất để anh chị đăng nhập lại.</p>
+    <label for="dmU">Tên đăng nhập</label>
+    <input id="dmU" type="text" autocomplete="username" autocapitalize="off" spellcheck="false">
+    <label for="dmCu">Mật khẩu hiện tại</label>
+    <input id="dmCu" type="password" autocomplete="current-password">
+    <label for="dmMoi">Mật khẩu mới</label>
+    <input id="dmMoi" type="password" autocomplete="new-password">
+    <label for="dmLai">Nhập lại mật khẩu mới</label>
+    <input id="dmLai" type="password" autocomplete="new-password">
+    <div class="hang">
+      <button type="button" id="dmHuy">HUỶ</button>
+      <button type="button" id="dmLuu" class="chinh">ĐỔI MẬT KHẨU</button>
+    </div>
+    <p class="loi" id="dmLoi"></p>
+  </div>
+</div>
 
 <div class="wrap">
   <div class="so" id="so"></div>
@@ -150,9 +190,12 @@ select.tt-chon, input.lich { font:inherit; font-size:12.5px; padding:5px 7px;
 </div>
 
 <script>
-/* Bốn dòng dưới sinh bằng:
+/* KHOÁ GỐC. Ba dòng dưới sinh bằng:
    node tools/make-admin-key.mjs <user> <pass> <muối> <ADMIN_TOKEN>
-   Mật khẩu và mã truy cập KHÔNG nằm trong đây. */
+   Mật khẩu và mã truy cập KHÔNG nằm trong đây.
+   Đổi mật khẩu trên trang thì khoá mới lưu ở Apps Script (thuộc tính ADMIN_LOGIN)
+   và được ưu tiên; khoá gốc chỉ dùng khi máy chủ báo chưa từng đổi. Quên mật khẩu
+   mới → xoá ADMIN_LOGIN trong Thuộc tính tập lệnh là quay về khoá gốc này. */
 var BAM    = 'f76cc2182ad5fa1b075f605b0b5019063d60974e6765c62531c9818c8d2314a1';
 var MUOI   = ':LATTICE-QT-2026';
 var KHO_MA = { muoi: 'HhuOW6T++1p9kpQOzd7aKg==', iv: 'BeFX3nI3jzTK59WB', ma: 'JhEtbnDQUDJ7TuIv6TX4dO4EJdp+lBobl22qw6z+ZNJxxZ126zpzj5PycnVjUgl3' };
@@ -196,15 +239,38 @@ async function bam(chuoi) {
 
 var tuB64 = function (t) { return Uint8Array.from(atob(t), function (c) { return c.charCodeAt(0); }); };
 
-async function moKhoa(matKhau) {
+var sangB64 = function (a) { return btoa(String.fromCharCode.apply(null, new Uint8Array(a))); };
+var LAP = 210000;
+
+async function khoaAes(matKhau, muoi, dung) {
+  var goc = await crypto.subtle.importKey('raw', new TextEncoder().encode(matKhau), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: muoi, iterations: LAP, hash: 'SHA-256' },
+    goc, { name: 'AES-GCM', length: 256 }, false, [dung]);
+}
+
+async function moKhoa(matKhau, kho) {
   try {
-    var goc = await crypto.subtle.importKey('raw', new TextEncoder().encode(matKhau), 'PBKDF2', false, ['deriveKey']);
-    var khoa = await crypto.subtle.deriveKey(
-      { name: 'PBKDF2', salt: tuB64(KHO_MA.muoi), iterations: 210000, hash: 'SHA-256' },
-      goc, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
-    var ro = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: tuB64(KHO_MA.iv) }, khoa, tuB64(KHO_MA.ma));
+    var khoa = await khoaAes(matKhau, tuB64(kho.muoi), 'decrypt');
+    var ro = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: tuB64(kho.iv) }, khoa, tuB64(kho.ma));
     return new TextDecoder().decode(ro);
   } catch (e) { return ''; }   // sai mật khẩu → chuỗi rỗng, không ném lỗi
+}
+
+/* Hỏi máy chủ khoá đăng nhập hiện hành. Trả null khi không liên lạc được — lúc
+   đó KHÔNG lùi về khoá gốc, vì sau khi đổi mật khẩu, lùi về khoá gốc nghĩa là
+   mật khẩu cũ lại vào được mỗi khi mạng chập chờn. */
+var KHOA_GOC = { bam: BAM, muoi: MUOI, kho: KHO_MA };
+function layKhoa() {
+  return new Promise(function (xong) {
+    var giu = TOKEN; TOKEN = '';
+    goi({ viec: 'layKhoaDangNhap' }, function (kq) {
+      if (kq && kq.ok) return xong(kq.khoa || KHOA_GOC);
+      // Apps Script bản 7 trở về trước chưa có việc này, chặn ở cổng mã truy cập.
+      if (kq && kq.loi === 'Sai mã truy cập') return xong(KHOA_GOC);
+      xong(null);
+    });
+    TOKEN = giu;
+  });
 }
 
 async function dangNhap() {
@@ -215,16 +281,21 @@ async function dangNhap() {
   if (saiLan >= 3) { $('congLoi').textContent = 'Sai quá 3 lần. Chờ 30 giây.'; return; }
   var u = $('u').value.trim(), mk = $('mk').value;
   $('congLoi').textContent = 'Đang kiểm tra…';
-  var b = await bam(u + ':' + mk + MUOI);
-  if (b !== BAM) {
+  var k = await layKhoa();
+  if (!k) { $('congLoi').textContent = 'Không kết nối được máy chủ. Thử lại sau ít giây.'; return; }
+  var b = await bam(u + ':' + mk + k.muoi);
+  if (b !== k.bam) {
     saiLan++;
     $('congLoi').textContent = 'Sai tên đăng nhập hoặc mật khẩu.';
     if (saiLan >= 3) setTimeout(function () { saiLan = 0; $('congLoi').textContent = ''; }, 30000);
     return;
   }
-  TOKEN = await moKhoa(mk);
+  TOKEN = await moKhoa(mk, k.kho);
   if (!TOKEN) { $('congLoi').textContent = 'Không mở được mã truy cập.'; return; }
-  try { sessionStorage.setItem(PHIEN, JSON.stringify({ t: TOKEN, han: Date.now() + HAN })); } catch (e) {}
+  try { sessionStorage.setItem(PHIEN, JSON.stringify({ t: TOKEN, u: u, han: Date.now() + HAN })); } catch (e) {}
+  $('congLoi').textContent = '';
+  $('mk').value = '';
+  $('dmU').value = u;
   document.documentElement.className = '';
   tai();
 }
@@ -232,9 +303,76 @@ async function dangNhap() {
 function thuPhienCu() {
   try {
     var o = JSON.parse(sessionStorage.getItem(PHIEN) || 'null');
-    if (o && o.han > Date.now() && o.t) { TOKEN = o.t; return true; }
+    if (o && o.han > Date.now() && o.t) { TOKEN = o.t; $('dmU').value = o.u || ''; return true; }
   } catch (e) {}
   return false;
+}
+
+/* ── Đổi mật khẩu ──────────────────────────────────────────────────────────
+   Toàn bộ tính toán ở trình duyệt: băm mật khẩu mới, mã hoá lại chính mã truy
+   cập đang dùng bằng khoá dẫn xuất từ mật khẩu mới. Máy chủ chỉ nhận bản băm và
+   khối mã hoá — không bao giờ thấy mật khẩu. Mã truy cập không đổi, nên các
+   trang đăng ký và webhook SePay không bị ảnh hưởng. */
+function moHopDoiMk() {
+  ['dmCu', 'dmMoi', 'dmLai'].forEach(function (id) { $(id).value = ''; });
+  $('dmLoi').textContent = '';
+  $('doiMk').classList.add('hien');
+  ($('dmU').value ? $('dmCu') : $('dmU')).focus();
+}
+function dongHopDoiMk() { $('doiMk').classList.remove('hien'); }
+
+async function doiMatKhau() {
+  var loi = function (s) { $('dmLoi').textContent = s; };
+  var u = $('dmU').value.trim(), cu = $('dmCu').value, moi = $('dmMoi').value, lai = $('dmLai').value;
+  if (saiLan >= 3) return loi('Sai quá 3 lần. Chờ 30 giây.');
+  if (!u || !cu || !moi) return loi('Điền đủ các ô.');
+  if (moi.length < 10 || !/[A-Za-z]/.test(moi) || !/[0-9]/.test(moi))
+    return loi('Mật khẩu mới tối thiểu 10 ký tự, có cả chữ và số.');
+  if (moi !== lai) return loi('Hai lần nhập mật khẩu mới không khớp.');
+  if (moi === cu) return loi('Mật khẩu mới phải khác mật khẩu hiện tại.');
+
+  var nut = $('dmLuu');
+  nut.disabled = true; loi('Đang kiểm tra mật khẩu hiện tại…');
+  try {
+    // Lấy khoá mới nhất từ máy chủ, phòng khi mật khẩu vừa đổi ở máy khác.
+    var k = await layKhoa();
+    if (!k) return loi('Không kết nối được máy chủ. Thử lại sau ít giây.');
+    if (await bam(u + ':' + cu + k.muoi) !== k.bam || await moKhoa(cu, k.kho) !== TOKEN) {
+      saiLan++;
+      if (saiLan >= 3) setTimeout(function () { saiLan = 0; }, 30000);
+      return loi('Tên đăng nhập hoặc mật khẩu hiện tại không đúng.');
+    }
+
+    loi('Đang mã hoá khoá mới…');
+    var muoi = crypto.getRandomValues(new Uint8Array(16));
+    var iv = crypto.getRandomValues(new Uint8Array(12));
+    var aes = await khoaAes(moi, muoi, 'encrypt');
+    var ma = await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, aes, new TextEncoder().encode(TOKEN));
+    var khoMoi = { muoi: sangB64(muoi), iv: sangB64(iv), ma: sangB64(ma) };
+    var bamMoi = await bam(u + ':' + moi + k.muoi);
+
+    // Tự mở thử trước khi gửi. Lưu một khoá không mở được là tự khoá mình ngoài cửa.
+    if (await moKhoa(moi, khoMoi) !== TOKEN) return loi('Kiểm tra khoá mới thất bại, chưa đổi gì.');
+
+    loi('Đang lưu…');
+    var kq = await new Promise(function (xong) {
+      goi({ viec: 'doiMatKhau', bam: bamMoi, muoi: k.muoi,
+            kho_muoi: khoMoi.muoi, kho_iv: khoMoi.iv, kho_ma: khoMoi.ma }, xong);
+    });
+    if (!kq || !kq.ok) {
+      // Bản 7 trở về trước không biết việc "doiMatKhau" và trả "Không rõ việc cần làm".
+      if (kq && kq.loi === 'Không rõ việc cần làm')
+        return loi('Máy chủ chưa hỗ trợ đổi mật khẩu — cần triển khai Apps Script bản 8. Chưa đổi gì.');
+      return loi('Chưa đổi được: ' + ((kq && kq.loi) || 'không rõ lỗi') + '. Mật khẩu cũ vẫn dùng được.');
+    }
+
+    try { sessionStorage.removeItem(PHIEN); } catch (e) {}
+    dongHopDoiMk();
+    bao('Đã đổi mật khẩu. Đăng nhập lại bằng mật khẩu mới.');
+    setTimeout(function () { location.reload(); }, 1800);
+  } finally {
+    nut.disabled = false;
+  }
 }
 
 /* ── Gọi Apps Script bằng JSONP ────────────────────────────────────────────
@@ -382,6 +520,14 @@ $('taiLai').addEventListener('click', function () { tai(); });
 $('thoat').addEventListener('click', function () {
   try { sessionStorage.removeItem(PHIEN); } catch (e) {}
   location.reload();
+});
+$('moDoiMk').addEventListener('click', moHopDoiMk);
+$('dmHuy').addEventListener('click', dongHopDoiMk);
+$('dmLuu').addEventListener('click', doiMatKhau);
+$('dmLai').addEventListener('keydown', function (e) { if (e.key === 'Enter') doiMatKhau(); });
+$('doiMk').addEventListener('click', function (e) { if (e.target === this) dongHopDoiMk(); });
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && $('doiMk').classList.contains('hien')) dongHopDoiMk();
 });
 $('vao').addEventListener('click', dangNhap);
 $('mk').addEventListener('keydown', function (e) { if (e.key === 'Enter') dangNhap(); });

@@ -25,12 +25,15 @@
  * vì mã nguồn đi lên GitHub công khai:
  *      ADMIN_TOKEN   mã truy cập cho trang quản trị
  *      SEPAY_SECRET  mật mã webhook SePay
+ *      ADMIN_LOGIN   khoá đăng nhập trang quản trị — TỰ GHI khi đổi mật khẩu trên
+ *                    trang, không tạo tay. Xoá thuộc tính này là quay về khoá gốc
+ *                    nằm trong quan-tri/index.html (cách cứu khi quên mật khẩu).
  */
 
 // Dấu phiên bản: đổi mỗi lần sửa file này. Gọi ?token=...&viec=phienBan để biết
 // chắc bản nào đang chạy — Apps Script phục vụ bản ĐÃ TRIỂN KHAI, không phải mã
 // vừa lưu, nên dán xong mà quên chọn "Phiên bản: Mới" là vẫn chạy mã cũ.
-var PHIEN_BAN = '2026-09-13 · 7';
+var PHIEN_BAN = '2026-09-13 · 8';
 
 var CH = {
   emailBao: 'lattice.consultant@gmail.com',     // nhận thông báo mỗi đăng ký mới
@@ -125,8 +128,11 @@ function doPost(e) {
     // Không tin số tiền trình duyệt gửi lên — tính lại từ tên gói.
     dong[iCot_('so_tien')] = String(GIA[p.goi] || 0);
 
-    sh.appendRow(dong);
-    dinhDangVanBan_(sh, sh.getLastRow());
+    // Đặt định dạng văn bản TRƯỚC khi ghi. appendRow rồi mới định dạng thì Sheet
+    // đã kịp đổi 0769186139 thành số 769186139 — dính ở hồ sơ thật đầu tiên.
+    var r = sh.getLastRow() + 1;
+    dinhDangVanBan_(sh, r);
+    sh.getRange(r, 1, 1, dong.length).setValues([dong]);
 
     if (CH.emailBao) baoDangKyMoi_(p, nhieu);
     thuXacNhan_(p);
@@ -220,12 +226,42 @@ function doGet(e) {
   // không lộ gì, mà lại giúp kiểm tra xem đã triển khai đúng bản chưa.
   if (p.viec === 'phienBanCongKhai') return ket_('LATTICE ' + PHIEN_BAN);
 
+  // Khoá đăng nhập trang quản trị, trả công khai vì trang cần nó TRƯỚC khi đăng
+  // nhập. Chỉ gồm bản băm và khối mã hoá — đúng thứ trước đây nằm lộ trong file
+  // HTML, nên không mở thêm rủi ro nào. Mật khẩu và ADMIN_TOKEN không có trong đây.
+  // khoa: null nghĩa là chưa từng đổi mật khẩu → trang dùng khoá gốc trong file.
+  if (p.viec === 'layKhoaDangNhap') {
+    var luu = biMat_('ADMIN_LOGIN');
+    var khoa = null;
+    try { khoa = luu ? JSON.parse(luu) : null; } catch (x) { khoa = null; }
+    return json_({ ok: true, khoa: khoa }, p.callback);
+  }
+
   var token = biMat_('ADMIN_TOKEN');
   if (!token || p.token !== token) return json_({ ok: false, loi: 'Sai mã truy cập' }, p.callback);
 
   try {
     if (p.viec === 'phienBan') {
       return json_({ ok: true, phienBan: PHIEN_BAN }, p.callback);
+    }
+
+    // Đổi mật khẩu trang quản trị. Trình duyệt tự tính bản băm mới và mã hoá lại
+    // ADMIN_TOKEN bằng mật khẩu mới, rồi gửi lên đây — máy chủ không bao giờ thấy
+    // mật khẩu. Kiểm định dạng chặt để không lưu nhầm rác làm khoá, vì lưu hỏng
+    // là khoá luôn cả người quản trị ra ngoài.
+    if (p.viec === 'doiMatKhau') {
+      var b64 = /^[A-Za-z0-9+\/]+={0,2}$/;
+      var hopLe = /^[0-9a-f]{64}$/.test(p.bam || '') &&
+        typeof p.muoi === 'string' && p.muoi.length >= 4 && p.muoi.length <= 64 &&
+        b64.test(p.kho_muoi || '') && b64.test(p.kho_iv || '') && b64.test(p.kho_ma || '');
+      if (!hopLe) return json_({ ok: false, loi: 'Dữ liệu khoá không hợp lệ, chưa đổi gì.' }, p.callback);
+      PropertiesService.getScriptProperties().setProperty('ADMIN_LOGIN', JSON.stringify({
+        bam: p.bam, muoi: p.muoi,
+        kho: { muoi: p.kho_muoi, iv: p.kho_iv, ma: p.kho_ma },
+        luc: new Date().toISOString()
+      }));
+      ghiNhatKy_('', 'doi_mat_khau', 'Đổi mật khẩu trang quản trị');
+      return json_({ ok: true }, p.callback);
     }
 
     if (p.viec === 'danhSach') {
@@ -330,6 +366,7 @@ function thuXacNhan_(p) {
     ghiNhatKy_(p.ma_ho_so || '', 'thu_dang_ky', 'Gửi tới ' + toi);
   } catch (err) {
     console.error('Không gửi được thư xác nhận: ' + err);
+    ghiNhatKy_(p.ma_ho_so || '', 'loi_gui_thu_dang_ky', String(err).slice(0, 120));
   }
 }
 
@@ -569,11 +606,11 @@ function capNhatDong_(ma, sua) {
   var c = iCot_('ma_ho_so');
   for (var i = 1; i < v.length; i++) {
     if (String(v[i][c]) !== String(ma)) continue;
+    dinhDangVanBan_(sh, i + 1);   // định dạng trước khi ghi, cùng lý do như ở doPost
     Object.keys(sua).forEach(function (k) {
       var j = iCot_(k);
       if (j >= 0) sh.getRange(i + 1, j + 1).setValue(sua[k]);
     });
-    dinhDangVanBan_(sh, i + 1);
     return true;
   }
   return false;

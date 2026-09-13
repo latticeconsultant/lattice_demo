@@ -144,13 +144,14 @@ Giao dịch không chứa chữ "LTC" bị bỏ qua im lặng — tài khoản c
 
 https://lattice.business/quan-tri/ — danh sách hồ sơ, lọc theo trạng thái, tìm kiếm, đổi trạng thái, ghi lịch làm việc, xác nhận đã nhận tiền bằng tay (tự gửi phiếu thu), gửi lại thư. Tự tải lại mỗi 45 giây.
 
-Cổng đăng nhập: mã truy cập Apps Script được **mã hoá AES-GCM bằng khoá dẫn xuất từ chính mật khẩu**, nên trang công khai không lộ mã. Đổi mật khẩu:
+Cổng đăng nhập: mã truy cập Apps Script được **mã hoá AES-GCM bằng khoá dẫn xuất từ chính mật khẩu**, nên trang công khai không lộ mã. Tên đăng nhập, mật khẩu và `ADMIN_TOKEN` **không** nằm trong repo.
 
-```bash
-node tools/make-admin-key.mjs <tên đăng nhập> <mật khẩu mới> <muối> <ADMIN_TOKEN>
-```
+**Đổi mật khẩu:** nút **ĐỔI MẬT KHẨU** trên thanh trên cùng (cần Apps Script bản 8 trở lên). Trình duyệt kiểm mật khẩu hiện tại, băm mật khẩu mới và mã hoá lại mã truy cập, tự mở thử, rồi mới gửi lên lưu ở thuộc tính `ADMIN_LOGIN`. Máy chủ không bao giờ thấy mật khẩu; `ADMIN_TOKEN` giữ nguyên nên trang đăng ký và SePay không bị ảnh hưởng. Đổi xong trang tự đăng xuất. Phiên đang mở ở máy khác vẫn dùng được tới hết hạn 8 giờ.
 
-rồi dán bốn dòng in ra vào `quan-tri/index.html`. Tên đăng nhập, mật khẩu và `ADMIN_TOKEN` **không** nằm trong repo.
+- Khi đăng nhập, trang hỏi máy chủ khoá hiện hành. Mất kết nối thì **không** cho vào, thay vì lùi về khoá gốc — nếu lùi, mật khẩu cũ sẽ vào được mỗi lần mạng chập chờn.
+- **Quên mật khẩu:** Apps Script → Thuộc tính tập lệnh → xoá `ADMIN_LOGIN`. Trang quay về khoá gốc trong `quan-tri/index.html` (mật khẩu ban đầu).
+- Thay khoá gốc: `node tools/make-admin-key.mjs <tên đăng nhập> <mật khẩu> <muối> <ADMIN_TOKEN>` rồi dán ba dòng in ra vào `quan-tri/index.html`.
+- Đổi mật khẩu **không** thu hồi được mã truy cập ai đó đã mở ra trước đó. Nghi lộ thì phải đổi `ADMIN_TOKEN`, rồi sinh lại khoá gốc và xoá `ADMIN_LOGIN`.
 
 Đây vẫn là rào phía trình duyệt: lớp bảo vệ thật là `ADMIN_TOKEN` phía Apps Script. Mật khẩu yếu thì lớp này cũng yếu.
 
@@ -158,12 +159,13 @@ rồi dán bốn dòng in ra vào `quan-tri/index.html`. Tên đăng nhập, m�
 
 Toàn bộ nghiệp vụ phía máy chủ nằm trong `tools/google-apps-script.gs`, dán vào Apps Script gắn với Google Sheet. Sheet có hai tab: **Đăng ký** (mỗi hồ sơ một dòng) và **Nhật ký** (mọi thư đã gửi, mọi lần tiền về).
 
-**Hai bí mật** nằm ở Apps Script → ⚙️ Cài đặt dự án → Thuộc tính tập lệnh, không nằm trong repo công khai:
+**Các bí mật** nằm ở Apps Script → ⚙️ Cài đặt dự án → Thuộc tính tập lệnh, không nằm trong repo công khai:
 
 | Tên | Dùng cho |
 | --- | --- |
 | `ADMIN_TOKEN` | Trang quản trị gọi cổng dữ liệu |
 | `SEPAY_SECRET` | Webhook SePay — đi kèm trong địa chỉ `…/exec?sepay=<mật mã>`, vì Apps Script không đọc được header |
+| `ADMIN_LOGIN` | Khoá đăng nhập sau khi đổi mật khẩu — trang **tự ghi**, không tạo tay. Xoá là về mật khẩu gốc |
 
 **Triển khai lại sau khi sửa mã — luôn tạo triển khai MỚI:**
 

@@ -33,7 +33,7 @@
 // Dấu phiên bản: đổi mỗi lần sửa file này. Gọi ?token=...&viec=phienBan để biết
 // chắc bản nào đang chạy — Apps Script phục vụ bản ĐÃ TRIỂN KHAI, không phải mã
 // vừa lưu, nên dán xong mà quên chọn "Phiên bản: Mới" là vẫn chạy mã cũ.
-var PHIEN_BAN = '2026-09-13 · 8';
+var PHIEN_BAN = '2026-09-13 · 9';
 
 var CH = {
   emailBao: 'lattice.consultant@gmail.com',     // nhận thông báo mỗi đăng ký mới
@@ -388,8 +388,8 @@ function thanHtml_(p, en, banChu) {
 
   var v = en
     ? { chao: 'Dear ', tag: 'Structure for what comes next',
-        d1: 'LATTICE Next Solutions has received your registration <b>' + p.ma_ho_so + '</b> for the <b>' +
-            (p.goi || '') + '</b> package.',
+        d1: 'LATTICE Next Solutions has received your registration <b>' + esc_(p.ma_ho_so) + '</b> for the <b>' +
+            esc_(p.goi) + '</b> package.',
         d2: 'Your place is held. Please complete the transfer so we can open your file and start work:',
         tieu: 'PAYMENT DETAILS', nh: 'Bank', stk: 'Account number', chu: 'Account name',
         tien: 'Amount', nd: 'Reference',
@@ -398,8 +398,8 @@ function thanHtml_(p, en, banChu) {
         d3: 'As soon as the money arrives, the system sends you a receipt automatically and we send the preparation questionnaire.',
         tt: 'Kind regards,' }
     : { chao: 'Kính gửi anh/chị ', tag: 'Kiến trúc mô hình kinh doanh mới',
-        d1: 'LATTICE Next Solutions đã nhận phiếu đăng ký <b>' + p.ma_ho_so + '</b> cho gói <b>' +
-            (p.goi || '') + '</b>.',
+        d1: 'LATTICE Next Solutions đã nhận phiếu đăng ký <b>' + esc_(p.ma_ho_so) + '</b> cho gói <b>' +
+            esc_(p.goi) + '</b>.',
         d2: 'Hồ sơ của anh chị đang được giữ. Xin hoàn tất chuyển khoản để chúng tôi mở hồ sơ và bắt đầu làm việc:',
         tieu: 'THÔNG TIN CHUYỂN KHOẢN', nh: 'Ngân hàng', stk: 'Số tài khoản', chu: 'Chủ tài khoản',
         tien: 'Số tiền', nd: 'Nội dung',
@@ -413,45 +413,45 @@ function thanHtml_(p, en, banChu) {
       (do_ ? ' style="color:#AE1800"' : '') + '>' + giaTri + '</b></p>';
   };
 
+  return khungThu_(v.tag,
+    '<p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#201E1D">' +
+      v.chao + '<b>' + esc_(ten) + '</b>,</p>' +
+    '<p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#201E1D">' + v.d1 + '</p>' +
+    '<p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#201E1D">' + v.d2 + '</p>' +
+
+    '<div style="background:#FAF7F2;border:1px solid #E5DFD3;padding:20px">' +
+      '<div style="font-size:12px;letter-spacing:1.5px;font-weight:bold;color:#605D5D;margin-bottom:14px">' +
+        v.tieu + '</div>' +
+      dong(v.nh, t.nganHang) + dong(v.stk, t.so) + dong(v.chu, t.chu) +
+      dong(v.tien, tienChu_(tien), true) + dong(v.nd, esc_(noiDung), true) +
+      // Bọc ảnh trong liên kết: nhiều trình đọc thư chặn ảnh từ xa, lúc đó
+      // người nhận vẫn bấm vào chữ thay thế để mở mã QR ra xem.
+      '<a href="' + qr + '" style="text-decoration:none">' +
+        '<img src="' + qr + '" width="200" alt="' + v.alt + '" ' +
+          'style="display:block;margin:16px 0 10px;border:1px solid #D7D3D3;background:#fff">' +
+      '</a>' +
+      '<div style="font-size:12.5px;line-height:1.5;color:#807C7C">' + v.quet + '</div>' +
+    '</div>' +
+
+    '<p style="margin:20px 0 20px;font-size:15px;line-height:1.6;color:#201E1D">' + v.d3 + '</p>' +
+    '<p style="margin:0;font-size:15px;line-height:1.6;color:#201E1D">' + v.tt + '<br>' +
+      '<b>LATTICE Next Solutions</b></p>');
+}
+
+/** Vỏ chung của mọi thư gửi khách: dải đen tên công ty ở trên, chân thư ở dưới. */
+function khungThu_(tag, noiDung) {
   return '' +
   '<div style="background:#F3F2F2;padding:24px 12px;font-family:Arial,Helvetica,sans-serif">' +
     '<div style="max-width:600px;margin:0 auto;background:#FFFFFF">' +
-
       '<div style="background:#201E1D;padding:22px 26px">' +
         '<div style="font-size:16px;font-weight:bold;letter-spacing:2px;color:#FFFFFF">LATTICE NEXT SOLUTIONS</div>' +
-        '<div style="font-size:13px;color:#BAB6B6;margin-top:5px">' + v.tag + '</div>' +
+        '<div style="font-size:13px;color:#BAB6B6;margin-top:5px">' + tag + '</div>' +
       '</div>' +
-
-      '<div style="padding:26px">' +
-        '<p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#201E1D">' +
-          v.chao + '<b>' + (ten || '') + '</b>,</p>' +
-        '<p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#201E1D">' + v.d1 + '</p>' +
-        '<p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#201E1D">' + v.d2 + '</p>' +
-
-        '<div style="background:#FAF7F2;border:1px solid #E5DFD3;padding:20px">' +
-          '<div style="font-size:12px;letter-spacing:1.5px;font-weight:bold;color:#605D5D;margin-bottom:14px">' +
-            v.tieu + '</div>' +
-          dong(v.nh, t.nganHang) + dong(v.stk, t.so) + dong(v.chu, t.chu) +
-          dong(v.tien, tienChu_(tien), true) + dong(v.nd, noiDung, true) +
-          // Bọc ảnh trong liên kết: nhiều trình đọc thư chặn ảnh từ xa, lúc đó
-          // người nhận vẫn bấm vào chữ thay thế để mở mã QR ra xem.
-          '<a href="' + qr + '" style="text-decoration:none">' +
-            '<img src="' + qr + '" width="200" alt="' + v.alt + '" ' +
-              'style="display:block;margin:16px 0 10px;border:1px solid #D7D3D3;background:#fff">' +
-          '</a>' +
-          '<div style="font-size:12.5px;line-height:1.5;color:#807C7C">' + v.quet + '</div>' +
-        '</div>' +
-
-        '<p style="margin:20px 0 20px;font-size:15px;line-height:1.6;color:#201E1D">' + v.d3 + '</p>' +
-        '<p style="margin:0;font-size:15px;line-height:1.6;color:#201E1D">' + v.tt + '<br>' +
-          '<b>LATTICE Next Solutions</b></p>' +
-      '</div>' +
-
+      '<div style="padding:26px">' + noiDung + '</div>' +
       '<div style="background:#F3F2F2;padding:16px 26px;font-size:12.5px;line-height:1.6;color:#807C7C">' +
         'Công ty Cổ phần Giải pháp LATTICE Next · ' + CH.emailBao + ' · 0853 999 566<br>' +
         '<a href="https://lattice.business/" style="color:#605D5D">lattice.business</a>' +
       '</div>' +
-
     '</div>' +
   '</div>';
 }
@@ -468,51 +468,124 @@ function thuDaThu_(d) {
     var truoc = Math.round(tong / (1 + CH.thueSuat));
     var thue = tong - truoc;
     var pc = Math.round(CH.thueSuat * 100);
-    var tieude, than;
+    var goi = d.goi || '';
 
-    if (en) {
-      tieude = 'LATTICE Next — payment received, ' + (d.goi || '') + ' (' + d.ma_ho_so + ')';
-      than = (ten ? 'Dear ' + ten + ',' : 'Hello,') + '\n\n' +
-        'We have received your payment. Your file is now open and we are starting work on it.\n\n' +
-        'RECEIPT\n' +
-        '  Receipt no.    : ' + d.ma_ho_so + '\n' +
-        '  Date           : ' + homNay_() + '\n' +
-        '  Payer          : ' + (d.ten_doanh_nghiep || ten) + '\n' +
-        '  For            : File-creation and administration fee — ' + (d.goi || '') + '\n' +
-        '  Net            : ' + tienChu_(truoc) + '\n' +
-        '  VAT ' + pc + '%       : ' + tienChu_(thue) + '\n' +
-        '  Total received : ' + tienChu_(tong) + '\n' +
-        '  Method         : bank transfer, ' + CH.taiKhoan.nganHang + '\n\n' +
-        'This receipt confirms payment. It is not a VAT invoice — if you need one, reply to this email and we will issue it.\n\n' +
-        'Next: we send the preparation questionnaire, then agree a time with you.\n\n' +
-        'LATTICE Next Solutions Joint Stock Company\nhttps://lattice.business/en/';
-    } else {
-      tieude = 'LATTICE Next — đã nhận thanh toán, ' + (d.goi || '') + ' (' + d.ma_ho_so + ')';
-      than = (ten ? 'Kính gửi ' + ten + ',' : 'Kính gửi anh chị,') + '\n\n' +
-        'Chúng tôi đã nhận được thanh toán. Hồ sơ của anh chị đã mở và chúng tôi bắt đầu làm việc.\n\n' +
-        'PHIẾU THU\n' +
-        '  Số phiếu       : ' + d.ma_ho_so + '\n' +
-        '  Ngày           : ' + homNay_() + '\n' +
-        '  Người nộp      : ' + (d.ten_doanh_nghiep || ten) + '\n' +
-        '  Nội dung       : Phí tạo lập hồ sơ và quản lý — ' + (d.goi || '') + '\n' +
-        '  Trước thuế     : ' + tienChu_(truoc) + '\n' +
-        '  Thuế GTGT ' + pc + '% : ' + tienChu_(thue) + '\n' +
-        '  Tổng đã nhận   : ' + tienChu_(tong) + '\n' +
-        '  Hình thức      : chuyển khoản, ' + CH.taiKhoan.nganHang + '\n\n' +
-        'Phiếu thu này xác nhận đã nhận tiền, KHÔNG thay thế hoá đơn giá trị gia tăng. ' +
-        'Anh chị cần hoá đơn GTGT thì trả lời thư này, chúng tôi xuất riêng.\n\n' +
-        'Tiếp theo: chúng tôi gửi bảng câu hỏi chuẩn bị, sau đó thống nhất lịch làm việc.\n\n' +
-        'Công ty Cổ phần Giải pháp LATTICE Next\nhttps://lattice.business/';
+    var L = en
+      ? { tieude: 'LATTICE Next — payment received, ' + goi + ' (' + d.ma_ho_so + ')',
+          tag: 'Structure for what comes next', chao: 'Dear ', chaoTrong: 'Hello',
+          d1: function (b) { return 'LATTICE Next Solutions has received payment for file ' + b(d.ma_ho_so) + ', package ' + b(goi) + '.'; },
+          d2: 'Your file is now open and we will start work according to schedule, beginning with the preparation questionnaire. ' +
+              'Please keep an eye on your email — including the Spam and Promotions folders — for further information from LATTICE Next Solutions.',
+          tieu: 'RECEIPT', so: 'Receipt no.', ngay: 'Date', nop: 'Payer', nd: 'For',
+          phi: 'File-creation and administration fee', truoc: 'Net', thue: 'VAT ' + pc + '%',
+          tong: 'Total received', ht: 'Method', ck: 'bank transfer',
+          luuY: 'The receipt is attached to this email as a PDF. It confirms payment and is not a VAT invoice.',
+          luuYPdf: 'This receipt confirms payment and is not a VAT invoice. It was issued automatically when the payment was recorded.',
+          tt: 'Kind regards,', cty: 'LATTICE Next Solutions Joint Stock Company', web: 'https://lattice.business/en/',
+          tep: 'Receipt-' }
+      : { tieude: 'LATTICE Next — đã nhận thanh toán, ' + goi + ' (' + d.ma_ho_so + ')',
+          tag: 'Kiến trúc mô hình kinh doanh mới', chao: 'Kính gửi anh/chị ', chaoTrong: 'Kính gửi anh chị',
+          d1: function (b) { return 'LATTICE Next Solutions đã nhận được thanh toán cho hồ sơ ' + b(d.ma_ho_so) + ', gói ' + b(goi) + '.'; },
+          d2: 'Hồ sơ của anh chị đã được mở. Chúng tôi sẽ bắt đầu làm việc theo lịch trình, trước hết là gửi bảng câu hỏi chuẩn bị. ' +
+              'Đề nghị anh chị thường xuyên kiểm tra email — kể cả thư mục Spam và Quảng cáo — để nhận thông tin tiếp theo từ LATTICE Next Solutions.',
+          tieu: 'PHIẾU THU', so: 'Số phiếu', ngay: 'Ngày', nop: 'Người nộp', nd: 'Nội dung',
+          phi: 'Phí tạo lập hồ sơ và quản lý', truoc: 'Trước thuế', thue: 'Thuế GTGT ' + pc + '%',
+          tong: 'Tổng đã nhận', ht: 'Hình thức', ck: 'chuyển khoản',
+          luuY: 'Phiếu thu đính kèm thư này dưới dạng PDF. Phiếu thu xác nhận đã nhận tiền, không thay thế hoá đơn giá trị gia tăng.',
+          luuYPdf: 'Phiếu thu xác nhận đã nhận tiền, không thay thế hoá đơn giá trị gia tăng. Phiếu lập tự động khi hệ thống ghi nhận tiền về.',
+          tt: 'Trân trọng,', cty: 'Công ty Cổ phần Giải pháp LATTICE Next', web: 'https://lattice.business/',
+          tep: 'Phieu-thu-' };
+
+    // [nhãn, giá trị, dòng tổng?] — một nguồn cho cả bản chữ, bản HTML và PDF.
+    var hang = [
+      [L.so, d.ma_ho_so], [L.ngay, homNay_()], [L.nop, d.ten_doanh_nghiep || ten],
+      [L.nd, L.phi + ' — ' + goi], [L.truoc, tienChu_(truoc)], [L.thue, tienChu_(thue)],
+      [L.tong, tienChu_(tong), true], [L.ht, L.ck + ', ' + CH.taiKhoan.nganHang]
+    ];
+
+    // Bản chữ thuần: đệm nhãn cho bằng nhau. Chỉ thẳng hàng với phông chữ đều nét,
+    // nên bản HTML mới là bản khách thấy — dùng bảng, dấu hai chấm nằm riêng một cột.
+    var rong = 0;
+    hang.forEach(function (h) { rong = Math.max(rong, h[0].length); });
+    var chuPhieu = hang.map(function (h) {
+      return '  ' + h[0] + new Array(rong - h[0].length + 1).join(' ') + ' : ' + h[1];
+    }).join('\n');
+    var tro = function (s) { return String(s); };
+    var than = (ten ? L.chao + ten : L.chaoTrong) + ',\n\n' +
+      L.d1(tro) + '\n\n' + L.d2 + '\n\n' + L.tieu + '\n' + chuPhieu + '\n\n' + L.luuY + '\n\n' +
+      L.tt + '\n' + L.cty + '\n' + L.web;
+
+    var dam = function (s) { return '<b>' + esc_(s) + '</b>'; };
+    var p_ = function (noiDung, cuoi) {
+      return '<p style="margin:0 0 ' + (cuoi || 16) + 'px;font-size:15px;line-height:1.6;color:#201E1D">' + noiDung + '</p>';
+    };
+    var html = khungThu_(L.tag,
+      p_(ten ? L.chao + '<b>' + esc_(ten) + '</b>,' : L.chaoTrong + ',') +
+      p_(L.d1(dam)) + p_(esc_(L.d2), 20) +
+      '<div style="background:#FAF7F2;border:1px solid #E5DFD3;padding:20px">' +
+        '<div style="font-size:12px;letter-spacing:1.5px;font-weight:bold;color:#605D5D;margin-bottom:10px">' + L.tieu + '</div>' +
+        bangPhieu_(hang, 14.5) +
+      '</div>' +
+      '<p style="margin:14px 0 20px;font-size:13px;line-height:1.55;color:#807C7C">' + esc_(L.luuY) + '</p>' +
+      p_(L.tt + '<br><b>LATTICE Next Solutions</b>', 0));
+
+    // PDF dựng từ HTML ngay trong Apps Script. Hỏng thì vẫn gửi thư, chỉ thiếu tệp
+    // đính kèm, và ghi nhật ký để người trực gửi bù — không để mất cả phiếu thu.
+    var dinhKem = [];
+    try {
+      dinhKem.push(Utilities.newBlob(pdfPhieu_(L, hang), 'text/html', 'phieu-thu.html')
+        .getAs('application/pdf').setName(L.tep + d.ma_ho_so + '.pdf'));
+    } catch (x) {
+      ghiNhatKy_(d.ma_ho_so, 'loi_tao_pdf', String(x).slice(0, 120));
     }
-    MailApp.sendEmail({ to: toi, subject: tieude, body: than,
+
+    MailApp.sendEmail({ to: toi, subject: L.tieude, body: than, htmlBody: html, attachments: dinhKem,
                         name: 'LATTICE Next Solutions', replyTo: CH.emailBao });
-    ghiNhatKy_(d.ma_ho_so, 'thu_phieu_thu', 'Gửi tới ' + toi);
+    ghiNhatKy_(d.ma_ho_so, 'thu_phieu_thu', 'Gửi tới ' + toi + (dinhKem.length ? ' · kèm PDF' : ' · KHÔNG kèm PDF'));
     return true;
   } catch (err) {
     console.error('Không gửi được phiếu thu: ' + err);
     ghiNhatKy_(d.ma_ho_so, 'loi_gui_phieu_thu', String(err).slice(0, 120));
     return false;
   }
+}
+
+/** Bảng phiếu thu: nhãn · dấu hai chấm · giá trị, mỗi thứ một cột nên luôn thẳng hàng. */
+function bangPhieu_(hang, co) {
+  return '<table cellpadding="0" cellspacing="0" style="border-collapse:collapse;width:100%;font-size:' + co + 'px">' +
+    hang.map(function (h) {
+      var tong = h[2];
+      var o = 'padding:' + (tong ? '10px' : '6px') + ' 0 6px;vertical-align:top;' +
+        (tong ? 'border-top:1px solid #D7D3D3;' : '');
+      return '<tr>' +
+        '<td style="' + o + 'width:1%;white-space:nowrap;color:#605D5D">' + esc_(h[0]) + '</td>' +
+        '<td style="' + o + 'width:1%;padding-left:14px;padding-right:10px;color:#605D5D">:</td>' +
+        '<td style="' + o + 'color:' + (tong ? '#AE1800;font-weight:bold' : '#201E1D') + '">' + esc_(h[1]) + '</td>' +
+      '</tr>';
+    }).join('') +
+  '</table>';
+}
+
+/** Trang PDF phiếu thu đính kèm. */
+function pdfPhieu_(L, hang) {
+  return '<html><head><meta charset="utf-8"></head>' +
+    '<body style="font-family:Arial,Helvetica,sans-serif;color:#201E1D;margin:36px 40px">' +
+      '<table width="100%" cellpadding="0" cellspacing="0"><tr>' +
+        '<td style="font-size:18px;font-weight:bold;letter-spacing:2px;vertical-align:top">LATTICE NEXT SOLUTIONS</td>' +
+        '<td align="right" style="font-size:11px;line-height:1.6;color:#605D5D">' + L.cty + '<br>' +
+          CH.emailBao + ' · 0853 999 566<br>lattice.business</td>' +
+      '</tr></table>' +
+      '<div style="border-top:3px solid #EC3013;margin:14px 0 28px"></div>' +
+      '<div style="font-size:24px;font-weight:bold;letter-spacing:1px;margin-bottom:18px">' + L.tieu + '</div>' +
+      bangPhieu_(hang, 13) +
+      '<p style="margin-top:28px;font-size:11px;line-height:1.6;color:#605D5D">' + esc_(L.luuYPdf) + '</p>' +
+    '</body></html>';
+}
+
+function esc_(s) {
+  return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+  });
 }
 
 function baoDangKyMoi_(p, nhieu) {

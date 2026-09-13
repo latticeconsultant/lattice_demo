@@ -416,7 +416,7 @@ footer a { color: var(--n700); }
     <fieldset>
       <legend>Choose a package</legend>
       <div class="f"><span class="lb">Package <span class="req">*</span>
-        <span class="hint">A file-creation and administration fee. The initial exchange by email or messaging app is free of charge.</span></span>
+        <span class="hint">A file-creation and administration fee. The initial exchange by email is free of charge.</span></span>
         <div class="goi">
           <label>
             <input type="radio" name="goi" value="LATTICE Scan" required>
@@ -435,7 +435,7 @@ footer a { color: var(--n700); }
       </div>
 
       <div class="consent">
-        <label class="chk"><input type="checkbox" name="dong_y" value="Yes" required><span>I agree that LATTICE Next Solutions may contact me by email and messaging app about this request. <span class="req">*</span></span></label>
+        <label class="chk"><input type="checkbox" name="dong_y" value="Yes" required><span>I agree that LATTICE Next Solutions may contact me by email about this request. <span class="req">*</span></span></label>
         <label class="chk" style="margin-top:2px"><input type="checkbox" name="dong_y_chinh_sach" value="Yes" required><span>I have read and accept the <a href="#" data-pop="1">fee and refund policy</a>: once LATTICE has sent the questionnaire, the fee is not refundable. <span class="req">*</span></span></label>
       </div>
     </fieldset>
@@ -497,7 +497,7 @@ footer a { color: var(--n700); }
       <h2>All done. Thank you.</h2>
       <p>Your registration is recorded and a <strong>confirmation email with the payment details</strong> has gone to the address you entered. If it does not arrive, please check your spam folder.</p>
       <p>As soon as the money arrives, the system sends a <strong>receipt</strong> automatically. We then create your file, send the <strong>preparation questionnaire</strong>, and agree a time with you.</p>
-      <p>Your information is kept confidential and is not passed to any third party. If you need to reach us sooner, message us on <a href="tel:+84853999566">+84 853 999 566</a>.</p>
+      <p>Your information is kept confidential and is not passed to any third party. All communication with LATTICE Next Solutions is by email at <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a>. We will soon open our own messaging channel, <strong>LatticeTalk</strong>.</p>
       <a class="back" href="../en/">BACK TO THE SITE</a>
     </div>
   </section>
@@ -542,7 +542,7 @@ footer a { color: var(--n700); }
 <div class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="popTitle">
   <div class="pop-hop">
     <h2 id="popTitle">Fee and refund policy</h2>
-    <p class="dan">What you pay is a <strong>file-creation and administration fee</strong>, not a consulting charge: studying your model, writing a questionnaire for it, analysing it before the session and producing the documents afterwards. The initial exchange by email or messaging app is free.</p>
+    <p class="dan">What you pay is a <strong>file-creation and administration fee</strong>, not a consulting charge: studying your model, writing a questionnaire for it, analysing it before the session and producing the documents afterwards. The initial exchange by email is free.</p>
     <div class="pop-ds">
       <div><b>Cancelled before we send the questionnaire</b><span>Full refund.</span></div>
       <div><b>After we have sent the questionnaire</b><span>No refund. By this point the file-creation work is complete and cannot be recovered.</span></div>
@@ -705,7 +705,7 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw7EDVxuAem13qXELI1E_gtq
   // biết là đã đóng thì vừa mất công của họ vừa tạo hồ sơ không xử lý được.
   function dongDangKy() {
     var o = document.querySelector('.dot1');
-    if (o) { o.className = 'dot1 het'; o.innerHTML = '<strong>Round 1 is closed.</strong> We will announce the next round. In the meantime, ask us anything by email or messaging app — the first exchange is free.'; }
+    if (o) { o.className = 'dot1 het'; o.innerHTML = '<strong>Round 1 is closed.</strong> We will announce the next round. In the meantime, ask us anything by email — the first exchange is free.'; }
     var an = [frm, document.getElementById('m2'), document.getElementById('m3'),
               document.getElementById('buocBar')];
     an.forEach(function (x) { if (x) x.style.display = 'none'; });
@@ -714,7 +714,7 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw7EDVxuAem13qXELI1E_gtq
       m4.classList.add('hien');
       m4.querySelector('h2').textContent = 'Round 1 registration is closed';
       var ps = m4.querySelectorAll('p');
-      ps[0].innerHTML = 'We will announce when the next round opens. In the meantime, send your questions by email or messaging app — the first exchange is free.';
+      ps[0].innerHTML = 'We will announce when the next round opens. In the meantime, send your questions by email — the first exchange is free.';
       for (var i = 1; i < ps.length; i++) ps[i].style.display = 'none';
     }
   }

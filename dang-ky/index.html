@@ -418,7 +418,7 @@ footer a { color: var(--n700); }
     <fieldset>
       <legend>Chọn gói</legend>
       <div class="f"><span class="lb">Gói dịch vụ <span class="req">*</span>
-        <span class="hint">Phí tạo lập hồ sơ và quản lý. Trao đổi ban đầu qua email hoặc Zalo thì không mất phí.</span></span>
+        <span class="hint">Phí tạo lập hồ sơ và quản lý. Trao đổi ban đầu qua email thì không mất phí.</span></span>
         <div class="goi">
           <label>
             <input type="radio" name="goi" value="LATTICE Scan" required>
@@ -437,7 +437,7 @@ footer a { color: var(--n700); }
       </div>
 
       <div class="consent">
-        <label class="chk"><input type="checkbox" name="dong_y" value="Có" required><span>Tôi đồng ý để LATTICE Next Solutions liên hệ qua email và Zalo về yêu cầu này. <span class="req">*</span></span></label>
+        <label class="chk"><input type="checkbox" name="dong_y" value="Có" required><span>Tôi đồng ý để LATTICE Next Solutions liên hệ qua email về yêu cầu này. <span class="req">*</span></span></label>
         <label class="chk" style="margin-top:2px"><input type="checkbox" name="dong_y_chinh_sach" value="Có" required><span>Tôi đã đọc và đồng ý với <a href="#" data-pop="1">chính sách phí và hoàn phí</a>: sau khi LATTICE đã gửi bảng câu hỏi thì không hoàn phí. <span class="req">*</span></span></label>
       </div>
     </fieldset>
@@ -499,7 +499,7 @@ footer a { color: var(--n700); }
       <h2>Hoàn tất. Cảm ơn anh chị.</h2>
       <p>Chúng tôi đã ghi nhận đăng ký và gửi <strong>thư xác nhận kèm thông tin chuyển khoản</strong> tới hộp thư anh chị vừa điền. Nếu không thấy, anh chị kiểm tra hộp thư rác giúp chúng tôi.</p>
       <p>Ngay khi tiền về, hệ thống tự gửi <strong>phiếu thu</strong>. Sau đó chúng tôi tạo lập hồ sơ và gửi <strong>bảng câu hỏi chuẩn bị</strong>, rồi thống nhất lịch làm việc.</p>
-      <p>Thông tin của anh chị được giữ kín và không cung cấp cho bên thứ ba. Cần trao đổi sớm, anh chị nhắn Zalo theo số <a href="tel:+84853999566">0853 999 566</a>.</p>
+      <p>Thông tin của anh chị được giữ kín và không cung cấp cho bên thứ ba. Mọi trao đổi với LATTICE Next Solutions thực hiện qua email <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a>. Sắp tới, chúng tôi sẽ mở kênh nhắn tin riêng <strong>LatticeTalk</strong>.</p>
       <a class="back" href="../">VỀ TRANG CHỦ</a>
     </div>
   </section>
@@ -544,7 +544,7 @@ footer a { color: var(--n700); }
 <div class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="popTitle">
   <div class="pop-hop">
     <h2 id="popTitle">Chính sách phí và hoàn phí</h2>
-    <p class="dan">Khoản thu là <strong>phí tạo lập hồ sơ và quản lý</strong>, không phải phí tư vấn: nghiên cứu mô hình của anh chị, soạn bảng câu hỏi riêng, phân tích trước buổi làm việc và làm tài liệu sau buổi. Trao đổi ban đầu qua email hoặc Zalo không mất phí.</p>
+    <p class="dan">Khoản thu là <strong>phí tạo lập hồ sơ và quản lý</strong>, không phải phí tư vấn: nghiên cứu mô hình của anh chị, soạn bảng câu hỏi riêng, phân tích trước buổi làm việc và làm tài liệu sau buổi. Trao đổi ban đầu qua email không mất phí.</p>
     <div class="pop-ds">
       <div><b>Huỷ trước khi chúng tôi gửi bảng câu hỏi</b><span>Hoàn 100%.</span></div>
       <div><b>Sau khi chúng tôi đã gửi bảng câu hỏi</b><span>Không hoàn phí. Đến mốc này phần việc tạo lập hồ sơ đã hoàn tất và không thu hồi được.</span></div>
@@ -708,7 +708,7 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw7EDVxuAem13qXELI1E_gtq
   // biết là đã đóng thì vừa mất công của họ vừa tạo hồ sơ không xử lý được.
   function dongDangKy() {
     var o = document.querySelector('.dot1');
-    if (o) { o.className = 'dot1 het'; o.innerHTML = '<strong>Đợt 1 đã đóng đăng ký.</strong> Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email hoặc Zalo — phần trao đổi ban đầu không mất phí.'; }
+    if (o) { o.className = 'dot1 het'; o.innerHTML = '<strong>Đợt 1 đã đóng đăng ký.</strong> Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email — phần trao đổi ban đầu không mất phí.'; }
     var an = [frm, document.getElementById('m2'), document.getElementById('m3'),
               document.getElementById('buocBar')];
     an.forEach(function (x) { if (x) x.style.display = 'none'; });
@@ -717,7 +717,7 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw7EDVxuAem13qXELI1E_gtq
       m4.classList.add('hien');
       m4.querySelector('h2').textContent = 'Đã đóng đăng ký đợt 1';
       var ps = m4.querySelectorAll('p');
-      ps[0].innerHTML = 'Chúng tôi sẽ thông báo thời gian mở đợt tiếp theo. Trong lúc chờ, anh chị cứ gửi câu hỏi qua email hoặc Zalo — trao đổi ban đầu không mất phí.';
+      ps[0].innerHTML = 'Chúng tôi sẽ thông báo thời gian mở đợt tiếp theo. Trong lúc chờ, anh chị cứ gửi câu hỏi qua email — trao đổi ban đầu không mất phí.';
       for (var i = 1; i < ps.length; i++) ps[i].style.display = 'none';
     }
   }

@@ -5,16 +5,6 @@
   "nguon": "markup"
  },
  {
-  "vi": "LATTICE Next Solutions JSC · bản mô tả website · chọn chế độ hiển thị",
-  "en": "LATTICE Next Solutions JSC · website preview · choose a display mode",
-  "nguon": "markup"
- },
- {
-  "vi": "IN / PDF",
-  "en": "PRINT / PDF",
-  "nguon": "markup"
- },
- {
   "vi": "NEXT SOLUTIONS JSC",
   "en": "NEXT SOLUTIONS JSC",
   "nguon": "markup"
@@ -3797,11 +3787,6 @@
  {
   "vi": "[chưa cấu hình — điền địa chỉ chính thức]",
   "en": "[to be configured — add the official address]",
-  "nguon": "markup"
- },
- {
-  "vi": "ĐIỆN THOẠI / ZALO",
-  "en": "PHONE / MESSAGING",
   "nguon": "markup"
  },
  {
@@ -10660,11 +10645,6 @@
   "nguon": "hop-thoai"
  },
  {
-  "vi": "0853 999 566",
-  "en": "+84 853 999 566",
-  "nguon": "lien-he"
- },
- {
   "vi": "Cảm ơn anh chị đã quan tâm",
   "en": "Thank you for your interest",
   "nguon": "hop-thoai"
@@ -10722,11 +10702,6 @@
  {
   "vi": "499.000đ",
   "en": "499,000 VND",
-  "nguon": "goi-dich-vu"
- },
- {
-  "vi": "hoặc Zalo",
-  "en": "or messaging app",
   "nguon": "goi-dich-vu"
  },
  {
@@ -10920,8 +10895,8 @@
   "nguon": "goi-dich-vu"
  },
  {
-  "vi": "Hỏi nhanh qua email hoặc Zalo thì không mất gì — chúng tôi trả lời và nói thẳng có phù hợp hay không. Khoản phí dưới đây là",
-  "en": "Asking a quick question by email or messaging app costs nothing — we answer, and we say plainly whether this is a fit. The fee below is",
+  "vi": "Hỏi nhanh qua email thì không mất gì — chúng tôi trả lời và nói thẳng có phù hợp hay không. Khoản phí dưới đây là",
+  "en": "Asking a quick question by email costs nothing — we answer, and we say plainly whether this is a fit. The fee below is",
   "nguon": "goi-dich-vu"
  },
  {
@@ -10945,8 +10920,8 @@
   "nguon": "goi-dich-vu"
  },
  {
-  "vi": "Trao đổi ban đầu miễn phí — anh chị cứ hỏi qua email hoặc Zalo, chúng tôi trả lời và nói thẳng có phù hợp hay không. Muốn đi tiếp thì chọn một trong hai gói dưới đây.",
-  "en": "The first exchange is free — ask by email or messaging app, and we will answer and say plainly whether this is a fit. To go further, pick one of the two packages below.",
+  "vi": "Trao đổi ban đầu miễn phí — anh chị cứ hỏi qua email, chúng tôi trả lời và nói thẳng có phù hợp hay không. Muốn đi tiếp thì chọn một trong hai gói dưới đây.",
+  "en": "The first exchange is free — ask by email, and we will answer and say plainly whether this is a fit. To go further, pick one of the two packages below.",
   "nguon": "goi-dich-vu"
  },
  {
@@ -10995,13 +10970,13 @@
   "nguon": "dem-nguoc"
  },
  {
-  "vi": "Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email hoặc Zalo — phần trao đổi ban đầu không mất phí.",
-  "en": "We will announce the next round. In the meantime, ask us anything by email or messaging app — the first exchange is free.",
+  "vi": "Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email — phần trao đổi ban đầu không mất phí.",
+  "en": "We will announce the next round. In the meantime, ask us anything by email — the first exchange is free.",
   "nguon": "dem-nguoc"
  },
  {
-  "vi": "<strong>Đợt 1 đã đóng đăng ký.</strong> Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email hoặc Zalo — phần trao đổi ban đầu không mất phí.",
-  "en": "<strong>Round 1 is closed.</strong> We will announce the next round. In the meantime, ask us anything by email or messaging app — the first exchange is free.",
+  "vi": "<strong>Đợt 1 đã đóng đăng ký.</strong> Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email — phần trao đổi ban đầu không mất phí.",
+  "en": "<strong>Round 1 is closed.</strong> We will announce the next round. In the meantime, ask us anything by email — the first exchange is free.",
   "nguon": "dem-nguoc"
  },
  {

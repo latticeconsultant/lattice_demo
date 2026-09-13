@@ -97,7 +97,7 @@ Hai script ghi đè phần giữa `<!-- DOC:START -->` và `<!-- DOC:END -->`. �
 
 ## 5. Gói dịch vụ và đợt đăng ký
 
-Trao đổi ban đầu qua email hoặc Zalo **miễn phí**. Khoản thu là **phí tạo lập hồ sơ và quản lý**, không phải phí tư vấn — nhờ vậy chữ "miễn phí" vẫn đúng, và mốc không hoàn phí gắn được vào một việc bàn giao cụ thể.
+Trao đổi ban đầu qua email **miễn phí**. Khoản thu là **phí tạo lập hồ sơ và quản lý**, không phải phí tư vấn — nhờ vậy chữ "miễn phí" vẫn đúng, và mốc không hoàn phí gắn được vào một việc bàn giao cụ thể.
 
 | | LATTICE Scan | LATTICE Blueprint |
 | --- | --- | --- |

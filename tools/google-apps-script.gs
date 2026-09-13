@@ -4,9 +4,17 @@
  * CÁCH TRIỂN KHAI:
  *  1. Mở Google Sheet đang dùng → Tiện ích mở rộng (Extensions) → Apps Script.
  *  2. Xoá hết, dán toàn bộ file này vào, Lưu.
- *  3. Triển khai → Quản lý triển khai → sửa bản đang có → Phiên bản: Mới → Triển khai.
- *     Nếu tạo triển khai MỚI thì URL đổi và phải dán lại vào hai trang biểu mẫu.
+ *  3. Triển khai → TÙY CHỌN TRIỂN KHAI MỚI (New deployment), KHÔNG sửa bản cũ.
  *     Loại: Ứng dụng web · Thực thi với tư cách: Tôi · Ai truy cập: Bất kỳ ai.
+ *  4. Copy URL mới, rồi thay ở BỐN chỗ:
+ *       dang-ky/index.html · register/index.html · quan-tri/index.html
+ *       và địa chỉ webhook trong SePay (giữ nguyên đuôi ?sepay=<mật mã>)
+ *  5. Kiểm tra: mở <URL>?viec=phienBanCongKhai — phải ra đúng PHIEN_BAN bên dưới.
+ *
+ * VÌ SAO KHÔNG SỬA BẢN CŨ: Apps Script phục vụ bản ĐÃ TRIỂN KHAI, không phải mã vừa
+ * lưu. Sửa bản cũ mà ô "Phiên bản" vẫn để số cũ thì bấm Triển khai vẫn báo thành
+ * công nhưng mã mới không chạy — đã dính ba lần liền. Triển khai mới luôn lấy mã
+ * mới nhất; đổi lại URL đổi, nên phải thay ở bốn chỗ trên.
  *
  * BA CỬA VÀO:
  *  - POST không kèm tham số sepay : biểu mẫu đăng ký gửi lên

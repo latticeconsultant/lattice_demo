@@ -343,7 +343,7 @@ function thuXacNhan_(p) {
         '  3. When you return it, we agree a time for the session.\n\n' +
         'Your information is kept confidential, used only to prepare and run the session, ' +
         'never for any other purpose, and never passed to a third party.\n\n' +
-        'Questions: ' + CH.emailBao + ' · +84 853 999 566\n\n' +
+        'Questions: ' + CH.emailBao + '\n\n' +
         'LATTICE Next Solutions Joint Stock Company\nhttps://lattice.business/en/';
     } else {
       tieude = 'LATTICE Next — đã nhận phiếu đăng ký của anh chị';
@@ -357,7 +357,7 @@ function thuXacNhan_(p) {
         '  3. Anh chị gửi lại, hai bên thống nhất lịch làm việc.\n\n' +
         'Thông tin anh chị cung cấp được giữ kín, chỉ dùng để chuẩn bị và thực hiện buổi làm việc, ' +
         'không dùng cho mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.\n\n' +
-        'Cần trao đổi: ' + CH.emailBao + ' · 0853 999 566\n\n' +
+        'Cần trao đổi: ' + CH.emailBao + '\n\n' +
         'Công ty Cổ phần Giải pháp LATTICE Next\nhttps://lattice.business/';
     }
     MailApp.sendEmail({ to: toi, subject: tieude, body: than,
@@ -449,7 +449,7 @@ function khungThu_(tag, noiDung) {
       '</div>' +
       '<div style="padding:26px">' + noiDung + '</div>' +
       '<div style="background:#F3F2F2;padding:16px 26px;font-size:12.5px;line-height:1.6;color:#807C7C">' +
-        'Công ty Cổ phần Giải pháp LATTICE Next · ' + CH.emailBao + ' · 0853 999 566<br>' +
+        'Công ty Cổ phần Giải pháp LATTICE Next · ' + CH.emailBao + '<br>' +
         '<a href="https://lattice.business/" style="color:#605D5D">lattice.business</a>' +
       '</div>' +
     '</div>' +
@@ -573,7 +573,7 @@ function pdfPhieu_(L, hang) {
       '<table width="100%" cellpadding="0" cellspacing="0"><tr>' +
         '<td style="font-size:18px;font-weight:bold;letter-spacing:2px;vertical-align:top">LATTICE NEXT SOLUTIONS</td>' +
         '<td align="right" style="font-size:11px;line-height:1.6;color:#605D5D">' + L.cty + '<br>' +
-          CH.emailBao + ' · 0853 999 566<br>lattice.business</td>' +
+          CH.emailBao + '<br>lattice.business</td>' +
       '</tr></table>' +
       '<div style="border-top:3px solid #EC3013;margin:14px 0 28px"></div>' +
       '<div style="font-size:24px;font-weight:bold;letter-spacing:1px;margin-bottom:18px">' + L.tieu + '</div>' +

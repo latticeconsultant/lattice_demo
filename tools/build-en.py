@@ -163,6 +163,10 @@ def main():
     for thu_muc in ('assets/', 'brand/'):
         t = re.sub(r'(?<=["\'(])' + thu_muc, '../' + thu_muc, t)
     t = t.replace('"../../', '"../')
+    # srcset có nhiều đường dẫn; chỉ đường đầu đứng sau dấu nháy nên regex trên
+    # không bắt được các đường sau dấu phẩy — lùi một cấp cho chúng ở đây.
+    t = re.sub(r'srcset="([^"]*)"',
+               lambda m: 'srcset="' + re.sub(r'(,\s*)(assets/|brand/)', r'\1../\2', m.group(1)) + '"', t)
 
     # ngôn ngữ trang và nút chuyển ngữ
     t = t.replace('<html lang="vi">', '<html lang="en">', 1)

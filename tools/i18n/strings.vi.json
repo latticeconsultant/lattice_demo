@@ -3515,8 +3515,8 @@
   "nguon": "markup"
  },
  {
-  "vi": "HIỂN THỊ · ARCHIVO 800",
-  "en": "DISPLAY · ARCHIVO 800",
+  "vi": "TIÊU ĐỀ · SOURCE SERIF 4",
+  "en": "HEADINGS · SOURCE SERIF 4",
   "nguon": "markup"
  },
  {
@@ -3525,18 +3525,18 @@
   "nguon": "markup"
  },
  {
-  "vi": "THÂN BÀI · ARCHIVO 400",
-  "en": "BODY · ARCHIVO 400",
+  "vi": "THÂN BÀI · INTER 400",
+  "en": "BODY · INTER 400",
   "nguon": "markup"
  },
  {
-  "vi": "Một bộ chữ duy nhất cho cả tiêu đề và thân bài — đọc bảng dày chữ không mỏi mắt, dấu tiếng Việt đầy đủ.",
-  "en": "A single typeface for both headings and body — dense tables stay readable, with full diacritic coverage.",
+  "vi": "Tiêu đề chữ có chân kiểu báo tài chính, thân bài chữ không chân — đọc bảng dày chữ không mỏi mắt, dấu tiếng Việt đầy đủ.",
+  "en": "Serif headings in the manner of a financial newspaper, sans-serif body text — easy on the eye in dense tables, with full Vietnamese diacritics.",
   "nguon": "markup"
  },
  {
-  "vi": "DỮ LIỆU · ARCHIVO 600",
-  "en": "DATA · ARCHIVO 600",
+  "vi": "DỮ LIỆU · INTER 600",
+  "en": "DATA · INTER 600",
   "nguon": "markup"
  },
  {
@@ -11008,5 +11008,10 @@
   "vi": "21/09/2026",
   "en": "21 September 2026",
   "nguon": "goi-dich-vu"
+ },
+ {
+  "vi": "Chuyển chế độ ngày / đêm",
+  "en": "Switch day / night mode",
+  "nguon": "markup"
  }
 ]

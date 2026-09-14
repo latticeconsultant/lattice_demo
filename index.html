@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LATTICE Next Solutions — Kiến trúc mô hình kinh doanh mới</title>
 <meta name="description" content="LATTICE Next Solutions JSC không gắn AI vào bộ máy cũ. Chúng tôi thiết kế lại bộ máy quanh AI — chẩn đoán, kiến trúc, triển khai, vận hành — kèm hệ thống kiểm soát để doanh nghiệp tự vận hành.">
-<meta name="theme-color" content="#0e0d0d">
+<meta name="theme-color" content="#fff1e5">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="LATTICE Next Solutions JSC">
 <meta property="og:title" content="LATTICE Next Solutions — Kiến trúc mô hình kinh doanh mới">
@@ -15,6 +15,16 @@
 <link rel="icon" type="image/png" sizes="32x32" href="brand/logo/favicon/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="brand/logo/favicon/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="brand/logo/favicon/favicon-180.png">
+<script>
+  // Chế độ ngày/đêm đã chọn phải áp trước khi vẽ, nếu không trang lóe nền sáng
+  // rồi mới tối. Mặc định là ngày (nền giấy); chỉ đổi khi người xem đã bấm nút.
+  try {
+    if (localStorage.getItem('lnx-theme') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1a1817');
+    }
+  } catch (e) {}
+</script>
 <script>
   // Cờ khóa phải đặt trước khi trang vẽ, nếu đợi React mount thì nội dung
   // sẽ lóe ra một nhịp rồi mới bị che — người xem kịp đọc và kịp chụp màn hình.
@@ -36,117 +46,83 @@
 <x-dc>
 <helmet>
   <style>/* Modernist — design-system tokens and component classes. This file is the source of truth for the system's look; retune it here and see readme.md. */
-/* vietnamese */
+/* Phông theo tinh thần ft.com. FT dùng Financier Display (tiêu đề) và Metric
+   (chữ thường) — phông bản quyền riêng của FT. Thay bằng hai phông mở gần dáng
+   nhất và có đủ dấu tiếng Việt: Source Serif 4 và Inter. */
+/* Source Serif 4 · vietnamese */
 @font-face {
-  font-family: 'Archivo';
+  font-family: 'Source Serif 4';
   font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
+  font-weight: 400 700;
   font-display: swap;
-  src: url("assets/fonts/archivo-vietnamese.woff2") format('woff2');
+  src: url("assets/fonts/source-serif-4-vietnamese.woff2") format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
-/* latin-ext */
+/* Source Serif 4 · latin-ext */
 @font-face {
-  font-family: 'Archivo';
+  font-family: 'Source Serif 4';
   font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
+  font-weight: 400 700;
   font-display: swap;
-  src: url("assets/fonts/archivo-latin-ext.woff2") format('woff2');
+  src: url("assets/fonts/source-serif-4-latin-ext.woff2") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
+/* Source Serif 4 · latin */
 @font-face {
-  font-family: 'Archivo';
+  font-family: 'Source Serif 4';
   font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
+  font-weight: 400 700;
   font-display: swap;
-  src: url("assets/fonts/archivo-latin.woff2") format('woff2');
+  src: url("assets/fonts/source-serif-4-latin.woff2") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* vietnamese */
+/* Inter · vietnamese */
 @font-face {
-  font-family: 'Archivo';
+  font-family: 'Inter';
   font-style: normal;
-  font-weight: 600;
-  font-stretch: 100%;
+  font-weight: 400 700;
   font-display: swap;
-  src: url("assets/fonts/archivo-vietnamese.woff2") format('woff2');
+  src: url("assets/fonts/inter-vietnamese.woff2") format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
-/* latin-ext */
+/* Inter · latin-ext */
 @font-face {
-  font-family: 'Archivo';
+  font-family: 'Inter';
   font-style: normal;
-  font-weight: 600;
-  font-stretch: 100%;
+  font-weight: 400 700;
   font-display: swap;
-  src: url("assets/fonts/archivo-latin-ext.woff2") format('woff2');
+  src: url("assets/fonts/inter-latin-ext.woff2") format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* latin */
+/* Inter · latin */
 @font-face {
-  font-family: 'Archivo';
+  font-family: 'Inter';
   font-style: normal;
-  font-weight: 600;
-  font-stretch: 100%;
+  font-weight: 400 700;
   font-display: swap;
-  src: url("assets/fonts/archivo-latin.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Archivo';
-  font-style: normal;
-  font-weight: 800;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url("assets/fonts/archivo-vietnamese.woff2") format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Archivo';
-  font-style: normal;
-  font-weight: 800;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url("assets/fonts/archivo-latin-ext.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Archivo';
-  font-style: normal;
-  font-weight: 800;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url("assets/fonts/archivo-latin.woff2") format('woff2');
+  src: url("assets/fonts/inter-latin.woff2") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 
 :root {
-  --color-bg: #f3f2f2;
-  --color-surface: #eae9e9;
-  --color-text: #201e1d;
+  --color-bg: #fff1e5;
+  --color-surface: #f2dfce;
+  --color-text: #33302e;
   --color-accent: #ec3013;
   --color-accent-2: #e15b47;
-  --color-divider: color-mix(in srgb, #201e1d 40%, transparent);
+  --color-divider: color-mix(in srgb, var(--color-text) 40%, transparent);
 
-  /* Tonal ramps — generated in OKLCH on one shared lightness scale, so the
-     same step of any role matches the others in visual value. */
-  --color-neutral-100: #f8f4f4;
-  --color-neutral-200: #eae7e7;
-  --color-neutral-300: #d7d3d3;
-  --color-neutral-400: #bab6b6;
-  --color-neutral-500: #9b9797;
-  --color-neutral-600: #7d7979;
-  --color-neutral-700: #605d5d;
-  --color-neutral-800: #444141;
-  --color-neutral-900: #2d2b2b;
+  /* Thang trung tính theo cách FT pha đen lên nền giấy: ấm, không xám lạnh. */
+  --color-neutral-100: #fff7ef;
+  --color-neutral-200: #f2dfce;
+  --color-neutral-300: #e0cfc0;
+  --color-neutral-400: #c2b5a9;
+  --color-neutral-500: #999189;
+  --color-neutral-600: #756f6a;
+  --color-neutral-700: #5e5955;
+  --color-neutral-800: #4d4845;
+  --color-neutral-900: #33302e;
 
   --color-accent-100: #fff2ef;
   --color-accent-200: #ffe0d9;
@@ -168,9 +144,9 @@
   --color-accent-2-800: #71261b;
   --color-accent-2-900: #471d16;
 
-  --font-heading: "Archivo", system-ui, sans-serif;
-  --font-heading-weight: 800;
-  --font-body: "Archivo", system-ui, sans-serif;
+  --font-heading: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-heading-weight: 600;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --space-1: 4.0px;
   --space-2: 8.0px;
@@ -188,6 +164,96 @@
   --shadow-sm: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
   --shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
   --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
+}
+
+/* ── Chế độ đêm ─────────────────────────────────────────────────────────────
+   Chỉ đổi biến màu; thành phần nào vẽ bằng biến sẽ tự đổi theo.
+   Bật bằng data-theme="dark" trên <html> (nút tròn ở đầu trang, nhớ trong localStorage). */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #1a1817;
+  --color-surface: #262322;
+  --color-text: #efe6dd;
+  --color-accent: #ec3013;
+  --color-accent-2: #e15b47;
+  --color-divider: color-mix(in srgb, var(--color-text) 40%, transparent);
+
+  --color-neutral-100: #211e1d;
+  --color-neutral-200: #2b2826;
+  --color-neutral-300: #3b3633;
+  --color-neutral-400: #57514c;
+  --color-neutral-500: #7a736d;
+  --color-neutral-600: #a29a93;
+  --color-neutral-700: #bdb4ac;
+  --color-neutral-800: #d8cfc6;
+  --color-neutral-900: #efe6dd;
+
+  --color-accent-100: #2e1510;
+  --color-accent-200: #4d170e;
+  --color-accent-300: #7c1405;
+  --color-accent-400: #c02a12;
+  --color-accent-500: #ec3013;
+  --color-accent-600: #ff563c;
+  --color-accent-700: #ff8a73;
+  --color-accent-800: #ffc4b8;
+  --color-accent-900: #ffe0d9;
+
+  --color-accent-2-100: #2e1611;
+  --color-accent-2-200: #471d16;
+  --color-accent-2-300: #71261b;
+  --color-accent-2-400: #9e3526;
+  --color-accent-2-500: #ef6853;
+  --color-accent-2-600: #ff8672;
+  --color-accent-2-700: #ffa594;
+  --color-accent-2-800: #ffc4b9;
+  --color-accent-2-900: #ffe0da;
+}
+
+/* Các dải nền tối (nền = --color-text) được vẽ cho ban ngày: chữ trắng cố định,
+   xám nhạt. Đổi biến theo đêm thì dải tối lật thành dải sáng chói và chữ trắng
+   biến mất. Nên trong chế độ đêm, riêng các dải này giữ bộ biến ban ngày —
+   vẫn tối, chữ vẫn sáng, chỉ sẫm hơn nền đêm một bậc. */
+:root[data-theme="dark"] .lnx-band,
+:root[data-theme="dark"] .lnx-lock,
+:root[data-theme="dark"] .lnx-doc-bar,
+:root[data-theme="dark"] .lnx-dem span {
+  --color-bg: #fff1e5;
+  --color-surface: #f2dfce;
+  --color-text: #0f0e0d;
+  --color-accent: #ec3013;
+  --color-accent-2: #e15b47;
+  --color-divider: color-mix(in srgb, var(--color-text) 40%, transparent);
+
+  /* Thang trung tính theo cách FT pha đen lên nền giấy: ấm, không xám lạnh. */
+  --color-neutral-100: #fff7ef;
+  --color-neutral-200: #f2dfce;
+  --color-neutral-300: #e0cfc0;
+  --color-neutral-400: #c2b5a9;
+  --color-neutral-500: #999189;
+  --color-neutral-600: #756f6a;
+  --color-neutral-700: #5e5955;
+  --color-neutral-800: #4d4845;
+  --color-neutral-900: #33302e;
+
+  --color-accent-100: #fff2ef;
+  --color-accent-200: #ffe0d9;
+  --color-accent-300: #ffc4b8;
+  --color-accent-400: #ff9783;
+  --color-accent-500: #ff563c;
+  --color-accent-600: #dd2b0f;
+  --color-accent-700: #ae1800;
+  --color-accent-800: #7c1405;
+  --color-accent-900: #4d170e;
+
+  --color-accent-2-100: #fff2ef;
+  --color-accent-2-200: #ffe0da;
+  --color-accent-2-300: #ffc4b9;
+  --color-accent-2-400: #ff9784;
+  --color-accent-2-500: #ef6853;
+  --color-accent-2-600: #c94b39;
+  --color-accent-2-700: #9e3526;
+  --color-accent-2-800: #71261b;
+  --color-accent-2-900: #471d16;
 }
 
 body {
@@ -241,7 +307,8 @@ figcaption {
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   cursor: pointer; text-decoration: none;
-  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  /* Nút và nhãn chữ in hoa dùng phông không chân như FT; phông có chân chỉ cho tiêu đề. */
+  font-family: var(--font-body); font-weight: 600;
   font-size: 14px; line-height: 1.2; color: var(--color-text); /* matches the .input's 14px —
      the pair sits side by side in sign-up rows */
   background: transparent; border: 1px solid transparent;
@@ -380,7 +447,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 </style>
   <script src="assets/js/modernist-ds.js"></script>
   <style>
-    body { margin:0; background:#0e0d0d; }
+    body { margin:0; background:var(--color-bg); }
     a { color: var(--color-accent); }
     a:hover { color: var(--color-accent-700); }
     .lnx-nav::-webkit-scrollbar { height:0 }
@@ -435,6 +502,22 @@ textarea.input { min-height: 90px; resize: vertical; }
       font-weight: 600; padding: 11px 14px; color: var(--color-text);
       border: 2px solid var(--color-neutral-400); background: transparent; }
     .lnx-lang:hover { border-color: var(--color-text); color: var(--color-text); }
+    /* Nút tròn đổi ngày/đêm: nửa hình tròn tô đặc, xoay nửa vòng khi đổi. */
+    .lnx-theme { flex: none; width: 44px; height: 44px; padding: 0; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+      appearance: none; background: transparent; color: var(--color-text);
+      border: 2px solid var(--color-neutral-400); }
+    .lnx-theme:hover { border-color: var(--color-text); }
+    .lnx-theme svg { display: block; transition: transform .35s ease; }
+    :root[data-theme="dark"] .lnx-theme svg { transform: rotate(180deg); }
+    @media (prefers-reduced-motion: reduce) { .lnx-theme svg { transition: none; } }
+    @media print { .lnx-theme { display: none !important; } }
+    /* Khổ điện thoại: logo + EN + nút tròn + nút menu phải vừa một hàng. */
+    @container (max-width: 520px) {
+      .lnx-head { gap: 8px !important; }
+      .lnx-theme { width: 38px; height: 38px; }
+      .lnx-head > .lnx-lang { display: none; }  /* menu đã có mục EN · ENGLISH VERSION */
+    }
     .lnx-lang-menu { display: flex; width: 100%; margin-bottom: 2px; padding: 14px 16px;
       justify-content: flex-start; }
     html.lnx-locked .lnx-lang-menu { display: none; }
@@ -507,7 +590,8 @@ textarea.input { min-height: 90px; resize: vertical; }
       font-weight: 600; padding: 18px 22px; background: var(--color-accent); color: #fff; border: 0; }
     .lnx-dlg-go:hover { background: var(--color-accent-700); }
     .lnx-dlg-qr { display: flex; align-items: center; gap: 13px; }
-    .lnx-dlg-qr img { display: block; width: 84px; height: 84px; border: 2px solid var(--color-neutral-300); }
+    /* Nền trắng cố định: mã QR đen trên nền đêm thì không nhìn thấy, cũng không quét được. */
+    .lnx-dlg-qr img { display: block; width: 84px; height: 84px; border: 2px solid var(--color-neutral-300); background: #fff; }
     .lnx-dlg-qr span { font-size: 12.5px; line-height: 1.5; color: var(--color-neutral-700); }
     .lnx-dlg-close { appearance: none; background: none; border: 0; cursor: pointer; margin: 22px 0 0;
       padding: 0; font-family: inherit; font-size: 12.5px; letter-spacing: .14em; font-weight: 600;
@@ -698,7 +782,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 </helmet>
 
 
-<div style="min-height:100vh;background:#0e0d0d;font-family:var(--font-body)">
+<div style="min-height:100vh;background:var(--color-bg);font-family:var(--font-body)">
 
   <div style="{{ viewportStyle }}">
   <div class="lnx-stage" ref="{{ stageRef }}" style="{{ stageStyle }}">
@@ -707,7 +791,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       <div class="lnx-head" style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px);display:flex;align-items:center;gap:clamp(12px,2cqi,32px);height:74px">
         <a href="#" sc-camel-on-click="{{ goHome }}" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--color-text);flex:none">
           <svg width="34" height="34" sc-camel-view-box="0 0 100 100" style="display:block"><path d="M50 8 L92 50 L50 92 L8 50 Z" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><path d="M50 8 L50 92 M8 50 L92 50" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><circle cx="50" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="92" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="92" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="8" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="50" r="10" fill="var(--color-accent)"></circle></svg>
-          <span style="display:block"><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:19px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:11px;letter-spacing:.26em;margin-top:5px;color:var(--color-neutral-600)">NEXT SOLUTIONS JSC</span></span>
+          <span style="display:block"><span style="display:block;font-family:var(--font-body);font-weight:800;font-size:19px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:11px;letter-spacing:.26em;margin-top:5px;color:var(--color-neutral-600)">NEXT SOLUTIONS JSC</span></span>
         </a>
         <nav class="lnx-nav" style="{{ navStyle }}">
           <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="7">
@@ -715,6 +799,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           </sc-for>
         </nav>
         <a class="lnx-lang" href="en/" hreflang="en" aria-label="English version">EN</a>
+        <button type="button" class="lnx-theme" sc-camel-on-click="{{ toggleTheme }}" aria-label="Chuyển chế độ ngày / đêm" title="Chuyển chế độ ngày / đêm"><svg sc-camel-view-box="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M12 3.5 A8.5 8.5 0 0 1 12 20.5 Z" fill="currentColor"></path></svg></button>
         <button type="button" class="btn btn-primary" sc-camel-on-click="{{ openDlg }}" style="{{ ctaStyle }};justify-content:flex-start;text-align:left">ĐẶT LỊCH CHẨN ĐOÁN</button>
         <button type="button" sc-camel-on-click="{{ toggleMenu }}" aria-label="Mở menu" style="{{ burgerStyle }}">
           <svg width="20" height="20" sc-camel-view-box="0 0 24 24" style="display:block;stroke:currentColor;fill:none;stroke-width:2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
@@ -1008,7 +1093,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <p class="lnx-lock-note">Chưa có mật khẩu? Liên hệ LATTICE Next Solutions để được cấp quyền xem.</p>
         </div>
       </section>
-      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(48px,7cqi,104px) 0 0">
+      <section class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:clamp(48px,7cqi,104px) 0 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 22px;font-weight:600">Tư vấn · Kiến trúc · Giải pháp toàn diện</p>
           <h1 style="font-size:clamp(34px,6.4cqi,84px);line-height:1.02;letter-spacing:-.03em;margin:0 0 26px;max-width:16ch">Kiến trúc mô hình <span style="color:var(--color-accent-500)">kinh doanh mới</span></h1>
@@ -1020,7 +1105,7 @@ textarea.input { min-height: 90px; resize: vertical; }
         </div>
         <figure style="margin:0;border-top:2px solid var(--color-neutral-700);position:relative">
           <img class="grayscale" src="assets/img/hero-lattice.png" alt="Giàn thép mắt lưới — mặt đứng hình học" style="display:block;width:100%;aspect-ratio:1913/822;object-fit:cover;object-position:left center">
-          <figcaption style="position:absolute;left:clamp(16px,2.5cqi,40px);bottom:clamp(14px,2cqi,26px);font-size:13px;letter-spacing:.2em;color:#fff;background:var(--color-text);padding:7px 12px">GIÀN LIÊN KẾT · MỖI NÚT NỐI VỚI CÁC NÚT LÂN CẬN</figcaption>
+          <figcaption class="lnx-band" style="position:absolute;left:clamp(16px,2.5cqi,40px);bottom:clamp(14px,2cqi,26px);font-size:13px;letter-spacing:.2em;color:#fff;background:var(--color-text);padding:7px 12px">GIÀN LIÊN KẾT · MỖI NÚT NỐI VỚI CÁC NÚT LÂN CẬN</figcaption>
         </figure>
         <div style="border-top:2px solid var(--color-neutral-700)">
           <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
@@ -1098,10 +1183,10 @@ textarea.input { min-height: 90px; resize: vertical; }
                      tràn qua mép trái viewBox và bị cắt. Nhãn đường truyền thống đặt
                      ở vùng trống phía trên-trái bậc thang; đặt giữa biểu đồ thì cạnh
                      đứng tại x=444 cắt ngang chữ. -->
-                <text x="62" y="30" font-size="15" fill="var(--color-neutral-700)" font-family="Archivo, sans-serif">CHI PHÍ</text>
-                <text x="616" y="272" text-anchor="end" font-size="15" fill="var(--color-neutral-700)" font-family="Archivo, sans-serif">SẢN LƯỢNG →</text>
-                <text x="334" y="132" text-anchor="end" font-size="15" fill="var(--color-neutral-700)" font-family="Archivo, sans-serif">Truyền thống: thuê thêm người</text>
-                <text x="300" y="234" font-size="15" fill="var(--color-accent-700)" font-weight="600" font-family="Archivo, sans-serif">AI-native: hạ tầng + kiểm soát</text>
+                <text x="62" y="30" font-size="15" fill="var(--color-neutral-700)" font-family="Inter, system-ui, sans-serif">CHI PHÍ</text>
+                <text x="616" y="272" text-anchor="end" font-size="15" fill="var(--color-neutral-700)" font-family="Inter, system-ui, sans-serif">SẢN LƯỢNG →</text>
+                <text x="334" y="132" text-anchor="end" font-size="15" fill="var(--color-neutral-700)" font-family="Inter, system-ui, sans-serif">Truyền thống: thuê thêm người</text>
+                <text x="300" y="234" font-size="15" fill="var(--color-accent-700)" font-weight="600" font-family="Inter, system-ui, sans-serif">AI-native: hạ tầng + kiểm soát</text>
               </svg>
             </div>
             <figcaption style="margin-top:16px;font-size:14px;line-height:1.65;color:var(--color-neutral-700);max-width:80ch">Khoảng cách giữa hai đường là biên lợi nhuận của mô hình mới. Đường truyền thống đi theo bậc vì mỗi bậc là một lần tuyển người.</figcaption>
@@ -1155,14 +1240,14 @@ textarea.input { min-height: 90px; resize: vertical; }
         </div>
       </section>
 
-      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,5.5cqi,80px) 0">
+      <section class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,5.5cqi,80px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 18px;font-weight:600">Lớp quản trị</p>
           <h2 style="font-size:clamp(24px,3.1cqi,42px);margin:0 0 18px;letter-spacing:-.025em;color:var(--color-bg)">Bốn động cơ chạy được là nhờ lớp thứ năm</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.6;max-width:70ch;margin:0 0 34px;color:var(--color-neutral-300)">Bốn động cơ tạo ra việc. Lớp quản trị quyết định ai được duyệt việc nào, ai chịu trách nhiệm khi sai, và bộ máy tự sửa ra sao. Thiếu lớp này, bốn động cơ chỉ là bốn chuỗi chatbot không sổ sách — đúng cái làm 88% pilot chết trước khi lên production.</p>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;background:var(--color-neutral-700);border-top:2px solid var(--color-neutral-700);border-bottom:2px solid var(--color-neutral-700);margin-bottom:32px">
             <sc-for list="{{ govLayers }}" as="g" hint-placeholder-count="4">
-              <div style="background:var(--color-text);padding:22px 20px">
+              <div class="lnx-band" style="background:var(--color-text);padding:22px 20px">
                 <div style="font-size:13px;letter-spacing:.18em;color:var(--color-neutral-500);margin-bottom:9px">{{ g.n }}</div>
                 <div style="font-family:var(--font-heading);font-weight:800;font-size:15px;line-height:1.35;margin-bottom:9px">{{ g.a }}</div>
                 <div style="font-size:13px;line-height:1.55;color:var(--color-neutral-400)">{{ g.b }}</div>
@@ -1219,21 +1304,21 @@ textarea.input { min-height: 90px; resize: vertical; }
         </div>
       </section>
 
-      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(48px,6cqi,88px) 0">
+      <section class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:clamp(48px,6cqi,88px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <div style="height:2px;background:var(--color-neutral-600);margin-bottom:30px"></div>
           <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 18px;font-weight:600">Vì sao là bây giờ</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 36px;letter-spacing:-.025em;color:var(--color-bg)">2026 là cửa sổ hiếm ở Việt Nam</h2>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--color-neutral-700)">
-            <div style="background:var(--color-text);padding:26px 24px 28px">
+            <div class="lnx-band" style="background:var(--color-text);padding:26px 24px 28px">
               <h4 style="font-size:18px;margin:0 0 12px;color:var(--color-bg)">Chính sách ép minh bạch dữ liệu</h4>
               <p style="font-size:14px;line-height:1.65;color:var(--color-neutral-400);margin:0">Từ 01/01/2026 hộ kinh doanh tự kê khai theo doanh thu thực; hóa đơn điện tử từ máy tính tiền. Chi phí tuân thủ và chi phí AI-hóa hội tụ vào cùng một khoản đầu tư.</p>
             </div>
-            <div style="background:var(--color-text);padding:26px 24px 28px">
+            <div class="lnx-band" style="background:var(--color-text);padding:26px 24px 28px">
               <h4 style="font-size:18px;margin:0 0 12px;color:var(--color-bg)">Thị trường vẫn tăng trên 40%</h4>
               <p style="font-size:14px;line-height:1.65;color:var(--color-neutral-400);margin:0">Doanh thu bốn sàn lớn nửa đầu 2026 tăng 44,1%. Nhưng doanh thu đang dồn về người bán vận hành chuyên nghiệp, không về người có mặt sớm.</p>
             </div>
-            <div style="background:var(--color-text);padding:26px 24px 28px">
+            <div class="lnx-band" style="background:var(--color-text);padding:26px 24px 28px">
               <h4 style="font-size:18px;margin:0 0 12px;color:var(--color-bg)">Cửa sổ đóng theo hai hướng</h4>
               <p style="font-size:14px;line-height:1.65;color:var(--color-neutral-400);margin:0">Khi mọi người đều dùng AI, lợi thế chuyển từ <em>có AI</em> sang <em>có hệ thống và dữ liệu riêng mà AI vận hành trên đó</em>.</p>
             </div>
@@ -1247,7 +1332,7 @@ textarea.input { min-height: 90px; resize: vertical; }
             <h2 style="margin:0 0 10px;font-size:clamp(24px,3cqi,40px);letter-spacing:-.025em;color:#fff">Trao đổi ban đầu miễn phí</h2>
             <p style="margin:0;font-size:15.5px;line-height:1.55;max-width:58ch">Chúng tôi đọc mô hình hiện tại, chỉ ra ba quy trình đáng tự động hóa trước, và nói thẳng nếu chúng tôi cho rằng anh chị chưa nên bắt đầu.</p>
           </div>
-          <button type="button" class="btn" sc-camel-on-click="{{ openDlg }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">ĐẶT LỊCH NGAY</button>
+          <button type="button" class="lnx-band btn" sc-camel-on-click="{{ openDlg }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">ĐẶT LỊCH NGAY</button>
         </div>
       </div>
     </div>
@@ -1255,7 +1340,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 
     <sc-if value="{{ isTrends }}">
     <div>
-      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
+      <section class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Xu hướng tương lai</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Đọc thị trường bằng số, không bằng cảm giác</h1>
@@ -1299,7 +1384,7 @@ textarea.input { min-height: 90px; resize: vertical; }
               <p style="margin:0;font-size:13.5px;color:var(--color-neutral-700)">Không nguyên nhân nào là chất lượng mô hình. Cả ba đều là vấn đề thiết kế tổ chức.</p>
             </div>
             <div style="display:flex;gap:2px;height:52px;margin-bottom:16px">
-              <div style="flex:41;background:var(--color-text);color:#fff;display:flex;align-items:center;padding:0 14px;font-weight:700;font-size:15px">41%</div>
+              <div class="lnx-band" style="flex:41;background:var(--color-text);color:#fff;display:flex;align-items:center;padding:0 14px;font-weight:700;font-size:15px">41%</div>
               <div style="flex:33;background:var(--color-neutral-600);color:#fff;display:flex;align-items:center;padding:0 14px;font-weight:700;font-size:15px">33%</div>
               <div style="flex:26;background:var(--color-neutral-400);color:var(--color-text);display:flex;align-items:center;padding:0 14px;font-weight:700;font-size:15px">26%</div>
             </div>
@@ -1361,7 +1446,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 
       <figure style="margin:0;position:relative;border-top:2px solid var(--color-text)">
         <img class="grayscale" src="assets/img/vn-street-seller.png" alt="Người bán hàng đóng đơn tại cửa hàng nhỏ trên phố Việt Nam" style="display:block;width:100%;aspect-ratio:1914/822;object-fit:cover">
-        <figcaption style="position:absolute;left:clamp(16px,2.5cqi,40px);bottom:clamp(14px,2cqi,26px);font-size:13px;letter-spacing:.2em;color:#fff;background:var(--color-text);padding:7px 12px">HỘ KINH DOANH · NƠI CHÍNH SÁCH 2026 CHẠM VÀO TRƯỚC TIÊN</figcaption>
+        <figcaption class="lnx-band" style="position:absolute;left:clamp(16px,2.5cqi,40px);bottom:clamp(14px,2cqi,26px);font-size:13px;letter-spacing:.2em;color:#fff;background:var(--color-text);padding:7px 12px">HỘ KINH DOANH · NƠI CHÍNH SÁCH 2026 CHẠM VÀO TRƯỚC TIÊN</figcaption>
       </figure>
 
       <section style="background:var(--color-neutral-200);padding:clamp(44px,6cqi,88px) 0">
@@ -1400,13 +1485,13 @@ textarea.input { min-height: 90px; resize: vertical; }
             </div>
             <div style="font-size:14.5px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">QUÝ 3 / 2025</div>
             <div style="display:flex;gap:2px;height:44px;margin-bottom:22px">
-              <div style="flex:56;background:var(--color-text);color:#fff;display:flex;align-items:center;padding:0 12px;font-size:12.5px;font-weight:600">Shopee 56–58%</div>
+              <div class="lnx-band" style="flex:56;background:var(--color-text);color:#fff;display:flex;align-items:center;padding:0 12px;font-size:12.5px;font-weight:600">Shopee 56–58%</div>
               <div style="flex:29;background:var(--color-accent);color:#fff;display:flex;align-items:center;padding:0 12px;font-size:12.5px;font-weight:600">TikTok Shop ~29%</div>
               <div style="flex:15;background:var(--color-neutral-300)"></div>
             </div>
             <div style="font-size:14.5px;letter-spacing:.16em;color:var(--color-neutral-600);margin-bottom:8px">ĐẦU 2026</div>
             <div style="display:flex;gap:2px;height:44px">
-              <div style="flex:56;background:var(--color-text);color:#fff;display:flex;align-items:center;padding:0 12px;font-size:12.5px;font-weight:600">Shopee 56–58%</div>
+              <div class="lnx-band" style="flex:56;background:var(--color-text);color:#fff;display:flex;align-items:center;padding:0 12px;font-size:12.5px;font-weight:600">Shopee 56–58%</div>
               <div style="flex:40;background:var(--color-accent);color:#fff;display:flex;align-items:center;padding:0 12px;font-size:12.5px;font-weight:600">TikTok Shop 39–41%</div>
               <div style="flex:4;background:var(--color-neutral-300)"></div>
             </div>
@@ -1447,7 +1532,7 @@ textarea.input { min-height: 90px; resize: vertical; }
             <h2 style="margin:0 0 10px;font-size:clamp(22px,2.8cqi,36px);letter-spacing:-.025em;color:#fff">Còn một xu hướng nữa: dòng tiền lên sổ cái</h2>
             <p style="margin:0;font-size:15.5px;line-height:1.55;max-width:62ch">Việt Nam luật hóa tài sản số trước khi thị trường bùng nổ. Đó là mảnh ghép cuối để khép kín mô hình doanh nghiệp một người.</p>
           </div>
-          <button type="button" class="btn" sc-camel-on-click="{{ goFintech }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:13px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">BLOCKCHAIN &amp; CN TÀI CHÍNH →</button>
+          <button type="button" class="lnx-band btn" sc-camel-on-click="{{ goFintech }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:13px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">BLOCKCHAIN &amp; CN TÀI CHÍNH →</button>
         </div>
       </div>
     </div>
@@ -1455,7 +1540,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 
     <sc-if value="{{ isSolutions }}" hint-placeholder-val="{{ false }}">
     <div>
-      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0 0">
+      <section class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Next Solutions</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Bộ máy AI có tổ chức, có quyền hạn, có kiểm soát</h1>
@@ -1473,7 +1558,7 @@ textarea.input { min-height: 90px; resize: vertical; }
               <div style="background:color-mix(in srgb, var(--color-text) 72%, var(--color-bg));color:var(--color-bg);padding:18px 20px;width:min(100%,76%)">
                 <strong style="display:block;font-family:var(--font-heading);font-weight:800;font-size:15px;letter-spacing:.06em">TẦNG KIỂM SOÁT</strong>
                 <span style="font-size:13.5px;opacity:.9">Work object · mức tự chủ · ma trận quyền · eval · audit log · kill switch</span></div>
-              <div style="background:var(--color-text);color:var(--color-bg);padding:18px 20px">
+              <div class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:18px 20px">
                 <strong style="display:block;font-family:var(--font-heading);font-weight:800;font-size:15px;letter-spacing:.06em">TẦNG THỰC HIỆN · TEAM AI</strong>
                 <span style="font-size:13.5px;opacity:.9">11 vai trò quản lý AI · hàng chục agent chuyên môn</span>
                 <span style="display:block;font-size:13px;opacity:.7;margin-top:6px">Ops · Finance · Growth · Social · Sales · CRM · CS · Product · R&amp;D · Risk</span></div>
@@ -1612,7 +1697,7 @@ textarea.input { min-height: 90px; resize: vertical; }
               <div style="font-family:var(--font-heading);font-weight:800;font-size:17px;margin-bottom:14px">AI TỰ LÀM</div>
               <div style="font-size:13.5px;line-height:1.8">Tổng hợp và phân tích dữ liệu<br>Chuẩn bị tài liệu<br>CSKH theo chính sách<br>Cập nhật CRM, ERP, knowledge base</div>
             </div>
-            <div style="background:var(--color-text);color:var(--color-bg);padding:22px">
+            <div class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:22px">
               <div style="font-size:14.5px;letter-spacing:.14em;color:var(--color-accent-400);margin-bottom:6px">DỄ HOÀN TÁC · HẬU QUẢ CAO</div>
               <div style="font-family:var(--font-heading);font-weight:800;font-size:17px;margin-bottom:14px;color:var(--color-bg)">CON NGƯỜI TRỰC TIẾP</div>
               <div style="font-size:13.5px;line-height:1.8;color:var(--color-neutral-300)">Công việc vật lý<br>Đàm phán chiến lược<br>Xử lý khủng hoảng<br>Trách nhiệm nghề nghiệp</div>
@@ -1875,7 +1960,7 @@ textarea.input { min-height: 90px; resize: vertical; }
             <h2 style="margin:0 0 10px;font-size:clamp(22px,2.8cqi,36px);letter-spacing:-.025em;color:#fff">Muốn biết bộ máy này áp vào ngành của anh chị ra sao?</h2>
             <p style="margin:0;font-size:15.5px;line-height:1.55;max-width:60ch">Xem trần tự động hóa thực tế của tám nhóm doanh nghiệp và ba kiến trúc mẫu.</p>
           </div>
-          <button type="button" class="btn" sc-camel-on-click="{{ goIndustries }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">NGÀNH &amp; MÔ HÌNH →</button>
+          <button type="button" class="lnx-band btn" sc-camel-on-click="{{ goIndustries }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">NGÀNH &amp; MÔ HÌNH →</button>
         </div>
       </div>
     </div>
@@ -1883,7 +1968,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 
     <sc-if value="{{ isIndustries }}" hint-placeholder-val="{{ false }}">
     <div>
-      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
+      <section class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Ngành &amp; Mô hình</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:22ch;color:var(--color-bg)">Không phải ngành nào cũng chạy được với một người</h1>
@@ -2015,7 +2100,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 
     <sc-if value="{{ isProcess }}" hint-placeholder-val="{{ false }}">
     <div>
-      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
+      <section class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Cách chúng tôi làm</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Ít mà sâu, có số đo, bàn giao được</h1>
@@ -2025,7 +2110,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 
       <figure style="margin:0;position:relative">
         <img class="grayscale" src="assets/img/workshop.png" alt="Buổi làm việc thiết kế quy trình trước màn hình và bảng ghi chú" style="display:block;width:100%;aspect-ratio:1672/941;object-fit:cover;max-height:70vh">
-        <figcaption style="position:absolute;left:clamp(16px,2.5cqi,40px);bottom:clamp(14px,2cqi,26px);font-size:13px;letter-spacing:.2em;color:#fff;background:var(--color-text);padding:7px 12px">BƯỚC 02 · KIỂM KÊ QUY TRÌNH CÙNG KHÁCH HÀNG</figcaption>
+        <figcaption class="lnx-band" style="position:absolute;left:clamp(16px,2.5cqi,40px);bottom:clamp(14px,2cqi,26px);font-size:13px;letter-spacing:.2em;color:#fff;background:var(--color-text);padding:7px 12px">BƯỚC 02 · KIỂM KÊ QUY TRÌNH CÙNG KHÁCH HÀNG</figcaption>
       </figure>
 
       <section style="background:var(--color-bg);padding:clamp(44px,6cqi,88px) 0">
@@ -2094,7 +2179,7 @@ textarea.input { min-height: 90px; resize: vertical; }
               </div>
               <div style="border-top:2px solid var(--color-text);padding-top:14px;font-size:13px;color:var(--color-neutral-700)">Phù hợp khi chưa chắc có nên đầu tư hay không.</div>
             </div>
-            <div style="background:var(--color-text);color:var(--color-bg);padding:28px 26px;display:flex;flex-direction:column;position:relative">
+            <div class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:28px 26px;display:flex;flex-direction:column;position:relative">
               <div style="position:absolute;top:0;left:0;background:var(--color-accent);color:#fff;font-size:12.5px;letter-spacing:.16em;padding:5px 10px;font-weight:700">PHỔ BIẾN NHẤT</div>
               <div style="font-size:13px;letter-spacing:.2em;color:var(--color-accent-400);margin:20px 0 16px;font-weight:600">GÓI 02</div>
               <h3 style="font-size:22px;margin:0 0 8px;color:var(--color-bg)">Kiến trúc &amp; Triển khai</h3>
@@ -2139,7 +2224,7 @@ textarea.input { min-height: 90px; resize: vertical; }
             <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:6px 0;align-items:center">
               <div style="grid-column:1 / 4;background:var(--color-neutral-400);color:var(--color-text);padding:10px 12px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden">GĐ1 · AI hỗ trợ</div>
               <div style="grid-column:3 / 8;background:var(--color-neutral-600);color:#fff;padding:10px 12px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden">GĐ2 · AI workflow</div>
-              <div style="grid-column:6 / 12;background:var(--color-text);color:#fff;padding:10px 12px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden">GĐ3 · Team AI</div>
+              <div class="lnx-band" style="grid-column:6 / 12;background:var(--color-text);color:#fff;padding:10px 12px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden">GĐ3 · Team AI</div>
               <div style="grid-column:10 / 13;background:var(--color-accent);color:#fff;padding:10px 12px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden">GĐ4 · Autonomous</div>
             </div>
             <p style="font-size:13.5px;letter-spacing:.16em;color:var(--color-accent);margin:16px 0 0;font-weight:600">↑ THÁNG 11–12 · KIỂM TOÁN TOÀN HỆ THỐNG</p>
@@ -2335,7 +2420,7 @@ textarea.input { min-height: 90px; resize: vertical; }
               <div aria-hidden="true" style="align-self:center;font-size:20px;color:var(--color-neutral-500)">→</div>
               <div style="background:var(--color-accent);color:#fff;padding:20px 18px;display:flex;flex-direction:column;gap:6px"><span style="font-family:var(--font-heading);font-weight:800;font-size:clamp(14px,1.5cqi,17px);letter-spacing:.04em">ACADEMY</span><span style="font-size:13.5px;opacity:.85">Chuyển giao năng lực</span></div>
               <div aria-hidden="true" style="align-self:center;font-size:20px;color:var(--color-neutral-500)">→</div>
-              <div style="background:var(--color-text);color:var(--color-bg);padding:20px 18px;display:flex;flex-direction:column;gap:6px"><span style="font-family:var(--font-heading);font-weight:800;font-size:clamp(14px,1.5cqi,17px);letter-spacing:.04em">ECOSYSTEM</span><span style="font-size:13.5px;opacity:.85">Mẫu · eval · đối tác</span></div>
+              <div class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:20px 18px;display:flex;flex-direction:column;gap:6px"><span style="font-family:var(--font-heading);font-weight:800;font-size:clamp(14px,1.5cqi,17px);letter-spacing:.04em">ECOSYSTEM</span><span style="font-size:13.5px;opacity:.85">Mẫu · eval · đối tác</span></div>
               </div>
             <p style="margin:14px 0 0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600);font-weight:600">↓ Học viên Academy trở thành khách hàng và người giới thiệu</p>
           </figure>
@@ -2378,7 +2463,7 @@ textarea.input { min-height: 90px; resize: vertical; }
               <p style="margin:0;font-size:14.5px;color:var(--color-neutral-700);max-width:80ch">Ba giai đoạn, mỗi giai đoạn đổi một thứ: phương pháp, cách nhân rộng, rồi cấu trúc doanh thu.</p>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:3px">
-              <div style="background:var(--color-text);color:var(--color-bg);padding:20px 18px;display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;letter-spacing:.18em;opacity:.75">2026</span><strong style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;line-height:1.3">GĐ 1 · CHỨNG MINH PHƯƠNG PHÁP</strong><span style="font-size:13.5px;line-height:1.55;opacity:.88">Hoàn thiện phương pháp trên số ít khách hàng thật, 2–3 ngành</span></div>
+              <div class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:20px 18px;display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;letter-spacing:.18em;opacity:.75">2026</span><strong style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;line-height:1.3">GĐ 1 · CHỨNG MINH PHƯƠNG PHÁP</strong><span style="font-size:13.5px;line-height:1.55;opacity:.88">Hoàn thiện phương pháp trên số ít khách hàng thật, 2–3 ngành</span></div>
               <div style="background:var(--color-accent);color:#fff;padding:20px 18px;display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;letter-spacing:.18em;opacity:.75">2027</span><strong style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;line-height:1.3">GĐ 2 · NHÂN RỘNG QUA ACADEMY</strong><span style="font-size:13.5px;line-height:1.55;opacity:.88">Đóng gói thành ba lộ trình đào tạo, tách doanh thu khỏi giờ công</span></div>
               <div style="background:color-mix(in srgb, var(--color-text) 42%, var(--color-bg));color:var(--color-bg);padding:20px 18px;display:flex;flex-direction:column;gap:7px"><span style="font-size:13px;letter-spacing:.18em;opacity:.75">2028–2029+</span><strong style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;line-height:1.3">GĐ 3 · HỆ SINH THÁI &amp; NHƯỢNG QUYỀN</strong><span style="font-size:13.5px;line-height:1.55;opacity:.88">Cấp phép mẫu kiến trúc, đào tạo đối tác theo vùng và ngành</span></div>
               </div>
@@ -2404,7 +2489,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 
     <sc-if value="{{ isMethod }}" hint-placeholder-val="{{ false }}">
     <div>
-      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0 0">
+      <section class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Phương pháp triển khai</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Từ khung chiến lược sang đề án triển khai</h1>
@@ -2544,7 +2629,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 23</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Chọn quy trình để AI-hóa</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 30px;color:var(--color-neutral-800)">Mỗi quy trình được chấm từ 1–5 theo bảy biến. Điểm ưu tiên quyết định thứ tự làm, không phải cảm giác về mức độ khó chịu.</p>
-          <div style="background:var(--color-text);color:var(--color-bg);padding:26px;margin-bottom:30px;overflow-x:auto">
+          <div class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:26px;margin-bottom:30px;overflow-x:auto">
             <div style="font-size:13px;letter-spacing:.18em;color:var(--color-accent-400);margin-bottom:14px">CÔNG THỨC ƯU TIÊN</div>
             <div style="font-size:clamp(13px,1.3cqi,17px);line-height:1.7;font-weight:600">Priority Score = (Tần suất × Thời gian × Chuẩn hóa × Giá trị dữ liệu × Khả năng phục hồi) ÷ (Rủi ro × Độ phức tạp tích hợp)</div>
           </div>
@@ -2589,7 +2674,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <p style="font-size:14.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px;font-weight:600">Mục 24 – 25</p>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 14px;letter-spacing:-.025em">Charter, dữ liệu và quyền hạn</h2>
           <p style="font-size:clamp(15px,1.3cqi,18px);line-height:1.55;max-width:70ch;margin:0 0 30px;color:var(--color-neutral-800)">Charter là hợp đồng vận hành của agent. Prompt chỉ là một thành phần bên trong charter và không được xem là cơ chế kiểm soát.</p>
-          <pre style="background:var(--color-text);color:var(--color-neutral-200);padding:26px;margin:0 0 44px;overflow-x:auto;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.75">agent_id: sales_qualification_v1
+          <pre class="lnx-band" style="background:var(--color-text);color:var(--color-neutral-200);padding:26px;margin:0 0 44px;overflow-x:auto;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.75">agent_id: sales_qualification_v1
 mission: Đánh giá lead và đề xuất bước tiếp theo
 owner: ai_sales_manager
 business_kpi: qualified_lead_rate
@@ -2696,7 +2781,7 @@ review_cycle: monthly</pre>
             </sc-for>
           </div>
 
-          <div style="background:var(--color-text);color:var(--color-bg);padding:28px;margin-top:40px">
+          <div class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:28px;margin-top:40px">
             <div style="font-size:13px;letter-spacing:.18em;color:var(--color-accent-400);margin-bottom:14px">BUSINESS CASE CHO TỪNG QUY TRÌNH</div>
             <div style="font-size:clamp(13px,1.2cqi,16px);line-height:1.75;font-weight:600;margin-bottom:24px">Giá trị tháng = giờ người tiết kiệm + lỗi tránh được + doanh thu tăng thêm − chi phí AI − chi phí giám sát − chi phí duy trì</div>
             <div style="font-size:13px;letter-spacing:.14em;color:var(--color-neutral-500);margin-bottom:14px">CHỈ PHÊ DUYỆT KHI</div>
@@ -2844,7 +2929,7 @@ review_cycle: monthly</pre>
             <h2 style="margin:0 0 10px;font-size:clamp(22px,2.8cqi,36px);letter-spacing:-.025em;color:#fff">Khóa tám đầu vào ngay từ buổi đầu</h2>
             <p style="margin:0;font-size:15.5px;line-height:1.55;max-width:60ch">Buổi chẩn đoán đầu tiên chính là để thu đủ tám đầu vào này và trả lại cho anh chị một baseline có số.</p>
           </div>
-          <button type="button" class="btn" sc-camel-on-click="{{ openDlg }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">ĐẶT LỊCH CHẨN ĐOÁN →</button>
+          <button type="button" class="lnx-band btn" sc-camel-on-click="{{ openDlg }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">ĐẶT LỊCH CHẨN ĐOÁN →</button>
         </div>
       </div>
     </div>
@@ -2852,7 +2937,7 @@ review_cycle: monthly</pre>
 
     <sc-if value="{{ isFintech }}" hint-placeholder-val="{{ false }}">
     <div>
-      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
+      <section class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Blockchain &amp; Công nghệ tài chính</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:19ch;color:var(--color-bg)">Khi tài sản mã hóa được hợp pháp hóa</h1>
@@ -2897,12 +2982,12 @@ review_cycle: monthly</pre>
               <h4 style="font-size:clamp(17px,1.8cqi,22px);margin:8px 0 6px">Vòng khép kín tài chính khi dòng tiền lên sổ cái</h4>
               <p style="margin:0;font-size:14.5px;color:var(--color-neutral-700);max-width:80ch">Sáu chặng, mỗi chặng ghi nhận tức thời và kiểm toán được. Cửa phê duyệt của con người vẫn nằm đúng chỗ cũ.</p>
             </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;align-items:stretch"><div style="background:var(--color-text);color:var(--color-bg);padding:18px 16px;display:flex;flex-direction:column;gap:5px"><span style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;letter-spacing:.06em">1 · THU</span><span style="font-size:13px;line-height:1.5;opacity:.85">Doanh thu vào ví doanh nghiệp</span></div><div aria-hidden="true" style="align-self:center;font-size:20px;color:var(--color-neutral-500)">→</div><div style="background:var(--color-text);color:var(--color-bg);padding:18px 16px;display:flex;flex-direction:column;gap:5px"><span style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;letter-spacing:.06em">2 · PHÂN BỔ TỰ ĐỘNG</span><span style="font-size:13px;line-height:1.5;opacity:.85">Hợp đồng thông minh chia quỹ</span></div><div aria-hidden="true" style="align-self:center;font-size:20px;color:var(--color-neutral-500)">→</div><div style="background:var(--color-text);color:var(--color-bg);padding:18px 16px;display:flex;flex-direction:column;gap:5px"><span style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;letter-spacing:.06em">3 · CHI TRONG HẠN MỨC</span><span style="font-size:13px;line-height:1.5;opacity:.85">Agent chi theo chính sách</span></div></div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;align-items:stretch"><div class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:18px 16px;display:flex;flex-direction:column;gap:5px"><span style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;letter-spacing:.06em">1 · THU</span><span style="font-size:13px;line-height:1.5;opacity:.85">Doanh thu vào ví doanh nghiệp</span></div><div aria-hidden="true" style="align-self:center;font-size:20px;color:var(--color-neutral-500)">→</div><div class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:18px 16px;display:flex;flex-direction:column;gap:5px"><span style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;letter-spacing:.06em">2 · PHÂN BỔ TỰ ĐỘNG</span><span style="font-size:13px;line-height:1.5;opacity:.85">Hợp đồng thông minh chia quỹ</span></div><div aria-hidden="true" style="align-self:center;font-size:20px;color:var(--color-neutral-500)">→</div><div class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:18px 16px;display:flex;flex-direction:column;gap:5px"><span style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;letter-spacing:.06em">3 · CHI TRONG HẠN MỨC</span><span style="font-size:13px;line-height:1.5;opacity:.85">Agent chi theo chính sách</span></div></div>
             <div style="border:2px solid var(--color-text);background:var(--color-neutral-100);padding:16px 20px;margin:10px 0;text-align:center">
               <span style="font-family:var(--font-heading);font-weight:800;font-size:clamp(15px,1.6cqi,19px);letter-spacing:.08em">MỘT SỔ CÁI</span>
               <span style="display:block;font-size:13.5px;color:var(--color-neutral-700);margin-top:4px">cho cả AI lẫn người</span>
             </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;align-items:stretch"><div style="background:var(--color-text);color:var(--color-bg);padding:18px 16px;display:flex;flex-direction:column;gap:5px"><span style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;letter-spacing:.06em">6 · BÁO CÁO & DỰ BÁO</span><span style="font-size:13px;line-height:1.5;opacity:.85">Agent tài chính đọc thời gian thực</span></div><div aria-hidden="true" style="align-self:center;font-size:20px;color:var(--color-neutral-500)">←</div><div style="background:var(--color-text);color:var(--color-bg);padding:18px 16px;display:flex;flex-direction:column;gap:5px"><span style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;letter-spacing:.06em">5 · GHI SỔ TỨC THÌ</span><span style="font-size:13px;line-height:1.5;opacity:.85">Không còn đối soát sau</span></div><div aria-hidden="true" style="align-self:center;font-size:20px;color:var(--color-neutral-500)">←</div><div style="background:var(--color-accent);color:#fff;padding:18px 16px;display:flex;flex-direction:column;gap:5px"><span style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;letter-spacing:.06em">4 · CỬA PHÊ DUYỆT</span><span style="font-size:13px;line-height:1.5;opacity:.85">Người ký khoản vượt ngưỡng</span></div></div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;align-items:stretch"><div class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:18px 16px;display:flex;flex-direction:column;gap:5px"><span style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;letter-spacing:.06em">6 · BÁO CÁO & DỰ BÁO</span><span style="font-size:13px;line-height:1.5;opacity:.85">Agent tài chính đọc thời gian thực</span></div><div aria-hidden="true" style="align-self:center;font-size:20px;color:var(--color-neutral-500)">←</div><div class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:18px 16px;display:flex;flex-direction:column;gap:5px"><span style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;letter-spacing:.06em">5 · GHI SỔ TỨC THÌ</span><span style="font-size:13px;line-height:1.5;opacity:.85">Không còn đối soát sau</span></div><div aria-hidden="true" style="align-self:center;font-size:20px;color:var(--color-neutral-500)">←</div><div style="background:var(--color-accent);color:#fff;padding:18px 16px;display:flex;flex-direction:column;gap:5px"><span style="font-family:var(--font-heading);font-weight:800;font-size:14.5px;letter-spacing:.06em">4 · CỬA PHÊ DUYỆT</span><span style="font-size:13px;line-height:1.5;opacity:.85">Người ký khoản vượt ngưỡng</span></div></div>
             <figcaption style="margin-top:16px;font-size:14px;line-height:1.65;color:var(--color-neutral-700);max-width:80ch">Điểm then chốt: chặng 4 <strong>không biến mất</strong>. Blockchain làm cho việc ghi nhận trở nên tự động và không sửa được — nó không thay con người quyết định khoản nào đáng chi.</figcaption>
           </figure>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:2px;background:var(--color-neutral-400);border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text);margin-bottom:26px">
@@ -2975,7 +3060,7 @@ review_cycle: monthly</pre>
 
     <sc-if value="{{ isAcademy }}" hint-placeholder-val="{{ false }}">
     <div>
-      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
+      <section class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Dòng 03 · LATTICE Academy</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Đào tạo người vận hành bộ máy AI</h1>
@@ -3050,7 +3135,7 @@ review_cycle: monthly</pre>
             <h2 style="margin:0 0 10px;font-size:clamp(22px,2.8cqi,36px);letter-spacing:-.025em;color:#fff">Academy là dòng doanh thu lặp lại, biên cao</h2>
             <p style="margin:0;font-size:15.5px;line-height:1.55;max-width:60ch">Mở rộng được mà không tăng tuyến tính nhân sự — và là kênh nuôi khách hàng cho hai dòng còn lại.</p>
           </div>
-          <button type="button" class="btn" sc-camel-on-click="{{ goContact }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:13px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">ĐĂNG KÝ ĐÀO TẠO →</button>
+          <button type="button" class="lnx-band btn" sc-camel-on-click="{{ goContact }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:13px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">ĐĂNG KÝ ĐÀO TẠO →</button>
         </div>
       </div>
     </div>
@@ -3058,7 +3143,7 @@ review_cycle: monthly</pre>
 
     <sc-if value="{{ isBranding }}" hint-placeholder-val="{{ false }}">
     <div>
-      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
+      <section class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Branding</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Bộ nhận diện LATTICE Next</h1>
@@ -3108,13 +3193,13 @@ review_cycle: monthly</pre>
             <div style="background:var(--color-bg);min-height:170px;display:flex;align-items:center;justify-content:center;padding:30px">
               <div style="display:flex;align-items:center;gap:14px;color:var(--color-text)">
                 <svg width="50" height="50" sc-camel-view-box="0 0 100 100" style="display:block"><path d="M50 8 L92 50 L50 92 L8 50 Z" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><path d="M50 8 L50 92 M8 50 L92 50" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><circle cx="50" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="92" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="92" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="8" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="50" r="10" fill="var(--color-accent)"></circle></svg>
-                <span style="display:block"><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:22px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:11.5px;letter-spacing:.26em;margin-top:6px;color:var(--color-neutral-600)">NEXT SOLUTIONS JSC</span></span>
+                <span style="display:block"><span style="display:block;font-family:var(--font-body);font-weight:800;font-size:22px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:11.5px;letter-spacing:.26em;margin-top:6px;color:var(--color-neutral-600)">NEXT SOLUTIONS JSC</span></span>
               </div>
             </div>
-            <div style="background:var(--color-text);min-height:170px;display:flex;align-items:center;justify-content:center;padding:30px">
+            <div class="lnx-band" style="background:var(--color-text);min-height:170px;display:flex;align-items:center;justify-content:center;padding:30px">
               <div style="display:flex;align-items:center;gap:14px;color:var(--color-bg)">
                 <svg width="50" height="50" sc-camel-view-box="0 0 100 100" style="display:block"><path d="M50 8 L92 50 L50 92 L8 50 Z" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><path d="M50 8 L50 92 M8 50 L92 50" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><circle cx="50" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="92" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="92" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="8" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="50" r="10" fill="var(--color-accent-500)"></circle></svg>
-                <span style="display:block"><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:22px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:11.5px;letter-spacing:.26em;margin-top:6px;color:var(--color-neutral-500)">NEXT SOLUTIONS JSC</span></span>
+                <span style="display:block"><span style="display:block;font-family:var(--font-body);font-weight:800;font-size:22px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:11.5px;letter-spacing:.26em;margin-top:6px;color:var(--color-neutral-500)">NEXT SOLUTIONS JSC</span></span>
               </div>
             </div>
             <div style="background:var(--color-accent);min-height:170px;display:flex;align-items:center;justify-content:center;padding:30px">
@@ -3138,25 +3223,25 @@ review_cycle: monthly</pre>
           <h2 style="font-size:clamp(26px,3.4cqi,46px);margin:0 0 26px;letter-spacing:-.025em">Màu, chữ và hình ảnh</h2>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2px;margin-bottom:26px">
             <div style="background:#ec3013;color:#fff;padding:80px 14px 16px"><b style="display:block;font-size:11.5px;letter-spacing:.06em">#EC3013</b><span style="display:block;font-size:11.5px;opacity:.85;margin-top:4px">Đỏ tín hiệu · con người</span></div>
-            <div style="background:#201e1d;color:#fff;padding:80px 14px 16px"><b style="display:block;font-size:11.5px;letter-spacing:.06em">#201E1D</b><span style="display:block;font-size:11.5px;opacity:.85;margin-top:4px">Mực · chữ và cấu trúc</span></div>
-            <div style="background:#605d5d;color:#fff;padding:80px 14px 16px"><b style="display:block;font-size:11.5px;letter-spacing:.06em">#605D5D</b><span style="display:block;font-size:11.5px;opacity:.85;margin-top:4px">Trung tính 700 · dữ liệu phụ</span></div>
-            <div style="background:#bab6b6;color:#201e1d;padding:80px 14px 16px"><b style="display:block;font-size:11.5px;letter-spacing:.06em">#BAB6B6</b><span style="display:block;font-size:11.5px;opacity:.85;margin-top:4px">Trung tính 400 · đường kẻ</span></div>
-            <div style="background:#eae9e9;color:#201e1d;padding:80px 14px 16px"><b style="display:block;font-size:11.5px;letter-spacing:.06em">#EAE9E9</b><span style="display:block;font-size:11.5px;opacity:.85;margin-top:4px">Nền phụ · khối nội dung</span></div>
-            <div style="background:#f3f2f2;color:#201e1d;padding:80px 14px 16px;box-shadow:inset 0 0 0 1px #d7d3d3"><b style="display:block;font-size:11.5px;letter-spacing:.06em">#F3F2F2</b><span style="display:block;font-size:11.5px;opacity:.85;margin-top:4px">Nền chủ đạo</span></div>
+            <div style="background:#33302e;color:#fff;padding:80px 14px 16px"><b style="display:block;font-size:11.5px;letter-spacing:.06em">#33302E</b><span style="display:block;font-size:11.5px;opacity:.85;margin-top:4px">Mực · chữ và cấu trúc</span></div>
+            <div style="background:#5e5955;color:#fff;padding:80px 14px 16px"><b style="display:block;font-size:11.5px;letter-spacing:.06em">#5E5955</b><span style="display:block;font-size:11.5px;opacity:.85;margin-top:4px">Trung tính 700 · dữ liệu phụ</span></div>
+            <div style="background:#c2b5a9;color:#33302e;padding:80px 14px 16px"><b style="display:block;font-size:11.5px;letter-spacing:.06em">#C2B5A9</b><span style="display:block;font-size:11.5px;opacity:.85;margin-top:4px">Trung tính 400 · đường kẻ</span></div>
+            <div style="background:#f2dfce;color:#33302e;padding:80px 14px 16px"><b style="display:block;font-size:11.5px;letter-spacing:.06em">#F2DFCE</b><span style="display:block;font-size:11.5px;opacity:.85;margin-top:4px">Nền phụ · khối nội dung</span></div>
+            <div style="background:#fff1e5;color:#33302e;padding:80px 14px 16px;box-shadow:inset 0 0 0 1px #e0cfc0"><b style="display:block;font-size:11.5px;letter-spacing:.06em">#FFF1E5</b><span style="display:block;font-size:11.5px;opacity:.85;margin-top:4px">Nền chủ đạo</span></div>
           </div>
           <p style="font-size:15.5px;line-height:1.7;max-width:78ch;margin:0 0 34px"><strong>Quy tắc dùng màu:</strong> mực và các bậc trung tính mang toàn bộ cấu trúc và dữ liệu. Đỏ tín hiệu là màu hiếm — chỉ dùng cho ba thứ: con người, ngưỡng cần chú ý, và ranh giới quyền quyết định. Nếu đỏ xuất hiện nhiều hơn 5% diện tích, nó không còn nghĩa.</p>
 
           <div style="border:2px solid var(--color-text);padding:26px;margin-bottom:34px;background:var(--color-neutral-100)">
             <div style="display:flex;gap:24px;align-items:baseline;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--color-neutral-300)">
-              <span style="width:200px;flex:none;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600)">HIỂN THỊ · ARCHIVO 800</span>
-              <span style="font-family:var(--font-heading);font-weight:800;font-size:clamp(22px,2.4cqi,32px);letter-spacing:-.025em">Kiến trúc mô hình kinh doanh mới</span>
+              <span style="width:200px;flex:none;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600)">TIÊU ĐỀ · SOURCE SERIF 4</span>
+              <span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(22px,2.4cqi,32px);letter-spacing:-.025em">Kiến trúc mô hình kinh doanh mới</span>
             </div>
             <div style="display:flex;gap:24px;align-items:baseline;flex-wrap:wrap;padding:18px 0;border-bottom:1px solid var(--color-neutral-300)">
-              <span style="width:200px;flex:none;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600)">THÂN BÀI · ARCHIVO 400</span>
-              <span style="font-size:16.5px;line-height:1.6">Một bộ chữ duy nhất cho cả tiêu đề và thân bài — đọc bảng dày chữ không mỏi mắt, dấu tiếng Việt đầy đủ.</span>
+              <span style="width:200px;flex:none;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600)">THÂN BÀI · INTER 400</span>
+              <span style="font-size:16.5px;line-height:1.6">Tiêu đề chữ có chân kiểu báo tài chính, thân bài chữ không chân — đọc bảng dày chữ không mỏi mắt, dấu tiếng Việt đầy đủ.</span>
             </div>
             <div style="display:flex;gap:24px;align-items:baseline;flex-wrap:wrap;padding-top:18px">
-              <span style="width:200px;flex:none;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600)">DỮ LIỆU · ARCHIVO 600</span>
+              <span style="width:200px;flex:none;font-size:13px;letter-spacing:.16em;color:var(--color-neutral-600)">DỮ LIỆU · INTER 600</span>
               <span style="font-size:15px;font-weight:600;letter-spacing:.04em">L0 L1 L2 L3 L4 L5 · 88% · 44,1% · 5,1 tháng</span>
             </div>
           </div>
@@ -3184,7 +3269,7 @@ review_cycle: monthly</pre>
 
     <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
     <div>
-      <section style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
+      <section class="lnx-band" style="background:var(--color-text);color:var(--color-bg);padding:clamp(44px,6cqi,92px) 0">
         <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
           <p style="font-size:14.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-400);margin:0 0 20px;font-weight:600">Liên hệ</p>
           <h1 style="font-size:clamp(30px,5cqi,68px);line-height:1.04;letter-spacing:-.03em;margin:0 0 24px;max-width:20ch;color:var(--color-bg)">Bắt đầu bằng một buổi chẩn đoán</h1>
@@ -3327,7 +3412,7 @@ review_cycle: monthly</pre>
             <h2 style="margin:0 0 10px;font-size:clamp(24px,3cqi,40px);letter-spacing:-.025em;color:#fff">Chưa sẵn sàng liên hệ?</h2>
             <p style="margin:0;font-size:15.5px;line-height:1.55;max-width:58ch">Đọc phần Xu hướng tương lai để tự đánh giá xem thời điểm này có phù hợp với mô hình của anh chị hay không.</p>
           </div>
-          <button type="button" class="btn" sc-camel-on-click="{{ goTrends }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">XEM XU HƯỚNG →</button>
+          <button type="button" class="lnx-band btn" sc-camel-on-click="{{ goTrends }}" style="flex:none;background:var(--color-text);color:#fff;border:0;font-size:12px;letter-spacing:.14em;padding:18px 26px;font-weight:600;justify-content:flex-start;text-align:left">XEM XU HƯỚNG →</button>
         </div>
       </div>
 
@@ -3350,13 +3435,13 @@ review_cycle: monthly</pre>
     </div>
     </sc-if>
 
-    <footer style="background:var(--color-text);color:var(--color-neutral-400);padding:clamp(40px,5cqi,72px) 0 40px">
+    <footer class="lnx-band" style="background:var(--color-text);color:var(--color-neutral-400);padding:clamp(40px,5cqi,72px) 0 40px">
       <div style="max-width:1280px;margin:0 auto;padding:0 clamp(16px,2.5cqi,40px)">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;padding-bottom:34px;border-bottom:2px solid var(--color-neutral-700)">
           <div style="min-width:240px">
             <div style="display:flex;align-items:center;gap:12px;color:var(--color-bg);margin-bottom:20px">
               <svg width="38" height="38" sc-camel-view-box="0 0 100 100" style="display:block"><path d="M50 8 L92 50 L50 92 L8 50 Z" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><path d="M50 8 L50 92 M8 50 L92 50" fill="none" stroke="currentColor" stroke-width="5" opacity=".35"></path><circle cx="50" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="92" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="92" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="8" cy="50" r="6" fill="none" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="50" r="10" fill="var(--color-accent)"></circle></svg>
-              <span style="display:block"><span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:19px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:11px;letter-spacing:.26em;margin-top:5px;color:var(--color-neutral-500)">NEXT SOLUTIONS JSC</span></span>
+              <span style="display:block"><span style="display:block;font-family:var(--font-body);font-weight:800;font-size:19px;letter-spacing:.12em;line-height:1">LATTICE</span><span style="display:block;font-size:11px;letter-spacing:.26em;margin-top:5px;color:var(--color-neutral-500)">NEXT SOLUTIONS JSC</span></span>
             </div>
             <p style="font-size:13px;margin:0 0 10px;line-height:1.6">Kiến trúc mô hình kinh doanh mới.<br>Structure for what comes next.</p>
             <p style="font-size:13px;margin:0;color:var(--color-neutral-600)">Công ty Cổ phần Giải pháp LATTICE Next</p>
@@ -3519,6 +3604,14 @@ class Component extends DCLogic {
       stageRef: this.stageRef,
       stageStyle: stage,
       viewportStyle: 'display:flex;justify-content:center',
+      toggleTheme: () => {
+        const r = document.documentElement;
+        const moi = r.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        r.setAttribute('data-theme', moi);
+        try { localStorage.setItem('lnx-theme', moi); } catch (e) {}
+        const m = document.querySelector('meta[name="theme-color"]');
+        if (m) m.setAttribute('content', moi === 'dark' ? '#1a1817' : '#fff1e5');
+      },
       deviceNote: d === 'tablet' ? 'CHẾ ĐỘ XEM TABLET · 834 PX' : d === 'phone' ? 'CHẾ ĐỘ XEM SMARTPHONE · 390 PX' : '',
       noteStyle: 'text-align:center;font-size:13px;letter-spacing:.2em;color:#7d7979;margin:0;padding:0 0 24px' + (d === 'laptop' ? ';display:none' : ''),
       navStyle: narrow ? 'display:none' : 'flex:1;min-width:0;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none',
@@ -4306,7 +4399,7 @@ class Component extends DCLogic {
         ['GIỮ CHÂN', 'Lifecycle · Referral', 'L3', 36]
       ].map((f, i) => ({
         a: f[0], b: f[1], c: f[2],
-        st: 'width:' + f[3] + '%;min-width:180px;background:var(--color-text);color:#fff;padding:16px 20px;font-family:var(--font-heading);font-weight:800;font-size:14px;letter-spacing:.06em;display:flex;align-items:center;opacity:' + (1 - i * 0.13)
+        st: 'width:' + f[3] + '%;min-width:180px;background:var(--color-text);color:var(--color-bg);padding:16px 20px;font-family:var(--font-heading);font-weight:800;font-size:14px;letter-spacing:.06em;display:flex;align-items:center;opacity:' + (1 - i * 0.13)
       })),
 
       budget: [

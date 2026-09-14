@@ -62,7 +62,7 @@ assets/
   js/dc-runtime.js          runtime render template
   js/modernist-ds.js        design system Modernist
   vendor/                   React 18.3.1 + ReactDOM (bản local)
-  fonts/                    Source Serif 4 + Inter woff2 — latin, latin-ext, vietnamese
+  fonts/                    Archivo woff2 — latin, latin-ext, vietnamese
   img/                      3 ảnh nội dung + 2 mã QR trang đăng ký
 brand/logo/                 chỉ các file trang đang dùng: 4 favicon + ảnh chia sẻ og:image
 cloudflare/                 Worker phục vụ site ở lattice.business — xem cloudflare/README.md
@@ -234,4 +234,4 @@ Nói gọn: đây là **tấm rèm che, không phải ổ khóa**.
 ---
 
 Màu: đỏ tín hiệu `#EC3013` · mực `#33302E` · nền giấy `#FFF1E5` (theo tinh thần ft.com) · có chế độ đêm
-Chữ: Source Serif 4 (tiêu đề) + Inter (thân bài, nút, nhãn) — Google Fonts, lưu sẵn trong assets/fonts
+Chữ: Archivo (Google Fonts)

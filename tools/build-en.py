@@ -82,8 +82,6 @@ def thay_trong_markup(doan, tu_dien):
 # Chuỗi nằm giữa một khối nhiều dòng (ví dụ <pre> YAML) — không thể coi là trọn
 # một đơn vị, vì thay cả khối sẽ làm mất xuống dòng. Thay đúng một dòng, nguyên văn.
 THAY_THEM = [
-    # Ảnh Vancouver có ghép ảnh chụp website lên màn hình laptop — bản Anh dùng ảnh chụp trang tiếng Anh.
-    ('assets/img/lattice-vancouver-', 'assets/img/lattice-vancouver-en-'),
     ('mission: Đánh giá lead và đề xuất bước tiếp theo',
      'mission: qualify the lead and recommend the next step'),
 ]

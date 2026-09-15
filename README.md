@@ -219,7 +219,7 @@ Nói gọn: đây là **tấm rèm che, không phải ổ khóa**.
 
 ## 11. Việc còn mở
 
-- **Ảnh**: ba ảnh PNG nặng ~2 MB mỗi file; nên chuyển sang WebP trước khi chạy quảng cáo. Bản Anh vẫn dùng ảnh người bán hàng trên phố Việt Nam (`vn-street-seller.png`).
+- **Ảnh**: sáu ảnh chụp đã phóng to bằng AI (Real-ESRGAN x4plus, chạy trên máy) rồi xuất JPEG 1920 và 3840 px; trình duyệt tự chọn cỡ qua srcset. Ảnh mới cần đạt tối thiểu 2560 px chi tiết thật để nét trên laptop Retina; sơ đồ có chữ nên dựng bằng HTML/SVG (như Sơ đồ 07).
 - **Bảng câu hỏi chuẩn bị**: thư và trang đăng ký hứa gửi sau khi nhận thanh toán, file chưa soạn.
 - **File nội bộ đang đọc được từ tên miền**: `README.md`, `tools/`, `docs/*.md`, `cloudflare/` trả về 200 tại lattice.business. Không có bí mật nào trong đó (repo vốn public), nhưng có thể chặn bằng Worker để chỉ phục vụ phần công khai.
 

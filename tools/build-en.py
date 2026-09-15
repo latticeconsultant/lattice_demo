@@ -71,7 +71,9 @@ def thay_trong_markup(doan, tu_dien):
     for vi, en in tu_dien:
         m = mau_linh_hoat(vi)
         # cho phép khoảng trắng hai đầu: <h1>Chuỗi <span>… có dấu cách trước thẻ
-        doan, a = re.subn(r'>\s*' + m + r'\s*<', lambda x, e=en: '>' + e + '<', doan)
+        # giữ nguyên khoảng trắng hai đầu — bỏ đi thì "Chuỗi <span>" dính liền chữ kế tiếp
+        doan, a = re.subn(r'>(?P<dau_>\s*)' + m + r'(?P<duoi_>\s*)<',
+                          lambda x, e=en: '>' + x.group('dau_') + e + x.group('duoi_') + '<', doan)
         doan, b = re.subn('="' + m + '"', lambda x, e=en: '="' + e + '"', doan)
         dem += a + b
     return doan, dem

@@ -4621,4 +4621,28 @@ class Component extends DCLogic {
   }, 1000);
 })();
 </script>
+
+<script>
+// Runtime dựng lại thẻ <video> và làm rơi mất hai thuộc tính muted với loop, nên
+// video chạy một lần rồi dừng, và trình duyệt chặn tự chạy vì tưởng có tiếng.
+// Đặt lại bằng thuộc tính DOM sau mỗi lần trang dựng lại.
+(function () {
+  var giamChuyenDong = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function sua() {
+    document.querySelectorAll('video').forEach(function (v) {
+      v.muted = true;
+      v.loop = true;
+      v.playsInline = true;
+      if (giamChuyenDong) { if (!v.paused) v.pause(); return; }
+      if (v.paused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    });
+  }
+  sua();
+  var hen = 0;
+  new MutationObserver(function () {
+    clearTimeout(hen);
+    hen = setTimeout(sua, 200);
+  }).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
 </body></html>

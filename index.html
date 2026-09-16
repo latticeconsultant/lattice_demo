@@ -4641,6 +4641,23 @@ class Component extends DCLogic {
     clearTimeout(hen);
     hen = setTimeout(sua, 200);
   }).observe(document.body, { childList: true, subtree: true });
+
+  // Nếu thẻ video kết thúc trước khi kịp đặt loop, sẽ không còn thay đổi DOM nào
+  // để gọi lại sua() — video nằm im ở khung cuối. Bắt thẳng sự kiện của thẻ.
+  ['loadedmetadata', 'play', 'ended'].forEach(function (ten) {
+    document.addEventListener(ten, function (e) {
+      var v = e.target;
+      if (!v || v.tagName !== 'VIDEO') return;
+      v.muted = true;
+      v.loop = true;
+      v.playsInline = true;
+      if (ten === 'ended' && !giamChuyenDong) {
+        v.currentTime = 0;
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});
+      }
+    }, true);
+  });
 })();
 </script>
 </body></html>

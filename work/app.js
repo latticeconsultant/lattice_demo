@@ -16,7 +16,7 @@
     tab: 'home', sub: null, task: null, anim: false,
     conv: null, chatOpen: false, chatF: 'all', q: '',
     col: 'cho_duyet', f: { pr: '', kind: '', mine: false },
-    flow: 'f1', ledgerPr: null, hl: null, menu: null
+    flow: 'f1', ledgerPr: null, hl: null, menu: null, help: null, hlog: {}
   };
   if (S.uid && !LW.person(S.uid)) S.uid = null;
 
@@ -92,8 +92,13 @@
     clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
     folder: '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>',
     note: '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M8 13h8M8 17h5"/>',
-    bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>'
+    bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
+    help: '<path d="M20.5 11.5a8.5 8.5 0 0 1-12.3 7.6L3.5 20.5l1.4-4.6A8.5 8.5 0 1 1 20.5 11.5Z"/><path d="M12 7.2l1.05 2.75L15.8 11l-2.75 1.05L12 14.8l-1.05-2.75L8.2 11l2.75-1.05Z" fill="currentColor" stroke="none"/>',
+    spark: '<path d="M12 3.5 13.9 9l5.6 1.9-5.6 1.9L12 18.5l-1.9-5.7L4.5 11l5.6-2Z"/><path d="M19 3v3M17.5 4.5h3"/>'
   };
+  function helpBtn(ctx, obj, cls) {
+    return '<button class="ib help-ic ' + (cls || '') + '" data-act="help" data-h="' + ctx + '"' + (obj ? ' data-o="' + esc(obj) + '"' : '') + ' aria-label="' + t('h.help') + '" title="' + t('h.helpTip') + '">' + ic('help') + '</button>';
+  }
   function ic(n, cls) { return '<svg class="ic ' + (cls || '') + '" viewBox="0 0 24 24" aria-hidden="true">' + (ICON[n] || '') + '</svg>'; }
   function ib(icon, act, attrs, label, badge, cls) {
     return '<button class="ib ' + (cls || '') + '" data-act="' + act + '" ' + (attrs || '') + ' aria-label="' + esc(label) + '" title="' + esc(label) + '">' + ic(icon) + (badge ? '<i class="bdg">' + badge + '</i>' : '') + '</button>';
@@ -120,16 +125,16 @@
   }
   function guard(fn) { try { fn(); return true; } catch (e) { fail(e); return false; } }
 
-  function modal(title, body, wide) {
+  function modal(title, body, wide, help, helpObj) {
     closeMenu();
     var m = document.getElementById('modal');
-    m.innerHTML = '<div class="scrim" data-act="modal-x"></div><div class="dlg' + (wide ? ' wide' : '') + '" role="dialog" aria-modal="true" aria-label="' + esc(title) + '"><div class="grab"></div><div class="dlg-h"><h3>' + esc(title) + '</h3>' + ib('close', 'modal-x', '', t('close')) + '</div><div class="dlg-b">' + body + '</div></div>';
+    m.innerHTML = '<div class="scrim" data-act="modal-x"></div><div class="dlg' + (wide ? ' wide' : '') + '" role="dialog" aria-modal="true" aria-label="' + esc(title) + '"><div class="grab"></div><div class="dlg-h"><h3>' + esc(title) + '</h3><span class="sp"></span>' + (help ? helpBtn(help, helpObj) : '') + ib('close', 'modal-x', '', t('close')) + '</div><div class="dlg-b">' + body + '</div></div>';
     m.hidden = false;
     document.body.classList.add('locked');
     var f = m.querySelector('.dlg-b input:not([type=hidden]):not([readonly]):not([type=checkbox]),.dlg-b textarea'); if (f && !narrow()) f.focus();
   }
   function closeModal() { var m = document.getElementById('modal'); m.hidden = true; m.innerHTML = ''; syncLock(); }
-  function syncLock() { document.body.classList.toggle('locked', !!S.task || !document.getElementById('modal').hidden || !!S.menu || (narrow() && S.tab === 'chat' && S.chatOpen)); }
+  function syncLock() { document.body.classList.toggle('locked', !!S.task || !document.getElementById('modal').hidden || !!S.menu || (narrow() && (!!S.help || (S.tab === 'chat' && S.chatOpen)))); }
 
   function formData(fm) {
     var o = {};
@@ -205,6 +210,7 @@
     if (r) items.push(item('copy', t('m.copyResult'), t('m.copyResultS', name(r.by)), function () { copyText(r.t); }));
     if (x.src) items.push(item('link', t('m.gotoMsg'), t('m.gotoMsgS'), function () { gotoMsg(x.src); }, { chev: true }));
     items.push({ sep: true });
+    items.push(item('help', t('h.aboutThis'), t('h.aboutThisS'), function () { openHelp('task', x.id); }, { chev: true }));
     items.push(item('trash', t('m.delete'), t('m.deleteS'), function () { doDelete(x.id); }, { off: u.role === 'owner' ? '' : t('why.onlyOwnerRole'), danger: true }));
     return {
       eyebrow: x.pr + ' · ' + stName(x.st) + (overdue(x) ? ' · ' + t('late') : ''), title: x.ttl,
@@ -220,6 +226,7 @@
     items.push(item('copy', t('copy'), t('m.copyMsgS'), function () { copyText(m.t); }));
     items.push(item('reply', t('m.reply'), '', null, { off: t('why.notBuilt') }));
     items.push(item('pin', t('m.pin'), '', null, { off: t('why.notBuilt') }));
+    items.push(item('help', t('h.aboutThis'), t('h.aboutThisS'), function () { openHelp('conv', m.ch); }, { chev: true }));
     return { eyebrow: '#' + c.n + ' · ' + fmtAt(m.at), title: name(m.by), sub: clip(m.t, 120), lead: avatar(m.by, 'md'), items: items };
   }
   function dmMenu(agentId, idx, u) {
@@ -234,33 +241,37 @@
     var items = [];
     items.push(item('chat', t('m.askAgent'), t('m.askAgentS'), function () { openConv(a.id); }, { off: LW.seeDM(a, u) ? '' : t('why.dm', name(a.sc.own)), primary: true, chev: true }));
     items.push(item('tasks', t('m.assignAgent'), t('m.assignAgentS', name(a.sc.own)), function () { newTask({ as: a.id }); }, { off: LW.can('create', u) ? '' : t('why.guest') }));
-    items.push(item('shield', t('m.scope'), t('m.scopeS'), function () { modal(a.id + ' · ' + a.n, agentForm(u, a), true); }, { chev: true }));
-    items.push(item('lock', t('probe.go'), t('m.probeS'), function () { modal(a.id + ' · ' + a.n, agentForm(u, a), true); setTimeout(function () { var b = document.querySelector('[data-act=probe]'); if (b) b.click(); var o = document.getElementById('probe-out'); if (o) o.scrollIntoView({ block: 'nearest' }); }, 60); }, { lockIcon: false }));
+    items.push(item('shield', t('m.scope'), t('m.scopeS'), function () { modal(a.id + ' · ' + a.n, agentForm(u, a), true, 'agentScope', a.id); }, { chev: true }));
+    items.push(item('lock', t('probe.go'), t('m.probeS'), function () { modal(a.id + ' · ' + a.n, agentForm(u, a), true, 'agentScope', a.id); setTimeout(function () { var b = document.querySelector('[data-act=probe]'); if (b) b.click(); var o = document.getElementById('probe-out'); if (o) o.scrollIntoView({ block: 'nearest' }); }, 60); }, { lockIcon: false }));
+    items.push(item('help', t('h.aboutThis'), t('h.aboutThisS'), function () { openHelp('agentScope', a.id); }, { chev: true }));
     return { eyebrow: t('m.agentEyebrow', a.id), title: a.n, sub: a.r + ' · ' + t('ownShort') + ' ' + name(a.sc.own), lead: avatar(a.id, 'md'), items: items };
   }
   function personMenu(p, u) {
     var items = [];
-    if (p.id === u.id) items.push(item('user', t('team.myProfile'), t('m.profileS'), function () { modal(t('team.myProfile'), profileForm(u), true); }, { chev: true, primary: true }));
+    if (p.id === u.id) items.push(item('user', t('team.myProfile'), t('m.profileS'), function () { modal(t('team.myProfile'), profileForm(u), true, 'people'); }, { chev: true, primary: true }));
     items.push(item('mail', t('m.email'), p.mail, function () { location.href = 'mailto:' + p.mail; }, { off: LW.seeContacts(u) ? '' : t('why.guestContacts') }));
     items.push(item('tasks', t('m.personTasks'), t('m.personTasksS', LW.openLoad(p.id), p.cap), function () { S.tab = 'tasks'; S.sub = null; S.f = { pr: '', kind: '', mine: false, who: p.id }; render(); scrollTop(); }, { chev: true }));
-    items.push(item('edit', t('team.editRole'), t('m.roleS'), function () { modal(p.n, personForm(p)); }, { off: LW.can('admin', u) ? '' : t('why.onlyOwnerRole') }));
+    items.push(item('edit', t('team.editRole'), t('m.roleS'), function () { modal(p.n, personForm(p), false, 'people'); }, { off: LW.can('admin', u) ? '' : t('why.onlyOwnerRole') }));
+    items.push(item('help', t('h.aboutThis'), t('h.aboutThisS'), function () { openHelp('people'); }, { chev: true }));
     return { eyebrow: roleName(p.role), title: p.n, sub: p.r, lead: avatar(p.id, 'md'), items: items };
   }
   function convMenu(id, u) {
     if (LW.isAgentId(id)) return agentMenu(LW.agent(id), u);
     var c = LW.chan(id), items = [];
-    items.push(item('users', t('members'), c.mem.map(function (x) { return shortName(x); }).join(', '), function () { modal('#' + c.n, chanForm(u, c)); }, { off: LW.can('admin', u) ? '' : t('why.onlyOwnerMembers'), chev: true }));
+    items.push(item('users', t('members'), c.mem.map(function (x) { return shortName(x); }).join(', '), function () { modal('#' + c.n, chanForm(u, c), false, 'conv', c.id); }, { off: LW.can('admin', u) ? '' : t('why.onlyOwnerMembers'), chev: true }));
     items.push(item('tasks', t('m.chanTask'), t('m.chanTaskS'), function () { newTask({ pr: projOfChan(c.id) }); }, { off: LW.can('create', u) ? '' : t('why.guest') }));
     items.push(item('bell', t('m.mute'), '', null, { off: t('why.notBuilt') }));
+    items.push(item('help', t('h.aboutThis'), t('h.aboutThisS'), function () { openHelp('conv', c.id); }, { chev: true }));
     return { eyebrow: t('m.chanEyebrow', c.mem.length), title: '#' + c.n, sub: c.d, lead: chanAvatar('md'), items: items };
   }
   function flowMenu(f, u) {
     return {
       eyebrow: t('m.flowEyebrow', f.steps.length), title: f.n, sub: f.d, lead: '<span class="av tile md">' + ic('flow') + '</span>',
       items: [
-        item('play', t('flow.launch'), t('m.launchS'), function () { modal(t('flow.launch') + ' · ' + f.n, launchForm(u, f), true); }, { off: LW.can('launchFlow', u) ? '' : t('flow.noLaunch'), primary: true }),
+        item('play', t('flow.launch'), t('m.launchS'), function () { modal(t('flow.launch') + ' · ' + f.n, launchForm(u, f), true, 'flows'); }, { off: LW.can('launchFlow', u) ? '' : t('flow.noLaunch'), primary: true }),
         item('eye', t('m.viewSteps'), '', function () { S.tab = 'apps'; S.sub = 'flows'; S.flow = f.id; render(); scrollTop(); }, { chev: true }),
-        item('edit', t('m.editFlow'), '', null, { off: t('flow.noEditor') })
+        item('edit', t('m.editFlow'), '', null, { off: t('flow.noEditor') }),
+        item('help', t('h.aboutThis'), t('h.aboutThisS'), function () { openHelp('flows'); }, { chev: true })
       ]
     };
   }
@@ -269,11 +280,11 @@
       item('tasks', t('newTask'), t('m.newTaskS'), function () { newTask({}); }, { off: LW.can('create', u) ? '' : t('why.guest'), primary: true }),
       item('chat', t('m.newMsg'), t('m.newMsgS'), function () { S.tab = 'chat'; S.sub = null; S.chatF = 'chan'; render(); }, { chev: true }),
       item('bot', t('m.askAgent'), t('m.askAgentS'), function () { S.tab = 'chat'; S.sub = null; S.chatF = 'agent'; render(); }, { off: LW.visibleAgentsForDM(u).length ? '' : t('why.noAgents'), chev: true }),
-      item('flow', t('flow.launch'), t('m.launchS'), function () { var f = DB.flows[0]; modal(t('flow.launch') + ' · ' + f.n, launchForm(u, f), true); }, { off: LW.can('launchFlow', u) ? '' : t('flow.noLaunch') }),
+      item('flow', t('flow.launch'), t('m.launchS'), function () { var f = DB.flows[0]; modal(t('flow.launch') + ' · ' + f.n, launchForm(u, f), true, 'flows'); }, { off: LW.can('launchFlow', u) ? '' : t('flow.noLaunch') }),
       { sep: true },
       item('book', t('ledger.add'), t('m.ledgerS'), function () { openSub('ledger'); }, { off: LW.can('approve', u) ? '' : t('ledger.ro'), chev: true }),
-      item('user', t('team.addPerson'), '', function () { modal(t('team.addPerson'), personForm(null)); }, { off: LW.can('admin', u) ? '' : t('why.onlyOwnerRole') }),
-      item('bot', t('team.addAgent'), '', function () { modal(t('team.addAgent'), agentForm(u, null), true); }, { off: LW.can('admin', u) ? '' : t('why.onlyOwnerRole') })
+      item('user', t('team.addPerson'), '', function () { modal(t('team.addPerson'), personForm(null), false, 'people'); }, { off: LW.can('admin', u) ? '' : t('why.onlyOwnerRole') }),
+      item('bot', t('team.addAgent'), '', function () { modal(t('team.addAgent'), agentForm(u, null), true, 'agentScope'); }, { off: LW.can('admin', u) ? '' : t('why.onlyOwnerRole') })
     ];
     return { eyebrow: t('m.createEyebrow'), title: t('m.createTitle'), sub: '', lead: '<span class="av tile red md">' + ic('plus') + '</span>', items: items };
   }
@@ -281,9 +292,10 @@
     return {
       eyebrow: roleName(u.role), title: u.n, sub: u.mail, lead: avatar(u.id, 'md'),
       items: [
-        item('user', t('team.myProfile'), t('m.profileS'), function () { modal(t('team.myProfile'), profileForm(u), true); }, { chev: true }),
+        item('user', t('team.myProfile'), t('m.profileS'), function () { modal(t('team.myProfile'), profileForm(u), true, 'people'); }, { chev: true }),
         item('globe', S.lang === 'vi' ? 'English' : 'Tiếng Việt', t('m.langS'), function () { setLang(); }),
-        item('info', t('about.title'), '', function () { modal(t('about.title'), '<div class="about">' + t('about.body') + '</div>', true); }, { chev: true }),
+        item('help', t('h.center'), t('h.centerS'), function () { openHelp('overview'); }, { chev: true, primary: true }),
+        item('info', t('about.title'), '', function () { modal(t('about.title'), '<div class="about">' + t('about.body') + '</div>', true, 'overview'); }, { chev: true }),
         item('refresh', t('reset'), t('m.resetS'), function () { doReset(); }),
         { sep: true },
         item('logout', t('logout'), '', function () { doLogout(); }, { danger: true })
@@ -350,6 +362,7 @@
     var np = document.querySelector('.page-b'); if (np && np.dataset.id === pid) np.scrollTop = py;
     Array.prototype.forEach.call(app.querySelectorAll('.msgs'), function (m) { m.scrollTop = m.scrollHeight; });
     S.anim = false;
+    if (S.help) renderHelp();
   }
   function tabBtn(k, n) {
     return '<button class="tbb' + (S.tab === k ? ' on' : '') + '" data-act="tab" data-id="' + k + '">' + ic(k) + '<span>' + t('tabShort.' + k) + '</span>' + (n ? '<i class="bdg">' + n + '</i>' : '') + '</button>';
@@ -358,7 +371,7 @@
     return '<header class="topbar' + (o.cls ? ' ' + o.cls : '') + '">' +
       (o.back ? ib('back', o.back, o.backAttrs || '', t('back'), '', 'back') : '') +
       '<div class="tt">' + (o.eyebrow ? '<small>' + o.eyebrow + '</small>' : '') + '<h1>' + o.title + '</h1>' + (o.sub ? '<p>' + o.sub + '</p>' : '') + '</div>' +
-      '<div class="ta">' + (o.actions || '') + '</div></header>';
+      '<div class="ta">' + (o.help ? helpBtn(o.help, o.helpObj) : '') + (o.actions || '') + '</div></header>';
   }
   function accountBtn(u) { return '<button class="ib acct" data-act="ctx" data-ctx="account" aria-label="' + t('menu') + '">' + avatar(u.id, 'sm') + '</button>'; }
   function section(title, count, body, extra) {
@@ -372,7 +385,7 @@
       '<div class="aa-copy"><h1>' + t('auth.h') + '</h1><p>' + t('auth.p') + '</p>' +
       '<div class="aa-rules"><div><span class="av tile inv sm">' + ic('user') + '</span>' + t('auth.r1') + '</div><div><span class="av tile inv sm">' + ic('approve') + '</span>' + t('auth.r2') + '</div><div><span class="av tile red sm">' + ic('lock') + '</span>' + t('auth.r3') + '</div></div></div></section>' +
       '<section class="auth-form"><div class="af">' +
-      '<small class="eyebrow">' + t('login.title') + '</small><h2>' + t('login.sub') + '</h2>' +
+      '<div class="af-h"><small class="eyebrow">' + t('login.title') + '</small>' + helpBtn('login', '', 'sm') + '</div><h2>' + t('login.sub') + '</h2>' +
       '<form data-form="login" class="stack"><label class="fld">Email<input name="mail" type="email" autocomplete="username" required></label>' +
       '<label class="fld">' + t('login.pw') + '<input name="pw" type="password" autocomplete="current-password" required></label>' +
       '<button class="btn pri big">' + t('login.go') + '</button></form>' +
@@ -406,7 +419,7 @@
     var runs = myAgents.reduce(function (s, a) { return s + LW.runsToday(a); }, 0);
     var day = new Date().toLocaleDateString(S.lang === 'en' ? 'en-GB' : 'vi-VN', { weekday: 'long', day: 'numeric', month: 'numeric' });
 
-    var h = topbar({ eyebrow: esc(day), title: t('need.hello', esc(u.n.split(' ').slice(-1)[0])), sub: ap.length ? t('home.subHot', ap.length) : t('home.subCalm'), actions: ib('bell', 'goto-review', '', t('kpi.approve'), ap.length || '', 'hide-d') + accountBtn(u), cls: 'hero' });
+    var h = topbar({ eyebrow: esc(day), title: t('need.hello', esc(u.n.split(' ').slice(-1)[0])), sub: ap.length ? t('home.subHot', ap.length) : t('home.subCalm'), help: 'home', actions: ib('bell', 'goto-review', '', t('kpi.approve'), ap.length || '', 'hide-d') + accountBtn(u), cls: 'hero' });
 
     var quick = '<div class="quick">' +
       (LW.can('create', u) ? quickTile('plus', t('newTask'), 'new-task', '', 'ink') : '') +
@@ -425,7 +438,7 @@
       stat('bot', t('kpi.runs'), runs, '', '', 'open-sub', 'data-id="agents"') + '</div>';
 
     var main = '';
-    main += ap.length ? section(t('need.approve'), ap.length, '<div class="acards">' + ap.map(function (x) { return approvalCard(x); }).join('') + '</div>') : '';
+    main += ap.length ? section(t('need.approve'), ap.length, '<div class="acards">' + ap.map(function (x) { return approvalCard(x); }).join('') + '</div>', helpBtn('approve', '', 'sm')) : '';
     main += mine.length ? section(t('need.mine'), mine.length, '<div class="list">' + mine.map(function (x) {
       return taskRow(x, u, x.gate ? '<button class="chipbtn" data-act="st" data-st="cho_duyet" data-id="' + x.id + '">' + ic('send') + t('sendReview') + '</button>' : '<button class="chipbtn" data-act="st" data-st="xong" data-id="' + x.id + '">' + ic('check') + t('markDone') + '</button>');
     }).join('') + '</div>') : '';
@@ -444,7 +457,8 @@
       }).join('') + '</div>') : '') +
       '<div class="rule-card"><span class="av tile red sm">' + ic('shield') + '</span><b>' + t('rail.rule') + '</b><p>' + t('rail.ruleP') + '</p></div></aside>';
 
-    return '<div class="view home">' + h + quick + stats + '<div class="home-g"><div>' + main + '</div>' + aside + '</div></div>';
+    var tip = get('lw.tipHelp') ? '' : '<div class="tipcard"><span class="av tile red md">' + ic('help') + '</span><div class="tc-b"><b>' + t('h.tipT') + '</b><p>' + t('h.tipB') + '</p><div class="row"><button class="btn pri sm" data-act="help" data-h="overview">' + ic('book') + t('h.tipGo') + '</button><button class="btn sm" data-act="tip-x">' + t('h.tipX') + '</button></div></div></div>';
+    return '<div class="view home">' + h + tip + quick + stats + '<div class="home-g"><div>' + main + '</div>' + aside + '</div></div>';
   }
   function stat(icon, label, num, small, cls, act, attrs) {
     return '<button class="stat ' + (cls || '') + '" data-act="' + act + '" ' + (attrs || '') + '><span class="st-ic">' + ic(icon) + '</span><b>' + num + (small ? '<small>' + small + '</small>' : '') + '</b><span>' + label + '</span></button>';
@@ -482,7 +496,7 @@
       return true;
     });
     var nf = (S.f.pr ? 1 : 0) + (S.f.kind ? 1 : 0) + (S.f.mine ? 1 : 0) + (who ? 1 : 0);
-    var h = topbar({ eyebrow: t('tasks.eyebrow', list.length), title: t('tab.tasks'),
+    var h = topbar({ eyebrow: t('tasks.eyebrow', list.length), title: t('tab.tasks'), help: 'tasks',
       actions: ib('filter', 'ctx', 'data-ctx="filter"', t('m.filterTitle'), nf || '') + ib('book', 'open-sub', 'data-id="ledger"', 'Scope Ledger') + (LW.can('create', u) ? ib('plus', 'new-task', '', t('newTask'), '', 'hide-m solid') : '') + accountBtn(u) });
     var chips = '';
     if (nf) {
@@ -539,7 +553,7 @@
     if (x.st === 'xong' && (x.own === u.id || u.role === 'owner')) acts += '<button class="btn grow" data-act="st" data-st="dang_lam" data-id="' + x.id + '">' + ic('refresh') + t('reopen') + '</button>';
 
     var r = '<div class="scrim task-scrim' + (S.anim ? ' enter' : '') + '" data-act="close-task"></div><section class="page' + (S.anim ? ' enter' : '') + '" aria-label="' + t('detail') + '">' +
-      topbar({ back: 'close-task', eyebrow: esc(x.pr) + ' · ' + stName(x.st), title: t('detail'), actions: moreBtn('task:' + x.id), cls: 'bar' }) +
+      topbar({ back: 'close-task', eyebrow: esc(x.pr) + ' · ' + stName(x.st), title: t('detail'), help: 'task', helpObj: x.id, actions: moreBtn('task:' + x.id), cls: 'bar' }) +
       '<div class="page-b" data-id="' + x.id + '">' +
       '<div class="tk-status"><span class="pill ' + (x.st === 'cho_duyet' ? 'red' : x.st === 'xong' ? 'dark' : '') + '">' + stName(x.st) + '</span>' + (x.gate ? '<span class="pill">' + ic('flag', 'xs') + t('gate') + '</span>' : '') + (overdue(x) ? '<span class="pill warn">' + ic('clock', 'xs') + t('late') + '</span>' : '') + '</div>' +
       '<form data-form="task-save" data-id="' + x.id + '" class="tk-f">' +
@@ -590,7 +604,7 @@
     });
     if (!S.conv || !all.some(function (c) { return c.id === S.conv; })) S.conv = all.length ? all[0].id : null;
     var hasAgents = all.some(function (c) { return c.kind === 'agent'; });
-    var side = '<div class="c-list">' + topbar({ title: t('tab.chat'), actions: (LW.can('admin', u) ? ib('plus', 'chan-new', '', t('chan.new')) : '') + accountBtn(u) }) +
+    var side = '<div class="c-list">' + topbar({ title: t('tab.chat'), help: 'chat', actions: (LW.can('admin', u) ? ib('plus', 'chan-new', '', t('chan.new')) : '') + accountBtn(u) }) +
       '<label class="search">' + ic('search') + '<input type="search" data-input="chat-q" value="' + esc(S.q) + '" placeholder="' + t('chat.search') + '"></label>' +
       '<div class="fchips">' + [['all', 'chat.all'], ['chan', 'chat.chans']].concat(hasAgents ? [['agent', 'chat.agents']] : []).map(function (f) { return '<button class="pill act' + (S.chatF === f[0] ? ' on' : '') + '" data-act="chat-f" data-id="' + f[0] + '">' + t(f[1]) + '</button>'; }).join('') + '</div>' +
       '<div class="convs">' + (list.map(function (c) {
@@ -599,12 +613,12 @@
       }).join('') || '<p class="fine pad">' + t('chan.none') + '</p>') + '</div></div>';
     return '<div class="view chat">' + side + '<div class="c-pane">' + (S.conv ? (LW.isAgentId(S.conv) ? agentConv(u) : chanConv(u)) : '') + '</div></div>';
   }
-  function convHead(u, avatarHtml, title, sub, key) {
-    return '<header class="topbar bar conv-h">' + ib('back', 'close-conv', '', t('back'), '', 'back only-m') + avatarHtml + '<div class="tt"><h1>' + title + '</h1><p>' + sub + '</p></div><div class="ta">' + moreBtn(key) + '</div></header>';
+  function convHead(u, avatarHtml, title, sub, key, help, helpObj) {
+    return '<header class="topbar bar conv-h">' + ib('back', 'close-conv', '', t('back'), '', 'back only-m') + avatarHtml + '<div class="tt"><h1>' + title + '</h1><p>' + sub + '</p></div><div class="ta">' + helpBtn(help, helpObj) + moreBtn(key) + '</div></header>';
   }
   function chanConv(u) {
     var c = LW.chan(S.conv), ms = DB.msgs.filter(function (m) { return m.ch === c.id; });
-    return convHead(u, chanAvatar('md'), '#' + esc(c.n), t('chat.members', c.mem.length) + ' · ' + esc(c.d), 'conv:' + c.id) +
+    return convHead(u, chanAvatar('md'), '#' + esc(c.n), t('chat.members', c.mem.length) + ' · ' + esc(c.d), 'conv:' + c.id, 'conv', c.id) +
       '<div class="msgs">' + '<div class="hint-b">' + ic('tasks', 'xs') + t('chat.hint') + '</div>' + ms.map(function (m) {
         var mine = m.by === u.id, tk = m.task ? LW.task(m.task) : null, chip = '';
         if (tk && LW.seeTask(tk, u)) chip = '<button class="taskchip" data-act="open-task" data-id="' + tk.id + '">' + ic('tasks', 'xs') + '<span>' + esc(tk.ttl) + '</span><em>' + stName(tk.st) + '</em></button>';
@@ -617,7 +631,7 @@
   function agentConv(u) {
     var a = LW.agent(S.conv), conv = (DB.dms[a.id] || []).filter(function (m) { return m.u === u.id; });
     var sugg = [t('dm.q1'), t('dm.q2'), t('dm.q3'), t('dm.q4')];
-    return convHead(u, avatar(a.id, 'md'), esc(a.n), esc(a.id) + ' · ' + t('ownShort') + ' ' + esc(name(a.sc.own)) + ' · ' + t('runs', LW.runsToday(a), a.sc.limit), 'agent:' + a.id) +
+    return convHead(u, avatar(a.id, 'md'), esc(a.n), esc(a.id) + ' · ' + t('ownShort') + ' ' + esc(name(a.sc.own)) + ' · ' + t('runs', LW.runsToday(a), a.sc.limit), 'agent:' + a.id, 'agentchat', a.id) +
       '<div class="msgs">' + '<div class="hint-b">' + ic('shield', 'xs') + t('dm.hint2') + '</div>' + (conv.map(function (m, i) {
         var ag = m.r === 'agent';
         return '<div class="bub-row' + (ag ? ' agent' : ' mine') + '" data-ctx="dm:' + a.id + ':' + i + '">' + (ag ? avatar(a.id, 'sm') : '') + '<div class="bub-w"><small>' + esc(ag ? a.id + ' · ' + a.n : t('you')) + ' · ' + fmtShort(m.at) + '</small><div class="bub">' + esc(m.c) + '</div>' +
@@ -636,7 +650,7 @@
   function viewApps(u) {
     if (S.sub && SUBS[S.sub]) return '<div class="view sub">' + SUBS[S.sub](u) + '</div>';
     var guest = u.role === 'guest', owner = u.role === 'owner';
-    var h = topbar({ eyebrow: t('apps.eyebrow'), title: t('tab.apps'), actions: accountBtn(u) });
+    var h = topbar({ eyebrow: t('apps.eyebrow'), title: t('tab.apps'), help: 'apps', actions: accountBtn(u) });
     var prof = '<article class="profile" data-ctx="person:' + u.id + '">' + avatar(u.id, 'xl') + '<div class="pf-t"><b>' + esc(u.n) + '</b><small>' + roleName(u.role) + ' · ' + esc(u.mail) + '</small><span class="meter"><i style="width:' + (u.cap ? Math.min(100, Math.round(LW.openLoad(u.id) / u.cap * 100)) : 0) + '%"></i></span><em>' + t('team.load', LW.openLoad(u.id), u.cap) + '</em></div>' + moreBtn('person:' + u.id) + '</article>';
     function grid(title, tiles) { tiles = tiles.filter(Boolean); return tiles.length ? section(title, null, '<div class="apps">' + tiles.join('') + '</div>') : ''; }
     return '<div class="view v-apps">' + h + prof +
@@ -658,12 +672,13 @@
       ]) +
       grid(t('apps.other'), [
         appTile('globe', S.lang === 'vi' ? 'English' : 'Tiếng Việt', t('m.langS'), 'lang'),
+        appTile('help', t('h.center'), t('h.centerS'), 'help', 'data-h="overview"', 'ink'),
         appTile('info', t('about.title'), '', 'about'),
         appTile('refresh', t('reset'), '', 'reset'),
         appTile('logout', t('logout'), '', 'logout', '', 'red')
       ]) + '</div>';
   }
-  function subHead(title, sub, actions) { return topbar({ back: 'close-sub', eyebrow: t('tab.apps'), title: title, sub: sub, actions: actions || '' }); }
+  function subHead(title, sub, actions) { return topbar({ back: 'close-sub', eyebrow: t('tab.apps'), title: title, sub: sub, help: S.sub, actions: actions || '' }); }
 
   var SUBS = {
     people: function (u) {
@@ -754,7 +769,7 @@
   };
 
   function forbidBox() {
-    return '<div class="forbid"><div class="fh"><span class="av tile red sm">' + ic('lock') + '</span><b>' + t('forbid.head') + '</b></div><div class="fl">' + LW.FORBIDDEN.map(function (f) { return '<div><b>' + esc(S.lang === 'en' ? f.en : f.vi) + '</b><small>' + esc(S.lang === 'en' ? f.why_en : f.why_vi) + '</small></div>'; }).join('') + '</div><p>' + t('forbid.foot') + '</p></div>';
+    return '<div class="forbid"><div class="fh"><span class="av tile red sm">' + ic('lock') + '</span><b>' + t('forbid.head') + '</b><span class="sp"></span>' + helpBtn('forbid', '', 'sm') + '</div><div class="fl">' + LW.FORBIDDEN.map(function (f) { return '<div><b>' + esc(S.lang === 'en' ? f.en : f.vi) + '</b><small>' + esc(S.lang === 'en' ? f.why_en : f.why_vi) + '</small></div>'; }).join('') + '</div><p>' + t('forbid.foot') + '</p></div>';
   }
 
   /* ---------- biểu mẫu ---------- */
@@ -832,11 +847,183 @@
   }
 
   /* ============================================================
+     TRỢ GIÚP THEO NGỮ CẢNH + TRỢ LÝ
+     Nội dung ở help.js. Trợ lý tìm trong câu hỏi thường gặp của đúng ngữ cảnh,
+     rồi trả lời từ luật (data.js) và dữ liệu người hỏi được xem — không đoán ngoài phạm vi.
+     ============================================================ */
+  function norm(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd'); }
+  function helpDoc(ctx) { var H = window.HELP[ctx] || window.HELP.overview; return { H: H, L: H[S.lang] || H.vi }; }
+  function helpCtxNow() {
+    if (!me()) return { ctx: 'login' };
+    if (S.task) return { ctx: 'task', obj: S.task };
+    if (S.tab === 'apps' && S.sub) return { ctx: window.HELP[S.sub] ? S.sub : 'apps' };
+    if (S.tab === 'chat' && S.conv && (S.chatOpen || !narrow())) return LW.isAgentId(S.conv) ? { ctx: 'agentchat', obj: S.conv } : { ctx: 'conv', obj: S.conv };
+    return { ctx: S.tab };
+  }
+  function openHelp(ctx, obj) {
+    closeMenu();
+    var same = S.help && S.help.ctx === ctx && S.help.obj === (obj || null);
+    S.help = { ctx: ctx, obj: obj || null, tab: same ? S.help.tab : 'guide', anim: !S.help };
+    renderHelp();
+  }
+  function closeHelp() { S.help = null; var r = document.getElementById('help'); r.hidden = true; r.innerHTML = ''; syncLock(); }
+  function closeHelpIfNarrow() { if (narrow()) closeHelp(); }
+  function helpKey() { return S.help.ctx + ':' + (S.help.obj || ''); }
+  function uniq(a) { return a.filter(function (x, i) { return a.indexOf(x) === i; }); }
+  function objLabel(ctx, obj) {
+    if (!obj) return '';
+    if (ctx === 'task' || ctx === 'return') { var x = LW.task(obj); return x ? x.ttl : ''; }
+    if (ctx === 'conv') { var c = LW.chan(obj); return c ? '#' + c.n : ''; }
+    if (ctx === 'agentchat' || ctx === 'agentScope') { var a = LW.agent(obj); return a ? a.id + ' · ' + a.n : ''; }
+    return '';
+  }
+  function helpLog() {
+    var k = helpKey(), u = me(), L = helpDoc(S.help.ctx).L, ol = objLabel(S.help.ctx, S.help.obj);
+    if (!S.hlog[k]) S.hlog[k] = [{ r: 'a', t: (u ? t('h.hello', u.n.split(' ').slice(-1)[0], L.title) : t('h.helloAnon', L.title)) + (ol ? '\n' + t('h.about', ol) : ''), acts: [] }];
+    return S.hlog[k];
+  }
+  function renderHelp() {
+    var h = S.help, root = document.getElementById('help');
+    if (!h) { root.hidden = true; root.innerHTML = ''; return; }
+    var d = helpDoc(h.ctx), L = d.L, ol = objLabel(h.ctx, h.obj), body;
+    if (h.tab === 'guide') {
+      var qs = uniq((L.faq || []).map(function (f) { return f[0]; }).concat(L.suggest || []));
+      body = '<div class="h-body">' + (ol ? '<div class="h-obj">' + ic(d.H.icon || 'info', 'xs') + '<span>' + esc(t('h.about', ol)) + '</span></div>' : '') +
+        '<p class="h-intro">' + esc(L.intro) + '</p>' +
+        (L.steps && L.steps.length ? '<div class="h-sec"><h4>' + t('h.steps') + '</h4><ol class="h-steps">' + L.steps.map(function (s, i) { return '<li><span>' + (i + 1) + '</span><p>' + esc(s) + '</p></li>'; }).join('') + '</ol></div>' : '') +
+        (L.tips && L.tips.length ? '<div class="h-sec"><h4>' + t('h.tips') + '</h4>' + L.tips.map(function (s) { return '<div class="h-tip">' + ic('spark', 'xs') + '<p>' + esc(s) + '</p></div>'; }).join('') + '</div>' : '') +
+        (L.rules && L.rules.length ? '<div class="h-sec"><h4>' + t('h.rules') + '</h4><div class="h-rules">' + L.rules.map(function (s) { return '<div>' + ic('lock', 'xs') + '<p>' + esc(s) + '</p></div>'; }).join('') + '</div></div>' : '') +
+        (qs.length ? '<div class="h-sec"><h4>' + t('h.faq') + '</h4><div class="h-faq">' + qs.map(function (q) { return '<button class="h-q" data-act="help-q" data-q="' + esc(q) + '">' + ic('chat', 'xs') + '<span>' + esc(q) + '</span>' + ic('chev', 'xs') + '</button>'; }).join('') + '</div></div>' : '') +
+        (d.H.related && d.H.related.length ? '<div class="h-sec"><h4>' + t('h.related') + '</h4><div class="chips">' + d.H.related.map(function (r) { var R = window.HELP[r]; return R ? '<button class="pill act" data-act="help" data-h="' + r + '">' + ic(R.icon || 'info', 'xs') + esc((R[S.lang] || R.vi).title) + '</button>' : ''; }).join('') + '</div></div>' : '') +
+        '</div><div class="h-foot"><button class="btn pri big" data-act="help-tab" data-id="chat">' + ic('spark') + t('h.askThis') + '</button></div>';
+    } else {
+      var log = helpLog();
+      body = '<div class="h-body chat"><p class="h-sim">' + ic('info', 'xs') + '<span>' + t('h.sim') + '</span></p>' + log.map(function (m, i) {
+        if (m.r === 'typing') return '<div class="h-msg a"><span class="av tile ink sm">' + ic('spark') + '</span><div class="h-bub typing" aria-label="' + t('h.typing') + '"><i></i><i></i><i></i></div></div>';
+        if (m.r === 'u') return '<div class="h-msg u"><div class="h-bub">' + esc(m.t) + '</div></div>';
+        return '<div class="h-msg a"><span class="av tile ink sm">' + ic('spark') + '</span><div class="h-w"><div class="h-bub">' + esc(m.t) + '</div>' +
+          (m.acts && m.acts.length ? '<div class="h-acts">' + m.acts.map(function (a, j) { return '<button class="chipbtn' + (a.primary ? ' dark' : '') + '" data-act="help-run" data-m="' + i + '" data-a="' + j + '">' + ic(a.icon || 'chev', 'xs') + esc(a.label) + '</button>'; }).join('') + '</div>' : '') + '</div></div>';
+      }).join('') + '</div>' +
+        '<div class="h-foot"><div class="sugg">' + (L.suggest || []).map(function (q) { return '<button class="pill act" data-act="help-q" data-q="' + esc(q) + '">' + esc(q) + '</button>'; }).join('') + '</div>' +
+        '<form data-form="help-ask" class="composer"><textarea name="q" rows="1" required placeholder="' + esc(t('h.ph', L.title)) + '"></textarea><button class="send" aria-label="' + t('send') + '">' + ic('send') + '</button></form></div>';
+    }
+    root.innerHTML = '<div class="h-scrim' + (h.anim ? ' enter' : '') + '" data-act="help-x"></div><aside class="help' + (h.anim ? ' enter' : '') + '" role="dialog" aria-label="' + esc(t('h.help')) + '">' +
+      '<div class="grab"></div><header class="h-top"><span class="av tile ink md">' + ic('help') + '</span><div class="tt"><small>' + t('h.assistant') + '</small><h1>' + esc(L.title) + '</h1></div>' +
+      (h.tab === 'chat' ? ib('refresh', 'help-clear', '', t('h.clear')) : '') + ib('close', 'help-x', '', t('close')) + '</header>' +
+      '<div class="h-seg"><button class="' + (h.tab === 'guide' ? 'on' : '') + '" data-act="help-tab" data-id="guide">' + ic('book', 'xs') + t('h.guide') + '</button><button class="' + (h.tab === 'chat' ? 'on' : '') + '" data-act="help-tab" data-id="chat">' + ic('spark', 'xs') + t('h.ask') + '</button></div>' +
+      body + '</aside>';
+    h.anim = false;
+    root.hidden = false;
+    var b = root.querySelector('.h-body.chat'); if (b) b.scrollTop = b.scrollHeight;
+    syncLock();
+  }
+  function helpAsk(q) {
+    q = String(q || '').trim(); if (!q || !S.help) return;
+    S.help.tab = 'chat';
+    var log = helpLog(); log.push({ r: 'u', t: q }); log.push({ r: 'typing' });
+    renderHelp();
+    var key = helpKey(), ctx = S.help.ctx, obj = S.help.obj;
+    setTimeout(function () {
+      var L2 = S.hlog[key]; if (!L2) return;
+      var ans; try { ans = assist(ctx, obj, q); } catch (e) { ans = { t: t('a.fallback') }; if (window.console) console.error(e); }
+      var i = L2.findIndex(function (m) { return m.r === 'typing'; }), msg = { r: 'a', t: ans.t, acts: ans.acts || [] };
+      if (i >= 0) L2.splice(i, 1, msg); else L2.push(msg);
+      if (S.help && helpKey() === key) { renderHelp(); var ta = document.querySelector('#help textarea'); if (ta && !narrow()) ta.focus(); }
+    }, 420 + Math.min(700, q.length * 12));
+  }
+
+  function bl(list) { return list.map(function (x) { return '· ' + x; }).join('\n'); }
+  function taskLine(x) { return '[' + x.pr + '] ' + x.ttl + ' — ' + stName(x.st) + ', ' + (x.as ? name(x.as) : t('unassigned')) + ', ' + fmtDate(x.due); }
+  function goTask(x) { return { label: t('a.go.open', clip(x.ttl, 34)), icon: 'eye', run: function () { closeHelpIfNarrow(); openTask(x.id); render(); } }; }
+  function assist(ctx, obj, q) {
+    var u = me(), s = norm(q), L = helpDoc(ctx).L;
+    // 1 · câu hỏi thường gặp của đúng ngữ cảnh
+    var best = null, bestScore = 0;
+    (L.faq || []).forEach(function (f) {
+      var sc = norm(f[0]) === s ? 5 : 0;
+      f[1].split('|').forEach(function (k) { if (k && s.indexOf(k) >= 0) sc += k.length > 6 ? 2 : 1; });
+      if (sc > bestScore) { bestScore = sc; best = f; }
+    });
+    if (best && bestScore >= 2) return { t: best[2] };
+    if (!u) return { t: best ? best[2] : t('a.fallback') };
+    var vis = LW.visibleTasks(u);
+
+    // 2 · quyền trên đúng đối tượng đang xem — dùng lại đúng menu hành động, nên lý do khớp luật
+    var aboutPerm = /(tai sao|vi sao|sao khong|khong duoc|khong the|bi khoa|bi chan|lam duoc gi|duoc lam gi|why|cannot|can.?t|not allowed|what can i)/.test(s);
+    if (aboutPerm && obj) {
+      var spec = null;
+      if ((ctx === 'task' || ctx === 'return') && LW.task(obj)) spec = taskMenu(LW.task(obj), u);
+      else if ((ctx === 'agentchat' || ctx === 'agentScope') && LW.agent(obj)) spec = agentMenu(LW.agent(obj), u);
+      else if (ctx === 'conv' && LW.chan(obj)) spec = convMenu(obj, u);
+      if (spec) {
+        var okL = [], noL = [];
+        spec.items.forEach(function (it) { if (it.sep || it.icon === 'help') return; if (it.disabled) noL.push(it.label + ' — ' + it.reason); else okL.push(it.label); });
+        var txt = t('a.can', spec.title) + '\n' + bl(okL) + (noL.length ? '\n\n' + t('a.cannot') + '\n' + bl(noL) : '');
+        if ((ctx === 'task' || ctx === 'return') && /(duyet|approv)/.test(s) && LW.task(obj).own !== u.id) txt += '\n\n' + t('a.whyOwner');
+        return { t: txt, acts: (ctx === 'task' || ctx === 'return') ? [goTask(LW.task(obj))] : [] };
+      }
+    }
+    // 3 · duyệt
+    if (/(duyet|review|approv)/.test(s)) {
+      if (obj && (ctx === 'task' || ctx === 'return') && LW.task(obj)) {
+        var x = LW.task(obj);
+        return { t: t('a.review.task', name(x.own)) + ' ' + (x.own === u.id ? t('a.review.you', x.st === 'cho_duyet' ? t('a.review.youNow') : t('a.review.youLater')) : t('a.review.notYou')) + '\n\n' + t('a.whyOwner'), acts: [goTask(x)] };
+      }
+      var ap = vis.filter(function (y) { return y.st === 'cho_duyet' && y.own === u.id; });
+      if (!ap.length) return { t: t('a.review.none') + '\n\n' + t('a.whyOwner') };
+      return { t: t('a.review.list', ap.length) + '\n' + bl(ap.map(taskLine)), acts: ap.slice(0, 3).map(goTask).concat([{ label: t('a.go.review'), icon: 'approve', primary: true, run: function () { closeHelpIfNarrow(); ACT['goto-review'](); } }]) };
+    }
+    // 4 · quá hạn
+    if (/(qua han|tre han|bi tre|overdue|late)/.test(s)) {
+      var od = vis.filter(overdue);
+      return od.length ? { t: t('a.late.list', od.length) + '\n' + bl(od.map(taskLine)), acts: od.slice(0, 3).map(goTask) } : { t: t('a.late.none') };
+    }
+    // 5 · bốn điều cấm
+    if (/(dieu cam|bon dieu|cam tuyet doi|forbid|prohibit|gui email ra ngoai|xoa du lieu)/.test(s)) {
+      return { t: t('a.forbid') + '\n' + bl(LW.FORBIDDEN.map(function (f) { return (S.lang === 'en' ? f.en : f.vi) + ' — ' + (S.lang === 'en' ? f.why_en : f.why_vi); })) };
+    }
+    // 6 · phạm vi agent
+    if (/(pham vi|scope|thay duoc gi|doc duoc|nhin thay gi|can see|agent nao|agents do i own|toi chu tri)/.test(s)) {
+      var aa = obj && LW.agent(obj) ? [LW.agent(obj)] : DB.agents.filter(function (a) { return a.sc.own === u.id; });
+      if (!aa.length) return { t: t('a.scope.noneMine') };
+      var lines = aa.map(function (a) { return t('a.scope.one', a.id + ' ' + a.n, a.sc.reads.map(function (r) { return t('read.' + r); }).join(', '), a.sc.can.map(function (c) { return t('can.' + c); }).join(', '), name(a.sc.own), a.sc.review ? t('a.scope.rv') : t('a.scope.direct'), LW.runsToday(a), a.sc.limit); });
+      return { t: (obj && LW.agent(obj) ? '' : t('a.scope.mine') + '\n\n') + lines.join('\n\n'), acts: u.role !== 'guest' ? [{ label: t('a.go.agents'), icon: 'bot', run: function () { closeHelpIfNarrow(); openSub('agents'); } }] : [] };
+    }
+    // 7 · vai trò và quyền
+    if (/(vai tro|quyen|role|permission|lam duoc gi|duoc lam gi)/.test(s)) {
+      var rows = Object.keys(LW.PERM).map(function (k) { return (LW.PERM[k].indexOf(u.role) >= 0 ? '✓ ' : '✗ ') + t('perm.' + k); });
+      return { t: t('a.role', roleName(u.role)) + '\n' + rows.join('\n') + '\n\n' + t('a.role.proj', LW.projsOf(u).join(', ')), acts: u.role !== 'guest' ? [{ label: t('a.go.matrix'), icon: 'lock', run: function () { closeHelpIfNarrow(); openSub('matrix'); } }] : [] };
+    }
+    // 8 · tạo và giao việc
+    if (/(tao viec|giao viec|them viec|viec moi|create|assign|new task)/.test(s)) {
+      if (!LW.can('create', u)) return { t: t('a.create.no') };
+      return { t: t('a.create') + (LW.can('assignOthers', u) ? '' : '\n\n' + t('a.create.mem')), acts: [{ label: t('a.go.new'), icon: 'plus', primary: true, run: function () { closeHelp(); newTask({}); } }] };
+    }
+    // 9 · tin nhắn thành việc
+    if (/(tin nhan.*viec|chuyen thanh viec|message.*task|turn .*task)/.test(s)) return { t: t('a.msgTask'), acts: [{ label: t('a.go.chat'), icon: 'chat', run: function () { closeHelpIfNarrow(); S.tab = 'chat'; S.sub = null; S.task = null; render(); } }] };
+    // 10 · luồng
+    if (/(luong|flow|khoi chay|launch)/.test(s)) return { t: t('a.flows') + ' ' + (LW.can('launchFlow', u) ? t('a.flows.can') : t('a.flows.cannot')), acts: u.role !== 'guest' ? [{ label: t('a.go.flows'), icon: 'flow', run: function () { closeHelpIfNarrow(); openSub('flows'); } }] : [] };
+    // 11 · Ledger
+    if (/(ledger|troi pham vi|drift)/.test(s)) return { t: t('a.ledger') + ' ' + (LW.can('approve', u) ? t('a.ledger.can') : t('a.ledger.cannot')), acts: [{ label: t('a.go.ledger'), icon: 'book', run: function () { closeHelpIfNarrow(); openSub('ledger'); } }] };
+    // 12 · phím tắt, menu
+    if (/(phim tat|shortcut|ban phim|keyboard)/.test(s)) return { t: t('a.keys') };
+    if (/(menu|nhan giu|chuot phai|···|long press|right.?click|bi mo|greyed|grey)/.test(s)) return { t: t('a.menu'), acts: [{ label: t('a.go.menu'), icon: 'more', run: function () { openHelp('menu'); } }] };
+    // 13 · tải việc
+    if (/(tai viec|cong suat|workload|capacity|qua tai)/.test(s)) {
+      var team = DB.people.filter(function (p) { return p.role !== 'guest'; }).map(function (p) { return p.n + ': ' + LW.openLoad(p.id) + '/' + p.cap + (LW.openLoad(p.id) > p.cap ? ' ⚠' : ''); });
+      return { t: t('a.load', LW.openLoad(u.id), u.cap) + (LW.seeTeam(u) ? '\n\n' + t('a.load.team') + '\n' + bl(team) : '') };
+    }
+    if (best && bestScore >= 1) return { t: best[2] };
+    if (/^(xin chao|chao|hello|hi|hey)\b/.test(s)) return { t: t('a.greet', L.title) };
+    return { t: t('a.fallback') };
+  }
+
+  /* ============================================================
      HÀNH ĐỘNG
      ============================================================ */
   function openTask(id) { if (S.task !== id) S.anim = true; S.task = id; closeMenu(); closeModal(); }
   function doApprove(id) { if (guard(function () { LW.approve(id, S.uid); })) { toast(t('approved')); render(); } }
-  function returnForm(id) { modal(t('ret.title'), returnFormHtml(id)); }
+  function returnForm(id) { modal(t('ret.title'), returnFormHtml(id), false, 'return', id); }
   function doSt(id, st) { if (guard(function () { LW.updateTask(id, { st: st }, S.uid); })) { toast(t('moved', stName(st))); render(); } }
   function doRun(id, btn) {
     if (btn) { btn.disabled = true; btn.innerHTML = '<i class="spin"></i>' + t('running'); }
@@ -844,7 +1031,7 @@
   }
   function doDelete(id) { if (!confirm(t('del.confirm'))) return; if (guard(function () { LW.deleteTask(id, S.uid); })) { S.task = null; toast(t('deleted')); render(); } }
   function copyText(s) { try { navigator.clipboard.writeText(s).then(function () { toast(t('copied')); }, function () { toast(t('copyFail'), true); }); } catch (e) { toast(t('copyFail'), true); } }
-  function newTask(pre) { modal(t('newTask'), newTaskForm(me(), pre)); }
+  function newTask(pre) { modal(t('newTask'), newTaskForm(me(), pre), false, 'newtask'); }
   function newTaskFromMsg(id) { var m = DB.msgs.find(function (x) { return x.id === id; }); modal(t('toTask'), newTaskForm(me(), { msg: m, ttl: clip(m.t, 90), pr: projOfChan(m.ch) })); }
   function gotoMsg(id) {
     var m = DB.msgs.find(function (x) { return x.id === id; }), u = me();
@@ -855,15 +1042,22 @@
   function openConv(id) { S.tab = 'chat'; S.sub = null; S.conv = id; S.chatOpen = true; S.hl = null; S.task = null; closeModal(); render(); }
   function openSub(id) { S.tab = 'apps'; S.sub = id; S.task = null; closeModal(); render(); scrollTop(); }
   function setLang() { S.lang = S.lang === 'vi' ? 'en' : 'vi'; put('lw.lang', S.lang); closeMenu(); render(); }
-  function doLogout() { S.uid = null; put('lw.session', null); S.task = null; S.tab = 'home'; S.sub = null; closeMenu(); closeModal(); render(); scrollTop(); }
+  function doLogout() { closeHelp(); S.hlog = {}; S.uid = null; put('lw.session', null); S.task = null; S.tab = 'home'; S.sub = null; closeMenu(); closeModal(); render(); scrollTop(); }
   function doReset() { if (!confirm(t('reset.confirm'))) return; DB = LW.reset(); doLogout(); toast(t('reset.done')); }
   function projOfChan(ch) { var c = LW.chan(ch); if (!c) return ''; if (/pka/.test(c.n)) return 'PKA'; if (/web/.test(c.n)) return 'WEB'; return ''; }
 
   var ACT = {
     'tab': function (el) { S.tab = el.dataset.id; S.sub = null; S.task = null; if (S.tab === 'chat') S.chatOpen = false; closeMenu(); render(); scrollTop(); },
+    'help': function (el) { openHelp(el.dataset.h, el.dataset.o); },
+    'help-x': function () { closeHelp(); },
+    'help-tab': function (el) { if (S.help) { S.help.tab = el.dataset.id; renderHelp(); } },
+    'help-q': function (el) { helpAsk(el.dataset.q); },
+    'help-run': function (el) { var m = helpLog()[+el.dataset.m], a = m && m.acts && m.acts[+el.dataset.a]; if (a) a.run(); },
+    'help-clear': function () { if (S.help) { delete S.hlog[helpKey()]; renderHelp(); } },
+    'tip-x': function () { put('lw.tipHelp', '1'); render(); },
     'ctx': function (el) { var spec = ctxFor(el.dataset.ctx, me()); if (spec) openMenu(spec, el); },
     'lang': setLang,
-    'about': function () { modal(t('about.title'), '<div class="about">' + t('about.body') + '</div>', true); },
+    'about': function () { modal(t('about.title'), '<div class="about">' + t('about.body') + '</div>', true, 'overview'); },
     'reset': doReset,
     'logout': doLogout,
     'fill-login': function (el) { var f = document.querySelector('[data-form=login]'); f.mail.value = el.dataset.mail; f.pw.value = LW.DEMO_PW; Array.prototype.forEach.call(document.querySelectorAll('.demo-u'), function (b) { b.classList.toggle('on', b === el); }); f.querySelector('button').focus(); },
@@ -887,24 +1081,25 @@
     'open-conv': function (el) { openConv(el.dataset.id); },
     'close-conv': function () { S.chatOpen = false; render(); },
     'chat-f': function (el) { S.chatF = el.dataset.id; render(); },
-    'chan-new': function () { modal(t('chan.new'), chanForm(me())); },
+    'chan-new': function () { modal(t('chan.new'), chanForm(me()), false, 'conv'); },
     'dm-q': function (el) { if (guard(function () { LW.dmSend(S.conv, S.uid, el.dataset.q); })) render(); },
     'goto-msg': function (el) { gotoMsg(el.dataset.id); },
-    'agent-open': function (el) { var a = LW.agent(el.dataset.id); modal(a.id + ' · ' + a.n, agentForm(me(), a), true); },
-    'person-new': function () { modal(t('team.addPerson'), personForm(null)); },
-    'agent-new': function () { modal(t('team.addAgent'), agentForm(me(), null), true); },
-    'flow-launch': function (el) { var f = DB.flows.find(function (x) { return x.id === el.dataset.id; }); modal(t('flow.launch') + ' · ' + f.n, launchForm(me(), f), true); },
+    'agent-open': function (el) { var a = LW.agent(el.dataset.id); modal(a.id + ' · ' + a.n, agentForm(me(), a), true, 'agentScope', a.id); },
+    'person-new': function () { modal(t('team.addPerson'), personForm(null), false, 'people'); },
+    'agent-new': function () { modal(t('team.addAgent'), agentForm(me(), null), true, 'agentScope'); },
+    'flow-launch': function (el) { var f = DB.flows.find(function (x) { return x.id === el.dataset.id; }); modal(t('flow.launch') + ' · ' + f.n, launchForm(me(), f), true, 'flows'); },
     'ledger-pr': function (el) { S.ledgerPr = el.dataset.id; render(); },
     'probe': function (el) {
       var r = LW.probeForbidden(el.dataset.id);
       document.getElementById('probe-out').innerHTML = '<div class="probe-l">' + r.results.map(function (x) { return '<div class="' + (x.blocked ? 'ok' : 'bad') + '"><span class="pill ' + (x.blocked ? 'dark' : 'red') + '">' + ic(x.blocked ? 'lock' : 'close', 'xs') + (x.blocked ? t('probe.blocked') : t('probe.passed')) + '</span><b>' + esc(S.lang === 'en' ? x.rule.en : x.rule.vi) + '</b><code>' + esc(x.code) + '</code></div>'; }).join('') + '</div><p class="fine">' + (r.unchanged ? t('probe.unchanged') : t('probe.changed')) + '</p>';
     },
     'secret-reset': function (el) {
-      modal(t('secret.set'), '<form data-form="secret" data-g="' + el.dataset.g + '" data-f="' + el.dataset.f + '" class="stack"><label class="fld">' + t('secret.value') + '<input type="password" name="v" required autocomplete="off"></label><p class="fine">' + t('secret.note') + '</p><div class="dlg-f"><button type="button" class="btn" data-act="modal-x">' + t('cancel') + '</button><button class="btn pri">' + t('secret.set') + '</button></div></form>');
+      modal(t('secret.set'), '<form data-form="secret" data-g="' + el.dataset.g + '" data-f="' + el.dataset.f + '" class="stack"><label class="fld">' + t('secret.value') + '<input type="password" name="v" required autocomplete="off"></label><p class="fine">' + t('secret.note') + '</p><div class="dlg-f"><button type="button" class="btn" data-act="modal-x">' + t('cancel') + '</button><button class="btn pri">' + t('secret.set') + '</button></div></form>', false, 'settings');
     }
   };
 
   var FORM = {
+    'help-ask': function (fm) { var q = fm.q.value; fm.q.value = ''; helpAsk(q); },
     'login': function (fm) { var p; if (guard(function () { p = LW.login(fm.mail.value, fm.pw.value); })) { S.uid = p.id; put('lw.session', p.id); S.tab = 'home'; render(); scrollTop(); } },
     'return': function (fm) { if (guard(function () { LW.sendBack(fm.dataset.id, S.uid, fm.reason.value); })) { closeModal(); toast(t('returned')); render(); } },
     'task-save': function (fm) {
@@ -995,7 +1190,7 @@
   document.addEventListener('keydown', function (e) {
     var typing = /INPUT|TEXTAREA|SELECT/.test(e.target.tagName);
     var modalOpen = !document.getElementById('modal').hidden;
-    if (e.key === 'Escape') { if (S.menu) closeMenu(); else if (modalOpen) closeModal(); else if (S.task) { S.task = null; render(); } else if (S.sub) { S.sub = null; render(); } return; }
+    if (e.key === 'Escape') { if (S.menu) closeMenu(); else if (S.help) closeHelp(); else if (modalOpen) closeModal(); else if (S.task) { S.task = null; render(); } else if (S.sub) { S.sub = null; render(); } return; }
     if (S.menu && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
       var btns = Array.prototype.slice.call(document.querySelectorAll('#ctx [data-mi]')), i = btns.indexOf(document.activeElement);
       e.preventDefault(); (btns[(i + (e.key === 'ArrowDown' ? 1 : btns.length - 1)) % btns.length] || btns[0]).focus(); return;
@@ -1003,7 +1198,8 @@
     if (e.key === 'Enter' && e.target.tagName === 'TEXTAREA' && e.target.closest('.composer') && !e.shiftKey && !e.isComposing && !narrow()) { e.preventDefault(); e.target.form.requestSubmit(); return; }
     if (e.key === 'Enter' && (e.metaKey || e.ctrlKey) && e.target.tagName === 'TEXTAREA' && e.target.form) { e.preventDefault(); e.target.form.requestSubmit(); return; }
     if ((e.key === 'ContextMenu' || (e.shiftKey && e.key === 'F10')) && e.target.closest && e.target.closest('[data-ctx]')) { e.preventDefault(); var h = e.target.closest('[data-ctx]'); var sp = ctxFor(h.dataset.ctx, me()); if (sp) openMenu(sp, h); return; }
-    if (!typing && !e.metaKey && !e.ctrlKey && !e.altKey && me() && !modalOpen && !S.menu) {
+    if (!typing && !e.metaKey && !e.ctrlKey && !e.altKey && (e.key === 'h' || e.key === 'H' || e.key === '?') && !S.menu) { e.preventDefault(); if (S.help) closeHelp(); else { var hc = helpCtxNow(); openHelp(hc.ctx, hc.obj); } return; }
+    if (!typing && !e.metaKey && !e.ctrlKey && !e.altKey && me() && !modalOpen && !S.menu && !S.help) {
       if ((e.key === 'n' || e.key === 'N') && LW.can('create', me())) { e.preventDefault(); newTask({}); }
       var k = { '1': 'home', '2': 'tasks', '3': 'chat', '4': 'apps' }[e.key];
       if (k) { S.tab = k; S.sub = null; S.task = null; render(); scrollTop(); }

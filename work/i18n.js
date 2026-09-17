@@ -507,3 +507,25 @@ window.I18N = {
   'err.rateFields': ['Cần từ khóa, tên hạng mục và số ngày công lớn hơn 0', 'Keyword, item name and man-days above 0 are required'],
   'err.rateTaken': ['Từ khóa đã có trong bảng', 'That keyword is already in the table']
 };
+
+Object.assign(window.I18N, {
+  'pf.display': ['Hiển thị', 'Display'],
+  'pf.displayS': ['Cỡ chữ, ngôn ngữ, ngày/đêm', 'Text size, language, theme'],
+  'pf.displayNote': ['Áp dụng ngay, lưu trên thiết bị này.', 'Applies instantly, saved on this device.'],
+  'pf.fs': ['Cỡ chữ', 'Text size'],
+  'fs.s': ['Nhỏ', 'Small'],
+  'fs.m': ['Vừa', 'Default'],
+  'fs.l': ['Lớn', 'Large'],
+  'fs.xl': ['Rất lớn', 'Larger'],
+  'fs.sample': ['Xem trước — Soạn bảng câu hỏi chuẩn bị cho gói Scan, hạn 18/09.', 'Preview — Draft the Scan preparation questionnaire, due 18 Sep.'],
+  'pf.lang': ['Ngôn ngữ', 'Language'],
+  'pf.theme': ['Giao diện', 'Appearance'],
+  'th.light': ['Sáng', 'Light'],
+  'th.dark': ['Tối', 'Dark'],
+  'th.system': ['Theo máy', 'System'],
+  'th.toDark': ['Chế độ đêm', 'Dark mode'],
+  'th.toLight': ['Chế độ ngày', 'Light mode'],
+  'th.menuS': ['Đổi giao diện sáng / tối', 'Switch light / dark'],
+  'th.nowDark': ['Đã bật chế độ đêm', 'Dark mode on'],
+  'th.nowLight': ['Đã bật chế độ ngày', 'Light mode on']
+});

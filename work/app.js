@@ -20,6 +20,25 @@
   };
   if (S.uid && !LW.person(S.uid)) S.uid = null;
 
+  /* ---------- hiển thị: cỡ chữ, giao diện ngày/đêm — lưu trên thiết bị ---------- */
+  var FS = { s: 0.92, m: 1, l: 1.1, xl: 1.22 };
+  var darkMq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function prefFs() { var v = get('lw.fs'); return FS[v] ? v : 'm'; }
+  function prefTheme() { var v = get('lw.theme'); return v === 'light' || v === 'dark' ? v : 'system'; }
+  function isDark() { var th = prefTheme(); return th === 'dark' || (th === 'system' && !!(darkMq && darkMq.matches)); }
+  function applyPrefs() {
+    var root = document.documentElement;
+    root.style.setProperty('--fs', FS[prefFs()]);
+    root.setAttribute('data-theme', isDark() ? 'dark' : 'light');
+    var mc = document.querySelector('meta[name=theme-color]'); if (mc) mc.setAttribute('content', isDark() ? '#131211' : '#F3F2F2');
+  }
+  function themeBtn(cls) {
+    var d = isDark();
+    return '<button class="' + (cls || 'ib') + '" data-act="theme-toggle" aria-label="' + t(d ? 'th.toLight' : 'th.toDark') + '" title="' + t(d ? 'th.toLight' : 'th.toDark') + '">' + ic(d ? 'sun' : 'moon') + '</button>';
+  }
+  applyPrefs();
+  if (darkMq) { var onMq = function () { if (prefTheme() === 'system') { applyPrefs(); if (typeof render === 'function') render(); } }; if (darkMq.addEventListener) darkMq.addEventListener('change', onMq); else if (darkMq.addListener) darkMq.addListener(onMq); }
+
   /* ---------- tiện ích ---------- */
   function me() { return S.uid ? LW.person(S.uid) : null; }
   function t(k) {
@@ -94,6 +113,10 @@
     note: '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M8 13h8M8 17h5"/>',
     bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
     help: '<path d="M20.5 11.5a8.5 8.5 0 0 1-12.3 7.6L3.5 20.5l1.4-4.6A8.5 8.5 0 1 1 20.5 11.5Z"/><path d="M12 7.2l1.05 2.75L15.8 11l-2.75 1.05L12 14.8l-1.05-2.75L8.2 11l2.75-1.05Z" fill="currentColor" stroke="none"/>',
+    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2.5 12h2M19.5 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+    moon: '<path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/>',
+    monitor: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
+    type: '<path d="M4 7V5h16v2M9 19h6M12 5v14"/>',
     spark: '<path d="M12 3.5 13.9 9l5.6 1.9-5.6 1.9L12 18.5l-1.9-5.7L4.5 11l5.6-2Z"/><path d="M19 3v3M17.5 4.5h3"/>'
   };
   function helpBtn(ctx, obj, cls) {
@@ -294,6 +317,7 @@
       items: [
         item('user', t('team.myProfile'), t('m.profileS'), function () { modal(t('team.myProfile'), profileForm(u), true, 'people'); }, { chev: true }),
         item('globe', S.lang === 'vi' ? 'English' : 'Tiếng Việt', t('m.langS'), function () { setLang(); }),
+        item(isDark() ? 'sun' : 'moon', t(isDark() ? 'th.toLight' : 'th.toDark'), t('th.menuS'), function () { toggleTheme(); }),
         item('help', t('h.center'), t('h.centerS'), function () { openHelp('overview'); }, { chev: true, primary: true }),
         item('info', t('about.title'), '', function () { modal(t('about.title'), '<div class="about">' + t('about.body') + '</div>', true, 'overview'); }, { chev: true }),
         item('refresh', t('reset'), t('m.resetS'), function () { doReset(); }),
@@ -346,7 +370,7 @@
       TABS.map(function (k) {
         return '<button class="r-i' + (S.tab === k ? ' on' : '') + '" data-act="tab" data-id="' + k + '" title="' + t('tab.' + k) + '">' + ic(k) + '<span>' + t('tabShort.' + k) + '</span>' + (k === 'home' && n ? '<i class="bdg">' + n + '</i>' : '') + '</button>';
       }).join('') +
-      '<span class="sp"></span><button class="r-lang" data-act="lang" title="VI / EN">' + (S.lang === 'vi' ? 'EN' : 'VI') + '</button>' +
+      '<span class="sp"></span>' + themeBtn('r-lang r-theme') + '<button class="r-lang" data-act="lang" title="VI / EN">' + (S.lang === 'vi' ? 'EN' : 'VI') + '</button>' +
       '<button class="r-me" data-act="ctx" data-ctx="account" aria-label="' + t('menu') + '">' + avatar(u.id, 'sm') + '</button></nav>';
 
     var tabbar = '<nav class="tabbar" aria-label="' + t('nav') + '">' +
@@ -373,7 +397,7 @@
       '<div class="tt">' + (o.eyebrow ? '<small>' + o.eyebrow + '</small>' : '') + '<h1>' + o.title + '</h1>' + (o.sub ? '<p>' + o.sub + '</p>' : '') + '</div>' +
       '<div class="ta">' + (o.help ? helpBtn(o.help, o.helpObj) : '') + (o.actions || '') + '</div></header>';
   }
-  function accountBtn(u) { return '<button class="ib acct" data-act="ctx" data-ctx="account" aria-label="' + t('menu') + '">' + avatar(u.id, 'sm') + '</button>'; }
+  function accountBtn(u) { return themeBtn('ib acct') + '<button class="ib acct" data-act="ctx" data-ctx="account" aria-label="' + t('menu') + '">' + avatar(u.id, 'sm') + '</button>'; }
   function section(title, count, body, extra) {
     return '<section class="sec"><div class="sec-h"><h2>' + title + (count != null ? '<span class="cnt">' + count + '</span>' : '') + '</h2>' + (extra || '') + '</div>' + body + '</section>';
   }
@@ -392,7 +416,7 @@
       '<div class="demo"><small class="eyebrow">' + t('login.demo') + '</small><div class="demo-g">' +
       DB.people.map(function (p) { return '<button class="demo-u" data-act="fill-login" data-mail="' + esc(p.mail) + '">' + avatar(p.id, 'sm') + '<span><b>' + esc(p.n) + '</b><small>' + roleName(p.role) + '</small></span></button>'; }).join('') +
       '</div></div><p class="fine">' + t('login.note', LW.DEMO_PW) + '</p>' +
-      '<button class="link" data-act="lang">' + (S.lang === 'vi' ? 'English' : 'Tiếng Việt') + '</button></div></section></div>';
+      '<div class="auth-tools"><button class="link" data-act="lang">' + (S.lang === 'vi' ? 'English' : 'Tiếng Việt') + '</button>' + themeBtn('ib') + '</div></div></section></div>';
   }
 
   /* ============================================================
@@ -672,6 +696,8 @@
       ]) +
       grid(t('apps.other'), [
         appTile('globe', S.lang === 'vi' ? 'English' : 'Tiếng Việt', t('m.langS'), 'lang'),
+        appTile(isDark() ? 'sun' : 'moon', t(isDark() ? 'th.toLight' : 'th.toDark'), t('th.menuS'), 'theme-toggle'),
+        appTile('type', t('pf.display'), t('pf.displayS'), 'open-display'),
         appTile('help', t('h.center'), t('h.centerS'), 'help', 'data-h="overview"', 'ink'),
         appTile('info', t('about.title'), '', 'about'),
         appTile('refresh', t('reset'), '', 'reset'),
@@ -818,8 +844,21 @@
       '<p class="fine">' + t('pf.scopeNote') + (p.id ? '' : ' ' + t('pf.newPw', LW.DEMO_PW)) + '</p>' +
       '<div class="dlg-f"><button type="button" class="btn" data-act="modal-x">' + t('cancel') + '</button><button class="btn pri">' + t('save') + '</button></div></form>';
   }
+  function displayBlock() {
+    function row(k, label, cur, opts) {
+      return '<div class="pref"><span>' + label + '</span><div class="segc" role="radiogroup">' + opts.map(function (o) {
+        return '<button type="button" role="radio" aria-checked="' + (cur === o[0]) + '" class="' + (cur === o[0] ? 'on' : '') + '" data-act="pref" data-k="' + k + '" data-v="' + o[0] + '">' + o[1] + '</button>';
+      }).join('') + '</div></div>';
+    }
+    return '<div class="card stack disp" id="disp"><b class="card-title">' + ic('type', 'xs') + t('pf.display') + '</b><p class="fine">' + t('pf.displayNote') + '</p>' +
+      row('fs', t('pf.fs'), prefFs(), [['s', '<span class="fa" style="font-size:12px">A</span>' + t('fs.s')], ['m', '<span class="fa" style="font-size:14px">A</span>' + t('fs.m')], ['l', '<span class="fa" style="font-size:16px">A</span>' + t('fs.l')], ['xl', '<span class="fa" style="font-size:19px">A</span>' + t('fs.xl')]]) +
+      '<p class="fs-prev">' + t('fs.sample') + '</p>' +
+      row('lang', t('pf.lang'), S.lang, [['vi', 'Tiếng Việt'], ['en', 'English']]) +
+      row('theme', t('pf.theme'), prefTheme(), [['light', ic('sun') + t('th.light')], ['dark', ic('moon') + t('th.dark')], ['system', ic('monitor') + t('th.system')]]) +
+      '</div>';
+  }
   function profileForm(u) {
-    return '<form data-form="profile" class="stack"><div class="avrow">' + avatar(u.id, 'xl') + '<div class="stack tight"><label class="btn sm file">' + ic('user') + t('pf.avatar') + '<input type="file" accept="image/*" data-change="avatar" hidden></label><input type="hidden" name="av" value=""><span class="fine">' + t('pf.avNote') + '</span></div></div>' +
+    return displayBlock() + '<form data-form="profile" class="stack"><div class="avrow">' + avatar(u.id, 'xl') + '<div class="stack tight"><label class="btn sm file">' + ic('user') + t('pf.avatar') + '<input type="file" accept="image/*" data-change="avatar" hidden></label><input type="hidden" name="av" value=""><span class="fine">' + t('pf.avNote') + '</span></div></div>' +
       '<div class="grid2"><label class="fld">' + t('pf.name') + '<input name="n" required value="' + esc(u.n) + '"></label><label class="fld">' + t('pf.ini') + '<input name="ini" maxlength="3" value="' + esc(u.ini) + '"></label></div>' +
       '<label class="fld">' + t('pf.r') + '<input name="r" value="' + esc(u.r) + '"></label><label class="fld">' + t('pf.bio') + '<textarea name="bio" rows="3">' + esc(u.bio) + '</textarea></label>' +
       '<p class="fine">' + t('pf.contactNote') + '</p><div class="dlg-f"><button class="btn pri">' + t('save') + '</button></div></form>' +
@@ -1041,6 +1080,7 @@
   }
   function openConv(id) { S.tab = 'chat'; S.sub = null; S.conv = id; S.chatOpen = true; S.hl = null; S.task = null; closeModal(); render(); }
   function openSub(id) { S.tab = 'apps'; S.sub = id; S.task = null; closeModal(); render(); scrollTop(); }
+  function toggleTheme() { put('lw.theme', isDark() ? 'light' : 'dark'); applyPrefs(); closeMenu(); render(); toast(t(isDark() ? 'th.nowDark' : 'th.nowLight')); }
   function setLang() { S.lang = S.lang === 'vi' ? 'en' : 'vi'; put('lw.lang', S.lang); closeMenu(); render(); }
   function doLogout() { closeHelp(); S.hlog = {}; S.uid = null; put('lw.session', null); S.task = null; S.tab = 'home'; S.sub = null; closeMenu(); closeModal(); render(); scrollTop(); }
   function doReset() { if (!confirm(t('reset.confirm'))) return; DB = LW.reset(); doLogout(); toast(t('reset.done')); }
@@ -1057,6 +1097,18 @@
     'tip-x': function () { put('lw.tipHelp', '1'); render(); },
     'ctx': function (el) { var spec = ctxFor(el.dataset.ctx, me()); if (spec) openMenu(spec, el); },
     'lang': setLang,
+    'theme-toggle': function () { toggleTheme(); },
+    'open-display': function () { modal(t('team.myProfile'), profileForm(me()), true, 'people'); },
+    'pref': function (el) {
+      var k = el.dataset.k, v = el.dataset.v;
+      if (k === 'fs') put('lw.fs', v);
+      if (k === 'theme') put('lw.theme', v === 'system' ? null : v);
+      if (k === 'lang') { S.lang = v; put('lw.lang', v); }
+      applyPrefs();
+      var box = document.querySelector('#modal .dlg-b'), y = box ? box.scrollTop : 0, open = !document.getElementById('modal').hidden;
+      render();
+      if (open && me()) { modal(t('team.myProfile'), profileForm(me()), true, 'people'); var nb = document.querySelector('#modal .dlg-b'); if (nb) nb.scrollTop = y; var m = document.querySelector('#modal .dlg'); if (m) m.style.animation = 'none'; }
+    },
     'about': function () { modal(t('about.title'), '<div class="about">' + t('about.body') + '</div>', true, 'overview'); },
     'reset': doReset,
     'logout': doLogout,

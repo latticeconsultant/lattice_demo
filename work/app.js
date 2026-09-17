@@ -845,16 +845,16 @@
       '<div class="dlg-f"><button type="button" class="btn" data-act="modal-x">' + t('cancel') + '</button><button class="btn pri">' + t('save') + '</button></div></form>';
   }
   function displayBlock() {
-    function row(k, label, cur, opts) {
-      return '<div class="pref"><span>' + label + '</span><div class="segc" role="radiogroup">' + opts.map(function (o) {
-        return '<button type="button" role="radio" aria-checked="' + (cur === o[0]) + '" class="' + (cur === o[0] ? 'on' : '') + '" data-act="pref" data-k="' + k + '" data-v="' + o[0] + '">' + o[1] + '</button>';
+    function row(k, label, cur, opts, cls) {
+      return '<div class="pref"><span>' + label + '</span><div class="segc ' + (cls || '') + '" role="radiogroup" aria-label="' + esc(label) + '">' + opts.map(function (o) {
+        return '<button type="button" role="radio" aria-checked="' + (cur === o[0]) + '" class="' + (cur === o[0] ? 'on' : '') + '" data-act="pref" data-k="' + k + '" data-v="' + o[0] + '"' + (o[2] ? ' aria-label="' + esc(o[2]) + '" title="' + esc(o[2]) + '"' : '') + '>' + o[1] + '</button>';
       }).join('') + '</div></div>';
     }
     return '<div class="card stack disp" id="disp"><b class="card-title">' + ic('type', 'xs') + t('pf.display') + '</b><p class="fine">' + t('pf.displayNote') + '</p>' +
       row('fs', t('pf.fs'), prefFs(), [['s', '<span class="fa" style="font-size:12px">A</span>' + t('fs.s')], ['m', '<span class="fa" style="font-size:14px">A</span>' + t('fs.m')], ['l', '<span class="fa" style="font-size:16px">A</span>' + t('fs.l')], ['xl', '<span class="fa" style="font-size:19px">A</span>' + t('fs.xl')]]) +
       '<p class="fs-prev">' + t('fs.sample') + '</p>' +
       row('lang', t('pf.lang'), S.lang, [['vi', 'Tiếng Việt'], ['en', 'English']]) +
-      row('theme', t('pf.theme'), prefTheme(), [['light', ic('sun') + t('th.light')], ['dark', ic('moon') + t('th.dark')], ['system', ic('monitor') + t('th.system')]]) +
+      row('theme', t('pf.theme'), prefTheme(), [['light', ic('sun'), t('th.light')], ['dark', ic('moon'), t('th.dark')], ['system', ic('monitor'), t('th.system')]], 'icons') +
       '</div>';
   }
   function profileForm(u) {

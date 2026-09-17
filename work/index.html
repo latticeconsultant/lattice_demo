@@ -778,7 +778,8 @@ form.card{-webkit-user-select:auto;user-select:auto;margin-bottom:22px}
 .segc button.on{background:var(--card);color:var(--ink);box-shadow:var(--sh1)}
 .segc .fa{font-weight:700;line-height:1}
 .segc button{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-@media (max-width:420px){.segc .fa{display:none}.segc button .ic{display:none}.segc button{font-size:calc(12.5px*var(--fs))}}
+.segc.icons button .ic{width:21px;height:21px}
+@media (max-width:420px){.segc .fa{display:none}.segc:not(.icons) button .ic{display:none}.segc button{font-size:calc(12.5px*var(--fs))}}
 .fs-prev{padding:10px 12px;border-radius:12px;background:var(--bg);font-size:calc(14.5px*var(--fs));line-height:1.5}
 .r-theme .ic{width:17px;height:17px}
 .auth-tools{display:flex;align-items:center;justify-content:space-between;gap:8px}

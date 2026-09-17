@@ -46,6 +46,7 @@ en/index.html               bản tiếng Anh — SINH TỰ ĐỘNG, không sử
 dang-ky/index.html          biểu mẫu đăng ký bốn bước, bản Việt — viết tay
 register/index.html         biểu mẫu đăng ký bốn bước, bản Anh — viết tay
 quan-tri/index.html         trang quản trị: hồ sơ, thanh toán, lịch làm việc
+work/                       bản mẫu LATTICE Work (lattice.business/work) — chép từ thư mục Lattice-Works, dữ liệu mẫu hư cấu, chạy trong trình duyệt
 docs/
   doanh-nghiep-mot-nguoi.md   tài liệu nền tảng, bản Việt
   one-person-business.en.md   tài liệu nền tảng, bản Anh (bản địa hóa, không dịch máy)

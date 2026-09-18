@@ -529,3 +529,12 @@ Object.assign(window.I18N, {
   'th.nowDark': ['Đã bật chế độ đêm', 'Dark mode on'],
   'th.nowLight': ['Đã bật chế độ ngày', 'Light mode on']
 });
+
+Object.assign(window.I18N, {
+  'pf.avRemove': ['Gỡ ảnh', 'Remove photo'],
+  'pf.avSaved': ['Đã đổi ảnh đại diện', 'Profile photo updated'],
+  'pf.avRemoved': ['Đã gỡ ảnh đại diện', 'Profile photo removed'],
+  'pf.avFail': ['Không đọc được tệp này — hãy chọn ảnh JPG hoặc PNG', 'Could not read that file — choose a JPG or PNG image'],
+  'pf.avBig': ['Ảnh lớn quá 15 MB', 'Image is larger than 15 MB'],
+  'pf.avNote': ['Chọn là lưu ngay · tự cắt vuông, nén xuống 160px', 'Saved as soon as you pick · cropped square, 160px']
+});

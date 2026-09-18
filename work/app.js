@@ -852,6 +852,11 @@
       '<p class="fine">' + t('pf.scopeNote') + (p.id ? '' : ' ' + t('pf.newPw', LW.DEMO_PW)) + '</p>' +
       '<div class="dlg-f"><button type="button" class="btn" data-act="modal-x">' + t('cancel') + '</button><button class="btn pri">' + t('save') + '</button></div></form>';
   }
+  function refreshAvatarRow() {
+    var row = document.getElementById('avrow'); if (!row) return;
+    var tmp = document.createElement('div'); tmp.innerHTML = profileForm(me()); var fresh = tmp.querySelector('#avrow');
+    if (fresh) row.replaceWith(fresh);
+  }
   function displayBlock() {
     function row(k, label, cur, opts, cls) {
       return '<div class="pref"><span>' + label + '</span><div class="segc ' + (cls || '') + '" role="radiogroup" aria-label="' + esc(label) + '">' + opts.map(function (o) {
@@ -866,7 +871,11 @@
       '</div>';
   }
   function profileForm(u) {
-    return displayBlock() + '<form data-form="profile" class="stack"><div class="avrow">' + avatar(u.id, 'xl') + '<div class="stack tight"><label class="btn sm file">' + ic('user') + t('pf.avatar') + '<input type="file" accept="image/*" data-change="avatar" hidden></label><input type="hidden" name="av" value=""><span class="fine">' + t('pf.avNote') + '</span></div></div>' +
+    return '<div class="avrow" id="avrow">' + avatar(u.id, 'xl') + '<div class="stack tight"><div class="row">' +
+      '<button type="button" class="btn sm" data-act="pick-avatar">' + ic('user') + t('pf.avatar') + '</button>' +
+      (u.av ? '<button type="button" class="btn sm" data-act="remove-avatar">' + ic('trash') + t('pf.avRemove') + '</button>' : '') +
+      '</div><input type="file" id="av-file" accept="image/*" data-change="avatar" hidden><span class="fine">' + t('pf.avNote') + '</span></div></div>' +
+      displayBlock() + '<form data-form="profile" class="stack">' +
       '<div class="grid2"><label class="fld">' + t('pf.name') + '<input name="n" required value="' + esc(u.n) + '"></label><label class="fld">' + t('pf.ini') + '<input name="ini" maxlength="3" value="' + esc(u.ini) + '"></label></div>' +
       '<label class="fld">' + t('pf.r') + '<input name="r" value="' + esc(u.r) + '"></label><label class="fld">' + t('pf.bio') + '<textarea name="bio" rows="3">' + esc(u.bio) + '</textarea></label>' +
       '<p class="fine">' + t('pf.contactNote') + '</p><div class="dlg-f"><button class="btn pri">' + t('save') + '</button></div></form>' +
@@ -1106,6 +1115,8 @@
     'ctx': function (el) { var spec = ctxFor(el.dataset.ctx, me()); if (spec) openMenu(spec, el); },
     'lang': setLang,
     'theme-toggle': function () { toggleTheme(); },
+    'pick-avatar': function () { var f = document.getElementById('av-file'); if (f) f.click(); },
+    'remove-avatar': function () { if (guard(function () { LW.updateSelf(S.uid, { av: null }); })) { refreshAvatarRow(); render(); toast(t('pf.avRemoved')); } },
     'open-display': function () { modal(t('team.myProfile'), profileForm(me()), true, 'people'); },
     'pref': function (el) {
       var k = el.dataset.k, v = el.dataset.v;
@@ -1187,7 +1198,7 @@
       if (guard(function () { made = LW.launchFlow(fm.dataset.id, { pr: d.pr, start: d.start, people: people }, S.uid); })) { closeModal(); S.tab = 'tasks'; S.sub = null; S.f = { pr: d.pr, kind: '', mine: false }; S.col = 'dang_lam'; render(); scrollTop(); toast(t('flow.made', made.length)); }
     },
     'person': function (fm) { var d = formData(fm); if (guard(function () { LW.savePerson({ id: fm.dataset.id, n: d.n, mail: d.mail, r: d.r, role: d.role, cap: d.cap, proj: d.proj || [] }, S.uid); })) { closeModal(); render(); toast(t('saved')); } },
-    'profile': function (fm) { var d = formData(fm), f = { n: d.n, ini: d.ini, r: d.r, bio: d.bio }; if (d.av) f.av = d.av; if (guard(function () { LW.updateSelf(S.uid, f); })) { closeModal(); render(); toast(t('saved')); } },
+    'profile': function (fm) { var d = formData(fm), f = { n: d.n, ini: d.ini, r: d.r, bio: d.bio }; if (guard(function () { LW.updateSelf(S.uid, f); })) { closeModal(); render(); toast(t('saved')); } },
     'pw': function (fm) { if (guard(function () { LW.changePw(S.uid, fm.old.value, fm.nw.value); })) { fm.reset(); toast(t('pw.done')); } },
     'agent': function (fm) { var d = formData(fm); if (guard(function () { LW.saveAgent({ id: d.id, n: d.n, r: d.r, p: d.p, sc: { own: d.own, reads: d.reads || [], can: d.can || [], review: !!d.review, limit: d.limit } }, S.uid, !!fm.dataset.new); })) { closeModal(); render(); toast(t('saved')); } },
     'cfg': function (fm) {
@@ -1278,20 +1289,27 @@
     var el = e.target, k = el.dataset && el.dataset.change;
     if (k === 'role') { var fs = el.form.querySelector('.projs'); if (fs) fs.disabled = el.value === 'owner'; }
     if (k === 'avatar' && el.files && el.files[0]) {
+      // Chọn ảnh là lưu ngay: cắt vuông giữa ảnh, nén về 160px, cập nhật mọi chỗ hiện ảnh đại diện.
+      var file = el.files[0];
+      el.value = '';
+      if (!/^image\//.test(file.type || 'image/')) { toast(t('pf.avFail'), true); return; }
+      if (file.size > 15 * 1024 * 1024) { toast(t('pf.avBig'), true); return; }
       var rd = new FileReader();
+      rd.onerror = function () { toast(t('pf.avFail'), true); };
       rd.onload = function () {
         var img = new Image();
+        img.onerror = function () { toast(t('pf.avFail'), true); };
         img.onload = function () {
           var s = Math.min(img.width, img.height), c = document.createElement('canvas');
           c.width = c.height = 160;
-          c.getContext('2d').drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, 160, 160);
-          var url = c.toDataURL('image/jpeg', 0.82);
-          el.form.av.value = url;
-          var old = el.form.querySelector('.avrow .av'), im = document.createElement('img'); im.className = 'av xl'; im.src = url; old.replaceWith(im);
+          var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, 160, 160);
+          g.drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, 160, 160);
+          var url = c.toDataURL('image/jpeg', 0.84);
+          if (guard(function () { LW.updateSelf(S.uid, { av: url }); })) { refreshAvatarRow(); render(); toast(t('pf.avSaved')); }
         };
         img.src = rd.result;
       };
-      rd.readAsDataURL(el.files[0]);
+      rd.readAsDataURL(file);
     }
   });
 

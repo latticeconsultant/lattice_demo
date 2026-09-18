@@ -851,29 +851,44 @@
   function handleAvatarFile(file) {
     // Chọn ảnh là lưu ngay: cắt vuông giữa ảnh, nén về 160px, cập nhật mọi chỗ hiện ảnh đại diện.
     if (!file) return;
-    if (file.type && !/^image\//.test(file.type)) { toast(t('pf.avFail'), true); return; }
+    var name = String(file.name || '').toLowerCase();
+    if (file.type && !/^image\//.test(file.type) && !/\.(heic|heif)$/.test(name)) { toast(t('pf.avFail'), true); return; }
     if (file.size > 15 * 1024 * 1024) { toast(t('pf.avBig'), true); return; }
-    var rd = new FileReader();
-    rd.onerror = function () { toast(t('pf.avFail'), true); };
-    rd.onload = function () {
-      var img = new Image();
-      img.onerror = function () { toast(t('pf.avFail'), true); };
-      img.onload = function () {
-        var s = Math.min(img.width, img.height), c = document.createElement('canvas');
-        c.width = c.height = 160;
-        var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, 160, 160);
-        g.drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, 160, 160);
-        var url = c.toDataURL('image/jpeg', 0.84);
-        if (guard(function () { LW.updateSelf(S.uid, { av: url }); })) { refreshAvatarRow(); render(); toast(t('pf.avSaved')); }
-      };
-      img.src = rd.result;
-    };
-    rd.readAsDataURL(file);
+    toast(t('pf.avWorking'));
+    function draw(src, w, h) {
+      var s = Math.min(w, h), c = document.createElement('canvas');
+      c.width = c.height = 160;
+      var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, 160, 160);
+      g.drawImage(src, (w - s) / 2, (h - s) / 2, s, s, 0, 0, 160, 160);
+      var url = c.toDataURL('image/jpeg', 0.84);
+      if (!guard(function () { LW.updateSelf(S.uid, { av: url }); })) return;
+      // tầng dữ liệu nuốt lỗi ghi; đọc lại để biết ảnh có thật sự được lưu không
+      var kept = false; try { kept = (localStorage.getItem(LW.KEY) || '').indexOf(url.slice(-40)) >= 0; } catch (e) { kept = false; }
+      refreshAvatarRow(); render();
+      toast(kept ? t('pf.avSaved') : t('pf.avNotKept'), !kept);
+    }
+    function fail() { toast(/\.(heic|heif)$/.test(name) || /hei[cf]/.test(file.type || '') ? t('pf.avHeic') : t('pf.avFail'), true); }
+    function viaImg() {
+      var url = (window.URL || window.webkitURL).createObjectURL(file), img = new Image();
+      img.onload = function () { try { draw(img, img.naturalWidth || img.width, img.naturalHeight || img.height); } catch (e) { fail(); } URL.revokeObjectURL(url); };
+      img.onerror = function () { URL.revokeObjectURL(url); fail(); };
+      img.src = url;
+    }
+    if (window.createImageBitmap) createImageBitmap(file).then(function (b) { try { draw(b, b.width, b.height); } catch (e) { viaImg(); } }, viaImg);
+    else viaImg();
+  }
+  function bindAvatarInput() {
+    // gắn thẳng vào ô chọn tệp, không chỉ dựa vào bắt sự kiện chung của trang
+    var f = document.getElementById('av-file');
+    if (!f || f.dataset.bound) return;
+    f.dataset.bound = '1';
+    f.addEventListener('change', function (e) { e.stopPropagation(); var file0 = f.files && f.files[0]; f.value = ''; if (file0) handleAvatarFile(file0); });
   }
   function refreshAvatarRow() {
     var row = document.getElementById('avrow'); if (!row) return;
     var tmp = document.createElement('div'); tmp.innerHTML = profileForm(me()); var fresh = tmp.querySelector('#avrow');
     if (fresh) row.replaceWith(fresh);
+    bindAvatarInput();
   }
   function displayBlock() {
     function row(k, label, cur, opts, cls) {
@@ -890,9 +905,9 @@
   }
   function profileForm(u) {
     return '<div class="avrow" id="avrow">' + avatar(u.id, 'xl') + '<div class="stack tight"><div class="row">' +
-      '<label class="btn sm" for="av-file" role="button" tabindex="0">' + ic('user') + t('pf.avatar') + '</label>' +
+      '<button type="button" class="btn sm" data-act="pick-avatar">' + ic('user') + t('pf.avatar') + '</button>' +
       (u.av ? '<button type="button" class="btn sm" data-act="remove-avatar">' + ic('trash') + t('pf.avRemove') + '</button>' : '') +
-      '</div><input type="file" id="av-file" class="vh" accept="image/*" data-change="avatar"><span class="fine">' + t('pf.avNote') + ' · ' + t('pf.avDrop') + '</span></div></div>' +
+      '</div><input type="file" id="av-file" class="vh" accept="image/jpeg,image/png,image/webp,image/gif,image/heic,image/heif,.jpg,.jpeg,.png,.webp,.gif,.heic,.heif" tabindex="-1" aria-label="' + t('pf.avatar') + '"><span class="fine">' + t('pf.avNote') + ' · ' + t('pf.avDrop2') + '</span></div></div>' +
       displayBlock() + '<form data-form="profile" class="stack">' +
       '<div class="grid2"><label class="fld">' + t('pf.name') + '<input name="n" required value="' + esc(u.n) + '"></label><label class="fld">' + t('pf.ini') + '<input name="ini" maxlength="3" value="' + esc(u.ini) + '"></label></div>' +
       '<label class="fld">' + t('pf.r') + '<input name="r" value="' + esc(u.r) + '"></label><label class="fld">' + t('pf.bio') + '<textarea name="bio" rows="3">' + esc(u.bio) + '</textarea></label>' +
@@ -1456,7 +1471,7 @@
     'fe-move': function (el) { readFlowEditor(); var i = +el.dataset.i, j = i + (+el.dataset.d), st = S.fe.steps; if (j < 0 || j >= st.length) return; var tmp = st[i]; st[i] = st[j]; st[j] = tmp; renderFlowEditor(); },
     'clock': function (el) { var n = +el.dataset.n; if (guard(function () { LW.shiftDays(n, S.uid); })) { render(); toast(n ? t('clock.moved', fmtDate(LW.today())) : t('clock.back')); } },
     'theme-toggle': function () { toggleTheme(); },
-    'pick-avatar': function () { var f = document.getElementById('av-file'); if (f) f.click(); },
+    'pick-avatar': function () { bindAvatarInput(); var f = document.getElementById('av-file'); if (!f) return; try { if (f.showPicker) f.showPicker(); else f.click(); } catch (e) { f.click(); } },
     'remove-avatar': function () { if (guard(function () { LW.updateSelf(S.uid, { av: null }); })) { refreshAvatarRow(); render(); toast(t('pf.avRemoved')); } },
     'open-display': function () { modal(t('team.myProfile'), profileForm(me()), true, 'people'); },
     'pref': function (el) {
@@ -1653,7 +1668,6 @@
     if (k === 'nt-pr') { var sel = el.form.querySelector('[name=as]'); if (sel) { var cur = sel.value; sel.innerHTML = assigneeOptions(me(), cur, el.value); } return; }
     if (k === 'lf-pr') { var sd = document.querySelector('[data-form=flow-launch] [name=start]'), sv = sd ? sd.value : ''; openLaunch(LW.flowById(el.dataset.f), el.value); var dl = document.querySelector('#modal .dlg'); if (dl) dl.style.animation = 'none'; var s2 = document.querySelector('[data-form=flow-launch] [name=start]'); if (s2 && sv) s2.value = sv; return; }
     if (k === 'role') { var fs = el.form.querySelector('.projs'); if (fs) fs.disabled = el.value === 'owner'; }
-    if (k === 'avatar' && el.files && el.files[0]) { var file0 = el.files[0]; el.value = ''; handleAvatarFile(file0); }
   });
 
   // kéo thả ảnh vào khung ảnh đại diện
@@ -1661,7 +1675,12 @@
   document.addEventListener('dragleave', function (e) { var r = e.target.closest && e.target.closest('#avrow'); if (r && !r.contains(e.relatedTarget)) r.classList.remove('drop'); });
   document.addEventListener('drop', function (e) { var r = e.target.closest && e.target.closest('#avrow'); if (!r) return; e.preventDefault(); r.classList.remove('drop'); var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if (f) handleAvatarFile(f); });
   // nhãn "Đổi ảnh" bấm được bằng bàn phím
-  document.addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('label[for=av-file]')) { e.preventDefault(); document.getElementById('av-file').click(); } });
+  // dán ảnh (⌘V / Ctrl+V) khi đang mở hồ sơ — dùng được cả khi trình duyệt không mở hộp chọn tệp
+  document.addEventListener('paste', function (e) {
+    if (!document.getElementById('avrow')) return;
+    var items = (e.clipboardData && e.clipboardData.items) || [];
+    for (var i = 0; i < items.length; i++) if (items[i].kind === 'file' && /^image\//.test(items[i].type)) { e.preventDefault(); handleAvatarFile(items[i].getAsFile()); return; }
+  });
 
   // kéo thả thẻ trên bảng (laptop)
   document.addEventListener('dragstart', function (e) { var c = e.target.closest && e.target.closest('[data-drag]'); if (c) { e.dataTransfer.setData('text/plain', c.dataset.drag); e.dataTransfer.effectAllowed = 'move'; c.classList.add('dragging'); } });

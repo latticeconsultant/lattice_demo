@@ -795,3 +795,9 @@ Object.assign(window.I18N, {
   'err.onlyOwnerFlow': ['Chỉ Chủ tổ chức duyệt luồng mẫu', 'Only an owner approves flow templates'],
   'err.noSelfApprove': ['Không tự duyệt luồng mình soạn khi còn Chủ tổ chức khác', 'You cannot approve your own flow while another owner exists']
 });
+Object.assign(window.I18N, {
+  'pf.avWorking': ['Đang xử lý ảnh…', 'Processing photo…'],
+  'pf.avHeic': ['Trình duyệt này không đọc được ảnh HEIC của iPhone — hãy chọn ảnh JPG/PNG, hoặc mở bằng Safari', 'This browser cannot read iPhone HEIC photos — pick a JPG/PNG, or use Safari'],
+  'pf.avNotKept': ['Ảnh đã đổi nhưng trình duyệt không cho lưu (bộ nhớ đầy hoặc đang ở chế độ ẩn danh) — tải lại trang sẽ mất', 'Photo changed but the browser refused to store it (storage full or private mode) — it will be lost on reload'],
+  'pf.avDrop2': ['hoặc kéo thả / dán ảnh (⌘V) vào đây', 'or drop / paste (⌘V) an image here']
+});

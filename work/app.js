@@ -36,6 +36,10 @@
     var d = isDark();
     return '<button class="' + (cls || 'ib') + '" data-act="theme-toggle" aria-label="' + t(d ? 'th.toLight' : 'th.toDark') + '" title="' + t(d ? 'th.toLight' : 'th.toDark') + '">' + ic(d ? 'sun' : 'moon') + '</button>';
   }
+  function langBtn() {
+    return '<button class="ib lang-btn" data-act="ctx" data-ctx="lang" aria-label="' + t('pf.lang') + '" title="' + t('pf.lang') + '">' + ic('globe') + '<b>' + S.lang.toUpperCase() + '</b></button>';
+  }
+  function prefBtns() { return themeBtn('ib') + langBtn(); }
   applyPrefs();
   if (darkMq) { var onMq = function () { if (prefTheme() === 'system') { applyPrefs(); if (typeof render === 'function') render(); } }; if (darkMq.addEventListener) darkMq.addEventListener('change', onMq); else if (darkMq.addListener) darkMq.addListener(onMq); }
 
@@ -348,6 +352,10 @@
     if (p[0] === 'create') return createMenu(u);
     if (p[0] === 'account') return accountMenu(u);
     if (p[0] === 'filter') return filterMenu(u);
+    if (p[0] === 'lang') return {
+      eyebrow: t('pf.display'), title: t('pf.lang'), sub: '', lead: '<span class="av tile md">' + ic('globe') + '</span>',
+      items: [['vi', 'Tiếng Việt'], ['en', 'English']].map(function (l) { return item('globe', l[1], '', function () { if (S.lang !== l[0]) setLang(); }, { check: S.lang === l[0] }); })
+    };
     return null;
   }
 
@@ -370,7 +378,7 @@
       TABS.map(function (k) {
         return '<button class="r-i' + (S.tab === k ? ' on' : '') + '" data-act="tab" data-id="' + k + '" title="' + t('tab.' + k) + '">' + ic(k) + '<span>' + t('tabShort.' + k) + '</span>' + (k === 'home' && n ? '<i class="bdg">' + n + '</i>' : '') + '</button>';
       }).join('') +
-      '<span class="sp"></span>' + themeBtn('r-lang r-theme') + '<button class="r-lang" data-act="lang" title="VI / EN">' + (S.lang === 'vi' ? 'EN' : 'VI') + '</button>' +
+      '<span class="sp"></span>' +
       '<button class="r-me" data-act="ctx" data-ctx="account" aria-label="' + t('menu') + '">' + avatar(u.id, 'sm') + '</button></nav>';
 
     var tabbar = '<nav class="tabbar" aria-label="' + t('nav') + '">' +
@@ -395,9 +403,9 @@
     return '<header class="topbar' + (o.cls ? ' ' + o.cls : '') + '">' +
       (o.back ? ib('back', o.back, o.backAttrs || '', t('back'), '', 'back') : '') +
       '<div class="tt">' + (o.eyebrow ? '<small>' + o.eyebrow + '</small>' : '') + '<h1>' + o.title + '</h1>' + (o.sub ? '<p>' + o.sub + '</p>' : '') + '</div>' +
-      '<div class="ta">' + (o.help ? helpBtn(o.help, o.helpObj) : '') + (o.actions || '') + '</div></header>';
+      '<div class="ta">' + (o.cls === 'bar' ? '' : prefBtns()) + (o.help ? helpBtn(o.help, o.helpObj) : '') + (o.actions || '') + '</div></header>';
   }
-  function accountBtn(u) { return themeBtn('ib acct') + '<button class="ib acct" data-act="ctx" data-ctx="account" aria-label="' + t('menu') + '">' + avatar(u.id, 'sm') + '</button>'; }
+  function accountBtn(u) { return '<button class="ib acct" data-act="ctx" data-ctx="account" aria-label="' + t('menu') + '">' + avatar(u.id, 'sm') + '</button>'; }
   function section(title, count, body, extra) {
     return '<section class="sec"><div class="sec-h"><h2>' + title + (count != null ? '<span class="cnt">' + count + '</span>' : '') + '</h2>' + (extra || '') + '</div>' + body + '</section>';
   }

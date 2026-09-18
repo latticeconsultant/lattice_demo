@@ -811,3 +811,12 @@ Object.assign(window.I18N, {
   'pf.avAdjust': ['Chỉnh vị trí', 'Adjust'],
   'pf.avNote': ['Chọn ảnh rồi kéo để căn trong khung tròn', 'Pick a photo, then drag it into place']
 });
+Object.assign(window.I18N, {
+  'crop.pick': ['Chọn ảnh', 'Choose photo'],
+  'crop.other': ['Ảnh khác', 'Another photo'],
+  'crop.emptyS': ['hoặc kéo thả / dán ảnh (⌘V) vào đây', 'or drop / paste (⌘V) an image here'],
+  'crop.hint': ['Kéo ảnh để dịch chuyển · cuộn chuột, thanh trượt hoặc chụm hai ngón để phóng to / thu nhỏ · bấm đúp để về giữa', 'Drag to move · scroll, slider or pinch to zoom in/out · double-click to re-centre'],
+  'crop.title': ['Ảnh đại diện', 'Profile photo'],
+  'pf.avEdit': ['Đổi hoặc căn lại ảnh', 'Change or reposition photo'],
+  'pf.avTap': ['Bấm vào ảnh để đổi ảnh, dịch chuyển và phóng to / thu nhỏ', 'Tap the photo to change, move or resize it']
+});

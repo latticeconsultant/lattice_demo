@@ -95,6 +95,7 @@
     copy: '<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
     trash: '<path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/>',
     user: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+    camera: '<path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13.5" r="3.5"/>',
     users: '<circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M16 3.5a4 4 0 0 1 0 8M22 21a7 7 0 0 0-4-6.3"/>',
     bot: '<rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4.5M9 14h.01M15 14h.01"/><circle cx="12" cy="3.5" r="1"/>',
     flow: '<circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 8.5v7M8.3 7.2l7.5 3.8M8.3 16.8l7.5-3.8"/>',
@@ -875,14 +876,28 @@
   /* ---------- khung căn ảnh đại diện ---------- */
   var CROP = null;
   function openCropper(src, crop) {
+    // Một chỗ cho mọi việc với ảnh đại diện: chọn ảnh khác, kéo để dịch, phóng to/thu nhỏ, gỡ ảnh.
+    var u = me();
+    function foot() {
+      return '<div class="dlg-f"><span class="btn av-pick">' + ic('camera') + t(src ? 'crop.other' : 'crop.pick') + '<input type="file" id="av-file" accept="image/*,.heic,.heif" aria-label="' + t('crop.pick') + '"></span>' +
+        (u && u.av ? '<button type="button" class="btn ghost-red" data-act="remove-avatar">' + ic('trash') + t('pf.avRemove') + '</button>' : '') +
+        '<span class="sp"></span><button type="button" class="btn" data-act="crop-cancel">' + t('cancel') + '</button>' +
+        (src ? '<button type="button" class="btn pri" data-act="crop-save">' + ic('check') + t('crop.save') + '</button>' : '') + '</div>';
+    }
+    if (!src) {
+      CROP = null;
+      modal(t('crop.title'), '<div class="crop"><label class="crop-stage crop-empty" id="crop-stage">' + ic('camera') + '<b>' + t('crop.pick') + '</b><small>' + t('crop.emptyS') + '</small><input type="file" id="av-file-2" class="crop-file" accept="image/*,.heic,.heif" aria-label="' + t('crop.pick') + '"></label></div>' + foot(), false, 'people');
+      return;
+    }
     var img = new Image();
     img.onerror = function () { toast(t('pf.avFail'), true); };
     img.onload = function () {
-      CROP = { src: src, img: img, w: img.naturalWidth, h: img.naturalHeight, z: crop ? crop.z || 1 : 1, fx: crop ? crop.fx || 0 : 0, fy: crop ? crop.fy || 0 : 0 };
+      var w = img.naturalWidth, h = img.naturalHeight, squareish = Math.max(w, h) / Math.min(w, h) < 1.15;
+      // ảnh gần vuông vừa khít khung thì không còn chỗ để kéo — mở sẵn ở mức hơi phóng to
+      CROP = { src: src, img: img, w: w, h: h, z: crop ? crop.z || 1 : (squareish ? 1.25 : 1), fx: crop ? crop.fx || 0 : 0, fy: crop ? crop.fy || 0 : 0 };
       modal(t('crop.title'), '<div class="crop"><div class="crop-stage" id="crop-stage" tabindex="0" role="img" aria-label="' + t('crop.stageL') + '"><img id="crop-img" src="' + src + '" alt="" draggable="false"><span class="crop-ring"></span></div>' +
-        '<label class="crop-zoom"><span aria-hidden="true">−</span><input type="range" id="crop-z" min="1" max="4" step="0.01" value="' + CROP.z + '" aria-label="' + t('crop.zoom') + '"><span aria-hidden="true">+</span></label>' +
-        '<p class="fine">' + t('crop.hint') + '</p></div>' +
-        '<div class="dlg-f"><button type="button" class="btn" data-act="crop-reset">' + ic('refresh') + t('crop.reset') + '</button><span class="sp"></span><button type="button" class="btn" data-act="crop-cancel">' + t('cancel') + '</button><button type="button" class="btn pri" data-act="crop-save">' + ic('check') + t('crop.save') + '</button></div>', false, 'people');
+        '<label class="crop-zoom"><span aria-hidden="true">−</span><input type="range" id="crop-z" min="0.5" max="4" step="0.01" value="' + CROP.z + '" aria-label="' + t('crop.zoom') + '"><span aria-hidden="true">+</span></label>' +
+        '<p class="fine">' + t('crop.hint') + '</p></div>' + foot(), false, 'people');
       bindCropper(); cropLayout();
     };
     img.src = src;
@@ -891,7 +906,7 @@
     var st = document.getElementById('crop-stage'), im = document.getElementById('crop-img');
     if (!st || !im || !CROP) return;
     var S = st.clientWidth, s = S / Math.min(CROP.w, CROP.h) * CROP.z, W = CROP.w * s, H = CROP.h * s;
-    var mx = (W - S) / 2, my = (H - S) / 2;
+    var mx = Math.abs(W - S) / 2, my = Math.abs(H - S) / 2;
     var ox = Math.max(-mx, Math.min(mx, CROP.fx * S)), oy = Math.max(-my, Math.min(my, CROP.fy * S));
     CROP.fx = S ? ox / S : 0; CROP.fy = S ? oy / S : 0;
     im.style.width = W + 'px'; im.style.height = H + 'px';
@@ -900,7 +915,7 @@
   }
   function cropZoom(z) {
     // phóng quanh tâm khung: độ lệch tăng theo tỉ lệ phóng
-    var nz = Math.max(1, Math.min(4, z)), k = nz / CROP.z;
+    var nz = Math.max(0.5, Math.min(4, z)), k = nz / CROP.z;
     CROP.fx *= k; CROP.fy *= k; CROP.z = nz; cropLayout();
   }
   function bindCropper() {
@@ -949,22 +964,9 @@
   }
   function openProfile() { modal(t('team.myProfile'), profileForm(me()), true, 'people'); }
   document.addEventListener('change', function (e) {
-    var f = e.target; if (!f || f.id !== 'av-file' || f.dataset.bound) return;
+    var f = e.target; if (!f || !/^av-file/.test(f.id || '')) return;
     var file0 = f.files && f.files[0]; f.value = ''; if (file0) handleAvatarFile(file0);
   }, true);
-  function bindAvatarInput() {
-    // gắn thẳng vào ô chọn tệp, không chỉ dựa vào bắt sự kiện chung của trang
-    var f = document.getElementById('av-file');
-    if (!f || f.dataset.bound) return;
-    f.dataset.bound = '1';
-    f.addEventListener('change', function (e) { e.stopPropagation(); var file0 = f.files && f.files[0]; f.value = ''; if (file0) handleAvatarFile(file0); });
-  }
-  function refreshAvatarRow() {
-    var row = document.getElementById('avrow'); if (!row) return;
-    var tmp = document.createElement('div'); tmp.innerHTML = profileForm(me()); var fresh = tmp.querySelector('#avrow');
-    if (fresh) row.replaceWith(fresh);
-    bindAvatarInput();
-  }
   function displayBlock() {
     function row(k, label, cur, opts, cls) {
       return '<div class="pref"><span>' + label + '</span><div class="segc ' + (cls || '') + '" role="radiogroup" aria-label="' + esc(label) + '">' + opts.map(function (o) {
@@ -979,10 +981,8 @@
       '</div>';
   }
   function profileForm(u) {
-    return '<div class="avrow" id="avrow">' + avatar(u.id, 'xl') + '<div class="stack tight"><div class="row">' +
-      '<span class="btn sm av-pick">' + ic('user') + t('pf.avatar') + '<input type="file" id="av-file" accept="image/*,.heic,.heif" aria-label="' + t('pf.avatar') + '"></span>' +
-      (u.av ? '<button type="button" class="btn sm" data-act="crop-edit">' + ic('edit') + t('pf.avAdjust') + '</button>' : '') + (u.av ? '<button type="button" class="btn sm" data-act="remove-avatar">' + ic('trash') + t('pf.avRemove') + '</button>' : '') +
-      '</div><span class="fine">' + t('pf.avNote') + ' · ' + t('pf.avDrop2') + '</span></div></div>' +
+    return '<div class="avrow" id="avrow"><button type="button" class="av-edit" data-act="av-open" aria-label="' + t(u.av ? 'pf.avEdit' : 'crop.pick') + '" title="' + t(u.av ? 'pf.avEdit' : 'crop.pick') + '">' + avatar(u.id, 'xxl') + '<span class="av-cam">' + ic('camera') + '</span></button>' +
+      '<span class="fine">' + t('pf.avTap') + '</span></div>' +
       displayBlock() + '<form data-form="profile" class="stack">' +
       '<div class="grid2"><label class="fld">' + t('pf.name') + '<input name="n" required value="' + esc(u.n) + '"></label><label class="fld">' + t('pf.ini') + '<input name="ini" maxlength="3" value="' + esc(u.ini) + '"></label></div>' +
       '<label class="fld">' + t('pf.r') + '<input name="r" value="' + esc(u.r) + '"></label><label class="fld">' + t('pf.bio') + '<textarea name="bio" rows="3">' + esc(u.bio) + '</textarea></label>' +
@@ -1546,12 +1546,10 @@
     'fe-move': function (el) { readFlowEditor(); var i = +el.dataset.i, j = i + (+el.dataset.d), st = S.fe.steps; if (j < 0 || j >= st.length) return; var tmp = st[i]; st[i] = st[j]; st[j] = tmp; renderFlowEditor(); },
     'clock': function (el) { var n = +el.dataset.n; if (guard(function () { LW.shiftDays(n, S.uid); })) { render(); toast(n ? t('clock.moved', fmtDate(LW.today())) : t('clock.back')); } },
     'theme-toggle': function () { toggleTheme(); },
-    'pick-avatar': function () { bindAvatarInput(); var f = document.getElementById('av-file'); if (!f) return; try { if (f.showPicker) f.showPicker(); else f.click(); } catch (e) { f.click(); } },
-    'crop-edit': function () { var u = me(); if (u && u.av) openCropper(u.avSrc || u.av, u.avSrc ? u.avCrop : null); },
+    'av-open': function () { var u = me(); if (!u) return; if (u.av) openCropper(u.avSrc || u.av, u.avSrc ? u.avCrop : null); else openCropper(null); },
     'crop-save': cropSave,
     'crop-cancel': function () { CROP = null; openProfile(); },
-    'crop-reset': function () { if (!CROP) return; CROP.z = 1; CROP.fx = 0; CROP.fy = 0; cropLayout(); },
-    'remove-avatar': function () { if (guard(function () { LW.updateSelf(S.uid, { av: null, avSrc: null, avCrop: null }); })) { refreshAvatarRow(); render(); toast(t('pf.avRemoved')); } },
+    'remove-avatar': function () { if (guard(function () { LW.updateSelf(S.uid, { av: null, avSrc: null, avCrop: null }); })) { CROP = null; render(); openProfile(); toast(t('pf.avRemoved')); } },
     'open-display': function () { modal(t('team.myProfile'), profileForm(me()), true, 'people'); },
     'pref': function (el) {
       var k = el.dataset.k, v = el.dataset.v;
@@ -1750,13 +1748,13 @@
   });
 
   // kéo thả ảnh vào khung ảnh đại diện
-  document.addEventListener('dragover', function (e) { var r = e.target.closest && e.target.closest('#avrow'); if (r) { e.preventDefault(); r.classList.add('drop'); } });
-  document.addEventListener('dragleave', function (e) { var r = e.target.closest && e.target.closest('#avrow'); if (r && !r.contains(e.relatedTarget)) r.classList.remove('drop'); });
-  document.addEventListener('drop', function (e) { var r = e.target.closest && e.target.closest('#avrow'); if (!r) return; e.preventDefault(); r.classList.remove('drop'); var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if (f) handleAvatarFile(f); });
+  document.addEventListener('dragover', function (e) { var r = e.target.closest && e.target.closest('#avrow, #crop-stage'); if (r) { e.preventDefault(); r.classList.add('drop'); } });
+  document.addEventListener('dragleave', function (e) { var r = e.target.closest && e.target.closest('#avrow, #crop-stage'); if (r && !r.contains(e.relatedTarget)) r.classList.remove('drop'); });
+  document.addEventListener('drop', function (e) { var r = e.target.closest && e.target.closest('#avrow, #crop-stage'); if (!r) return; e.preventDefault(); r.classList.remove('drop'); var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if (f) handleAvatarFile(f); });
   // nhãn "Đổi ảnh" bấm được bằng bàn phím
   // dán ảnh (⌘V / Ctrl+V) khi đang mở hồ sơ — dùng được cả khi trình duyệt không mở hộp chọn tệp
   document.addEventListener('paste', function (e) {
-    if (!document.getElementById('avrow')) return;
+    if (!document.getElementById('avrow') && !document.getElementById('crop-stage')) return;
     var items = (e.clipboardData && e.clipboardData.items) || [];
     for (var i = 0; i < items.length; i++) if (items[i].kind === 'file' && /^image\//.test(items[i].type)) { e.preventDefault(); handleAvatarFile(items[i].getAsFile()); return; }
   });

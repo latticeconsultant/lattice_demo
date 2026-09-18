@@ -847,7 +847,24 @@ form.card{-webkit-user-select:auto;user-select:auto;margin-bottom:22px}
 .crop-zoom{display:flex;align-items:center;gap:10px;width:min(300px,72vw);font-weight:700;color:var(--muted)}
 .crop-zoom input[type=range]{flex:1;min-width:0;height:24px;margin:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;accent-color:var(--red);-webkit-appearance:auto;appearance:auto}
 .crop+.dlg-f{flex-wrap:wrap}.crop+.dlg-f .sp{flex:1}
-@media (max-width:480px){.crop+.dlg-f .sp{display:none}.crop+.dlg-f .btn{flex:1 1 auto;justify-content:center;padding-left:10px;padding-right:10px}.crop+.dlg-f [data-act=crop-reset]{flex-basis:100%}}
+@media (max-width:480px){.crop+.dlg-f .sp{display:none}.crop+.dlg-f .btn{flex:1 1 auto;justify-content:center;padding-left:10px;padding-right:10px}.crop+.dlg-f .av-pick,.crop+.dlg-f .ghost-red{flex-basis:40%}}
+.avrow{flex-direction:column;align-items:center;text-align:center;gap:8px;padding:8px 0 4px;margin:0}
+.av-edit{position:relative;display:block;padding:0;border:0;border-radius:50%;background:none;cursor:pointer;box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--line),0 10px 30px rgba(32,30,29,.14);transition:box-shadow .15s,transform .15s}
+.av-edit:hover,.av-edit:focus-visible{box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--ink),0 12px 34px rgba(32,30,29,.2);outline:none}
+.av-edit:active{transform:scale(.97)}
+.av.xxl{width:112px;height:112px;font-size:calc(34px*var(--fs))}
+.av-cam{position:absolute;inset:0;display:grid;place-items:center;border-radius:50%;background:rgba(20,18,17,.42);color:#fff;opacity:0;transition:opacity .15s}
+.av-cam .ic{width:30px;height:30px}
+.av-edit:hover .av-cam,.av-edit:focus-visible .av-cam{opacity:1}
+@media (hover:none){.av-cam{opacity:1;inset:auto;right:0;bottom:0;width:34px;height:34px;background:var(--solid);color:var(--on-solid);box-shadow:0 0 0 3px var(--card)}.av-cam .ic{width:17px;height:17px}}
+.avrow.drop .av-edit{box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--red)}
+.crop-stage{background:#fff}
+.crop-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:2px dashed var(--line);background:var(--soft);color:var(--muted);cursor:pointer;text-align:center;padding:16px}
+.crop-empty .ic{width:36px;height:36px}.crop-empty b{color:var(--ink)}
+.crop-empty:hover{border-color:var(--ink)}
+.crop-file{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.crop-stage.drop{box-shadow:0 0 0 3px var(--red)}
+.btn.ghost-red{color:var(--red-d)}
 </style>
 </head>
 <body>
@@ -857,9 +874,9 @@ form.card{-webkit-user-select:auto;user-select:auto;margin-bottom:22px}
 <div id="ctx" hidden></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <noscript>LATTICE Work cần JavaScript.</noscript>
-<script src="i18n.js?v=20260918k"></script>
-<script src="help.js?v=20260918k"></script>
-<script src="data.js?v=20260918k"></script>
-<script src="app.js?v=20260918k"></script>
+<script src="i18n.js?v=20260918l"></script>
+<script src="help.js?v=20260918l"></script>
+<script src="data.js?v=20260918l"></script>
+<script src="app.js?v=20260918l"></script>
 </body>
 </html>

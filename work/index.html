@@ -835,6 +835,9 @@ form.card{-webkit-user-select:auto;user-select:auto;margin-bottom:22px}
 .pill.off{opacity:.45;text-decoration:line-through}
 .cards.one{grid-template-columns:1fr;max-width:760px}
 .mems{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0 4px}
+.av-pick{position:relative;overflow:hidden;cursor:pointer}
+.av-pick input[type=file]{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:pointer;font-size:100px}
+.av-pick:focus-within{outline:2px solid var(--red);outline-offset:2px}
 </style>
 </head>
 <body>
@@ -844,9 +847,9 @@ form.card{-webkit-user-select:auto;user-select:auto;margin-bottom:22px}
 <div id="ctx" hidden></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <noscript>LATTICE Work cần JavaScript.</noscript>
-<script src="i18n.js?v=20260918d"></script>
-<script src="help.js?v=20260918d"></script>
-<script src="data.js?v=20260918d"></script>
-<script src="app.js?v=20260918d"></script>
+<script src="i18n.js?v=20260918e"></script>
+<script src="help.js?v=20260918e"></script>
+<script src="data.js?v=20260918e"></script>
+<script src="app.js?v=20260918e"></script>
 </body>
 </html>

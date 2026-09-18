@@ -877,6 +877,10 @@
     if (window.createImageBitmap) createImageBitmap(file).then(function (b) { try { draw(b, b.width, b.height); } catch (e) { viaImg(); } }, viaImg);
     else viaImg();
   }
+  document.addEventListener('change', function (e) {
+    var f = e.target; if (!f || f.id !== 'av-file' || f.dataset.bound) return;
+    var file0 = f.files && f.files[0]; f.value = ''; if (file0) handleAvatarFile(file0);
+  }, true);
   function bindAvatarInput() {
     // gắn thẳng vào ô chọn tệp, không chỉ dựa vào bắt sự kiện chung của trang
     var f = document.getElementById('av-file');
@@ -905,9 +909,9 @@
   }
   function profileForm(u) {
     return '<div class="avrow" id="avrow">' + avatar(u.id, 'xl') + '<div class="stack tight"><div class="row">' +
-      '<button type="button" class="btn sm" data-act="pick-avatar">' + ic('user') + t('pf.avatar') + '</button>' +
+      '<span class="btn sm av-pick">' + ic('user') + t('pf.avatar') + '<input type="file" id="av-file" accept="image/*,.heic,.heif" aria-label="' + t('pf.avatar') + '"></span>' +
       (u.av ? '<button type="button" class="btn sm" data-act="remove-avatar">' + ic('trash') + t('pf.avRemove') + '</button>' : '') +
-      '</div><input type="file" id="av-file" class="vh" accept="image/jpeg,image/png,image/webp,image/gif,image/heic,image/heif,.jpg,.jpeg,.png,.webp,.gif,.heic,.heif" tabindex="-1" aria-label="' + t('pf.avatar') + '"><span class="fine">' + t('pf.avNote') + ' · ' + t('pf.avDrop2') + '</span></div></div>' +
+      '</div><span class="fine">' + t('pf.avNote') + ' · ' + t('pf.avDrop2') + '</span></div></div>' +
       displayBlock() + '<form data-form="profile" class="stack">' +
       '<div class="grid2"><label class="fld">' + t('pf.name') + '<input name="n" required value="' + esc(u.n) + '"></label><label class="fld">' + t('pf.ini') + '<input name="ini" maxlength="3" value="' + esc(u.ini) + '"></label></div>' +
       '<label class="fld">' + t('pf.r') + '<input name="r" value="' + esc(u.r) + '"></label><label class="fld">' + t('pf.bio') + '<textarea name="bio" rows="3">' + esc(u.bio) + '</textarea></label>' +

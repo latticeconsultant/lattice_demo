@@ -852,6 +852,28 @@
       '<p class="fine">' + t('pf.scopeNote') + (p.id ? '' : ' ' + t('pf.newPw', LW.DEMO_PW)) + '</p>' +
       '<div class="dlg-f"><button type="button" class="btn" data-act="modal-x">' + t('cancel') + '</button><button class="btn pri">' + t('save') + '</button></div></form>';
   }
+  function handleAvatarFile(file) {
+    // Chọn ảnh là lưu ngay: cắt vuông giữa ảnh, nén về 160px, cập nhật mọi chỗ hiện ảnh đại diện.
+    if (!file) return;
+    if (file.type && !/^image\//.test(file.type)) { toast(t('pf.avFail'), true); return; }
+    if (file.size > 15 * 1024 * 1024) { toast(t('pf.avBig'), true); return; }
+    var rd = new FileReader();
+    rd.onerror = function () { toast(t('pf.avFail'), true); };
+    rd.onload = function () {
+      var img = new Image();
+      img.onerror = function () { toast(t('pf.avFail'), true); };
+      img.onload = function () {
+        var s = Math.min(img.width, img.height), c = document.createElement('canvas');
+        c.width = c.height = 160;
+        var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, 160, 160);
+        g.drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, 160, 160);
+        var url = c.toDataURL('image/jpeg', 0.84);
+        if (guard(function () { LW.updateSelf(S.uid, { av: url }); })) { refreshAvatarRow(); render(); toast(t('pf.avSaved')); }
+      };
+      img.src = rd.result;
+    };
+    rd.readAsDataURL(file);
+  }
   function refreshAvatarRow() {
     var row = document.getElementById('avrow'); if (!row) return;
     var tmp = document.createElement('div'); tmp.innerHTML = profileForm(me()); var fresh = tmp.querySelector('#avrow');
@@ -872,9 +894,9 @@
   }
   function profileForm(u) {
     return '<div class="avrow" id="avrow">' + avatar(u.id, 'xl') + '<div class="stack tight"><div class="row">' +
-      '<button type="button" class="btn sm" data-act="pick-avatar">' + ic('user') + t('pf.avatar') + '</button>' +
+      '<label class="btn sm" for="av-file" role="button" tabindex="0">' + ic('user') + t('pf.avatar') + '</label>' +
       (u.av ? '<button type="button" class="btn sm" data-act="remove-avatar">' + ic('trash') + t('pf.avRemove') + '</button>' : '') +
-      '</div><input type="file" id="av-file" accept="image/*" data-change="avatar" hidden><span class="fine">' + t('pf.avNote') + '</span></div></div>' +
+      '</div><input type="file" id="av-file" class="vh" accept="image/*" data-change="avatar"><span class="fine">' + t('pf.avNote') + ' · ' + t('pf.avDrop') + '</span></div></div>' +
       displayBlock() + '<form data-form="profile" class="stack">' +
       '<div class="grid2"><label class="fld">' + t('pf.name') + '<input name="n" required value="' + esc(u.n) + '"></label><label class="fld">' + t('pf.ini') + '<input name="ini" maxlength="3" value="' + esc(u.ini) + '"></label></div>' +
       '<label class="fld">' + t('pf.r') + '<input name="r" value="' + esc(u.r) + '"></label><label class="fld">' + t('pf.bio') + '<textarea name="bio" rows="3">' + esc(u.bio) + '</textarea></label>' +
@@ -1288,30 +1310,15 @@
   document.addEventListener('change', function (e) {
     var el = e.target, k = el.dataset && el.dataset.change;
     if (k === 'role') { var fs = el.form.querySelector('.projs'); if (fs) fs.disabled = el.value === 'owner'; }
-    if (k === 'avatar' && el.files && el.files[0]) {
-      // Chọn ảnh là lưu ngay: cắt vuông giữa ảnh, nén về 160px, cập nhật mọi chỗ hiện ảnh đại diện.
-      var file = el.files[0];
-      el.value = '';
-      if (!/^image\//.test(file.type || 'image/')) { toast(t('pf.avFail'), true); return; }
-      if (file.size > 15 * 1024 * 1024) { toast(t('pf.avBig'), true); return; }
-      var rd = new FileReader();
-      rd.onerror = function () { toast(t('pf.avFail'), true); };
-      rd.onload = function () {
-        var img = new Image();
-        img.onerror = function () { toast(t('pf.avFail'), true); };
-        img.onload = function () {
-          var s = Math.min(img.width, img.height), c = document.createElement('canvas');
-          c.width = c.height = 160;
-          var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, 160, 160);
-          g.drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, 160, 160);
-          var url = c.toDataURL('image/jpeg', 0.84);
-          if (guard(function () { LW.updateSelf(S.uid, { av: url }); })) { refreshAvatarRow(); render(); toast(t('pf.avSaved')); }
-        };
-        img.src = rd.result;
-      };
-      rd.readAsDataURL(file);
-    }
+    if (k === 'avatar' && el.files && el.files[0]) { var file0 = el.files[0]; el.value = ''; handleAvatarFile(file0); }
   });
+
+  // kéo thả ảnh vào khung ảnh đại diện
+  document.addEventListener('dragover', function (e) { var r = e.target.closest && e.target.closest('#avrow'); if (r) { e.preventDefault(); r.classList.add('drop'); } });
+  document.addEventListener('dragleave', function (e) { var r = e.target.closest && e.target.closest('#avrow'); if (r && !r.contains(e.relatedTarget)) r.classList.remove('drop'); });
+  document.addEventListener('drop', function (e) { var r = e.target.closest && e.target.closest('#avrow'); if (!r) return; e.preventDefault(); r.classList.remove('drop'); var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if (f) handleAvatarFile(f); });
+  // nhãn "Đổi ảnh" bấm được bằng bàn phím
+  document.addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('label[for=av-file]')) { e.preventDefault(); document.getElementById('av-file').click(); } });
 
   // kéo thả thẻ trên bảng (laptop)
   document.addEventListener('dragstart', function (e) { var c = e.target.closest && e.target.closest('[data-drag]'); if (c) { e.dataTransfer.setData('text/plain', c.dataset.drag); e.dataTransfer.effectAllowed = 'move'; c.classList.add('dragging'); } });

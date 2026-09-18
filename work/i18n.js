@@ -538,3 +538,4 @@ Object.assign(window.I18N, {
   'pf.avBig': ['Ảnh lớn quá 15 MB', 'Image is larger than 15 MB'],
   'pf.avNote': ['Chọn là lưu ngay · tự cắt vuông, nén xuống 160px', 'Saved as soon as you pick · cropped square, 160px']
 });
+Object.assign(window.I18N, { 'pf.avDrop': ['hoặc kéo thả ảnh vào đây', 'or drop an image here'] });

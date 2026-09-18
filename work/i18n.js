@@ -801,3 +801,13 @@ Object.assign(window.I18N, {
   'pf.avNotKept': ['Ảnh đã đổi nhưng trình duyệt không cho lưu (bộ nhớ đầy hoặc đang ở chế độ ẩn danh) — tải lại trang sẽ mất', 'Photo changed but the browser refused to store it (storage full or private mode) — it will be lost on reload'],
   'pf.avDrop2': ['hoặc kéo thả / dán ảnh (⌘V) vào đây', 'or drop / paste (⌘V) an image here']
 });
+Object.assign(window.I18N, {
+  'crop.title': ['Căn ảnh đại diện', 'Position your photo'],
+  'crop.hint': ['Kéo ảnh để dịch chuyển · cuộn chuột, kéo thanh trượt hoặc chụm hai ngón để phóng to · bấm đúp để về giữa', 'Drag to move · scroll, use the slider or pinch to zoom · double-click to re-centre'],
+  'crop.zoom': ['Thu phóng', 'Zoom'],
+  'crop.reset': ['Về giữa', 'Re-centre'],
+  'crop.save': ['Lưu ảnh', 'Save photo'],
+  'crop.stageL': ['Khung ảnh — kéo để dịch, phím mũi tên để dịch, + / − để phóng', 'Photo frame — drag or use arrow keys to move, + / − to zoom'],
+  'pf.avAdjust': ['Chỉnh vị trí', 'Adjust'],
+  'pf.avNote': ['Chọn ảnh rồi kéo để căn trong khung tròn', 'Pick a photo, then drag it into place']
+});

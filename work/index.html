@@ -838,6 +838,16 @@ form.card{-webkit-user-select:auto;user-select:auto;margin-bottom:22px}
 .av-pick{position:relative;overflow:hidden;cursor:pointer}
 .av-pick input[type=file]{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:pointer;font-size:100px}
 .av-pick:focus-within{outline:2px solid var(--red);outline-offset:2px}
+.crop{display:flex;flex-direction:column;align-items:center;gap:12px}
+.crop-stage{position:relative;width:min(300px,72vw);aspect-ratio:1/1;overflow:hidden;border-radius:var(--r);background:var(--soft);touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;outline:none}
+.crop-stage.is-grab{cursor:grabbing}
+.crop-stage:focus-visible{box-shadow:0 0 0 3px var(--red)}
+.crop-stage img{position:absolute;left:0;top:0;max-width:none;max-height:none;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.crop-ring{position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 999px rgba(20,18,17,.55);border:2px solid rgba(255,255,255,.9);pointer-events:none}
+.crop-zoom{display:flex;align-items:center;gap:10px;width:min(300px,72vw);font-weight:700;color:var(--muted)}
+.crop-zoom input[type=range]{flex:1;min-width:0;height:24px;margin:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;accent-color:var(--red);-webkit-appearance:auto;appearance:auto}
+.crop+.dlg-f{flex-wrap:wrap}.crop+.dlg-f .sp{flex:1}
+@media (max-width:480px){.crop+.dlg-f .sp{display:none}.crop+.dlg-f .btn{flex:1 1 auto;justify-content:center;padding-left:10px;padding-right:10px}.crop+.dlg-f [data-act=crop-reset]{flex-basis:100%}}
 </style>
 </head>
 <body>
@@ -847,9 +857,9 @@ form.card{-webkit-user-select:auto;user-select:auto;margin-bottom:22px}
 <div id="ctx" hidden></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <noscript>LATTICE Work cần JavaScript.</noscript>
-<script src="i18n.js?v=20260918e"></script>
-<script src="help.js?v=20260918e"></script>
-<script src="data.js?v=20260918e"></script>
-<script src="app.js?v=20260918e"></script>
+<script src="i18n.js?v=20260918k"></script>
+<script src="help.js?v=20260918k"></script>
+<script src="data.js?v=20260918k"></script>
+<script src="app.js?v=20260918k"></script>
 </body>
 </html>

@@ -849,34 +849,105 @@
       '<div class="dlg-f"><button type="button" class="btn" data-act="modal-x">' + t('cancel') + '</button><button class="btn pri">' + t('save') + '</button></div></form>';
   }
   function handleAvatarFile(file) {
-    // Chọn ảnh là lưu ngay: cắt vuông giữa ảnh, nén về 160px, cập nhật mọi chỗ hiện ảnh đại diện.
+    // Chọn ảnh → mở khung căn ảnh (kéo để dịch, phóng to/thu nhỏ) → Lưu mới ghi.
     if (!file) return;
     var name = String(file.name || '').toLowerCase();
     if (file.type && !/^image\//.test(file.type) && !/\.(heic|heif)$/.test(name)) { toast(t('pf.avFail'), true); return; }
     if (file.size > 15 * 1024 * 1024) { toast(t('pf.avBig'), true); return; }
-    toast(t('pf.avWorking'));
-    function draw(src, w, h) {
-      var s = Math.min(w, h), c = document.createElement('canvas');
-      c.width = c.height = 160;
-      var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, 160, 160);
-      g.drawImage(src, (w - s) / 2, (h - s) / 2, s, s, 0, 0, 160, 160);
-      var url = c.toDataURL('image/jpeg', 0.84);
-      if (!guard(function () { LW.updateSelf(S.uid, { av: url }); })) return;
-      // tầng dữ liệu nuốt lỗi ghi; đọc lại để biết ảnh có thật sự được lưu không
-      var kept = false; try { kept = (localStorage.getItem(LW.KEY) || '').indexOf(url.slice(-40)) >= 0; } catch (e) { kept = false; }
-      refreshAvatarRow(); render();
-      toast(kept ? t('pf.avSaved') : t('pf.avNotKept'), !kept);
-    }
     function fail() { toast(/\.(heic|heif)$/.test(name) || /hei[cf]/.test(file.type || '') ? t('pf.avHeic') : t('pf.avFail'), true); }
+    function toSrc(el, w, h) {
+      // giữ một bản gốc thu nhỏ (tối đa 640px) để lần sau còn căn lại được
+      var k = Math.min(1, 640 / Math.max(w, h)), c = document.createElement('canvas');
+      c.width = Math.max(1, Math.round(w * k)); c.height = Math.max(1, Math.round(h * k));
+      var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height); g.drawImage(el, 0, 0, c.width, c.height);
+      openCropper(c.toDataURL('image/jpeg', 0.86), null);
+    }
     function viaImg() {
       var url = (window.URL || window.webkitURL).createObjectURL(file), img = new Image();
-      img.onload = function () { try { draw(img, img.naturalWidth || img.width, img.naturalHeight || img.height); } catch (e) { fail(); } URL.revokeObjectURL(url); };
+      img.onload = function () { try { toSrc(img, img.naturalWidth || img.width, img.naturalHeight || img.height); } catch (e) { fail(); } URL.revokeObjectURL(url); };
       img.onerror = function () { URL.revokeObjectURL(url); fail(); };
       img.src = url;
     }
-    if (window.createImageBitmap) createImageBitmap(file).then(function (b) { try { draw(b, b.width, b.height); } catch (e) { viaImg(); } }, viaImg);
+    if (window.createImageBitmap) createImageBitmap(file).then(function (b) { try { toSrc(b, b.width, b.height); } catch (e) { viaImg(); } }, viaImg);
     else viaImg();
   }
+
+  /* ---------- khung căn ảnh đại diện ---------- */
+  var CROP = null;
+  function openCropper(src, crop) {
+    var img = new Image();
+    img.onerror = function () { toast(t('pf.avFail'), true); };
+    img.onload = function () {
+      CROP = { src: src, img: img, w: img.naturalWidth, h: img.naturalHeight, z: crop ? crop.z || 1 : 1, fx: crop ? crop.fx || 0 : 0, fy: crop ? crop.fy || 0 : 0 };
+      modal(t('crop.title'), '<div class="crop"><div class="crop-stage" id="crop-stage" tabindex="0" role="img" aria-label="' + t('crop.stageL') + '"><img id="crop-img" src="' + src + '" alt="" draggable="false"><span class="crop-ring"></span></div>' +
+        '<label class="crop-zoom"><span aria-hidden="true">−</span><input type="range" id="crop-z" min="1" max="4" step="0.01" value="' + CROP.z + '" aria-label="' + t('crop.zoom') + '"><span aria-hidden="true">+</span></label>' +
+        '<p class="fine">' + t('crop.hint') + '</p></div>' +
+        '<div class="dlg-f"><button type="button" class="btn" data-act="crop-reset">' + ic('refresh') + t('crop.reset') + '</button><span class="sp"></span><button type="button" class="btn" data-act="crop-cancel">' + t('cancel') + '</button><button type="button" class="btn pri" data-act="crop-save">' + ic('check') + t('crop.save') + '</button></div>', false, 'people');
+      bindCropper(); cropLayout();
+    };
+    img.src = src;
+  }
+  function cropLayout() {
+    var st = document.getElementById('crop-stage'), im = document.getElementById('crop-img');
+    if (!st || !im || !CROP) return;
+    var S = st.clientWidth, s = S / Math.min(CROP.w, CROP.h) * CROP.z, W = CROP.w * s, H = CROP.h * s;
+    var mx = (W - S) / 2, my = (H - S) / 2;
+    var ox = Math.max(-mx, Math.min(mx, CROP.fx * S)), oy = Math.max(-my, Math.min(my, CROP.fy * S));
+    CROP.fx = S ? ox / S : 0; CROP.fy = S ? oy / S : 0;
+    im.style.width = W + 'px'; im.style.height = H + 'px';
+    im.style.transform = 'translate(' + ((S - W) / 2 + ox) + 'px,' + ((S - H) / 2 + oy) + 'px)';
+    var zr = document.getElementById('crop-z'); if (zr && +zr.value !== CROP.z) zr.value = CROP.z;
+  }
+  function cropZoom(z) {
+    // phóng quanh tâm khung: độ lệch tăng theo tỉ lệ phóng
+    var nz = Math.max(1, Math.min(4, z)), k = nz / CROP.z;
+    CROP.fx *= k; CROP.fy *= k; CROP.z = nz; cropLayout();
+  }
+  function bindCropper() {
+    var st = document.getElementById('crop-stage'); if (!st) return;
+    var pts = {};
+    function dist(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
+    st.addEventListener('pointerdown', function (e) {
+      e.preventDefault();
+      if (e.pointerType === 'mouse') pts = {}; // chuột chỉ có một con trỏ — bỏ mọi lần bấm cũ bị kẹt
+      try { st.setPointerCapture(e.pointerId); } catch (x) { /* bỏ qua */ }
+      pts[e.pointerId] = { x: e.clientX, y: e.clientY, t: e.pointerType }; st.classList.add('is-grab');
+    });
+    st.addEventListener('pointermove', function (e) {
+      var p = pts[e.pointerId]; if (!p || !CROP) return;
+      if (e.pointerType === 'mouse' && !(e.buttons & 1)) { up(e); return; }
+      var ids = Object.keys(pts), S = st.clientWidth, now = { x: e.clientX, y: e.clientY, t: e.pointerType };
+      var other = ids.length === 2 ? pts[ids[0] === String(e.pointerId) ? ids[1] : ids[0]] : null;
+      if (other && other.t !== 'mouse' && e.pointerType !== 'mouse') { var d0 = dist(p, other); if (d0 > 0) cropZoom(CROP.z * dist(now, other) / d0); }
+      else { CROP.fx += (now.x - p.x) / S; CROP.fy += (now.y - p.y) / S; cropLayout(); }
+      pts[e.pointerId] = now;
+    });
+    function up(e) { delete pts[e.pointerId]; if (!Object.keys(pts).length) st.classList.remove('is-grab'); }
+    st.addEventListener('pointerup', up); st.addEventListener('pointercancel', up); st.addEventListener('lostpointercapture', up);
+    st.addEventListener('wheel', function (e) { e.preventDefault(); cropZoom(CROP.z * Math.exp(-e.deltaY / 400)); }, { passive: false });
+    st.addEventListener('dblclick', function () { CROP.z = 1; CROP.fx = 0; CROP.fy = 0; cropLayout(); });
+    st.addEventListener('keydown', function (e) {
+      var d = e.shiftKey ? 0.08 : 0.02, k = e.key;
+      if (k === 'ArrowLeft') CROP.fx -= d; else if (k === 'ArrowRight') CROP.fx += d; else if (k === 'ArrowUp') CROP.fy -= d; else if (k === 'ArrowDown') CROP.fy += d;
+      else if (k === '+' || k === '=') { e.preventDefault(); cropZoom(CROP.z * 1.1); return; } else if (k === '-') { e.preventDefault(); cropZoom(CROP.z / 1.1); return; } else return;
+      e.preventDefault(); e.stopPropagation(); cropLayout();
+    });
+    var zr = document.getElementById('crop-z'); if (zr) zr.addEventListener('input', function () { cropZoom(+zr.value); });
+  }
+  function cropSave() {
+    if (!CROP) return;
+    var N = 160, c = document.createElement('canvas'); c.width = c.height = N;
+    var s = N / Math.min(CROP.w, CROP.h) * CROP.z, W = CROP.w * s, H = CROP.h * s;
+    var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, N, N);
+    g.drawImage(CROP.img, (N - W) / 2 + CROP.fx * N, (N - H) / 2 + CROP.fy * N, W, H);
+    var url = c.toDataURL('image/jpeg', 0.86), pos = { z: +CROP.z.toFixed(3), fx: +CROP.fx.toFixed(4), fy: +CROP.fy.toFixed(4) };
+    if (!guard(function () { LW.updateSelf(S.uid, { av: url, avSrc: CROP.src, avCrop: pos }); })) return;
+    // tầng dữ liệu nuốt lỗi ghi; đọc lại để biết ảnh có thật sự được lưu không
+    var kept = false; try { kept = (localStorage.getItem(LW.KEY) || '').indexOf(url.slice(-40)) >= 0; } catch (e) { kept = false; }
+    CROP = null; render(); openProfile();
+    toast(kept ? t('pf.avSaved') : t('pf.avNotKept'), !kept);
+  }
+  function openProfile() { modal(t('team.myProfile'), profileForm(me()), true, 'people'); }
   document.addEventListener('change', function (e) {
     var f = e.target; if (!f || f.id !== 'av-file' || f.dataset.bound) return;
     var file0 = f.files && f.files[0]; f.value = ''; if (file0) handleAvatarFile(file0);
@@ -910,7 +981,7 @@
   function profileForm(u) {
     return '<div class="avrow" id="avrow">' + avatar(u.id, 'xl') + '<div class="stack tight"><div class="row">' +
       '<span class="btn sm av-pick">' + ic('user') + t('pf.avatar') + '<input type="file" id="av-file" accept="image/*,.heic,.heif" aria-label="' + t('pf.avatar') + '"></span>' +
-      (u.av ? '<button type="button" class="btn sm" data-act="remove-avatar">' + ic('trash') + t('pf.avRemove') + '</button>' : '') +
+      (u.av ? '<button type="button" class="btn sm" data-act="crop-edit">' + ic('edit') + t('pf.avAdjust') + '</button>' : '') + (u.av ? '<button type="button" class="btn sm" data-act="remove-avatar">' + ic('trash') + t('pf.avRemove') + '</button>' : '') +
       '</div><span class="fine">' + t('pf.avNote') + ' · ' + t('pf.avDrop2') + '</span></div></div>' +
       displayBlock() + '<form data-form="profile" class="stack">' +
       '<div class="grid2"><label class="fld">' + t('pf.name') + '<input name="n" required value="' + esc(u.n) + '"></label><label class="fld">' + t('pf.ini') + '<input name="ini" maxlength="3" value="' + esc(u.ini) + '"></label></div>' +
@@ -1476,7 +1547,11 @@
     'clock': function (el) { var n = +el.dataset.n; if (guard(function () { LW.shiftDays(n, S.uid); })) { render(); toast(n ? t('clock.moved', fmtDate(LW.today())) : t('clock.back')); } },
     'theme-toggle': function () { toggleTheme(); },
     'pick-avatar': function () { bindAvatarInput(); var f = document.getElementById('av-file'); if (!f) return; try { if (f.showPicker) f.showPicker(); else f.click(); } catch (e) { f.click(); } },
-    'remove-avatar': function () { if (guard(function () { LW.updateSelf(S.uid, { av: null }); })) { refreshAvatarRow(); render(); toast(t('pf.avRemoved')); } },
+    'crop-edit': function () { var u = me(); if (u && u.av) openCropper(u.avSrc || u.av, u.avSrc ? u.avCrop : null); },
+    'crop-save': cropSave,
+    'crop-cancel': function () { CROP = null; openProfile(); },
+    'crop-reset': function () { if (!CROP) return; CROP.z = 1; CROP.fx = 0; CROP.fy = 0; cropLayout(); },
+    'remove-avatar': function () { if (guard(function () { LW.updateSelf(S.uid, { av: null, avSrc: null, avCrop: null }); })) { refreshAvatarRow(); render(); toast(t('pf.avRemoved')); } },
     'open-display': function () { modal(t('team.myProfile'), profileForm(me()), true, 'people'); },
     'pref': function (el) {
       var k = el.dataset.k, v = el.dataset.v;
@@ -1702,7 +1777,7 @@
 
   window.addEventListener('storage', function (e) { if (e.key === LW.KEY) { DB = LW.load(); render(); } });
   var lastNarrow = narrow(), rz;
-  window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(function () { if (S.menu) closeMenu(); if (narrow() !== lastNarrow) { lastNarrow = narrow(); render(); } }, 120); });
+  window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(function () { if (S.menu) closeMenu(); if (CROP) cropLayout(); if (narrow() !== lastNarrow) { lastNarrow = narrow(); render(); } }, 120); });
 
   var VIEWS = { home: viewHome, tasks: viewTasks, chat: viewChat, apps: viewApps };
   render();

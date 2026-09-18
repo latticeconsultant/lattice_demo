@@ -833,7 +833,7 @@
 
   function updateSelf(uid, f) {
     var p = mustPerson(uid);
-    ['n', 'ini', 'av', 'r', 'bio'].forEach(function (k) { if (k in f) p[k] = f[k]; });
+    ['n', 'ini', 'av', 'avSrc', 'avCrop', 'r', 'bio'].forEach(function (k) { if (k in f) p[k] = f[k]; });
     if (!String(p.n || '').trim()) throw new LWError('titleRequired');
     p.ini = String(p.ini || '').trim().slice(0, 3).toUpperCase() || initials(p.n);
     log(uid, 'profile.update', uid, ''); save();

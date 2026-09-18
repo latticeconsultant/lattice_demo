@@ -52,20 +52,28 @@ window.HELP = {
   },
 
   login: {
-    icon: 'user', related: ['overview', 'matrix'],
+    icon: 'user', related: ['signup', 'accept', 'outbox'],
     vi: {
-      title: 'Đăng nhập', intro: 'Bản mẫu có bốn tài khoản, mỗi tài khoản một vai trò để thử quyền.',
-      steps: ['Bấm một tài khoản mẫu để điền sẵn.', 'Bấm Vào.', 'Muốn thử vai trò khác: Tiện ích → Đăng xuất.'],
-      tips: ['Mật khẩu mọi tài khoản mẫu: lattice.'], rules: [],
-      suggest: ['Nên thử tài khoản nào trước?'],
-      faq: [['Nên thử tài khoản nào trước?', 'thu|tai khoan|nen|truoc', 'Lê Đặng Tuấn (chủ sở hữu) để thấy đủ mọi thứ; rồi Phạm Thu Hà (khách mời) để thấy hệ thống ẩn và khóa thế nào.']]
+      title: 'Đăng nhập', intro: 'Vào bằng mật khẩu hoặc bằng liên kết gửi tới email. Mỗi tổ chức là một không gian riêng; một email có thể thuộc nhiều tổ chức.',
+      steps: ['Chọn Mật khẩu hoặc Liên kết email.', 'Mật khẩu: bấm một tài khoản mẫu để điền sẵn, rồi bấm Vào.', 'Liên kết email: nhập email, bấm Gửi, rồi mở Hộp thư mô phỏng và bấm Đăng nhập trong thư.', 'Email có tài khoản ở nhiều tổ chức thì chọn tổ chức muốn vào.'],
+      tips: ['Mật khẩu mọi tài khoản mẫu: lattice.', 'Không có mật khẩu vẫn vào được bằng liên kết email.'],
+      rules: ['Sai mật khẩu 5 lần thì khóa 15 phút.', 'Liên kết đăng nhập dùng 1 lần, hết hạn 15 phút, tối đa 5 lần/giờ.', 'Không tự đăng ký vào tổ chức người khác được — chỉ bằng lời mời.'],
+      suggest: ['Nên thử tài khoản nào trước?', 'Quên mật khẩu thì sao?'],
+      faq: [
+        ['Nên thử tài khoản nào trước?', 'thu|tai khoan|nen|truoc', 'Lê Đặng Tuấn (Chủ tổ chức) để thấy đủ mọi thứ; rồi Phạm Thu Hà (khách mời) để thấy hệ thống ẩn và khóa thế nào.'],
+        ['Quên mật khẩu thì sao?', 'quen|mat khau|reset', 'Dùng Liên kết email để vào, rồi đặt lại trong Hồ sơ → Mật khẩu.']
+      ]
     },
     en: {
-      title: 'Sign in', intro: 'The prototype has four accounts, one per role, to try permissions.',
-      steps: ['Click a demo account to fill it in.', 'Click Sign in.', 'To try another role: Apps → Sign out.'],
-      tips: ['Every demo password is: lattice.'], rules: [],
-      suggest: ['Which account should I try first?'],
-      faq: [['Which account should I try first?', 'try|account|first|which', 'Lê Đặng Tuấn (owner) to see everything; then Phạm Thu Hà (guest) to see how things are hidden and locked.']]
+      title: 'Sign in', intro: 'Sign in with a password or a link sent to your email. Each organisation is a separate workspace; one email can belong to several.',
+      steps: ['Pick Password or Email link.', 'Password: click a demo account to fill it in, then Sign in.', 'Email link: enter the email, send, then open the Simulated outbox and press Sign in in the email.', 'If the email belongs to several organisations, choose one.'],
+      tips: ['Every demo password is: lattice.', 'No password? The email link still works.'],
+      rules: ['5 wrong passwords lock the account for 15 minutes.', 'Sign-in links are single use, expire in 15 minutes, max 5 per hour.', 'Nobody can sign up into someone else’s organisation — invitation only.'],
+      suggest: ['Which account should I try first?', 'Forgot my password?'],
+      faq: [
+        ['Which account should I try first?', 'try|account|first|which', 'Lê Đặng Tuấn (owner) to see everything; then Phạm Thu Hà (guest) to see how things are hidden and locked.'],
+        ['Forgot my password?', 'forgot|password|reset', 'Use the email link to get in, then set a new one in Profile → Password.']
+      ]
     }
   },
 
@@ -382,27 +390,27 @@ window.HELP = {
   },
 
   flows: {
-    icon: 'flow', related: ['tasks', 'agents'],
+    icon: 'flow', related: ['flowEdit', 'tasks', 'projects'],
     vi: {
-      title: 'Luồng mẫu', intro: 'Một luồng là chuỗi bước có thứ tự. Khởi chạy cho một dự án thì sinh toàn bộ việc cùng lúc.',
-      steps: ['Chọn luồng, xem các bước: ngày +N tính từ ngày bắt đầu.', 'Bấm Khởi chạy, chọn dự án và ngày bắt đầu.', 'Chọn người cho các bước của người; bước agent tự lấy người chủ trì.', 'Việc sinh ra nằm ở Đang làm trên bảng.'],
-      tips: ['Bước có nhãn Cổng duyệt luôn phải qua duyệt, kể cả bước của người.'],
-      rules: ['Chỉ chủ sở hữu và quản lý dự án khởi chạy được.'],
-      suggest: ['Khởi chạy sinh ra những gì?', 'Sửa luồng được không?'],
+      title: 'Luồng mẫu', intro: 'Một luồng là chuỗi bước có thứ tự. Khởi chạy cho một dự án thì sinh toàn bộ việc cùng lúc. Luồng phải được Chủ tổ chức duyệt mới dùng được.',
+      steps: ['Quản lý dự án hoặc Chủ tổ chức bấm + để soạn luồng mới.', 'Lưu nháp hoặc Lưu & gửi duyệt.', 'Chủ tổ chức duyệt (hoặc trả lại kèm lý do) — thấy ngay ở Cần tôi.', 'Luồng đã duyệt: bấm Khởi chạy, chọn dự án, ngày bắt đầu và người cho các bước của người.'],
+      tips: ['Muốn sửa luồng đang dùng: Tạo phiên bản mới — bản cũ vẫn chạy đến khi bản mới được duyệt.', 'Bước có nhãn Cổng duyệt luôn phải qua duyệt, kể cả bước của người.'],
+      rules: ['Chỉ luồng Đã duyệt mới khởi chạy được.', 'Chỉ người chủ trì dự án hoặc Chủ tổ chức khởi chạy, và chỉ chọn được người trong dự án.', 'Không tự duyệt luồng mình soạn khi còn Chủ tổ chức khác.'],
+      suggest: ['Khởi chạy sinh ra những gì?', 'Sửa luồng đang dùng thế nào?'],
       faq: [
-        ['Khởi chạy sinh ra những gì?', 'sinh ra|khoi chay tao|tao ra', 'Mỗi bước thành một việc: hạn = ngày bắt đầu + số ngày của bước, người chủ trì của bước agent lấy theo agent, bước người do bạn chọn và bạn chủ trì.'],
-        ['Sửa luồng được không?', 'sua luong|editor|them buoc', 'Trình soạn luồng bằng giao diện chưa có trong bản mẫu này.']
+        ['Khởi chạy sinh ra những gì?', 'sinh ra|khoi chay tao|tao ra', 'Mỗi bước thành một việc: hạn = ngày bắt đầu + số ngày của bước, bước agent lấy người chủ trì của agent, bước người do bạn chọn và bạn chủ trì.'],
+        ['Sửa luồng đang dùng thế nào?', 'sua|phien ban|version', 'Mở menu ··· của luồng → Tạo phiên bản mới. Sửa bản sao rồi gửi duyệt; khi được duyệt, bản cũ tự ngừng dùng.']
       ]
     },
     en: {
-      title: 'Flows', intro: 'A flow is an ordered list of steps. Launching it for a project creates every task at once.',
-      steps: ['Pick a flow and read the steps: day +N counts from the start date.', 'Press Launch, choose project and start date.', 'Pick people for human steps; agent steps take their owner automatically.', 'New tasks appear In progress on the board.'],
-      tips: ['Steps labelled Gate always require review, human steps included.'],
-      rules: ['Only owners and project managers can launch flows.'],
-      suggest: ['What does launching create?', 'Can I edit a flow?'],
+      title: 'Flows', intro: 'A flow is an ordered list of steps. Launching it for a project creates every task at once. A flow must be approved by an owner before use.',
+      steps: ['A project manager or owner presses + to draft a flow.', 'Save as draft, or Save & submit.', 'The owner approves (or sends back with a reason) — it shows up in Needs me.', 'Approved flow: press Launch, choose project, start date and people for human steps.'],
+      tips: ['To change a live flow: New version — the old one keeps running until the new one is approved.', 'Steps labelled Gate always require review, human steps included.'],
+      rules: ['Only Approved flows can be launched.', 'Only the project lead or an owner launches, and only project members can be picked.', 'You cannot approve your own flow while another owner exists.'],
+      suggest: ['What does launching create?', 'How do I change a live flow?'],
       faq: [
         ['What does launching create?', 'create|launch|generate', 'One task per step: due = start date + the step’s days; agent steps take the agent’s owner; human steps use the person you pick, owned by you.'],
-        ['Can I edit a flow?', 'edit flow|editor|add step', 'The visual flow editor is not in this prototype yet.']
+        ['How do I change a live flow?', 'edit|change|version', 'Open the flow’s ··· menu → New version. Edit the copy and submit; once approved, the old one retires automatically.']
       ]
     }
   },
@@ -491,6 +499,113 @@ window.HELP = {
     }
   },
 
+  projects: {
+    icon: 'folder', related: ['invites', 'clock', 'people'],
+    vi: {
+      title: 'Dự án', intro: 'Mỗi dự án có một người chủ trì và danh sách thành viên. Ai không ở trong dự án thì không thấy việc của dự án đó.',
+      steps: ['Chủ tổ chức bấm + để tạo dự án, chọn người chủ trì.', 'Người chủ trì mở Thành viên để thêm người đã có hoặc mời người mới.', 'Xong việc: Bàn giao — khách mời còn xem 30 ngày rồi tự hết quyền.', 'Kết thúc hẳn: Lưu trữ — chỉ còn xem.'],
+      tips: ['Muốn thử hết hạn khách mời: Tiện ích → Tua ngày → +30 ngày.', 'Khách mời sắp hết hạn hiện ở Cần tôi; Chủ tổ chức gia hạn 30 ngày kèm lý do.'],
+      rules: ['Hiện chỉ Chủ tổ chức tạo dự án.', 'Chủ trì phải là Chủ tổ chức hoặc Quản lý dự án.', 'Thêm khách mời (khách hàng) cần Chủ tổ chức.', 'Chỉ giao việc cho người trong dự án.'],
+      suggest: ['Khách mời hết hạn thì sao?', 'Bỏ người khỏi dự án được không?'],
+      faq: [
+        ['Khách mời hết hạn thì sao?', 'het han|khach|guest', 'Họ không đăng nhập được nữa nếu không còn dự án nào khác. Lịch sử việc vẫn giữ. Chủ tổ chức có thể gia hạn.'],
+        ['Bỏ người khỏi dự án được không?', 'bo|xoa|remove|thanh vien', 'Được, nếu người đó không còn việc mở trong dự án. Người chủ trì thì phải đổi chủ trì trước.']
+      ]
+    },
+    en: {
+      title: 'Projects', intro: 'Each project has a lead and a member list. People outside a project cannot see its work.',
+      steps: ['The owner presses + to create a project and picks a lead.', 'The lead opens Members to add existing people or invite new ones.', 'Done: Hand over — guests keep access for 30 days, then lose it automatically.', 'Closed for good: Archive — read only.'],
+      tips: ['To try guest expiry: Apps → Time travel → +30 days.', 'Guests about to expire show in Needs me; an owner can extend by 30 days with a reason.'],
+      rules: ['For now only the owner creates projects.', 'The lead must be an owner or project manager.', 'Adding a guest (client) needs an owner.', 'Tasks can only be assigned to project members.'],
+      suggest: ['What happens when a guest expires?', 'Can I remove someone?'],
+      faq: [
+        ['What happens when a guest expires?', 'expire|guest', 'They can no longer sign in unless another project keeps them. Their history stays. An owner can extend.'],
+        ['Can I remove someone?', 'remove|member|delete', 'Yes, if they have no open tasks in the project. To remove the lead, change the lead first.']
+      ]
+    }
+  },
+  invites: {
+    icon: 'mail', related: ['projects', 'accept', 'outbox'],
+    vi: {
+      title: 'Lời mời', intro: 'Người mới chỉ vào tổ chức bằng lời mời qua email. Lời mời dùng 1 lần, hết hạn sau 7 ngày.',
+      steps: ['Bấm Mời người, nhập email, chọn vai trò và dự án.', 'Chủ tổ chức mời: thư gửi đi ngay. Quản lý dự án mời khách hàng: chờ Chủ tổ chức duyệt.', 'Người được mời bấm liên kết, đặt tên (và mật khẩu nếu muốn) là vào.'],
+      tips: ['Trong bản mẫu, thư nằm ở Hộp thư mô phỏng — bấm Mở lời mời để thử vai người được mời.'],
+      rules: ['Quản lý dự án chỉ mời Thành viên hoặc Khách mời vào dự án mình chủ trì.', 'Khách mời phải gắn với ít nhất một dự án.', 'Hệ thống chỉ lưu mã băm của liên kết, không lưu liên kết.'],
+      suggest: ['Gửi nhầm thì sao?'],
+      faq: [['Gửi nhầm thì sao?', 'nham|thu hoi|huy', 'Mở menu ··· của lời mời → Thu hồi. Liên kết hết hiệu lực ngay.']]
+    },
+    en: {
+      title: 'Invitations', intro: 'New people only join by email invitation. Invitations are single use and expire after 7 days.',
+      steps: ['Press Invite someone, enter the email, choose role and projects.', 'Owner invites go out at once. A project manager inviting a client waits for owner approval.', 'The invitee opens the link, sets a name (and optionally a password) and is in.'],
+      tips: ['In the prototype, emails land in the Simulated outbox — press Open invitation to play the invitee.'],
+      rules: ['Project managers invite only members or guests into projects they lead.', 'Guests must be attached to at least one project.', 'Only a hash of the link is stored, never the link itself.'],
+      suggest: ['Sent it by mistake?'],
+      faq: [['Sent it by mistake?', 'mistake|revoke|cancel', 'Open the invitation’s ··· menu → Revoke. The link stops working at once.']]
+    }
+  },
+  accept: {
+    icon: 'mail', related: ['login', 'invites'],
+    vi: {
+      title: 'Nhận lời mời', intro: 'Bạn được mời vào một tổ chức trên LATTICE Work.',
+      steps: ['Kiểm tra tên tổ chức, người mời và vai trò.', 'Nhập tên của bạn.', 'Đặt mật khẩu nếu muốn (ít nhất 10 ký tự) — không đặt thì đăng nhập bằng liên kết email.', 'Bấm Nhận lời mời.'],
+      tips: [], rules: ['Lời mời dùng 1 lần và hết hạn sau 7 ngày.'], suggest: [], faq: []
+    },
+    en: {
+      title: 'Accept invitation', intro: 'You have been invited to an organisation on LATTICE Work.',
+      steps: ['Check the organisation, who invited you and your role.', 'Enter your name.', 'Optionally set a password (10+ characters) — otherwise sign in with email links.', 'Press Accept invitation.'],
+      tips: [], rules: ['Invitations are single use and expire after 7 days.'], suggest: [], faq: []
+    }
+  },
+  signup: {
+    icon: 'plus', related: ['login'],
+    vi: {
+      title: 'Tạo tổ chức mới', intro: 'Đăng ký công khai chỉ tạo một tổ chức mới, bạn là Chủ tổ chức. Mọi người khác vào bằng lời mời.',
+      steps: ['Nhập email, tên và tên tổ chức.', 'Mở thư xác nhận (Hộp thư mô phỏng) và bấm Xác nhận tổ chức.', 'Tổ chức mới trống: tạo dự án, mời người.'],
+      tips: ['Một email có thể là Chủ của nhiều tổ chức; chuyển qua lại trong menu tài khoản.'], rules: ['Liên kết xác nhận dùng 1 lần.'], suggest: [], faq: []
+    },
+    en: {
+      title: 'New organisation', intro: 'Public sign-up only creates a new organisation, with you as owner. Everyone else joins by invitation.',
+      steps: ['Enter your email, name and organisation name.', 'Open the confirmation email (Simulated outbox) and press Confirm organisation.', 'The new organisation is empty: create a project, invite people.'],
+      tips: ['One email can own several organisations; switch in the account menu.'], rules: ['The confirmation link is single use.'], suggest: [], faq: []
+    }
+  },
+  outbox: {
+    icon: 'mail', related: ['invites', 'login'],
+    vi: {
+      title: 'Hộp thư mô phỏng', intro: 'Bản mẫu không gửi email thật. Mọi thư hệ thống — lời mời, liên kết đăng nhập, xác nhận tổ chức — nằm ở đây.',
+      steps: ['Bấm nút trong thư để thử như đang mở email thật.'], tips: ['Bản chạy thật sẽ gửi qua máy chủ thư và không có trang này.'], rules: [], suggest: [], faq: []
+    },
+    en: {
+      title: 'Simulated outbox', intro: 'The prototype sends no real email. Every system email — invitations, sign-in links, sign-up confirmations — lands here.',
+      steps: ['Press the button inside an email to act as if you opened it.'], tips: ['Production sends through a mail server and has no such page.'], rules: [], suggest: [], faq: []
+    }
+  },
+  clock: {
+    icon: 'clock', related: ['projects'],
+    vi: {
+      title: 'Tua ngày', intro: 'Dời "hôm nay" của bản mẫu để thử những thứ phụ thuộc thời gian: khách mời hết hạn, việc trễ hạn.',
+      steps: ['Bàn giao một dự án có khách mời.', 'Bấm +30 ngày.', 'Đăng xuất, thử đăng nhập bằng tài khoản khách mời — sẽ bị chặn.', 'Bấm Về ngày thật khi xong.'],
+      tips: ['Khi đang tua, thanh đỏ ở đầu trang nhắc bạn.'], rules: ['Chỉ Chủ tổ chức; có ghi nhật ký.'], suggest: [], faq: []
+    },
+    en: {
+      title: 'Time travel', intro: 'Shift the prototype’s "today" to test time-based rules: guest expiry, overdue work.',
+      steps: ['Hand over a project that has a guest.', 'Press +30 days.', 'Sign out and try the guest account — it is blocked.', 'Press Back to today when done.'],
+      tips: ['While shifted, a red bar at the top reminds you.'], rules: ['Owner only; logged.'], suggest: [], faq: []
+    }
+  },
+  flowEdit: {
+    icon: 'flow', related: ['flows'],
+    vi: {
+      title: 'Soạn luồng mẫu', intro: 'Mỗi dòng là một bước: tên, ai làm (người hoặc agent), bắt đầu sau bao nhiêu ngày, có cổng duyệt không.',
+      steps: ['Đặt tên luồng.', 'Thêm bước, chọn người làm và số ngày +N.', 'Dùng ↑ ↓ để đổi thứ tự.', 'Lưu nháp hoặc Lưu & gửi duyệt.'],
+      tips: ['Bước agent tự lấy người chủ trì của agent khi khởi chạy.'], rules: ['Luồng chỉ dùng được sau khi Chủ tổ chức duyệt.'], suggest: [], faq: []
+    },
+    en: {
+      title: 'Edit flow template', intro: 'Each row is a step: name, who does it (a person or an agent), how many days after the start, and whether it is gated.',
+      steps: ['Name the flow.', 'Add steps, pick the doer and +N days.', 'Use ↑ ↓ to reorder.', 'Save draft, or Save & submit.'],
+      tips: ['Agent steps take the agent’s owner at launch.'], rules: ['A flow can only be used after an owner approves it.'], suggest: [], faq: []
+    }
+  },
   matrix: {
     icon: 'lock', related: ['people', 'overview'],
     vi: {

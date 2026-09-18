@@ -791,6 +791,50 @@ form.card{-webkit-user-select:auto;user-select:auto;margin-bottom:22px}
 .auth-tools{display:flex;align-items:center;justify-content:space-between;gap:8px}
 @media (max-width:370px){.demo-g{grid-template-columns:1fr}.stat b{font-size:calc(24px*var(--fs))}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* ---------- tổ chức · dự án · lời mời · luồng mẫu ---------- */
+.clockbar{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin:0 0 16px;padding:9px 14px;border:0;border-radius:var(--r-sm);background:var(--red);color:#fff;font:600 calc(13px*var(--fs)) var(--f);cursor:pointer}
+.clockbar .ic{width:15px;height:15px}
+.clock{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.clock small{color:var(--muted);font-size:calc(12px*var(--fs))}
+.clock b{font-size:calc(28px*var(--fs));letter-spacing:-.02em}
+.mail{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:14px 16px;margin:0 0 12px}
+.card .mail{border:0;padding:0;margin:0}
+.mail-h{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid var(--line);font-size:calc(13px*var(--fs))}
+.mail-h span{color:var(--muted)}.mail-h b,.mail-h em{min-width:0;overflow-wrap:anywhere;font-style:normal}
+.mail>p{margin:0 0 12px;white-space:pre-line;font-size:calc(14px*var(--fs));line-height:1.55}
+.mail-link{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.mail-link code{flex:1 1 220px;min-width:0;padding:8px 10px;border-radius:var(--r-xs);background:var(--soft);font:calc(11.5px*var(--fs)) var(--mono);color:var(--muted);overflow-wrap:anywhere}
+.fe{display:flex;flex-direction:column;gap:6px}
+.fe-row{display:grid;grid-template-columns:26px minmax(0,1fr) minmax(0,190px) 74px 34px 112px;align-items:center;gap:8px}
+.fe-row input,.fe-row select{width:100%;min-width:0}
+.fe-head{font-size:calc(11px*var(--fs));font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.fe-no{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--soft);font-weight:700;font-size:calc(12px*var(--fs))}
+.fe-off{display:flex;align-items:center;gap:4px}.fe-off span{color:var(--muted)}
+.fe-g{display:grid;place-items:center}.fe-g input{width:18px;height:18px;accent-color:var(--red)}
+.fe-a{display:flex;gap:2px;justify-content:flex-end}.fe-a .ib[disabled]{opacity:.3;pointer-events:none}
+.fe-add{align-self:flex-start}
+@media (max-width:759px){
+ .fe-head{display:none}
+ .fe-row{grid-template-columns:26px minmax(0,1fr) 74px;padding:10px;border:1px solid var(--line);border-radius:var(--r-sm)}
+ .fe-row>input{grid-column:2/4}
+ .fe-row>select{grid-column:2/3}
+ .fe-g{grid-column:2/3;justify-content:start;display:flex;gap:8px}
+ .fe-g::after{content:attr(data-l);font-size:calc(12px*var(--fs));color:var(--muted)}
+ .fe-a{grid-column:3/4}
+}
+.back-note{display:flex;gap:6px;align-items:flex-start;margin:8px 0 0;padding:8px 10px;border-radius:var(--r-xs);background:var(--red-s);color:var(--red-d);font-size:calc(13px*var(--fs))}
+.org-pick{width:100%;text-align:left;border:1px solid var(--line);background:var(--card);cursor:pointer}
+.org-pick>.ic:last-child{margin-left:auto;color:var(--faint)}
+.auth-seg{margin:0 0 14px}
+.av.tile.txt{font-weight:800;letter-spacing:.02em;font-size:calc(11px*var(--fs))}
+.av.tile.lg.txt{font-size:calc(13px*var(--fs))}
+.av.tile.sm.txt{font-size:calc(9px*var(--fs))}
+.grow1{flex:1 1 auto;min-width:0}
+.upper{text-transform:uppercase}
+.pill.off{opacity:.45;text-decoration:line-through}
+.cards.one{grid-template-columns:1fr;max-width:760px}
+.mems{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0 4px}
 </style>
 </head>
 <body>
@@ -800,9 +844,9 @@ form.card{-webkit-user-select:auto;user-select:auto;margin-bottom:22px}
 <div id="ctx" hidden></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <noscript>LATTICE Work cần JavaScript.</noscript>
-<script src="i18n.js?v=20260918b"></script>
-<script src="help.js?v=20260918b"></script>
-<script src="data.js?v=20260918b"></script>
-<script src="app.js?v=20260918b"></script>
+<script src="i18n.js?v=20260918c"></script>
+<script src="help.js?v=20260918c"></script>
+<script src="data.js?v=20260918c"></script>
+<script src="app.js?v=20260918c"></script>
 </body>
 </html>

@@ -8,6 +8,7 @@
   'use strict';
 
   var DB = LW.load();
+  (function () { var o = null; try { o = localStorage.getItem('lw.org'); } catch (e) { /* bỏ qua */ } if (o) { try { LW.useOrg(o); DB = LW.db(); } catch (e) { /* tổ chức không còn */ } } })();
   function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function put(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { /* bỏ qua */ } }
 
@@ -19,6 +20,9 @@
     flow: 'f1', ledgerPr: null, hl: null, menu: null, help: null, hlog: {}
   };
   if (S.uid && !LW.person(S.uid)) S.uid = null;
+  // tài khoản đã bị thu hồi hoặc khách mời hết hạn thì không vào tiếp được
+  if (S.uid) { var u0 = LW.person(S.uid); if (!LW.accountsFor(u0.mail).some(function (a) { return a.person.id === u0.id; })) S.uid = null; }
+  S.auth = null; S.fe = null;
 
   /* ---------- hiển thị: cỡ chữ, giao diện ngày/đêm — lưu trên thiết bị ---------- */
   var FS = { s: 0.92, m: 1, l: 1.1, xl: 1.22 };
@@ -279,6 +283,9 @@
     items.push(item('mail', t('m.email'), p.mail, function () { location.href = 'mailto:' + p.mail; }, { off: LW.seeContacts(u) ? '' : t('why.guestContacts') }));
     items.push(item('tasks', t('m.personTasks'), t('m.personTasksS', LW.openLoad(p.id), p.cap), function () { S.tab = 'tasks'; S.sub = null; S.f = { pr: '', kind: '', mine: false, who: p.id }; render(); scrollTop(); }, { chev: true }));
     items.push(item('edit', t('team.editRole'), t('m.roleS'), function () { modal(p.n, personForm(p), false, 'people'); }, { off: LW.can('admin', u) ? '' : t('why.onlyOwnerRole') }));
+    if (p.id !== u.id) items.push(p.st === 'thu_hoi'
+      ? item('refresh', t('pp.restore'), '', function () { if (guard(function () { LW.restorePerson(p.id, S.uid); })) { toast(t('pp.restored')); render(); } }, { off: LW.isOwner(u) ? '' : t('why.onlyOwnerRole') })
+      : item('lock', t('pp.revoke'), t('pp.revokeS'), function () { if (confirm(t('pp.revokeConfirm', p.n)) && guard(function () { LW.revokePerson(p.id, S.uid); })) { toast(t('pp.revokedT')); render(); } }, { off: LW.isOwner(u) ? '' : t('why.onlyOwnerRole'), danger: true, lockIcon: false }));
     items.push(item('help', t('h.aboutThis'), t('h.aboutThisS'), function () { openHelp('people'); }, { chev: true }));
     return { eyebrow: roleName(p.role), title: p.n, sub: p.r, lead: avatar(p.id, 'md'), items: items };
   }
@@ -291,43 +298,35 @@
     items.push(item('help', t('h.aboutThis'), t('h.aboutThisS'), function () { openHelp('conv', c.id); }, { chev: true }));
     return { eyebrow: t('m.chanEyebrow', c.mem.length), title: '#' + c.n, sub: c.d, lead: chanAvatar('md'), items: items };
   }
-  function flowMenu(f, u) {
-    return {
-      eyebrow: t('m.flowEyebrow', f.steps.length), title: f.n, sub: f.d, lead: '<span class="av tile md">' + ic('flow') + '</span>',
-      items: [
-        item('play', t('flow.launch'), t('m.launchS'), function () { modal(t('flow.launch') + ' · ' + f.n, launchForm(u, f), true, 'flows'); }, { off: LW.can('launchFlow', u) ? '' : t('flow.noLaunch'), primary: true }),
-        item('eye', t('m.viewSteps'), '', function () { S.tab = 'apps'; S.sub = 'flows'; S.flow = f.id; render(); scrollTop(); }, { chev: true }),
-        item('edit', t('m.editFlow'), '', null, { off: t('flow.noEditor') }),
-        item('help', t('h.aboutThis'), t('h.aboutThisS'), function () { openHelp('flows'); }, { chev: true })
-      ]
-    };
-  }
   function createMenu(u) {
     var items = [
       item('tasks', t('newTask'), t('m.newTaskS'), function () { newTask({}); }, { off: LW.can('create', u) ? '' : t('why.guest'), primary: true }),
       item('chat', t('m.newMsg'), t('m.newMsgS'), function () { S.tab = 'chat'; S.sub = null; S.chatF = 'chan'; render(); }, { chev: true }),
       item('bot', t('m.askAgent'), t('m.askAgentS'), function () { S.tab = 'chat'; S.sub = null; S.chatF = 'agent'; render(); }, { off: LW.visibleAgentsForDM(u).length ? '' : t('why.noAgents'), chev: true }),
-      item('flow', t('flow.launch'), t('m.launchS'), function () { var f = DB.flows[0]; modal(t('flow.launch') + ' · ' + f.n, launchForm(u, f), true, 'flows'); }, { off: LW.can('launchFlow', u) ? '' : t('flow.noLaunch') }),
+      item('flow', t('flow.launch'), t('m.launchS'), function () { var f = DB.flows.filter(function (x) { return x.st === 'da_duyet'; })[0]; openLaunch(f); }, { off: !LW.can('launchFlow', u) ? t('flow.noLaunch') : (DB.flows.some(function (x) { return x.st === 'da_duyet'; }) ? '' : t('flow.noneApproved')) }),
+      item('folder', t('proj.create'), t('proj.createS'), function () { modal(t('proj.create'), projectForm(), false, 'projects'); }, { off: LW.isOwner(u) ? '' : t('why.onlyOwnerProject') }),
       { sep: true },
       item('book', t('ledger.add'), t('m.ledgerS'), function () { openSub('ledger'); }, { off: LW.can('approve', u) ? '' : t('ledger.ro'), chev: true }),
-      item('user', t('team.addPerson'), '', function () { modal(t('team.addPerson'), personForm(null), false, 'people'); }, { off: LW.can('admin', u) ? '' : t('why.onlyOwnerRole') }),
+      item('mail', t('inv.new'), t('inv.newS'), function () { inviteForm({}); }, { off: LW.isOwner(u) || u.role === 'pm' ? '' : t('why.invite') }),
       item('bot', t('team.addAgent'), '', function () { modal(t('team.addAgent'), agentForm(u, null), true, 'agentScope'); }, { off: LW.can('admin', u) ? '' : t('why.onlyOwnerRole') })
     ];
     return { eyebrow: t('m.createEyebrow'), title: t('m.createTitle'), sub: '', lead: '<span class="av tile red md">' + ic('plus') + '</span>', items: items };
   }
   function accountMenu(u) {
     return {
-      eyebrow: roleName(u.role), title: u.n, sub: u.mail, lead: avatar(u.id, 'md'),
-      items: [
+      eyebrow: roleName(u.role) + ' · ' + LW.curOrg().n, title: u.n, sub: u.mail, lead: avatar(u.id, 'md'),
+      items: [].concat(LW.accountsFor(u.mail).filter(function (a) { return a.org.id !== LW.curOrg().id; }).map(function (a) { return item('refresh', t('org.switch', a.org.n), roleName(a.person.role), function () { enterOrg(a); }, { chev: true }); }), [
         item('user', t('team.myProfile'), t('m.profileS'), function () { modal(t('team.myProfile'), profileForm(u), true, 'people'); }, { chev: true }),
         item('globe', S.lang === 'vi' ? 'English' : 'Tiếng Việt', t('m.langS'), function () { setLang(); }),
         item(isDark() ? 'sun' : 'moon', t(isDark() ? 'th.toLight' : 'th.toDark'), t('th.menuS'), function () { toggleTheme(); }),
         item('help', t('h.center'), t('h.centerS'), function () { openHelp('overview'); }, { chev: true, primary: true }),
         item('info', t('about.title'), '', function () { modal(t('about.title'), '<div class="about">' + t('about.body') + '</div>', true, 'overview'); }, { chev: true }),
+        item('mail', t('mail.box'), t('mail.boxS2'), function () { openSub('outbox'); }, { chev: true }),
+        item('plus', t('org.new'), t('org.newS'), function () { doLogout(); S.auth = { v: 'signup', mail: u.mail }; render(); }),
         item('refresh', t('reset'), t('m.resetS'), function () { doReset(); }),
         { sep: true },
         item('logout', t('logout'), '', function () { doLogout(); }, { danger: true })
-      ]
+      ])
     };
   }
   function filterMenu(u) {
@@ -349,6 +348,8 @@
     if (p[0] === 'person') return personMenu(LW.person(p[1]), u);
     if (p[0] === 'conv') return convMenu(p[1], u);
     if (p[0] === 'flow') return flowMenu(DB.flows.find(function (f) { return f.id === p[1]; }), u);
+    if (p[0] === 'project') { x = LW.project(p[1]); return x ? projectMenu(x, u) : null; }
+    if (p[0] === 'invite') { x = DB.invites.filter(function (i) { return i.id === p[1]; })[0]; return x ? inviteMenu(x, u) : null; }
     if (p[0] === 'create') return createMenu(u);
     if (p[0] === 'account') return accountMenu(u);
     if (p[0] === 'filter') return filterMenu(u);
@@ -363,7 +364,11 @@
      KHUNG
      ============================================================ */
   var TABS = ['home', 'tasks', 'chat', 'apps'];
-  function needCount(u) { return LW.visibleTasks(u).filter(function (x) { return x.st === 'cho_duyet' && x.own === u.id; }).length; }
+  function needCount(u) {
+    var n = LW.visibleTasks(u).filter(function (x) { return x.st === 'cho_duyet' && x.own === u.id; }).length;
+    if (LW.isOwner(u)) n += DB.invites.filter(function (i) { return i.st === 'cho_duyet'; }).length + DB.flows.filter(function (f) { return f.st === 'cho_duyet'; }).length;
+    return n;
+  }
   function scrollTop() { window.scrollTo(0, 0); var s = document.querySelector('.stage'); if (s) s.scrollTop = 0; }
 
   function render() {
@@ -387,7 +392,7 @@
       tabBtn('chat') + tabBtn('apps') + '</nav>';
 
     app.innerHTML = '<div class="app' + (S.tab === 'chat' ? ' is-chat' : '') + (S.tab === 'chat' && S.chatOpen ? ' conv-open' : '') + '">' + rail +
-      '<main class="stage">' + VIEWS[S.tab](u) + '</main>' + tabbar + '</div>' + (S.task ? viewTask(u) : '');
+      '<main class="stage">' + (LW.dayOffset() ? '<button class="clockbar" data-act="open-sub" data-id="clock">' + ic('clock', 'xs') + t('clock.bar', (LW.dayOffset() > 0 ? '+' : '') + LW.dayOffset(), fmtDate(LW.today())) + '</button>' : '') + VIEWS[S.tab](u) + '</main>' + tabbar + '</div>' + (S.task ? viewTask(u) : '');
 
     syncLock();
     window.scrollTo(0, y);
@@ -416,15 +421,8 @@
       '<div class="aa-brand">' + MARK + '<b>LATTICE</b><span>WORK</span><em>' + t('proto') + '</em></div>' +
       '<div class="aa-copy"><h1>' + t('auth.h') + '</h1><p>' + t('auth.p') + '</p>' +
       '<div class="aa-rules"><div><span class="av tile inv sm">' + ic('user') + '</span>' + t('auth.r1') + '</div><div><span class="av tile inv sm">' + ic('approve') + '</span>' + t('auth.r2') + '</div><div><span class="av tile red sm">' + ic('lock') + '</span>' + t('auth.r3') + '</div></div></div></section>' +
-      '<section class="auth-form"><div class="af">' +
-      '<div class="af-h"><small class="eyebrow">' + t('login.title') + '</small>' + helpBtn('login', '', 'sm') + '</div><h2>' + t('login.sub') + '</h2>' +
-      '<form data-form="login" class="stack"><label class="fld">Email<input name="mail" type="email" autocomplete="username" required></label>' +
-      '<label class="fld">' + t('login.pw') + '<input name="pw" type="password" autocomplete="current-password" required></label>' +
-      '<button class="btn pri big">' + t('login.go') + '</button></form>' +
-      '<div class="demo"><small class="eyebrow">' + t('login.demo') + '</small><div class="demo-g">' +
-      DB.people.map(function (p) { return '<button class="demo-u" data-act="fill-login" data-mail="' + esc(p.mail) + '">' + avatar(p.id, 'sm') + '<span><b>' + esc(p.n) + '</b><small>' + roleName(p.role) + '</small></span></button>'; }).join('') +
-      '</div></div><p class="fine">' + t('login.note', LW.DEMO_PW) + '</p>' +
-      '<div class="auth-tools"><button class="link" data-act="lang">' + (S.lang === 'vi' ? 'English' : 'Tiếng Việt') + '</button>' + themeBtn('ib') + '</div></div></section></div>';
+      '<section class="auth-form"><div class="af">' + authRight() +
+      '<div class="auth-tools"><span class="row"><button class="link" data-act="auth" data-v="signup">' + t('org.new') + '</button><button class="link" data-act="auth" data-v="outbox">' + t('mail.box') + ' (' + LW.outbox().length + ')</button></span><span class="row">' + langBtn() + themeBtn('ib') + '</span></div></div></section></div>';
   }
 
   /* ============================================================
@@ -451,7 +449,7 @@
     var runs = myAgents.reduce(function (s, a) { return s + LW.runsToday(a); }, 0);
     var day = new Date().toLocaleDateString(S.lang === 'en' ? 'en-GB' : 'vi-VN', { weekday: 'long', day: 'numeric', month: 'numeric' });
 
-    var h = topbar({ eyebrow: esc(day), title: t('need.hello', esc(u.n.split(' ').slice(-1)[0])), sub: ap.length ? t('home.subHot', ap.length) : t('home.subCalm'), help: 'home', actions: ib('bell', 'goto-review', '', t('kpi.approve'), ap.length || '', 'hide-d') + accountBtn(u), cls: 'hero' });
+    var h = topbar({ eyebrow: esc(day), title: t('need.hello', esc(u.n.split(' ').slice(-1)[0])), sub: needCount(u) ? t('home.subHot', needCount(u)) : t('home.subCalm'), help: 'home', actions: ib('bell', 'goto-review', '', t('kpi.approve'), ap.length || '', 'hide-d') + accountBtn(u), cls: 'hero' });
 
     var quick = '<div class="quick">' +
       (LW.can('create', u) ? quickTile('plus', t('newTask'), 'new-task', '', 'ink') : '') +
@@ -471,6 +469,24 @@
 
     var main = '';
     main += ap.length ? section(t('need.approve'), ap.length, '<div class="acards">' + ap.map(function (x) { return approvalCard(x); }).join('') + '</div>', helpBtn('approve', '', 'sm')) : '';
+    if (LW.isOwner(u)) {
+      var invP = DB.invites.filter(function (i) { return i.st === 'cho_duyet'; });
+      main += invP.length ? section(t('home.invites'), invP.length, '<div class="list">' + invP.map(function (i) {
+        return '<article class="row-i" data-ctx="invite:' + i.id + '"><button class="ri-main" data-act="ctx" data-ctx="invite:' + i.id + '"><span class="av tile md red">' + ic('mail') + '</span><span class="ri-t"><b>' + esc(i.mail) + '</b><small>' + roleName(i.role) + ' · ' + i.projs.map(function (x) { return x.p; }).join(', ') + ' · ' + t('inv.by', esc(name(i.by))) + (i.note ? ' · ' + esc(i.note) : '') + '</small></span></button><div class="ri-a"><button class="chipbtn dark" data-act="inv-approve" data-id="' + i.id + '">' + ic('check') + t('approve') + '</button>' + moreBtn('invite:' + i.id) + '</div></article>';
+      }).join('') + '</div>', helpBtn('invites', '', 'sm')) : '';
+      var flP = DB.flows.filter(function (f) { return f.st === 'cho_duyet'; });
+      main += flP.length ? section(t('home.flows'), flP.length, '<div class="list">' + flP.map(function (f) {
+        return '<article class="row-i" data-ctx="flow:' + f.id + '"><button class="ri-main" data-act="flow-view" data-id="' + f.id + '"><span class="av tile md red">' + ic('flow') + '</span><span class="ri-t"><b>' + esc(f.n) + ' v' + f.v + '</b><small>' + t('flow.author', esc(name(f.by))) + ' · ' + f.steps.length + ' ' + t('steps') + '</small></span></button><div class="ri-a"><button class="chipbtn dark" data-act="flow-approve" data-id="' + f.id + '">' + ic('check') + t('approve') + '</button>' + moreBtn('flow:' + f.id) + '</div></article>';
+      }).join('') + '</div>', helpBtn('flows', '', 'sm')) : '';
+    }
+    var flR = DB.flows.filter(function (f) { return f.st === 'tra_lai' && f.by === u.id; });
+    main += flR.length ? section(t('home.flowsBack'), flR.length, '<div class="list">' + flR.map(function (f) {
+      return '<article class="row-i" data-ctx="flow:' + f.id + '"><span class="av tile md">' + ic('flow') + '</span><span class="ri-t"><b>' + esc(f.n) + ' v' + f.v + '</b><small>' + ic('undo', 'xs') + esc(f.note || '') + '</small></span><div class="ri-a"><button class="chipbtn" data-act="flow-edit" data-id="' + f.id + '">' + ic('edit') + t('flow.edit') + '</button>' + moreBtn('flow:' + f.id) + '</div></article>';
+    }).join('') + '</div>') : '';
+    var exG = LW.expiringGuests(u);
+    main += exG.length ? section(t('home.guests'), exG.length, '<div class="list">' + exG.map(function (m) {
+      return '<article class="row-i">' + avatar(m.u, 'md') + '<span class="ri-t"><b>' + esc(name(m.u)) + '</b><small>' + m.p + ' · ' + t('proj.until', fmtDate(m.exp)) + '</small></span><div class="ri-a">' + (LW.isOwner(u) ? '<button class="chipbtn" data-act="guest-extend" data-p="' + m.p + '" data-u="' + m.u + '">' + ic('clock') + t('proj.extend') + '</button>' : '<span class="pill warn">' + t('home.askOwner') + '</span>') + '</div></article>';
+    }).join('') + '</div>', helpBtn('projects', '', 'sm')) : '';
     main += mine.length ? section(t('need.mine'), mine.length, '<div class="list">' + mine.map(function (x) {
       return taskRow(x, u, x.gate ? '<button class="chipbtn" data-act="st" data-st="cho_duyet" data-id="' + x.id + '">' + ic('send') + t('sendReview') + '</button>' : '<button class="chipbtn" data-act="st" data-st="xong" data-id="' + x.id + '">' + ic('check') + t('markDone') + '</button>');
     }).join('') + '</div>') : '';
@@ -551,9 +567,9 @@
   }
 
   /* ---------- trang chi tiết việc ---------- */
-  function assigneeOptions(u, cur) {
-    var ppl = DB.people.filter(function (p) { return p.role !== 'guest'; });
-    if (!LW.can('assignOthers', u)) ppl = ppl.filter(function (p) { return p.id === u.id || p.id === cur; });
+  function assigneeOptions(u, cur, pr) {
+    var ppl = DB.people.filter(function (p) { return p.role !== 'guest' && p.st !== 'thu_hoi' && (!pr || LW.canWorkIn(pr, p.id) || p.id === cur); });
+    if (!(LW.can('assignOthers', u) && (!pr || LW.manages(pr, u)))) ppl = ppl.filter(function (p) { return p.id === u.id || p.id === cur; });
     return opt('', t('unassigned'), cur || '') +
       '<optgroup label="' + t('people') + '">' + ppl.map(function (p) { return opt(p.id, p.n + ' · ' + LW.openLoad(p.id) + '/' + p.cap, cur); }).join('') + '</optgroup>' +
       '<optgroup label="Agent">' + DB.agents.map(function (a) { return opt(a.id, a.id + ' ' + a.n, cur); }).join('') + '</optgroup>';
@@ -591,7 +607,7 @@
       '<form data-form="task-save" data-id="' + x.id + '" class="tk-f">' +
       '<textarea name="ttl" class="ttl" rows="2" required' + dis + '>' + esc(x.ttl) + '</textarea>' +
       '<div class="irows">' +
-        '<label class="irow">' + ic('user') + '<span>' + t('assignee') + '</span><select name="as"' + dis + '>' + assigneeOptions(u, x.as) + '</select></label>' +
+        '<label class="irow">' + ic('user') + '<span>' + t('assignee') + '</span><select name="as"' + dis + '>' + assigneeOptions(u, x.as, x.pr) + '</select></label>' +
         '<label class="irow">' + ic('shield') + '<span>' + t('owner') + '</span>' + (boss && touch ? '<select name="own">' + ownerOptions(x.own) + '</select>' : '<input value="' + esc(name(x.own)) + '" readonly>') + '</label>' +
         '<label class="irow">' + ic('clock') + '<span>' + t('due') + '</span><input type="date" name="due" value="' + esc(x.due || '') + '"' + dis + '></label>' +
         '<label class="irow">' + ic('folder') + '<span>' + t('project') + '</span><select name="pr"' + dis + '>' + LW.projsOf(u).concat(LW.projsOf(u).indexOf(x.pr) < 0 ? [x.pr] : []).map(function (p) { return opt(p, p + ' · ' + (LW.project(p) || {}).n, x.pr); }).join('') + '</select></label>' +
@@ -683,10 +699,12 @@
     if (S.sub && SUBS[S.sub]) return '<div class="view sub">' + SUBS[S.sub](u) + '</div>';
     var guest = u.role === 'guest', owner = u.role === 'owner';
     var h = topbar({ eyebrow: t('apps.eyebrow'), title: t('tab.apps'), help: 'apps', actions: accountBtn(u) });
-    var prof = '<article class="profile" data-ctx="person:' + u.id + '">' + avatar(u.id, 'xl') + '<div class="pf-t"><b>' + esc(u.n) + '</b><small>' + roleName(u.role) + ' · ' + esc(u.mail) + '</small><span class="meter"><i style="width:' + (u.cap ? Math.min(100, Math.round(LW.openLoad(u.id) / u.cap * 100)) : 0) + '%"></i></span><em>' + t('team.load', LW.openLoad(u.id), u.cap) + '</em></div>' + moreBtn('person:' + u.id) + '</article>';
+    var prof = '<article class="profile" data-ctx="person:' + u.id + '">' + avatar(u.id, 'xl') + '<div class="pf-t"><b>' + esc(u.n) + '</b><small>' + roleName(u.role) + ' · ' + esc(LW.curOrg().n) + '</small><span class="meter"><i style="width:' + (u.cap ? Math.min(100, Math.round(LW.openLoad(u.id) / u.cap * 100)) : 0) + '%"></i></span><em>' + t('team.load', LW.openLoad(u.id), u.cap) + '</em></div>' + moreBtn('person:' + u.id) + '</article>';
     function grid(title, tiles) { tiles = tiles.filter(Boolean); return tiles.length ? section(title, null, '<div class="apps">' + tiles.join('') + '</div>') : ''; }
     return '<div class="view v-apps">' + h + prof +
       grid(t('apps.team'), [
+        !guest && appTile('folder', t('proj.title'), t('apps.projS', visibleProjects(u).length), 'open-sub', 'data-id="projects"', 'ink'),
+        (owner || u.role === 'pm') && appTile('mail', t('inv.title'), t('apps.invS'), 'open-sub', 'data-id="invites"', '', owner ? (DB.invites.filter(function (i) { return i.st === 'cho_duyet'; }).length || '') : ''),
         !guest && appTile('users', t('q.team'), t('apps.peopleS', DB.people.length), 'open-sub', 'data-id="people"'),
         !guest && appTile('bot', 'Agent', t('apps.agentsS', DB.agents.length), 'open-sub', 'data-id="agents"', 'ink'),
         appTile('chat', t('tab.chat'), t('apps.chatS'), 'goto-chat', 'data-f="all"')
@@ -700,7 +718,9 @@
       grid(t('apps.system'), [
         owner && appTile('gear', t('settings.h'), t('apps.settingsS'), 'open-sub', 'data-id="settings"', 'ink'),
         owner && appTile('log', t('log.title'), t('apps.logS'), 'open-sub', 'data-id="log"'),
-        !guest && appTile('lock', t('team.matrix'), t('apps.matrixS'), 'open-sub', 'data-id="matrix"')
+        !guest && appTile('lock', t('team.matrix'), t('apps.matrixS'), 'open-sub', 'data-id="matrix"'),
+        owner && appTile('clock', t('clock.title'), t('clock.sub2'), 'open-sub', 'data-id="clock"'),
+        appTile('mail', t('mail.box'), t('mail.boxS2'), 'open-sub', 'data-id="outbox"')
       ]) +
       grid(t('apps.other'), [
         appTile('globe', S.lang === 'vi' ? 'English' : 'Tiếng Việt', t('m.langS'), 'lang'),
@@ -717,11 +737,11 @@
   var SUBS = {
     people: function (u) {
       var admin = LW.can('admin', u);
-      return subHead(t('q.team'), t('team.sub'), admin ? ib('plus', 'person-new', '', t('team.addPerson'), '', 'solid') : '') +
+      return subHead(t('q.team'), t('team.sub'), (admin || u.role === 'pm') ? ib('plus', 'invite-new', '', t('inv.new'), '', 'solid') : '') +
         '<div class="cards">' + DB.people.map(function (p) {
           var load = LW.openLoad(p.id), pct = p.cap ? Math.min(100, Math.round(load / p.cap * 100)) : 0;
           return '<article class="card pcard" data-ctx="person:' + p.id + '"><div class="card-h">' + avatar(p.id, 'lg') + '<div class="ch-t"><b>' + esc(p.n) + '</b><small>' + esc(p.r) + '</small></div>' + moreBtn('person:' + p.id) + '</div>' +
-            '<div class="chips"><span class="pill ' + (p.role === 'owner' ? 'dark' : '') + '">' + roleName(p.role) + '</span>' + (p.role === 'owner' ? '<span class="pill soft">' + t('team.allProj') + '</span>' : p.sc.proj.map(function (x) { return '<span class="pill soft">' + x + '</span>'; }).join('')) + '</div>' +
+            '<div class="chips"><span class="pill ' + (p.role === 'owner' ? 'dark' : '') + '">' + roleName(p.role) + '</span>' + (p.st === 'thu_hoi' ? '<span class="pill red">' + t('pp.revoked') + '</span>' : '') + (p.role === 'owner' ? '<span class="pill soft">' + t('team.allProj') + '</span>' : DB.pm.filter(function (m) { return m.u === p.id; }).map(function (m) { return '<span class="pill soft' + (LW.rowActive(m) ? '' : ' off') + '">' + (m.s === 'lead' ? ic('shield', 'xs') : m.s === 'guest' ? ic('clock', 'xs') : '') + m.p + '</span>'; }).join('')) + '</div>' +
             (p.bio ? '<p class="card-p">' + esc(p.bio) + '</p>' : '') +
             (p.role !== 'guest' ? '<div class="loadrow"><span>' + t('team.loadL') + '</span><span class="meter' + (load > p.cap ? ' over' : '') + '"><i style="width:' + pct + '%"></i></span><b>' + load + '/' + p.cap + '</b></div>' : '') + '</article>';
         }).join('') + '</div>';
@@ -736,20 +756,6 @@
             '<div class="loadrow"><span>' + t('ag.limit') + '</span><span class="meter"><i style="width:' + pct + '%"></i></span><b>' + r + '/' + a.sc.limit + '</b></div>' +
             '<div class="card-a"><button class="btn sm" data-act="agent-open" data-id="' + a.id + '">' + ic('shield') + t('m.scope') + '</button>' + (LW.seeDM(a, u) ? '<button class="btn sm" data-act="open-conv" data-id="' + a.id + '">' + ic('chat') + t('m.askAgent') + '</button>' : '') + '</div></article>';
         }).join('') + '</div>' + forbidBox();
-    },
-    flows: function (u) {
-      var f = DB.flows.find(function (x) { return x.id === S.flow; }) || DB.flows[0];
-      var agentSteps = f.steps.filter(function (s) { return s.as !== 'NGUOI'; }).length;
-      return subHead(t('q.flows'), t('flows.sub'), '') +
-        '<div class="cards one">' + DB.flows.map(function (x) {
-          return '<article class="card' + (x.id === f.id ? ' on' : '') + '" data-ctx="flow:' + x.id + '"><div class="card-h"><span class="av tile lg">' + ic('flow') + '</span><div class="ch-t"><b>' + esc(x.n) + '</b><small>' + esc(x.d) + '</small></div>' + moreBtn('flow:' + x.id) + '</div>' +
-            '<div class="fstats"><div><b>' + x.steps.length + '</b><span>' + t('steps') + '</span></div><div><b>' + agentSteps + '</b><span>' + t('flow.byAgent') + '</span></div><div><b>' + (x.steps.length - agentSteps) + '</b><span>' + t('flow.byPerson') + '</span></div><div class="hot"><b>' + x.steps.filter(function (s) { return s.gate; }).length + '</b><span>' + t('flow.gates') + '</span></div></div>' +
-            '<div class="card-a">' + (LW.can('launchFlow', u) ? '<button class="btn pri sm" data-act="flow-launch" data-id="' + x.id + '">' + ic('play') + t('flow.launch') + '</button>' : '<span class="fine">' + t('flow.noLaunch') + '</span>') + '</div></article>';
-        }).join('') + '</div>' +
-        section(t('m.viewSteps'), f.steps.length, '<ol class="timeline">' + f.steps.map(function (s) {
-          var human = s.as === 'NGUOI', ag = human ? null : LW.agent(s.as);
-          return '<li class="' + (s.gate ? 'gate' : '') + '"><span class="tl-d">+' + s.off + '</span><span class="tl-n">' + (human ? '<span class="av xs">' + t('flow.personShort') + '</span>' : avatar(s.as, 'xs')) + '</span><span class="tl-b"><b>' + esc(s.t) + '</b><small>' + (human ? t('flow.person') : esc(s.as + ' · ' + (ag ? ag.n : ''))) + '</small></span>' + (s.gate ? '<span class="pill xs red">' + ic('flag', 'xs') + t('gate') + '</span>' : '') + '</li>';
-        }).join('') + '</ol><p class="fine">' + t('flow.hint') + '</p>');
     },
     ledger: function (u) {
       var prs = LW.projsOf(u).filter(function (p) { return DB.ledger[p]; });
@@ -809,13 +815,14 @@
   /* ---------- biểu mẫu ---------- */
   function newTaskForm(u, pre) {
     pre = pre || {};
-    var prs = LW.projsOf(u);
+    var prs = LW.projsOf(u).filter(function (p) { var x = LW.project(p); return x && x.st !== 'luu_tru'; });
+    var pr0 = prs.indexOf(pre.pr || S.f.pr) >= 0 ? (pre.pr || S.f.pr) : prs[0];
     return '<form data-form="' + (pre.msg ? 'msg-task' : 'new-task') + '"' + (pre.msg ? ' data-id="' + pre.msg.id + '"' : '') + ' class="stack">' +
       (pre.msg ? '<blockquote class="quote">' + avatar(pre.msg.by, 'sm') + '<div><small>' + esc(name(pre.msg.by)) + ' · #' + esc(LW.chan(pre.msg.ch).n) + '</small><p>' + esc(pre.msg.t) + '</p></div></blockquote><p class="fine">' + t('msgTask.keep') + '</p>' : '') +
       '<label class="fld">' + t('title') + '<textarea name="ttl" rows="2" required>' + esc(pre.ttl || '') + '</textarea></label>' +
-      '<div class="grid2"><label class="fld">' + t('project') + '<select name="pr" required>' + prs.map(function (p) { return opt(p, p + ' · ' + LW.project(p).n, pre.pr || S.f.pr); }).join('') + '</select></label>' +
+      '<div class="grid2"><label class="fld">' + t('project') + '<select name="pr" required data-change="nt-pr">' + prs.map(function (p) { return opt(p, p + ' · ' + LW.project(p).n, pr0); }).join('') + '</select></label>' +
       '<label class="fld">' + t('due') + '<input type="date" name="due" value="' + LW.addDays(LW.today(), 3) + '"></label></div>' +
-      '<label class="fld">' + t('assignee') + '<select name="as">' + assigneeOptions(u, pre.as || '') + '</select></label>' +
+      '<label class="fld">' + t('assignee') + '<select name="as">' + assigneeOptions(u, pre.as || '', pr0) + '</select></label>' +
       '<p class="fine">' + t('assignRule') + '</p>' +
       (LW.can('assignOthers', u) ? '<label class="swrow"><span>' + ic('flag', 'xs') + t('gateLabel') + '</span><input type="checkbox" class="sw" name="gate"></label>' : '') +
       '<label class="fld">' + t('note') + '<textarea name="note" rows="3" placeholder="' + t('note.ph') + '">' + esc(pre.note || '') + '</textarea></label>' +
@@ -833,23 +840,12 @@
       '<div class="picks">' + DB.people.map(function (p) { return '<label class="pick">' + avatar(p.id, 'sm') + '<span><b>' + esc(p.n) + '</b><small>' + roleName(p.role) + '</small></span><input type="checkbox" name="mem" value="' + p.id + '"' + (c.mem.indexOf(p.id) >= 0 ? ' checked' : '') + '></label>'; }).join('') + '</div>' +
       '<p class="fine">' + t('chan.rule') + '</p><div class="dlg-f"><button type="button" class="btn" data-act="modal-x">' + t('cancel') + '</button><button class="btn pri">' + t('save') + '</button></div></form>';
   }
-  function launchForm(u, f) {
-    var ppl = DB.people.filter(function (p) { return p.role !== 'guest'; });
-    return '<form data-form="flow-launch" data-id="' + f.id + '" class="stack"><div class="grid2"><label class="fld">' + t('project') + '<select name="pr" required>' + LW.projsOf(u).map(function (p) { return opt(p, p + ' · ' + LW.project(p).n, ''); }).join('') + '</select></label>' +
-      '<label class="fld">' + t('flow.start') + '<input type="date" name="start" required value="' + LW.today() + '"></label></div>' +
-      '<b class="card-title">' + t('flow.pick') + '</b>' + f.steps.map(function (s, i) {
-        if (s.as !== 'NGUOI') return '';
-        return '<label class="fld">' + (i + 1) + '. ' + esc(s.t) + ' · +' + s.off + '<select name="step' + i + '" required>' + opt('', '—', '') + ppl.map(function (p) { return opt(p.id, p.n + ' · ' + LW.openLoad(p.id) + '/' + p.cap, ''); }).join('') + '</select></label>';
-      }).join('') +
-      '<p class="fine">' + t('flow.agentOwn') + '</p><div class="dlg-f"><button type="button" class="btn" data-act="modal-x">' + t('cancel') + '</button><button class="btn pri">' + ic('play') + t('flow.launchGo', f.steps.length) + '</button></div></form>';
-  }
   function personForm(p) {
-    p = p || { n: '', mail: '', r: '', role: 'mem', cap: 4, sc: { proj: [] } };
+    p = p || { n: '', mail: '', r: '', role: 'mem', cap: 4 };
     return '<form data-form="person" class="stack"' + (p.id ? ' data-id="' + p.id + '"' : '') + '><div class="grid2"><label class="fld">' + t('pf.name') + '<input name="n" required value="' + esc(p.n) + '"></label><label class="fld">Email<input name="mail" type="email" required value="' + esc(p.mail) + '"></label></div>' +
       '<label class="fld">' + t('pf.r') + '<input name="r" value="' + esc(p.r) + '"></label>' +
       '<div class="grid2"><label class="fld">' + t('pf.role') + '<select name="role" data-change="role">' + LW.ROLES.map(function (r) { return opt(r, roleName(r), p.role); }).join('') + '</select></label><label class="fld">' + t('pf.cap') + '<input name="cap" type="number" min="0" inputmode="numeric" value="' + p.cap + '"></label></div>' +
-      '<fieldset class="projs picks"' + (p.role === 'owner' ? ' disabled' : '') + '><legend>' + t('pf.scope') + '</legend>' + DB.projects.map(function (x) { return '<label class="pick"><span class="av tile sm">' + ic('folder') + '</span><span><b>' + x.id + '</b><small>' + esc(x.n) + '</small></span><input type="checkbox" name="proj" value="' + x.id + '"' + (p.sc.proj.indexOf(x.id) >= 0 ? ' checked' : '') + '></label>'; }).join('') + '</fieldset>' +
-      '<p class="fine">' + t('pf.scopeNote') + (p.id ? '' : ' ' + t('pf.newPw', LW.DEMO_PW)) + '</p>' +
+      '<p class="fine">' + t('pf.projNote') + '</p>' +
       '<div class="dlg-f"><button type="button" class="btn" data-act="modal-x">' + t('cancel') + '</button><button class="btn pri">' + t('save') + '</button></div></form>';
   }
   function handleAvatarFile(file) {
@@ -901,7 +897,10 @@
       '<div class="grid2"><label class="fld">' + t('pf.name') + '<input name="n" required value="' + esc(u.n) + '"></label><label class="fld">' + t('pf.ini') + '<input name="ini" maxlength="3" value="' + esc(u.ini) + '"></label></div>' +
       '<label class="fld">' + t('pf.r') + '<input name="r" value="' + esc(u.r) + '"></label><label class="fld">' + t('pf.bio') + '<textarea name="bio" rows="3">' + esc(u.bio) + '</textarea></label>' +
       '<p class="fine">' + t('pf.contactNote') + '</p><div class="dlg-f"><button class="btn pri">' + t('save') + '</button></div></form>' +
-      '<form data-form="pw" class="card stack"><b class="card-title">' + ic('lock', 'xs') + t('pw.title') + '</b><div class="grid2"><label class="fld">' + t('pw.old') + '<input type="password" name="old" required autocomplete="current-password"></label><label class="fld">' + t('pw.new') + '<input type="password" name="nw" required minlength="8" autocomplete="new-password"></label></div><p class="fine">' + t('pw.note') + '</p><button class="btn">' + t('pw.go') + '</button></form>';
+      '<form data-form="pw" class="card stack"><b class="card-title">' + ic('lock', 'xs') + t('pw.title2') + '</b><p class="fine">' + t(u.pw ? 'pw.hasNote' : 'pw.noneNote') + '</p><div class="grid2">' +
+      (u.pw ? '<label class="fld">' + t('pw.old') + '<input type="password" name="old" autocomplete="current-password"></label>' : '') +
+      '<label class="fld">' + t('pw.new10') + '<input type="password" name="nw" autocomplete="new-password"></label></div>' +
+      '<div class="row">' + (u.pw ? '<button class="btn" value="set">' + t('pw.go') + '</button><button class="btn" value="remove">' + t('pw.remove') + '</button>' : '<button class="btn pri" value="set">' + t('pw.set') + '</button>') + '</div></form>';
   }
   function agentForm(u, a) {
     var isNew = !a, admin = LW.can('admin', u);
@@ -1097,6 +1096,306 @@
   }
 
   /* ============================================================
+     TỔ CHỨC · DỰ ÁN · LỜI MỜI · LUỒNG MẪU CÓ DUYỆT · HỘP THƯ MÔ PHỎNG
+     Đặc tả: docs/dac-ta-tai-khoan-phan-quyen.md
+     ============================================================ */
+  var PST = { dang_chay: 'proj.st.dang_chay', da_ban_giao: 'proj.st.da_ban_giao', luu_tru: 'proj.st.luu_tru' };
+  var STAND = { lead: 'stand.lead', member: 'stand.member', guest: 'stand.guest' };
+  var FST = { ban_nhap: 'fst.ban_nhap', cho_duyet: 'fst.cho_duyet', tra_lai: 'fst.tra_lai', da_duyet: 'fst.da_duyet', ngung: 'fst.ngung' };
+  var IST = { cho_duyet: 'ist.cho_duyet', da_gui: 'ist.da_gui', da_dung: 'ist.da_dung', het_han: 'ist.het_han', thu_hoi: 'ist.thu_hoi', tu_choi: 'ist.tu_choi' };
+  var PCLS = { cho_duyet: 'red', tra_lai: 'warn', da_duyet: 'dark', dang_chay: 'dark', da_dung: 'dark', luu_tru: 'soft', ngung: 'soft', het_han: 'soft', thu_hoi: 'soft', tu_choi: 'soft' };
+  function pillFor(map, st) { return '<span class="pill ' + (PCLS[st] || '') + '">' + t(map[st]) + '</span>'; }
+  function tileTxt(txt, cls) { return '<span class="av tile ' + (cls || 'md') + ' txt">' + esc(txt) + '</span>'; }
+  function visibleProjects(u) { return DB.projects.filter(function (p) { return LW.isOwner(u) || LW.projsOf(u).indexOf(p.id) >= 0 || p.lead === u.id; }); }
+  function leadCands() { return DB.people.filter(function (pp) { return (pp.role === 'owner' || pp.role === 'pm') && pp.st !== 'thu_hoi'; }); }
+  function otherOwners() { return DB.people.some(function (p) { return p.role === 'owner' && p.id !== S.uid && p.st !== 'thu_hoi'; }); }
+  function dlgFooter(okLabel, okCls) { return '<div class="dlg-f"><button type="button" class="btn" data-act="modal-x">' + t('cancel') + '</button><button class="btn ' + (okCls || 'pri') + '">' + okLabel + '</button></div>'; }
+
+  /* ---------- vào tổ chức ---------- */
+  function enterOrg(a) {
+    LW.useOrg(a.org.id); DB = LW.db();
+    S.uid = a.person.id; put('lw.session', S.uid); put('lw.org', a.org.id);
+    S.tab = 'home'; S.sub = null; S.task = null; S.auth = null; S.hlog = {}; S.f = { pr: '', kind: '', mine: false };
+    closeModal(); render(); scrollTop();
+  }
+  function enterAccounts(acc) {
+    if (!acc || !acc.length) return;
+    if (acc.length === 1) return enterOrg(acc[0]);
+    S.uid = null; S.auth = { v: 'choose', acc: acc }; render(); scrollTop();
+  }
+  function softLogout() { closeHelp(); S.hlog = {}; S.uid = null; put('lw.session', null); S.task = null; S.tab = 'home'; S.sub = null; }
+  // Mở liên kết trong thư (mô phỏng việc bấm liên kết trong hộp thư thật).
+  function openLink(kind, code) {
+    closeModal(); closeMenu();
+    try {
+      if (kind === 'invite') { var info = LW.findInvite(code); if (me()) softLogout(); S.auth = { v: 'accept', code: code, info: info }; render(); scrollTop(); return; }
+      if (kind === 'login') { var acc = LW.useLink(code); if (me()) softLogout(); enterAccounts(acc); return; }
+      if (kind === 'signup') { var r = LW.completeSignup(code); if (me()) softLogout(); enterOrg(r); toast(t('org.created', r.org.n)); return; }
+    } catch (e) { fail(e); }
+  }
+
+  /* ---------- màn chưa đăng nhập ---------- */
+  function authHead(eyebrow, h2, help) { return '<div class="af-h"><small class="eyebrow">' + eyebrow + '</small>' + helpBtn(help || 'login', '', 'sm') + '</div><h2>' + h2 + '</h2>'; }
+  function demoAv(p) { return p.av ? '<img class="av sm" src="' + p.av + '" alt="">' : '<span class="av sm">' + esc(p.ini) + '</span>'; }
+  function mailHtml(m, justSent) {
+    var url = location.origin + location.pathname + '#' + m.kind + '=' + m.code;
+    return (justSent ? '<p class="hint-b">' + ic('check', 'xs') + t('mail.sent') + '</p>' : '') +
+      '<div class="mail"><div class="mail-h"><span>' + t('mail.to') + '</span><b>' + esc(m.to) + '</b><span>' + t('mail.subj') + '</span><b>' + esc(m.subj) + '</b><span>' + t('mail.at') + '</span><em>' + fmtAt(m.at) + (m.org ? ' · ' + esc(m.org) : '') + '</em></div>' +
+      '<p>' + esc(m.body) + '</p>' +
+      (m.code ? '<div class="mail-link"><code>' + esc(url) + '</code><button class="btn pri sm" data-act="open-link" data-k="' + m.kind + '" data-c="' + m.code + '">' + ic('link') + t('mail.open.' + m.kind) + '</button></div>' : '') + '</div>';
+  }
+  function showMail(m, justSent) { if (!m) { toast(t('inv.noMail'), true); return; } modal(t('mail.title'), mailHtml(m, justSent) + '<p class="fine">' + t('mail.sim') + '</p>', true, 'outbox'); }
+  function authRight() {
+    var a = S.auth || (S.auth = { v: 'pw' });
+    var seg = '<div class="segc auth-seg" role="tablist"><button type="button" class="' + (a.v === 'pw' ? 'on' : '') + '" data-act="auth" data-v="pw">' + ic('lock') + t('auth.pw') + '</button><button type="button" class="' + (a.v === 'link' || a.v === 'linkSent' ? 'on' : '') + '" data-act="auth" data-v="link">' + ic('mail') + t('auth.link') + '</button></div>';
+    var backBtn = '<button class="link" data-act="auth" data-v="pw">← ' + t('auth.back') + '</button>';
+    if (a.v === 'link') return authHead(t('login.title'), t('login.sub')) + seg +
+      '<form data-form="link" class="stack"><label class="fld">Email<input name="mail" type="email" autocomplete="username" required value="' + esc(a.mail || '') + '"></label><button class="btn pri big">' + ic('send') + t('auth.sendLink') + '</button></form><p class="fine">' + t('auth.linkNote') + '</p>';
+    if (a.v === 'linkSent') return authHead(t('login.title'), t('auth.checkMail')) + seg +
+      '<div class="card stack"><p>' + t('auth.linkSent', esc(a.mail)) + '</p><button class="btn pri" data-act="auth" data-v="outbox">' + ic('mail') + t('mail.openBox') + '</button></div>';
+    if (a.v === 'signup') return authHead(t('org.new'), t('org.newH'), 'signup') +
+      '<form data-form="signup" class="stack"><label class="fld">Email<input name="mail" type="email" required value="' + esc(a.mail || '') + '"></label><label class="fld">' + t('pf.name') + '<input name="n" required></label><label class="fld">' + t('org.name') + '<input name="org" required placeholder="' + t('org.namePh') + '"></label><button class="btn pri big">' + t('org.create') + '</button></form><p class="fine">' + t('org.note') + '</p>' + backBtn;
+    if (a.v === 'signupSent') return authHead(t('org.new'), t('auth.checkMail'), 'signup') +
+      '<div class="card stack"><p>' + t('org.sent', esc(a.mail)) + '</p><button class="btn pri" data-act="auth" data-v="outbox">' + ic('mail') + t('mail.openBox') + '</button></div>' + backBtn;
+    if (a.v === 'choose') return authHead(t('org.choose'), t('org.chooseH')) +
+      '<div class="list">' + a.acc.map(function (x, i) { return '<button class="row-i org-pick" data-act="pick-org" data-i="' + i + '"><span class="av tile md ink">' + ic('folder') + '</span><span class="ri-t"><b>' + esc(x.org.n) + '</b><small>' + esc(x.person.n) + ' · ' + roleName(x.person.role) + '</small></span>' + ic('chev') + '</button>'; }).join('') + '</div>' + backBtn;
+    if (a.v === 'accept') {
+      var inv = a.info.inv;
+      return authHead(t('inv.acceptEyebrow'), t('inv.acceptH', esc(a.info.org.n)), 'accept') +
+        '<div class="quote"><span class="av tile md ink">' + ic('mail') + '</span><div><small>' + t('inv.from', esc(a.info.by)) + '</small><p><b>' + esc(inv.mail) + '</b> · ' + roleName(inv.role) + (inv.projs.length ? ' · ' + inv.projs.map(function (x) { return x.p; }).join(', ') : '') + '</p><small>' + t('inv.until', fmtDate(inv.exp)) + '</small></div></div>' +
+        '<form data-form="accept" class="stack"><label class="fld">' + t('inv.yourName') + '<input name="n" required autocomplete="name"></label>' +
+        '<label class="fld">' + t('inv.setPw') + ' <small>' + t('inv.optional') + '</small><input name="pw" type="password" minlength="10" autocomplete="new-password"></label>' +
+        '<p class="fine">' + t('inv.pwNote') + '</p><button class="btn pri big">' + t('inv.accept') + '</button></form>' + backBtn;
+    }
+    if (a.v === 'outbox') {
+      var box = LW.outbox();
+      return authHead(t('mail.box'), t('mail.boxH'), 'outbox') + '<p class="fine">' + t('mail.sim') + '</p>' +
+        (box.length ? box.slice(0, 12).map(function (m) { return mailHtml(m); }).join('') : '<div class="empty">' + ic('mail') + '<b>' + t('mail.empty') + '</b></div>') + backBtn;
+    }
+    // mật khẩu
+    var demo = LW.demoPeople();
+    return authHead(t('login.title'), t('login.sub')) + seg +
+      '<form data-form="login" class="stack"><label class="fld">Email<input name="mail" type="email" autocomplete="username" required></label>' +
+      '<label class="fld">' + t('login.pw') + '<input name="pw" type="password" autocomplete="current-password" required></label>' +
+      '<button class="btn pri big">' + t('login.go') + '</button></form>' +
+      (demo.length ? '<div class="demo"><small class="eyebrow">' + t('login.demo') + '</small><div class="demo-g">' +
+        demo.map(function (p) { return '<button class="demo-u" data-act="fill-login" data-mail="' + esc(p.mail) + '">' + demoAv(p) + '<span><b>' + esc(p.n) + '</b><small>' + roleName(p.role) + '</small></span></button>'; }).join('') +
+        '</div></div><p class="fine">' + t('login.note', LW.DEMO_PW) + '</p>' : '');
+  }
+
+  /* ---------- dự án ---------- */
+  function projectCard(p, u) {
+    var ms = LW.members(p.id), open = DB.tasks.filter(function (x) { return x.pr === p.id && x.st !== 'xong'; }).length;
+    var g = ms.filter(function (m) { return m.s === 'guest' && m.exp; })[0];
+    return '<article class="card" data-ctx="project:' + p.id + '"><div class="card-h">' + tileTxt(p.id, 'lg' + (p.st === 'dang_chay' ? ' ink' : '')) + '<div class="ch-t"><b>' + esc(p.n) + '</b><small>' + t('ownShort') + ' ' + esc(name(p.lead)) + ' · ' + t('proj.created', fmtDate(p.created)) + '</small></div>' + moreBtn('project:' + p.id) + '</div>' +
+      '<div class="chips">' + pillFor(PST, p.st) + '<span class="pill soft">' + ic('users', 'xs') + ms.length + '</span><span class="pill soft">' + ic('tasks', 'xs') + t('proj.open', open) + '</span>' + (p.handed ? '<span class="pill soft">' + t('proj.handed', fmtDate(p.handed)) + '</span>' : '') + '</div>' +
+      '<div class="mems">' + ms.map(function (m) { return avatar(m.u, 'xs'); }).join('') + '</div>' +
+      (g ? '<p class="fine">' + ic('clock', 'xs') + ' ' + t('proj.guestExp', fmtDate(g.exp)) + '</p>' : '') +
+      '<div class="card-a"><button class="btn sm" data-act="proj-members" data-id="' + p.id + '">' + ic('users') + t('members') + '</button><button class="btn sm" data-act="proj-tasks" data-id="' + p.id + '">' + ic('tasks') + t('tab.tasks') + '</button></div></article>';
+  }
+  function projMembersBody(pr) {
+    var u = me(), p = LW.project(pr), can = LW.manages(pr, u) && p.st !== 'luu_tru', owner = LW.isOwner(u), T = LW.today();
+    var rows = LW.members(pr).map(function (m) {
+      var pp = LW.person(m.u); if (!pp) return '';
+      var exp = m.s === 'guest' && m.exp ? (m.exp < T ? '<span class="pill soft">' + t('proj.expired', fmtDate(m.exp)) + '</span>' : '<span class="pill warn">' + t('proj.until', fmtDate(m.exp)) + '</span>') : '';
+      return '<div class="row-i static">' + avatar(m.u, 'md') + '<span class="ri-t"><b>' + esc(pp.n) + '</b><small>' + t(STAND[m.s]) + ' · ' + roleName(pp.role) + (pp.st === 'thu_hoi' ? ' · ' + t('pp.revoked') : '') + '</small></span>' + exp +
+        (owner && m.s === 'guest' ? '<button class="chipbtn" data-act="guest-extend" data-p="' + pr + '" data-u="' + m.u + '">' + ic('clock') + t('proj.extend') + '</button>' : '') +
+        (can && m.s !== 'lead' ? '<button class="ib sm" data-act="member-remove" data-p="' + pr + '" data-u="' + m.u + '" title="' + t('proj.remove') + '" aria-label="' + t('proj.remove') + '">' + ic('close') + '</button>' : '') + '</div>';
+    }).join('');
+    var addable = DB.people.filter(function (pp) { return pp.st !== 'thu_hoi' && pp.role !== 'owner' && !LW.memberRow(pr, pp.id) && (pp.role !== 'guest' || owner); });
+    return '<div class="quote">' + tileTxt(pr) + '<div><small>' + t(PST[p.st]) + ' · ' + t('ownShort') + ' ' + esc(name(p.lead)) + '</small><p>' + esc(p.n) + '</p></div></div>' +
+      '<p class="fine">' + t('proj.ownerNote') + '</p><div class="list">' + rows + '</div>' +
+      (can ? '<form data-form="member-add" data-p="' + pr + '" class="card stack"><b class="card-title">' + ic('plus', 'xs') + t('proj.addExisting') + '</b>' +
+        (addable.length ? '<div class="row"><select name="u" class="grow1">' + addable.map(function (pp) { return opt(pp.id, pp.n + ' · ' + roleName(pp.role), ''); }).join('') + '</select><button class="btn pri">' + t('proj.add') + '</button></div>' : '<p class="fine">' + t('proj.noAddable') + '</p>') +
+        (owner ? '' : '<p class="fine">' + t('proj.guestRule') + '</p>') + '</form>' +
+        '<div class="dlg-f"><button type="button" class="btn pri" data-act="invite-new" data-p="' + pr + '">' + ic('mail') + t('inv.new') + '</button></div>'
+        : '<p class="fine">' + t(p.st === 'luu_tru' ? 'proj.archivedNote' : 'proj.readOnly') + '</p>');
+  }
+  function openMembers(pr) { modal(t('members') + ' · ' + pr, projMembersBody(pr), true, 'projects'); }
+  function doHandover(pr) {
+    var ng = LW.members(pr).filter(function (m) { return m.s === 'guest'; }).length, exp;
+    if (!confirm(t('proj.handoverConfirm', pr, ng, fmtDate(LW.addDays(LW.today(), 30))))) return;
+    if (guard(function () { exp = LW.handover(pr, S.uid); })) { toast(t('proj.handed2', fmtDate(exp))); render(); }
+  }
+  function projectMenu(p, u) {
+    var man = LW.manages(p.id, u), owner = LW.isOwner(u), items = [];
+    var whyMan = t('why.manageProj', name(p.lead));
+    items.push(item('users', t('proj.membersInvite'), t('proj.membersS', LW.members(p.id).length), function () { openMembers(p.id); }, { chev: true, primary: true }));
+    items.push(item('mail', t('inv.new'), t('inv.newS'), function () { inviteForm({ pr: p.id }); }, { off: p.st === 'luu_tru' ? t('err.projArchived') : (man ? '' : whyMan) }));
+    items.push(item('tasks', t('proj.viewTasks'), '', function () { S.tab = 'tasks'; S.sub = null; S.f = { pr: p.id, kind: '', mine: false }; render(); scrollTop(); }, { chev: true }));
+    items.push(item('book', 'Scope Ledger', '', function () { S.ledgerPr = p.id; openSub('ledger'); }, { chev: true }));
+    items.push({ sep: true });
+    if (p.st === 'dang_chay') items.push(item('check', t('proj.handover'), t('proj.handoverS'), function () { doHandover(p.id); }, { off: man ? '' : whyMan }));
+    if (p.st === 'da_ban_giao') items.push(item('folder', t('proj.archive'), t('proj.archiveS'), function () { if (confirm(t('proj.archiveConfirm', p.id)) && guard(function () { LW.archive(p.id, S.uid); })) { toast(t('proj.archived')); render(); } }, { off: owner ? '' : t('why.onlyOwnerRole') }));
+    if (p.st !== 'dang_chay') items.push(item('refresh', t('proj.reopen'), t('proj.reopenS'), function () { if (guard(function () { LW.reopenProject(p.id, S.uid); })) { toast(t('proj.reopened')); render(); } }, { off: owner ? '' : t('why.onlyOwnerRole') }));
+    items.push(item('shield', t('proj.changeLead'), t('ownShort') + ' ' + name(p.lead), function () { modal(t('proj.changeLead') + ' · ' + p.id, leadForm(p), false, 'projects'); }, { off: owner ? '' : t('why.onlyOwnerRole') }));
+    items.push(item('help', t('h.aboutThis'), t('h.aboutThisS'), function () { openHelp('projects'); }, { chev: true }));
+    return { eyebrow: t(PST[p.st]) + ' · ' + p.id, title: p.n, sub: t('ownShort') + ' ' + name(p.lead), lead: tileTxt(p.id), items: items };
+  }
+  function leadForm(p) {
+    return '<form data-form="set-lead" data-p="' + p.id + '" class="stack"><label class="fld">' + t('proj.lead') + '<select name="u">' + leadCands().map(function (pp) { return opt(pp.id, pp.n + ' · ' + roleName(pp.role), p.lead); }).join('') + '</select></label><p class="fine">' + t('proj.leadNote') + '</p>' + dlgFooter(t('save')) + '</form>';
+  }
+  function projectForm() {
+    return '<form data-form="project-new" class="stack"><div class="grid2"><label class="fld">' + t('proj.code') + '<input name="id" required maxlength="6" placeholder="CRM" class="upper"></label><label class="fld">' + t('proj.name') + '<input name="n" required></label></div>' +
+      '<label class="fld">' + t('proj.lead') + '<select name="lead">' + leadCands().map(function (pp) { return opt(pp.id, pp.n + ' · ' + roleName(pp.role), ''); }).join('') + '</select></label>' +
+      '<p class="fine">' + t('proj.newNote') + '</p>' + dlgFooter(t('proj.create')) + '</form>';
+  }
+
+  /* ---------- lời mời ---------- */
+  function visibleInvites(u) { return DB.invites.filter(function (i) { return LW.isOwner(u) || i.by === u.id; }); }
+  function inviteRow(i) {
+    var st = LW.inviteState(i);
+    return '<article class="row-i" data-ctx="invite:' + i.id + '"><span class="av tile md' + (st === 'cho_duyet' ? ' red' : '') + '">' + ic('mail') + '</span><span class="ri-t"><b>' + esc(i.mail) + '</b><small>' + roleName(i.role) + (i.projs.length ? ' · ' + i.projs.map(function (x) { return x.p; }).join(', ') : '') + ' · ' + t('inv.by', esc(name(i.by))) + ' · ' + (st === 'da_gui' ? t('inv.until', fmtDate(i.exp)) : fmtAt(i.at)) + (i.note ? ' · ' + esc(i.note) : '') + (i.why ? ' · ' + esc(i.why) : '') + '</small></span>' + pillFor(IST, st) + '<div class="ri-a">' + moreBtn('invite:' + i.id) + '</div></article>';
+  }
+  function inviteMenu(i, u) {
+    var st = LW.inviteState(i), owner = LW.isOwner(u), items = [];
+    if (st === 'cho_duyet') {
+      items.push(item('approve', t('inv.approve'), t('inv.approveS'), function () { doApproveInvite(i.id); }, { off: owner ? '' : t('why.onlyOwnerInvite'), primary: true }));
+      items.push(item('undo', t('inv.reject'), t('m.returnS'), function () { rejectInviteForm(i.id); }, { off: owner ? '' : t('why.onlyOwnerInvite') }));
+    }
+    var mail = LW.outbox().filter(function (m) { return m.kind === 'invite' && m.to === i.mail; })[0];
+    items.push(item('mail', t('inv.viewMail'), '', function () { showMail(mail); }, { off: mail ? '' : t('inv.noMail'), chev: true }));
+    if (st === 'cho_duyet' || st === 'da_gui') items.push(item('close', t('inv.revoke'), t('inv.revokeS'), function () { if (guard(function () { LW.revokeInvite(i.id, S.uid); })) { toast(t('inv.revoked')); render(); } }, { off: owner || i.by === u.id ? '' : t('why.onlyOwnerRole'), danger: true }));
+    items.push(item('help', t('h.aboutThis'), t('h.aboutThisS'), function () { openHelp('invites'); }, { chev: true }));
+    return { eyebrow: t(IST[st]), title: i.mail, sub: roleName(i.role) + (i.projs.length ? ' · ' + i.projs.map(function (x) { return x.p; }).join(', ') : ''), lead: '<span class="av tile md">' + ic('mail') + '</span>', items: items };
+  }
+  function doApproveInvite(id) { if (guard(function () { LW.approveInvite(id, S.uid); })) { render(); showMail(LW.outbox()[0], true); } }
+  function rejectInviteForm(id) { modal(t('inv.reject'), '<form data-form="invite-reject" data-id="' + id + '" class="stack"><label class="fld">' + t('ret.reason') + '<textarea name="reason" rows="3" required></textarea></label>' + dlgFooter(t('inv.reject'), 'red') + '</form>', false, 'invites'); }
+  function inviteForm(pre) {
+    pre = pre || {};
+    var u = me(), owner = LW.isOwner(u);
+    if (!owner && u.role !== 'pm') { toast(t('err.noPermission'), true); return; }
+    var roles = owner ? ['mem', 'guest', 'pm', 'owner'] : ['mem', 'guest'];
+    var prs = DB.projects.filter(function (p) { return p.st !== 'luu_tru' && (owner || p.lead === u.id); });
+    modal(t('inv.new'), '<form data-form="invite" class="stack"><label class="fld">Email<input name="mail" type="email" required autocomplete="off"></label>' +
+      '<label class="fld">' + t('pf.role') + '<select name="role">' + roles.map(function (r) { return opt(r, roleName(r), 'mem'); }).join('') + '</select></label>' +
+      '<fieldset class="picks"><legend>' + t('inv.projects') + '</legend>' + (prs.length ? prs.map(function (p) { return '<label class="pick">' + tileTxt(p.id, 'sm') + '<span><b>' + esc(p.n) + '</b><small>' + t(PST[p.st]) + ' · ' + t('ownShort') + ' ' + esc(name(p.lead)) + '</small></span><input type="checkbox" name="projs" value="' + p.id + '"' + (pre.pr === p.id ? ' checked' : '') + '></label>'; }).join('') : '<p class="fine pad">' + t('inv.noProjects') + '</p>') + '</fieldset>' +
+      '<label class="fld">' + t('inv.note') + ' <small>' + t('inv.optional') + '</small><input name="note" placeholder="' + t('inv.notePh') + '"></label>' +
+      '<p class="fine">' + t(owner ? 'inv.hintOwner' : 'inv.hintPm') + '</p>' + dlgFooter(ic('send') + t('inv.send')) + '</form>', false, 'invites');
+  }
+
+  /* ---------- luồng mẫu ---------- */
+  function timelineHtml(f) {
+    return '<ol class="timeline">' + f.steps.map(function (s) {
+      var human = s.as === 'NGUOI', ag = human ? null : LW.agent(s.as);
+      return '<li class="' + (s.gate ? 'gate' : '') + '"><span class="tl-d">+' + s.off + '</span><span class="tl-n">' + (human ? '<span class="av xs">' + t('flow.personShort') + '</span>' : avatar(s.as, 'xs')) + '</span><span class="tl-b"><b>' + esc(s.t) + '</b><small>' + (human ? t('flow.person') : esc(s.as + ' · ' + (ag ? ag.n : ''))) + '</small></span>' + (s.gate ? '<span class="pill xs red">' + ic('flag', 'xs') + t('gate') + '</span>' : '') + '</li>';
+    }).join('') + '</ol><p class="fine">' + t('flow.hint') + '</p>';
+  }
+  function flowPrimary(x, u) {
+    var owner = LW.isOwner(u);
+    if (x.st === 'da_duyet') return LW.can('launchFlow', u) ? '<button class="btn pri sm" data-act="flow-launch" data-id="' + x.id + '">' + ic('play') + t('flow.launch') + '</button>' : '';
+    if (x.st === 'cho_duyet') return owner ? '<button class="btn pri sm" data-act="flow-approve" data-id="' + x.id + '">' + ic('approve') + t('approve') + '</button><button class="btn sm" data-act="flow-return" data-id="' + x.id + '">' + ic('undo') + t('ret.go') + '</button>' : '<span class="fine">' + t('flow.waitOwner') + '</span>';
+    if (x.st === 'ban_nhap' || x.st === 'tra_lai') return x.by === u.id || owner ? '<button class="btn pri sm" data-act="flow-edit" data-id="' + x.id + '">' + ic('edit') + t('flow.edit') + '</button><button class="btn sm" data-act="flow-submit" data-id="' + x.id + '">' + ic('send') + t('flow.submit') + '</button>' : '';
+    return '';
+  }
+  function flowCard(x, u, sel) {
+    var ag = x.steps.filter(function (s) { return s.as !== 'NGUOI'; }).length;
+    return '<article class="card' + (sel ? ' on' : '') + '" data-ctx="flow:' + x.id + '"><div class="card-h"><span class="av tile lg' + (x.st === 'da_duyet' ? ' ink' : '') + '">' + ic('flow') + '</span><div class="ch-t"><b>' + esc(x.n) + ' <span class="code">v' + x.v + '</span></b><small>' + esc(x.d || '') + '</small></div>' + moreBtn('flow:' + x.id) + '</div>' +
+      '<div class="chips">' + pillFor(FST, x.st) + '<span class="pill soft">' + t('flow.author', esc(shortName(x.by))) + '</span>' + (x.appr ? '<span class="pill soft">' + t(x.self ? 'flow.selfAppr' : 'flow.apprBy', esc(shortName(x.appr))) + '</span>' : '') + '</div>' +
+      (x.st === 'tra_lai' && x.note ? '<p class="back-note">' + ic('undo', 'xs') + esc(x.note) + '</p>' : '') +
+      '<div class="fstats"><div><b>' + x.steps.length + '</b><span>' + t('steps') + '</span></div><div><b>' + ag + '</b><span>' + t('flow.byAgent') + '</span></div><div><b>' + (x.steps.length - ag) + '</b><span>' + t('flow.byPerson') + '</span></div><div class="hot"><b>' + x.steps.filter(function (s) { return s.gate; }).length + '</b><span>' + t('flow.gates') + '</span></div></div>' +
+      '<div class="card-a">' + flowPrimary(x, u) + '<button class="btn sm" data-act="flow-view" data-id="' + x.id + '">' + ic('eye') + t('m.viewSteps') + '</button></div></article>';
+  }
+  function flowMenu(f, u) {
+    var owner = LW.isOwner(u), mayDraft = u.role === 'owner' || u.role === 'pm', mine = f.by === u.id, items = [];
+    if (f.st === 'da_duyet') items.push(item('play', t('flow.launch'), t('m.launchS'), function () { openLaunch(f); }, { off: LW.can('launchFlow', u) ? '' : t('flow.noLaunch'), primary: true }));
+    else items.push(item('play', t('flow.launch'), '', null, { off: t('err.flowNotApproved') }));
+    if (f.st === 'cho_duyet') {
+      items.push(item('approve', t('approve'), t('flow.approveS'), function () { doApproveFlow(f.id); }, { off: owner ? (mine && otherOwners() ? t('err.noSelfApprove') : '') : t('why.onlyOwnerFlow'), primary: true }));
+      items.push(item('undo', t('ret.go'), t('m.returnS'), function () { returnFlowForm(f.id); }, { off: owner ? '' : t('why.onlyOwnerFlow') }));
+    }
+    if (f.st === 'ban_nhap' || f.st === 'tra_lai') {
+      var why = mine || owner ? '' : t('why.notYours');
+      items.push(item('edit', t('flow.edit'), '', function () { openFlowEditor(f); }, { off: why, chev: true }));
+      items.push(item('send', t('flow.submit'), t('flow.submitS'), function () { doSubmitFlow(f.id); }, { off: why }));
+      items.push(item('trash', t('flow.discard'), '', function () { if (confirm(t('flow.discardConfirm')) && guard(function () { LW.deleteDraftFlow(f.id, S.uid); })) render(); }, { off: why, danger: true }));
+    }
+    if (f.st === 'da_duyet') {
+      items.push(item('copy', t('flow.newVersion'), t('flow.newVersionS'), function () { var y; if (guard(function () { y = LW.newFlowVersion(f.id, S.uid); })) { S.flow = y.id; openFlowEditor(y); } }, { off: mayDraft ? '' : t('why.noDraft') }));
+      items.push(item('close', t('flow.retire'), t('flow.retireS'), function () { if (confirm(t('flow.retireConfirm')) && guard(function () { LW.retireFlow(f.id, S.uid); })) render(); }, { off: owner ? '' : t('why.onlyOwnerFlow'), danger: true }));
+    }
+    items.push(item('eye', t('m.viewSteps'), '', function () { S.tab = 'apps'; S.sub = 'flows'; S.flow = f.id; render(); scrollTop(); }, { chev: true }));
+    items.push(item('help', t('h.aboutThis'), t('h.aboutThisS'), function () { openHelp('flows'); }, { chev: true }));
+    return { eyebrow: t(FST[f.st]) + ' · v' + f.v, title: f.n, sub: t('flow.author', name(f.by)), lead: '<span class="av tile md">' + ic('flow') + '</span>', items: items };
+  }
+  function doApproveFlow(id) { if (guard(function () { LW.approveFlow(id, S.uid); })) { toast(t('flow.approved')); render(); } }
+  function doSubmitFlow(id) { if (guard(function () { LW.submitFlow(id, S.uid); })) { toast(t('flow.submitted')); render(); } }
+  function returnFlowForm(id) { modal(t('ret.go'), '<form data-form="flow-return" data-id="' + id + '" class="stack"><label class="fld">' + t('ret.reason') + '<textarea name="reason" rows="3" required></textarea></label>' + dlgFooter(ic('undo') + t('ret.go'), 'red') + '</form>', false, 'flows'); }
+  function openLaunch(f, pr) { modal(t('flow.launch') + ' · ' + f.n, launchForm(me(), f, pr), true, 'flows'); }
+  function launchForm(u, f, pr) {
+    var prs = DB.projects.filter(function (p) { return p.st !== 'luu_tru' && LW.manages(p.id, u); });
+    if (!prs.length) return '<p class="fine">' + t('flow.noProj') + '</p>';
+    if (!prs.some(function (p) { return p.id === pr; })) pr = prs[0].id;
+    var ppl = DB.people.filter(function (p) { return LW.canWorkIn(pr, p.id); });
+    return '<form data-form="flow-launch" data-id="' + f.id + '" class="stack"><div class="grid2"><label class="fld">' + t('project') + '<select name="pr" required data-change="lf-pr" data-f="' + f.id + '">' + prs.map(function (p) { return opt(p.id, p.id + ' · ' + p.n, pr); }).join('') + '</select></label>' +
+      '<label class="fld">' + t('flow.start') + '<input type="date" name="start" required value="' + LW.today() + '"></label></div>' +
+      '<b class="card-title">' + t('flow.pick') + '</b>' + f.steps.map(function (s, i) {
+        if (s.as !== 'NGUOI') return '';
+        return '<label class="fld">' + (i + 1) + '. ' + esc(s.t) + ' · +' + s.off + '<select name="step' + i + '" required>' + opt('', '—', '') + ppl.map(function (p) { return opt(p.id, p.n + ' · ' + LW.openLoad(p.id) + '/' + p.cap, ''); }).join('') + '</select></label>';
+      }).join('') +
+      '<p class="fine">' + t('flow.agentOwn') + ' ' + t('flow.onlyMembers') + '</p>' + dlgFooter(ic('play') + t('flow.launchGo', f.steps.length)) + '</form>';
+  }
+  function openFlowEditor(f) {
+    S.fe = f ? { id: f.id, n: f.n, d: f.d || '', v: f.v, steps: JSON.parse(JSON.stringify(f.steps)) } : { id: null, n: '', d: '', v: 1, steps: [{ t: '', as: 'NGUOI', off: 0, gate: false }] };
+    renderFlowEditor(true);
+  }
+  function renderFlowEditor(first) {
+    var fe = S.fe, box = document.querySelector('#modal .dlg-b'), y = box ? box.scrollTop : 0;
+    function asOpts(cur) { return opt('NGUOI', t('flow.person'), cur) + DB.agents.map(function (a) { return opt(a.id, a.id + ' · ' + a.n, cur); }).join(''); }
+    modal((fe.id ? t('flow.edit') : t('flow.new')) + (fe.id ? ' · v' + fe.v : ''), '<form data-form="flow-save" class="stack"><div class="grid2"><label class="fld">' + t('flow.name') + '<input name="n" required value="' + esc(fe.n) + '"></label><label class="fld">' + t('flow.desc') + '<input name="d" value="' + esc(fe.d) + '"></label></div>' +
+      '<div class="fe"><div class="fe-row fe-head"><span>#</span><span>' + t('flow.step') + '</span><span>' + t('assignee') + '</span><span>' + t('flow.day') + '</span><span>' + t('gate') + '</span><span></span></div>' + fe.steps.map(function (s, i) {
+        return '<div class="fe-row"><span class="fe-no">' + (i + 1) + '</span><input name="t' + i + '" required value="' + esc(s.t) + '" placeholder="' + t('flow.stepPh') + '"><select name="as' + i + '">' + asOpts(s.as) + '</select>' +
+          '<label class="fe-off"><span>+</span><input name="off' + i + '" type="number" min="0" inputmode="numeric" value="' + esc(s.off) + '"></label>' +
+          '<label class="fe-g" title="' + t('gate') + '" data-l="' + t('gate') + '"><input type="checkbox" name="g' + i + '"' + (s.gate ? ' checked' : '') + '></label>' +
+          '<span class="fe-a"><button type="button" class="ib sm" data-act="fe-move" data-i="' + i + '" data-d="-1" aria-label="' + t('flow.up') + '"' + (i === 0 ? ' disabled' : '') + '>↑</button><button type="button" class="ib sm" data-act="fe-move" data-i="' + i + '" data-d="1" aria-label="' + t('flow.down') + '"' + (i === fe.steps.length - 1 ? ' disabled' : '') + '>↓</button><button type="button" class="ib sm" data-act="fe-del" data-i="' + i + '" aria-label="' + t('delete') + '">' + ic('close') + '</button></span></div>';
+      }).join('') + '</div>' +
+      '<button type="button" class="btn sm fe-add" data-act="fe-add">' + ic('plus') + t('flow.addStep') + '</button>' +
+      '<p class="fine">' + t('flow.editNote') + '</p>' +
+      '<div class="dlg-f"><button type="button" class="btn" data-act="modal-x">' + t('cancel') + '</button><button class="btn" value="draft">' + t('flow.saveDraft') + '</button><button class="btn pri" value="submit">' + ic('send') + t('flow.saveSubmit') + '</button></div></form>', true, 'flowEdit');
+    if (!first) { var d = document.querySelector('#modal .dlg'); if (d) d.style.animation = 'none'; var nb = document.querySelector('#modal .dlg-b'); if (nb) nb.scrollTop = y; }
+  }
+  function readFlowEditor() {
+    var fm = document.querySelector('[data-form=flow-save]'); if (!fm) return;
+    S.fe.n = fm.n.value; S.fe.d = fm.d.value;
+    S.fe.steps = S.fe.steps.map(function (s, i) { return { t: fm['t' + i].value, as: fm['as' + i].value, off: fm['off' + i].value, gate: fm['g' + i].checked }; });
+  }
+
+  /* ---------- trang con mới trong Tiện ích ---------- */
+  SUBS.projects = function (u) {
+    var ps = visibleProjects(u);
+    return subHead(t('proj.title'), t('proj.sub'), LW.isOwner(u) ? ib('plus', 'project-new', '', t('proj.create'), '', 'solid') : '') +
+      (ps.length ? '<div class="cards">' + ps.map(function (p) { return projectCard(p, u); }).join('') + '</div>' : '<div class="empty">' + ic('folder') + '<b>' + t('proj.empty') + '</b><span>' + t(LW.isOwner(u) ? 'proj.emptyOwner' : 'proj.emptyOther') + '</span></div>');
+  };
+  SUBS.invites = function (u) {
+    var list = visibleInvites(u);
+    return subHead(t('inv.title'), t('inv.sub'), ib('plus', 'invite-new', '', t('inv.new'), '', 'solid')) +
+      (list.length ? '<div class="list">' + list.map(inviteRow).join('') + '</div>' : '<div class="empty">' + ic('mail') + '<b>' + t('inv.empty') + '</b></div>');
+  };
+  SUBS.outbox = function () {
+    var box = LW.outbox();
+    return subHead(t('mail.box'), t('mail.boxS')) + '<p class="hint-b">' + ic('info', 'xs') + t('mail.sim') + '</p>' +
+      (box.length ? '<div class="cards one">' + box.map(function (m) { return '<article class="card">' + mailHtml(m) + '</article>'; }).join('') + '</div>' : '<div class="empty">' + ic('mail') + '<b>' + t('mail.empty') + '</b></div>');
+  };
+  SUBS.clock = function () {
+    var off = LW.dayOffset();
+    return subHead(t('clock.title'), t('clock.sub')) + '<div class="card stack"><div class="clock"><small>' + t('clock.today') + '</small><b>' + fmtDate(LW.today()) + '/' + LW.today().slice(0, 4) + '</b><span class="pill ' + (off ? 'red' : 'soft') + '">' + (off ? (off > 0 ? '+' : '') + off + ' ' + t('days') : t('clock.real')) + '</span></div>' +
+      '<div class="row">' + [1, 7, 30].map(function (n) { return '<button class="btn" data-act="clock" data-n="' + n + '">+' + n + ' ' + t('days') + '</button>'; }).join('') + '<button class="btn" data-act="clock" data-n="0">' + ic('refresh') + t('clock.reset') + '</button></div><p class="fine">' + t('clock.note') + '</p></div>';
+  };
+  SUBS.flows = function (u) {
+    var mayDraft = u.role === 'owner' || u.role === 'pm', owner = LW.isOwner(u);
+    var vis = DB.flows.filter(function (x) { return x.st === 'da_duyet' || x.st === 'ngung' || owner || x.by === u.id; });
+    var f = vis.filter(function (x) { return x.id === S.flow; })[0] || vis.filter(function (x) { return x.st === 'da_duyet'; })[0] || vis[0];
+    function group(title, arr) { return arr.length ? section(title, arr.length, '<div class="cards">' + arr.map(function (x) { return flowCard(x, u, f && x.id === f.id); }).join('') + '</div>') : ''; }
+    var body = group(t('fst.group.ok'), vis.filter(function (x) { return x.st === 'da_duyet'; })) +
+      group(t('fst.group.pending'), vis.filter(function (x) { return x.st === 'cho_duyet'; })) +
+      group(t('fst.group.draft'), vis.filter(function (x) { return x.st === 'ban_nhap' || x.st === 'tra_lai'; })) +
+      group(t('fst.group.off'), vis.filter(function (x) { return x.st === 'ngung'; }));
+    return subHead(t('q.flows'), t('flows.sub2'), mayDraft ? ib('plus', 'flow-new', '', t('flow.new'), '', 'solid') : '') +
+      (body || '<div class="empty">' + ic('flow') + '<b>' + t('flow.empty') + '</b></div>') +
+      (f ? section(t('m.viewSteps') + ' · ' + esc(f.n) + ' v' + f.v, f.steps.length, timelineHtml(f)) : '');
+  };
+
+  /* ============================================================
      HÀNH ĐỘNG
      ============================================================ */
   function openTask(id) { if (S.task !== id) S.anim = true; S.task = id; closeMenu(); closeModal(); }
@@ -1122,7 +1421,7 @@
   function toggleTheme() { put('lw.theme', isDark() ? 'light' : 'dark'); applyPrefs(); closeMenu(); render(); toast(t(isDark() ? 'th.nowDark' : 'th.nowLight')); }
   function setLang() { S.lang = S.lang === 'vi' ? 'en' : 'vi'; put('lw.lang', S.lang); closeMenu(); render(); }
   function doLogout() { closeHelp(); S.hlog = {}; S.uid = null; put('lw.session', null); S.task = null; S.tab = 'home'; S.sub = null; closeMenu(); closeModal(); render(); scrollTop(); }
-  function doReset() { if (!confirm(t('reset.confirm'))) return; DB = LW.reset(); doLogout(); toast(t('reset.done')); }
+  function doReset() { if (!confirm(t('reset.confirm'))) return; DB = LW.reset(); put('lw.org', null); S.auth = null; doLogout(); toast(t('reset.done')); }
   function projOfChan(ch) { var c = LW.chan(ch); if (!c) return ''; if (/pka/.test(c.n)) return 'PKA'; if (/web/.test(c.n)) return 'WEB'; return ''; }
 
   var ACT = {
@@ -1136,6 +1435,26 @@
     'tip-x': function () { put('lw.tipHelp', '1'); render(); },
     'ctx': function (el) { var spec = ctxFor(el.dataset.ctx, me()); if (spec) openMenu(spec, el); },
     'lang': setLang,
+    'auth': function (el) { S.auth = { v: el.dataset.v, mail: S.auth && S.auth.mail }; render(); scrollTop(); },
+    'pick-org': function (el) { enterOrg(S.auth.acc[+el.dataset.i]); },
+    'open-link': function (el) { openLink(el.dataset.k, el.dataset.c); },
+    'project-new': function () { modal(t('proj.create'), projectForm(), false, 'projects'); },
+    'proj-members': function (el) { openMembers(el.dataset.id); },
+    'proj-tasks': function (el) { S.tab = 'tasks'; S.sub = null; S.f = { pr: el.dataset.id, kind: '', mine: false }; render(); scrollTop(); },
+    'member-remove': function (el) { var pr = el.dataset.p; if (confirm(t('proj.removeConfirm', name(el.dataset.u), pr)) && guard(function () { LW.removeMember(pr, el.dataset.u, S.uid); })) { render(); openMembers(pr); toast(t('proj.removed')); } },
+    'guest-extend': function (el) { var pr = el.dataset.p, pid = el.dataset.u, why = prompt(t('proj.extendWhy', name(pid))); if (why === null) return; var exp; if (guard(function () { exp = LW.extendGuest(pr, pid, why, S.uid); })) { var mo = !document.getElementById('modal').hidden; render(); if (mo) openMembers(pr); toast(t('proj.extended', fmtDate(exp))); } },
+    'invite-new': function (el) { inviteForm({ pr: el.dataset.p }); },
+    'inv-approve': function (el) { doApproveInvite(el.dataset.id); },
+    'flow-new': function () { openFlowEditor(null); },
+    'flow-edit': function (el) { openFlowEditor(LW.flowById(el.dataset.id)); },
+    'flow-view': function (el) { S.tab = 'apps'; S.sub = 'flows'; S.flow = el.dataset.id; render(); scrollTop(); },
+    'flow-approve': function (el) { doApproveFlow(el.dataset.id); },
+    'flow-return': function (el) { returnFlowForm(el.dataset.id); },
+    'flow-submit': function (el) { doSubmitFlow(el.dataset.id); },
+    'fe-add': function () { readFlowEditor(); var st = S.fe.steps, last = st[st.length - 1]; st.push({ t: '', as: 'NGUOI', off: last ? last.off : 0, gate: false }); renderFlowEditor(); var ins = document.querySelectorAll('.fe-row input[name^=t]'); if (ins.length) ins[ins.length - 1].focus(); },
+    'fe-del': function (el) { readFlowEditor(); if (S.fe.steps.length > 1) S.fe.steps.splice(+el.dataset.i, 1); renderFlowEditor(); },
+    'fe-move': function (el) { readFlowEditor(); var i = +el.dataset.i, j = i + (+el.dataset.d), st = S.fe.steps; if (j < 0 || j >= st.length) return; var tmp = st[i]; st[i] = st[j]; st[j] = tmp; renderFlowEditor(); },
+    'clock': function (el) { var n = +el.dataset.n; if (guard(function () { LW.shiftDays(n, S.uid); })) { render(); toast(n ? t('clock.moved', fmtDate(LW.today())) : t('clock.back')); } },
     'theme-toggle': function () { toggleTheme(); },
     'pick-avatar': function () { var f = document.getElementById('av-file'); if (f) f.click(); },
     'remove-avatar': function () { if (guard(function () { LW.updateSelf(S.uid, { av: null }); })) { refreshAvatarRow(); render(); toast(t('pf.avRemoved')); } },
@@ -1153,7 +1472,7 @@
     'about': function () { modal(t('about.title'), '<div class="about">' + t('about.body') + '</div>', true, 'overview'); },
     'reset': doReset,
     'logout': doLogout,
-    'fill-login': function (el) { var f = document.querySelector('[data-form=login]'); f.mail.value = el.dataset.mail; f.pw.value = LW.DEMO_PW; Array.prototype.forEach.call(document.querySelectorAll('.demo-u'), function (b) { b.classList.toggle('on', b === el); }); f.querySelector('button').focus(); },
+    'fill-login': function (el) { if (!S.auth || S.auth.v !== 'pw') { S.auth = { v: 'pw' }; render(); } var f = document.querySelector('[data-form=login]'); f.mail.value = el.dataset.mail; f.pw.value = LW.DEMO_PW; Array.prototype.forEach.call(document.querySelectorAll('.demo-u'), function (b) { b.classList.toggle('on', b === el); }); f.querySelector('button').focus(); },
     'modal-x': closeModal,
     'open-task': function (el) { openTask(el.dataset.id); render(); },
     'close-task': function () { S.task = null; render(); },
@@ -1180,7 +1499,7 @@
     'agent-open': function (el) { var a = LW.agent(el.dataset.id); modal(a.id + ' · ' + a.n, agentForm(me(), a), true, 'agentScope', a.id); },
     'person-new': function () { modal(t('team.addPerson'), personForm(null), false, 'people'); },
     'agent-new': function () { modal(t('team.addAgent'), agentForm(me(), null), true, 'agentScope'); },
-    'flow-launch': function (el) { var f = DB.flows.find(function (x) { return x.id === el.dataset.id; }); modal(t('flow.launch') + ' · ' + f.n, launchForm(me(), f), true, 'flows'); },
+    'flow-launch': function (el) { openLaunch(LW.flowById(el.dataset.id)); },
     'ledger-pr': function (el) { S.ledgerPr = el.dataset.id; render(); },
     'probe': function (el) {
       var r = LW.probeForbidden(el.dataset.id);
@@ -1193,7 +1512,29 @@
 
   var FORM = {
     'help-ask': function (fm) { var q = fm.q.value; fm.q.value = ''; helpAsk(q); },
-    'login': function (fm) { var p; if (guard(function () { p = LW.login(fm.mail.value, fm.pw.value); })) { S.uid = p.id; put('lw.session', p.id); S.tab = 'home'; render(); scrollTop(); } },
+    'login': function (fm) { var acc; if (guard(function () { acc = LW.login(fm.mail.value, fm.pw.value); })) enterAccounts(acc); },
+    'link': function (fm) { var m = fm.mail.value; if (guard(function () { LW.requestLink(m); })) { S.auth = { v: 'linkSent', mail: m }; render(); } },
+    'signup': function (fm) { var d = formData(fm); if (guard(function () { LW.startSignup(d); })) { S.auth = { v: 'signupSent', mail: d.mail }; render(); } },
+    'accept': function (fm) { var r; if (guard(function () { r = LW.acceptInvite(S.auth.code, { n: fm.n.value, pw: fm.pw.value }); })) { enterOrg(r); toast(t('inv.welcome', r.org.n)); } },
+    'project-new': function (fm) { var d = formData(fm), p; if (guard(function () { p = LW.createProject(d, S.uid); })) { closeModal(); S.tab = 'apps'; S.sub = 'projects'; render(); toast(t('proj.createdT', p.id)); openMembers(p.id); } },
+    'set-lead': function (fm) { if (guard(function () { LW.setLead(fm.dataset.p, fm.u.value, S.uid); })) { closeModal(); render(); toast(t('saved')); } },
+    'member-add': function (fm) { var pr = fm.dataset.p; if (guard(function () { LW.addMember(pr, fm.u.value, S.uid); })) { render(); openMembers(pr); toast(t('proj.added')); } },
+    'invite': function (fm) {
+      var d = formData(fm), r;
+      if (guard(function () { r = LW.createInvite({ mail: d.mail, role: d.role, projs: d.projs || [], note: d.note }, S.uid); })) {
+        closeModal(); render();
+        if (r.code) showMail(LW.outbox()[0], true); else toast(t('inv.pendingT'));
+      }
+    },
+    'invite-reject': function (fm) { if (guard(function () { LW.rejectInvite(fm.dataset.id, fm.reason.value, S.uid); })) { closeModal(); render(); toast(t('inv.rejected')); } },
+    'flow-return': function (fm) { if (guard(function () { LW.returnFlow(fm.dataset.id, fm.reason.value, S.uid); })) { closeModal(); render(); toast(t('flow.returned')); } },
+    'flow-save': function (fm, e) {
+      readFlowEditor();
+      var go = e && e.submitter && e.submitter.value === 'submit' ? 'submit' : 'draft', x;
+      if (guard(function () { x = LW.saveFlowDraft({ id: S.fe.id, n: S.fe.n, d: S.fe.d, steps: S.fe.steps }, S.uid); S.fe.id = x.id; if (go === 'submit') LW.submitFlow(x.id, S.uid); })) {
+        closeModal(); S.flow = x.id; S.tab = 'apps'; S.sub = 'flows'; S.task = null; render(); scrollTop(); toast(t(go === 'submit' ? 'flow.submitted' : 'flow.saved'));
+      }
+    },
     'return': function (fm) { if (guard(function () { LW.sendBack(fm.dataset.id, S.uid, fm.reason.value); })) { closeModal(); toast(t('returned')); render(); } },
     'task-save': function (fm) {
       var u = me(), x = LW.task(fm.dataset.id), d = formData(fm), patch = {};
@@ -1219,9 +1560,9 @@
       Object.keys(d).forEach(function (k) { if (/^step\d+$/.test(k)) people[k.slice(4)] = d[k]; });
       if (guard(function () { made = LW.launchFlow(fm.dataset.id, { pr: d.pr, start: d.start, people: people }, S.uid); })) { closeModal(); S.tab = 'tasks'; S.sub = null; S.f = { pr: d.pr, kind: '', mine: false }; S.col = 'dang_lam'; render(); scrollTop(); toast(t('flow.made', made.length)); }
     },
-    'person': function (fm) { var d = formData(fm); if (guard(function () { LW.savePerson({ id: fm.dataset.id, n: d.n, mail: d.mail, r: d.r, role: d.role, cap: d.cap, proj: d.proj || [] }, S.uid); })) { closeModal(); render(); toast(t('saved')); } },
+    'person': function (fm) { var d = formData(fm); if (guard(function () { LW.savePerson({ id: fm.dataset.id, n: d.n, mail: d.mail, r: d.r, role: d.role, cap: d.cap }, S.uid); })) { closeModal(); render(); toast(t('saved')); } },
     'profile': function (fm) { var d = formData(fm), f = { n: d.n, ini: d.ini, r: d.r, bio: d.bio }; if (guard(function () { LW.updateSelf(S.uid, f); })) { closeModal(); render(); toast(t('saved')); } },
-    'pw': function (fm) { if (guard(function () { LW.changePw(S.uid, fm.old.value, fm.nw.value); })) { fm.reset(); toast(t('pw.done')); } },
+    'pw': function (fm, e) { var go = e && e.submitter && e.submitter.value, old = fm.old ? fm.old.value : ''; if (guard(function () { if (go === 'remove') LW.removePw(S.uid, old); else LW.setPw(S.uid, old, fm.nw.value); })) { modal(t('team.myProfile'), profileForm(me()), true, 'people'); var dl = document.querySelector('#modal .dlg'); if (dl) dl.style.animation = 'none'; toast(t(go === 'remove' ? 'pw.removed' : 'pw.done')); } },
     'agent': function (fm) { var d = formData(fm); if (guard(function () { LW.saveAgent({ id: d.id, n: d.n, r: d.r, p: d.p, sc: { own: d.own, reads: d.reads || [], can: d.can || [], review: !!d.review, limit: d.limit } }, S.uid, !!fm.dataset.new); })) { closeModal(); render(); toast(t('saved')); } },
     'cfg': function (fm) {
       var g = fm.dataset.g, d = formData(fm);
@@ -1306,9 +1647,11 @@
       var n = document.querySelector('[data-input=chat-q]'); if (n) { n.focus(); n.setSelectionRange(pos, pos); }
     }
   });
-  document.addEventListener('submit', function (e) { var fm = e.target, fn = FORM[fm.dataset.form]; if (fn) { e.preventDefault(); fn(fm); } });
+  document.addEventListener('submit', function (e) { var fm = e.target, fn = FORM[fm.dataset.form]; if (fn) { e.preventDefault(); fn(fm, e); } });
   document.addEventListener('change', function (e) {
     var el = e.target, k = el.dataset && el.dataset.change;
+    if (k === 'nt-pr') { var sel = el.form.querySelector('[name=as]'); if (sel) { var cur = sel.value; sel.innerHTML = assigneeOptions(me(), cur, el.value); } return; }
+    if (k === 'lf-pr') { var sd = document.querySelector('[data-form=flow-launch] [name=start]'), sv = sd ? sd.value : ''; openLaunch(LW.flowById(el.dataset.f), el.value); var dl = document.querySelector('#modal .dlg'); if (dl) dl.style.animation = 'none'; var s2 = document.querySelector('[data-form=flow-launch] [name=start]'); if (s2 && sv) s2.value = sv; return; }
     if (k === 'role') { var fs = el.form.querySelector('.projs'); if (fs) fs.disabled = el.value === 'owner'; }
     if (k === 'avatar' && el.files && el.files[0]) { var file0 = el.files[0]; el.value = ''; handleAvatarFile(file0); }
   });
@@ -1340,4 +1683,5 @@
 
   var VIEWS = { home: viewHome, tasks: viewTasks, chat: viewChat, apps: viewApps };
   render();
+  (function () { var h = location.hash.match(/^#(invite|login|signup)=([a-f0-9]+)$/); if (h) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { /* bỏ qua */ } openLink(h[1], h[2]); } })();
 })();

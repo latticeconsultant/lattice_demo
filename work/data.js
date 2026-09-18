@@ -12,7 +12,7 @@
 (function (root) {
   'use strict';
 
-  var KEY = 'lattice-work.proto.v2';
+  var KEY = 'lattice-work.proto.v3';
   var ST = ['cho_giao', 'dang_lam', 'cho_duyet', 'xong'];
   var ROLES = ['owner', 'pm', 'mem', 'guest'];
   var READS = ['viec', 'kenh', 'ledger', 'drive'];
@@ -52,7 +52,8 @@
   }
   function z(n) { return String(n).padStart(2, '0'); }
   function ymd(d) { return d.getFullYear() + '-' + z(d.getMonth() + 1) + '-' + z(d.getDate()); }
-  function today() { return ymd(new Date()); }
+  // Ngày hiện tại có thể tua trong bản mẫu (ST0.off) để thử hạn khách mời, hạn lời mời.
+  function today() { var d = new Date(); d.setDate(d.getDate() + ((ST0 && ST0.off) || 0)); return ymd(d); }
   function addDays(s, n) { var p = s.split('-').map(Number); return ymd(new Date(p[0], p[1] - 1, p[2] + n)); }
   function nowIso(minAgo) { return new Date(Date.now() - (minAgo || 0) * 60000).toISOString(); }
   function vnd(x) { return Math.round(x).toLocaleString('vi-VN') + 'đ'; }
@@ -100,15 +101,23 @@
     var T = today();
     var D = function (n) { return addDays(T, n); };
     var people = [
-      { id: 'u1', n: 'Lê Đặng Tuấn', ini: 'LT', av: null, mail: 'lattice.consultant@gmail.com', r: 'Chủ sở hữu · kiến trúc giải pháp', bio: 'Việc cần tôi duyệt để ở Chờ duyệt, không nhắn riêng. Tôi xử lý hàng "Cần tôi" hai lần mỗi ngày.', role: 'owner', cap: 8, sc: { proj: [] }, pw: mkPw(DEMO_PW) },
-      { id: 'u2', n: 'Nguyễn Minh Anh', ini: 'MA', av: null, mail: 'minhanh@example.com', r: 'Quản lý dự án PKA và website', bio: 'Chủ trì phần lớn agent vận hành. Muốn đổi hạn thì ghi vào mạch trao đổi của việc.', role: 'pm', cap: 6, sc: { proj: ['PKA', 'WEB'] }, pw: mkPw(DEMO_PW) },
-      { id: 'u3', n: 'Trần Quốc Hải', ini: 'QH', av: null, mail: 'hai@example.com', r: 'Thi công front-end', bio: 'Nhận việc thi công và nhập liệu. Tối đa 4 việc mở cùng lúc.', role: 'mem', cap: 4, sc: { proj: ['WEB'] }, pw: mkPw(DEMO_PW) },
-      { id: 'u4', n: 'Phạm Thu Hà', ini: 'TH', av: null, mail: 'thuha@example.com', r: 'Khách mời — đầu mối phía khách hàng PKA', bio: '', role: 'guest', cap: 0, sc: { proj: ['PKA'] }, pw: mkPw(DEMO_PW) }
+      { id: 'u1', n: 'Lê Đặng Tuấn', ini: 'LT', av: null, mail: 'lattice.consultant@gmail.com', r: 'Chủ sở hữu · kiến trúc giải pháp', bio: 'Việc cần tôi duyệt để ở Chờ duyệt, không nhắn riêng. Tôi xử lý hàng "Cần tôi" hai lần mỗi ngày.', role: 'owner', cap: 8, pw: mkPw(DEMO_PW) },
+      { id: 'u2', n: 'Nguyễn Minh Anh', ini: 'MA', av: null, mail: 'minhanh@example.com', r: 'Quản lý dự án PKA và website', bio: 'Chủ trì phần lớn agent vận hành. Muốn đổi hạn thì ghi vào mạch trao đổi của việc.', role: 'pm', cap: 6, pw: mkPw(DEMO_PW) },
+      { id: 'u3', n: 'Trần Quốc Hải', ini: 'QH', av: null, mail: 'hai@example.com', r: 'Thi công front-end', bio: 'Nhận việc thi công và nhập liệu. Tối đa 4 việc mở cùng lúc.', role: 'mem', cap: 4, pw: mkPw(DEMO_PW) },
+      { id: 'u4', n: 'Phạm Thu Hà', ini: 'TH', av: null, mail: 'thuha@example.com', r: 'Khách mời — đầu mối phía khách hàng PKA', bio: '', role: 'guest', cap: 0, pw: mkPw(DEMO_PW) }
     ];
     var projects = [
-      { id: 'NB', n: 'Nội bộ LATTICE' },
-      { id: 'PKA', n: 'Website Phòng khám Minh An' },
-      { id: 'WEB', n: 'lattice.business' }
+      { id: 'NB', n: 'Nội bộ LATTICE', lead: 'u1', st: 'dang_chay', created: D(-40), handed: null },
+      { id: 'PKA', n: 'Website Phòng khám Minh An', lead: 'u2', st: 'dang_chay', created: D(-14), handed: null },
+      { id: 'WEB', n: 'lattice.business', lead: 'u2', st: 'dang_chay', created: D(-30), handed: null }
+    ];
+    // Tư cách trong từng dự án: lead (chủ trì) · member · guest (có hạn dùng). Chủ sở hữu thấy mọi dự án.
+    var pm = [
+      { p: 'NB', u: 'u1', s: 'lead', exp: null },
+      { p: 'PKA', u: 'u2', s: 'lead', exp: null },
+      { p: 'PKA', u: 'u4', s: 'guest', exp: null },
+      { p: 'WEB', u: 'u2', s: 'lead', exp: null },
+      { p: 'WEB', u: 'u3', s: 'member', exp: null }
     ];
     var agents = [
       { id: 'A0', n: 'Quản trị dự án', r: 'Trạng thái, mốc treo, rủi ro tiến độ', p: 'Bạn là A0, quản trị dự án. Báo trạng thái bằng số liệu: việc mở, việc quá hạn, việc chờ duyệt, tải của từng người so với công suất. Không đoán ngày hoàn thành.', sc: { own: 'u2', reads: ['viec', 'kenh'], can: ['ghi_chu', 'tao_viec'], review: false, limit: 30 } },
@@ -196,7 +205,14 @@
       { id: 'm8', ch: 'c3', by: 'u3', at: nowIso(60 * 5), t: 'Em làm chiều nay.', task: null }
     ];
     var flows = [
-      { id: 'f1', n: 'Dự án website cơ bản', d: 'Từ tiếp nhận tới bàn giao, 12 bước, 47 ngày', steps: [
+      { id: 'f2', fam: 'f2', v: 1, st: 'cho_duyet', by: 'u2', at: nowIso(60 * 20), appr: null, apprAt: null, note: null,
+        n: 'Bảo trì website hằng tháng', d: 'Kiểm tra, kiểm thử, cập nhật nội dung — 3 bước, 3 ngày', steps: [
+        { t: 'Kiểm tra tình trạng và báo cáo tháng', as: 'A0', off: 0, gate: false },
+        { t: 'Chạy checklist nghiệm thu sau cập nhật', as: 'A9', off: 2, gate: false },
+        { t: 'Cập nhật nội dung theo yêu cầu khách', as: 'NGUOI', off: 3, gate: true }
+      ] },
+      { id: 'f1', fam: 'f1', v: 1, st: 'da_duyet', by: 'u2', at: nowIso(60 * 24 * 20), appr: 'u1', apprAt: nowIso(60 * 24 * 19), note: null,
+        n: 'Dự án website cơ bản', d: 'Từ tiếp nhận tới bàn giao, 12 bước, 47 ngày', steps: [
         { t: 'Tiếp nhận, lập hồ sơ và Scope Ledger v1', as: 'A0', off: 0, gate: false },
         { t: 'Soạn phiếu làm rõ yêu cầu', as: 'A5', off: 1, gate: true },
         { t: 'Quét trôi phạm vi tài liệu khách gửi', as: 'A3', off: 6, gate: false },
@@ -225,27 +241,42 @@
       git: { owner: 'latticeconsultant', repo: '', branch: 'main', tok: null },
       local: { dir: '~/LatticeWork', sync: false }
     };
+    var invites = [
+      { id: 'i1', mail: 'bacsi.an@example.com', role: 'guest', projs: [{ p: 'PKA', s: 'guest' }], by: 'u2', at: nowIso(60 * 5), exp: D(7), st: 'cho_duyet', hash: null, note: 'Bác sĩ phụ trách nội dung phía phòng khám' }
+    ];
     return {
-      ver: 1, people: people, projects: projects, agents: agents, tasks: tasks, chans: chans, msgs: msgs,
+      ver: 1, people: people, projects: projects, pm: pm, invites: invites, agents: agents, tasks: tasks, chans: chans, msgs: msgs,
       flows: flows, dms: dms, cfg: cfg, ledger: ledger, rates: rates, runs: {},
       log: [{ at: nowIso(1), by: 'system', act: 'seed', obj: '', d: 'Nạp dữ liệu mẫu' }]
     };
   }
 
   /* ---------- kho ---------- */
-  var DB = null;
+  var ST0 = null; // cả kho: các tổ chức, hộp thư mô phỏng, liên kết đăng nhập, lời đăng ký chờ xác nhận
+  var DB = null;  // không gian của tổ chức đang dùng
   var store = {
     get: function () { try { return root.localStorage ? root.localStorage.getItem(KEY) : null; } catch (e) { return null; } },
     set: function (v) { try { if (root.localStorage) root.localStorage.setItem(KEY, v); return true; } catch (e) { return false; } },
     del: function () { try { if (root.localStorage) root.localStorage.removeItem(KEY); } catch (e) { /* bỏ qua */ } }
   };
+  function freshStore() {
+    ST0 = { ver: 3, off: 0, cur: 'o1', orgs: [], ws: {}, outbox: [], links: [], pending: [], linkReq: {} };
+    ST0.orgs.push({ id: 'o1', n: 'LATTICE Next Solutions', created: today() });
+    ST0.ws.o1 = seed();
+    return ST0;
+  }
   function load() {
     var s = store.get();
-    if (s) { try { DB = JSON.parse(s); if (DB && DB.ver === 1) return DB; } catch (e) { /* hỏng thì nạp lại mẫu */ } }
-    DB = seed(); save(); return DB;
+    if (s) {
+      try {
+        ST0 = JSON.parse(s);
+        if (ST0 && ST0.ver === 3 && ST0.ws && ST0.orgs && ST0.orgs.length) { DB = ST0.ws[ST0.cur] || ST0.ws[ST0.orgs[0].id]; return DB; }
+      } catch (e) { /* hỏng thì nạp lại mẫu */ }
+    }
+    freshStore(); DB = ST0.ws[ST0.cur]; save(); return DB;
   }
-  function save() { return store.set(JSON.stringify(DB)); }
-  function reset() { store.del(); DB = seed(); save(); return DB; }
+  function save() { return store.set(JSON.stringify(ST0)); }
+  function reset() { store.del(); freshStore(); DB = ST0.ws[ST0.cur]; save(); return DB; }
   function use(db) { DB = db; return DB; } // cho kiểm thử
 
   function log(by, act, obj, d) {
@@ -265,7 +296,23 @@
 
   /* ---------- 4 · phân quyền ---------- */
   function can(action, u) { return !!u && (PERM[action] || []).indexOf(u.role) >= 0; }
-  function projsOf(u) { return u.role === 'owner' ? DB.projects.map(function (p) { return p.id; }) : (u.sc.proj || []).slice(); }
+  function isOwner(u) { return !!u && u.role === 'owner'; }
+  function memberRow(pr, pid) { return DB.pm.find(function (m) { return m.p === pr && m.u === pid; }) || null; }
+  function rowActive(m) { var p = project(m.p); return !!p && p.st !== 'luu_tru' && (!m.exp || m.exp >= today()); }
+  function projsOf(u) {
+    if (u.role === 'owner') return DB.projects.map(function (p) { return p.id; });
+    return DB.pm.filter(function (m) { return m.u === u.id && rowActive(m); }).map(function (m) { return m.p; });
+  }
+  function isLead(pr, u) { var p = project(pr); return !!p && !!u && p.lead === u.id; }
+  // Quản lý một dự án = chủ sở hữu, hoặc người chủ trì dự án đó.
+  function manages(pr, u) { return isOwner(u) || (isLead(pr, u) && u.role !== 'guest'); }
+  // Nhận việc được trong dự án = chủ sở hữu, hoặc thành viên (không phải khách) còn hiệu lực.
+  function canWorkIn(pr, pid) {
+    var p = person(pid); if (!p || p.st === 'thu_hoi' || p.role === 'guest') return false;
+    if (p.role === 'owner') return true;
+    var m = memberRow(pr, pid); return !!m && m.s !== 'guest' && rowActive(m);
+  }
+  function projArchived(pr) { var p = project(pr); return !!p && p.st === 'luu_tru'; }
   // 4.2 · Trục phạm vi — nhìn thấy gì
   function seeTask(t, u) { return u.role === 'owner' || projsOf(u).indexOf(t.pr) >= 0 || t.as === u.id || t.own === u.id; }
   function seeChan(c, u) { return c.mem.indexOf(u.id) >= 0; }
@@ -314,8 +361,8 @@
   }
 
   function mayTouch(t, u) {
-    if (u.role === 'guest') return false;
-    return u.role === 'owner' || (u.role === 'pm' && projsOf(u).indexOf(t.pr) >= 0) || t.as === u.id || t.own === u.id;
+    if (u.role === 'guest' || projArchived(t.pr)) return false;
+    return manages(t.pr, u) || t.as === u.id || t.own === u.id;
   }
 
   function createTask(f, uid) {
@@ -323,14 +370,18 @@
     if (!can('create', u)) throw new LWError('noCreate');
     if (!f.ttl || !String(f.ttl).trim()) throw new LWError('titleRequired');
     if (projsOf(u).indexOf(f.pr) < 0) throw new LWError('projOutOfScope');
+    if (projArchived(f.pr)) throw new LWError('projArchived');
     var as = f.as || null;
-    if (as && !isAgentId(as) && as !== u.id && !can('assignOthers', u)) throw new LWError('cannotAssignOthers');
+    var boss = can('assignOthers', u) && manages(f.pr, u);
+    if (as && !isAgentId(as) && as !== u.id && !boss) throw new LWError('cannotAssignOthers');
+    // Chỉ giao cho người đã là thành viên của dự án — muốn giao người ngoài thì mời vào dự án trước.
+    if (as && !isAgentId(as) && !canWorkIn(f.pr, as)) throw new LWError('notProjectMember', actorName(as) + ' · ' + f.pr);
     var own;
     if (as && isAgentId(as)) {
       var a = agent(as); if (!a) throw new LWError('badAssignee');
-      own = (f.own && can('assignOthers', u)) ? f.own : a.sc.own; // agent tự lấy người chủ trì mặc định
+      own = (f.own && boss) ? f.own : a.sc.own; // agent tự lấy người chủ trì mặc định
     } else {
-      own = (f.own && can('assignOthers', u)) ? f.own : u.id;
+      own = (f.own && boss) ? f.own : u.id;
     }
     var t = {
       id: uid_short(), ttl: String(f.ttl).trim(), pr: f.pr, as: as, own: own,
@@ -355,9 +406,13 @@
       var u = mustPerson(actorId);
       if (!seeTask(old, u)) throw new LWError('notFound'); // ngoài phạm vi = không tồn tại
       if (!mayTouch(old, u)) throw new LWError('noPermission');
-      if ('as' in patch && patch.as !== old.as && patch.as && !isAgentId(patch.as) && patch.as !== u.id && !can('assignOthers', u)) throw new LWError('cannotAssignOthers');
-      if ('own' in patch && patch.own !== old.own && !can('assignOthers', u)) throw new LWError('noPermission');
-      if ('pr' in patch && patch.pr !== old.pr && projsOf(u).indexOf(patch.pr) < 0) throw new LWError('projOutOfScope');
+      var prNew = 'pr' in patch ? patch.pr : old.pr, boss = can('assignOthers', u) && manages(prNew, u);
+      if ('pr' in patch && patch.pr !== old.pr && (projsOf(u).indexOf(patch.pr) < 0 || !manages(patch.pr, u))) throw new LWError('projOutOfScope');
+      if (projArchived(prNew)) throw new LWError('projArchived');
+      if ('as' in patch && patch.as !== old.as && patch.as && !isAgentId(patch.as) && patch.as !== u.id && !boss) throw new LWError('cannotAssignOthers');
+      var asNew = 'as' in patch ? patch.as : old.as;
+      if (asNew && !isAgentId(asNew) && ('as' in patch || 'pr' in patch) && !canWorkIn(prNew, asNew)) throw new LWError('notProjectMember', actorName(asNew) + ' · ' + prNew);
+      if ('own' in patch && patch.own !== old.own && !boss) throw new LWError('noPermission');
     } else {
       // agent chỉ được đổi trạng thái việc giao cho chính nó
       if (old.as !== actorId) throw new LWError('noPermission');
@@ -422,7 +477,7 @@
   function editLedger(pr, item, src, actorId) {
     if (isAgentId(actorId)) throw new LWError('agentCannotEditLedger');
     var u = mustPerson(actorId);
-    if (!can('approve', u) || projsOf(u).indexOf(pr) < 0) throw new LWError('noPermission');
+    if (!manages(pr, u)) throw new LWError('noPermission');
     if (!item || !String(item).trim()) throw new LWError('titleRequired');
     if (!src || !String(src).trim()) throw new LWError('sourceRequired');
     var L = DB.ledger[pr] || (DB.ledger[pr] = { v: 0, items: [], log: [] });
@@ -746,10 +801,14 @@
     var u = mustPerson(uid);
     if (!can('launchFlow', u)) throw new LWError('noLaunch');
     var f = DB.flows.find(function (x) { return x.id === flowId; }); if (!f) throw new LWError('notFound');
+    if (f.st !== 'da_duyet') throw new LWError('flowNotApproved');
     if (projsOf(u).indexOf(opt.pr) < 0) throw new LWError('projOutOfScope');
+    if (!manages(opt.pr, u)) throw new LWError('noLaunch');
+    if (projArchived(opt.pr)) throw new LWError('projArchived');
     if (!/^\d{4}-\d{2}-\d{2}$/.test(opt.start || '')) throw new LWError('startRequired');
     f.steps.forEach(function (s, i) {
       if (s.as === 'NGUOI' && !person((opt.people || {})[i])) throw new LWError('flowNeedsPerson', (i + 1) + '. ' + s.t);
+      if (s.as === 'NGUOI' && !canWorkIn(opt.pr, opt.people[i])) throw new LWError('notProjectMember', actorName(opt.people[i]) + ' · ' + opt.pr);
       if (s.as !== 'NGUOI' && !agent(s.as)) throw new LWError('badAssignee', s.as);
     });
     var made = [];
@@ -771,18 +830,7 @@
   }
 
   /* ---------- đội, agent, cài đặt ---------- */
-  function login(mail, pw) {
-    var p = DB.people.find(function (x) { return x.mail.toLowerCase() === String(mail || '').trim().toLowerCase(); });
-    if (!p || sha256(p.pw.salt + ':' + pw) !== p.pw.hash) throw new LWError('badLogin');
-    log(p.id, 'login', '', ''); save();
-    return p;
-  }
-  function changePw(uid, oldPw, newPw) {
-    var p = mustPerson(uid);
-    if (sha256(p.pw.salt + ':' + oldPw) !== p.pw.hash) throw new LWError('badOldPw');
-    if (!newPw || newPw.length < 8) throw new LWError('pwTooShort');
-    p.pw = mkPw(newPw); log(uid, 'pw.change', '', ''); save();
-  }
+
   function updateSelf(uid, f) {
     var p = mustPerson(uid);
     ['n', 'ini', 'av', 'r', 'bio'].forEach(function (k) { if (k in f) p[k] = f[k]; });
@@ -798,15 +846,15 @@
     var dup = DB.people.find(function (p) { return p.mail.toLowerCase() === f.mail.toLowerCase() && p.id !== f.id; });
     if (dup) throw new LWError('mailTaken');
     var p = f.id ? person(f.id) : null;
-    if (p) {
-      var owners = DB.people.filter(function (x) { return x.role === 'owner'; });
-      if (p.role === 'owner' && f.role !== 'owner' && owners.length === 1) throw new LWError('lastOwner');
-      if ((f.role === 'mem' || f.role === 'guest') && DB.agents.some(function (a) { return a.sc.own === p.id; })) throw new LWError('stillOwnsAgents');
-      p.n = f.n; p.mail = f.mail; p.r = f.r || ''; p.role = f.role; p.cap = Math.max(0, parseInt(f.cap, 10) || 0); p.sc.proj = (f.proj || []).slice();
-    } else {
-      p = { id: 'u' + uid_short().slice(1), n: f.n, ini: initials(f.n), av: null, mail: f.mail, r: f.r || '', bio: '', role: f.role, cap: Math.max(0, parseInt(f.cap, 10) || 0), sc: { proj: (f.proj || []).slice() }, pw: mkPw(DEMO_PW) };
-      DB.people.push(p);
-    }
+    if (!p) throw new LWError('useInvite'); // người mới vào tổ chức chỉ bằng lời mời
+    var owners = DB.people.filter(function (x) { return x.role === 'owner' && x.st !== 'thu_hoi'; });
+    if (p.role === 'owner' && f.role !== 'owner' && owners.length === 1) throw new LWError('lastOwner');
+    if ((f.role === 'mem' || f.role === 'guest') && DB.agents.some(function (a) { return a.sc.own === p.id; })) throw new LWError('stillOwnsAgents');
+    if ((f.role === 'mem' || f.role === 'guest') && DB.projects.some(function (x) { return x.lead === p.id; })) throw new LWError('stillLeadsProject');
+    var wasGuest = p.role === 'guest';
+    p.n = f.n; p.mail = f.mail; p.r = f.r || ''; p.role = f.role; p.cap = Math.max(0, parseInt(f.cap, 10) || 0);
+    // Đổi giữa khách mời và thành viên thì đổi luôn tư cách trong các dự án đang tham gia.
+    if (wasGuest !== (f.role === 'guest')) DB.pm.forEach(function (m) { if (m.u === p.id && m.s !== 'lead') { m.s = f.role === 'guest' ? 'guest' : 'member'; if (m.s !== 'guest') m.exp = null; } });
     log(uid, 'person.save', p.id, p.n + ' · ' + p.role); save();
     return p;
   }
@@ -852,6 +900,402 @@
     log(uid, 'secret.set', group + '.' + field, 'đã đặt (giá trị không lưu)'); save();
   }
 
+
+  /* ==========================================================
+     TỔ CHỨC, TÀI KHOẢN, LỜI MỜI, DỰ ÁN, LUỒNG MẪU CÓ DUYỆT
+     Đặc tả: docs/dac-ta-tai-khoan-phan-quyen.md
+     ========================================================== */
+  function normMail(m) { return String(m || '').trim().toLowerCase(); }
+  function validMail(m) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m); }
+  function token() { return (uid() + uid()).replace(/-/g, ''); }
+  function rid(n) { return uid().replace(/-/g, '').slice(0, n); } // mã ngắn — không đụng tên tham số uid của các hàm
+  function orgs() { return ST0.orgs.slice(); }
+  function curOrg() { return ST0.orgs.find(function (o) { return o.id === ST0.cur; }) || null; }
+  function useOrg(id) { if (!ST0.ws[id]) throw new LWError('notFound'); ST0.cur = id; DB = ST0.ws[id]; save(); return DB; }
+  function wsActive(ws, p) {
+    if (!p || p.st === 'thu_hoi') return false;
+    if (p.role !== 'guest') return true;
+    var T = today();
+    return ws.pm.some(function (m) { var pr = ws.projects.find(function (x) { return x.id === m.p; }); return m.u === p.id && pr && pr.st !== 'luu_tru' && (!m.exp || m.exp >= T); });
+  }
+  // Mọi tổ chức mà email này đang có tài khoản dùng được.
+  function accountsFor(mail) {
+    var m = normMail(mail), out = [];
+    ST0.orgs.forEach(function (o) {
+      var ws = ST0.ws[o.id], p = ws.people.find(function (x) { return x.mail.toLowerCase() === m; });
+      if (p && wsActive(ws, p)) out.push({ org: o, person: p });
+    });
+    return out;
+  }
+  function outboxPush(o) {
+    ST0.outbox.unshift(Object.assign({ id: 'mail' + rid(6), at: nowIso(0), org: curOrg() ? curOrg().n : '' }, o));
+    if (ST0.outbox.length > 60) ST0.outbox.length = 60;
+  }
+  function outbox() { return ST0.outbox.slice(); }
+
+  // Đăng nhập bằng mật khẩu — khóa 15 phút sau 5 lần sai liên tiếp.
+  function login(mail, pw) {
+    var m = normMail(mail), ok = [], locked = false, inactive = false;
+    ST0.orgs.forEach(function (o) {
+      var ws = ST0.ws[o.id], p = ws.people.find(function (x) { return x.mail.toLowerCase() === m; });
+      if (!p || !p.pw) return;
+      if (p.lockUntil && p.lockUntil > Date.now()) { locked = true; return; }
+      if (sha256(p.pw.salt + ':' + pw) === p.pw.hash) {
+        p.fails = 0;
+        if (wsActive(ws, p)) ok.push({ org: o, person: p }); else inactive = true;
+      } else {
+        p.fails = (p.fails || 0) + 1;
+        if (p.fails >= 5) { p.fails = 0; p.lockUntil = Date.now() + 15 * 60000; }
+      }
+    });
+    save();
+    if (ok.length) return ok;
+    if (locked) throw new LWError('pwLocked');
+    if (inactive) throw new LWError('accountInactive');
+    throw new LWError('badLogin');
+  }
+  // Liên kết đăng nhập qua email — 15 phút, dùng một lần, chỉ lưu bản băm. Luôn trả về như nhau để không lộ email nào có tài khoản.
+  function requestLink(mail) {
+    var m = normMail(mail); if (!validMail(m)) throw new LWError('personFields');
+    var now = Date.now(), rq = (ST0.linkReq[m] || []).filter(function (x) { return now - x < 3600000; });
+    if (rq.length >= 5) { ST0.linkReq[m] = rq; save(); return true; }
+    rq.push(now); ST0.linkReq[m] = rq;
+    if (accountsFor(m).length) {
+      var code = token();
+      ST0.links.push({ hash: sha256(code), mail: m, exp: now + 15 * 60000, used: false });
+      outboxPush({ to: m, kind: 'login', code: code, subj: 'Liên kết đăng nhập LATTICE Work', body: 'Bấm liên kết để đăng nhập. Liên kết dùng một lần và hết hạn sau 15 phút. Nếu bạn không yêu cầu, hãy bỏ qua thư này.' });
+    }
+    save(); return true;
+  }
+  function useLink(code) {
+    var h = sha256(String(code || '')), l = ST0.links.find(function (x) { return x.hash === h; });
+    if (!l || l.used || l.exp < Date.now()) throw new LWError('linkInvalid');
+    l.used = true; save();
+    var acc = accountsFor(l.mail); if (!acc.length) throw new LWError('accountInactive');
+    return acc;
+  }
+  function setPw(uid, oldPw, newPw) {
+    var p = mustPerson(uid);
+    if (p.pw && sha256(p.pw.salt + ':' + oldPw) !== p.pw.hash) throw new LWError('badOldPw');
+    if (!newPw || newPw.length < 10) throw new LWError('pwTooShort');
+    p.pw = mkPw(newPw); log(uid, p.pw ? 'pw.set' : 'pw.change', '', ''); save();
+  }
+  function removePw(uid, oldPw) {
+    var p = mustPerson(uid);
+    if (!p.pw) return;
+    if (sha256(p.pw.salt + ':' + oldPw) !== p.pw.hash) throw new LWError('badOldPw');
+    p.pw = null; log(uid, 'pw.remove', '', 'chỉ đăng nhập bằng liên kết email'); save();
+  }
+
+  // Đăng ký công khai chỉ để tạo tổ chức mới; người đăng ký thành chủ sở hữu.
+  function startSignup(f) {
+    var m = normMail(f.mail), n = String(f.n || '').trim(), on = String(f.org || '').trim();
+    if (!validMail(m) || !n || !on) throw new LWError('signupFields');
+    var code = token();
+    ST0.pending.push({ hash: sha256(code), mail: m, n: n, org: on, exp: Date.now() + 24 * 3600000, used: false });
+    outboxPush({ to: m, kind: 'signup', code: code, org: on, subj: 'Xác nhận tạo tổ chức trên LATTICE Work', body: 'Bấm liên kết để xác nhận email và tạo tổ chức "' + on + '". Bạn sẽ là chủ sở hữu. Liên kết hết hạn sau 24 giờ.' });
+    save(); return true;
+  }
+  function completeSignup(code) {
+    var h = sha256(String(code || '')), pd = ST0.pending.find(function (x) { return x.hash === h; });
+    if (!pd || pd.used || pd.exp < Date.now()) throw new LWError('linkInvalid');
+    pd.used = true;
+    var id = 'o' + rid(6), pid = 'u' + rid(8);
+    var owner = { id: pid, n: pd.n, ini: initials(pd.n), av: null, mail: pd.mail, r: 'Chủ sở hữu', bio: '', role: 'owner', cap: 8, pw: null };
+    ST0.orgs.push({ id: id, n: pd.org, created: today() });
+    ST0.ws[id] = {
+      ver: 1, people: [owner], projects: [], pm: [], invites: [], agents: [], tasks: [],
+      chans: [{ id: 'c1', n: 'chung', d: 'Toàn tổ chức', mem: [pid] }], msgs: [], flows: [], dms: {},
+      cfg: { ai: { prov: 'Anthropic', model: 'claude-opus-5', tok: 4000, key: null }, mail: { from: pd.mail, conn: false, n: [pd.mail] }, drive: { conn: false, root: '', pat: '{du_an}/goc' }, vps: { host: '', user: 'agent', path: '/srv/work', fp: '' }, git: { owner: '', repo: '', branch: 'main', tok: null }, local: { dir: '', sync: false } },
+      ledger: {}, rates: { dayRate: 3500000, items: [] }, runs: {},
+      log: [{ at: nowIso(0), by: pid, act: 'org.create', obj: id, d: pd.org }]
+    };
+    save();
+    return { org: ST0.orgs[ST0.orgs.length - 1], person: owner };
+  }
+
+  /* ---------- dự án ---------- */
+  var PROJ_ST = ['dang_chay', 'da_ban_giao', 'luu_tru'];
+  function members(pr) { return DB.pm.filter(function (m) { return m.p === pr; }); }
+  function createProject(f, uid) {
+    var u = mustPerson(uid); if (!isOwner(u)) throw new LWError('onlyOwnerProject');
+    var id = String(f.id || '').trim().toUpperCase(), n = String(f.n || '').trim();
+    if (!/^[A-Z][A-Z0-9]{1,5}$/.test(id)) throw new LWError('projCode');
+    if (project(id)) throw new LWError('projTaken');
+    if (!n) throw new LWError('titleRequired');
+    var lead = person(f.lead); if (!lead || (lead.role !== 'owner' && lead.role !== 'pm') || lead.st === 'thu_hoi') throw new LWError('leadRole');
+    DB.projects.push({ id: id, n: n, lead: lead.id, st: 'dang_chay', created: today(), handed: null });
+    DB.pm.push({ p: id, u: lead.id, s: 'lead', exp: null });
+    log(uid, 'project.create', id, n + ' · chủ trì ' + lead.n); save();
+    return project(id);
+  }
+  function setLead(pr, pid, uid) {
+    var u = mustPerson(uid); if (!isOwner(u)) throw new LWError('onlyOwnerProject');
+    var p = project(pr); if (!p) throw new LWError('notFound');
+    var lead = person(pid); if (!lead || (lead.role !== 'owner' && lead.role !== 'pm') || lead.st === 'thu_hoi') throw new LWError('leadRole');
+    DB.pm.forEach(function (m) { if (m.p === pr && m.s === 'lead') m.s = 'member'; });
+    var row = memberRow(pr, pid); if (row) { row.s = 'lead'; row.exp = null; } else DB.pm.push({ p: pr, u: pid, s: 'lead', exp: null });
+    p.lead = pid;
+    log(uid, 'project.lead', pr, lead.n); save();
+  }
+  function handover(pr, uid) {
+    var u = mustPerson(uid), p = project(pr); if (!p) throw new LWError('notFound');
+    if (!manages(pr, u)) throw new LWError('noPermission');
+    if (p.st !== 'dang_chay') throw new LWError('badProjState');
+    p.st = 'da_ban_giao'; p.handed = today();
+    // Khách mời tự khóa 30 ngày sau bàn giao.
+    var exp = addDays(p.handed, 30), n = 0;
+    DB.pm.forEach(function (m) { if (m.p === pr && m.s === 'guest') { m.exp = exp; n++; } });
+    log(uid, 'project.handover', pr, n + ' khách mời hết hạn ' + exp); save();
+    return exp;
+  }
+  function archive(pr, uid) {
+    var u = mustPerson(uid), p = project(pr); if (!p) throw new LWError('notFound');
+    if (!isOwner(u)) throw new LWError('onlyOwnerProject');
+    if (p.st !== 'da_ban_giao') throw new LWError('badProjState');
+    p.st = 'luu_tru'; log(uid, 'project.archive', pr, ''); save();
+  }
+  function reopenProject(pr, uid) {
+    var u = mustPerson(uid), p = project(pr); if (!p) throw new LWError('notFound');
+    if (!isOwner(u)) throw new LWError('onlyOwnerProject');
+    if (p.st === 'dang_chay') throw new LWError('badProjState');
+    p.st = 'dang_chay'; p.handed = null;
+    DB.pm.forEach(function (m) { if (m.p === pr && m.s === 'guest') m.exp = null; });
+    log(uid, 'project.reopen', pr, ''); save();
+  }
+  function addMember(pr, pid, uid) {
+    var u = mustPerson(uid), p = project(pr), who = person(pid);
+    if (!p || !who) throw new LWError('notFound');
+    if (!manages(pr, u)) throw new LWError('noPermission');
+    if (p.st === 'luu_tru') throw new LWError('projArchived');
+    if (who.st === 'thu_hoi') throw new LWError('accountInactive');
+    if (who.role === 'guest' && !isOwner(u)) throw new LWError('guestNeedsOwner');
+    var s = who.role === 'guest' ? 'guest' : 'member';
+    var exp = s === 'guest' && p.handed ? addDays(p.handed, 30) : null;
+    var row = memberRow(pr, pid);
+    if (row) { if (row.s !== 'lead') { row.s = s; row.exp = exp; } }
+    else DB.pm.push({ p: pr, u: pid, s: s, exp: exp });
+    log(uid, 'project.member.add', pr, who.n + ' · ' + s); save();
+  }
+  function removeMember(pr, pid, uid) {
+    var u = mustPerson(uid), p = project(pr); if (!p) throw new LWError('notFound');
+    if (!manages(pr, u)) throw new LWError('noPermission');
+    if (p.lead === pid) throw new LWError('removeLead');
+    if (DB.tasks.some(function (t) { return t.pr === pr && t.st !== 'xong' && (t.as === pid || t.own === pid); })) throw new LWError('memberHasWork');
+    DB.pm = DB.pm.filter(function (m) { return !(m.p === pr && m.u === pid); });
+    log(uid, 'project.member.remove', pr, actorName(pid)); save();
+  }
+  function extendGuest(pr, pid, reason, uid) {
+    var u = mustPerson(uid); if (!isOwner(u)) throw new LWError('onlyOwnerProject');
+    if (!reason || !String(reason).trim()) throw new LWError('reasonRequired');
+    var row = memberRow(pr, pid); if (!row || row.s !== 'guest') throw new LWError('notFound');
+    var base = row.exp && row.exp > today() ? row.exp : today();
+    row.exp = addDays(base, 30);
+    log(uid, 'guest.extend', pr, actorName(pid) + ' → ' + row.exp + ' · ' + String(reason).trim()); save();
+    return row.exp;
+  }
+  // Khách mời sắp hết hạn trong 7 ngày, ở các dự án người này quản lý.
+  function expiringGuests(u) {
+    var T = today(), lim = addDays(T, 7);
+    return DB.pm.filter(function (m) { return m.s === 'guest' && m.exp && m.exp >= T && m.exp <= lim && manages(m.p, u); });
+  }
+  function expiredGuests(u) {
+    var T = today();
+    return DB.pm.filter(function (m) { return m.s === 'guest' && m.exp && m.exp < T && manages(m.p, u); });
+  }
+
+  /* ---------- thu hồi người ---------- */
+  function holdings(pid) {
+    var out = [];
+    DB.tasks.forEach(function (t) { if (t.st !== 'xong' && (t.own === pid || t.as === pid)) out.push('việc: ' + t.ttl); });
+    DB.agents.forEach(function (a) { if (a.sc.own === pid) out.push('agent: ' + a.id + ' ' + a.n); });
+    DB.projects.forEach(function (p) { if (p.lead === pid && p.st !== 'luu_tru') out.push('dự án: ' + p.id); });
+    DB.flows.forEach(function (f) { if (f.by === pid && (f.st === 'ban_nhap' || f.st === 'cho_duyet' || f.st === 'tra_lai')) out.push('luồng: ' + f.n); });
+    return out;
+  }
+  function revokePerson(pid, uid) {
+    var u = mustPerson(uid); if (!isOwner(u)) throw new LWError('noPermission');
+    var p = person(pid); if (!p) throw new LWError('notFound');
+    if (p.role === 'owner' && DB.people.filter(function (x) { return x.role === 'owner' && x.st !== 'thu_hoi'; }).length === 1) throw new LWError('lastOwner');
+    var h = holdings(pid); if (h.length) throw new LWError('mustHandOver', h.slice(0, 4).join(' · ') + (h.length > 4 ? ' …' : ''));
+    p.st = 'thu_hoi'; p.revokedAt = today();
+    log(uid, 'person.revoke', pid, p.n); save();
+  }
+  function restorePerson(pid, uid) {
+    var u = mustPerson(uid); if (!isOwner(u)) throw new LWError('noPermission');
+    var p = person(pid); if (!p) throw new LWError('notFound');
+    delete p.st; delete p.revokedAt; log(uid, 'person.restore', pid, p.n); save();
+  }
+
+  /* ---------- lời mời: 7 ngày, dùng một lần, chỉ lưu bản băm ---------- */
+  function inviteState(inv) { return inv.st === 'da_gui' && inv.exp < today() ? 'het_han' : inv.st; }
+  function sendInviteMail(inv, code) {
+    var inviter = person(inv.by);
+    outboxPush({ to: inv.mail, kind: 'invite', code: code, org: curOrg().n, subj: (inviter ? inviter.n : 'LATTICE Work') + ' mời bạn vào ' + curOrg().n, body: 'Bạn được mời tham gia ' + curOrg().n + ' trên LATTICE Work với vai trò ' + ({ owner: 'Chủ sở hữu', pm: 'Quản lý dự án', mem: 'Thành viên', guest: 'Khách mời' }[inv.role]) + (inv.projs.length ? ', dự án ' + inv.projs.map(function (x) { return x.p; }).join(', ') : '') + '. Lời mời dùng một lần và hết hạn ngày ' + inv.exp + '.' });
+  }
+  function createInvite(f, uid) {
+    var u = mustPerson(uid), m = normMail(f.mail);
+    if (!validMail(m)) throw new LWError('personFields');
+    if (ROLES.indexOf(f.role) < 0) throw new LWError('badRole');
+    var ex = DB.people.find(function (x) { return x.mail.toLowerCase() === m; });
+    if (ex) throw new LWError('alreadyMember', ex.n);
+    if (DB.invites.some(function (i) { return i.mail === m && (i.st === 'cho_duyet' || inviteState(i) === 'da_gui'); })) throw new LWError('inviteExists');
+    var projs = (f.projs || []).filter(function (p) { return project(p); });
+    if (isOwner(u)) { /* chủ sở hữu mời mọi vai trò */ }
+    else if (u.role === 'pm') {
+      if (f.role !== 'mem' && f.role !== 'guest') throw new LWError('pmInviteRole');
+      projs.forEach(function (p) { if (!isLead(p, u)) throw new LWError('projOutOfScope', p); });
+    } else throw new LWError('noPermission');
+    if ((f.role === 'mem' || f.role === 'guest') && !projs.length) throw new LWError('needProject');
+    projs.forEach(function (p) { if (projArchived(p)) throw new LWError('projArchived', p); });
+    var needs = f.role === 'guest' && !isOwner(u);
+    var inv = { id: 'i' + rid(7), mail: m, role: f.role, projs: projs.map(function (p) { return { p: p, s: f.role === 'guest' ? 'guest' : 'member' }; }), by: uid, at: nowIso(0), exp: addDays(today(), 7), st: needs ? 'cho_duyet' : 'da_gui', hash: null, note: String(f.note || '').trim() };
+    var code = null;
+    if (!needs) { code = token(); inv.hash = sha256(code); }
+    DB.invites.unshift(inv);
+    if (code) sendInviteMail(inv, code);
+    log(uid, needs ? 'invite.request' : 'invite.send', inv.id, m + ' · ' + f.role); save();
+    return { inv: inv, code: code };
+  }
+  function approveInvite(id, uid) {
+    var u = mustPerson(uid); if (!isOwner(u)) throw new LWError('onlyOwnerInvite');
+    var inv = DB.invites.find(function (i) { return i.id === id; }); if (!inv) throw new LWError('notFound');
+    if (inv.st !== 'cho_duyet') throw new LWError('inviteState');
+    var code = token(); inv.hash = sha256(code); inv.st = 'da_gui'; inv.exp = addDays(today(), 7); inv.appr = uid;
+    sendInviteMail(inv, code);
+    log(uid, 'invite.approve', id, inv.mail); save();
+    return code;
+  }
+  function rejectInvite(id, reason, uid) {
+    var u = mustPerson(uid); if (!isOwner(u)) throw new LWError('onlyOwnerInvite');
+    if (!reason || !String(reason).trim()) throw new LWError('reasonRequired');
+    var inv = DB.invites.find(function (i) { return i.id === id; }); if (!inv || inv.st !== 'cho_duyet') throw new LWError('inviteState');
+    inv.st = 'tu_choi'; inv.why = String(reason).trim();
+    log(uid, 'invite.reject', id, inv.mail + ' · ' + inv.why); save();
+  }
+  function revokeInvite(id, uid) {
+    var u = mustPerson(uid), inv = DB.invites.find(function (i) { return i.id === id; });
+    if (!inv) throw new LWError('notFound');
+    if (!isOwner(u) && inv.by !== uid) throw new LWError('noPermission');
+    if (inv.st !== 'cho_duyet' && inv.st !== 'da_gui') throw new LWError('inviteState');
+    inv.st = 'thu_hoi'; log(uid, 'invite.revoke', id, inv.mail); save();
+  }
+  // Tìm lời mời theo mã trên mọi tổ chức (trang nhận lời mời chưa đăng nhập).
+  function findInvite(code) {
+    var h = sha256(String(code || '')), hit = null;
+    ST0.orgs.forEach(function (o) { var inv = ST0.ws[o.id].invites.find(function (i) { return i.hash === h; }); if (inv && !hit) hit = { org: o, inv: inv }; });
+    if (!hit) throw new LWError('inviteInvalid');
+    var save0 = DB; DB = ST0.ws[hit.org.id];
+    var st = inviteState(hit.inv), who = person(hit.inv.by);
+    DB = save0;
+    if (st !== 'da_gui') throw new LWError('inviteInvalid');
+    return { org: hit.org, inv: hit.inv, by: who ? who.n : '' };
+  }
+  function acceptInvite(code, f) {
+    var hit = findInvite(code), ws = ST0.ws[hit.org.id], inv = hit.inv;
+    var n = String(f.n || '').trim(); if (!n) throw new LWError('titleRequired');
+    if (f.pw && f.pw.length < 10) throw new LWError('pwTooShort');
+    if (ws.people.some(function (x) { return x.mail.toLowerCase() === inv.mail; })) throw new LWError('inviteInvalid');
+    var p = { id: 'u' + rid(8), n: n, ini: initials(n), av: null, mail: inv.mail, r: '', bio: '', role: inv.role, cap: inv.role === 'guest' ? 0 : 4, pw: f.pw ? mkPw(f.pw) : null };
+    ws.people.push(p);
+    inv.projs.forEach(function (x) { if (!ws.pm.some(function (m) { return m.p === x.p && m.u === p.id; })) ws.pm.push({ p: x.p, u: p.id, s: x.s, exp: null }); });
+    // khách mời thấy kênh của dự án được mời; người trong đội vào kênh chung
+    ws.chans.forEach(function (c) { if (inv.role === 'guest' ? inv.projs.some(function (x) { return c.n.indexOf(x.p.toLowerCase()) >= 0; }) : c.n === 'chung') { if (c.mem.indexOf(p.id) < 0) c.mem.push(p.id); } });
+    inv.st = 'da_dung'; inv.usedAt = nowIso(0); inv.hash = null;
+    ws.log.unshift({ at: nowIso(0), by: p.id, act: 'invite.accept', obj: inv.id, d: p.n + ' · ' + p.role });
+    save();
+    return { org: hit.org, person: p };
+  }
+
+  /* ---------- luồng mẫu: người soạn và người duyệt tách nhau ---------- */
+  function flowById(id) { return DB.flows.find(function (f) { return f.id === id; }) || null; }
+  function checkSteps(steps) {
+    if (!steps || !steps.length) throw new LWError('flowEmpty');
+    steps.forEach(function (s, i) {
+      if (!String(s.t || '').trim()) throw new LWError('flowStep', i + 1);
+      if (s.as !== 'NGUOI' && !agent(s.as)) throw new LWError('badAssignee', s.as);
+      if (!(parseInt(s.off, 10) >= 0)) throw new LWError('flowStep', i + 1);
+    });
+    return steps.map(function (s) { return { t: String(s.t).trim(), as: s.as, off: parseInt(s.off, 10), gate: !!s.gate }; });
+  }
+  function saveFlowDraft(f, uid) {
+    var u = mustPerson(uid); if (u.role !== 'owner' && u.role !== 'pm') throw new LWError('noPermission');
+    var steps = checkSteps(f.steps), n = String(f.n || '').trim(); if (!n) throw new LWError('titleRequired');
+    var x = f.id ? flowById(f.id) : null;
+    if (x) {
+      if (x.st !== 'ban_nhap' && x.st !== 'tra_lai') throw new LWError('flowNotDraft');
+      if (x.by !== uid && !isOwner(u)) throw new LWError('noPermission');
+      x.n = n; x.d = String(f.d || '').trim(); x.steps = steps; x.st = 'ban_nhap';
+    } else {
+      var id = 'f' + rid(6);
+      x = { id: id, fam: id, v: 1, st: 'ban_nhap', by: uid, at: nowIso(0), appr: null, apprAt: null, note: null, n: n, d: String(f.d || '').trim(), steps: steps };
+      DB.flows.unshift(x);
+    }
+    log(uid, 'flow.save', x.id, x.n + ' v' + x.v); save();
+    return x;
+  }
+  function submitFlow(id, uid) {
+    var u = mustPerson(uid), x = flowById(id); if (!x) throw new LWError('notFound');
+    if (x.by !== uid && !isOwner(u)) throw new LWError('noPermission');
+    if (x.st !== 'ban_nhap' && x.st !== 'tra_lai') throw new LWError('flowNotDraft');
+    x.st = 'cho_duyet'; x.at = nowIso(0);
+    log(uid, 'flow.submit', id, x.n + ' v' + x.v); save();
+  }
+  function approveFlow(id, uid) {
+    var u = mustPerson(uid); if (!isOwner(u)) throw new LWError('onlyOwnerFlow');
+    var x = flowById(id); if (!x) throw new LWError('notFound');
+    if (x.st !== 'cho_duyet') throw new LWError('flowNotPending');
+    var others = DB.people.some(function (p) { return p.role === 'owner' && p.id !== uid && p.st !== 'thu_hoi'; });
+    if (x.by === uid && others) throw new LWError('noSelfApprove');
+    DB.flows.forEach(function (o) { if (o.fam === x.fam && o.id !== x.id && o.st === 'da_duyet') o.st = 'ngung'; });
+    x.st = 'da_duyet'; x.appr = uid; x.apprAt = nowIso(0); x.self = x.by === uid;
+    log(uid, 'flow.approve', id, x.n + ' v' + x.v + (x.self ? ' · tự duyệt (chủ sở hữu duy nhất)' : '')); save();
+  }
+  function returnFlow(id, reason, uid) {
+    var u = mustPerson(uid); if (!isOwner(u)) throw new LWError('onlyOwnerFlow');
+    if (!reason || !String(reason).trim()) throw new LWError('reasonRequired');
+    var x = flowById(id); if (!x || x.st !== 'cho_duyet') throw new LWError('flowNotPending');
+    x.st = 'tra_lai'; x.note = String(reason).trim();
+    log(uid, 'flow.return', id, x.note); save();
+  }
+  function newFlowVersion(id, uid) {
+    var u = mustPerson(uid); if (u.role !== 'owner' && u.role !== 'pm') throw new LWError('noPermission');
+    var x = flowById(id); if (!x || x.st !== 'da_duyet') throw new LWError('flowNotApproved');
+    var open = DB.flows.find(function (o) { return o.fam === x.fam && (o.st === 'ban_nhap' || o.st === 'cho_duyet' || o.st === 'tra_lai'); });
+    if (open) return open;
+    var v = Math.max.apply(null, DB.flows.filter(function (o) { return o.fam === x.fam; }).map(function (o) { return o.v; })) + 1;
+    var y = { id: 'f' + rid(6), fam: x.fam, v: v, st: 'ban_nhap', by: uid, at: nowIso(0), appr: null, apprAt: null, note: null, n: x.n, d: x.d, steps: clone(x.steps) };
+    DB.flows.unshift(y);
+    log(uid, 'flow.version', y.id, y.n + ' v' + v); save();
+    return y;
+  }
+  function retireFlow(id, uid) {
+    var u = mustPerson(uid); if (!isOwner(u)) throw new LWError('onlyOwnerFlow');
+    var x = flowById(id); if (!x || x.st !== 'da_duyet') throw new LWError('flowNotApproved');
+    x.st = 'ngung'; log(uid, 'flow.retire', id, x.n); save();
+  }
+  function deleteDraftFlow(id, uid) {
+    var u = mustPerson(uid), x = flowById(id); if (!x) throw new LWError('notFound');
+    if (x.st !== 'ban_nhap' && x.st !== 'tra_lai') throw new LWError('flowNotDraft');
+    if (x.by !== uid && !isOwner(u)) throw new LWError('noPermission');
+    DB.flows = DB.flows.filter(function (o) { return o.id !== id; });
+    log(uid, 'flow.discard', id, x.n); save();
+  }
+
+  /* ---------- đồng hồ mô phỏng: tua ngày để thử hạn dùng ---------- */
+  function shiftDays(n, uid) {
+    var u = mustPerson(uid); if (!isOwner(u)) throw new LWError('noPermission');
+    ST0.off = n === 0 ? 0 : (ST0.off || 0) + n;
+    log(uid, 'clock.shift', '', (ST0.off >= 0 ? '+' : '') + ST0.off + ' ngày'); save();
+    return ST0.off;
+  }
+  function dayOffset() { return (ST0 && ST0.off) || 0; }
+  // Tài khoản mẫu của LATTICE để điền nhanh ở màn đăng nhập (chỉ bản mẫu).
+  function demoPeople() {
+    var ws = ST0 && ST0.ws.o1; if (!ws) return [];
+    return ws.people.filter(function (p) { return p.pw && wsActive(ws, p); }).map(function (p) { return { n: p.n, ini: p.ini, av: p.av, mail: p.mail, role: p.role }; });
+  }
+
   root.LW = {
     KEY: KEY, ST: ST, ROLES: ROLES, READS: READS, CANS: CANS, PERM: PERM, FORBIDDEN: FORBIDDEN, DEMO_PW: DEMO_PW,
     LWError: LWError, sha256: sha256, today: today, addDays: addDays, vnd: vnd,
@@ -863,6 +1307,15 @@
     sendEmail: sendEmail, editLedger: editLedger, probeForbidden: probeForbidden,
     buildContext: buildContext, runAgent: runAgent, runsToday: runsToday, dmSend: dmSend,
     postMsg: postMsg, msgToTask: msgToTask, saveChan: saveChan, launchFlow: launchFlow,
-    login: login, changePw: changePw, updateSelf: updateSelf, savePerson: savePerson, saveAgent: saveAgent, saveCfg: saveCfg, addRate: addRate, setSecret: setSecret
+    login: login, setPw: setPw, changePw: setPw, removePw: removePw, updateSelf: updateSelf,
+    orgs: orgs, curOrg: curOrg, useOrg: useOrg, accountsFor: accountsFor, outbox: outbox, requestLink: requestLink, useLink: useLink,
+    startSignup: startSignup, completeSignup: completeSignup,
+    isOwner: isOwner, isLead: isLead, manages: manages, canWorkIn: canWorkIn, members: members, memberRow: memberRow, rowActive: rowActive, PROJ_ST: PROJ_ST,
+    createProject: createProject, setLead: setLead, handover: handover, archive: archive, reopenProject: reopenProject,
+    addMember: addMember, removeMember: removeMember, extendGuest: extendGuest, expiringGuests: expiringGuests, expiredGuests: expiredGuests,
+    holdings: holdings, revokePerson: revokePerson, restorePerson: restorePerson,
+    inviteState: inviteState, createInvite: createInvite, approveInvite: approveInvite, rejectInvite: rejectInvite, revokeInvite: revokeInvite, findInvite: findInvite, acceptInvite: acceptInvite,
+    flowById: flowById, saveFlowDraft: saveFlowDraft, submitFlow: submitFlow, approveFlow: approveFlow, returnFlow: returnFlow, newFlowVersion: newFlowVersion, retireFlow: retireFlow, deleteDraftFlow: deleteDraftFlow,
+    shiftDays: shiftDays, dayOffset: dayOffset, demoPeople: demoPeople, savePerson: savePerson, saveAgent: saveAgent, saveCfg: saveCfg, addRate: addRate, setSecret: setSecret
   };
 })(typeof window !== 'undefined' ? window : globalThis);

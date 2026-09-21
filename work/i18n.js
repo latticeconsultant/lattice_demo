@@ -831,3 +831,6 @@ Object.assign(window.I18N, {
   'proj.avEditS': ['Đổi, dịch chuyển, phóng to / thu nhỏ', 'Change, move, zoom'],
   'proj.avSaved': ['Đã đổi ảnh dự án', 'Project photo updated']
 });
+Object.assign(window.I18N, {
+  'waitApprover': ['Chờ {0} duyệt', 'Waiting for {0}']
+});

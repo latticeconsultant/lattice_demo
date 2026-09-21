@@ -65,7 +65,14 @@
   function fmtDate(s) { if (!s) return '—'; var p = s.split('-'); return p[2] + '/' + p[1]; }
   function overdue(x) { return x.st !== 'xong' && x.due && x.due < LW.today(); }
   function opt(v, label, cur) { return '<option value="' + esc(v) + '"' + (String(cur) === String(v) ? ' selected' : '') + '>' + esc(label) + '</option>'; }
-  function shortName(id) { if (LW.isAgentId(id)) return id; var p = LW.person(id); return p ? p.n.split(' ').slice(-1)[0] : '—'; }
+  // Tên gọi ngắn: tiếng Việt lấy tên cuối (Nguyễn Văn Dũng → Dũng); tên tây hoặc viết tắt thì lấy tên đầu (Thomas Le → Thomas, Claudia J. → Claudia).
+  function shortName(id) {
+    if (LW.isAgentId(id)) return id;
+    var p = LW.person(id); if (!p) return '—';
+    var w = String(p.n).trim().split(/\s+/), cuoi = w[w.length - 1];
+    if (w.length > 1 && (cuoi.length <= 2 || /\.$/.test(cuoi))) return w[0];
+    return cuoi;
+  }
   function name(id) { return LW.actorName(id); }
   function stName(s) { return t('st.' + s); }
   function roleName(r) { return t('role.' + r); }
@@ -533,7 +540,12 @@
       '<button class="tc-t" data-act="open-task" data-id="' + x.id + '">' + esc(x.ttl) + '</button>' +
       '<div class="tc-f">' + (x.as ? avatar(x.as, 'xs') : '<span class="av none xs"></span>') + '<span class="tc-who">' + esc(x.as ? shortName(x.as) : t('unassigned')) + '</span>' +
       (x.thr.length ? '<span class="tc-n">' + ic('chat', 'xs') + x.thr.length + '</span>' : '') +
-      '<span class="tc-d' + (overdue(x) ? ' late' : '') + '">' + ic('clock', 'xs') + fmtDate(x.due) + '</span></div></article>';
+      '<span class="tc-d' + (overdue(x) ? ' late' : '') + '">' + ic('clock', 'xs') + fmtDate(x.due) + '</span></div>' +
+      // Chờ duyệt: nói rõ ai duyệt, và cho người chủ trì duyệt ngay trên thẻ
+      (x.st === 'cho_duyet' ? (x.own === u.id
+        ? '<div class="tc-a"><button class="chipbtn dark" data-act="approve" data-id="' + x.id + '">' + ic('check') + t('approve') + '</button><button class="chipbtn" data-act="return" data-id="' + x.id + '">' + ic('undo') + t('ret.go') + '</button></div>'
+        : '<p class="tc-wait">' + ic('lock', 'xs') + t('waitApprover', esc(shortName(x.own))) + '</p>') : '') +
+      '</article>';
   }
   function viewTasks(u) {
     var who = S.f.who ? LW.person(S.f.who) : null;

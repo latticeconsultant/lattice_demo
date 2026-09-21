@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LATTICE · Mô hình vận hành doanh nghiệp một người</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#201E1D; --n700:#605D5D; --n400:#BAB6B6; --bg2:#EAE9E9; --bg:#F3F2F2;
+  --red:#EC3013; --redd:#AE1800;
+  --rule:2px solid var(--ink); --hair:1px solid var(--n400);
+  --w:1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:400;line-height:1.62;font-size:16px;text-align:left;padding-bottom:120px}
+
+#bar{position:sticky;top:0;z-index:60;background:var(--bg2);border-bottom:var(--rule);padding:10px 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#bar .lbl{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--n700);margin-right:6px}
+#bar button{font-family:inherit;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;background:transparent;color:var(--ink);border:var(--hair);padding:7px 12px;cursor:pointer}
+#bar button:hover{border-color:var(--ink)}
+#bar button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+#bar .sp{flex:1}
+#bar .pr{border-color:var(--ink)}
+#stage{width:100%}
+#stage.tablet{max-width:834px;margin:0 auto;border-left:var(--hair);border-right:var(--hair)}
+#stage.phone{max-width:412px;margin:0 auto;border-left:var(--hair);border-right:var(--hair)}
+
+.wrap{max-width:var(--w);margin:0 auto;padding:0 24px}
+header.doc{border-bottom:var(--rule);padding:56px 0 30px}
+.brandrow{display:flex;align-items:center;gap:14px;margin-bottom:34px}
+.brandname{font-weight:800;letter-spacing:-.02em;font-size:15px}
+.brandname span{font-weight:400;color:var(--n700)}
+h1{font-weight:800;letter-spacing:-.028em;line-height:1.08;font-size:clamp(30px,5.2vw,52px);max-width:21ch}
+.sub{margin-top:16px;font-size:clamp(15px,2vw,18px);color:var(--n700);max-width:64ch}
+.meta{margin-top:26px;display:flex;gap:26px;flex-wrap:wrap;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--n700)}
+.meta b{display:block;font-weight:600;color:var(--ink);margin-top:3px}
+
+.cols{display:grid;grid-template-columns:220px 1fr;gap:44px;align-items:start}
+nav.toc{position:sticky;top:64px;padding:34px 20px 34px 0;border-right:var(--hair);font-size:12.5px;max-height:calc(100vh - 70px);overflow-y:auto}
+nav.toc .h{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--n700);margin:16px 0 8px}
+nav.toc .h:first-child{margin-top:0}
+nav.toc a{display:block;color:var(--n700);text-decoration:none;padding:3px 0;line-height:1.4}
+nav.toc a:hover{color:var(--ink)}
+nav.toc a.on{color:var(--ink);font-weight:600}
+nav.toc a .num{display:inline-block;width:26px;font-weight:600;color:var(--n400)}
+nav.toc a.on .num{color:var(--red)}
+main{padding:34px 0 0;min-width:0}
+
+section{padding:44px 0;border-bottom:var(--hair)}
+section:first-child{padding-top:0}
+.part{padding:54px 0 10px;border-bottom:var(--rule)}
+.part .pk{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--n700)}
+.part h2{font-size:clamp(28px,4.4vw,42px);margin:6px 0 10px}
+.part p{color:var(--n700)}
+.kicker{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+h2{font-weight:800;letter-spacing:-.022em;line-height:1.14;font-size:clamp(23px,3.4vw,32px);margin-bottom:18px;max-width:28ch}
+h3{font-weight:700;letter-spacing:-.012em;font-size:18px;margin:32px 0 12px}
+h4{font-weight:600;font-size:14px;margin:22px 0 8px}
+p{margin-bottom:14px;max-width:72ch}
+p.lead{font-size:17.5px;color:var(--n700);max-width:66ch}
+strong{font-weight:700}
+em{font-style:normal;font-weight:600;color:var(--redd)}
+ul,ol{margin:0 0 16px 20px;max-width:72ch}
+li{margin-bottom:7px}
+ul.tight li,ol.tight li{margin-bottom:3px}
+code{font-family:'Archivo',monospace;font-weight:600;font-size:.87em;letter-spacing:.02em;background:var(--bg2);padding:1px 5px;white-space:nowrap}
+
+.scroll{overflow-x:auto;margin:20px 0;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:13.5px;line-height:1.45;min-width:560px}
+th,td{border:1px solid var(--n400);padding:9px 11px;vertical-align:top;text-align:left}
+th{background:var(--ink);color:var(--bg);font-weight:600;font-size:10px;letter-spacing:.13em;text-transform:uppercase;border-color:var(--ink)}
+tbody tr:nth-child(even){background:var(--bg2)}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+td.c{text-align:center}
+.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;padding:1px 5px;border:1px solid var(--n400);white-space:nowrap}
+.tag.hi{border-color:var(--red);color:var(--redd)}
+.tag.ink{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+.box{border:var(--rule);padding:22px 24px;margin:24px 0}
+.box .bt{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--n700);margin-bottom:10px}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+.box.alert{border-color:var(--red)}
+.box.alert .bt{color:var(--redd)}
+.box.soft{border:none;background:var(--bg2);padding:20px 22px}
+
+.rule{display:grid;grid-template-columns:86px 1fr;border:1px solid var(--n400);margin:0 0 -1px}
+.rule .id{background:var(--bg2);border-right:1px solid var(--n400);padding:12px;font-size:11px;font-weight:700;letter-spacing:.06em}
+.rule .bd{padding:12px 14px;font-size:13.5px;line-height:1.5}
+.rule .bd b{display:block;font-size:14.5px;margin-bottom:4px}
+.rule .bd .cond{color:var(--n700);font-size:12.5px;margin-top:6px}
+
+.grid2,.grid3{display:grid;gap:0;border:1px solid var(--n400);margin:22px 0}
+.grid2{grid-template-columns:1fr 1fr}
+.grid3{grid-template-columns:1fr 1fr 1fr}
+.grid2>div,.grid3>div{padding:18px 20px;border-right:1px solid var(--n400);border-bottom:1px solid var(--n400)}
+.grid2>div:nth-child(2n){border-right:none}
+.grid3>div:nth-child(3n){border-right:none}
+.gh{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--n700);margin-bottom:8px}
+.grid2 p,.grid3 p{font-size:13.5px;margin-bottom:8px}
+.grid2 p:last-child,.grid3 p:last-child{margin-bottom:0}
+.grid2 ul,.grid3 ul{font-size:13.5px;margin-bottom:0}
+
+/* sơ đồ hai luồng */
+.map{display:grid;grid-template-columns:1fr 150px 1fr;border:var(--rule);margin:26px 0}
+.map .side{padding:18px}
+.map .side .t{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+.map .blk{border:1px solid var(--ink);padding:10px 12px;margin-bottom:8px;background:var(--bg)}
+.map .blk b{display:block;font-size:14px}
+.map .blk span{font-size:12px;color:var(--n700);line-height:1.4;display:block}
+.map .spine{background:var(--ink);color:var(--bg);padding:18px 12px;display:flex;flex-direction:column;justify-content:center;gap:10px;text-align:left}
+.map .spine .t{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--n400)}
+.map .spine div{font-size:12px;line-height:1.35;border-top:1px solid #605D5D;padding-top:8px}
+.map .spine .dot{display:inline-block;width:9px;height:9px;background:var(--red);border-radius:50%;margin-right:6px;vertical-align:middle}
+.map .side.int{background:var(--bg2)}
+
+/* thang giá trị */
+.ladder{margin:26px 0;border-left:var(--rule)}
+.rung{display:grid;grid-template-columns:70px 1fr 150px 130px;border-bottom:1px solid var(--n400);align-items:stretch}
+.rung>div{padding:12px 14px}
+.rung .lv{font-weight:800;font-size:15px;background:var(--bg2);border-right:1px solid var(--n400)}
+.rung .nm b{display:block;font-size:15px}
+.rung .nm span{display:block;font-size:12.5px;color:var(--n700);line-height:1.45}
+.rung .pr{font-weight:700;font-size:14px;border-left:1px solid var(--n400);font-variant-numeric:tabular-nums}
+.rung .pr span{display:block;font-weight:400;font-size:11.5px;color:var(--n700)}
+.rung .hm{border-left:1px solid var(--n400);font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--n700)}
+.rung.human .hm{color:var(--redd)}
+.rung.human .lv{background:var(--ink);color:var(--bg)}
+
+/* phòng */
+.room{display:grid;grid-template-columns:repeat(3,1fr);border:var(--rule);margin:22px 0}
+.room>div{padding:16px 16px;border-right:1px solid var(--n400);border-bottom:1px solid var(--n400);min-height:118px}
+.room>div:nth-child(3n){border-right:none}
+.room .rn{font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--red);margin-bottom:4px}
+.room b{display:block;font-size:14.5px;margin-bottom:4px}
+.room span{font-size:12.5px;color:var(--n700);line-height:1.45;display:block}
+
+.steps{counter-reset:s;margin:20px 0;border-top:var(--rule)}
+.steps>div{display:grid;grid-template-columns:48px 1fr 110px;border-bottom:1px solid var(--n400)}
+.steps>div>*{padding:11px 12px}
+.steps .sn{font-weight:800;background:var(--bg2);border-right:1px solid var(--n400)}
+.steps .sb{font-size:13.5px}
+.steps .sb b{display:block;font-size:14px}
+.steps .sl{border-left:1px solid var(--n400);font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--n700)}
+
+footer.doc{border-top:var(--rule);margin-top:40px;padding:34px 0 0;font-size:12.5px;color:var(--n700)}
+footer.doc b{color:var(--ink)}
+
+@media (max-width:900px){
+  .cols{grid-template-columns:1fr;gap:0}
+  nav.toc{position:static;border-right:none;border-bottom:var(--hair);padding:0 0 22px;margin-bottom:8px;max-height:none;columns:2;column-gap:22px}
+  nav.toc .h{break-after:avoid}
+  .grid2,.grid3,.room{grid-template-columns:1fr}
+  .grid2>div,.grid3>div,.room>div{border-right:none}
+  .map{grid-template-columns:1fr}
+  .rung{grid-template-columns:56px 1fr}
+  .rung .pr,.rung .hm{grid-column:2;border-left:none;border-top:1px dotted var(--n400);padding:7px 14px}
+  .steps>div{grid-template-columns:40px 1fr}
+  .steps .sl{grid-column:2;border-left:none;border-top:1px dotted var(--n400);padding:6px 12px}
+}
+#stage.phone .cols,#stage.tablet .cols{grid-template-columns:1fr;gap:0}
+#stage.phone nav.toc,#stage.tablet nav.toc{position:static;border-right:none;border-bottom:var(--hair);padding:0 0 22px;max-height:none;columns:2}
+#stage.phone .grid2,#stage.phone .grid3,#stage.phone .room,#stage.tablet .grid3,#stage.tablet .room{grid-template-columns:1fr}
+#stage.phone .grid2>div,#stage.phone .grid3>div,#stage.phone .room>div,#stage.tablet .grid3>div,#stage.tablet .room>div{border-right:none}
+#stage.phone .map{grid-template-columns:1fr}
+#stage.phone .rung{grid-template-columns:56px 1fr}
+#stage.phone .rung .pr,#stage.phone .rung .hm{grid-column:2;border-left:none;border-top:1px dotted var(--n400)}
+#stage.phone .steps>div{grid-template-columns:40px 1fr}
+#stage.phone .steps .sl{grid-column:2;border-left:none;border-top:1px dotted var(--n400)}
+
+@media print{
+  #bar,nav.toc{display:none}
+  body{font-size:10.5pt;background:#fff;padding:0}
+  #stage{max-width:none!important;border:none!important}
+  .wrap{max-width:none;padding:0}
+  .cols{display:block}
+  table{font-size:8.5pt;min-width:0}
+  .scroll{overflow:visible}
+  .box,.rule,.rung,.room,.map{break-inside:avoid}
+  .part{break-before:page}
+}
+</style>
+</head>
+<body>
+
+<div id="bar">
+  <span class="lbl">Xem thử</span>
+  <button data-w="laptop" aria-pressed="true">Laptop</button>
+  <button data-w="tablet" aria-pressed="false">Tablet</button>
+  <button data-w="phone" aria-pressed="false">Smartphone</button>
+  <span class="sp"></span>
+  <button class="pr" onclick="window.print()">In / PDF</button>
+</div>
+
+<div id="stage"><div class="wrap">
+
+<header class="doc">
+  <div class="brandrow">
+    <svg width="34" height="34" viewBox="0 0 100 100" aria-label="LATTICE">
+      <g stroke="#201E1D" stroke-width="5" fill="none">
+        <path d="M50 8 L92 50 L50 92 L8 50 Z"/>
+        <circle cx="50" cy="8" r="7" fill="#F3F2F2"/><circle cx="92" cy="50" r="7" fill="#F3F2F2"/>
+        <circle cx="50" cy="92" r="7" fill="#F3F2F2"/><circle cx="8" cy="50" r="7" fill="#F3F2F2"/>
+      </g>
+      <circle cx="50" cy="50" r="9" fill="#EC3013"/>
+    </svg>
+    <div class="brandname">LATTICE NEXT SOLUTIONS <span>· Tài liệu vận hành nội bộ</span></div>
+  </div>
+  <h1>LATTICE tự vận hành như một doanh nghiệp một người</h1>
+  <p class="sub">Hai luồng — tương tác bên ngoài và quản trị nội bộ. Ba người, tám vai trò AI, một bộ máy. Chúng ta chưa có case study khách hàng; chúng ta có thể là case study đầu tiên của chính mình.</p>
+  <div class="meta">
+    <div>Phiên bản<b>1.0 · 21/09/2026</b></div>
+    <div>Đi cùng<b>Kiến trúc chu trình khách hàng v1</b></div>
+    <div>Trạng thái<b>Đề xuất, chờ Chủ dự án duyệt</b></div>
+  </div>
+</header>
+
+<div class="cols">
+<nav class="toc" id="toc">
+  <div class="h">Tổng quan</div>
+  <a href="#s0"><span class="num">00</span>Tóm tắt</a>
+  <a href="#s1"><span class="num">01</span>Hai luồng, bốn mảng</a>
+  <a href="#s2"><span class="num">02</span>Ba người, tám vai trò AI</a>
+  <div class="h">Luồng A · Bên ngoài</div>
+  <a href="#s3"><span class="num">03</span>Thang giá trị</a>
+  <a href="#s4"><span class="num">04</span>Tầng miễn phí</a>
+  <a href="#s5"><span class="num">05</span>Chuỗi dẫn dắt</a>
+  <a href="#s6"><span class="num">06</span>Hệ thống Phòng</a>
+  <a href="#s7"><span class="num">07</span>Trợ lý AI theo khu vực</a>
+  <a href="#s8"><span class="num">08</span>Video ngắn</a>
+  <a href="#s9"><span class="num">09</span>Khi nào gặp người</a>
+  <a href="#s10"><span class="num">10</span>Mảng Khách hàng</a>
+  <a href="#s11"><span class="num">11</span>Mảng Kinh doanh</a>
+  <div class="h">Luồng B · Nội bộ</div>
+  <a href="#s12"><span class="num">12</span>Cổ đông &amp; quản trị</a>
+  <a href="#s13"><span class="num">13</span>Tài chính &amp; vốn</a>
+  <a href="#s14"><span class="num">14</span>Quy trình &amp; chính sách</a>
+  <a href="#s15"><span class="num">15</span>Đội người + AI</a>
+  <a href="#s16"><span class="num">16</span>Pháp lý, dữ liệu, bảo mật</a>
+  <a href="#s17"><span class="num">17</span>Nhịp vận hành</a>
+  <div class="h">Triển khai</div>
+  <a href="#s18"><span class="num">18</span>Bản đồ hạ tầng</a>
+  <a href="#s19"><span class="num">19</span>Lộ trình ba giai đoạn</a>
+  <a href="#s20"><span class="num">20</span>Quyết định cần chốt</a>
+</nav>
+
+<main>
+
+<!-- 00 -->
+<section id="s0">
+  <div class="kicker">00</div>
+  <h2>Tóm tắt</h2>
+  <p class="lead">Mọi tài liệu của Lattice nói với khách: đơn vị mở rộng quy mô đã chuyển từ số nhân sự sang số agent nhân chất lượng hệ thống kiểm soát. Tài liệu này áp đúng câu đó lên chính Lattice — không phải để minh họa, mà vì đó là cách duy nhất ba người phục vụ được hàng trăm hồ sơ.</p>
+
+  <div class="box">
+    <div class="bt">Năm quyết định thiết kế</div>
+    <ol class="tight">
+      <li><strong>Tự động ở dưới, con người ở trên.</strong> Bốn bậc đầu của thang giá trị chạy không cần gặp người. Người xuất hiện lần đầu ở bậc Blueprint, và chỉ chốt hợp đồng ở bậc Build trở lên.</li>
+      <li><strong>Mỗi bậc trả phí mở một Phòng.</strong> Phòng là không gian riêng của hồ sơ: tiến trình, bộ câu hỏi, trợ lý AI chỉ biết hồ sơ đó, tài liệu nhận được, video hướng dẫn, và lối lên bậc sau với khoản khấu trừ tính sẵn.</li>
+      <li><strong>Một lõi trợ lý, bốn tầng quyền.</strong> Không dựng bốn chatbot. Dựng một lõi — chính là Lattice-Talk — và cấp cho nó bốn ngữ cảnh khác nhau tùy khu vực.</li>
+      <li><strong>Dùng sản phẩm của mình làm hạ tầng của mình.</strong> LatticeTalk là cửa ngoài, LATTICE Work là hệ điều hành bên trong. Nhật ký vận hành của chính Lattice trở thành case study được phép công bố đầu tiên.</li>
+      <li><strong>Bậc thấp là phễu có thu phí, không phải nguồn sống.</strong> Scan và Blueprint lọc và xây niềm tin. Công ty sống bằng Kit, Build và Operate. Mục 11 có phép tính.</li>
+    </ol>
+  </div>
+
+  <div class="box alert">
+    <div class="bt">Ba việc nội bộ phải sửa trước khi mở rộng</div>
+    <ol class="tight">
+      <li><strong>Tiền thu đang vào tài khoản đứng tên cá nhân.</strong> Mã QR trên trang đăng ký trỏ về một tài khoản cá nhân, không phải tài khoản của công ty cổ phần. Với doanh nghiệp đang thu tiền dịch vụ, đây là vấn đề hóa đơn, thuế và ranh giới tài sản giữa cổ đông với công ty. Mục 13.</li>
+      <li><strong>Toàn bộ thư đi qua trần 100 thư/ngày.</strong> Tầng miễn phí với chuỗi thư nuôi dưỡng sẽ chạm trần trong tuần đầu. Cần tách thư giao dịch và thư nuôi dưỡng sang một nhà cung cấp gửi thư chuyên dụng. Mục 18.</li>
+      <li><strong>Bốn quyết định D-C01 đến D-C04 của tài liệu chu trình vẫn chưa chốt</strong>, trong đó có việc thống nhất một hệ tên gói và một chính sách phí. Tài liệu này dựng trên giả định các khuyến nghị đó được chấp nhận.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 01 -->
+<section id="s1">
+  <div class="kicker">01</div>
+  <h2>Hai luồng, bốn mảng, một lõi chung</h2>
+  <p class="lead">Bốn mảng anh đề xuất giữ nguyên. Điều tài liệu này thêm vào là cột giữa: thứ nối hai luồng không phải con người mà là dữ liệu và tri thức dùng chung. Nếu cột giữa đúng, hai luồng không cần họp với nhau.</p>
+
+  <div class="map">
+    <div class="side">
+      <div class="t">Luồng A · Tương tác bên ngoài</div>
+      <div class="blk"><b>1 · Truyền thông &amp; Marketing</b><span>Nội dung một gốc nhiều nhánh, video ngắn, trợ lý công khai, tầng miễn phí, chuỗi thư dẫn dắt</span></div>
+      <div class="blk"><b>2 · Khách hàng</b><span>Phòng, bộ câu hỏi, trợ lý phòng, giao tài liệu, chăm sóc, hỏi đáp, leo thang</span></div>
+      <div class="blk"><b>3 · Kinh doanh</b><span>Thang giá trị, thanh toán, nâng bậc, gặp tư vấn, báo giá theo phạm vi, hợp đồng</span></div>
+    </div>
+    <div class="spine">
+      <div class="t">Lõi chung</div>
+      <div><span class="dot"></span>Hồ sơ khách — một mã, một nguồn</div>
+      <div>Sổ mô hình — 13 mô hình, một định nghĩa</div>
+      <div>Sổ chính sách — giá, hoàn phí, dữ liệu</div>
+      <div>Kho tri thức — có trích dẫn, có kiểm</div>
+      <div>Nhật ký sự kiện — chỉ ghi thêm</div>
+    </div>
+    <div class="side int">
+      <div class="t">Luồng B · Quản trị nội bộ</div>
+      <div class="blk"><b>4a · Cổ đông &amp; quản trị công ty</b><span>Điều lệ, sổ cổ đông, thỏa thuận cổ đông, phân quyền quyết định</span></div>
+      <div class="blk"><b>4b · Tài chính &amp; vốn</b><span>Tài khoản công ty, bốn quỹ, hóa đơn, trần chi phí AI, báo cáo tháng</span></div>
+      <div class="blk"><b>4c · Quy trình &amp; chính sách</b><span>Bốn sổ, quy trình đổi chính sách, SOP</span></div>
+      <div class="blk"><b>4d · Đội người + AI</b><span>Ba vai trò người, tám vai trò AI, vành đai ngoài, LATTICE Work</span></div>
+      <div class="blk"><b>4e · Pháp lý, dữ liệu, bảo mật</b><span>Đồng ý dữ liệu, điều khoản, bí mật, sao lưu</span></div>
+    </div>
+  </div>
+
+  <p>Hai quy tắc giữ cho sơ đồ này đúng khi vận hành thật:</p>
+  <ol>
+    <li><strong>Luồng A chỉ đọc sổ chính sách, không bao giờ ghi.</strong> Trợ lý, trang web, thư, video đều lấy giá và điều kiện từ một chỗ. Muốn đổi giá là việc của luồng B, qua quy trình ở mục 14.</li>
+    <li><strong>Luồng B chỉ nhìn luồng A qua nhật ký sự kiện.</strong> Không ai trong nội bộ mở hộp thư khách để biết chuyện gì đang xảy ra. Bản tin ngoại lệ hằng ngày (mục 17) đọc từ nhật ký.</li>
+  </ol>
+</section>
+
+<!-- 02 -->
+<section id="s2">
+  <div class="kicker">02</div>
+  <h2>Ba người, tám vai trò AI</h2>
+  <p class="lead">"Doanh nghiệp một người" là cách nói về cấu trúc, không phải về số người. Theo chính đề án, dịch vụ chuyên môn có trần tự động hóa 60–75% và cần 1–2 người; Lattice lại là công ty cổ phần — luật yêu cầu tối thiểu ba cổ đông. Ba người là con số trung thực.</p>
+
+  <div class="grid3">
+    <div>
+      <div class="gh">Người 1 · Chủ dự án / CEO</div>
+      <p><strong>Giữ:</strong> chiến lược, thương hiệu, quyết định ngoại lệ, gặp khách từ bậc Build, ký hợp đồng.</p>
+      <p><strong>Là gương mặt:</strong> giọng và hình trong video. Niềm tin vào một người cụ thể là thứ đề án gọi là "không sao chép được".</p>
+      <p><strong>Không làm:</strong> trả lời thư thường, duyệt từng bài đăng, đối soát tiền.</p>
+    </div>
+    <div>
+      <div class="gh">Người 2 · Vận hành &amp; Quan hệ</div>
+      <p><strong>Giữ:</strong> duyệt mọi đầu ra ở mức L2 trước khi tới khách (đề xuất, hồ sơ chẩn đoán), trực phiếu leo thang, buổi rà Blueprint.</p>
+      <p><strong>Phối hợp:</strong> kế toán dịch vụ, lịch hẹn, chất lượng dữ liệu hồ sơ.</p>
+      <p><strong>Không làm:</strong> viết tài liệu từ đầu — AI viết nháp, người sửa và chịu trách nhiệm.</p>
+    </div>
+    <div>
+      <div class="gh">Người 3 · Sản phẩm, Kỹ thuật, Tăng trưởng</div>
+      <p><strong>Giữ:</strong> website, LatticeTalk, hệ thống Phòng, dữ liệu, chi phí AI, sản xuất video.</p>
+      <p><strong>Chịu trách nhiệm:</strong> mọi agent đang chạy — mỗi agent có một người đứng tên, và đó là người này, trừ khi ghi khác.</p>
+      <p><strong>Không làm:</strong> thay đổi chính sách trong mã — chính sách đến từ sổ.</p>
+    </div>
+  </div>
+
+  <h3>Tám vai trò AI đang bật — chọn từ mười một vai trò của đề án</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Vai trò</th><th>Việc cụ thể tại Lattice</th><th>Người đứng tên</th><th class="c">Nay</th><th class="c">Đích</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Chief of Staff</strong></td><td>Soạn bản tin ngoại lệ 7:30 mỗi sáng từ nhật ký sự kiện; nhắc việc quá hạn</td><td>Người 1</td><td class="c"><span class="tag">L2</span></td><td class="c"><span class="tag">L4</span></td></tr>
+      <tr><td><strong>Social &amp; Brand</strong></td><td>Sinh bảy nhánh từ gốc tuần; kịch bản video; kiểm giọng thương hiệu</td><td>Người 3</td><td class="c"><span class="tag">L1</span></td><td class="c"><span class="tag">L3</span></td></tr>
+      <tr><td><strong>Growth / Marketing</strong></td><td>Theo dõi bốn chỉ số phễu; đề xuất gốc tuần sau từ câu khách hỏi nhiều nhất</td><td>Người 3</td><td class="c"><span class="tag">L1</span></td><td class="c"><span class="tag">L2</span></td></tr>
+      <tr><td><strong>CRM &amp; Lifecycle</strong></td><td>Chạy chuỗi thư dẫn dắt; rẽ nhánh theo điểm; nhắc hạn khấu trừ 60 ngày</td><td>Người 2</td><td class="c"><span class="tag hi">—</span></td><td class="c"><span class="tag">L3</span></td></tr>
+      <tr><td><strong>Customer Success</strong></td><td>Trợ lý công khai và trợ lý phòng; tạo phiếu chuyển tiếp</td><td>Người 2</td><td class="c"><span class="tag hi">—</span></td><td class="c"><span class="tag">L3</span></td></tr>
+      <tr><td><strong>Product / Service</strong></td><td>Chạy 14 luật chẩn đoán; dựng bản nháp đề xuất và hồ sơ chẩn đoán</td><td>Người 2</td><td class="c"><span class="tag">L1</span></td><td class="c"><span class="tag">L2</span></td></tr>
+      <tr><td><strong>Finance Controller</strong></td><td>Đối soát SePay; trích quỹ; cảnh báo chi AI vượt trần; bản nháp báo cáo tháng</td><td>Người 1</td><td class="c"><span class="tag">L3</span></td><td class="c"><span class="tag">L4</span></td></tr>
+      <tr><td><strong>Risk &amp; Compliance</strong></td><td>Chặn câu chính sách cũ; kiểm đồng ý trước mỗi thư tiếp thị; lịch ngày nhạy cảm. <strong>Có quyền phủ quyết và tạm dừng</strong> mọi vai trò khác</td><td>Người 1</td><td class="c"><span class="tag">L2</span></td><td class="c"><span class="tag">L3</span></td></tr>
+    </tbody>
+  </table></div>
+  <p>Chưa bật: <strong>Sales</strong> (bán hàng ở Lattice là người, từ bậc Build), <strong>Operations</strong> (chưa đủ khối lượng dự án), <strong>R&amp;D</strong> (làm tay theo quý cho đến khi có năm dự án hoàn tất).</p>
+
+  <h3>Vành đai người bên ngoài</h3>
+  <ul class="tight">
+    <li><strong>Kế toán dịch vụ</strong> — sổ sách, kê khai, hóa đơn. Bắt buộc từ ngày đầu, không chờ quy mô.</li>
+    <li><strong>Luật sư</strong> — điều lệ, thỏa thuận cổ đông, điều khoản dịch vụ, mẫu hợp đồng Build. Theo vụ việc.</li>
+    <li><strong>Đối tác thực thi</strong> — chuyên gia theo ngành cho phần kỹ thuật của hợp đồng Build. Đây cũng là ứng viên đầu tiên cho lộ trình C của Academy.</li>
+    <li><strong>Cố vấn</strong> — một người ngoài ba cổ đông, gặp theo quý, được nói điều không ai trong ba người muốn nghe.</li>
+  </ul>
+</section>
+
+<!-- ============ PHẦN A ============ -->
+<div class="part">
+  <div class="pk">Luồng A</div>
+  <h2>Tương tác bên ngoài</h2>
+  <p>Truyền thông &amp; Marketing · Khách hàng · Kinh doanh</p>
+</div>
+
+<!-- 03 -->
+<section id="s3">
+  <div class="kicker">03</div>
+  <h2>Thang giá trị — bảy bậc</h2>
+  <p class="lead">Mỗi bậc giao một thứ dùng được, và mỗi bậc khấu trừ 100% vào bậc kế tiếp nếu lên trong 60 ngày. Khách không bao giờ trả hai lần cho cùng một quãng đường — đó là điều làm cho việc bước lên trở nên dễ.</p>
+
+  <div class="ladder">
+    <div class="rung"><div class="lv">T0</div><div class="nm"><b>LATTICE Check</b><span>Tự chẩn đoán 12 câu, báo cáo sẵn sàng, thư viện, trợ lý công khai, chuỗi thư 14 ngày</span></div><div class="pr">Miễn phí</div><div class="hm">Tự động hoàn toàn</div></div>
+    <div class="rung"><div class="lv">T1</div><div class="nm"><b>Scan · Compass</b><span>Phòng Chẩn đoán / Phòng Khởi sự. Bộ câu hỏi cơ bản, trợ lý phòng 14 ngày, đề xuất cơ bản 3 điểm đau · 3 quy trình</span></div><div class="pr">499.000đ · 690.000đ<span>Compass: đề xuất</span></div><div class="hm">Tự động · người duyệt đầu ra</div></div>
+    <div class="rung human"><div class="lv">T2</div><div class="nm"><b>Blueprint · Foundry</b><span>Phòng Kiến trúc. Bộ chuyên sâu theo mô-đun, hồ sơ 8–12 trang, lộ trình 90 ngày, SOP mẫu. <strong>Buổi 60 phút với tư vấn</strong></span></div><div class="pr">1.499.000đ · 2.490.000đ<span>Foundry: đề xuất</span></div><div class="hm">Gặp người lần đầu</div></div>
+    <div class="rung"><div class="lv">T3</div><div class="nm"><b>LATTICE Kit</b><span>Bộ tự triển khai theo ngành: SOP, cấu hình agent, câu lệnh mẫu, bộ kiểm tra, video từng bước, trợ lý 30 ngày, hai buổi hỏi đáp nhóm</span></div><div class="pr">Từ 4.900.000đ<span>Đề xuất · theo ngành</span></div><div class="hm">Tự động · buổi nhóm</div></div>
+    <div class="rung human"><div class="lv">T4</div><div class="nm"><b>LATTICE Build</b><span>Kiến trúc và triển khai 3–5 tháng, chia đợt theo cột mốc, bàn giao đứng tên khách</span></div><div class="pr">Theo phạm vi<span>Sau Blueprint</span></div><div class="hm">Tư vấn riêng · hợp đồng</div></div>
+    <div class="rung human"><div class="lv">T5</div><div class="nm"><b>LATTICE Operate</b><span>Đồng hành vận hành: eval hằng tuần, thăng/hạ mức tự chủ, báo cáo tháng, hủy bất cứ lúc nào</span></div><div class="pr">Thuê bao tháng<span>Theo số agent</span></div><div class="hm">Tư vấn riêng</div></div>
+    <div class="rung"><div class="lv">AC</div><div class="nm"><b>LATTICE Academy</b><span>Ba lộ trình A · Nền tảng, B · Vận hành, C · Kiến trúc. Chạy song song, là lối vào khác cho người muốn tự làm</span></div><div class="pr">Theo khóa<span>Giai đoạn 3</span></div><div class="hm">Tự động · buổi nhóm</div></div>
+  </div>
+
+  <h3>Vì sao có bậc Kit</h3>
+  <p>Giữa Blueprint 1,5 triệu và Build theo phạm vi có một khoảng trống hàng chục lần giá. Phần lớn khách nhỏ sẽ rơi vào khoảng đó: đã hiểu phải làm gì, chưa đủ ngân sách thuê người làm. Không có Kit, họ đi tự làm theo video trên mạng và thất bại theo đúng cách đề án mô tả.</p>
+  <p>Kit là <strong>kiến trúc mẫu đóng gói</strong> — thứ đề án gọi là "thư viện kiến trúc mẫu" trong dòng Ecosystem, đưa ra sớm dưới dạng sản phẩm. Làm một lần cho một ngành, bán nhiều lần, giao tự động. Đây là bậc có biên lợi nhuận cao nhất và là bậc duy nhất mở rộng được mà không thêm người.</p>
+  <div class="box soft"><p><strong>Kit đầu tiên nên là ngành nào:</strong> ngành xuất hiện nhiều nhất trong hồ sơ Scan của đợt 1 — không phải ngành ta đoán. Mười hồ sơ là đủ để thấy. Nếu buộc phải đoán hôm nay: thương mại điện tử nhỏ, vì trần tự động hóa cao (70–85%) và điểm đau đối soát thu hộ đo được bằng tiền.</p></div>
+
+  <div class="box alert">
+    <div class="bt">Một thay đổi so với gói Scan đang công bố</div>
+    <p>Scan hiện tại có buổi Zoom 60 phút. Theo nguyên tắc "bậc thấp tự động", từ đợt 2 Scan chuyển thành tự động hoàn toàn: đề xuất cơ bản do AI dựng, người duyệt, giao trong Phòng — không có buổi gặp. Buổi gặp dời lên Blueprint.</p>
+    <p><strong>Mọi hồ sơ đợt 1 giữ nguyên quyền lợi đã công bố.</strong> Đổi điều kiện với người đã trả tiền là thứ không bao giờ làm. Quyết định D-M01.</p>
+  </div>
+</section>
+
+<!-- 04 -->
+<section id="s4">
+  <div class="kicker">04</div>
+  <h2>Tầng miễn phí — hỏi ít, cho nhiều, cho trước</h2>
+  <p class="lead">Nguyên tắc: khách thấy giá trị trước khi đưa bất kỳ thông tin nào. Email chỉ đổi lấy bản đầy đủ, không đổi lấy quyền được xem.</p>
+
+  <h3>4.1 · Khách cung cấp gì — ba nấc, mỗi nấc tự nguyện</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Nấc</th><th>Khách đưa</th><th>Khách nhận</th></tr></thead>
+    <tbody>
+      <tr><td><strong>0</strong></td><td>Không gì cả</td><td>Đọc đề án đầy đủ, xem video, hỏi trợ lý công khai, làm 12 câu và <strong>thấy ngay kết quả</strong> trên màn hình</td></tr>
+      <tr><td><strong>1</strong></td><td>Email · tên gọi · hai ô đồng ý <strong>tách riêng</strong>: nhận kết quả, và nhận thư tiếp theo</td><td>Báo cáo sẵn sàng bản đầy đủ, bản đồ trần ngành, một SOP mẫu, liên kết lưu kết quả để làm lại sau 30 ngày</td></tr>
+      <tr><td><strong>2</strong></td><td>Tùy chọn, hỏi sau khi đã nhận nấc 1: vai trò (chủ, quản lý, nhân viên, người khởi sự) · quy mô · tên doanh nghiệp</td><td>Chuỗi thư đúng nhóm, đúng ngành; lời mời hội thảo nhóm ngành</td></tr>
+    </tbody>
+  </table></div>
+  <p>Không hỏi số điện thoại ở tầng này. Công ty đã gỡ điện thoại và Zalo khỏi website; hỏi số điện thoại lúc này vừa mâu thuẫn, vừa tạo kỳ vọng sẽ có người gọi. Hai ô đồng ý tách riêng là đúng nguyên tắc "một mục đích, một bản ghi" đã chốt ở dự án E-com — và là thứ Risk &amp; Compliance kiểm trước mỗi thư.</p>
+
+  <h3>4.2 · Mười hai câu xác định gì</h3>
+  <p>Bộ 12 câu đã soạn đủ trong tài liệu chu trình, mục 5. Nó xác định bốn thứ, và mỗi thứ quyết định một nhánh phía sau:</p>
+  <div class="grid2">
+    <div><div class="gh">Nhóm khách</div><p>Câu T1 — đang vận hành hay từ ý tưởng. Quyết định Scan hay Compass, Phòng Chẩn đoán hay Phòng Khởi sự.</p></div>
+    <div><div class="gh">Nhóm mô hình</div><p>Câu T2 — một trong tám nhóm ngành. Quyết định trần tự động hóa, SOP mẫu, video, Kit phù hợp.</p></div>
+    <div><div class="gh">Chỉ số sẵn sàng 0–100</div><p>Bốn trục có trọng số. Quyết định lời mời tiếp theo — kể cả lời khuyên chưa nên mua.</p></div>
+    <div><div class="gh">Ba quy trình nên xem trước</div><p>Công thức xếp hạng năm biến. Là phần khách chụp màn hình gửi nhau.</p></div>
+  </div>
+
+  <h3>4.3 · Năm thứ khách nhận miễn phí</h3>
+  <div class="scroll"><table>
+    <thead><tr><th style="width:36px">#</th><th>Thứ khách nhận</th><th>Dạng</th><th>Cách tạo</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td><strong>Báo cáo sẵn sàng</strong> — chỉ số, trần ngành, ba quy trình, một việc làm ngay</td><td>3 trang, PDF</td><td>Tự sinh từ 12 câu, mẫu cố định. Không có AI viết tự do ở đây — mọi câu đến từ luật</td></tr>
+      <tr><td class="n">2</td><td><strong>Bản đồ trần tự động hóa</strong> của nhóm ngành</td><td>1 trang</td><td>Tám bản làm sẵn, trích nguyên văn đề án mục 3</td></tr>
+      <tr><td class="n">3</td><td><strong>Một SOP mẫu</strong> cho quy trình hạng 1 của khách</td><td>2 trang</td><td>Thư viện 12 SOP theo 12 việc lặp ở câu T4</td></tr>
+      <tr><td class="n">4</td><td><strong>Chuỗi sáu thư</strong> trong 14 ngày</td><td>Thư</td><td>Mục 5</td></tr>
+      <tr><td class="n">5</td><td><strong>Quyền dùng trợ lý công khai</strong> — hỏi về kết quả của mình</td><td>Trò chuyện</td><td>Trợ lý tầng B0 đọc được báo cáo nếu khách dán mã kết quả</td></tr>
+    </tbody>
+  </table></div>
+  <p>Thư viện 12 SOP là khoản đầu tư lớn nhất của tầng miễn phí, khoảng bốn ngày công. Nó dùng lại được ở Phòng, ở Kit và ở Academy — viết một lần, dùng ở bốn nơi.</p>
+</section>
+
+<!-- 05 -->
+<section id="s5">
+  <div class="kicker">05</div>
+  <h2>Chuỗi dẫn dắt — thông điệp, thư, lời mời</h2>
+
+  <h3>5.1 · Nhà thông điệp</h3>
+  <div class="box">
+    <div class="bt">Thông điệp lõi — một câu, lặp ở mọi nơi</div>
+    <p style="font-size:19px;font-weight:700;letter-spacing:-.01em">AI làm được phần lớn công việc. Thứ còn thiếu là một tổ chức được thiết kế để giao việc cho nó.</p>
+  </div>
+  <div class="grid3">
+    <div><div class="gh">Trụ 1 · Vấn đề ở tổ chức</div><p>Phần lớn thí điểm AI không lên được vận hành thật, và nguyên nhân gần như không bao giờ là mô hình.</p><p><strong>Bằng chứng:</strong> đề án mục 1, số liệu có nguồn.</p></div>
+    <div><div class="gh">Trụ 2 · Có trần, có ranh giới</div><p>Mỗi mô hình kinh doanh có một trần tự động hóa khác nhau, và có những việc không bao giờ nên giao cho máy.</p><p><strong>Bằng chứng:</strong> bảng tám nhóm ngành, bốn ranh giới.</p></div>
+    <div><div class="gh">Trụ 3 · Chúng tôi tự làm trước</div><p>Lattice vận hành bằng chính phương pháp nó bán, và công bố nhật ký vận hành đó.</p><p><strong>Bằng chứng:</strong> tài liệu này, và bảng số liệu hằng quý.</p></div>
+  </div>
+
+  <h3>5.2 · Sáu thư trong mười bốn ngày</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Ngày</th><th>Thư</th><th>Hành động khách được mời làm</th></tr></thead>
+    <tbody>
+      <tr><td class="n">0</td><td><strong>Kết quả của anh chị</strong> — báo cáo, bản đồ trần, SOP mẫu</td><td>Làm "một việc làm ngay" trong tuần này</td></tr>
+      <tr><td class="n">2</td><td><strong>Vì sao phần lớn thí điểm AI dừng ở thí điểm</strong> — trụ 1, kèm video 60 giây</td><td>Xem video</td></tr>
+      <tr><td class="n">4</td><td><strong>Kiến trúc mẫu của nhóm ngành anh chị</strong> — trích đề án mục 14</td><td>Đọc một mục đề án</td></tr>
+      <tr><td class="n">7</td><td><strong>Việc làm ngay đã chạy chưa?</strong> — ba nút: đã xong · đang làm · bị vướng</td><td>Một cú nhấp. Đây là thư tương tác duy nhất — và câu trả lời rẽ nhánh cả phần sau</td></tr>
+      <tr><td class="n">10</td><td><strong>Điều không nên tự động hóa</strong> — trụ 2, mặt tối, nói thẳng</td><td>Không mời gì. Thư này chỉ để xây tin</td></tr>
+      <tr><td class="n">14</td><td><strong>Bước tiếp theo, nếu có</strong> — lời mời theo điểm (bảng dưới)</td><td>Một lựa chọn duy nhất, không liệt kê cả thang giá</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>5.3 · Lời mời tiếp theo — rẽ theo dữ liệu, không theo mong muốn bán</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Tình huống</th><th>Lời mời</th><th>Vì sao</th></tr></thead>
+    <tbody>
+      <tr><td>Trục dữ liệu &lt; 40</td><td><strong>Không mời mua.</strong> Gửi hướng dẫn gom dữ liệu + mời làm lại Check sau 30 ngày</td><td>Bán Scan lúc này là bán một đề xuất "hãy làm sạch dữ liệu" giá 499.000đ</td></tr>
+      <tr><td>Thư ngày 7 = "bị vướng"</td><td>Mời Scan, nêu rõ Scan gỡ đúng chỗ vướng đó</td><td>Tín hiệu mua mạnh nhất: đã thử, đã gặp giới hạn của việc tự làm</td></tr>
+      <tr><td>Chỉ số 40–69</td><td>Mời Scan</td><td>Đủ nền để một đề xuất cơ bản có giá trị</td></tr>
+      <tr><td>Chỉ số ≥ 70 và quy mô ≥ 10 người</td><td>Mời thẳng Blueprint, nêu rõ có thể bỏ qua Scan</td><td>Hồ sơ đã sẵn sàng; bắt họ qua Scan là tốn thời gian của cả hai bên</td></tr>
+      <tr><td>Nhóm 2 · từ ý tưởng</td><td>Mời Compass</td><td>Đường riêng, giá riêng, có quyền kết luận "chưa nên làm"</td></tr>
+      <tr><td>Không mở thư nào từ ngày 4</td><td>Dừng chuỗi. Không gửi thêm</td><td>Gửi tiếp là mất uy tín và tốn hạn mức thư</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 06 -->
+<section id="s6">
+  <div class="kicker">06</div>
+  <h2>Hệ thống Phòng</h2>
+  <p class="lead">Thanh toán xong, khách không nhận một email kèm tệp đính kèm — họ được dẫn vào một Phòng. Phòng là nơi mọi thứ của hồ sơ đó nằm cùng một chỗ, và là nơi trợ lý AI biết đúng ngữ cảnh của họ mà không biết gì của người khác.</p>
+
+  <h3>6.1 · Sáu khối trong mỗi Phòng</h3>
+  <div class="room">
+    <div><div class="rn">01</div><b>Tiến trình</b><span>Hồ sơ đang ở bước nào, bước tiếp là gì, ai đang giữ, hạn khi nào. Không bao giờ để khách phải viết thư hỏi.</span></div>
+    <div><div class="rn">02</div><b>Bộ câu hỏi</b><span>Điền dần, tự lưu, quay lại bất cứ lúc nào. Mỗi khối có dòng "vì sao hỏi" và video 30 giây.</span></div>
+    <div><div class="rn">03</div><b>Trợ lý của Phòng</b><span>Giải thích câu hỏi, gợi cách ước lượng số, trả lời về tài liệu đã nhận. Chỉ biết hồ sơ này.</span></div>
+    <div><div class="rn">04</div><b>Tài liệu nhận được</b><span>Đề xuất, hồ sơ, SOP, bản đồ — mỗi thứ có ngày giao và phiên bản.</span></div>
+    <div><div class="rn">05</div><b>Video của Phòng</b><span>Chào Phòng, cách điền, cách đọc tài liệu. Tối đa ba video, mỗi video dưới 90 giây.</span></div>
+    <div><div class="rn">06</div><b>Lối lên bậc sau</b><span>Khoản khấu trừ tính sẵn, đồng hồ đếm ngược 60 ngày, nói rõ bậc sau thêm gì. Không có nút nào khác đòi tiền.</span></div>
+  </div>
+
+  <h3>6.2 · Năm Phòng</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Phòng</th><th>Mở bởi</th><th>Bộ câu hỏi</th><th>Trợ lý biết thêm</th><th>Mở trong</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Phòng Chẩn đoán</strong></td><td>Scan</td><td>Cơ bản Nhóm 1 · 32 câu</td><td>Kết quả Check, 14 luật</td><td class="n">90 ngày</td></tr>
+      <tr><td><strong>Phòng Khởi sự</strong></td><td>Compass</td><td>Cơ bản Nhóm 2 · 28 câu</td><td>Kết quả Check, luật LN01–LN04</td><td class="n">90 ngày</td></tr>
+      <tr><td><strong>Phòng Kiến trúc</strong></td><td>Blueprint · Foundry</td><td>Chuyên sâu · mô-đun theo luật</td><td>Toàn bộ hồ sơ Phòng trước, sổ mô hình</td><td class="n">120 ngày</td></tr>
+      <tr><td><strong>Phòng Bộ dựng</strong></td><td>Kit</td><td>Danh sách kiểm triển khai</td><td>Nội dung Kit, tiến độ từng bước</td><td class="n">Vĩnh viễn · trợ lý 30 ngày</td></tr>
+      <tr><td><strong>Phòng Dự án</strong></td><td>Build · Operate</td><td>Theo hợp đồng</td><td>Tài liệu dự án, tiến độ, nhật ký mức tự chủ</td><td class="n">Suốt hợp đồng</td></tr>
+    </tbody>
+  </table></div>
+  <p>Khi lên bậc, <strong>Phòng cũ không đóng mà nối vào Phòng mới.</strong> Trợ lý ở Phòng Kiến trúc đọc được mọi câu trả lời ở Phòng Chẩn đoán — khách không bao giờ bị hỏi lại điều đã trả lời.</p>
+
+  <h3>6.3 · Từ lúc tiền về đến lúc khách ở trong Phòng</h3>
+  <div class="steps">
+    <div><div class="sn">1</div><div class="sb"><b>SePay báo tiền về, khớp mã hồ sơ</b>Đã chạy thật. Thiếu tiền quá biên 1.000đ thì không xác nhận.</div><div class="sl">Có sẵn · L4</div></div>
+    <div><div class="sn">2</div><div class="sb"><b>Hệ thống tạo Phòng, gửi liên kết đăng nhập một lần</b>Liên kết hạn 15 phút, dùng một lần, chỉ lưu bản băm — dùng nguyên đặc tả đăng nhập đã chốt cho LATTICE Work.</div><div class="sl">Xây mới · L4</div></div>
+    <div><div class="sn">3</div><div class="sb"><b>Khách vào Phòng: video chào 60 giây + tiến trình</b>Không có bước "đợi chúng tôi liên hệ".</div><div class="sl">Xây mới · L4</div></div>
+    <div><div class="sn">4</div><div class="sb"><b>Khách điền bộ câu hỏi, hỏi trợ lý khi vướng</b>Mốc hoàn phí đóng khi bộ câu hỏi mở — ghi rõ ở trang đầu Phòng.</div><div class="sl">Xây mới · L3</div></div>
+    <div><div class="sn">5</div><div class="sb"><b>Nộp → luật chạy → bản nháp tài liệu</b>Product/Service agent dựng nháp từ luật đã kích hoạt. Không viết tự do phần điểm đau.</div><div class="sl">Xây mới · L2</div></div>
+    <div><div class="sn">6</div><div class="sb"><b>Người 2 duyệt, sửa, ký tên</b>Không tài liệu nào tới khách mà chưa có người đứng tên. Hạn: 3 ngày làm việc.</div><div class="sl">Người · bắt buộc</div></div>
+    <div><div class="sn">7</div><div class="sb"><b>Tài liệu xuất hiện trong Phòng + một thư báo</b>Một thư duy nhất, không đính kèm. Tài liệu ở Phòng, không ở hộp thư.</div><div class="sl">Xây mới · L4</div></div>
+    <div><div class="sn">8</div><div class="sb"><b>Lối lên bậc sau mở, đếm ngược 60 ngày</b>Nhắc đúng hai lần: ngày 30 và ngày 53. Không nhắc lần thứ ba.</div><div class="sl">Xây mới · L3</div></div>
+  </div>
+
+  <div class="box soft"><p><strong>Vì sao tài liệu nằm trong Phòng, không gửi qua thư.</strong> Ba lý do: tiết kiệm hạn mức thư; sửa được một lỗi sau khi giao mà không phải gửi "bản sửa lại"; và khách quay lại Phòng để đọc thì thấy lối lên bậc sau — thư đính kèm thì không.</p></div>
+</section>
+
+<!-- 07 -->
+<section id="s7">
+  <div class="kicker">07</div>
+  <h2>Trợ lý AI theo khu vực — một lõi, bốn tầng quyền</h2>
+  <p class="lead">Lattice-Talk đã có sẵn đúng thứ cần: lõi hỏi đáp, kho tri thức có trích dẫn, trần chi phí nhiều lớp, công tắc khẩn, phiếu chuyển tiếp. Không dựng thêm chatbot. Cấp cho lõi đó bốn ngữ cảnh.</p>
+
+  <div class="scroll"><table>
+    <thead><tr><th>Tầng</th><th>Ở đâu</th><th>Biết</th><th>Làm được</th><th>Không bao giờ</th></tr></thead>
+    <tbody>
+      <tr><td><strong>B0 · Công khai</strong></td><td>Website, trang Check</td><td>Kho tri thức công khai; kết quả Check nếu khách dán mã</td><td>Trả lời về gói, giá, phương pháp; tra trạng thái hồ sơ bằng mã + email; tạo phiếu</td><td>Tư vấn riêng cho doanh nghiệp cụ thể; hứa giá khác sổ chính sách</td></tr>
+      <tr><td><strong>B1 · Phòng</strong></td><td>Phòng Chẩn đoán, Khởi sự, Kiến trúc</td><td>+ toàn bộ hồ sơ này, tài liệu đã giao, sổ mô hình</td><td>Giải thích câu hỏi; gợi cách ước lượng; giải thích tài liệu đã nhận; tạo phiếu</td><td>Đổi kết luận của tài liệu; nói về hồ sơ khác; tiết lộ luật chẩn đoán nào đã kích hoạt ngoài những gì tài liệu đã nêu</td></tr>
+      <tr><td><strong>B2 · Dự án</strong></td><td>Phòng Bộ dựng, Phòng Dự án</td><td>+ tài liệu dự án, tiến độ, nhật ký mức tự chủ</td><td>Hướng dẫn từng bước Kit; báo tiến độ; soạn câu hỏi cho tư vấn</td><td>Thay đổi phạm vi hợp đồng; xác nhận nghiệm thu</td></tr>
+      <tr><td><strong>B3 · Nội bộ</strong></td><td>LATTICE Work</td><td>Đúng phạm vi của người đang hỏi</td><td>Tóm tắt, tìm, soạn nháp, nhắc việc</td><td>Tiết lộ có bao nhiêu thứ đang bị giấu với người hỏi</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Quy tắc của B3 lấy nguyên văn từ đặc tả LATTICE Work: bối cảnh gửi cho mô hình dựng theo đúng người đang gọi, và câu "còn 12 việc anh không được xem" cũng là rò rỉ. Quy tắc đó áp cho cả B1 — trợ lý Phòng của khách A không được biết Lattice đang có bao nhiêu khách khác.</p>
+
+  <h3>Ngân sách theo tầng</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Tầng</th><th>Trần mỗi phiên</th><th>Trần mỗi hồ sơ</th><th>Khi chạm trần</th></tr></thead>
+    <tbody>
+      <tr><td>B0</td><td class="n">15.000đ (đã đặt trong Talk)</td><td class="n">—</td><td>Chuyển chế độ để lại email</td></tr>
+      <tr><td>B1</td><td class="n">15.000đ</td><td class="n">5% giá bậc</td><td>Tạo phiếu cho Người 2, báo khách rõ ràng</td></tr>
+      <tr><td>B2</td><td class="n">25.000đ</td><td class="n">3% giá bậc hoặc theo hợp đồng</td><td>Như trên</td></tr>
+    </tbody>
+  </table></div>
+  <p>Trần theo hồ sơ tính bằng phần trăm giá bậc, để không bao giờ có hồ sơ mà chi phí AI vượt biên lợi nhuận của nó — lỗi phổ biến và âm thầm nhất của sản phẩm có chatbot.</p>
+</section>
+
+<!-- 08 -->
+<section id="s8">
+  <div class="kicker">08</div>
+  <h2>Video ngắn theo khu vực</h2>
+  <p class="lead">Mỗi khu vực một video, mỗi video một việc. Video không để giải thích Lattice — nó để khách làm đúng một hành động tiếp theo.</p>
+
+  <div class="box">
+    <div class="bt">Công thức 60 giây</div>
+    <div class="scroll" style="margin:0"><table>
+      <thead><tr><th>Giây</th><th>Phần</th><th>Quy tắc</th></tr></thead>
+      <tbody>
+        <tr><td class="n">0–3</td><td>Câu hỏi của khách</td><td>Đúng chữ khách dùng. Không logo, không chào hỏi</td></tr>
+        <tr><td class="n">3–15</td><td>Vấn đề + một con số</td><td>Một con số, có nguồn trên màn hình</td></tr>
+        <tr><td class="n">15–45</td><td>Cơ chế</td><td>Một sơ đồ dựng dần. Không quá ba ý</td></tr>
+        <tr><td class="n">45–60</td><td>Một hành động</td><td>Một nút, một việc. Không liệt kê lựa chọn</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:14px">Hình trắng đen theo nhận diện; chữ Archivo trên màn hình; phụ đề cứng tiếng Việt, bản thứ hai tiếng Anh. Hai khổ: dọc 9:16 cho mạng xã hội, ngang 16:9 cho website và Phòng.</p>
+  </div>
+
+  <div class="scroll"><table>
+    <thead><tr><th style="width:44px">Mã</th><th>Khu vực</th><th>Video trả lời câu</th><th>Hành động cuối</th></tr></thead>
+    <tbody>
+      <tr><td><strong>V01</strong></td><td>Trang chủ</td><td>LATTICE làm gì, và không làm gì?</td><td>Làm Check</td></tr>
+      <tr><td><strong>V02</strong></td><td>Xu hướng</td><td>Vì sao phần lớn thí điểm AI dừng ở thí điểm?</td><td>Đọc đề án mục 1</td></tr>
+      <tr><td><strong>V03</strong></td><td>Ngành &amp; Mô hình</td><td>Mô hình của tôi tự động hóa được bao nhiêu?</td><td>Làm Check</td></tr>
+      <tr><td><strong>V04</strong></td><td>Cách chúng tôi làm</td><td>Sáu mức tự chủ là gì — và vì sao máy phải được "lên lớp"?</td><td>Làm Check</td></tr>
+      <tr><td><strong>V05</strong></td><td>Xu hướng · mặt tối</td><td>Doanh nghiệp một người có thật sự tốt không?</td><td>Đọc mục mặt tối</td></tr>
+      <tr><td><strong>V06</strong></td><td>Trang Check</td><td>Mười hai câu này cho tôi biết gì?</td><td>Bắt đầu câu 1</td></tr>
+      <tr><td><strong>V07</strong></td><td>Trang đăng ký</td><td>Scan và Blueprint khác nhau thế nào, tôi nên chọn gì?</td><td>Chọn gói</td></tr>
+      <tr><td><strong>V08</strong></td><td>Phòng Chẩn đoán</td><td>Chào mừng — ba việc anh chị làm trong Phòng này</td><td>Mở bộ câu hỏi</td></tr>
+      <tr><td><strong>V09</strong></td><td>Phòng Khởi sự</td><td>Vì sao chúng tôi có thể khuyên anh chị chưa nên làm?</td><td>Mở bộ câu hỏi</td></tr>
+      <tr><td><strong>V10</strong></td><td>Phòng · tài liệu</td><td>Đọc đề xuất cơ bản thế nào trong năm phút?</td><td>Làm việc ở khối 5</td></tr>
+      <tr><td><strong>V11</strong></td><td>Phòng Kiến trúc</td><td>Buổi 60 phút sắp tới cần chuẩn bị gì?</td><td>Đặt lịch</td></tr>
+      <tr><td><strong>V12</strong></td><td>Phòng Bộ dựng</td><td>Kit này dựng trong bao lâu, ai làm phần nào?</td><td>Bước 1 của danh sách kiểm</td></tr>
+      <tr><td><strong>V13</strong></td><td>Trang Build</td><td>Ba đến năm tháng triển khai trông thế nào từng tuần?</td><td>Đặt buổi trao đổi</td></tr>
+      <tr><td><strong>V14</strong></td><td>Trang Blockchain</td><td>Tài sản số liên quan gì đến doanh nghiệp nhỏ — và vì sao chưa nên vội?</td><td>Đọc bốn ranh giới</td></tr>
+    </tbody>
+  </table></div>
+
+  <p><strong>Đã có sẵn:</strong> thư mục Founders đang giữ 16 video Lattice_Video_01–16 cùng Academy.mp4 và Delivery Method.mp4. Việc đầu tiên là đối chiếu nội dung 18 video đó với bảng trên — nhiều khả năng một phần đã dùng được cho V02–V05 sau khi cắt về 60 giây.</p>
+  <div class="box soft"><p><strong>Giọng thật hay giọng AI.</strong> Khuyến nghị giọng thật của Người 1 cho V01, V05, V09, V13 — bốn video mà niềm tin là toàn bộ nội dung. Giọng tổng hợp chấp nhận được cho video hướng dẫn trong Phòng, và nếu dùng thì ghi rõ trên màn hình. Một công ty bán sự minh bạch về AI không được để khách tự đoán giọng nào là máy.</p></div>
+</section>
+
+<!-- 09 -->
+<section id="s9">
+  <div class="kicker">09</div>
+  <h2>Khi nào gặp người</h2>
+  <p class="lead">Người là nguồn lực hiếm nhất của Lattice. Gặp người không phải phần thưởng cho khách trả nhiều tiền — nó được đặt ở đúng chỗ mà máy không thể làm tốt hơn.</p>
+
+  <div class="scroll"><table>
+    <thead><tr><th>Bậc</th><th>Hình thức gặp</th><th>Ai</th><th>Vì sao đặt ở đây</th></tr></thead>
+    <tbody>
+      <tr><td>T0–T1</td><td>Không gặp. Người duyệt tài liệu, không nói chuyện</td><td>Người 2</td><td>Đầu ra do luật sinh ra, người chịu trách nhiệm chất lượng</td></tr>
+      <tr><td>T2</td><td>Một buổi 60 phút rà hồ sơ + buổi 30 phút sau 3 tuần</td><td>Người 2 hoặc Người 1</td><td>Kiến trúc cần thương lượng với thực tế của khách; máy không nghe được điều khách không nói</td></tr>
+      <tr><td>T3</td><td>Hai buổi hỏi đáp nhóm, mỗi buổi tối đa 12 hồ sơ</td><td>Người 3</td><td>Câu hỏi triển khai lặp lại giữa các khách; trả lời một lần cho nhiều người</td></tr>
+      <tr><td>T4–T5</td><td>Tư vấn riêng, lịch cố định theo hợp đồng</td><td>Người 1 chốt · Người 2 vận hành</td><td>Hợp đồng lớn, rủi ro danh tiếng, đổi thói quen của đội khách</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Leo thang ở bất kỳ bậc nào</h3>
+  <p>Khách ở bậc nào cũng có một đường tới người: phiếu chuyển tiếp mà Lattice-Talk đã xây. Ba điều kiện tự tạo phiếu, không chờ khách yêu cầu: khách nói về tiền đã trả hoặc hoàn phí; khách bày tỏ không hài lòng hai lần trong một phiên; trợ lý không tìm thấy câu trả lời trong kho tri thức. Hạn phản hồi phiếu: một ngày làm việc.</p>
+
+  <h3>Chuỗi chốt hợp đồng Build</h3>
+  <ol class="tight">
+    <li>Hồ sơ Blueprint hoàn tất, khách đọc xong (Phòng ghi nhận lượt mở)</li>
+    <li>Buổi rà 30 phút — Người 2 hỏi đúng một câu: "Trong lộ trình 90 ngày, phần nào anh chị muốn chúng tôi làm cùng?"</li>
+    <li>Nếu có: Người 1 gặp, 45 phút, xác định phạm vi và ngân sách — không báo giá tại chỗ</li>
+    <li>Đề xuất phạm vi trong 5 ngày, chia đợt theo cột mốc, khấu trừ phí Blueprint</li>
+    <li>Ký. Phòng Dự án mở cùng ngày</li>
+  </ol>
+</section>
+
+<!-- 10 -->
+<section id="s10">
+  <div class="kicker">10</div>
+  <h2>Mảng Khách hàng</h2>
+
+  <h3>10.1 · Dữ liệu khách tối thiểu — bảy thực thể</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Thực thể</th><th>Giữ gì</th><th>Ghi chú</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Người liên hệ</strong></td><td>Email, tên gọi, vai trò, ngôn ngữ</td><td>Email là định danh, không dùng số điện thoại</td></tr>
+      <tr><td><strong>Tổ chức</strong></td><td>Tên, loại hình, ngành, quy mô</td><td>Một người có thể thuộc nhiều tổ chức</td></tr>
+      <tr><td><strong>Kết quả Check</strong></td><td>12 câu trả lời, chỉ số, ngày</td><td>Làm lại được; giữ lịch sử để thấy tiến bộ</td></tr>
+      <tr><td><strong>Hồ sơ</strong></td><td>Mã <code>LTC</code>, bậc, trạng thái, người đứng tên</td><td>Đang có trong Sheet — giữ nguyên mã</td></tr>
+      <tr><td><strong>Phòng</strong></td><td>Hồ sơ nối vào, hạn mở, tài liệu, lượt vào</td><td>Mới</td></tr>
+      <tr><td><strong>Đồng ý</strong></td><td>Mục đích, thời điểm, nội dung câu đồng ý, nguồn</td><td>Một mục đích một bản ghi; kiểm trước mỗi thư</td></tr>
+      <tr><td><strong>Thanh toán &amp; phiếu</strong></td><td>Tiền về, hoàn phí, phiếu chuyển tiếp</td><td>Đang có — SePay và tab LatticeTalk</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>10.2 · Cam kết phản hồi</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Việc</th><th>Cam kết</th><th>Ai</th></tr></thead>
+    <tbody>
+      <tr><td>Tiền về → Phòng mở</td><td class="n">Dưới 5 phút</td><td>Hệ thống</td></tr>
+      <tr><td>Nộp bộ câu hỏi → tài liệu trong Phòng</td><td class="n">3 ngày làm việc (T1) · 10 ngày làm việc (T2)</td><td>AI dựng · Người 2 duyệt</td></tr>
+      <tr><td>Phiếu chuyển tiếp → người trả lời</td><td class="n">1 ngày làm việc</td><td>Người 2</td></tr>
+      <tr><td>Yêu cầu hoàn phí hợp lệ → tiền về</td><td class="n">5 ngày làm việc</td><td>Người 1 duyệt</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>10.3 · Một câu hỏi sau mỗi bậc</h3>
+  <p>Không khảo sát dài. Sau mỗi tài liệu giao, một câu trong Phòng: <em>"Trong ba điểm đau chúng tôi nêu, bao nhiêu điểm đúng với thực tế của anh chị?"</em> — 0, 1, 2, 3. Đây là chỉ số chất lượng quan trọng nhất của toàn bộ bộ máy, và nó hiệu chỉnh trực tiếp 14 luật chẩn đoán.</p>
+</section>
+
+<!-- 11 -->
+<section id="s11">
+  <div class="kicker">11</div>
+  <h2>Mảng Kinh doanh — và phép tính phải nhìn thẳng</h2>
+  <p class="lead">Bảng dưới là một kịch bản minh họa với giả định ghi rõ, không phải dự báo. Mục đích là trả lời một câu: bậc nào nuôi được công ty?</p>
+
+  <div class="scroll"><table>
+    <thead><tr><th>Bước phễu một tháng</th><th>Giả định</th><th>Số lượng</th><th>Doanh thu</th></tr></thead>
+    <tbody>
+      <tr><td>Hoàn thành Check</td><td>Giả định</td><td class="n">400</td><td class="n">0</td></tr>
+      <tr><td>Check → Scan/Compass</td><td>5%</td><td class="n">20</td><td class="n">≈ 10,5 triệu</td></tr>
+      <tr><td>T1 → Blueprint/Foundry</td><td>30%</td><td class="n">6</td><td class="n">≈ 9,5 triệu</td></tr>
+      <tr><td>T2 → Kit</td><td>30%</td><td class="n">2</td><td class="n">≈ 9,8 triệu</td></tr>
+      <tr><td>T2 → Build</td><td>15%</td><td class="n">≈ 1</td><td class="n">theo phạm vi</td></tr>
+      <tr><td colspan="3"><strong>Cộng T1 + T2 + T3, chưa trừ khấu trừ khi lên bậc</strong></td><td class="n"><strong>≈ 30 triệu</strong></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="box alert">
+    <div class="bt">Điều phép tính này nói</div>
+    <p>Kể cả với 400 lượt Check mỗi tháng — một con số không dễ đạt — ba bậc đầu cộng lại khoảng 30 triệu đồng, và khoản khấu trừ khi khách lên bậc còn kéo con số này xuống. <strong>Scan, Blueprint và Kit không nuôi được ba người.</strong></p>
+    <p>Chúng là phễu có thu phí: lọc hồ sơ, trả chi phí AI, xây niềm tin, và sinh ra dữ liệu để làm Kit tốt hơn. Công ty sống bằng <strong>Build và Operate</strong>. Hệ quả vận hành: mọi chỉ số tăng trưởng phải quy về câu hỏi "bao nhiêu hồ sơ Blueprint trở thành hợp đồng Build" — không phải số lượt Check, không phải số người theo dõi.</p>
+  </div>
+
+  <h3>Bốn giai đoạn của một cơ hội</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Giai đoạn</th><th>Vào khi</th><th>Ra khi</th><th>Người giữ</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Đủ điều kiện</strong></td><td>Blueprint xong, khách trả lời "có" ở buổi rà</td><td>Người 1 gặp</td><td>Người 2</td></tr>
+      <tr><td><strong>Định phạm vi</strong></td><td>Buổi gặp Người 1</td><td>Gửi đề xuất phạm vi</td><td>Người 1</td></tr>
+      <tr><td><strong>Đàm phán</strong></td><td>Khách phản hồi đề xuất</td><td>Ký hoặc đóng</td><td>Người 1</td></tr>
+      <tr><td><strong>Đóng — có ghi lý do</strong></td><td>Khách từ chối hoặc im lặng 30 ngày</td><td>—</td><td>Người 2 ghi lý do vào sổ</td></tr>
+    </tbody>
+  </table></div>
+  <p>Giai đoạn cuối là giai đoạn bị bỏ qua nhiều nhất. Lý do mất một hợp đồng là dữ liệu đáng giá nhất của mảng Kinh doanh — nó cho biết thang giá trị gãy ở đâu.</p>
+</section>
+
+<!-- ============ PHẦN B ============ -->
+<div class="part">
+  <div class="pk">Luồng B</div>
+  <h2>Quản trị nội bộ</h2>
+  <p>Cổ đông &amp; quản trị · Tài chính &amp; vốn · Quy trình &amp; chính sách · Đội người + AI · Pháp lý, dữ liệu, bảo mật</p>
+</div>
+
+<!-- 12 -->
+<section id="s12">
+  <div class="kicker">12</div>
+  <h2>Cổ đông và quản trị công ty</h2>
+  <p class="lead">Công ty ba người vẫn là công ty cổ phần, với đủ nghĩa vụ của công ty cổ phần. Thiết kế tốt ở đây làm việc quản trị gần như tự chạy; thiết kế kém làm nó thành nguồn tranh chấp lớn nhất của một công ty nhỏ.</p>
+
+  <h3>12.1 · Bộ hồ sơ nền</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Hồ sơ</th><th>Nội dung phải có</th><th>Tình trạng</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Điều lệ</strong></td><td>Cơ cấu quản lý, thẩm quyền, cách lấy ý kiến bằng văn bản</td><td>Cần rà</td></tr>
+      <tr><td><strong>Sổ đăng ký cổ đông</strong></td><td>Tên, số cổ phần, loại, ngày góp</td><td>Cần rà</td></tr>
+      <tr><td><strong>Thỏa thuận cổ đông</strong></td><td>Phân chia vai trò; lịch trao cổ phần theo thời gian gắn bó; điều kiện rời đi và mua lại; quyền phủ quyết; cách giải quyết bế tắc</td><td>Nên có</td></tr>
+      <tr><td><strong>Chuyển giao tài sản trí tuệ</strong></td><td>Mã nguồn, đề án, thương hiệu, kho tri thức, cấu hình agent, câu lệnh — do cá nhân tạo ra — thuộc về công ty</td><td><strong>Ưu tiên cao</strong></td></tr>
+      <tr><td><strong>Sổ nghị quyết</strong></td><td>Mọi quyết định cấp cổ đông và hội đồng quản trị, có ngày và chữ ký</td><td>Nên có</td></tr>
+    </tbody>
+  </table></div>
+  <p>Chuyển giao tài sản trí tuệ là việc gấp nhất trong bảng. Hiện mã nguồn nằm trên kho GitHub của tài khoản riêng, và đề án xác định câu lệnh cùng cấu hình agent là <em>bí mật kinh doanh</em>. Nếu không có văn bản chuyển giao, tài sản giá trị nhất của công ty về mặt pháp lý có thể không thuộc về công ty.</p>
+
+  <h3>12.2 · Ma trận quyền nội bộ</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Quyết định</th><th>Cổ đông</th><th>Hội đồng / Giám đốc</th><th>Người phụ trách</th><th>AI</th></tr></thead>
+    <tbody>
+      <tr><td>Tăng vốn, nhận cổ đông mới, đổi điều lệ</td><td class="c"><span class="tag ink">Quyết</span></td><td class="c">Đề xuất</td><td class="c">—</td><td class="c">—</td></tr>
+      <tr><td>Kế hoạch năm, ngân sách năm</td><td class="c">Duyệt</td><td class="c"><span class="tag ink">Quyết</span></td><td class="c">Soạn</td><td class="c">Dựng nháp</td></tr>
+      <tr><td>Đổi giá, mở bậc mới, đổi chính sách hoàn phí</td><td class="c">—</td><td class="c"><span class="tag ink">Quyết</span></td><td class="c">Đề xuất</td><td class="c">—</td></tr>
+      <tr><td>Ký hợp đồng Build</td><td class="c">—</td><td class="c"><span class="tag ink">Quyết</span></td><td class="c">Chuẩn bị</td><td class="c">—</td></tr>
+      <tr><td>Chi ngoài ngân sách trên 10 triệu</td><td class="c">—</td><td class="c"><span class="tag ink">Quyết</span></td><td class="c">Đề xuất</td><td class="c">Cảnh báo</td></tr>
+      <tr><td>Duyệt tài liệu giao khách</td><td class="c">—</td><td class="c">—</td><td class="c"><span class="tag ink">Quyết</span></td><td class="c">Dựng nháp</td></tr>
+      <tr><td>Hoàn phí đúng chính sách</td><td class="c">—</td><td class="c">—</td><td class="c"><span class="tag ink">Quyết</span></td><td class="c">Kiểm điều kiện</td></tr>
+      <tr><td>Đăng nội dung đã duyệt theo lô</td><td class="c">—</td><td class="c">—</td><td class="c">Duyệt lô</td><td class="c"><span class="tag">L3</span></td></tr>
+      <tr><td>Đối soát tiền về, trích quỹ</td><td class="c">—</td><td class="c">—</td><td class="c">Kiểm tháng</td><td class="c"><span class="tag">L4</span></td></tr>
+    </tbody>
+  </table></div>
+  <p>Hạn mức 10 triệu là đề xuất để có con số; chốt ở D-M05. Luật sư cần xác nhận cơ cấu quản lý phù hợp nhất với điều lệ hiện tại và số cổ đông thực tế.</p>
+</section>
+
+<!-- 13 -->
+<section id="s13">
+  <div class="kicker">13</div>
+  <h2>Tài chính và vốn</h2>
+
+  <div class="box alert">
+    <div class="bt">Việc số một · tài khoản nhận tiền</div>
+    <p>Trang đăng ký đang tạo mã QR chuyển về một tài khoản đứng tên cá nhân. Với một công ty cổ phần đang bán dịch vụ, việc này kéo theo ba vấn đề: doanh thu của công ty ghi nhận ở tài khoản không phải của công ty; khó xuất hóa đơn điện tử đúng cho từng khoản thu; và ranh giới tài sản giữa cổ đông với công ty bị mờ — đúng loại vấn đề mà đề án khuyên khách "vận hành sổ sách như một doanh nghiệp ngay từ đầu".</p>
+    <p><strong>Đề xuất:</strong> mở tài khoản công ty, cấu hình lại SePay và mã QR trỏ về tài khoản đó trước đợt 2; xuất hóa đơn điện tử cho mọi khoản thu; nhờ kế toán dịch vụ xử lý các khoản đã thu vào tài khoản cá nhân trong đợt 1.</p>
+  </div>
+
+  <h3>13.1 · Bốn quỹ — tách ngay khi tiền về</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Quỹ</th><th>Trích</th><th>Dùng cho</th><th>Ai được chi</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Thuế</strong></td><td class="n">Theo tỷ lệ kế toán xác nhận</td><td>Thuế phải nộp</td><td>Chỉ khi nộp thuế</td></tr>
+      <tr><td><strong>Dự phòng</strong></td><td class="n">10% đến khi đủ 6 tháng chi cố định</td><td>Sống sót khi doanh thu gián đoạn</td><td>Hội đồng quyết</td></tr>
+      <tr><td><strong>Vận hành</strong></td><td class="n">Phần còn lại</td><td>Chi phí hằng tháng, lương, AI, công cụ</td><td>Theo ngân sách</td></tr>
+      <tr><td><strong>Phát triển</strong></td><td class="n">Từ lợi nhuận quý</td><td>Kit mới, video, Academy</td><td>Theo kế hoạch quý</td></tr>
+    </tbody>
+  </table></div>
+  <p>Mức sáu tháng dự phòng lấy thẳng từ đề án: 68% người làm doanh nghiệp một người có dưới sáu tháng dự phòng. Lattice không thể khuyên khách điều mình không làm.</p>
+
+  <h3>13.2 · Chi phí AI có trần</h3>
+  <p>Lattice-Talk đã đặt bốn lớp trần: hạn mức tài khoản 3.000.000đ/tháng, trần ngày 100.000đ, trần phiên, trần theo địa chỉ. Mở rộng cùng logic cho toàn bộ chi AI của công ty: một sổ chi phí token theo từng hồ sơ và từng vai trò AI, và cảnh báo khi chi AI của một hồ sơ vượt trần ở mục 7. Chỉ số theo dõi: <strong>chi AI ÷ doanh thu</strong>, ngưỡng lành mạnh nằm trong khoảng 2–8% mà chính Lattice đang dùng để tư vấn khách.</p>
+
+  <h3>13.3 · Báo cáo tháng — một trang</h3>
+  <ul class="tight">
+    <li>Doanh thu theo bậc, sau khấu trừ</li>
+    <li>Chi theo nhóm: người, AI, công cụ, marketing, thuê ngoài</li>
+    <li>Dòng tiền và số tháng sống được với chi phí hiện tại</li>
+    <li>Số dư bốn quỹ</li>
+    <li>Tỷ lệ Blueprint → Build, và giá trị hợp đồng Build đang mở</li>
+    <li>Chi AI ÷ doanh thu</li>
+  </ul>
+  <p>Finance Controller dựng nháp từ sổ đối soát và sổ chi; kế toán dịch vụ đối chiếu; Người 1 ký. Báo cáo quý gửi cổ đông là bốn báo cáo tháng cộng một trang nhận định.</p>
+</section>
+
+<!-- 14 -->
+<section id="s14">
+  <div class="kicker">14</div>
+  <h2>Quy trình và chính sách — bốn sổ</h2>
+  <p class="lead">Mọi thứ nội bộ của Lattice nằm trong đúng bốn sổ. Không có sổ thứ năm. Thứ gì không vào được sổ nào thì hoặc là chưa cần, hoặc là đang bị đặt sai chỗ.</p>
+
+  <div class="grid2">
+    <div><div class="gh">Sổ quyết định</div><p>Theo nếp <code>DECISIONS.md</code> đang dùng: bối cảnh, phương án, quyết định, hệ quả, trạng thái. Mã <code>D-xxx</code>. Không xóa, chỉ thay thế bằng quyết định mới dẫn chiếu quyết định cũ.</p></div>
+    <div><div class="gh">Sổ chính sách</div><p>Giá, gói, hoàn phí, bảo lưu, dời lịch, đợt đăng ký, bảo mật, đồng ý dữ liệu, điều khoản dịch vụ, tuyên bố sử dụng AI. <strong>Nguồn duy nhất</strong> cho website, trợ lý, thư, video.</p></div>
+    <div><div class="gh">Sổ quy trình</div><p>Mọi SOP nội bộ, mỗi SOP một người đứng tên, một phiên bản, một ngày rà lại. SOP nào chưa rà trong sáu tháng hiện đỏ trong LATTICE Work.</p></div>
+    <div><div class="gh">Sổ mô hình</div><p>Mười ba mô hình, định nghĩa gốc ở đề án, như tài liệu chu trình mục 13. Không mô hình nào được định nghĩa lại ở nơi khác.</p></div>
+  </div>
+
+  <h3>Quy trình đổi một chính sách</h3>
+  <div class="steps">
+    <div><div class="sn">1</div><div class="sb"><b>Đề xuất</b>Ai cũng được đề xuất, kể cả vai trò AI. Ghi vào sổ quyết định ở trạng thái đề xuất.</div><div class="sl">Mọi người</div></div>
+    <div><div class="sn">2</div><div class="sb"><b>Phản biện</b>Risk &amp; Compliance kiểm: ai đang giữ quyền lợi theo chính sách cũ? Điều gì phải giữ nguyên cho họ?</div><div class="sl">AI · L2</div></div>
+    <div><div class="sn">3</div><div class="sb"><b>Chốt</b>Theo ma trận quyền mục 12.</div><div class="sl">Hội đồng</div></div>
+    <div><div class="sn">4</div><div class="sb"><b>Cập nhật sổ chính sách và bảng "ai nói gì ở đâu"</b>Câu cũ vào danh sách câu đã bỏ — kho tri thức sẽ làm hỏng bản dựng nếu câu đó còn sót.</div><div class="sl">Người 3</div></div>
+    <div><div class="sn">5</div><div class="sb"><b>Đẩy đồng loạt</b>Website, trợ lý, mẫu thư, Phòng — cùng một ngày. Video cũ có câu sai thì gỡ, không để lại.</div><div class="sl">Người 3</div></div>
+  </div>
+  <p>Năm bước này tồn tại vì một lý do đã xảy ra: hiện có hai hệ tên gói và hai chính sách phí cùng chạy trên các kênh khác nhau.</p>
+</section>
+
+<!-- 15 -->
+<section id="s15">
+  <div class="kicker">15</div>
+  <h2>Đội người + AI vận hành trên LATTICE Work</h2>
+  <p class="lead">LATTICE Work đã có bản mẫu chạy được và đặc tả tài khoản, phân quyền đầy đủ. Lattice nên là tổ chức đầu tiên dùng nó thật — đặc tả đã ghi đúng như vậy.</p>
+
+  <div class="grid2">
+    <div><div class="gh">Vì sao dùng LATTICE Work, không dùng công cụ có sẵn</div>
+      <ul class="tight">
+        <li>Mọi việc của AI có người đứng tên — ràng buộc ở tầng dữ liệu</li>
+        <li>Kết quả AI bắt buộc qua trạng thái Chờ duyệt</li>
+        <li>Bốn điều cấm cố định, không phải ô tích</li>
+        <li>Trợ lý nội bộ chỉ thấy phạm vi người hỏi</li>
+        <li>Mỗi ngày dùng là một ngày thử sản phẩm</li>
+      </ul>
+    </div>
+    <div><div class="gh">Rủi ro phải nói thẳng</div>
+      <ul class="tight">
+        <li>Bản mẫu chạy trong trình duyệt, dữ liệu hư cấu — chưa có máy chủ</li>
+        <li>Dùng sản phẩm dở dang làm hạ tầng nội bộ có thể làm chậm chính việc nội bộ</li>
+        <li><strong>Giảm thiểu:</strong> ba tháng đầu chạy song song một bảng việc đơn giản; chuyển hẳn khi LATTICE Work có máy chủ và sao lưu</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Luồng mẫu nội bộ đầu tiên nên dựng</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Luồng</th><th>Bước</th><th>Cổng duyệt</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Giao một hồ sơ Scan</strong></td><td>Tiền về → Phòng mở → bộ câu hỏi nộp → luật chạy → nháp → duyệt → giao → hỏi chất lượng</td><td>Duyệt nháp</td></tr>
+      <tr><td><strong>Giao một hồ sơ Blueprint</strong></td><td>Như trên + mở mô-đun → buổi 60 phút → hồ sơ → buổi rà 30 phút</td><td>Chọn mô-đun · duyệt hồ sơ</td></tr>
+      <tr><td><strong>Một tuần nội dung</strong></td><td>Chọn gốc → bảy nhánh → duyệt → lên lịch → đo</td><td>Duyệt lô</td></tr>
+      <tr><td><strong>Đóng sổ tháng</strong></td><td>Đối soát → trích quỹ → báo cáo nháp → kế toán đối chiếu → ký</td><td>Ký báo cáo</td></tr>
+      <tr><td><strong>Đổi một chính sách</strong></td><td>Năm bước mục 14</td><td>Chốt · đẩy đồng loạt</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 16 -->
+<section id="s16">
+  <div class="kicker">16</div>
+  <h2>Pháp lý, dữ liệu, bảo mật</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Việc</th><th>Vì sao</th><th>Ưu tiên</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Tài khoản công ty, hóa đơn điện tử cho mọi khoản thu</strong></td><td>Mục 13</td><td class="c"><span class="tag hi">Cao</span></td></tr>
+      <tr><td><strong>Văn bản chuyển giao tài sản trí tuệ</strong></td><td>Mục 12</td><td class="c"><span class="tag hi">Cao</span></td></tr>
+      <tr><td><strong>Điều khoản dịch vụ và chính sách dữ liệu công bố trên website</strong></td><td>Khách đang trả tiền và nhập doanh số ba năm vào biểu mẫu</td><td class="c"><span class="tag hi">Cao</span></td></tr>
+      <tr><td><strong>Kiểm tra nghĩa vụ thông báo website bán hàng với cơ quan quản lý thương mại điện tử</strong></td><td>Website nhận đặt mua và thanh toán trực tuyến</td><td class="c"><span class="tag hi">Cao</span></td></tr>
+      <tr><td><strong>Đồng ý dữ liệu tách theo mục đích, lưu thời điểm và câu chữ</strong></td><td>Luật bảo vệ dữ liệu cá nhân; điều kiện để gửi chuỗi thư</td><td class="c"><span class="tag hi">Cao</span></td></tr>
+      <tr><td><strong>Chặn các đường dẫn nội bộ đang công khai</strong></td><td>README, thư mục tools, docs, cloudflare đang trả về 200 trên tên miền chính</td><td class="c"><span class="tag">Trung bình</span></td></tr>
+      <tr><td><strong>Sao lưu thư mục ngoài git</strong></td><td>Đặc tả LATTICE Work và tài liệu nội bộ chỉ có một bản trên một máy</td><td class="c"><span class="tag">Trung bình</span></td></tr>
+      <tr><td><strong>Tuyên bố sử dụng AI</strong></td><td>Khách phải biết tài liệu do AI dựng và người duyệt; giọng nào trong video là máy</td><td class="c"><span class="tag">Trung bình</span></td></tr>
+      <tr><td><strong>Quy trình xử lý sự cố dữ liệu</strong></td><td>Ai làm gì trong giờ đầu tiên nếu dữ liệu hồ sơ bị lộ</td><td class="c"><span class="tag">Trung bình</span></td></tr>
+    </tbody>
+  </table></div>
+  <p>Mọi mục trên cần luật sư hoặc kế toán xác nhận trước khi coi là xong — tài liệu này nêu việc phải làm, không thay ý kiến chuyên môn.</p>
+</section>
+
+<!-- 17 -->
+<section id="s17">
+  <div class="kicker">17</div>
+  <h2>Nhịp vận hành</h2>
+  <p class="lead">Quản trị bằng ngoại lệ, áp lên chính mình. Người 1 nhận đúng bốn loại thông tin: quyết định cần duyệt, ngoại lệ vượt quyền hạn, rủi ro mới, báo cáo hiệu quả. Không có loại thứ năm.</p>
+
+  <div class="scroll"><table>
+    <thead><tr><th>Nhịp</th><th>Việc</th><th>Thời lượng</th><th>Ai</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Hằng ngày · 7:30</strong></td><td>Bản tin ngoại lệ: hồ sơ quá hạn, phiếu chưa trả lời, tiền về không khớp, chi AI bất thường, hạn mức thư còn lại. Không có gì bất thường thì bản tin chỉ có một dòng</td><td class="n">5–15 phút</td><td>Chief of Staff soạn · ba người đọc</td></tr>
+      <tr><td><strong>Hằng tuần · thứ Hai</strong></td><td>Bốn chỉ số phễu; duyệt lô nội dung tuần; sự cố và mức tự chủ; ba việc ưu tiên</td><td class="n">60 phút</td><td>Ba người</td></tr>
+      <tr><td><strong>Hằng tháng</strong></td><td>Đóng sổ; báo cáo một trang; thăng hoặc hạ mức tự chủ theo ngưỡng; hiệu chỉnh 14 luật từ chỉ số chất lượng</td><td class="n">2 giờ</td><td>Ba người + kế toán</td></tr>
+      <tr><td><strong>Hằng quý</strong></td><td>Báo cáo cổ đông; kế hoạch quý; công bố bảng số liệu vận hành ra ngoài; gặp cố vấn</td><td class="n">Nửa ngày</td><td>Hội đồng + cố vấn</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="box">
+    <div class="bt">Bảng số liệu công bố hằng quý — case study của chính Lattice</div>
+    <p>Mỗi quý công bố một trang: số hồ sơ mỗi bậc, tỷ lệ chuyển, tỷ lệ điểm đau khách xác nhận đúng, thời gian giao trung bình, số sự cố và mức tự chủ bị hạ, chi AI trên doanh thu, số người. Kể cả khi con số xấu.</p>
+    <p>Đây là thứ duy nhất Lattice có thể công bố trước khi có khách hàng hoàn tất dự án mà vẫn đúng với lằn ranh "không đưa lời chứng thực khi chưa có dự án thật". Và nó là bằng chứng mạnh hơn bất kỳ lời chứng thực nào.</p>
+  </div>
+</section>
+
+<!-- ============ TRIỂN KHAI ============ -->
+<div class="part">
+  <div class="pk">Triển khai</div>
+  <h2>Từ tài liệu đến bộ máy</h2>
+</div>
+
+<!-- 18 -->
+<section id="s18">
+  <div class="kicker">18</div>
+  <h2>Bản đồ hạ tầng — có sẵn và phải xây</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Thành phần</th><th>Hiện có</th><th>Việc phải làm</th><th>Giai đoạn</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Website</strong></td><td>10 trang song ngữ, GitHub Pages + Cloudflare Worker</td><td>Thêm trang Check, trang Kit, gắn video</td><td class="c">1</td></tr>
+      <tr><td><strong>Đăng ký &amp; thanh toán</strong></td><td>Biểu mẫu 4 bước, VietQR, SePay, Apps Script, Sheet</td><td>Đổi tài khoản nhận tiền; thêm Compass, Foundry, Kit vào bảng giá</td><td class="c">1</td></tr>
+      <tr><td><strong>Thư</strong></td><td>MailApp, trần 100/ngày</td><td>Tách thư nuôi dưỡng và thư giao dịch sang nhà cung cấp gửi thư chuyên dụng; giữ MailApp cho thư báo nội bộ</td><td class="c">1</td></tr>
+      <tr><td><strong>Trợ lý</strong></td><td>Lattice-Talk: Worker, D1, kho tri thức, trần chi phí — chưa lên sóng</td><td>Lên sóng B0 sau đợt 1; thêm ngữ cảnh B1 cho Phòng</td><td class="c">1 → 2</td></tr>
+      <tr><td><strong>Phòng</strong></td><td>Chưa có</td><td>Bản 0: trang tĩnh + liên kết đăng nhập qua Apps Script, đọc hồ sơ từ Sheet. Bản 1: trên Worker + D1 dùng chung với Talk</td><td class="c">1 → 2</td></tr>
+      <tr><td><strong>Bộ câu hỏi</strong></td><td>Đã soạn trong tài liệu chu trình</td><td>Bản 0: biểu mẫu Google. Bản 1: nằm trong Phòng, tự lưu</td><td class="c">1 → 2</td></tr>
+      <tr><td><strong>Luật chẩn đoán</strong></td><td>Đã soạn 14 luật</td><td>Bản 0: bảng tính có công thức. Bản 1: chạy trong Worker khi nộp</td><td class="c">1 → 2</td></tr>
+      <tr><td><strong>Hệ điều hành nội bộ</strong></td><td>LATTICE Work bản mẫu + đặc tả</td><td>Máy chủ, Postgres, sao lưu theo kiến trúc đã đặc tả</td><td class="c">2 → 3</td></tr>
+      <tr><td><strong>Video</strong></td><td>18 video trong thư mục Founders</td><td>Đối chiếu với bảng V01–V14, cắt, phụ đề</td><td class="c">1</td></tr>
+    </tbody>
+  </table></div>
+  <p>Nguyên tắc "mua trước, xây sau" của đề án áp nguyên vẹn: mọi thứ ở giai đoạn 1 dùng công cụ có sẵn. Chỉ viết phần mềm khi đã có đủ hồ sơ để biết mình đang tự động hóa đúng thứ.</p>
+</section>
+
+<!-- 19 -->
+<section id="s19">
+  <div class="kicker">19</div>
+  <h2>Lộ trình ba giai đoạn</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Giai đoạn</th><th>Làm gì</th><th>Chuyển sang giai đoạn sau khi</th></tr></thead>
+    <tbody>
+      <tr><td><strong>0 · Đến 30/9</strong><br><span style="font-size:12px;color:var(--n700)">Đợt 1</span></td><td>Theo tài liệu chu trình mục 17: thống nhất chính sách, bộ câu hỏi, bảng luật, Check bản tối giản</td><td>Đợt 1 đóng; mọi hồ sơ đợt 1 đã nhận bộ câu hỏi</td></tr>
+      <tr><td><strong>1 · Tháng 10–11/2026</strong><br><span style="font-size:12px;color:var(--n700)">Bộ máy bản 0</span></td><td>Tài khoản công ty; tầng miễn phí đầy đủ với 12 SOP; chuỗi 6 thư trên nhà cung cấp thư mới; Phòng bản 0; trợ lý B0 lên sóng; 6 video đầu; văn bản chuyển giao tài sản trí tuệ; điều khoản dịch vụ</td><td>≥ 20 hồ sơ giao qua Phòng; chỉ số điểm đau đúng ≥ 2/3 trung bình; không sự cố tiền</td></tr>
+      <tr><td><strong>2 · Quý 1/2027</strong><br><span style="font-size:12px;color:var(--n700)">Bộ máy bản 1</span></td><td>Phòng trên Worker + D1; trợ lý B1 trong Phòng; luật chạy tự động; Kit đầu tiên theo ngành đông nhất; hợp đồng Build đầu tiên; bảng số liệu quý đầu tiên</td><td>≥ 2 hợp đồng Build; 1 Kit bán ≥ 10 lần; chi AI ÷ doanh thu trong ngưỡng</td></tr>
+      <tr><td><strong>3 · Từ quý 2/2027</strong><br><span style="font-size:12px;color:var(--n700)">Nhân rộng</span></td><td>LATTICE Work làm hệ điều hành nội bộ thật; Operate; Academy lộ trình A; Kit thứ hai và thứ ba; đối tác thực thi</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <p>Điều kiện chuyển giai đoạn là số, không phải ngày. Trượt điều kiện thì lùi ngày, không lùi điều kiện — đúng câu mà đặc tả Lattice-Talk đã viết.</p>
+</section>
+
+<!-- 20 -->
+<section id="s20">
+  <div class="kicker">20</div>
+  <h2>Quyết định cần chốt</h2>
+  <div style="margin:22px 0">
+    <div class="rule"><div class="id">D-M01</div><div class="bd"><b>Scan chuyển sang tự động hoàn toàn từ đợt 2</b>Bỏ buổi Zoom khỏi Scan, dời lên Blueprint. Hồ sơ đợt 1 giữ nguyên quyền lợi.<div class="cond"><strong>Khuyến nghị:</strong> chấp nhận. Đây là điều kiện để bậc thấp chạy được với ba người.</div></div></div>
+    <div class="rule"><div class="id">D-M02</div><div class="bd"><b>Mở bậc Kit và chọn ngành đầu tiên</b>Giá đề xuất từ 4.900.000đ, ngành chọn theo dữ liệu đợt 1.<div class="cond"><strong>Khuyến nghị:</strong> chốt việc mở bậc ngay; chốt ngành và giá sau khi có 10 hồ sơ Scan.</div></div></div>
+    <div class="rule"><div class="id">D-M03<br><span style="font-weight:400;font-size:10px;color:var(--redd)">GẤP</span></div><div class="bd"><b>Tài khoản công ty cho mọi khoản thu</b>Đổi QR và SePay sang tài khoản công ty; xử lý khoản đã thu trong đợt 1.<div class="cond"><strong>Khuyến nghị:</strong> hoàn tất trước khi mở đợt 2. Hỏi kế toán dịch vụ cách xử lý phần đã thu.</div></div></div>
+    <div class="rule"><div class="id">D-M04</div><div class="bd"><b>Nhà cung cấp gửi thư cho chuỗi dẫn dắt</b>MailApp không đủ cho tầng miễn phí.<div class="cond"><strong>Khuyến nghị:</strong> chọn một dịch vụ gửi thư giao dịch có API, có máy chủ gửi uy tín, gói miễn phí đủ cho giai đoạn 1; so sánh hai nhà cung cấp theo khả năng gửi vào hộp chính của Gmail, không theo giá.</div></div></div>
+    <div class="rule"><div class="id">D-M05</div><div class="bd"><b>Hạn mức chi không cần hội đồng</b>Đề xuất 10 triệu đồng mỗi khoản ngoài ngân sách.<div class="cond"><strong>Khuyến nghị:</strong> chốt con số cùng thỏa thuận cổ đông.</div></div></div>
+    <div class="rule"><div class="id">D-M06</div><div class="bd"><b>Công bố bảng số liệu vận hành hằng quý</b>Kể cả khi số xấu.<div class="cond"><strong>Khuyến nghị:</strong> chấp nhận nguyên tắc ngay; công bố bảng đầu tiên sau quý 1/2027. Đây là quyết định về thương hiệu nhiều hơn về vận hành, nên cần cả ba cổ đông đồng ý.</div></div></div>
+    <div class="rule"><div class="id">D-M07</div><div class="bd"><b>Giọng thật cho bốn video niềm tin</b>V01, V05, V09, V13 dùng giọng Người 1; video hướng dẫn được dùng giọng tổng hợp có ghi rõ.<div class="cond"><strong>Khuyến nghị:</strong> chấp nhận.</div></div></div>
+  </div>
+</section>
+
+<footer class="doc">
+  <p><b>LATTICE Next Solutions JSC</b> · Mô hình vận hành doanh nghiệp một người, bản 1.0 · 21/09/2026</p>
+  <p style="margin-top:8px">Tài liệu nội bộ, đi cùng "Kiến trúc chu trình khách hàng v1". Giá của Compass, Foundry, Kit, các hạn mức và bảng phễu mục 11 là đề xuất và giả định, chưa chốt. Các điểm pháp lý, thuế và kế toán cần luật sư và kế toán xác nhận.</p>
+</footer>
+
+</main>
+</div>
+</div></div>
+
+<script>
+(function(){
+  var stage=document.getElementById('stage');
+  document.querySelectorAll('#bar button[data-w]').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('#bar button[data-w]').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      stage.className=b.dataset.w==='laptop'?'':b.dataset.w;
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+  var links=[].slice.call(document.querySelectorAll('#toc a'));
+  var secs=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  function sync(){var y=window.scrollY+140,cur=0;secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i});links.forEach(function(a,i){a.classList.toggle('on',i===cur)})}
+  window.addEventListener('scroll',sync,{passive:true});sync();
+})();
+</script>
+</body>
+</html>

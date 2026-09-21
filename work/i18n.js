@@ -820,3 +820,9 @@ Object.assign(window.I18N, {
   'pf.avEdit': ['Đổi hoặc căn lại ảnh', 'Change or reposition photo'],
   'pf.avTap': ['Bấm vào ảnh để đổi ảnh, dịch chuyển và phóng to / thu nhỏ', 'Tap the photo to change, move or resize it']
 });
+Object.assign(window.I18N, {
+  'dump.go': ['Xuất dữ liệu ra tệp', 'Export data to a file'],
+  'dump.goS': ['Tải về tệp JSON để nạp thành dữ liệu mẫu', 'Download a JSON file to seed the demo'],
+  'dump.done': ['Đã tải tệp lattice-work-du-lieu.json về máy', 'Downloaded lattice-work-du-lieu.json'],
+  'dump.none': ['Chưa có dữ liệu nào trong máy này', 'No data stored in this browser yet']
+});

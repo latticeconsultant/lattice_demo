@@ -324,6 +324,7 @@
         item('info', t('about.title'), '', function () { modal(t('about.title'), '<div class="about">' + t('about.body') + '</div>', true, 'overview'); }, { chev: true }),
         item('mail', t('mail.box'), t('mail.boxS2'), function () { openSub('outbox'); }, { chev: true }),
         item('plus', t('org.new'), t('org.newS'), function () { doLogout(); S.auth = { v: 'signup', mail: u.mail }; render(); }),
+        item('book', t('dump.go'), t('dump.goS'), function () { xuatDuLieu(); }),
         item('refresh', t('reset'), t('m.resetS'), function () { doReset(); }),
         { sep: true },
         item('logout', t('logout'), '', function () { doLogout(); }, { danger: true })
@@ -1511,6 +1512,19 @@
   function toggleTheme() { put('lw.theme', isDark() ? 'light' : 'dark'); applyPrefs(); closeMenu(); render(); toast(t(isDark() ? 'th.nowDark' : 'th.nowLight')); }
   function setLang() { S.lang = S.lang === 'vi' ? 'en' : 'vi'; put('lw.lang', S.lang); closeMenu(); render(); }
   function doLogout() { closeHelp(); S.hlog = {}; S.uid = null; put('lw.session', null); S.task = null; S.tab = 'home'; S.sub = null; closeMenu(); closeModal(); render(); scrollTop(); }
+  // Xuất toàn bộ dữ liệu trong máy ra tệp JSON, để nạp lại thành dữ liệu mẫu.
+  function xuatDuLieu() {
+    var raw = null;
+    try { raw = localStorage.getItem(LW.KEY); } catch (e) { /* bỏ qua */ }
+    if (!raw) { toast(t('dump.none'), true); return; }
+    try {
+      var a = document.createElement('a'), url = URL.createObjectURL(new Blob([raw], { type: 'application/json' }));
+      a.href = url; a.download = 'lattice-work-du-lieu.json';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+      toast(t('dump.done'));
+    } catch (e) { fail(e); }
+  }
   function doReset() { if (!confirm(t('reset.confirm'))) return; DB = LW.reset(); put('lw.org', null); S.auth = null; doLogout(); toast(t('reset.done')); }
   function projOfChan(ch) { var c = LW.chan(ch); if (!c) return ''; if (/pka/.test(c.n)) return 'PKA'; if (/web/.test(c.n)) return 'WEB'; return ''; }
 
@@ -1563,6 +1577,7 @@
     },
     'about': function () { modal(t('about.title'), '<div class="about">' + t('about.body') + '</div>', true, 'overview'); },
     'reset': doReset,
+    'dump': function () { xuatDuLieu(); },
     'logout': doLogout,
     'fill-login': function (el) { if (!S.auth || S.auth.v !== 'pw') { S.auth = { v: 'pw' }; render(); } var f = document.querySelector('[data-form=login]'); f.mail.value = el.dataset.mail; f.pw.value = LW.DEMO_PW; Array.prototype.forEach.call(document.querySelectorAll('.demo-u'), function (b) { b.classList.toggle('on', b === el); }); f.querySelector('button').focus(); },
     'modal-x': closeModal,

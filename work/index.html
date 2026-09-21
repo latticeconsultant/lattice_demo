@@ -843,6 +843,7 @@ form.card{-webkit-user-select:auto;user-select:auto;margin-bottom:22px}
 .crop-stage.is-grab{cursor:grabbing}
 .crop-stage:focus-visible{box-shadow:0 0 0 3px var(--red)}
 .crop-stage img{position:absolute;left:0;top:0;max-width:none;max-height:none;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.crop-ring.vuong{border-radius:var(--r)}
 .crop-ring{position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 999px rgba(20,18,17,.55);border:2px solid rgba(255,255,255,.9);pointer-events:none}
 .crop-zoom{display:flex;align-items:center;gap:10px;width:min(300px,72vw);font-weight:700;color:var(--muted)}
 .crop-zoom input[type=range]{flex:1;min-width:0;height:24px;margin:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;accent-color:var(--red);-webkit-appearance:auto;appearance:auto}
@@ -852,6 +853,12 @@ form.card{-webkit-user-select:auto;user-select:auto;margin-bottom:22px}
 .av-edit{position:relative;display:block;padding:0;border:0;border-radius:50%;background:none;cursor:pointer;box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--line),0 10px 30px rgba(32,30,29,.14);transition:box-shadow .15s,transform .15s}
 .av-edit:hover,.av-edit:focus-visible{box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--ink),0 12px 34px rgba(32,30,29,.2);outline:none}
 .av-edit:active{transform:scale(.97)}
+.av-edit.sq{border-radius:var(--r-sm);box-shadow:none}
+.av-edit.sq:hover,.av-edit.sq:focus-visible{box-shadow:0 0 0 2px var(--ink);outline:none}
+.av-edit.sq .av-cam{border-radius:var(--r-sm)}
+.av-edit.sq .av-cam .ic{width:20px;height:20px}
+img.av.tile{object-fit:cover}
+.ch-t .code{color:var(--ink);letter-spacing:.08em}
 .av.xxl{width:112px;height:112px;font-size:calc(34px*var(--fs))}
 .av-cam{position:absolute;inset:0;display:grid;place-items:center;border-radius:50%;background:rgba(20,18,17,.42);color:#fff;opacity:0;transition:opacity .15s}
 .av-cam .ic{width:30px;height:30px}
@@ -874,9 +881,9 @@ form.card{-webkit-user-select:auto;user-select:auto;margin-bottom:22px}
 <div id="ctx" hidden></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <noscript>LATTICE Work cần JavaScript.</noscript>
-<script src="i18n.js?v=20260921a"></script>
-<script src="help.js?v=20260921a"></script>
-<script src="data.js?v=20260921a"></script>
-<script src="app.js?v=20260921a"></script>
+<script src="i18n.js?v=20260921d"></script>
+<script src="help.js?v=20260921d"></script>
+<script src="data.js?v=20260921d"></script>
+<script src="app.js?v=20260921d"></script>
 </body>
 </html>

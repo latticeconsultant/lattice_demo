@@ -862,7 +862,7 @@
       var k = Math.min(1, 640 / Math.max(w, h)), c = document.createElement('canvas');
       c.width = Math.max(1, Math.round(w * k)); c.height = Math.max(1, Math.round(h * k));
       var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height); g.drawImage(el, 0, 0, c.width, c.height);
-      openCropper(c.toDataURL('image/jpeg', 0.86), null);
+      openCropper(c.toDataURL('image/jpeg', 0.86), null, DICH); // giữ nguyên đang sửa ảnh ai / dự án nào
     }
     function viaImg() {
       var url = (window.URL || window.webkitURL).createObjectURL(file), img = new Image();
@@ -875,19 +875,20 @@
   }
 
   /* ---------- khung căn ảnh đại diện ---------- */
-  var CROP = null;
-  function openCropper(src, crop) {
+  var CROP = null, DICH = { loai: 'person', id: '' };
+  function openCropper(src, crop, dich) {
     // Một chỗ cho mọi việc với ảnh đại diện: chọn ảnh khác, kéo để dịch, phóng to/thu nhỏ, gỡ ảnh.
-    var u = me();
+    var u = me(); DICH = dich && dich.loai ? dich : { loai: 'person', id: u ? u.id : '' };
+    var pr0 = DICH.loai === 'project' ? LW.project(DICH.id) : null, coAnh = DICH.loai === 'project' ? !!(pr0 && pr0.av) : !!(u && u.av);
     function foot() {
       return '<div class="dlg-f"><span class="btn av-pick">' + ic('camera') + t(src ? 'crop.other' : 'crop.pick') + '<input type="file" id="av-file" accept="image/*,.heic,.heif" aria-label="' + t('crop.pick') + '"></span>' +
-        (u && u.av ? '<button type="button" class="btn ghost-red" data-act="remove-avatar">' + ic('trash') + t('pf.avRemove') + '</button>' : '') +
+        (coAnh ? '<button type="button" class="btn ghost-red" data-act="remove-avatar">' + ic('trash') + t('pf.avRemove') + '</button>' : '') +
         '<span class="sp"></span><button type="button" class="btn" data-act="crop-cancel">' + t('cancel') + '</button>' +
         (src ? '<button type="button" class="btn pri" data-act="crop-save">' + ic('check') + t('crop.save') + '</button>' : '') + '</div>';
     }
     if (!src) {
       CROP = null;
-      modal(t('crop.title'), '<div class="crop"><label class="crop-stage crop-empty" id="crop-stage">' + ic('camera') + '<b>' + t('crop.pick') + '</b><small>' + t('crop.emptyS') + '</small><input type="file" id="av-file-2" class="crop-file" accept="image/*,.heic,.heif" aria-label="' + t('crop.pick') + '"></label></div>' + foot(), false, 'people');
+      modal(t(DICH.loai === 'project' ? 'proj.avEdit' : 'crop.title'), '<div class="crop"><label class="crop-stage crop-empty" id="crop-stage">' + ic('camera') + '<b>' + t('crop.pick') + '</b><small>' + t('crop.emptyS') + '</small><input type="file" id="av-file-2" class="crop-file" accept="image/*,.heic,.heif" aria-label="' + t('crop.pick') + '"></label></div>' + foot(), false, 'people');
       return;
     }
     var img = new Image();
@@ -896,7 +897,7 @@
       var w = img.naturalWidth, h = img.naturalHeight, squareish = Math.max(w, h) / Math.min(w, h) < 1.15;
       // ảnh gần vuông vừa khít khung thì không còn chỗ để kéo — mở sẵn ở mức hơi phóng to
       CROP = { src: src, img: img, w: w, h: h, z: crop ? crop.z || 1 : (squareish ? 1.25 : 1), fx: crop ? crop.fx || 0 : 0, fy: crop ? crop.fy || 0 : 0 };
-      modal(t('crop.title'), '<div class="crop"><div class="crop-stage" id="crop-stage" tabindex="0" role="img" aria-label="' + t('crop.stageL') + '"><img id="crop-img" src="' + src + '" alt="" draggable="false"><span class="crop-ring"></span></div>' +
+      modal(t(DICH.loai === 'project' ? 'proj.avEdit' : 'crop.title'), '<div class="crop"><div class="crop-stage" id="crop-stage" tabindex="0" role="img" aria-label="' + t('crop.stageL') + '"><img id="crop-img" src="' + src + '" alt="" draggable="false"><span class="crop-ring' + (DICH.loai === 'project' ? ' vuong' : '') + '"></span></div>' +
         '<label class="crop-zoom"><span aria-hidden="true">−</span><input type="range" id="crop-z" min="0.5" max="4" step="0.01" value="' + CROP.z + '" aria-label="' + t('crop.zoom') + '"><span aria-hidden="true">+</span></label>' +
         '<p class="fine">' + t('crop.hint') + '</p></div>' + foot(), false, 'people');
       bindCropper(); cropLayout();
@@ -957,11 +958,12 @@
     var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, N, N);
     g.drawImage(CROP.img, (N - W) / 2 + CROP.fx * N, (N - H) / 2 + CROP.fy * N, W, H);
     var url = c.toDataURL('image/jpeg', 0.86), pos = { z: +CROP.z.toFixed(3), fx: +CROP.fx.toFixed(4), fy: +CROP.fy.toFixed(4) };
-    if (!guard(function () { LW.updateSelf(S.uid, { av: url, avSrc: CROP.src, avCrop: pos }); })) return;
+    var duAn = DICH.loai === 'project';
+    if (!guard(function () { if (duAn) LW.setProjectAv(DICH.id, { av: url, avSrc: CROP.src, avCrop: pos }, S.uid); else LW.updateSelf(S.uid, { av: url, avSrc: CROP.src, avCrop: pos }); })) return;
     // tầng dữ liệu nuốt lỗi ghi; đọc lại để biết ảnh có thật sự được lưu không
     var kept = false; try { kept = (localStorage.getItem(LW.KEY) || '').indexOf(url.slice(-40)) >= 0; } catch (e) { kept = false; }
-    CROP = null; render(); openProfile();
-    toast(kept ? t('pf.avSaved') : t('pf.avNotKept'), !kept);
+    CROP = null; render(); if (duAn) closeModal(); else openProfile();
+    toast(kept ? t(duAn ? 'proj.avSaved' : 'pf.avSaved') : t('pf.avNotKept'), !kept);
   }
   function openProfile() { modal(t('team.myProfile'), profileForm(me()), true, 'people'); }
   document.addEventListener('change', function (e) {
@@ -1197,6 +1199,12 @@
   var PCLS = { cho_duyet: 'red', tra_lai: 'warn', da_duyet: 'dark', dang_chay: 'dark', da_dung: 'dark', luu_tru: 'soft', ngung: 'soft', het_han: 'soft', thu_hoi: 'soft', tu_choi: 'soft' };
   function pillFor(map, st) { return '<span class="pill ' + (PCLS[st] || '') + '">' + t(map[st]) + '</span>'; }
   function tileTxt(txt, cls) { return '<span class="av tile ' + (cls || 'md') + ' txt">' + esc(txt) + '</span>'; }
+  // Ảnh dự án: có ảnh thì hiện ảnh, chưa có thì hiện biểu tượng thư mục.
+  function projAvatar(p, cls) {
+    cls = cls || 'md';
+    if (p && p.av) return '<img class="av tile ' + cls + '" src="' + p.av + '" alt="" title="' + esc(p.id + ' · ' + p.n) + '">';
+    return '<span class="av tile ' + cls + '" title="' + esc((p ? p.id + ' · ' + p.n : '')) + '">' + ic('folder') + '</span>';
+  }
   function visibleProjects(u) { return DB.projects.filter(function (p) { return LW.isOwner(u) || LW.projsOf(u).indexOf(p.id) >= 0 || p.lead === u.id; }); }
   function leadCands() { return DB.people.filter(function (pp) { return (pp.role === 'owner' || pp.role === 'pm') && pp.st !== 'thu_hoi'; }); }
   function otherOwners() { return DB.people.some(function (p) { return p.role === 'owner' && p.id !== S.uid && p.st !== 'thu_hoi'; }); }
@@ -1278,7 +1286,7 @@
   function projectCard(p, u) {
     var ms = LW.members(p.id), open = DB.tasks.filter(function (x) { return x.pr === p.id && x.st !== 'xong'; }).length;
     var g = ms.filter(function (m) { return m.s === 'guest' && m.exp; })[0];
-    return '<article class="card" data-ctx="project:' + p.id + '"><div class="card-h">' + tileTxt(p.id, 'lg' + (p.st === 'dang_chay' ? ' ink' : '')) + '<div class="ch-t"><b>' + esc(p.n) + '</b><small>' + t('ownShort') + ' ' + esc(name(p.lead)) + ' · ' + t('proj.created', fmtDate(p.created)) + '</small></div>' + moreBtn('project:' + p.id) + '</div>' +
+    return '<article class="card" data-ctx="project:' + p.id + '"><div class="card-h">' + (LW.manages(p.id, u) ? '<button type="button" class="av-edit sq" data-act="proj-av" data-id="' + p.id + '" aria-label="' + t('proj.avEdit') + '" title="' + t('proj.avEdit') + '">' + projAvatar(p, 'lg' + (p.st === 'dang_chay' && !p.av ? ' ink' : '')) + '<span class="av-cam">' + ic('camera') + '</span></button>' : projAvatar(p, 'lg' + (p.st === 'dang_chay' && !p.av ? ' ink' : ''))) + '<div class="ch-t"><b>' + esc(p.n) + '</b><small><span class="code">' + esc(p.id) + '</span> · ' + t('ownShort') + ' ' + esc(name(p.lead)) + ' · ' + t('proj.created', fmtDate(p.created)) + '</small></div>' + moreBtn('project:' + p.id) + '</div>' +
       '<div class="chips">' + pillFor(PST, p.st) + '<span class="pill soft">' + ic('users', 'xs') + ms.length + '</span><span class="pill soft">' + ic('tasks', 'xs') + t('proj.open', open) + '</span>' + (p.handed ? '<span class="pill soft">' + t('proj.handed', fmtDate(p.handed)) + '</span>' : '') + '</div>' +
       '<div class="mems">' + ms.map(function (m) { return avatar(m.u, 'xs'); }).join('') + '</div>' +
       (g ? '<p class="fine">' + ic('clock', 'xs') + ' ' + t('proj.guestExp', fmtDate(g.exp)) + '</p>' : '') +
@@ -1294,7 +1302,7 @@
         (can && m.s !== 'lead' ? '<button class="ib sm" data-act="member-remove" data-p="' + pr + '" data-u="' + m.u + '" title="' + t('proj.remove') + '" aria-label="' + t('proj.remove') + '">' + ic('close') + '</button>' : '') + '</div>';
     }).join('');
     var addable = DB.people.filter(function (pp) { return pp.st !== 'thu_hoi' && pp.role !== 'owner' && !LW.memberRow(pr, pp.id) && (pp.role !== 'guest' || owner); });
-    return '<div class="quote">' + tileTxt(pr) + '<div><small>' + t(PST[p.st]) + ' · ' + t('ownShort') + ' ' + esc(name(p.lead)) + '</small><p>' + esc(p.n) + '</p></div></div>' +
+    return '<div class="quote">' + projAvatar(p) + '<div><small><span class="code">' + esc(pr) + '</span> · ' + t(PST[p.st]) + ' · ' + t('ownShort') + ' ' + esc(name(p.lead)) + '</small><p>' + esc(p.n) + '</p></div></div>' +
       '<p class="fine">' + t('proj.ownerNote') + '</p><div class="list">' + rows + '</div>' +
       (can ? '<form data-form="member-add" data-p="' + pr + '" class="card stack"><b class="card-title">' + ic('plus', 'xs') + t('proj.addExisting') + '</b>' +
         (addable.length ? '<div class="row"><select name="u" class="grow1">' + addable.map(function (pp) { return opt(pp.id, pp.n + ' · ' + roleName(pp.role), ''); }).join('') + '</select><button class="btn pri">' + t('proj.add') + '</button></div>' : '<p class="fine">' + t('proj.noAddable') + '</p>') +
@@ -1319,9 +1327,10 @@
     if (p.st === 'dang_chay') items.push(item('check', t('proj.handover'), t('proj.handoverS'), function () { doHandover(p.id); }, { off: man ? '' : whyMan }));
     if (p.st === 'da_ban_giao') items.push(item('folder', t('proj.archive'), t('proj.archiveS'), function () { if (confirm(t('proj.archiveConfirm', p.id)) && guard(function () { LW.archive(p.id, S.uid); })) { toast(t('proj.archived')); render(); } }, { off: owner ? '' : t('why.onlyOwnerRole') }));
     if (p.st !== 'dang_chay') items.push(item('refresh', t('proj.reopen'), t('proj.reopenS'), function () { if (guard(function () { LW.reopenProject(p.id, S.uid); })) { toast(t('proj.reopened')); render(); } }, { off: owner ? '' : t('why.onlyOwnerRole') }));
+    items.push(item('camera', t('proj.avEdit'), t('proj.avEditS'), function () { openCropper(p.av ? (p.avSrc || p.av) : null, p.avSrc ? p.avCrop : null, { loai: 'project', id: p.id }); }, { off: man ? '' : whyMan }));
     items.push(item('shield', t('proj.changeLead'), t('ownShort') + ' ' + name(p.lead), function () { modal(t('proj.changeLead') + ' · ' + p.id, leadForm(p), false, 'projects'); }, { off: owner ? '' : t('why.onlyOwnerRole') }));
     items.push(item('help', t('h.aboutThis'), t('h.aboutThisS'), function () { openHelp('projects'); }, { chev: true }));
-    return { eyebrow: t(PST[p.st]) + ' · ' + p.id, title: p.n, sub: t('ownShort') + ' ' + name(p.lead), lead: tileTxt(p.id), items: items };
+    return { eyebrow: t(PST[p.st]) + ' · ' + p.id, title: p.n, sub: t('ownShort') + ' ' + name(p.lead), lead: projAvatar(p), items: items };
   }
   function leadForm(p) {
     return '<form data-form="set-lead" data-p="' + p.id + '" class="stack"><label class="fld">' + t('proj.lead') + '<select name="u">' + leadCands().map(function (pp) { return opt(pp.id, pp.n + ' · ' + roleName(pp.role), p.lead); }).join('') + '</select></label><p class="fine">' + t('proj.leadNote') + '</p>' + dlgFooter(t('save')) + '</form>';
@@ -1360,7 +1369,7 @@
     var prs = DB.projects.filter(function (p) { return p.st !== 'luu_tru' && (owner || p.lead === u.id); });
     modal(t('inv.new'), '<form data-form="invite" class="stack"><label class="fld">Email<input name="mail" type="email" required autocomplete="off"></label>' +
       '<label class="fld">' + t('pf.role') + '<select name="role">' + roles.map(function (r) { return opt(r, roleName(r), 'mem'); }).join('') + '</select></label>' +
-      '<fieldset class="picks"><legend>' + t('inv.projects') + '</legend>' + (prs.length ? prs.map(function (p) { return '<label class="pick">' + tileTxt(p.id, 'sm') + '<span><b>' + esc(p.n) + '</b><small>' + t(PST[p.st]) + ' · ' + t('ownShort') + ' ' + esc(name(p.lead)) + '</small></span><input type="checkbox" name="projs" value="' + p.id + '"' + (pre.pr === p.id ? ' checked' : '') + '></label>'; }).join('') : '<p class="fine pad">' + t('inv.noProjects') + '</p>') + '</fieldset>' +
+      '<fieldset class="picks"><legend>' + t('inv.projects') + '</legend>' + (prs.length ? prs.map(function (p) { return '<label class="pick">' + projAvatar(p, 'sm') + '<span><b>' + esc(p.n) + '</b><small>' + t(PST[p.st]) + ' · ' + t('ownShort') + ' ' + esc(name(p.lead)) + '</small></span><input type="checkbox" name="projs" value="' + p.id + '"' + (pre.pr === p.id ? ' checked' : '') + '></label>'; }).join('') : '<p class="fine pad">' + t('inv.noProjects') + '</p>') + '</fieldset>' +
       '<label class="fld">' + t('inv.note') + ' <small>' + t('inv.optional') + '</small><input name="note" placeholder="' + t('inv.notePh') + '"></label>' +
       '<p class="fine">' + t(owner ? 'inv.hintOwner' : 'inv.hintPm') + '</p>' + dlgFooter(ic('send') + t('inv.send')) + '</form>', false, 'invites');
   }
@@ -1560,10 +1569,11 @@
     'fe-move': function (el) { readFlowEditor(); var i = +el.dataset.i, j = i + (+el.dataset.d), st = S.fe.steps; if (j < 0 || j >= st.length) return; var tmp = st[i]; st[i] = st[j]; st[j] = tmp; renderFlowEditor(); },
     'clock': function (el) { var n = +el.dataset.n; if (guard(function () { LW.shiftDays(n, S.uid); })) { render(); toast(n ? t('clock.moved', fmtDate(LW.today())) : t('clock.back')); } },
     'theme-toggle': function () { toggleTheme(); },
+    'proj-av': function (el) { var p = LW.project(el.dataset.id); if (!p) return; openCropper(p.av ? (p.avSrc || p.av) : null, p.avSrc ? p.avCrop : null, { loai: 'project', id: p.id }); },
     'av-open': function () { var u = me(); if (!u) return; if (u.av) openCropper(u.avSrc || u.av, u.avSrc ? u.avCrop : null); else openCropper(null); },
     'crop-save': cropSave,
-    'crop-cancel': function () { CROP = null; openProfile(); },
-    'remove-avatar': function () { if (guard(function () { LW.updateSelf(S.uid, { av: null, avSrc: null, avCrop: null }); })) { CROP = null; render(); openProfile(); toast(t('pf.avRemoved')); } },
+    'crop-cancel': function () { var duAn = DICH.loai === 'project'; CROP = null; if (duAn) closeModal(); else openProfile(); },
+    'remove-avatar': function () { var duAn = DICH.loai === 'project'; if (guard(function () { if (duAn) LW.setProjectAv(DICH.id, null, S.uid); else LW.updateSelf(S.uid, { av: null, avSrc: null, avCrop: null }); })) { CROP = null; render(); if (!duAn) openProfile(); else closeModal(); toast(t('pf.avRemoved')); } },
     'open-display': function () { modal(t('team.myProfile'), profileForm(me()), true, 'people'); },
     'pref': function (el) {
       var k = el.dataset.k, v = el.dataset.v;

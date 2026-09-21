@@ -1029,6 +1029,16 @@
     log(uid, 'project.create', id, n + ' · chủ trì ' + lead.n); save();
     return project(id);
   }
+  // Ảnh dự án: người chủ trì hoặc chủ sở hữu đổi được; av là ảnh 160px, avSrc giữ bản gốc để căn lại.
+  function setProjectAv(pr, f, uid) {
+    var u = mustPerson(uid), p = project(pr); if (!p) throw new LWError('notFound');
+    if (!manages(pr, u)) throw new LWError('noPermission');
+    p.av = f && f.av ? f.av : null;
+    p.avSrc = f && f.avSrc ? f.avSrc : null;
+    p.avCrop = f && f.avCrop ? f.avCrop : null;
+    log(uid, p.av ? 'project.av' : 'project.av.remove', pr, ''); save();
+    return p;
+  }
   function setLead(pr, pid, uid) {
     var u = mustPerson(uid); if (!isOwner(u)) throw new LWError('onlyOwnerProject');
     var p = project(pr); if (!p) throw new LWError('notFound');
@@ -1311,7 +1321,7 @@
     orgs: orgs, curOrg: curOrg, useOrg: useOrg, accountsFor: accountsFor, outbox: outbox, requestLink: requestLink, useLink: useLink,
     startSignup: startSignup, completeSignup: completeSignup,
     isOwner: isOwner, isLead: isLead, manages: manages, canWorkIn: canWorkIn, members: members, memberRow: memberRow, rowActive: rowActive, PROJ_ST: PROJ_ST,
-    createProject: createProject, setLead: setLead, handover: handover, archive: archive, reopenProject: reopenProject,
+    createProject: createProject, setProjectAv: setProjectAv, setLead: setLead, handover: handover, archive: archive, reopenProject: reopenProject,
     addMember: addMember, removeMember: removeMember, extendGuest: extendGuest, expiringGuests: expiringGuests, expiredGuests: expiredGuests,
     holdings: holdings, revokePerson: revokePerson, restorePerson: restorePerson,
     inviteState: inviteState, createInvite: createInvite, approveInvite: approveInvite, rejectInvite: rejectInvite, revokeInvite: revokeInvite, findInvite: findInvite, acceptInvite: acceptInvite,

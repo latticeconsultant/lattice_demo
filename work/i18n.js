@@ -826,3 +826,8 @@ Object.assign(window.I18N, {
   'dump.done': ['Đã tải tệp lattice-work-du-lieu.json về máy', 'Downloaded lattice-work-du-lieu.json'],
   'dump.none': ['Chưa có dữ liệu nào trong máy này', 'No data stored in this browser yet']
 });
+Object.assign(window.I18N, {
+  'proj.avEdit': ['Ảnh dự án', 'Project photo'],
+  'proj.avEditS': ['Đổi, dịch chuyển, phóng to / thu nhỏ', 'Change, move, zoom'],
+  'proj.avSaved': ['Đã đổi ảnh dự án', 'Project photo updated']
+});

@@ -60,7 +60,7 @@ window.HELP = {
       rules: ['Sai mật khẩu 5 lần thì khóa 15 phút.', 'Liên kết đăng nhập dùng 1 lần, hết hạn 15 phút, tối đa 5 lần/giờ.', 'Không tự đăng ký vào tổ chức người khác được — chỉ bằng lời mời.'],
       suggest: ['Nên thử tài khoản nào trước?', 'Quên mật khẩu thì sao?'],
       faq: [
-        ['Nên thử tài khoản nào trước?', 'thu|tai khoan|nen|truoc', 'Lê Đặng Tuấn (Chủ tổ chức) để thấy đủ mọi thứ; rồi Phạm Thu Hà (khách mời) để thấy hệ thống ẩn và khóa thế nào.'],
+        ['Nên thử tài khoản nào trước?', 'thu|tai khoan|nen|truoc', 'Thomas Le (Chủ tổ chức) để thấy đủ mọi thứ; rồi Lê Huyền (khách mời) để thấy hệ thống ẩn và khóa thế nào.'],
         ['Quên mật khẩu thì sao?', 'quen|mat khau|reset', 'Dùng Liên kết email để vào, rồi đặt lại trong Hồ sơ → Mật khẩu.']
       ]
     },
@@ -71,7 +71,7 @@ window.HELP = {
       rules: ['5 wrong passwords lock the account for 15 minutes.', 'Sign-in links are single use, expire in 15 minutes, max 5 per hour.', 'Nobody can sign up into someone else’s organisation — invitation only.'],
       suggest: ['Which account should I try first?', 'Forgot my password?'],
       faq: [
-        ['Which account should I try first?', 'try|account|first|which', 'Lê Đặng Tuấn (owner) to see everything; then Phạm Thu Hà (guest) to see how things are hidden and locked.'],
+        ['Which account should I try first?', 'try|account|first|which', 'Thomas Le (owner) to see everything; then Lê Huyền (guest) to see how things are hidden and locked.'],
         ['Forgot my password?', 'forgot|password|reset', 'Use the email link to get in, then set a new one in Profile → Password.']
       ]
     }

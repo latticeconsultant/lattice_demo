@@ -336,6 +336,10 @@ tr.row{cursor:pointer} tr.row:hover td{background:var(--bg2)}
 .rw .bb i{position:absolute;inset:0 auto 0 0;background:var(--ink)}
 .rw .bb.red i{background:var(--red)} .rw .bb.warn i{background:var(--warn)}
 .rw .vv{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.bigv{display:grid;gap:5px}
+.bigv .v{font-size:40px;font-weight:800;line-height:1;font-stretch:80%;font-variant-numeric:tabular-nums}
+.bigv .v.red{color:var(--redtx)}
+.bigv .t{font-size:12.5px;color:var(--mute);margin:0}
 .cap{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;height:150px;margin-top:6px}
 .cap div{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:4px;font-size:11px}
 .cap i{display:block;width:100%;background:var(--ink)}
@@ -1022,7 +1026,18 @@ function initDash(){
   const cr=rng(model.charCodeAt(1)*31+3); D.flow=[]; let bal=c.burn*3.0;
   for(let w=0;w<13;w++){const inn=c.burn*(0.92+cr()*0.3)*(w===6||w===7?0.6:1), out=c.burn*(0.95+cr()*0.2)*(w===5?1.4:1); bal+=inn-out; D.flow.push({inn,out,bal});}
   D.cash=D.flow[3].bal; D.thr=c.burn*2.4;
-  const ar=c.burn*[1.1,1.6,.9][["tm","dv","sx"].indexOf(model)];
+  if(model==="sx"){
+    const sr=rng(911);
+    D.sx={
+      lots:[["LSX-2418","SP-101 thùng 24",1200,"Hôm nay"],["LSX-2419","SP-205 bao 25kg",800,"Ngày mai"],["LSX-2420","OEM-12 nhãn riêng",450,"Ngày mai"],["LSX-2421","SP-330 hộp 12",600,"3 ngày nữa"],["LSX-2422","Lô xuất khẩu EU",300,"5 ngày nữa"]]
+        .map(([ma,sp,kh,han],i)=>({ma,sp,kh,han,xong:Math.round(kh*(0.08+sr()*(i<2?0.85:0.45)))})),
+      fpy:0.958+sr()*0.03,
+      oee:[["Chuyền 1",0.78+sr()*0.1],["Chuyền 2",0.72+sr()*0.12],["Chuyền 3",0.63+sr()*0.1],["Đóng gói",0.84+sr()*0.08]],
+      mat:[["Bột nền A",2.4],["Bao bì 25kg",4.1],["Màng co PE",11.5],["Phụ gia C",16.2],["Mực in nhãn",27.0]],
+      cost:[["SP-101 thùng 24",1.02],["SP-205 bao 25kg",0.97],["OEM-12 nhãn riêng",1.11],["SP-330 hộp 12",1.0],["Lô xuất khẩu EU",1.06]]
+    };
+  }
+  const ar=c.burn*(model==="sx"?.9:1.2);
   D.ar=[["0–30 ngày",ar*.62],["31–60 ngày",ar*.21],["61–90 ngày",ar*.11],["Trên 90 ngày",ar*.06]];
   D.monthDay=18; D.monthBase=c.perDay*c.aov*(D.monthDay-1)*1.02; D.target=c.perDay*c.aov*30*1.12;
   const s0=D.step; D.step=0; for(let i=0;i<s0;i++) tickData(true);
@@ -1038,6 +1053,7 @@ function tickData(silent){
   D.cash+=amt*0.12-c.burn/7/NSTEP;
   D.aiTasks+=Math.round(3+r()*9+n*4);
   D.agents.forEach(a=>{a.count+=Math.round(r()*4+(a.id==="orders"||a.id==="sales"?n*2:0));});
+  if(D.sx) D.sx.lots.forEach((l,i)=>{ if(l.xong<l.kh && r()<(i<2?.55:.3)) l.xong=Math.min(l.kh, l.xong+Math.round(l.kh*(.004+r()*.012))); });
   D.step++;
   if(!silent && D.step>=NSTEP){D.yday=D.today.slice();while(D.yday.length<NSTEP)D.yday.push(D.yday[D.yday.length-1]);D.monthBase+=D.rev;D.monthDay++;D.today=[];D.rev=0;D.orders=0;D.step=0;D.aiTasks=0;D.exLog=[];D.done=0;}
 }
@@ -1184,6 +1200,31 @@ const WIDGETS={
    const c=D.c;
    if(c.cap){ b.innerHTML=`<div class="cap">${c.cap.map(([d,v])=>`<div><b class="num">${pct(v)}</b><i class="${v>=.95?"full":""}" style="height:${v*100}%"></i><span>${d}</span></div>`).join("")}</div><p class="note" style="margin-top:8px">Đỏ là ngày đã kín lịch. Tác tử Lịch hẹn tự gợi ý khách sang ngày còn trống.</p>`; return; }
    b.innerHTML=`<div class="rows">${c.stock.map(([n,d,s])=>`<div class="rw"><span class="nm" title="${esc(n)}">${esc(n)}</span><div class="bb ${s==="Sắp hết"?"red":s==="Ứ đọng"?"warn":""}"><i style="width:${Math.min(d/60,1)*100}%"></i></div><span class="vv">${d} ngày</span></div>`).join("")}</div><p class="note" style="margin-top:8px">Số ngày còn đủ bán. Đỏ là sắp hết, vàng là ứ đọng quá 90 ngày.</p>`;}},
+ lots:{t:"Tiến độ lệnh sản xuất",sizes:["m","l"],mo:["sx"],lbl:"Hôm nay",r:b=>{
+   const L2=D.sx.lots;
+   b.innerHTML=`<div class="rows">${L2.map(l=>{const p=l.xong/l.kh,gap=l.han==="Hôm nay"&&p<.9;
+     return `<div class="rw"><span class="nm" title="${esc(l.sp)}">${esc(l.ma)} · ${esc(l.sp)}</span><div class="bb ${gap?"red":""}"><i style="width:${Math.round(p*100)}%"></i></div><span class="vv num">${pct(p)}</span></div>`;}).join("")}</div>
+    <p class="note" style="margin-top:8px">Hạn giao gần nhất: ${esc(L2[0].han)}. Lô đỏ là chưa kịp tiến độ so với hạn, tác tử Lệnh SX đã đẩy lên hàng đợi ngoại lệ.</p>`;}},
+
+ fpy:{t:"Đạt chất lượng ngay lần đầu",sizes:["s","m"],mo:["sx"],lbl:"Hôm nay",r:b=>{
+   const v=D.sx.fpy, dat=v>=.96;
+   b.innerHTML=`<div class="bigv"><div class="v ${dat?"":"red"}">${pct(v,1)}</div><p class="t">lô đạt ngay lần kiểm đầu tiên, không phải làm lại</p></div>
+    <div class="rows" style="margin-top:10px"><div class="rw"><span class="nm">Mục tiêu</span><div class="bb"><i style="width:${Math.round(v*100)}%"></i></div><span class="vv num">96%</span></div></div>
+    <p class="note" style="margin-top:8px">Phần không đạt quay lại chuyền hoặc hủy, đều ăn vào giá thành lô.</p>`;}},
+
+ oee:{t:"Hiệu suất thiết bị",sizes:["m","l"],mo:["sx"],lbl:"Hôm nay",r:b=>{
+   b.innerHTML=`<div class="rows">${D.sx.oee.map(([n2,v])=>`<div class="rw"><span class="nm">${esc(n2)}</span><div class="bb ${v<.7?"red":v<.78?"warn":""}"><i style="width:${Math.round(v*100)}%"></i></div><span class="vv num">${pct(v)}</span></div>`).join("")}</div>
+    <p class="note" style="margin-top:8px">Phần trăm thời gian máy chạy ra hàng đạt, trên tổng thời gian có kế hoạch. Dưới 70% là chuyền đang nghẽn.</p>`;}},
+
+ mat:{t:"Nguyên liệu còn đủ mấy ngày",sizes:["m","l"],mo:["sx"],lbl:"Theo kế hoạch tuần",r:b=>{
+   b.innerHTML=`<div class="rows">${D.sx.mat.map(([n2,d])=>`<div class="rw"><span class="nm">${esc(n2)}</span><div class="bb ${d<3?"red":d<7?"warn":""}"><i style="width:${Math.min(d/30,1)*100}%"></i></div><span class="vv num">${d.toFixed(1)} ngày</span></div>`).join("")}</div>
+    <p class="note" style="margin-top:8px">Tính theo định mức của kế hoạch tuần này. Dưới ba ngày là nguy cơ dừng chuyền, tác tử Mua hàng tự đề nghị đặt bù.</p>`;}},
+
+ pcost:{t:"Giá thành thực tế so với định mức",sizes:["m","l"],mo:["sx"],lbl:"Lô đóng hôm nay",r:b=>{
+   b.innerHTML=`<div class="rows">${D.sx.cost.map(([n2,v])=>{const o=v>1;
+     return `<div class="rw"><span class="nm">${esc(n2)}</span><div class="bb ${v>1.08?"red":o?"warn":""}"><i style="width:${Math.min(v/1.2,1)*100}%"></i></div><span class="vv num">${o?"+":""}${pct(v-1,1)}</span></div>`;}).join("")}</div>
+    <p class="note" style="margin-top:8px">Vượt định mức là hao hụt, làm lại hoặc giờ máy nhiều hơn dự tính. Vượt quá 8% thành một ngoại lệ chờ CEO.</p>`;}},
+
  csat:{t:"Đánh giá của khách",sizes:["m","l"],lbl:"30 ngày",r:b=>{
    const c=D.c.csat; b.innerHTML=donut(c.map((v,i)=>[(5-i)+" sao",v]),"Điểm TB",D.kv.csat.toFixed(1),{label:"Phân bố đánh giá"});}}
 };
@@ -1192,17 +1233,18 @@ const wTitle=id=>(TITLE_BY[id]&&TITLE_BY[id][model])||WIDGETS[id].t;
 const SIZE_NAMES={s:"Nhỏ",m:"Vừa",l:"Lớn",xl:"Rộng",f:"Toàn dòng"};
 
 /* ---------- layout state ---------- */
-const DEFAULT={order:["kpi","rev","ex","target","mix","status","fun","chn","agents","work","exmix","cost","cash","heat","log","top","stock","ar","csat"],
-  hidden:["ar","csat"],size:{kpi:"f",rev:"xl",ex:"m",target:"m",mix:"m",status:"m",fun:"m",chn:"m",agents:"m",work:"m",exmix:"m",cost:"m",cash:"l",heat:"l",log:"m",top:"m",stock:"m",ar:"m",csat:"m"},
+const DEFAULT={order:["kpi","rev","ex","lots","target","oee","mat","mix","status","pcost","fpy","fun","chn","agents","work","exmix","cost","cash","heat","log","top","stock","ar","csat"],
+  hidden:["ar","csat"],size:{kpi:"f",rev:"xl",ex:"m",lots:"m",target:"m",oee:"m",mat:"m",mix:"m",status:"m",pcost:"m",fpy:"s",fun:"m",chn:"m",agents:"m",work:"m",exmix:"m",cost:"m",cash:"l",heat:"l",log:"m",top:"m",stock:"m",ar:"m",csat:"m"},
   kpis:["rev","ord","conv","cash","ex","ai"]};
-const LKEY="lattice-ceo-dash-v1";
+const LKEY="lattice-ceo-dash-v2";
 let L=JSON.parse(JSON.stringify(DEFAULT)), editing=false;
 try{const s=JSON.parse(localStorage.getItem(LKEY)||"null"); if(s&&s.order){L=Object.assign(L,s); Object.keys(WIDGETS).forEach(id=>{if(!L.order.includes(id)){L.order.push(id);L.hidden.push(id);}});}}catch(e){}
 function saveL(){try{localStorage.setItem(LKEY,JSON.stringify(L));}catch(e){}}
 
 function buildGrid(){
   const g=$("dgrid"); g.classList.toggle("editing",editing);
-  const vis=L.order.filter(id=>!L.hidden.includes(id));
+  const hop=id=>{const w=WIDGETS[id]; return w && (!w.mo || w.mo.includes(model));};
+  const vis=L.order.filter(id=>!L.hidden.includes(id) && hop(id));
   g.innerHTML=vis.length?vis.map((id,i)=>{const w=WIDGETS[id],sz=L.size[id]||w.sizes[0];
     return `<section class="w w-${sz}${w.strong?" strong":""}" data-w="${id}" ${editing?'draggable="true"':""} aria-label="${esc(wTitle(id))}">
       <div class="wh">${editing?'<span class="grip" aria-hidden="true">⋮⋮</span>':""}<h3>${esc(wTitle(id))}</h3><span class="lbl">${esc(w.lbl||"")}</span>
@@ -1212,7 +1254,7 @@ function buildGrid(){
 }
 function renderDash(){
   $("clock").textContent=hhmm(T0+Math.min(D.step,NSTEP-1)*STEP);
-  L.order.forEach(id=>{const b=$("wb-"+id); if(b) WIDGETS[id].r(b);});
+  L.order.forEach(id=>{const b=$("wb-"+id); if(b && WIDGETS[id]) WIDGETS[id].r(b);});
 }
 function move(id,dir){const vis=L.order.filter(x=>!L.hidden.includes(x)),i=vis.indexOf(id),j=i+dir; if(j<0||j>=vis.length)return;
   const a=L.order.indexOf(id),b=L.order.indexOf(vis[j]); [L.order[a],L.order[b]]=[L.order[b],L.order[a]]; saveL();}

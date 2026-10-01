@@ -1116,6 +1116,18 @@ function activities(){
   document.querySelectorAll("th[data-m]").forEach(th=>th.classList.toggle("cur",th.dataset.m===model));
 }
 
+/* Ô nằm bên trái sơ đồ thì panel mở bên phải và ngược lại. Dải điều hành chia
+   bốn cột: hai cột đầu tính là bên trái, hai cột sau tính là bên phải. */
+function benMo(a, t){
+  if(!t || !t.closest("#diagram")) return "right";
+  if(a.block==="sup") return "left";
+  if(a.block==="core"){
+    const g=[...new Set(A.filter(x=>x.block==="core").map(x=>x.nhom))];
+    return g.indexOf(a.nhom) >= Math.ceil(g.length/2) ? "left" : "right";
+  }
+  return "right";
+}
+
 /* ---------- drawer ---------- */
 function openDrawer(html,ben){
   lastFocus=document.activeElement; const d=$("drawer");
@@ -1549,7 +1561,7 @@ document.addEventListener("click",e=>{
   if(t.closest("[data-reset]")){L=JSON.parse(JSON.stringify(DEFAULT));saveL();buildGrid();$("d-body").innerHTML=customHTML();toast("Đã khôi phục bố cục mặc định.");return;}
   if(t.closest("#drawer")) return;
   // open details
-  const n=t.closest("[data-id]"); if(n){const a=byId(n.dataset.id); openDrawer(activityHTML(a), (t.closest("#diagram")&&a.block==="core")?"left":"right"); return;}
+  const n=t.closest("[data-id]"); if(n){const a=byId(n.dataset.id); openDrawer(activityHTML(a), benMo(a, t)); return;}
   const l=t.closest("[data-layer]"); if(l) openDrawer(layerHTML(+l.dataset.layer));
 });
 document.addEventListener("change",e=>{

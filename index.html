@@ -544,6 +544,14 @@ textarea.input { min-height: 90px; resize: vertical; }
     :root[data-theme="dark"] .lnx-theme svg { transform: rotate(180deg); }
     @media (prefers-reduced-motion: reduce) { .lnx-theme svg { transition: none; } }
     @media print { .lnx-theme { display: none !important; } }
+    /* Nút tròn mở bảng Cấu trúc & Dashboard CEO: cùng khuôn với nút ngày/đêm. */
+    .lnx-icon { flex: none; width: 44px; height: 44px; padding: 0; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      text-decoration: none; color: var(--color-text);
+      border: 2px solid var(--color-neutral-400); background: transparent; }
+    .lnx-icon:hover { border-color: var(--color-text); color: var(--color-accent); }
+    .lnx-icon svg { display: block; }
+    @media print { .lnx-icon { display: none !important; } }
     /* ── Sơ đồ 07 · vòng khép kín tài chính ────────────────────────────────
        Dựng bằng HTML + SVG thay cho ảnh: chữ là chữ thật, icon là vector, nên sắc
        trên mọi màn hình Retina. Màu cố định (nền đen, điểm đỏ) — giống nhau ở
@@ -589,6 +597,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       .lnx-head { gap: 8px !important; }
       .lnx-theme { width: 38px; height: 38px; }
       .lnx-head > .lnx-lang { display: none; }  /* menu đã có mục EN · ENGLISH VERSION */
+      .lnx-head > .lnx-icon { display: none; }  /* menu đã có mục Cấu trúc & Dashboard CEO */
     }
     .lnx-lang-menu { display: flex; width: 100%; margin-bottom: 2px; padding: 14px 16px;
       justify-content: flex-start; }
@@ -872,6 +881,7 @@ textarea.input { min-height: 90px; resize: vertical; }
         </nav>
         <a class="lnx-lang" href="en/" hreflang="en" aria-label="English version">EN</a>
         <button type="button" class="lnx-theme" sc-camel-on-click="{{ toggleTheme }}" aria-label="Chuyển chế độ ngày / đêm" title="Chuyển chế độ ngày / đêm"><svg sc-camel-view-box="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M12 3.5 A8.5 8.5 0 0 1 12 20.5 Z" fill="currentColor"></path></svg></button>
+        <a class="lnx-icon" href="tailieunoibo/demo/" aria-label="Cấu trúc doanh nghiệp và Dashboard CEO" title="Cấu trúc doanh nghiệp và Dashboard CEO"><svg sc-camel-view-box="0 0 24 24" width="20" height="20" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:2"><rect x="3" y="3" width="7.5" height="7.5"></rect><rect x="13.5" y="3" width="7.5" height="7.5"></rect><rect x="3" y="13.5" width="7.5" height="7.5"></rect><rect x="13.5" y="13.5" width="7.5" height="7.5"></rect></svg></a>
         <button type="button" class="btn btn-primary" sc-camel-on-click="{{ openDlg }}" style="{{ ctaStyle }};justify-content:flex-start;text-align:left">ĐẶT LỊCH CHẨN ĐOÁN</button>
         <button type="button" sc-camel-on-click="{{ toggleMenu }}" aria-label="Mở menu" style="{{ burgerStyle }}">
           <svg width="20" height="20" sc-camel-view-box="0 0 24 24" style="display:block;stroke:currentColor;fill:none;stroke-width:2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
@@ -882,6 +892,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="7">
             <button type="button" sc-camel-on-click="{{ n.goClose }}" style="{{ n.stackSt }}">{{ n.label }}</button>
           </sc-for>
+          <a class="lnx-lang lnx-lang-menu" href="tailieunoibo/demo/">CẤU TRÚC &amp; DASHBOARD CEO</a>
           <a class="lnx-lang lnx-lang-menu" href="en/" hreflang="en">EN · ENGLISH VERSION</a>
             <button type="button" class="btn btn-primary" sc-camel-on-click="{{ openDlgClose }}" style="width:100%;border:0;font-size:14.5px;letter-spacing:.14em;padding:18px 20px;font-weight:600;justify-content:flex-start">ĐẶT LỊCH CHẨN ĐOÁN</button>
         </div>

@@ -851,8 +851,8 @@ function diagram(){
   s+=`<rect x="${cx-130}" y="30" width="260" height="42" fill="var(--red)"/><text x="${cx}" y="56" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">CEO · quyết định ngoại lệ</text>`;
   // hình thoi
   s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--card)" stroke="var(--ink)" stroke-width="3"/>`;
-  s+=`<circle cx="${cx}" cy="${cy}" r="20" fill="#EC3013"/><text x="${cx}" y="${cy+44}" text-anchor="middle" font-size="12" font-weight="800" letter-spacing="2" fill="var(--ink)">LATTICE</text>`;
-  const corners=[[cx,cy-R,3,["Hàng đợi ngoại lệ"],"top"],[cx-R,cy,0,["Dữ liệu","một nguồn"],"in-left"],[cx+R,cy,1,["Luật &","ngưỡng"],"in-right"],[cx,cy+R,2,["Team AI"],"bottom"]];
+  s+=`<circle cx="${cx}" cy="${cy}" r="20" fill="#EC3013"/>`;
+  const corners=[[cx,cy-R,3,["Hàng đợi ngoại lệ"],"in-top"],[cx-R,cy,0,["Dữ liệu","một nguồn"],"in-left"],[cx+R,cy,1,["Luật &","ngưỡng"],"in-right"],[cx,cy+R,2,["Team AI"],"in-bottom"]];
   corners.forEach(([x,y,li,q,pos])=>{
     const lh=16, px=10, py=7, w=Math.round(Math.max(...q.map(z=>z.length))*7.1)+px*2, h=q.length*lh+py*2-3;
     const trong = pos==="in-left"||pos==="in-right";
@@ -861,7 +861,8 @@ function diagram(){
       const tx = pos==="in-left" ? x+30 : x-30, anc = pos==="in-left" ? "start" : "end";
       chu = q.map((z,k)=>`<text x="${tx}" y="${y-(q.length-1)*lh/2+k*lh+5}" text-anchor="${anc}" font-size="12.5" font-weight="700" fill="var(--ink)">${z}</text>`).join("");
     } else {
-      const bx=x-w/2, by = pos==="top" ? y-26-h : y+26;
+      // khung nằm trong hình thoi: trên quả cầu đỏ và dưới quả cầu đỏ
+      const bx=cx-w/2, by = pos==="in-top" ? cy-46-h/2 : cy+50-h/2;
       khung = `<rect class="bx" x="${bx}" y="${by}" width="${w}" height="${h}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/>`;
       chu = q.map((z,k)=>`<text x="${bx+w/2}" y="${by+py+lh*(k+1)-4}" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">${z}</text>`).join("");
     }

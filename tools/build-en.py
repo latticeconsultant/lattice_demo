@@ -84,6 +84,15 @@ def thay_trong_markup(doan, tu_dien):
 THAY_THEM = [
     ('mission: Đánh giá lead và đề xuất bước tiếp theo',
      'mission: qualify the lead and recommend the next step'),
+    # Ba chỗ dưới in song ngữ ở bản tiếng Việt. Dịch từng dòng xong thì hai dòng
+    # thành giống hệt nhau, nên gộp lại. THAY_THEM chạy sau bước dịch nên vế
+    # trái ở đây là chuỗi ĐÃ dịch, không phải chuỗi gốc tiếng Việt.
+    ('LATTICE Next Solutions Joint Stock Company<br>LATTICE Next Solutions Joint Stock Company',
+     'LATTICE Next Solutions Joint Stock Company'),
+    ('Structure for what comes next.<br>Structure for what comes next.',
+     'Structure for what comes next.'),
+    ("['VIETNAMESE TAGLINE', 'Structure for what comes next.'],",
+     "['VIETNAMESE TAGLINE', 'Kiến trúc mô hình kinh doanh mới.'],"),
 ]
 
 
@@ -109,7 +118,8 @@ CHU_VIET = re.compile('[àáảãạăằắẳẵặâầấẩẫậđèéẻ�
 
 # Chữ Việt được phép còn lại trong bản EN: nút quay về bản Việt, và nhãn nhóm
 # trong manifest của trình biên tập dc-runtime (thuộc tính ẩn, người xem không thấy).
-CHO_PHEP = ('VI · PHIÊN BẢN TIẾNG VIỆT', '&quot;Hiển thị&quot;')
+CHO_PHEP = ('VI · PHIÊN BẢN TIẾNG VIỆT', '&quot;Hiển thị&quot;',
+            'Kiến trúc mô hình kinh doanh mới.')
 
 
 def con_tieng_viet(t):

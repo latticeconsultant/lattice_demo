@@ -450,8 +450,8 @@ body.dev-phone .toast{max-width:360px}
 <!-- ================= SƠ ĐỒ ================= -->
 <section id="p-map" role="tabpanel" aria-labelledby="t-map">
   <div class="phead">
-    <h1>Một doanh nghiệp, hai khối, một trục</h1>
-    <p class="lead">Khối Thị trường tạo ra khách, đơn và tiền. Khối Điều hành giữ dữ liệu, tiền, quy trình và con người. Trục LATTICE ở giữa nối hai khối bằng một nguồn dữ liệu, một bộ luật và một Team AI, rồi chỉ đưa lên người những việc vượt ngưỡng.</p>
+    <h1>Một doanh nghiệp, ba khối, một trục</h1>
+    <p class="lead">Khối Thị trường tạo ra khách, đơn và tiền. Khối Cung ứng lo hàng và nguồn lực để giao được. Khối Điều hành giữ dữ liệu, tiền, quy trình và con người. Trục LATTICE ở giữa nối ba khối bằng một nguồn dữ liệu, một bộ luật và một Team AI, rồi chỉ đưa lên người những việc vượt ngưỡng.</p>
     <p class="oneline">AI thực hiện. Hệ thống kiểm soát. Con người quyết định ngoại lệ.</p>
   </div>
 
@@ -548,7 +548,7 @@ const LAYERS = [
   {name:"Team AI", en:"AI team",
    text:"Các tác tử AI được tổ chức như một đội: mỗi tác tử có vai trò, quyền hạn, quy trình chuẩn để làm theo và người chịu trách nhiệm.",
    items:["Tác tử tư vấn, đơn hàng, nội dung, kế toán…","Mỗi tác tử có mức L1–L4 riêng","Nhật ký mọi hành động để kiểm tra lại"]},
-  {name:"Hàng đợi ngoại lệ", en:"Exception queue",
+  {name:"Hàng đợi vượt ngưỡng", en:"Exception queue",
    text:"Thay cho báo cáo dài: người chỉ nhìn những việc vượt ngưỡng, bị chặn hoặc bất thường. Mỗi ngoại lệ đã xử lý trở thành dữ liệu để chỉnh luật.",
    items:["Đơn lệch tiền, khiếu nại, chi vượt hạn mức","Việc trễ hạn, tác tử bị vướng","Quyết định của người được ghi lại thành luật mới"]}
 ];
@@ -1345,7 +1345,7 @@ const WIDGETS={
    if(D.today.length>1){const pts=D.today.map((v,i)=>X(i)+","+Y(v)).join(" "),li=D.today.length-1;
      s+=`<polygon class="ar-today" points="${X(0)},${Y(0)} ${pts} ${X(li)},${Y(0)}"/><polyline class="ln-today" points="${pts}"/><line x1="${X(li)}" x2="${X(li)}" y1="${pt}" y2="${pt+ih}" stroke="var(--red)" stroke-dasharray="2 3"/><circle class="dot-now" cx="${X(li)}" cy="${Y(D.rev)}" r="5"/><text x="${Math.min(X(li)+8,W-120)}" y="${Math.max(Y(D.rev)-10,pt+12)}" font-size="13" font-weight="800" fill="var(--ink)">${fmtM(D.rev)}</text>`;}
    b.innerHTML=`<div class="chart">${s}</svg></div><div class="legend" style="margin-top:6px"><span><i class="sw ai" style="height:3px"></i>Hôm nay</span><span><i class="sw" style="height:0;border:0;border-top:2px dashed var(--mute)"></i>Hôm qua</span></div>`;}},
- ex:{t:"Hàng đợi ngoại lệ",sizes:["m","l"],strong:true,lbl:"Chờ CEO",r:b=>{
+ ex:{t:"Hàng đợi vượt ngưỡng",sizes:["m","l"],strong:true,lbl:"Chờ CEO",r:b=>{
    b.innerHTML=`<div class="exhead"><span class="note">Chỉ những việc AI không được tự quyết.</span><span class="pill red">${D.ex.length} chờ</span></div><div class="exq">${D.ex.length?D.ex.map(e=>{const a=byId(e.act);
      return `<div class="ex${e.fresh?" new":""}" data-ex="${e.id}"><div class="meta"><span class="pill red">${esc(e.tag)}</span><span>${esc(nameOf(a))}</span><span class="num">${hhmm(e.at)}</span></div><div class="tx">${esc(e.tx)}</div><div class="acts"><button class="btn sm" data-act="ok">Duyệt</button><button class="btn ghost sm" data-act="no">Từ chối</button><button class="btn ghost sm" data-act="hu">Giao người</button></div></div>`;}).join(""):`<div class="empty">Không có ngoại lệ. Mọi việc đang chạy trong ngưỡng.</div>`}</div>`;
    D.ex.forEach(e=>e.fresh=false);}},

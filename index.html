@@ -3401,7 +3401,7 @@ review_cycle: monthly</pre>
           <p style="font-size:clamp(15px,1.5cqi,17.5px);line-height:1.65;color:var(--color-neutral-800);max-width:78ch;margin:0 0 26px">Hỏi nhanh qua email thì không mất gì — chúng tôi trả lời và nói thẳng có phù hợp hay không. Khoản phí dưới đây là <strong>phí tạo lập hồ sơ và quản lý</strong>: nghiên cứu mô hình của anh chị, soạn bảng câu hỏi riêng theo nhóm mô hình, phân tích trước buổi làm việc và làm tài liệu sau buổi. Đó là công việc có thật, không phải phí tư vấn.</p>
 
           <div style="border-left:4px solid var(--color-accent);background:var(--color-neutral-100);padding:18px 20px;margin:0 0 34px;max-width:82ch">
-            <p style="margin:0;font-size:15px;line-height:1.65;color:var(--color-text)"><strong>Đợt 1 đóng đăng ký lúc 24:00 ngày 30/9/2026.</strong> Hồ sơ nhận trong đợt này bắt đầu được xử lý từ <strong>21/09/2026</strong> — mọi mốc thời gian cam kết bên dưới tính từ ngày đó hoặc từ ngày thanh toán, tuỳ ngày nào muộn hơn.<span class="lnx-dem" id="lnx-dem" aria-live="polite"></span></p>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:var(--color-text)"><strong>Tạm thời chỉ áp dụng thí điểm tại Việt Nam.</strong> <strong>Đợt 1 đóng đăng ký lúc 24:00 ngày 30/9/2026.</strong> Hồ sơ nhận trong đợt này bắt đầu được xử lý từ <strong>21/09/2026</strong> — mọi mốc thời gian cam kết bên dưới tính từ ngày đó hoặc từ ngày thanh toán, tuỳ ngày nào muộn hơn.<span class="lnx-dem" id="lnx-dem" aria-live="polite"></span></p>
           </div>
 
           <div class="lnx-goi">
@@ -3619,9 +3619,9 @@ class Component extends DCLogic {
     ['L0', 'Quan sát', 'báo cáo', 'Chỉ thu thập và báo cáo', 'Báo cáo doanh thu, cảnh báo tồn kho', 'Có nguồn dữ liệu ổn định'],
     ['L1', 'Đề xuất', 'phương án', 'Phân tích và đưa phương án', 'Đề xuất điều chỉnh giá', 'Tối thiểu 30 mẫu, chính xác từ 70%'],
     ['L2', 'Chuẩn bị', 'chờ duyệt', 'Tạo đầu ra, chờ phê duyệt', 'Soạn hợp đồng, nội dung, báo giá', 'Đầu ra được duyệt không sửa từ 60%'],
-    ['L3', 'Thực hiện', '≥90% / 100 GD', 'Tự thực hiện trong chính sách', 'Email chăm sóc, hoàn tiền nhỏ, đổi lịch', 'Từ 90% chính xác trên 100 giao dịch; có rollback'],
+    ['L3', 'Thực hiện có giới hạn', '≥90% / 100 GD', 'Tự thực hiện trong chính sách', 'Email chăm sóc, hoàn tiền nhỏ, đổi lịch', 'Từ 90% chính xác trên 100 giao dịch; có rollback'],
     ['L4', 'Tự vận hành', '≥95% + trần', 'Tự lập kế hoạch và tối ưu', 'Vận hành chiến dịch trong ngân sách', 'Từ 95% chính xác; có trần ngân sách và kill switch'],
-    ['L5', 'Tự chủ', 'kiểm toán', 'Điều hành cả chức năng, người kiểm toán', 'Bộ phận CSKH tự vận hành', 'Kiểm toán đạt; không sự cố nghiêm trọng trong 90 ngày']
+    ['L5', 'Tự chủ có giám sát', 'kiểm toán', 'Điều hành cả chức năng, người kiểm toán', 'Bộ phận CSKH tự vận hành', 'Kiểm toán đạt; không sự cố nghiêm trọng trong 90 ngày']
   ];
 
   componentDidMount() {
@@ -4611,7 +4611,7 @@ class Component extends DCLogic {
     ? '<strong>Round 1 is closed.</strong> We will announce the next round. In the meantime, ask us anything by email — the first exchange is free.'
     : '<strong>Đợt 1 đã đóng đăng ký.</strong> Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email — phần trao đổi ban đầu không mất phí.';
 
-  setInterval(function () {
+  function veDem() {
     var o = document.getElementById('lnx-dem');
     if (!o) return;
     var con = HAN - Date.now();
@@ -4628,7 +4628,11 @@ class Component extends DCLogic {
     o.innerHTML = so.map(function (v, i) {
       return '<span><b>' + (i ? String(v).padStart(2, '0') : v) + '</b>' + nhan[i] + '</span>';
     }).join('');
-  }, 1000);
+  }
+  // Gọi ngay khi tải: nếu chỉ đặt trong setInterval thì giây đầu tiên khách vẫn
+  // đọc câu "đóng đăng ký lúc ..." ở thì tương lai dù hạn đã qua.
+  veDem();
+  setInterval(veDem, 1000);
 })();
 </script>
 

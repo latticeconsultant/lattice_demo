@@ -306,7 +306,7 @@ footer a { color: var(--n700); }
   <p class="lead">You leave with the three processes worth automating first, an estimate of your model’s automation ceiling, and a straight answer if we think you should not start yet.</p>
 
   <p class="note">About two minutes to complete. What you tell us is kept confidential and used only to prepare and run the session — never for any other purpose, and never passed to a third party.</p>
-  <p class="dot1"><strong>Round 1 closes at midnight on 30 September 2026.</strong> Files received in this round start processing on <strong>21 September 2026</strong> — every committed deadline runs from that date or from the date of payment, whichever is later. Currently available in Vietnam.
+  <p class="dot1"><strong>Currently available only as a pilot in Vietnam.</strong> <strong>Round 1 closes at midnight on 30 September 2026.</strong> Files received in this round start processing on <strong>21 September 2026</strong> — every committed deadline runs from that date or from the date of payment, whichever is later.
     <span class="dem" id="dem" aria-live="polite"></span></p>
 
   <div class="buoc" id="buocBar">
@@ -449,13 +449,13 @@ footer a { color: var(--n700); }
         <div class="goi">
           <label>
             <input type="radio" name="goi" value="LATTICE Scan" required>
-            <span class="hang"><span class="ten">LATTICE Scan</span><span class="gia">499.000đ</span></span>
+            <span class="hang"><span class="ten">LATTICE Scan</span><span class="gia">499,000 VND</span></span>
             <span class="mo-ta">A questionnaire written for your business model group · one prepared 60-minute Zoom session · a 1–2 page summary afterwards.</span>
             <span class="them">Questionnaire within 3–5 working days · scheduling within 3 · documents within 3.</span>
           </label>
           <label>
             <input type="radio" name="goi" value="LATTICE Blueprint">
-            <span class="hang"><span class="ten">LATTICE Blueprint</span><span class="gia">1.499.000đ</span></span>
+            <span class="hang"><span class="ten">LATTICE Blueprint</span><span class="gia">1,499,000 VND</span></span>
             <span class="mo-ta">Everything in Scan, with the summary replaced by an 8–12 page diagnostic report · plus a 30-minute review session after three weeks · one template SOP set · 30 days of email questions.</span>
             <span class="them">Questionnaire within 2 working days · scheduling within 2 · report within 5. Fully credited against a delivery contract signed within 60 days. Limited to 10 files a round.</span>
           </label>
@@ -547,7 +547,7 @@ footer a { color: var(--n700); }
       <table class="ss">
         <thead><tr><th></th><th>SCAN</th><th>BLUEPRINT</th></tr></thead>
         <tbody>
-          <tr class="ss-gia"><td>Fee</td><td>499,000 VND</td><td>1.499,000 VND</td></tr>
+          <tr class="ss-gia"><td>Fee</td><td>499,000 VND</td><td>1,499,000 VND</td></tr>
           <tr><td>A questionnaire written for your business model group</td><td class="co">Yes</td><td class="co">Yes</td></tr>
           <tr><td>A prepared 60-minute Zoom session</td><td class="co">Yes</td><td class="co">Yes</td></tr>
           <tr><td>Written summary afterwards</td><td class="co">1–2 pages</td><td class="khong">replaced by the report</td></tr>
@@ -641,7 +641,7 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw7EDVxuAem13qXELI1E_gtq
   // dưới 25 ký tự — đó là giới hạn của trường này theo chuẩn EMV.
   function goiGon(ten) { return String(ten || '').replace('LATTICE ', '').toUpperCase(); }
 
-  function tienChu(n) { return n.toLocaleString('vi-VN') + 'đ'; }
+  function tienChu(n) { return n.toLocaleString('en-US') + ' VND'; }
 
   function urlQR(tien, noiDung) {
     return 'https://img.vietqr.io/image/' + NGAN_HANG.bin + '-' + NGAN_HANG.soTk + '-compact2.png'

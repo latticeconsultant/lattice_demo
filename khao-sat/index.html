@@ -89,7 +89,7 @@ footer a{color:inherit}
 </header>
 
 <h1>Bộ máy của anh chị đang ở đâu?</h1>
-<p class="lead">Mười bốn câu, khoảng bảy phút. Xong là có ngay bản đồ hiện trạng theo ba khối và năm việc nên làm trước — không mất phí, không cần tạo tài khoản.</p>
+<p class="lead">Mười lăm câu, khoảng bảy phút. Xong là có ngay bản đồ hiện trạng theo ba khối và năm việc nên làm trước — không mất phí, không cần tạo tài khoản.</p>
 <p class="lead" style="font-size:14px">Bỏ dở giữa chừng cũng được, máy nhớ phần đã điền trên chính trình duyệt này.</p>
 
 <div class="tien" id="tien" aria-hidden="true"></div>
@@ -168,6 +168,12 @@ const CAU = [
    ['donhang','Tăng đơn mà không tăng người'],
    ['kiemsoat','Kiểm soát được bộ máy, hết lo sót việc'],
    ['morong','Chuẩn bị mở rộng, thêm chi nhánh hoặc kênh']]},
+ {id:'nangluc', phan:3, loai:'radio', hoi:'Ai sẽ trực tiếp làm việc với LATTICE, và dành được bao nhiêu giờ mỗi tuần?', goi:'Câu này quyết định lộ trình đi nhanh hay chậm. Trả lời thật giúp báo cáo sát với sức của anh chị.', chon:[
+   ['toi-it','Chính tôi, dưới 2 giờ mỗi tuần'],
+   ['toi-vua','Chính tôi, 2–5 giờ mỗi tuần'],
+   ['toi-nhieu','Chính tôi, trên 5 giờ mỗi tuần'],
+   ['nguoi-it','Có người phụ trách riêng, dưới 5 giờ mỗi tuần'],
+   ['nguoi-nhieu','Có người phụ trách riêng, trên 5 giờ mỗi tuần']]},
  {id:'cantro', phan:3, loai:'radio', hoi:'Điều gì đang cản anh chị đưa AI vào vận hành?', chon:[
    ['khongbiet','Không biết bắt đầu từ đâu'],
    ['sosai','Sợ AI làm sai, mất khách'],
@@ -237,7 +243,7 @@ function oCau(c) {
         }).join('') + '</div>'
       : '<p class="goi" style="color:var(--redtx)">Hãy chọn ở câu trên trước.</p>';
   }
-  return `<fieldset class="cau"><legend class="hoi">${esc(c.hoi)}</legend>${c.goi ? `<p class="goi">${esc(c.goi)}</p>` : ''}${than}</fieldset>`;
+  return `<fieldset class="cau" data-cau="${c.id}"><legend class="hoi">${esc(c.hoi)}</legend>${c.goi ? `<p class="goi">${esc(c.goi)}</p>` : ''}${than}</fieldset>`;
 }
 
 function oLienHe() {
@@ -271,7 +277,18 @@ $('noi').addEventListener('input', function (e) {
     const i = l.querySelector('input'); if (i) l.classList.toggle('chon-roi', i.checked);
   });
   capNhatDem();
-  if (ten === 'mo') ve();
+  if (ten === 'mo') { ve(); return; }
+  // Câu hỏi việc ngốn thời gian nhất lấy lựa chọn từ câu trên, nên phải vẽ lại
+  // ngay khi danh sách đổi — nếu không, khách chọn xong vẫn thấy dòng nhắc cũ.
+  if (ten === 'dau') {
+    const o = $('noi').querySelector('[data-cau="ngonnhat"]');
+    if (o) {
+      const c = CAU.find(x => x.id === 'ngonnhat');
+      const tam = document.createElement('div');
+      tam.innerHTML = oCau(c);
+      o.replaceWith(tam.firstElementChild);
+    }
+  }
 });
 
 function capNhatDem() {
@@ -318,5 +335,159 @@ function gui() {
 
 ve();
 </script>
+<style>
+/* ---------- báo cáo hé ---------- */
+.bc h2{font-size:clamp(22px,3.4vw,30px);letter-spacing:-.02em;margin:34px 0 10px}
+.bc .ma{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.diem{display:flex;gap:22px;align-items:center;flex-wrap:wrap;background:var(--card);border:2px solid var(--ink);padding:20px 22px;margin:14px 0 10px}
+.diem .so{font-size:54px;font-weight:800;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.diem .mo{font-size:14px;color:var(--mute);max-width:46ch}
+.thanh{height:10px;background:var(--line2);position:relative;margin-top:10px}
+.thanh i{position:absolute;inset:0 auto 0 0;background:var(--red)}
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:16px 0}
+.map .k{border:1px solid var(--line);background:var(--card);padding:14px}
+.map .k h3{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 10px}
+.map .k p{margin:0;font-size:13.5px;display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid var(--line2)}
+.map .k p:last-child{border:0}
+.map .k b{font-weight:700;white-space:nowrap}
+.map .k .do{color:var(--redtx)}
+.uu{border:1px solid var(--line);background:var(--card);padding:18px 20px;margin-bottom:10px}
+.uu .so{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:700}
+.uu h3{margin:4px 0 8px;font-size:19px;letter-spacing:-.01em}
+.uu ul{margin:0;padding-left:20px;font-size:14.5px;color:var(--ink)}
+.uu li{margin:3px 0}
+.kin{margin-top:14px;border:1px dashed var(--line);background:var(--bg);padding:13px 15px;position:relative}
+.kin .nhan{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:7px;margin-bottom:7px}
+.kin .mo{filter:blur(4px);user-select:none;font-size:14px;line-height:1.5;color:var(--mute)}
+.mokhoa{border:2px solid var(--red);background:var(--redbg);padding:22px 24px;margin:26px 0}
+.mokhoa h3{margin:0 0 8px;font-size:21px}
+.mokhoa ul{margin:10px 0 16px;padding-left:20px;font-size:14.5px}
+.mokhoa .gia{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.sau{font-size:13.5px;color:var(--mute);margin-top:10px}
+</style>
+<script>
+/* Máy chủ nhận bài khảo sát. Để trống thì trang vẫn chạy, chỉ không gửi đi —
+   bước sau nối Apps Script vào đây. */
+const GUI_URL = '';
+
+/* ---------- chấm điểm ----------
+   Năm trục, cộng lại tối đa 100. Trục dữ liệu nặng nhất vì không có dữ liệu sạch
+   thì mọi mức tự chủ phía trên đều không dựng được. */
+function chamDiem(d) {
+  const D = { mot: 30, vainoi: 18, dienthoai: 8, khong: 2 }[d.dulieu] || 2;
+  const diemPm = { excel: 4, banhang: 6, ketoan: 5, crm: 7, chat: 5, ai: 8, giay: -4 };
+  let P = (d.pm || []).reduce((s, k) => s + (diemPm[k] || 0), 0);
+  P = Math.max(0, Math.min(25, P));
+  const N = { '<10': 4, '10-50': 9, '50-200': 13, '200+': 15 }[d.luong] || 4;
+  const C = { 'toi-it': 3, 'toi-vua': 9, 'toi-nhieu': 13, 'nguoi-it': 11, 'nguoi-nhieu': 15 }[d.nangluc] || 3;
+  const K = (d.kenh || []).length >= 3 ? 15 : (d.kenh || []).length >= 2 ? 11 : 7;
+  const diem = Math.round(D + P + N + C + K);
+  const gioBang = { '<5': 3, '5-15': 10, '15-30': 22, '30+': 36 }[d.gio] || 10;
+  // Phần lấy lại được: nền 35%, cộng theo điểm sẵn sàng, trần 62% — không hứa quá.
+  const tyLe = Math.min(0.62, 0.35 + diem / 100 * 0.3);
+  return { diem: diem, gioMat: gioBang, gioLay: Math.round(gioBang * tyLe), tyLe: tyLe, truc: { D: D, P: P, N: N, C: C, K: K } };
+}
+
+/* Thứ tự ưu tiên: việc ngốn thời gian nhất lên đầu, sau đó tới khối Thị trường
+   (ra tiền nhanh nhất), rồi Cung ứng, rồi Điều hành. */
+const THU_KHOI = { front: 0, sup: 1, core: 2 };
+function xepUuTien(d) {
+  return (d.dau || []).map(id => NV.find(x => x.id === id)).filter(Boolean)
+    .sort((a, b) => (a.id === d.ngonnhat ? -1 : b.id === d.ngonnhat ? 1 : THU_KHOI[a.khoi] - THU_KHOI[b.khoi]));
+}
+
+function viet(n) { return n.toLocaleString('vi-VN'); }
+function maHoSo() {
+  return 'KS-' + Date.now().toString(36).slice(-5).toUpperCase() + '-' +
+    Math.floor(Math.random() * 1296).toString(36).toUpperCase().padStart(2, '0');
+}
+
+window.dungBaoCao = function (d) {
+  const kq = chamDiem(d), uu = xepUuTien(d), ma = d.ma || maHoSo();
+  d.ma = ma; d.diem = kq.diem; luu();
+  if (GUI_URL) {
+    try {
+      fetch(GUI_URL, { method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(Object.assign({ viec: 'khaoSat' }, d)) });
+    } catch (e) {}
+  }
+  const theoKhoi = {};
+  nvTheoMo().forEach(x => { (theoKhoi[x.khoi] = theoKhoi[x.khoi] || []).push(x); });
+  const dauSet = new Set(d.dau || []);
+
+  const html = `
+  <div class="bc">
+    <p class="ma">Mã hồ sơ ${ma} · ${esc(d.ten)}${d.congty ? ' · ' + esc(d.congty) : ''}</p>
+    <h2 style="margin-top:6px">Bản đồ hiện trạng bộ máy</h2>
+    <p class="lead">Dựng từ 15 câu anh chị vừa trả lời. Bản đầy đủ chấm từng nghiệp vụ theo sáu mức tự chủ và kèm lộ trình 90 ngày.</p>
+
+    <div class="diem">
+      <div><div class="so">${kq.diem}<span style="font-size:22px;color:var(--mute)">/100</span></div>
+        <div style="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:4px">Điểm sẵn sàng</div></div>
+      <div class="mo">${kq.diem >= 70 ? 'Nền tảng đã khá: dữ liệu và công cụ đủ để giao việc cho AI ngay từ quý này.'
+        : kq.diem >= 45 ? 'Ở mức làm được, nhưng phải dọn dữ liệu và chuẩn hóa vài quy trình trước khi giao quyền cho AI.'
+        : 'Còn sớm để giao quyền. Việc đầu tiên không phải mua công cụ mà là gom dữ liệu về một nơi.'}
+        <div class="thanh"><i style="width:${kq.diem}%"></i></div></div>
+    </div>
+
+    <div class="diem" style="border-width:1px">
+      <div><div class="so">${kq.gioMat}<span style="font-size:20px;color:var(--mute)"> giờ</span></div>
+        <div style="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:4px">mỗi tuần đang mất cho việc lặp lại</div></div>
+      <div class="mo">Với hiện trạng này, phần lấy lại được vào khoảng <b>${kq.gioLay} giờ mỗi tuần</b> — tương đương ${viet(kq.gioLay * 4)} giờ một tháng.
+        Quy ra tiền bao nhiêu thì nằm ở bản đầy đủ, vì còn phụ thuộc giá giờ công của anh chị.</div>
+    </div>
+
+    <h2>Năm việc nên làm trước</h2>
+    <p class="lead" style="margin-bottom:16px">Xếp theo thứ tự nên làm, không phải theo thứ tự anh chị chọn. Việc ngốn thời gian nhất được đẩy lên đầu.</p>
+    ${uu.map((x, i) => `
+      <div class="uu">
+        <span class="so">ƯU TIÊN ${i + 1}${x.id === d.ngonnhat ? ' · NGỐN THỜI GIAN NHẤT' : ''}</span>
+        <h3>${esc(tenNV(x))}</h3>
+        <ul>${(x.dau || []).map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+        <div class="kin">
+          <div class="nhan">🔒 Phần đang khoá · LATTICE xử lý thế nào · mức tự chủ khuyến nghị · giờ tiết kiệm</div>
+          <div class="mo" aria-hidden="true">Nội dung này chỉ có trong bản đầy đủ, không nằm trong trang đang xem.</div>
+        </div>
+      </div>`).join('')}
+
+    <h2>Bộ máy của anh chị theo ba khối</h2>
+    <div class="map">
+      ${Object.keys(theoKhoi).map(k => `<div class="k"><h3>${tenKhoi(k)}</h3>
+        ${theoKhoi[k].map(x => `<p><span>${esc(tenNV(x))}</span>${dauSet.has(x.id)
+          ? '<b class="do">đang đau</b>' : '<b style="color:var(--mute)">khoá</b>'}</p>`).join('')}
+      </div>`).join('')}
+    </div>
+    <p class="sau">Mỗi nghiệp vụ trong bản đầy đủ có một mức từ L0 đến L5 cho biết hiện AI đang gánh tới đâu và nên nâng lên mức nào.</p>
+
+    <div class="mokhoa">
+      <h3>Mở khoá báo cáo đầy đủ</h3>
+      <p style="margin:0 0 4px">Bản đầy đủ gồm những phần đang khoá ở trên:</p>
+      <ul>
+        <li>Cách LATTICE xử lý từng việc trong năm ưu tiên, kèm mức tự chủ khuyến nghị</li>
+        <li>Chấm mức L0–L5 cho toàn bộ ${nvTheoMo().length} nghiệp vụ của mô hình anh chị</li>
+        <li>Lộ trình 90 ngày chia ba chặng, mỗi chặng một cổng nghiệm thu</li>
+        <li>Quy phần giờ tiết kiệm ra tiền theo giá giờ công của anh chị</li>
+        <li>Một trang riêng theo mã hồ sơ, bấm vào từng ô xem chẩn đoán của chính mình</li>
+      </ul>
+      <p class="gia">499.000đ</p>
+      <p style="margin:2px 0 14px;font-size:14px;color:var(--mute)">Giao trong ba ngày làm việc kể từ khi đủ dữ liệu. Gói LATTICE Scan.</p>
+      <a class="btn do" style="display:inline-block;text-decoration:none" href="../dang-ky/?ma=${encodeURIComponent(ma)}">MỞ KHOÁ BÁO CÁO ĐẦY ĐỦ →</a>
+    </div>
+
+    <p class="sau">${GUI_URL
+      ? 'Bản tóm tắt này đã gửi vào ' + esc(d.email) + '. Anh chị cứ giữ mã hồ sơ <b>' + ma + '</b> để tiếp tục sau.'
+      : 'Anh chị giữ mã hồ sơ <b>' + ma + '</b> để tiếp tục sau. Bản tóm tắt sẽ gửi vào ' + esc(d.email) + ' khi anh chị bấm mở khoá.'}</p>
+    <p class="sau">Có chỗ nào chưa đúng với thực tế của anh chị? Viết thư cho chúng tôi, chấm lại không mất phí.</p>
+  </div>`;
+
+  document.querySelector('h1').textContent = 'Kết quả khảo sát';
+  document.querySelectorAll('.lead').forEach((p, i) => { if (i < 2) p.remove(); });
+  $('tien').remove(); $('tien-chu').remove();
+  $('ks').innerHTML = html;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+</script>
+
 </body>
 </html>

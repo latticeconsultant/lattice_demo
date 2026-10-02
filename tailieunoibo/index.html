@@ -263,8 +263,14 @@ pre.prompt{white-space:pre-wrap;background:var(--bg2);border:1px solid var(--lin
 #stage-none{}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+.sangtoi{flex:none;width:34px;height:34px;padding:0;border-radius:50%;display:grid;place-items:center;
+  background:transparent;color:var(--ink);border:1px solid var(--ink);cursor:pointer;margin-left:auto}
+.sangtoi svg{display:block;transition:transform .35s ease}
+:root[data-theme="dark"] .sangtoi svg{transform:rotate(180deg)}
+@media (prefers-reduced-motion:reduce){.sangtoi svg{transition:none}}
 </style>
 </head>
+<script>try{var _t=localStorage.getItem('lnx-theme'); if(_t) document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
 <body>
 
 
@@ -274,6 +280,7 @@ pre.prompt{white-space:pre-wrap;background:var(--bg2);border:1px solid var(--lin
     <svg width="28" height="28" viewBox="0 0 100 100" aria-hidden="true"><g stroke="currentColor" stroke-width="6" fill="none"><path d="M50 8 L92 50 L50 92 L8 50 Z"/></g><g fill="var(--bg)" stroke="currentColor" stroke-width="6"><circle cx="50" cy="8" r="7"/><circle cx="92" cy="50" r="7"/><circle cx="50" cy="92" r="7"/><circle cx="8" cy="50" r="7"/></g><circle cx="50" cy="50" r="10" fill="#EC3013"/></svg>
     <span>LATTICE <small>· chạy thử bộ máy</small></span>
   </div>
+  <button class="sangtoi" id="sangtoi" type="button" aria-label="Chuyển chế độ sáng / tối" title="Chuyển chế độ sáng / tối"><svg viewBox="0 0 24 24" aria-hidden="true" width="19" height="19"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M12 3.5 A8.5 8.5 0 0 1 12 20.5 Z" fill="currentColor"></path></svg></button>
   <div class="tabs" role="tablist">
     <button role="tab" id="tab-plan" aria-selected="true" data-tab="plan">Phương án</button>
     <button role="tab" id="tab-demo" aria-selected="false" data-tab="demo">Chạy demo</button>
@@ -1104,5 +1111,15 @@ try{var lt=localStorage.getItem("lnx-tab");if(["demo","kit","video"].indexOf(lt)
 })();
 </script>
 
+<script>
+document.getElementById('sangtoi').addEventListener('click', function () {
+  var r = document.documentElement;
+  var toi = r.getAttribute('data-theme') === 'dark'
+    || (!r.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+  var moi = toi ? 'light' : 'dark';
+  r.setAttribute('data-theme', moi);
+  try { localStorage.setItem('lnx-theme', moi); } catch (e) {}
+});
+</script>
 </body>
 </html>

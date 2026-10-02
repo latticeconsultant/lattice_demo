@@ -1100,9 +1100,10 @@ function allocation(){
   const V=A.filter(show);
   const avg=Math.round(V.reduce((s,a)=>s+SH[a.rec[model]],0)/V.length*100);
   const l3=V.filter(a=>a.rec[model]>=3).length;
-  $("bigstat").innerHTML=`<div><div class="v">${avg}%</div><p class="t">khối lượng việc AI gánh ở mức khởi điểm</p></div>
+  $("bigstat").innerHTML=`<div><div class="v">${avg}%</div><p class="t">khối lượng việc bàn giấy AI gánh ở mức khởi điểm</p></div>
    <div><div class="v">${l3}/${V.length}</div><p class="t">hoạt động AI tự chạy trong ngưỡng (L3 trở lên)</p></div>
    <div><div class="v red">${V.length}</div><p class="t">loại quyết định người luôn giữ, mỗi hoạt động một loại</p></div>`;
+  $("bigstat").insertAdjacentHTML("beforeend", `<p class="note" style="flex:1 1 100%;margin:4px 0 0">Con số này tính trên ${V.length} nghiệp vụ điều hành liệt kê ở đây, không phải trên toàn bộ chuỗi giá trị. Trần tự động hóa theo ngành ở Biểu đồ 10 của trang chính thấp hơn vì tính cả phần việc vật lý không ủy quyền được cho AI.</p>`);
 }
 
 /* ---------- activities ---------- */

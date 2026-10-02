@@ -525,6 +525,12 @@ textarea.input { min-height: 90px; resize: vertical; }
       .lnx-matrix-lbl { display: block; }
     }
 
+    .lnx-dong-note { display: none; font-size: 15px; line-height: 1.65; margin: 0;
+      padding: 14px 18px; border-left: 3px solid var(--color-accent);
+      background: color-mix(in srgb, var(--color-accent) 8%, transparent); max-width: 62ch; }
+    .lnx-dong-note a { color: var(--color-accent); }
+    html.lnx-dong .lnx-dong-note { display: block; }
+    html.lnx-dong .lnx-dlg-act { display: none !important; }
     /* ── Nút chuyển ngữ ─────────────────────────────────────────────────────
        Bản EN là file riêng /en/index.html sinh từ tools/build-en.py, nên nút
        này là liên kết thật chứ không phải nút đổi trạng thái. Ưu điểm: chia sẻ
@@ -912,6 +918,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <li>On receipt we send a confirmation email straight away, then agree a time with you and send the preparation questionnaire in advance.</li>
           <li>An email address is required: the confirmation, the scheduling and the questionnaire all go to that address.</li>
         </ul>
+        <p class="lnx-dong-note">Round 1 is closed. We will announce the next round. In the meantime, ask us anything by email — the first exchange is free. <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a></p>
         <div class="lnx-dlg-act">
           <a class="lnx-dlg-go" href="../register/">CONTINUE TO THE FORM →</a>
           <div class="lnx-dlg-qr">
@@ -3437,6 +3444,8 @@ review_cycle: monthly</pre>
             </div>
           </div>
 
+          <p class="lnx-dong-note">Round 1 is closed. We will announce the next round. In the meantime, ask us anything by email — the first exchange is free. <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a></p>
+
           <div class="lnx-dlg-act" style="margin-top:30px">
             <a class="lnx-dlg-go" href="../register/">CHOOSE A PACKAGE AND REGISTER →</a>
             <div class="lnx-dlg-qr">
@@ -3473,6 +3482,7 @@ review_cycle: monthly</pre>
             <div style="background:var(--color-neutral-100);padding:clamp(24px,3cqi,36px)">
               <h3 style="font-size:clamp(20px,2.2cqi,28px);margin:0 0 18px">Request a diagnostic</h3>
               <p style="font-size:15.5px;line-height:1.65;color:var(--color-neutral-800);margin:0 0 20px;max-width:62ch">The registration form sits on its own page and takes about two minutes. An email address is required — that is where we send the invitation and the eight-point preparation questionnaire.</p>
+              <p class="lnx-dong-note">Round 1 is closed. We will announce the next round. In the meantime, ask us anything by email — the first exchange is free. <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a></p>
               <div class="lnx-dlg-act">
                 <a class="lnx-dlg-go" href="../register/">OPEN THE REGISTRATION FORM →</a>
                 <div class="lnx-dlg-qr">
@@ -4617,6 +4627,8 @@ class Component extends DCLogic {
     var o = document.getElementById('lnx-dem');
     if (!o) return;
     var con = HAN - Date.now();
+    // Cờ trên <html>: dc-runtime vẽ lại thế nào thì CSS vẫn ẩn đúng nút đăng ký.
+    document.documentElement.classList.toggle('lnx-dong', con <= 0);
     if (con <= 0) {
       var hop = o.parentElement;
       // Dò theo chính ô đếm ngược, không dò theo chuỗi ngày: bản tiếng Anh ghi

@@ -525,6 +525,12 @@ textarea.input { min-height: 90px; resize: vertical; }
       .lnx-matrix-lbl { display: block; }
     }
 
+    .lnx-dong-note { display: none; font-size: 15px; line-height: 1.65; margin: 0;
+      padding: 14px 18px; border-left: 3px solid var(--color-accent);
+      background: color-mix(in srgb, var(--color-accent) 8%, transparent); max-width: 62ch; }
+    .lnx-dong-note a { color: var(--color-accent); }
+    html.lnx-dong .lnx-dong-note { display: block; }
+    html.lnx-dong .lnx-dlg-act { display: none !important; }
     /* ── Nút chuyển ngữ ─────────────────────────────────────────────────────
        Bản EN là file riêng /en/index.html sinh từ tools/build-en.py, nên nút
        này là liên kết thật chứ không phải nút đổi trạng thái. Ưu điểm: chia sẻ
@@ -912,6 +918,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <li>Nhận được phiếu, chúng tôi gửi thư xác nhận ngay, sau đó thống nhất lịch làm việc và gửi trước bảng câu hỏi để anh chị hoàn thiện.</li>
           <li>Bắt buộc có email, vì thư xác nhận, lịch làm việc và bảng câu hỏi đều gửi qua địa chỉ đó.</li>
         </ul>
+        <p class="lnx-dong-note">Đợt 1 đã đóng đăng ký. Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email — phần trao đổi ban đầu không mất phí. <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a></p>
         <div class="lnx-dlg-act">
           <a class="lnx-dlg-go" href="dang-ky/">TIẾP TỤC ĐIỀN THÔNG TIN →</a>
           <div class="lnx-dlg-qr">
@@ -3435,6 +3442,8 @@ review_cycle: monthly</pre>
             </div>
           </div>
 
+          <p class="lnx-dong-note">Đợt 1 đã đóng đăng ký. Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email — phần trao đổi ban đầu không mất phí. <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a></p>
+
           <div class="lnx-dlg-act" style="margin-top:30px">
             <a class="lnx-dlg-go" href="dang-ky/">CHỌN GÓI VÀ ĐĂNG KÝ →</a>
             <div class="lnx-dlg-qr">
@@ -3471,6 +3480,7 @@ review_cycle: monthly</pre>
             <div style="background:var(--color-neutral-100);padding:clamp(24px,3cqi,36px)">
               <h3 style="font-size:clamp(20px,2.2cqi,28px);margin:0 0 18px">Gửi yêu cầu chẩn đoán</h3>
               <p style="font-size:15.5px;line-height:1.65;color:var(--color-neutral-800);margin:0 0 20px;max-width:62ch">Biểu mẫu đăng ký nằm ở trang riêng, điền khoảng hai phút. Bắt buộc có email — chúng tôi gửi thư hẹn và bảng câu hỏi chuẩn bị 8 mục qua địa chỉ đó.</p>
+              <p class="lnx-dong-note">Đợt 1 đã đóng đăng ký. Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email — phần trao đổi ban đầu không mất phí. <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a></p>
               <div class="lnx-dlg-act">
                 <a class="lnx-dlg-go" href="dang-ky/">MỞ BIỂU MẪU ĐĂNG KÝ →</a>
                 <div class="lnx-dlg-qr">
@@ -4615,6 +4625,8 @@ class Component extends DCLogic {
     var o = document.getElementById('lnx-dem');
     if (!o) return;
     var con = HAN - Date.now();
+    // Cờ trên <html>: dc-runtime vẽ lại thế nào thì CSS vẫn ẩn đúng nút đăng ký.
+    document.documentElement.classList.toggle('lnx-dong', con <= 0);
     if (con <= 0) {
       var hop = o.parentElement;
       // Dò theo chính ô đếm ngược, không dò theo chuỗi ngày: bản tiếng Anh ghi

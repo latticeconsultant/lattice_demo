@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Khảo sát nhanh — LATTICE Next Solutions</title>
+<meta name="description" content="Mười bốn câu, bảy phút. Nhận ngay bản đồ hiện trạng bộ máy của doanh nghiệp anh chị và năm việc nên làm trước.">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="../brand/logo/favicon/favicon-32.png" sizes="32x32">
+<script>try{var _t=localStorage.getItem('lnx-theme'); if(_t) document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+<style>
+@font-face{font-family:Archivo;font-style:normal;font-weight:400 800;font-display:swap;
+  src:url("../assets/fonts/archivo-latin.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Archivo;font-style:normal;font-weight:400 800;font-display:swap;
+  src:url("../assets/fonts/archivo-vietnamese.woff2") format("woff2");
+  unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB}
+:root{
+  --bg:#F3F2F2; --card:#FBFAFA; --ink:#201E1D; --mute:#605D5D; --line:#BAB6B6; --line2:#D7D3D3;
+  --red:#EC3013; --redtx:#AE1800; --redbg:#FBE3DE; --ok:#2E6B4F; --inv:#F3F2F2;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#161514; --card:#1C1B1A; --ink:#EDEBEA; --mute:#A8A4A2; --line:#3C3937; --line2:#2A2827;
+  --redtx:#FF7A63; --redbg:#3A1A14; --ok:#7CC6A0; --inv:#161514; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#161514; --card:#1C1B1A; --ink:#EDEBEA; --mute:#A8A4A2; --line:#3C3937; --line2:#2A2827;
+  --redtx:#FF7A63; --redbg:#3A1A14; --ok:#7CC6A0; --inv:#161514; color-scheme:dark;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:Archivo,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15.5px;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px 80px}
+header.top{display:flex;align-items:center;gap:14px;padding:18px 0 14px;border-bottom:2px solid var(--ink)}
+header .mark{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.1em;font-size:15px}
+header .mark small{font-weight:400;letter-spacing:0;color:var(--mute);font-size:12.5px}
+.sangtoi{margin-left:auto;width:34px;height:34px;padding:0;border-radius:50%;display:grid;place-items:center;
+  background:transparent;color:var(--ink);border:1px solid var(--ink);cursor:pointer}
+.sangtoi svg{display:block;transition:transform .35s ease}
+:root[data-theme="dark"] .sangtoi svg{transform:rotate(180deg)}
+@media (prefers-reduced-motion:reduce){.sangtoi svg{transition:none}}
+h1{font-size:clamp(26px,4.4vw,38px);line-height:1.08;letter-spacing:-.025em;margin:26px 0 10px}
+.lead{font-size:16.5px;color:var(--mute);margin:0 0 6px;max-width:60ch}
+.tien{display:flex;gap:4px;margin:22px 0 6px}
+.tien i{height:5px;flex:1;background:var(--line2)}
+.tien i.xong{background:var(--ink)}
+.tien i.dang{background:var(--red)}
+.tien-chu{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:18px}
+fieldset{border:0;margin:0;padding:0}
+.cau{background:var(--card);border:1px solid var(--line);padding:20px 22px;margin-bottom:12px}
+.cau legend,.cau .hoi{font-weight:700;font-size:16px;display:block;margin-bottom:4px}
+.cau .goi{font-size:13.5px;color:var(--mute);margin-bottom:14px}
+.chon{display:grid;gap:8px}
+.chon.ngang{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+label.o{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line2);background:var(--bg);
+  padding:11px 13px;cursor:pointer;font-size:14.5px}
+label.o:hover{border-color:var(--ink)}
+label.o input{margin:2px 0 0;accent-color:var(--red);flex:none}
+label.o.chon-roi{border-color:var(--ink);background:var(--card);box-shadow:inset 3px 0 0 var(--red)}
+label.o b{display:block;font-weight:700}
+label.o span.mo{display:block;color:var(--mute);font-size:13px;margin-top:2px}
+input[type=text],input[type=email],textarea{width:100%;font:inherit;color:inherit;background:var(--bg);
+  border:1px solid var(--line);padding:12px 13px}
+input:focus,textarea:focus{outline:2px solid var(--red);outline-offset:-2px}
+.dieu{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;align-items:center}
+.btn{font:inherit;font-weight:700;font-size:14px;letter-spacing:.06em;padding:14px 22px;border:2px solid var(--ink);
+  background:var(--ink);color:var(--inv);cursor:pointer}
+.btn.phu{background:transparent;color:var(--ink)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.do{background:var(--red);border-color:var(--red);color:#fff}
+.ghi{font-size:13px;color:var(--mute);margin-left:auto}
+.loi{color:var(--redtx);font-size:14px;font-weight:600;margin-top:10px;min-height:1.2em}
+.dem-chon{font-size:13px;color:var(--mute);margin-top:8px}
+.nv-luoi{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:6px}
+.nv-khoi{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin:14px 0 6px;grid-column:1/-1}
+.rieng{border-left:3px solid var(--red);background:var(--redbg);padding:12px 15px;font-size:14px;margin-top:14px}
+footer{border-top:1px solid var(--line);margin-top:34px;padding-top:16px;font-size:13px;color:var(--mute)}
+footer a{color:inherit}
+@media (max-width:560px){.cau{padding:16px 15px}.wrap{padding:0 14px 60px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <span class="mark">
+    <svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true"><g stroke="currentColor" stroke-width="6" fill="none"><path d="M50 8 L92 50 L50 92 L8 50 Z"/></g><g fill="var(--bg)" stroke="currentColor" stroke-width="6"><circle cx="50" cy="8" r="7"/><circle cx="92" cy="50" r="7"/><circle cx="50" cy="92" r="7"/><circle cx="8" cy="50" r="7"/></g><circle cx="50" cy="50" r="10" fill="#EC3013"/></svg>
+    LATTICE <small>· khảo sát nhanh</small>
+  </span>
+  <button class="sangtoi" id="sangtoi" type="button" aria-label="Chuyển chế độ sáng / tối" title="Chuyển chế độ sáng / tối"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M12 3.5 A8.5 8.5 0 0 1 12 20.5 Z" fill="currentColor"></path></svg></button>
+</header>
+
+<h1>Bộ máy của anh chị đang ở đâu?</h1>
+<p class="lead">Mười bốn câu, khoảng bảy phút. Xong là có ngay bản đồ hiện trạng theo ba khối và năm việc nên làm trước — không mất phí, không cần tạo tài khoản.</p>
+<p class="lead" style="font-size:14px">Bỏ dở giữa chừng cũng được, máy nhớ phần đã điền trên chính trình duyệt này.</p>
+
+<div class="tien" id="tien" aria-hidden="true"></div>
+<p class="tien-chu" id="tien-chu">Phần 1 / 4 · Doanh nghiệp của anh chị</p>
+
+<form id="ks" novalidate>
+<div id="noi"></div>
+<div class="dieu">
+  <button type="button" class="btn phu" id="lui">← Quay lại</button>
+  <button type="button" class="btn" id="toi">Tiếp tục →</button>
+  <span class="ghi" id="ghi"></span>
+</div>
+<p class="loi" id="loi" role="alert"></p>
+</form>
+
+<footer>
+  Thông tin anh chị điền chỉ dùng để dựng báo cáo cho chính anh chị, không chia sẻ cho bên thứ ba.
+  Mọi trao đổi qua email <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a>.
+  <br>Tạm thời chỉ áp dụng thí điểm tại Việt Nam.
+</footer>
+</div>
+<script>
+const NV = [{"id":"market","ten":"Thị trường & Danh mục","tenTheo":{"dv":"Thị trường & Gói dịch vụ"},"khoi":"front","mo":["tmhh","dv"],"dau":["Chọn hàng theo cảm tính và lời đồn","Nhập về mới biết không ai mua"]},{"id":"brand","ten":"Marketing","tenTheo":{},"khoi":"front","mo":["tmhh","dv"],"dau":["Đăng bài theo cảm hứng, không theo kế hoạch","Mỗi kênh một giọng, thương hiệu bị loãng"]},{"id":"price","ten":"Chính sách giá","tenTheo":{"dv":"Chính sách giá & gói"},"khoi":"front","mo":["tmhh","dv"],"dau":["Mỗi nhân viên báo một giá","Khuyến mãi xong mới biết lỗ"]},{"id":"sales","ten":"Bán hàng","tenTheo":{"dv":"Tư vấn & Bán"},"khoi":"front","mo":["tmhh","dv"],"dau":["Trả lời chậm, khách đi mất ngoài giờ","Mỗi người tư vấn một kiểu, báo giá lệch nhau"]},{"id":"orders","ten":"Đơn hàng","tenTheo":{"dv":"Lịch hẹn & Thực hiện"},"khoi":"front","mo":["tmhh","dv"],"dau":["Nhập đơn tay từ nhiều kênh, sai địa chỉ, sai mã","Đối soát tiền sàn, COD mất hàng giờ mỗi tuần"]},{"id":"after","ten":"Hậu mãi","tenTheo":{"dv":"Hậu mãi & Bảo hành"},"khoi":"front","mo":["tmhh","dv"],"dau":["Mỗi lần xử lý một kiểu, khách so bì nhau","Hoàn tiền tùy hứng, thủng biên lợi nhuận"]},{"id":"care","ten":"Chăm sóc khách hàng","tenTheo":{},"khoi":"front","mo":["tmhh","dv"],"dau":["Bán xong là quên khách","Không biết khách nào sắp rời bỏ"]},{"id":"chan","ten":"Kênh bán","tenTheo":{"dv":"Kênh & Đối tác giới thiệu"},"khoi":"front","mo":["tmhh","dv"],"dau":["Mỗi sàn một chính sách, thay đổi liên tục","Hoa hồng tính tay, dễ tranh chấp"]},{"id":"rnd","ten":"R&D sản phẩm","tenTheo":{},"khoi":"front","mo":["sx"],"dau":["Mẫu đẹp nhưng xưởng làm không ra","Thử nghiệm không ghi lại, làm lại từ đầu"]},{"id":"bom","ten":"Định mức BOM","tenTheo":{},"khoi":"front","mo":["sx"],"dau":["Định mức sai làm giá thành sai","Mỗi công nhân làm một kiểu, hao hụt khác nhau"]},{"id":"plan","ten":"Kế hoạch sản xuất","tenTheo":{},"khoi":"front","mo":["sx"],"dau":["Hứa ngày giao mà xưởng không kham nổi","Chạy theo đơn gấp, đảo kế hoạch liên tục"]},{"id":"buyraw","ten":"Mua nguyên liệu","tenTheo":{},"khoi":"front","mo":["sx"],"dau":["Mua gấp giá cao vì không có kế hoạch","Nhà cung cấp giao trễ làm dừng chuyền"]},{"id":"whraw","ten":"Kho nguyên liệu","tenTheo":{},"khoi":"front","mo":["sx"],"dau":["Sổ sách một đằng, kho một nẻo","Cấp phát không theo lệnh nên không truy được lô"]},{"id":"buy","ten":"Mua hàng & Nhập hàng","tenTheo":{},"khoi":"sup","mo":["tmhh"],"dau":["Hết hàng bán chạy, ứ hàng bán chậm","Không so sánh được nhà cung cấp bằng số liệu"]},{"id":"wh","ten":"Kho hàng của mình","tenTheo":{},"khoi":"sup","mo":["tmhh"],"dau":["Tìm hàng mất thời gian, lấy nhầm mã","Tồn trên hệ thống khác tồn thực tế"]},{"id":"drop","ten":"Kho đối tác & Dropship","tenTheo":{},"khoi":"sup","mo":["tmhh"],"dau":["Bán hàng mình không có trong tay, đối tác hết hàng mới biết","Khách phàn nàn mà mình không nắm được tiến độ"]},{"id":"fromsx","ten":"Nhập kho từ Sản xuất","tenTheo":{},"khoi":"sup","mo":["tmhh"],"dau":["Số giao của xưởng lệch số nhập của kho","Không có hồ sơ lô nên khách khiếu nại là chịu"]},{"id":"iqc","ten":"Kiểm hàng đầu vào","tenTheo":{},"khoi":"sup","mo":["tmhh"],"dau":["Nhận hàng không kiểm, đến tay khách mới biết lỗi","Không có tiêu chí kiểm nên mỗi người kiểm một kiểu"]},{"id":"stocklv","ten":"Tồn kho & Điểm đặt lại","tenTheo":{},"khoi":"sup","mo":["tmhh"],"dau":["Hết mã bán chạy ngay mùa cao điểm","Vốn chôn trong mã bán chậm"]},{"id":"logi","ten":"Kết nối logistics","tenTheo":{},"khoi":"sup","mo":["tmhh"],"dau":["Phí vận chuyển ăn mòn lợi nhuận mà không ai đo","Giao trễ, khách gọi mới biết"]},{"id":"cap","ten":"Lịch & Công suất phục vụ","tenTheo":{},"khoi":"sup","mo":["dv"],"dau":["Giờ cao điểm quá tải, giờ thấp điểm ngồi không","Khách hủy sát giờ, không ai lấp chỗ"]},{"id":"crew","ten":"Nhân lực thực hiện","tenTheo":{},"khoi":"sup","mo":["dv"],"dau":["Khách chỉ tin một người, người đó nghỉ là mất khách","Chất lượng mỗi người một kiểu"]},{"id":"vendor","ten":"Đối tác thuê ngoài","tenTheo":{},"khoi":"sup","mo":["dv"],"dau":["Chất lượng thuê ngoài không kiểm soát được","Đơn giá mỗi người một kiểu"]},{"id":"consum","ten":"Vật tư tiêu hao","tenTheo":{},"khoi":"sup","mo":["dv"],"dau":["Hết vật tư giữa ca phục vụ","Dùng vượt định mức mà không ai để ý"]},{"id":"fac","ten":"Cơ sở vật chất & Thiết bị","tenTheo":{},"khoi":"sup","mo":["dv"],"dau":["Thiết bị hỏng giữa ca, phải hoãn khách","Bảo trì chỉ làm khi đã hỏng"]},{"id":"shop","ten":"Điều độ xưởng","tenTheo":{},"khoi":"sup","mo":["sx"],"dau":["Không biết lô nào đang ở công đoạn nào","Máy chờ người, người chờ nguyên liệu"]},{"id":"run","ten":"Vận hành chuyền","tenTheo":{},"khoi":"sup","mo":["sx"],"dau":["Mỗi ca làm một kiểu, sản lượng chênh nhau","Hao hụt ghi cuối ngày, không biết mất ở đâu"]},{"id":"qc","ten":"Chất lượng & Truy xuất lô","tenTheo":{},"khoi":"sup","mo":["sx"],"dau":["Phát hiện lỗi khi hàng đã rời xưởng","Kiểm bằng mắt, không có số liệu"]},{"id":"maint","ten":"Bảo trì thiết bị","tenTheo":{},"khoi":"sup","mo":["sx"],"dau":["Chạy đến khi hỏng mới sửa","Dừng máy giữa đơn gấp"]},{"id":"ehs","ten":"An toàn & Môi trường","tenTheo":{},"khoi":"sup","mo":["sx"],"dau":["Làm cho có hồ sơ, không làm thật","Tai nạn rồi mới rà lại quy định"]},{"id":"whfg","ten":"Kho thành phẩm & Xuất kho","tenTheo":{},"khoi":"sup","mo":["sx"],"dau":["Thành phẩm dồn ứ vì bán chậm","Xuất nhầm lô, nhầm quy cách"]},{"id":"budget","ten":"Kế hoạch & Ngân sách","tenTheo":{},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Kế hoạch nằm trong đầu chủ, không ai biết số","Giao mục tiêu miệng, cuối kỳ tranh cãi"]},{"id":"bi","ten":"Báo cáo & Phân tích","tenTheo":{},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Mỗi người lấy số một kiểu, họp xong cãi nhau về số","Báo cáo làm tay, mất ngày cuối tháng"]},{"id":"work","ten":"Công việc","tenTheo":{},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Chủ doanh nghiệp làm lính cứu hỏa cả ngày","Việc giao qua chat rồi trôi mất"]},{"id":"process","ten":"Quy trình","tenTheo":{},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Quy trình nằm trong đầu chủ","Người mới học bằng cách hỏi lại"]},{"id":"cdata","ten":"Dữ liệu khách hàng","tenTheo":{},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Một khách có năm hồ sơ ở năm nơi","Dữ liệu nằm trong điện thoại nhân viên, nghỉ việc là mất"]},{"id":"pdata","ten":"Dữ liệu sản phẩm","tenTheo":{"sx":"Dữ liệu kỹ thuật"},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Thông tin mỗi nơi một kiểu","Mô tả sai hoặc thiếu"]},{"id":"sys","ten":"Hệ thống & Tích hợp","tenTheo":{},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Mỗi bộ phận một phần mềm, số liệu không nói chuyện được với nhau","Nhập lại cùng một dữ liệu ở ba nơi"]},{"id":"channels","ten":"Kênh truyền thông","tenTheo":{},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Mật khẩu fanpage nằm trong tay một người","Ảnh, video thất lạc, phải làm lại nhiều lần"]},{"id":"cash","ten":"Dòng tiền","tenTheo":{},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Tiền cá nhân và tiền công ty lẫn lộn","Cuối tháng mới biết thiếu tiền"]},{"id":"tax","ten":"Kế toán & Thuế","tenTheo":{},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Thiếu hóa đơn, chứng từ khi quyết toán","Kê khai sát hạn, làm vội"]},{"id":"cost","ten":"Giá thành","tenTheo":{},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Không biết giá vốn thật nên không biết lãi thật","Chi phí chung phân bổ theo cảm tính"]},{"id":"fund","ten":"Vốn & Ngân hàng","tenTheo":{},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Cần tiền mới đi vay, hồ sơ không kịp","Không biết chi phí vốn thật là bao nhiêu"]},{"id":"people","ten":"Nhân sự","tenTheo":{"sx":"Nhân sự & Ca kíp"},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["KPI đặt cho có, không gắn số liệu thật","Đánh giá theo cảm tính"]},{"id":"know","ten":"Tri thức & Đào tạo","tenTheo":{},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Tri thức chỉ nằm trong đầu vài người","Người mới học bằng cách làm sai rồi sửa"]},{"id":"legal","ten":"Pháp lý & Tuân thủ","tenTheo":{},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Hợp đồng hết hạn mà không ai theo dõi","Quy định thay đổi mà không biết"]},{"id":"admin","ten":"Hành chính & Tài sản","tenTheo":{},"khoi":"core","mo":["tmhh","dv","sx"],"dau":["Không biết doanh nghiệp đang có những tài sản gì","Hợp đồng thuê hết hạn mới nhớ"]}];</script>
+<script>
+/* ---------- nút sáng / tối ---------- */
+document.getElementById('sangtoi').addEventListener('click', function () {
+  var r = document.documentElement;
+  var toi = r.getAttribute('data-theme') === 'dark'
+    || (!r.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+  var moi = toi ? 'light' : 'dark';
+  r.setAttribute('data-theme', moi);
+  try { localStorage.setItem('lnx-theme', moi); } catch (e) {}
+});
+
+/* ---------- mười bốn câu, chia bốn phần ----------
+   Mỗi câu: id, phần, loại, câu hỏi, gợi ý, các lựa chọn.
+   'nv' là câu chọn nghiệp vụ đau nhất — danh sách lấy theo mô hình đã chọn ở câu 1,
+   nên hai nơi không bao giờ lệch nhau với trang mô phỏng. */
+const PHAN = ['Doanh nghiệp của anh chị', 'Cách đang vận hành', 'Chỗ đang đau', 'Ý định 90 ngày tới'];
+const CAU = [
+ {id:'mo', phan:0, loai:'radio', hoi:'Doanh nghiệp thuộc nhóm nào?', goi:'Chọn nhóm gần nhất. Nhóm này quyết định danh sách nghiệp vụ ở các câu sau.', chon:[
+   ['tmhh','Thương mại & Hàng hóa','Mua về bán lại, có tồn kho'],
+   ['dv','Dịch vụ','Bán giờ công và chỗ phục vụ'],
+   ['sx','Sản xuất','Làm ra hàng rồi xuất kho']]},
+ {id:'nganh', phan:0, loai:'chu', hoi:'Ngành cụ thể là gì?', goi:'Viết ngắn, ví dụ: mỹ phẩm bán sàn, spa, cơ khí chính xác.', bb:true},
+ {id:'nguoi', phan:0, loai:'radio', hoi:'Hiện có bao nhiêu người làm toàn thời gian?', chon:[
+   ['1','Một mình tôi'],['2-3','2–3 người'],['4-10','4–10 người'],['11-20','11–20 người'],['20+','Trên 20 người']]},
+ {id:'doanhthu', phan:0, loai:'radio', hoi:'Doanh thu trung bình một tháng?', goi:'Khoảng chừng là được, không cần chính xác.', chon:[
+   ['<100','Dưới 100 triệu'],['100-500','100–500 triệu'],['500-2000','500 triệu – 2 tỷ'],['2000-10000','2–10 tỷ'],['10000+','Trên 10 tỷ']]},
+ {id:'tuoi', phan:0, loai:'radio', hoi:'Doanh nghiệp hoạt động được bao lâu?', chon:[
+   ['<1','Dưới 1 năm'],['1-3','1–3 năm'],['3-7','3–7 năm'],['7+','Trên 7 năm']]},
+
+ {id:'kenh', phan:1, loai:'nhieu', hoi:'Khách đến từ đâu?', goi:'Chọn tất cả những kênh đang có.', chon:[
+   ['san','Sàn thương mại điện tử'],['fb','Facebook, Zalo, TikTok'],['web','Website của mình'],
+   ['gioithieu','Khách cũ giới thiệu'],['daily','Đại lý, cộng tác viên'],['b2b','Khách doanh nghiệp, đấu thầu'],
+   ['tructiep','Khách đến tận nơi']]},
+ {id:'luong', phan:1, loai:'radio', hoi:'Mỗi ngày xử lý khoảng bao nhiêu đơn, lịch hẹn hoặc lệnh sản xuất?', chon:[
+   ['<10','Dưới 10'],['10-50','10–50'],['50-200','50–200'],['200+','Trên 200']]},
+ {id:'pm', phan:1, loai:'nhieu', hoi:'Đang dùng những công cụ nào?', goi:'Chọn tất cả.', chon:[
+   ['excel','Excel hoặc Google Sheet'],['banhang','Phần mềm bán hàng, POS'],['ketoan','Phần mềm kế toán'],
+   ['crm','CRM hoặc phần mềm chăm sóc khách'],['chat','Công cụ gom tin nhắn đa kênh'],
+   ['ai','Đã dùng ChatGPT hoặc công cụ AI'],['giay','Chủ yếu sổ sách, giấy tờ']]},
+ {id:'dulieu', phan:1, loai:'radio', hoi:'Dữ liệu khách hàng đang nằm ở đâu?', chon:[
+   ['mot','Một nơi duy nhất, ai cần cũng tra được'],
+   ['vainoi','Vài nơi, phải ghép lại khi cần'],
+   ['dienthoai','Nằm trong điện thoại, tin nhắn của từng người'],
+   ['khong','Gần như không lưu lại']]},
+
+ {id:'dau', phan:2, loai:'nv', hoi:'Năm việc nào đang đau nhất?', goi:'Chọn tối đa năm. Đây là phần quyết định thứ tự ưu tiên trong báo cáo.', max:5},
+ {id:'ngonnhat', phan:2, loai:'tudau', hoi:'Trong số đó, việc nào ngốn thời gian của anh chị nhiều nhất?'},
+ {id:'gio', phan:2, loai:'radio', hoi:'Mỗi tuần anh chị mất khoảng bao nhiêu giờ cho việc lặp đi lặp lại?', goi:'Việc ai làm cũng ra kết quả như nhau: nhập liệu, trả lời câu hỏi giống nhau, đối soát, báo cáo.', chon:[
+   ['<5','Dưới 5 giờ'],['5-15','5–15 giờ'],['15-30','15–30 giờ'],['30+','Trên 30 giờ']]},
+
+ {id:'muon', phan:3, loai:'radio', hoi:'Trong 90 ngày tới, điều gì quan trọng nhất?', chon:[
+   ['giogio','Lấy lại thời gian của tôi'],
+   ['donhang','Tăng đơn mà không tăng người'],
+   ['kiemsoat','Kiểm soát được bộ máy, hết lo sót việc'],
+   ['morong','Chuẩn bị mở rộng, thêm chi nhánh hoặc kênh']]},
+ {id:'cantro', phan:3, loai:'radio', hoi:'Điều gì đang cản anh chị đưa AI vào vận hành?', chon:[
+   ['khongbiet','Không biết bắt đầu từ đâu'],
+   ['sosai','Sợ AI làm sai, mất khách'],
+   ['dulieuloan','Dữ liệu đang lộn xộn quá'],
+   ['thoigian','Không có thời gian làm'],
+   ['chiphi','Chưa rõ tốn bao nhiêu']]}
+];
+
+/* ---------- trạng thái ---------- */
+const KHOA = 'lattice-khao-sat-v1';
+let dl = {}, phan = 0;
+try { dl = JSON.parse(localStorage.getItem(KHOA) || '{}'); } catch (e) { dl = {}; }
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const luu = () => { try { localStorage.setItem(KHOA, JSON.stringify(dl)); } catch (e) {} };
+const nvTheoMo = () => NV.filter(x => x.mo.includes(dl.mo || 'tmhh'));
+const tenNV = x => (x.tenTheo && x.tenTheo[dl.mo]) || x.ten;
+// Tên khối đổi theo mô hình, giống hệt trang mô phỏng
+const TEN_KHOI_THEO = {
+  front: { tmhh: 'Khối Thị trường', dv: 'Khối Thị trường', sx: 'Chuẩn bị sản xuất' },
+  sup:   { tmhh: 'Khối Cung ứng',  dv: 'Khối Nguồn lực',  sx: 'Xưởng & Chất lượng' },
+  core:  { tmhh: 'Khối Điều hành', dv: 'Khối Điều hành',  sx: 'Khối Điều hành' }
+};
+const tenKhoi = k => TEN_KHOI_THEO[k][dl.mo || 'tmhh'];
+
+/* ---------- vẽ ---------- */
+function ve() {
+  const ds = CAU.filter(c => c.phan === phan);
+  $('noi').innerHTML = ds.map(oCau).join('') + (phan === 3 ? oLienHe() : '');
+  $('tien').innerHTML = [0,1,2,3].map(i => `<i class="${i < phan ? 'xong' : i === phan ? 'dang' : ''}"></i>`).join('');
+  $('tien-chu').textContent = `Phần ${phan + 1} / 4 · ${PHAN[phan]}`;
+  $('lui').style.visibility = phan === 0 ? 'hidden' : 'visible';
+  $('toi').textContent = phan === 3 ? 'Xem bản đồ của tôi →' : 'Tiếp tục →';
+  $('toi').className = phan === 3 ? 'btn do' : 'btn';
+  $('ghi').textContent = phan === 3 ? '' : 'Máy tự nhớ phần đã điền';
+  $('loi').textContent = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function oCau(c) {
+  let than = '';
+  if (c.loai === 'chu') {
+    than = `<input type="text" name="${c.id}" value="${esc(dl[c.id] || '')}" autocomplete="off">`;
+  } else if (c.loai === 'radio' || c.loai === 'nhieu') {
+    const nhieu = c.loai === 'nhieu', da = nhieu ? (dl[c.id] || []) : dl[c.id];
+    than = `<div class="chon${c.chon.length > 4 ? ' ngang' : ''}">` + c.chon.map(([v, t, m]) => {
+      const ok = nhieu ? da.indexOf(v) >= 0 : da === v;
+      return `<label class="o${ok ? ' chon-roi' : ''}"><input type="${nhieu ? 'checkbox' : 'radio'}" name="${c.id}" value="${v}"${ok ? ' checked' : ''}>
+        <span><b>${esc(t)}</b>${m ? `<span class="mo">${esc(m)}</span>` : ''}</span></label>`;
+    }).join('') + '</div>';
+  } else if (c.loai === 'nv') {
+    const da = dl.dau || [], theo = {};
+    nvTheoMo().forEach(x => { (theo[x.khoi] = theo[x.khoi] || []).push(x); });
+    than = '<div class="nv-luoi">' + Object.keys(theo).map(k =>
+      `<div class="nv-khoi">${tenKhoi(k)}</div>` + theo[k].map(x => {
+        const ok = da.indexOf(x.id) >= 0;
+        return `<label class="o${ok ? ' chon-roi' : ''}"><input type="checkbox" name="dau" value="${x.id}"${ok ? ' checked' : ''}>
+          <span><b>${esc(tenNV(x))}</b></span></label>`;
+      }).join('')).join('') + '</div><p class="dem-chon" id="dem-chon"></p>';
+  } else if (c.loai === 'tudau') {
+    const da = dl.dau || [];
+    than = da.length
+      ? '<div class="chon">' + da.map(id => {
+          const x = NV.find(y => y.id === id); if (!x) return '';
+          return `<label class="o${dl.ngonnhat === id ? ' chon-roi' : ''}"><input type="radio" name="ngonnhat" value="${id}"${dl.ngonnhat === id ? ' checked' : ''}>
+            <span><b>${esc(tenNV(x))}</b></span></label>`;
+        }).join('') + '</div>'
+      : '<p class="goi" style="color:var(--redtx)">Hãy chọn ở câu trên trước.</p>';
+  }
+  return `<fieldset class="cau"><legend class="hoi">${esc(c.hoi)}</legend>${c.goi ? `<p class="goi">${esc(c.goi)}</p>` : ''}${than}</fieldset>`;
+}
+
+function oLienHe() {
+  return `<fieldset class="cau"><legend class="hoi">Gửi bản đồ về đâu?</legend>
+   <p class="goi">Báo cáo hiện ngay trên màn hình, đồng thời gửi vào email để anh chị xem lại sau.</p>
+   <div class="chon">
+     <label class="o" style="display:block"><b>Họ tên</b><input type="text" name="ten" value="${esc(dl.ten || '')}" autocomplete="name" style="margin-top:6px"></label>
+     <label class="o" style="display:block"><b>Email</b><input type="email" name="email" value="${esc(dl.email || '')}" autocomplete="email" inputmode="email" style="margin-top:6px"></label>
+     <label class="o" style="display:block"><b>Tên doanh nghiệp <span style="font-weight:400;color:var(--mute)">· không bắt buộc</span></b><input type="text" name="congty" value="${esc(dl.congty || '')}" autocomplete="organization" style="margin-top:6px"></label>
+   </div>
+   <p class="rieng">Thông tin dùng để dựng báo cáo cho chính anh chị. Không chia sẻ cho bên thứ ba, không gọi điện — mọi trao đổi qua email.</p>
+  </fieldset>`;
+}
+
+/* ---------- ghi nhận thay đổi ---------- */
+$('noi').addEventListener('input', function (e) {
+  const o = e.target, ten = o.name;
+  if (!ten) return;
+  if (o.type === 'checkbox') {
+    const ds = [...$('noi').querySelectorAll(`input[name="${ten}"]:checked`)].map(x => x.value);
+    const c = CAU.find(x => x.id === ten);
+    if (c && c.max && ds.length > c.max) { o.checked = false; capNhatDem(); return; }
+    dl[ten] = ds;
+    if (ten === 'dau' && dl.ngonnhat && ds.indexOf(dl.ngonnhat) < 0) delete dl.ngonnhat;
+  } else {
+    dl[ten] = o.value;
+    if (ten === 'mo') { dl.dau = []; delete dl.ngonnhat; }
+  }
+  luu();
+  [...$('noi').querySelectorAll('label.o')].forEach(l => {
+    const i = l.querySelector('input'); if (i) l.classList.toggle('chon-roi', i.checked);
+  });
+  capNhatDem();
+  if (ten === 'mo') ve();
+});
+
+function capNhatDem() {
+  const d = $('dem-chon'); if (!d) return;
+  const n = (dl.dau || []).length;
+  d.textContent = n ? `Đã chọn ${n} / 5` : 'Chọn ít nhất một việc, tối đa năm.';
+}
+
+/* ---------- kiểm tra trước khi sang phần sau ---------- */
+function thieu() {
+  for (const c of CAU.filter(x => x.phan === phan)) {
+    const v = dl[c.id];
+    if (c.loai === 'nhieu' && (!v || !v.length)) return c.hoi;
+    if (c.loai === 'nv' && (!v || !v.length)) return c.hoi;
+    if (c.loai === 'tudau' && (dl.dau || []).length && !v) return c.hoi;
+    if ((c.loai === 'radio' || c.loai === 'chu') && !v) return c.hoi;
+  }
+  if (phan === 3) {
+    if (!dl.ten) return 'Họ tên';
+    if (!dl.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(dl.email)) return 'Email hợp lệ';
+  }
+  return null;
+}
+
+$('toi').addEventListener('click', function () {
+  const t = thieu();
+  if (t) { $('loi').textContent = 'Còn thiếu: ' + t; return; }
+  if (phan < 3) { phan++; ve(); return; }
+  gui();
+});
+$('lui').addEventListener('click', function () { if (phan > 0) { phan--; ve(); } });
+
+/* ---------- gửi ---------- */
+function gui() {
+  $('toi').disabled = true;
+  $('toi').textContent = 'Đang dựng bản đồ…';
+  dl.luc = new Date().toISOString();
+  luu();
+  if (typeof window.dungBaoCao === 'function') { window.dungBaoCao(dl); return; }
+  $('loi').textContent = 'Phần báo cáo đang được dựng ở bước tiếp theo.';
+  $('toi').disabled = false;
+  $('toi').textContent = 'Xem bản đồ của tôi →';
+}
+
+ve();
+</script>
+</body>
+</html>

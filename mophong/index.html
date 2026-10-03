@@ -420,56 +420,164 @@ body.dev-phone .toast{max-width:360px}
   .hright .tabs button{padding:9px 4px;font-size:11px;letter-spacing:.04em}
 }
 
-/* ===== thương mại phân phối: kiến trúc, luồng, người + AI ===== */
+/* ===== thương mại phân phối: kiến trúc, luồng, người + AI =====
+   Khung sơ đồ luôn tối (như một màn hình điều hành), góc vuông, bảng màu LATTICE.
+   Hạt trắng là dữ liệu và việc đang chạy, hạt đỏ là ngoại lệ đi tới người. */
+.cv{--c0:#141312;--c1:#1D1B1A;--c2:#272423;--cl:#3D3936;--ct:#EDEBEA;--cm:#9C9794;position:relative;background-color:var(--c0);background-image:radial-gradient(rgba(237,235,234,.07) 1px,transparent 1.3px);background-size:22px 22px;color:var(--ct);border:2px solid var(--ink);padding:22px 46px 18px}
+.cv .wires{position:absolute;left:0;top:0;pointer-events:none;overflow:visible;z-index:0}
+.wr{fill:none;stroke:rgba(237,235,234,.3);stroke-width:1.4}
+.wr.dash{stroke-dasharray:4 5}
+.wr.red{stroke:rgba(236,48,19,.55)}
+.pt{fill:#EDEBEA;filter:drop-shadow(0 0 3px rgba(255,255,255,.9))}
+.pt.red{fill:#FF5A3C;filter:drop-shadow(0 0 4px rgba(236,48,19,.95))}
+.wl{fill:#9C9794;font-size:10.5px;font-weight:600}
+.cvl{position:relative;z-index:1;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cm);margin:24px 0 10px}
+.cv>.cvl:nth-child(2){margin-top:0}
+.cvl em{font-style:normal;letter-spacing:.04em;text-transform:none;font-weight:500}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:64px;position:relative;z-index:1}
+.g3+.cvl{margin-top:60px}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;padding:6px 14px 14px}
+.g75{display:grid;grid-template-columns:7fr 5fr;gap:28px;position:relative;z-index:1}
+.ck{position:relative;z-index:1;background:var(--c1);border:1px solid var(--cl);transition:border-color .35s,box-shadow .35s}
+.ck:hover,.ck.hot{border-color:rgba(237,235,234,.85);box-shadow:0 0 0 1px rgba(237,235,234,.22),0 0 24px rgba(237,235,234,.14)}
+.ck-h{display:flex;align-items:center;gap:10px;width:100%;background:transparent;border:0;border-bottom:1px solid var(--cl);padding:10px 12px 10px 14px;color:var(--ct);text-align:left}
+button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
+.ck-h .no{font-size:11px;font-weight:800;color:var(--cm);font-variant-numeric:tabular-nums}
+.ck-h .nm{flex:1;font-size:14.5px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
+.ck-h .ki{width:32px;height:32px;display:grid;place-items:center;border:1px solid var(--cl);background:var(--c2);flex:none}
+.tis{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:12px 6px;padding:14px 12px 6px}
+.wide>.tis{grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}
+.ti{display:grid;justify-items:center;align-content:start;gap:6px;background:transparent;border:0;color:var(--ct);padding:2px;min-width:0}
+.ti .tic{width:40px;height:40px;display:grid;place-items:center;background:var(--c2);border:1px solid var(--cl);transition:border-color .2s,box-shadow .2s,background .2s}
+.ti:hover .tic,.ti:focus-visible .tic{border-color:var(--ct);box-shadow:0 0 12px rgba(237,235,234,.35);background:#33302E}
+.ti:focus-visible{outline:none}
+.ti.opt .tic{border-style:dashed}
+.ti .tl{font-size:11px;line-height:1.25;text-align:center;color:#D6D2CF}
+.ti.big .tic{width:52px;height:52px}
+.tis.big{grid-template-columns:repeat(5,minmax(0,1fr));padding-bottom:16px}
+.ck-o{font-size:11.5px;font-weight:600;color:var(--cm);padding:6px 14px 12px}
+.ck .sub{font-size:12.5px;color:var(--cm);padding:10px 14px 0}
+.grp .gh{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:var(--ct);padding-top:6px}
+.grp .tis{padding:10px 0 4px}
+.grp .ck-o{padding:4px 0 0}
+.exl{display:grid;padding:4px 0}
+.exi{display:grid;grid-template-columns:18px 1fr auto;gap:10px;align-items:center;background:transparent;border:0;border-bottom:1px solid rgba(61,57,54,.8);color:var(--ct);text-align:left;padding:9px 14px;font-size:13px}
+.exi:last-child{border-bottom:0}
+.exi svg{color:#FF7A63}
+.exi b{font-size:11px;font-weight:700;color:#FF7A63;white-space:nowrap}
+.exi:hover{background:var(--c2)}
+.cvleg{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:11.5px;color:var(--cm);margin-top:18px;padding-top:12px;border-top:1px solid var(--cl)}
+.cvleg span{display:inline-flex;align-items:center;gap:7px}
+.cvleg .rd{color:#FF7A63}
+.pdot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#EDEBEA;box-shadow:0 0 6px #fff}
+.pdot.red{background:#FF5A3C;box-shadow:0 0 6px #EC3013}
+.ldash{display:inline-block;width:24px;border-top:1.5px dashed var(--cm)}
+.lopt{display:inline-block;width:14px;height:14px;border:1px dashed var(--cm)}
+.ldot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#EDEBEA}
+.ldia{display:inline-block;width:9px;height:9px;background:#EDEBEA;transform:rotate(45deg)}
+.lhand{display:inline-block;width:9px;height:9px;border:1.4px solid #EDEBEA}
 .hdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#EC3013;margin-right:7px;vertical-align:1px}
-.xleg{margin-top:10px}
-.xleg .ln{display:inline-block;width:26px;border-top:2px solid var(--ink)}
-.xleg .ln.d{border-top-style:dashed}
-.xleg .dot0{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--ink)}
-.xleg .dot1{display:inline-block;width:14px;height:14px;border-radius:50%;border:2px solid var(--ink);background:radial-gradient(var(--ink) 0 3px,transparent 3.5px)}
-.xleg .hand{display:inline-block;width:9px;height:9px;border:1.6px solid var(--ink);background:var(--card)}
-.flowhead{border:2px solid var(--ink);border-bottom:0;background:var(--card);padding:14px 16px;margin-top:6px;display:grid;gap:4px}
-.flowhead h2{font-size:22px;font-weight:800}
-.flownotes{margin:0;padding-left:20px;max-width:80ch}
-.flownotes li{margin:4px 0}
-.formula{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;margin-top:24px}
-.formula .f{border:2px solid var(--ink);background:var(--card);padding:14px 16px}
-.formula .f b{display:block;font-size:17px;font-weight:800}
-.formula .f span{font-size:13px;color:var(--mute)}
-.formula .op{font-size:30px;font-weight:800;line-height:1}
-.lvrow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border:1px solid var(--ink);background:var(--card)}
-.lvrow>div{padding:12px;border-right:1px solid var(--line);display:grid;gap:4px;align-content:start}
-.lvrow>div:last-child{border-right:0}
-.lvrow>div.main{background:var(--bg2)}
-.lvrow .lv{font-size:34px;font-weight:800;line-height:.9;font-stretch:70%}
-.lvrow b{font-size:14px} .lvrow p{font-size:12.5px;color:var(--mute)}
-.lvrow .pill{justify-self:start;margin-top:4px}
-.haitbl td{vertical-align:top}
-.tasks{display:grid;gap:5px}
-.tasks>div{display:grid;grid-template-columns:30px 1fr;gap:8px;font-size:13px;align-items:baseline}
-.lvp{font-size:10.5px;font-weight:800;border:1px solid var(--ink);text-align:center;padding:1px 0}
+.cvleg .hdot{margin-right:0}
+.chains{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.chc{display:grid;gap:4px;align-content:start;text-align:left;background:var(--card);border:1px solid var(--line);padding:14px;color:var(--ink)}
+.chc:hover{border-color:var(--ink)}
+.chc .cic{width:40px;height:40px;display:grid;place-items:center;background:var(--ink);color:var(--inv);margin-bottom:6px}
+.chc b{font-size:14px;line-height:1.25}
+.chc .en,.chc .ow{font-size:11.5px;color:var(--mute)}
+.chc .ow{margin-top:4px}
+/* luồng vận hành */
+.flowcv{padding:16px 16px 14px}
+.ctabs{display:flex;flex-wrap:wrap;gap:6px}
+.ctab{display:inline-flex;align-items:center;gap:8px;background:var(--c1);border:1px solid var(--cl);color:var(--ct);padding:8px 12px;font-size:12.5px;font-weight:600}
+.ctab:hover{border-color:var(--cm)}
+.ctab[aria-pressed="true"]{border-color:var(--ct);background:var(--c2);box-shadow:0 0 14px rgba(237,235,234,.18)}
+.fhead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin:16px 0 10px}
+.fhead h2{font-size:22px;font-weight:800;color:var(--ct)}
+.lbl2{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cm)}
+.fhead .ow{color:var(--cm);font-size:12.5px}
+.fsvg{overflow-x:auto;border:1px solid var(--cl)}
+.fsvg svg{display:block;min-width:1000px;width:100%;height:auto}
+.cv>.fsvg{border:0}
+.sn{cursor:pointer}
+.sn:hover .sb,.sn:focus-visible .sb{stroke:#EDEBEA;stroke-width:1.8}
+.sn:focus{outline:none}
+.fnotes{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;max-width:90ch}
+.fnotes li{display:grid;grid-template-columns:18px 1fr;gap:10px;font-size:14px}
+.fnotes svg{color:var(--ok);margin-top:2px}
+/* người + AI */
+.trio{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;margin-top:24px}
+.tr{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:center;background:var(--card);border:1px solid var(--line);padding:14px}
+.tr .tic{grid-row:1/3}
+.trio .tic,.lvt .tic,.stt .tic,.call .tic,.nt .tic{width:44px;height:44px;flex:none;display:grid;place-items:center;background:var(--ink);color:var(--inv)}
+.tr .tic.hu{background:#EC3013;color:#fff}
+.tr b{font-size:15px}
+.tr>span:last-child{font-size:12.5px;color:var(--mute)}
+.trio .op{font-size:26px;font-weight:800}
+.lvrow2{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.lvt{display:grid;justify-items:start;align-content:start;gap:4px;text-align:left;background:var(--card);border:1px solid var(--line);padding:12px;color:var(--ink)}
+.lvt.main{border-color:var(--ink)}
+.lvt:hover{box-shadow:0 0 0 1px var(--ink)}
+.lvt .tic{width:38px;height:38px;margin-bottom:4px}
+.lvt:not(.main) .tic{background:var(--bg2);color:var(--ink)}
+.lvt .lv{font-size:26px;font-weight:800;line-height:1;font-stretch:75%}
+.lvt b{font-size:13px;line-height:1.25}
+.lvt .ct{font-size:11.5px;color:var(--mute)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.stt{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);padding:12px 14px}
+.stt .v{font-size:30px;font-weight:800;line-height:1;font-stretch:80%;font-variant-numeric:tabular-nums}
+.stt .v.red{color:var(--red)}
+.stt p{font-size:12px;color:var(--mute);margin-top:3px}
+.ngh{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:20px 0 8px}
+.ngrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.nt{display:grid;grid-template-columns:auto 1fr;gap:8px 10px;align-items:center;text-align:left;background:var(--card);border:1px solid var(--line);padding:10px;color:var(--ink)}
+.nt:hover{border-color:var(--ink)}
+.nt .tic{width:38px;height:38px}
+.nt .nb{display:grid;gap:4px}
+.nt .nb b{font-size:13.5px}
+.lvs{display:flex;gap:4px}
+.lvp{font-size:10px;font-weight:800;border:1px solid var(--ink);padding:0 5px}
 .lvp.on{background:var(--ink);color:var(--inv)}
-.haitbl b.to{color:var(--redtx);white-space:nowrap}
-.fchip{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--ink);padding:4px 4px 4px 10px;font-size:12.5px;background:var(--bg2)}
+.nt .nr{grid-column:1/-1;font-size:11.5px;color:var(--mute)}
+.nt .to{color:var(--redtx);font-weight:600}
+.fchip{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--ink);padding:4px 4px 4px 10px;font-size:12.5px;background:var(--bg2)}
+.calls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.call{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);padding:14px}
+.call b{font-size:14px}
+.call p{font-size:13px;color:var(--mute);margin-top:4px}
+/* ngăn kéo */
+.dhd{display:flex;gap:14px;align-items:flex-start}
+.dhd .dic{width:50px;height:50px;flex:none;display:grid;place-items:center;background:var(--ink);color:var(--inv);margin-top:6px}
 .nvl{display:grid;gap:4px}
-.nvl button{display:flex;justify-content:space-between;gap:10px;text-align:left;border:1px solid var(--line);background:var(--bg);padding:7px 10px;font-size:13.5px}
+.nvl button{display:flex;justify-content:space-between;gap:10px;text-align:left;border:1px solid var(--line);background:var(--bg);padding:7px 10px;font-size:13.5px;color:var(--ink)}
 .nvl button:hover{border-color:var(--ink)}
+.nvl button svg{vertical-align:-3px;margin-right:4px}
 .nvl .g{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:10px 0 2px}
 .io{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .kpil{display:flex;flex-wrap:wrap;gap:6px}
 .kpil span{border:1px solid var(--ink);padding:3px 9px;font-size:12.5px;font-weight:600}
 @container page (max-width:1100px){
-  .lvrow{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .lvrow>div:nth-child(3){border-right:0}
-  .lvrow>div:nth-child(-n+3){border-bottom:1px solid var(--line)}
+  .g3{gap:44px}
+  .chains{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .lvrow2{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .stats{grid-template-columns:1fr 1fr}
+  .g4{grid-template-columns:1fr 1fr}
 }
-@container page (max-width:760px){
-  .formula{grid-template-columns:1fr}
-  .formula .op{text-align:center}
-  .lvrow{grid-template-columns:1fr 1fr}
-  .lvrow>div{border-right:1px solid var(--line)!important;border-bottom:1px solid var(--line)}
-  .lvrow>div:nth-child(2n){border-right:0!important}
+@container page (max-width:880px){
+  .cv{padding:16px 14px}
+  .g3{grid-template-columns:1fr;gap:12px}
+  .g3+.cvl{margin-top:24px}
+  .g75{grid-template-columns:1fr;gap:12px}
+  .trio{grid-template-columns:1fr}
+  .trio .op{text-align:center}
+  .calls{grid-template-columns:1fr}
+  .tis.big{grid-template-columns:repeat(3,minmax(0,1fr))}
   .io{grid-template-columns:1fr}
+}
+@container page (max-width:560px){
+  .chains{grid-template-columns:1fr}
+  .lvrow2{grid-template-columns:1fr 1fr}
+  .g4{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -572,78 +680,54 @@ body.dev-phone .toast{max-width:360px}
 <section id="p-arch" role="tabpanel" aria-labelledby="t-arch">
   <div class="phead">
     <h1>Tám khối nghiệp vụ, một nền tảng chung</h1>
-    <p class="lead">Doanh nghiệp thương mại phân phối được tổ chức theo chuỗi giá trị. Phía cung lo có đúng hàng, đúng lúc; phía cầu lo có khách và thu được tiền. Điều hành đặt hướng ở trên, năng lực hỗ trợ đỡ ở dưới, còn dữ liệu, hệ thống và điều phối AI nối mọi khối với nhau.</p>
     <p class="oneline">Con người sở hữu mục tiêu và trách nhiệm. AI thực hiện tác vụ trong phạm vi được giao. Dữ liệu và quy trình kết nối toàn bộ hoạt động.</p>
   </div>
-  <div class="sh"><h2>Kiến trúc nghiệp vụ</h2><span class="note">Bấm tên khối để xem mục tiêu, đầu vào, đầu ra, KPI và ngoại lệ. Bấm từng nghiệp vụ để xem việc của người và AI.</span></div>
-  <div class="diagram" id="arch"></div>
-  <div class="legend xleg">
-    <span><i class="sw" style="background:var(--ink)"></i>Khối nghiệp vụ</span>
-    <span><i class="sw" style="background:var(--bg2)"></i>Năng lực hỗ trợ</span>
-    <span><i class="sw" style="background:repeating-linear-gradient(45deg,var(--card) 0 3px,var(--line) 3px 4px)"></i>Nền tảng</span>
-    <span><i class="hdot"></i>Người chịu trách nhiệm, điểm quyết định của người</span>
-    <span><i class="ln"></i>Luồng việc, luồng hàng</span>
-    <span><i class="ln d"></i>Dữ liệu, phản hồi</span>
-  </div>
-  <div class="sh"><h2>Năm chuỗi nghiệp vụ chạy xuyên các khối</h2><span class="note">Sơ đồ tổ chức trả lời ai phụ trách mảng nào. Chuỗi nghiệp vụ trả lời công việc đi từ đâu đến đâu.</span></div>
-  <div class="tbl"><table><thead><tr><th>Chuỗi</th><th>Luồng chính</th><th>Chịu trách nhiệm xuyên suốt</th><th class="c"></th></tr></thead><tbody id="chains"></tbody></table></div>
-  <p class="note foot">Tám khối là bản đồ năng lực cần được bao phủ, không phải số phòng ban. Doanh nghiệp nhỏ có thể để một người giữ nhiều khối; nhãn hàng riêng, hạn sử dụng hay bảo hành chỉ triển khai khi danh mục hàng cần đến.</p>
+  <div class="sh"><h2>Kiến trúc nghiệp vụ</h2><span class="note">Bấm tên khối hoặc từng icon để xem chi tiết.</span></div>
+  <div class="cv" id="arch"></div>
+  <div class="sh"><h2>Năm chuỗi nghiệp vụ</h2><span class="note">Bấm một chuỗi để xem công việc đi qua các khối.</span></div>
+  <div class="chains" id="chains"></div>
 </section>
 
 <!-- ================= THƯƠNG MẠI PHÂN PHỐI · LUỒNG VẬN HÀNH ================= -->
 <section id="p-flow" role="tabpanel" aria-labelledby="t-flow" hidden>
   <div class="phead">
     <h1>Công việc đi từ đâu đến đâu</h1>
-    <p class="lead">Năm chuỗi nghiệp vụ, mỗi chuỗi vẽ theo làn trách nhiệm: mỗi làn là một khối, mỗi ô là một bước. Ô viền đậm là điểm kiểm tra hoặc phê duyệt, chữ đỏ là ngoại lệ chuyển cho người có thẩm quyền.</p>
+    <p class="lead">Mỗi làn là một khối, mỗi ô là một bước. Bấm vào ô để xem ai làm, khi nào chuyển cho người.</p>
   </div>
-  <div class="bar-model" style="border-bottom:0;padding-top:18px">
-    <span class="lbl">Chuỗi nghiệp vụ</span>
-    <div class="seg" id="seg-chain" role="group" aria-label="Chuỗi nghiệp vụ"></div>
+  <div class="cv flowcv">
+    <div class="ctabs" id="seg-chain" role="group" aria-label="Chuỗi nghiệp vụ"></div>
+    <div class="fhead" id="flow-head"></div>
+    <div class="fsvg" id="flow"></div>
+    <div class="cvleg"><span><i class="ldot"></i>Bắt đầu, kết thúc</span><span><i class="ldia"></i>Điểm duyệt</span><span><i class="lhand"></i>Bàn giao</span><span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/> <rect width="16" height="12" x="4" y="8" rx="2"/> <path d="M2 14h2"/> <path d="M20 14h2"/> <path d="M15 13v2"/> <path d="M9 13v2"/></svg>AI và mức</span><span><i class="hdot"></i>Người làm, duyệt</span><span class="rd"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/> <path d="M12 9v4"/> <path d="M12 17h.01"/></svg>Ngoại lệ → người</span><span><i class="pdot"></i>Việc đang chạy</span><span><i class="ldash"></i>Phản hồi</span></div>
   </div>
-  <div class="flowhead" id="flow-head"></div>
-  <div class="diagram" id="flow"></div>
-  <div class="legend xleg">
-    <span><i class="dot0"></i>Bắt đầu</span><span><i class="dot1"></i>Kết thúc</span>
-    <span><i class="sw" style="border-width:2.5px"></i>Điểm kiểm tra, phê duyệt</span>
-    <span><i class="hand"></i>Bàn giao giữa hai khối</span>
-    <span><i class="hdot"></i>Có người làm hoặc duyệt</span>
-    <span style="color:var(--redtx)">Chữ đỏ: ngoại lệ → người có thẩm quyền</span>
-    <span><i class="ln"></i>Luồng việc</span><span><i class="ln d"></i>Vòng phản hồi</span>
-  </div>
-  <div class="sh"><h2>Điểm cần chú ý</h2></div>
-  <ul class="flownotes" id="flow-notes"></ul>
+  <ul class="fnotes" id="flow-notes"></ul>
 </section>
 
 <!-- ================= THƯƠNG MẠI PHÂN PHỐI · NGƯỜI + AI ================= -->
 <section id="p-hai" role="tabpanel" aria-labelledby="t-hai" hidden>
   <div class="phead">
     <h1>Người + AI trong từng nghiệp vụ</h1>
-    <p class="lead">Mức AI gắn cho từng tác vụ, không gắn cho cả phòng ban: trong cùng một khối, lập báo cáo và duyệt chiết khấu có quyền rất khác nhau. AI không phải phòng ban có quyền chỉ huy; nó làm việc trong từng khối, qua một lớp điều phối chung.</p>
+    <p class="lead">Mức AI gắn cho từng tác vụ, không cho cả phòng ban. AI làm việc trong từng khối, không có quyền chỉ huy.</p>
   </div>
-  <div class="formula">
-    <div class="f"><b>Người chịu trách nhiệm</b><span>Sở hữu mục tiêu, chính sách và kết quả của nghiệp vụ.</span></div><span class="op">+</span>
-    <div class="f"><b>AI hỗ trợ nghiệp vụ</b><span>Làm tác vụ trong phạm vi và mức được giao.</span></div><span class="op">+</span>
-    <div class="f"><b>Quy trình có kiểm soát</b><span>Luật, ngưỡng, phê duyệt và lưu vết.</span></div>
+  <div class="trio">
+    <div class="tr"><span class="tic hu"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/> <circle cx="12" cy="7" r="4"/></svg></span><b>Người chịu trách nhiệm</b><span>mục tiêu, chính sách, kết quả</span></div><span class="op">+</span>
+    <div class="tr"><span class="tic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/> <rect width="16" height="12" x="4" y="8" rx="2"/> <path d="M2 14h2"/> <path d="M20 14h2"/> <path d="M15 13v2"/> <path d="M9 13v2"/></svg></span><b>AI hỗ trợ nghiệp vụ</b><span>trong phạm vi và mức được giao</span></div><span class="op">+</span>
+    <div class="tr"><span class="tic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/> <path d="m9 12 2 2 4-4"/></svg></span><b>Quy trình có kiểm soát</b><span>luật, ngưỡng, phê duyệt, lưu vết</span></div>
   </div>
-  <div class="sh"><h2>Sáu mức AI đảm nhận việc</h2><span class="note">Thương mại phân phối dùng chủ yếu L1–L3. L4–L5 chỉ cho việc rủi ro thấp, đảo ngược được.</span></div>
-  <div class="lvrow">
-    <div><span class="lv">L0</span><b>Quan sát</b><p>Chỉ thu thập, báo cáo.</p></div>
-    <div class="main"><span class="lv">L1</span><b>Đề xuất</b><p>Tra cứu, tổng hợp, soạn thảo; người làm.</p><span class="pill ink">≈ A1 · Hỗ trợ</span></div>
-    <div class="main"><span class="lv">L2</span><b>Chuẩn bị</b><p>Làm trọn, người duyệt trước khi ra ngoài.</p><span class="pill ink">≈ A2 · Đề xuất → duyệt</span></div>
-    <div class="main"><span class="lv">L3</span><b>Thực hiện có giới hạn</b><p>Tự làm trong luật, chặn việc vượt ngưỡng.</p><span class="pill ink">≈ A3 · Trong giới hạn</span></div>
-    <div><span class="lv">L4</span><b>Tự vận hành</b><p>Tự lập kế hoạch trong trần ngân sách.</p></div>
-    <div><span class="lv">L5</span><b>Tự chủ có giám sát</b><p>Điều hành cả chức năng, kiểm toán định kỳ.</p></div>
-  </div>
-  <div class="sh"><h2>Phê duyệt &amp; xử lý ngoại lệ</h2><span class="note">Ngoại lệ đến đúng người có thẩm quyền. Bấm một vai để lọc bảng bên dưới.</span></div>
-  <div class="diagram" id="exmap"></div>
-  <div class="sh"><h2>Phân quyền theo từng tác vụ</h2><span class="note">Bấm một dòng để xem đầy đủ.</span></div>
-  <div class="bigstat" id="hai-stat"></div>
+  <div class="sh"><h2>Sáu mức AI</h2><span class="note">Phân phối dùng chủ yếu L1–L3. Bấm từng mức để xem tác vụ.</span></div>
+  <div class="lvrow2" id="lvrow"></div>
+  <div class="sh"><h2>Ngoại lệ đến đúng người</h2><span class="note">Bấm một vai để lọc nghiệp vụ bên dưới.</span></div>
+  <div class="cv" style="padding:12px"><div class="fsvg" id="exmap"></div></div>
+  <div class="sh"><h2>Phân quyền theo nghiệp vụ</h2><span class="note">Bấm từng ô để xem đầy đủ.</span></div>
+  <div class="stats" id="hai-stat"></div>
   <div class="bar-model" style="border-bottom:0;padding-top:18px">
     <span class="lbl">Khối</span><div class="seg" id="seg-khoi" role="group" aria-label="Lọc theo khối"></div><span id="hai-filter"></span>
   </div>
-  <div class="tbl haitbl"><table><thead><tr><th>Nghiệp vụ</th><th>Người chịu trách nhiệm</th><th>AI làm gì · mức</th><th>Chuyển cho người khi</th><th>Hệ thống ghi nhận</th></tr></thead><tbody id="hai-tbl"></tbody></table></div>
-  <div class="latx" style="margin-top:14px;background:var(--card)"><b>Tách ba việc: tạo giao dịch, duyệt, thực hiện.</b> Mức AI cao không có nghĩa AI có mọi quyền. Ví dụ thanh toán nhà cung cấp: AI đối chiếu và lập đề nghị (L2), Tài chính duyệt, lệnh chi chạy qua ngân hàng theo phân quyền.</div>
-  <div class="latx" style="margin-top:10px;background:var(--card)"><b>Doanh nghiệp nhỏ: một người, nhiều vai.</b> Mười hai vai trên đây là vai trò thẩm quyền, không phải mười hai người. Khi một người giữ nhiều vai, ngoại lệ vẫn đi theo vai, để sau này giao vai cho người mới không phải dựng lại luồng.</div>
+  <div id="hai-tbl"></div>
+  <div class="calls">
+    <div class="call"><span class="tic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" x2="6" y1="3" y2="15"/> <circle cx="18" cy="6" r="3"/> <circle cx="6" cy="18" r="3"/> <path d="M18 9a9 9 0 0 1-9 9"/></svg></span><div><b>Tách ba việc: tạo, duyệt, thực hiện</b><p>AI đối chiếu và lập đề nghị thanh toán (L2), Tài chính duyệt, lệnh chi chạy qua ngân hàng theo phân quyền.</p></div></div>
+    <div class="call"><span class="tic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/> <circle cx="9" cy="7" r="4"/> <path d="M22 21v-2a4 4 0 0 0-3-3.87"/> <path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div><b>Doanh nghiệp nhỏ: một người, nhiều vai</b><p>Mười hai vai là vai thẩm quyền, không phải mười hai người. Ngoại lệ vẫn đi theo vai, sau này giao vai cho người mới không phải dựng lại luồng.</p></div></div>
+  </div>
 </section>
 
 <!-- ================= DASHBOARD ================= -->
@@ -1677,213 +1761,227 @@ const cpl=(w,fs,k)=>Math.max(8,Math.floor(w/(fs*(k||.55))));
 function tx(lines,x,y,lh,a){return `<text x="${x}" y="${y}" ${a}>${lines.map((l,i)=>`<tspan x="${x}" dy="${i?lh:0}">${esc(l)}</tspan>`).join("")}</text>`;}
 const sideOf=el=>{const r=el.getBoundingClientRect();return r.left+r.width/2>innerWidth/2?"left":"right";};
 
+/* Icon: Lucide v0.460 (ISC License, lucide.dev) — chỉ các icon trang dùng. */
+const ICO={"activity":"<path d=\"M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2\"/>","app-window":"<rect x=\"2\" y=\"4\" width=\"20\" height=\"16\" rx=\"2\"/> <path d=\"M10 4v4\"/> <path d=\"M2 8h20\"/> <path d=\"M6 4v4\"/>","arrow-right":"<path d=\"M5 12h14\"/> <path d=\"m12 5 7 7-7 7\"/>","badge-dollar-sign":"<path d=\"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z\"/> <path d=\"M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8\"/> <path d=\"M12 18V6\"/>","badge-percent":"<path d=\"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z\"/> <path d=\"m15 9-6 6\"/> <path d=\"M9 9h.01\"/> <path d=\"M15 15h.01\"/>","book-open":"<path d=\"M12 7v14\"/> <path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\"/>","bot":"<path d=\"M12 8V4H8\"/> <rect width=\"16\" height=\"12\" x=\"4\" y=\"8\" rx=\"2\"/> <path d=\"M2 14h2\"/> <path d=\"M20 14h2\"/> <path d=\"M15 13v2\"/> <path d=\"M9 13v2\"/>","briefcase":"<path d=\"M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\"/> <rect width=\"20\" height=\"14\" x=\"2\" y=\"6\" rx=\"2\"/>","building-2":"<path d=\"M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z\"/> <path d=\"M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2\"/> <path d=\"M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2\"/> <path d=\"M10 6h4\"/> <path d=\"M10 10h4\"/> <path d=\"M10 14h4\"/> <path d=\"M10 18h4\"/>","calculator":"<rect width=\"16\" height=\"20\" x=\"4\" y=\"2\" rx=\"2\"/> <line x1=\"8\" x2=\"16\" y1=\"6\" y2=\"6\"/> <line x1=\"16\" x2=\"16\" y1=\"14\" y2=\"18\"/> <path d=\"M16 10h.01\"/> <path d=\"M12 10h.01\"/> <path d=\"M8 10h.01\"/> <path d=\"M12 14h.01\"/> <path d=\"M8 14h.01\"/> <path d=\"M12 18h.01\"/> <path d=\"M8 18h.01\"/>","calendar-check":"<path d=\"M8 2v4\"/> <path d=\"M16 2v4\"/> <rect width=\"18\" height=\"18\" x=\"3\" y=\"4\" rx=\"2\"/> <path d=\"M3 10h18\"/> <path d=\"m9 16 2 2 4-4\"/>","chart-column":"<path d=\"M3 3v16a2 2 0 0 0 2 2h16\"/> <path d=\"M18 17V9\"/> <path d=\"M13 17V5\"/> <path d=\"M8 17v-3\"/>","chart-pie":"<path d=\"M21 12c.552 0 1.005-.449.95-.998a10 10 0 0 0-8.953-8.951c-.55-.055-.998.398-.998.95v8a1 1 0 0 0 1 1z\"/> <path d=\"M21.21 15.89A10 10 0 1 1 8 2.83\"/>","circle-check":"<circle cx=\"12\" cy=\"12\" r=\"10\"/> <path d=\"m9 12 2 2 4-4\"/>","clipboard-check":"<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\"/> <path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"/> <path d=\"m9 14 2 2 4-4\"/>","clipboard-list":"<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\"/> <path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"/> <path d=\"M12 11h4\"/> <path d=\"M12 16h4\"/> <path d=\"M8 11h.01\"/> <path d=\"M8 16h.01\"/>","compass":"<path d=\"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z\"/> <circle cx=\"12\" cy=\"12\" r=\"10\"/>","credit-card":"<rect width=\"20\" height=\"14\" x=\"2\" y=\"5\" rx=\"2\"/> <line x1=\"2\" x2=\"22\" y1=\"10\" y2=\"10\"/>","crown":"<path d=\"M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z\"/> <path d=\"M5 21h14\"/>","database":"<ellipse cx=\"12\" cy=\"5\" rx=\"9\" ry=\"3\"/> <path d=\"M3 5V19A9 3 0 0 0 21 19V5\"/> <path d=\"M3 12A9 3 0 0 0 21 12\"/>","eye":"<path d=\"M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0\"/> <circle cx=\"12\" cy=\"12\" r=\"3\"/>","file-check":"<path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/> <path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/> <path d=\"m9 15 2 2 4-4\"/>","file-input":"<path d=\"M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4\"/> <path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/> <path d=\"M2 15h10\"/> <path d=\"m9 18 3-3-3-3\"/>","file-pen":"<path d=\"M12.5 22H18a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v9.5\"/> <path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/> <path d=\"M13.378 15.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z\"/>","filter":"<polygon points=\"22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3\"/>","fingerprint":"<path d=\"M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4\"/> <path d=\"M14 13.12c0 2.38 0 6.38-1 8.88\"/> <path d=\"M17.29 21.02c.12-.6.43-2.3.5-3.02\"/> <path d=\"M2 12a10 10 0 0 1 18-6\"/> <path d=\"M2 16h.01\"/> <path d=\"M21.8 16c.2-2 .131-5.354 0-6\"/> <path d=\"M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2\"/> <path d=\"M8.65 22c.21-.66.45-1.32.57-2\"/> <path d=\"M9 6.8a6 6 0 0 1 9 5.2v2\"/>","flag":"<path d=\"M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z\"/> <line x1=\"4\" x2=\"4\" y1=\"22\" y2=\"15\"/>","gauge":"<path d=\"m12 14 4-4\"/> <path d=\"M3.34 19a10 10 0 1 1 17.32 0\"/>","gem":"<path d=\"M6 3h12l4 6-10 13L2 9Z\"/> <path d=\"M11 3 8 9l4 13 4-13-3-6\"/> <path d=\"M2 9h20\"/>","git-branch":"<line x1=\"6\" x2=\"6\" y1=\"3\" y2=\"15\"/> <circle cx=\"18\" cy=\"6\" r=\"3\"/> <circle cx=\"6\" cy=\"18\" r=\"3\"/> <path d=\"M18 9a9 9 0 0 1-9 9\"/>","graduation-cap":"<path d=\"M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z\"/> <path d=\"M22 10v6\"/> <path d=\"M6 12.5V16a6 3 0 0 0 12 0v-3.5\"/>","hand-coins":"<path d=\"M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17\"/> <path d=\"m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9\"/> <path d=\"m2 16 6 6\"/> <circle cx=\"16\" cy=\"9\" r=\"2.9\"/> <circle cx=\"6\" cy=\"5\" r=\"3\"/>","handshake":"<path d=\"m11 17 2 2a1 1 0 1 0 3-3\"/> <path d=\"m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4\"/> <path d=\"m21 3 1 11h-2\"/> <path d=\"M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3\"/> <path d=\"M3 4h8\"/>","headset":"<path d=\"M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z\"/> <path d=\"M21 16v2a4 4 0 0 1-4 4h-5\"/>","heart-handshake":"<path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z\"/> <path d=\"M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66\"/> <path d=\"m18 15-2-2\"/> <path d=\"m15 18-2-2\"/>","hourglass":"<path d=\"M5 22h14\"/> <path d=\"M5 2h14\"/> <path d=\"M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22\"/> <path d=\"M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2\"/>","inbox":"<polyline points=\"22 12 16 12 14 15 10 15 8 12 2 12\"/> <path d=\"M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z\"/>","landmark":"<line x1=\"3\" x2=\"21\" y1=\"22\" y2=\"22\"/> <line x1=\"6\" x2=\"6\" y1=\"18\" y2=\"11\"/> <line x1=\"10\" x2=\"10\" y1=\"18\" y2=\"11\"/> <line x1=\"14\" x2=\"14\" y1=\"18\" y2=\"11\"/> <line x1=\"18\" x2=\"18\" y1=\"18\" y2=\"11\"/> <polygon points=\"12 2 20 7 4 7\"/>","layers":"<path d=\"m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z\"/> <path d=\"m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65\"/> <path d=\"m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65\"/>","layout-grid":"<rect width=\"7\" height=\"7\" x=\"3\" y=\"3\" rx=\"1\"/> <rect width=\"7\" height=\"7\" x=\"14\" y=\"3\" rx=\"1\"/> <rect width=\"7\" height=\"7\" x=\"14\" y=\"14\" rx=\"1\"/> <rect width=\"7\" height=\"7\" x=\"3\" y=\"14\" rx=\"1\"/>","lightbulb":"<path d=\"M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5\"/> <path d=\"M9 18h6\"/> <path d=\"M10 22h4\"/>","lock":"<rect width=\"18\" height=\"11\" x=\"3\" y=\"11\" rx=\"2\" ry=\"2\"/> <path d=\"M7 11V7a5 5 0 0 1 10 0v4\"/>","magnet":"<path d=\"m6 15-4-4 6.75-6.77a7.79 7.79 0 0 1 11 11L13 22l-4-4 6.39-6.36a2.14 2.14 0 0 0-3-3L6 15\"/> <path d=\"m5 8 4 4\"/> <path d=\"m12 15 4 4\"/>","megaphone":"<path d=\"m3 11 18-5v12L3 14v-3z\"/> <path d=\"M11.6 16.8a3 3 0 1 1-5.8-1.6\"/>","message-circle":"<path d=\"M7.9 20A9 9 0 1 0 4 16.1L2 22Z\"/>","network":"<rect x=\"16\" y=\"16\" width=\"6\" height=\"6\" rx=\"1\"/> <rect x=\"2\" y=\"16\" width=\"6\" height=\"6\" rx=\"1\"/> <rect x=\"9\" y=\"2\" width=\"6\" height=\"6\" rx=\"1\"/> <path d=\"M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3\"/> <path d=\"M12 12V8\"/>","package-check":"<path d=\"m16 16 2 2 4-4\"/> <path d=\"M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14\"/> <path d=\"m7.5 4.27 9 5.15\"/> <polyline points=\"3.29 7 12 12 20.71 7\"/> <line x1=\"12\" x2=\"12\" y1=\"22\" y2=\"12\"/>","package-open":"<path d=\"M12 22v-9\"/> <path d=\"M15.17 2.21a1.67 1.67 0 0 1 1.63 0L21 4.57a1.93 1.93 0 0 1 0 3.36L8.82 14.79a1.655 1.655 0 0 1-1.64 0L3 12.43a1.93 1.93 0 0 1 0-3.36z\"/> <path d=\"M20 13v3.87a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13\"/> <path d=\"M21 12.43a1.93 1.93 0 0 0 0-3.36L8.83 2.2a1.64 1.64 0 0 0-1.63 0L3 4.57a1.93 1.93 0 0 0 0 3.36l12.18 6.86a1.636 1.636 0 0 0 1.63 0z\"/>","package-search":"<path d=\"M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14\"/> <path d=\"m7.5 4.27 9 5.15\"/> <polyline points=\"3.29 7 12 12 20.71 7\"/> <line x1=\"12\" x2=\"12\" y1=\"22\" y2=\"12\"/> <circle cx=\"18.5\" cy=\"15.5\" r=\"2.5\"/> <path d=\"M20.27 17.27 22 19\"/>","package":"<path d=\"M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z\"/> <path d=\"M12 22V12\"/> <path d=\"m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7\"/> <path d=\"m7.5 4.27 9 5.15\"/>","pen-tool":"<path d=\"M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z\"/> <path d=\"m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18\"/> <path d=\"m2.3 2.3 7.286 7.286\"/> <circle cx=\"11\" cy=\"11\" r=\"2\"/>","play":"<polygon points=\"6 3 20 12 6 21 6 3\"/>","receipt":"<path d=\"M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z\"/> <path d=\"M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8\"/> <path d=\"M12 17.5v-11\"/>","refresh-ccw":"<path d=\"M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"/> <path d=\"M3 3v5h5\"/> <path d=\"M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16\"/> <path d=\"M16 16h5v5\"/>","refresh-cw":"<path d=\"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8\"/> <path d=\"M21 3v5h-5\"/> <path d=\"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16\"/> <path d=\"M8 16H3v5\"/>","rocket":"<path d=\"M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z\"/> <path d=\"m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z\"/> <path d=\"M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0\"/> <path d=\"M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5\"/>","scale":"<path d=\"m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z\"/> <path d=\"m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z\"/> <path d=\"M7 21h10\"/> <path d=\"M12 3v18\"/> <path d=\"M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2\"/>","scroll-text":"<path d=\"M15 12h-5\"/> <path d=\"M15 8h-5\"/> <path d=\"M19 17V5a2 2 0 0 0-2-2H4\"/> <path d=\"M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3\"/>","search":"<circle cx=\"11\" cy=\"11\" r=\"8\"/> <path d=\"m21 21-4.3-4.3\"/>","settings":"<path d=\"M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z\"/> <circle cx=\"12\" cy=\"12\" r=\"3\"/>","shield-alert":"<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/> <path d=\"M12 8v4\"/> <path d=\"M12 16h.01\"/>","shield-check":"<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/> <path d=\"m9 12 2 2 4-4\"/>","shopping-bag":"<path d=\"M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z\"/> <path d=\"M3 6h18\"/> <path d=\"M16 10a4 4 0 0 1-8 0\"/>","shopping-cart":"<circle cx=\"8\" cy=\"21\" r=\"1\"/> <circle cx=\"19\" cy=\"21\" r=\"1\"/> <path d=\"M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12\"/>","signature":"<path d=\"m21 17-2.156-1.868A.5.5 0 0 0 18 15.5v.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1c0-2.545-3.991-3.97-8.5-4a1 1 0 0 0 0 5c4.153 0 4.745-11.295 5.708-13.5a2.5 2.5 0 1 1 3.31 3.284\"/> <path d=\"M3 21h18\"/>","sliders-horizontal":"<line x1=\"21\" x2=\"14\" y1=\"4\" y2=\"4\"/> <line x1=\"10\" x2=\"3\" y1=\"4\" y2=\"4\"/> <line x1=\"21\" x2=\"12\" y1=\"12\" y2=\"12\"/> <line x1=\"8\" x2=\"3\" y1=\"12\" y2=\"12\"/> <line x1=\"21\" x2=\"16\" y1=\"20\" y2=\"20\"/> <line x1=\"12\" x2=\"3\" y1=\"20\" y2=\"20\"/> <line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"6\"/> <line x1=\"8\" x2=\"8\" y1=\"10\" y2=\"14\"/> <line x1=\"16\" x2=\"16\" y1=\"18\" y2=\"22\"/>","split":"<path d=\"M16 3h5v5\"/> <path d=\"M8 3H3v5\"/> <path d=\"M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3\"/> <path d=\"m15 9 6-6\"/>","star":"<path d=\"M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z\"/>","store":"<path d=\"m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7\"/> <path d=\"M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8\"/> <path d=\"M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4\"/> <path d=\"M2 7h20\"/> <path d=\"M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7\"/>","tag":"<path d=\"M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z\"/> <circle cx=\"7.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\"/>","target":"<circle cx=\"12\" cy=\"12\" r=\"10\"/> <circle cx=\"12\" cy=\"12\" r=\"6\"/> <circle cx=\"12\" cy=\"12\" r=\"2\"/>","thumbs-up":"<path d=\"M7 10v12\"/> <path d=\"M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z\"/>","ticket":"<path d=\"M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z\"/> <path d=\"M13 5v2\"/> <path d=\"M13 17v2\"/> <path d=\"M13 11v2\"/>","trending-up":"<polyline points=\"22 7 13.5 15.5 8.5 10.5 2 17\"/> <polyline points=\"16 7 22 7 22 13\"/>","triangle-alert":"<path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/> <path d=\"M12 9v4\"/> <path d=\"M12 17h.01\"/>","truck":"<path d=\"M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2\"/> <path d=\"M15 18H9\"/> <path d=\"M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14\"/> <circle cx=\"17\" cy=\"18\" r=\"2\"/> <circle cx=\"7\" cy=\"18\" r=\"2\"/>","undo-2":"<path d=\"M9 14 4 9l5-5\"/> <path d=\"M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11\"/>","user-plus":"<path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/> <circle cx=\"9\" cy=\"7\" r=\"4\"/> <line x1=\"19\" x2=\"19\" y1=\"8\" y2=\"14\"/> <line x1=\"22\" x2=\"16\" y1=\"11\" y2=\"11\"/>","user":"<path d=\"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2\"/> <circle cx=\"12\" cy=\"7\" r=\"4\"/>","users":"<path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/> <circle cx=\"9\" cy=\"7\" r=\"4\"/> <path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"/> <path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/>","wallet":"<path d=\"M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1\"/> <path d=\"M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4\"/>","warehouse":"<path d=\"M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z\"/> <path d=\"M6 18h12\"/> <path d=\"M6 14h12\"/> <rect width=\"12\" height=\"12\" x=\"6\" y=\"10\"/>","workflow":"<rect width=\"8\" height=\"8\" x=\"3\" y=\"3\" rx=\"2\"/> <path d=\"M7 11v4a2 2 0 0 0 2 2h4\"/> <rect width=\"8\" height=\"8\" x=\"13\" y=\"13\" rx=\"2\"/>","zap":"<path d=\"M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z\"/>"};
+/* ---------- icon & nhãn ngắn: chữ ít, bấm vào mới ra chi tiết ---------- */
+const NVI={cl_strat:["compass","Chiến lược"],cl_plan:["calendar-check","Kế hoạch"],cl_perf:["gauge","Hiệu quả"],cl_risk:["shield-alert","Rủi ro"],cl_change:["rocket","Chuyển đổi"],
+ nh_assort:["layout-grid","Danh mục"],nh_pl:["tag","Nhãn riêng"],nh_src:["search","Tìm nguồn"],nh_neg:["signature","Hợp đồng mua"],nh_srm:["star","Chấm điểm NCC"],nh_pim:["clipboard-list","Thông tin SP"],
+ hd_fc:["trending-up","Dự báo"],hd_ibp:["scale","Cân đối"],hd_rep:["shopping-cart","Bổ sung hàng"],hd_pol:["sliders-horizontal","Mức tồn"],hd_alloc:["split","Phân bổ"],hd_slow:["hourglass","Hàng chậm"],
+ mk_res:["lightbulb","Thấu hiểu"],mk_brand:["gem","Thương hiệu"],mk_content:["pen-tool","Nội dung"],mk_lead:["magnet","Khách mới"],mk_trade:["store","Điểm bán"],mk_camp:["chart-column","Chiến dịch"],
+ kd_chan:["network","Kênh"],kd_kam:["crown","Khách lớn"],kd_pipe:["filter","Cơ hội"],kd_price:["badge-percent","Giá"],kd_quote:["file-check","Báo giá"],kd_omni:["shopping-bag","Đa kênh"],
+ kv_om:["clipboard-check","Đơn hàng"],kv_po:["file-input","Đặt mua"],kv_rcv:["package-check","Nhận hàng"],kv_wh:["warehouse","Kho"],kv_pick:["package-open","Đóng gói"],kv_tms:["truck","Giao hàng"],kv_rev:["undo-2","Hàng trả về"],
+ dv_sup:["message-circle","Hỗ trợ"],dv_case:["ticket","Khiếu nại"],dv_ret:["refresh-ccw","Đổi trả"],dv_keep:["heart-handshake","Giữ khách"],dv_voc:["thumbs-up","Cải tiến"],
+ tc_acc:["calculator","Kế toán"],tc_ar:["hand-coins","Phải thu"],tc_ap:["credit-card","Phải trả"],tc_cash:["wallet","Dòng tiền"],tc_pa:["chart-pie","Lợi nhuận"],
+ ns_plan:["user-plus","Tuyển dụng"],ns_pay:["badge-dollar-sign","Lương"],ns_skill:["graduation-cap","Đào tạo"],
+ pc_ct:["scroll-text","Hợp đồng"],pc_comp:["shield-check","Tuân thủ"],pc_data:["lock","Dữ liệu cá nhân"],
+ hc_asset:["building-2","Tài sản"],hc_svc:["settings","Dịch vụ nội bộ"]};
+const KHI={cl:"target",nh:"package-search",hd:"scale",mk:"megaphone",kd:"handshake",kv:"truck",dv:"headset",ht:"landmark",tc:"receipt"};
+const KNO={cl:"01",nh:"02",hd:"03",kv:"04",mk:"05",kd:"06",dv:"07",ht:"08"};
+const GRI={tc:"receipt",ns:"users",pc:"shield-check",hc:"building-2"};
+const PFI=[["database","Dữ liệu chủ"],["app-window","Hệ thống"],["book-open","Tri thức"],["workflow","Điều phối"],["fingerprint","Kiểm soát"]];
+const ROLE_S={ceo:"Ban điều hành",nh:"Ngành hàng",mh:"Mua hàng",hd:"Hoạch định",mk:"Marketing",kd:"Kinh doanh",vh:"Vận hành",dv:"Dịch vụ KH",tc:"Tài chính",ns:"Nhân sự",pc:"Pháp chế",hc:"Hành chính"};
+const CHI={pta:"package",stp:"credit-card",lto:"magnet",otc:"receipt",ctr:"headset"};
+const STS={pta:["Số bán","Dự báo","Cân đối cung–cầu","Kế hoạch mua","Duyệt vốn","Chốt nguồn","Đặt mua, nhập kho","Phân bổ"],
+ stp:["Nhu cầu mua","So sánh báo giá","Chốt hợp đồng","Phát đơn mua","Nhận, kiểm hàng","Đối chiếu 3 chiều","Duyệt chi","Ghi sổ phải trả"],
+ lto:["Chiến dịch","Thu khách","Chấm điểm","Tư vấn","Báo giá","Kiểm chiết khấu","Hợp đồng sỉ","Chốt đơn"],
+ otc:["Đơn vào","Kiểm tra đơn","Kiểm tín dụng","Giữ hàng","Đóng gói","Giao, xác nhận","Hóa đơn, thu tiền","Đối soát, ghi sổ"],
+ ctr:["Tiếp nhận","Xác minh","Xét điều kiện","Nhận hàng trả","Hoàn tiền","Đóng yêu cầu","Cải tiến"]};
+const EXQ=[["kd_price","Chiết khấu ngoài khung","kd"],["hd_pol","Vượt trần vốn tồn kho","tc"],["dv_ret","Bồi hoàn vượt hạn mức","dv"],["nh_src","Nhà cung cấp mới","mh"],["kv_om","Thiếu hàng sau khi nhận đơn","vh"],["cl_strat","Đổi chính sách lớn","ceo"]];
+const LV=[["eye","Quan sát","AI chỉ thu thập và báo cáo, không tạo đầu ra.","Người làm toàn bộ"],
+ ["lightbulb","Đề xuất","AI tra cứu, tổng hợp, phân tích và soạn thảo; người chọn và làm.","≈ A1 · Hỗ trợ"],
+ ["file-pen","Chuẩn bị","AI làm trọn việc; không gì ra ngoài khi người chưa duyệt.","≈ A2 · Đề xuất → người duyệt"],
+ ["zap","Thực hiện có giới hạn","AI tự làm trong luật và ngưỡng; việc vượt ngưỡng bị chặn và chuyển cho người.","≈ A3 · Thực hiện trong giới hạn"],
+ ["refresh-cw","Tự vận hành","AI tự lập kế hoạch và tối ưu trong trần ngân sách.","Hiếm dùng trong phân phối"],
+ ["shield-check","Tự chủ có giám sát","AI điều hành cả chức năng; người kiểm toán định kỳ. Chỉ cho việc rủi ro thấp, đảo ngược được.","Hiếm dùng trong phân phối"]];
+/* Icon nét (Lucide, ISC). Trong HTML dùng ic(), trong SVG dùng icS(). */
+const ic=(n,sz)=>`<svg viewBox="0 0 24 24" width="${sz||20}" height="${sz||20}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[n]||""}</svg>`;
+const icS=(n,x,y,sz,col)=>`<svg x="${x}" y="${y}" width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="none" stroke="${col||"#EDEBEA"}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICO[n]||""}</svg>`;
+const motionOK=()=>!matchMedia("(prefers-reduced-motion: reduce)").matches;
+/* Hạt sáng chạy dọc một đường gấp khúc pts; tốc độ đều theo độ dài. */
+function wire(pts,o){o=o||{};
+  const d="M"+pts.map(p=>p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" L");
+  let len=0; for(let i=1;i<pts.length;i++) len+=Math.abs(pts[i][0]-pts[i-1][0])+Math.abs(pts[i][1]-pts[i-1][1]);
+  let s=`<path d="${d}" class="wr${o.dash?" dash":""}${o.red?" red":""}"${o.arrow?` marker-end="url(#${o.arrow})"`:""}/>`;
+  if(motionOK()&&o.n!==0){const n=o.n||Math.max(1,Math.round(len/170)), dur=Math.max(1.6,len/(o.speed||75));
+    for(let k=0;k<n;k++) s+=`<circle r="${o.red?2.6:2.2}" class="pt${o.red?" red":""}"><animateMotion dur="${dur.toFixed(2)}s" begin="-${(dur*k/n).toFixed(2)}s" repeatCount="indefinite" path="${d}"/></circle>`;}
+  return s;}
+const wlab=(t,x,y,a)=>`<text x="${x}" y="${y}" class="wl" text-anchor="${a||"middle"}">${esc(t)}</text>`;
+
 /* ---------- Trang 1 · Kiến trúc nghiệp vụ ---------- */
+const tile=n=>`<button class="ti${n.opt?" opt":""}" data-id="${n.id}" title="${esc(n.n)}${n.opt?" (nếu có)":""}"><span class="tic">${ic(NVI[n.id][0])}</span><span class="tl">${esc(NVI[n.id][1])}</span></button>`;
+function card(k,extra){const K=KH(k);
+  return `<div class="ck${extra?" "+extra:""}" id="ck-${k}"><button class="ck-h" data-khoi="${k}" aria-label="Chi tiết khối ${esc(K.n)}"><span class="no">${KNO[k]}</span><span class="nm">${esc(K.n)}</span><span class="ki">${ic(KHI[k],18)}</span></button>
+    <div class="tis">${nvOf(k).map(tile).join("")}</div><div class="ck-o"><i class="hdot"></i>${esc(ROLE[K.o])}</div></div>`;}
 function arch(){
-  const W=1280,X0=56,XW=1168,BW=344,G=68,CX=[X0,X0+BW+G,X0+2*(BW+G)],RED="#EC3013";
-  let s="",y=28; const ticks=[];
-  const tier=(t,yy,anchorEnd)=>`<text x="${anchorEnd?X0+XW:X0}" y="${yy}" ${anchorEnd?'text-anchor="end"':""} font-size="10.5" font-weight="700" letter-spacing="1.6" fill="var(--mute)">${esc(t)}</text>`;
-  const role=(o,x,yy,col)=>`<circle cx="${x+4}" cy="${yy-4}" r="4" fill="${RED}"/><text x="${x+14}" y="${yy}" font-size="11.5" font-weight="700" fill="${col||"var(--ink)"}">${esc(ROLE[o])}</text>`;
-  const item=(n,x,yy,w,h)=>`<g class="dg-node" tabindex="0" role="button" data-id="${n.id}" aria-label="${esc(n.n)}"><rect class="bx" x="${x}" y="${yy}" width="${w}" height="${h}" fill="var(--card)" stroke="var(--line)" stroke-width="1"/><text x="${x+11}" y="${yy+h/2+4.5}" font-size="12.5" font-weight="600" fill="var(--ink)">${esc(n.s||n.n)}${n.opt?`<tspan fill="var(--mute)" font-weight="500"> · nếu có</tspan>`:""}</text><text x="${x+w-14}" y="${yy+h/2+5}" font-size="14" fill="var(--mute)">›</text></g>`;
-  const arrow=(d,dash)=>`<path d="${d}" fill="none" stroke="var(--ink)" stroke-width="1.6" ${dash?'stroke-dasharray="5 4"':""} marker-end="url(#pa)"/>`;
-  const lab=(lines,x,yy,anchor,col)=>tx(lines,x,yy,12,`font-size="10.5" font-weight="600" text-anchor="${anchor||"middle"}" fill="${col||"var(--mute)"}"`);
-
-  // ===== Tầng 1
-  s+=tier("TẦNG 1 · ĐIỀU HÀNH & QUẢN TRỊ",y); y+=12;
-  const K1=KH("cl"), L1=nvOf("cl"), LW=360;
-  const n1=wrapT(K1.n,cpl(LW-32,18,.6)), g1=wrapT(K1.goal,cpl(LW-32,12.5,.52));
-  const IW=(XW-LW-16*3)/2, IH=34, IG=8, rows1=Math.ceil(L1.length/2);
-  const leftH=30+(n1.length-1)*22+18+22+(g1.length-1)*16+42, rightH=32+rows1*IH+(rows1-1)*IG, H1=Math.max(leftH,rightH);
-  s+=`<rect x="${X0}" y="${y}" width="${XW}" height="${H1}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/>`;
-  let cy=y+30;
-  s+=`<g class="dg-node" tabindex="0" role="button" data-khoi="cl" aria-label="${esc(K1.n)}"><rect class="bx" x="${X0}" y="${y}" width="${LW}" height="${H1}" fill="var(--ink)" stroke="var(--ink)"/>`+tx(n1,X0+16,cy,22,`font-size="18" font-weight="800" fill="var(--inv)"`);
-  cy+=(n1.length-1)*22+18;
-  s+=`<text x="${X0+16}" y="${cy}" font-size="9.5" font-weight="600" letter-spacing="1.1" fill="var(--inv)" opacity=".6">${esc(K1.en.toUpperCase())}</text>`;
-  cy+=22; s+=tx(g1,X0+16,cy,16,`font-size="12.5" fill="var(--inv)" opacity=".8"`);
-  s+=role(K1.o,X0+16,y+H1-16,"var(--inv)")+`</g>`;
-  L1.forEach((n,i)=>{const c=i%2,r=Math.floor(i/2); s+=item(n,X0+LW+16+c*(IW+16),y+16+r*(IH+IG),IW,IH);});
-  ticks.push(y+H1/2); y+=H1;
-
-  // ===== Tầng 2: sáu khối, hai hàng
-  y+=46; s+=tier("TẦNG 2 · CÁC KHỐI NGHIỆP VỤ CỐT LÕI",y)+tier("PHÍA CUNG — CÓ ĐÚNG HÀNG, ĐÚNG LÚC",y,true);
-  const R1=["nh","hd","kv"], R2=["mk","kd","dv"];
-  const dims=ids=>{const nl=Math.max(...ids.map(id=>wrapT(KH(id).n,cpl(BW-28,14.5,.6)).length)),gl=Math.max(...ids.map(id=>wrapT(KH(id).goal,cpl(BW-28,12,.52)).length)),it=Math.max(...ids.map(id=>nvOf(id).length));
-    return {hh:22+(nl-1)*18+30, gl, bh:20+(gl-1)*15+26+12+it*27+6};};
-  const block=(id,x,yy,d)=>{const K=KH(id),nl=wrapT(K.n,cpl(BW-28,14.5,.6)),gl=wrapT(K.goal,cpl(BW-28,12,.52));
-    let o=`<g class="dg-node" tabindex="0" role="button" data-khoi="${id}" aria-label="${esc(K.n)}"><rect class="bx" x="${x}" y="${yy}" width="${BW}" height="${d.hh}" fill="var(--ink)" stroke="var(--ink)"/>`+tx(nl,x+14,yy+22,18,`font-size="14.5" font-weight="800" fill="var(--inv)"`)+
-      `<text x="${x+14}" y="${yy+22+(nl.length-1)*18+17}" font-size="9.5" font-weight="600" letter-spacing="1.1" fill="var(--inv)" opacity=".6">${esc(K.en.toUpperCase())}</text></g>`;
-    o+=`<rect x="${x}" y="${yy+d.hh}" width="${BW}" height="${d.bh}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/>`;
-    const gy=yy+d.hh+20; o+=tx(gl,x+14,gy,15,`font-size="12" fill="var(--mute)"`);
-    const ry=gy+(d.gl-1)*15+26; o+=role(K.o,x+14,ry);
-    nvOf(id).forEach((n,i)=>o+=item(n,x+8,ry+12+i*27,BW-16,25));
-    return o;};
-  const r1y=y+12, d1=dims(R1); R1.forEach((id,i)=>s+=block(id,CX[i],r1y,d1));
-  const r1b=r1y+d1.hh+d1.bh, RG=78, r2y=r1b+RG, my=r1b+RG/2, d2=dims(R2);
-  R2.forEach((id,i)=>s+=block(id,CX[i],r2y,d2));
-  const r2b=r2y+d2.hh+d2.bh;
-  s+=tier("PHÍA CẦU — CÓ KHÁCH VÀ THU ĐƯỢC TIỀN",r2y-10);
-  // luồng liền: việc và hàng
-  const ay1=r1y+d1.hh+34, ay2=r2y+d2.hh+34;
-  [[0,["danh mục,","nguồn hàng"]],[1,["kế hoạch mua,","phân bổ"]]].forEach(([i,t])=>{s+=arrow(`M${CX[i]+BW+4} ${ay1} H${CX[i+1]-4}`)+lab(t,CX[i]+BW+G/2,ay1-20);});
-  s+=arrow(`M${CX[0]+BW+4} ${ay2} H${CX[1]-4}`)+lab(["khách","tiềm năng"],CX[0]+BW+G/2,ay2-20);
-  const sx=CX[1]+BW*.8, ex=CX[2]+BW*.2;
-  s+=arrow(`M${sx} ${r2y-2} V${my} H${ex} V${r1b+3}`)+lab(["đơn hàng đã xác nhận"],(sx+ex)/2,my-7,"middle","var(--ink)");
-  const dx=CX[2]+BW*.55, ux=CX[2]+BW*.85;
-  s+=arrow(`M${dx} ${r1b+2} V${r2y-3}`)+lab(["đã giao"],dx-6,my+16,"end","var(--ink)");
-  s+=arrow(`M${ux} ${r2y-2} V${r1b+3}`)+lab(["hàng trả về"],ux+6,my+16,"start","var(--ink)");
-  // nét đứt: dữ liệu và phản hồi
-  const kx=CX[1]+BW*.3;
-  s+=arrow(`M${kx} ${r2y-2} V${r1b+3}`,true)+lab(["số bán, sell-out","→ kế hoạch"],kx-6,my-2,"end");
-  const fbY=r2b+26;
-  s+=arrow(`M${CX[2]+BW*.5} ${r2b+2} V${fbY} H${CX[0]+BW*.5} V${r2b+3}`,true)+lab(["phản hồi khách hàng → marketing, ngành hàng, nguồn cung"],W/2,fbY-7);
-  ticks.push(r1y+d1.hh/2, r2y+d2.hh/2); y=fbY;
-
-  // ===== Tầng 3: năng lực hỗ trợ
-  y+=40; s+=tier("TẦNG 3 · NĂNG LỰC HỖ TRỢ",y); y+=12;
-  const K3=KH("ht"), GW=(XW-16*5)/4, maxIt=Math.max(...NHOM_HT.map(g=>NV.filter(n=>n.g===g.id).length)), bh3=74+maxIt*27+8;
-  s+=`<g class="dg-node" tabindex="0" role="button" data-khoi="ht" aria-label="${esc(K3.n)}"><rect class="bx" x="${X0}" y="${y}" width="${XW}" height="44" fill="var(--bg2)" stroke="var(--ink)" stroke-width="1.5"/>
-    <text x="${X0+16}" y="${y+28}" font-size="15.5" font-weight="800" fill="var(--ink)">${esc(K3.n)}<tspan dx="14" font-size="9.5" font-weight="600" letter-spacing="1.1" fill="var(--mute)">${esc(K3.en.toUpperCase())}</tspan></text>
-    <text x="${X0+XW-16}" y="${y+28}" text-anchor="end" font-size="12" fill="var(--mute)">${esc(K3.goal)}</text></g>`;
-  const by=y+44; s+=`<rect x="${X0}" y="${by}" width="${XW}" height="${bh3}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/>`;
-  NHOM_HT.forEach((g,i)=>{const x=X0+16+i*(GW+16);
-    s+=`<text x="${x}" y="${by+24}" font-size="12.5" font-weight="800" fill="var(--ink)">${esc(g.n)}</text><text x="${x}" y="${by+38}" font-size="9" font-weight="600" letter-spacing="1" fill="var(--mute)">${esc(g.en.toUpperCase())}</text>`+role(g.id,x,by+60);
-    NV.filter(n=>n.g===g.id).forEach((n,j)=>s+=item(n,x,by+70+j*27,GW,25));});
-  ticks.push(y+22); y=by+bh3;
-
-  // ===== Nền tảng
-  y+=40; s+=tier("NỀN TẢNG XUYÊN SUỐT",y); y+=12;
-  const TW=(XW-32-4*12)/5, tl=PF.map(p=>({n:wrapT(p.n,cpl(TW-24,12.5,.6)),e:wrapT(p.en,cpl(TW-24,10,.55))})),
-        TH=18+Math.max(...tl.map(t=>t.n.length))*16+Math.max(...tl.map(t=>t.e.length))*13+10, PH=64+TH+16;
-  s+=`<rect x="${X0}" y="${y}" width="${XW}" height="${PH}" fill="var(--card)" stroke="var(--ink)" stroke-width="3"/><rect x="${X0+1.5}" y="${y+1.5}" width="${XW-3}" height="${PH-3}" fill="url(#ph)" opacity=".6"/>
-    <text x="${X0+16}" y="${y+28}" font-size="17" font-weight="800" fill="var(--ink)">Dữ liệu, Hệ thống &amp; Điều phối AI</text>
-    <text x="${X0+16}" y="${y+48}" font-size="12.5" font-weight="600" fill="var(--ink)">Dữ liệu thống nhất — nguồn chuẩn theo từng loại dữ liệu</text>
-    <text x="${X0+XW-16}" y="${y+28}" text-anchor="end" font-size="9.5" font-weight="600" letter-spacing="1.1" fill="var(--mute)">DATA, SYSTEMS &amp; AI ORCHESTRATION</text>`;
-  PF.forEach((p,i)=>{const x=X0+16+i*(TW+12),yy=y+64;
-    s+=`<g class="dg-node" tabindex="0" role="button" data-pf="${i}" aria-label="${esc(p.n)}"><rect class="bx" x="${x}" y="${yy}" width="${TW}" height="${TH}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/>`+
-      tx(tl[i].n,x+12,yy+22,16,`font-size="12.5" font-weight="800" fill="var(--ink)"`)+tx(tl[i].e,x+12,yy+22+tl[i].n.length*16+2,13,`font-size="10" fill="var(--mute)"`)+`</g>`;});
-  const py=y+PH/2; y+=PH;
-
-  // trục dữ liệu hai bên: nền tảng nối tới mọi tầng
-  let bus=`<path d="M30 ${ticks[0]} V${py} M1250 ${ticks[0]} V${py}" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4" fill="none"/>`;
-  ticks.concat([py]).forEach(t=>{bus+=`<path d="M30 ${t} H${X0} M1250 ${t} H${X0+XW}" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/><circle cx="30" cy="${t}" r="3.5" fill="var(--ink)"/><circle cx="1250" cy="${t}" r="3.5" fill="var(--ink)"/>`;});
-  bus+=`<text transform="translate(19 ${(ticks[0]+py)/2}) rotate(-90)" text-anchor="middle" font-size="10" font-weight="600" letter-spacing="1.2" fill="var(--mute)">DỮ LIỆU &amp; ĐIỀU PHỐI AI NỐI MỌI KHỐI</text>`;
-  const H=y+24;
-  $("arch").innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Kiến trúc nghiệp vụ doanh nghiệp thương mại phân phối"><defs><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--ink)"/></marker><pattern id="ph" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="var(--line)" stroke-width="1.4"/></pattern></defs>${bus}${s}</svg>`;
-  $("chains").innerHTML=CHUOI.map(c=>`<tr class="row" tabindex="0" data-chain="${c.id}"><td><b>${esc(c.n)}</b><div class="note">${esc(c.en)}</div></td><td>${esc(c.flow)}</td><td>${esc(c.owner)}</td><td class="c"><span class="pill ink">Xem luồng →</span></td></tr>`).join("");
+  const K3=KH("ht");
+  $("arch").innerHTML=`<svg class="wires" id="arch-w" aria-hidden="true"></svg>
+   <div class="cvl">Điều hành</div>${card("cl","wide")}
+   <div class="cvl" id="cvl-cung">Phía cung <em>— có đúng hàng, đúng lúc</em></div><div class="g3">${card("nh")}${card("hd")}${card("kv")}</div>
+   <div class="cvl">Phía cầu <em>— có khách, thu được tiền</em></div><div class="g3">${card("mk")}${card("kd")}${card("dv")}</div>
+   <div class="cvl">Năng lực hỗ trợ</div>
+   <div class="ck wide" id="ck-ht"><button class="ck-h" data-khoi="ht" aria-label="Chi tiết khối ${esc(K3.n)}"><span class="no">${KNO.ht}</span><span class="nm">${esc(K3.n)}</span><span class="ki">${ic(KHI.ht,18)}</span></button>
+     <div class="g4">${NHOM_HT.map(g=>`<div class="grp"><div class="gh">${ic(GRI[g.id],15)}<span>${esc(g.n)}</span></div><div class="tis">${NV.filter(n=>n.g===g.id).map(tile).join("")}</div><div class="ck-o"><i class="hdot"></i>${esc(ROLE[g.id])}</div></div>`).join("")}</div></div>
+   <div class="cvl">Nền tảng &amp; ngoại lệ</div>
+   <div class="g75">
+     <div class="ck" id="ck-pf"><div class="ck-h st"><span class="no">09</span><span class="nm">Dữ liệu, Hệ thống &amp; Điều phối AI</span><span class="ki">${ic("layers",18)}</span></div>
+       <p class="sub">Dữ liệu thống nhất — nguồn chuẩn theo từng loại dữ liệu</p>
+       <div class="tis big">${PF.map((p,i)=>`<button class="ti big" data-pf="${i}" title="${esc(p.n)}"><span class="tic">${ic(PFI[i][0],24)}</span><span class="tl">${esc(PFI[i][1])}</span></button>`).join("")}</div></div>
+     <div class="ck" id="ck-ex"><div class="ck-h st"><span class="no">10</span><span class="nm">Điều gì chuyển cho người</span><span class="ki">${ic("triangle-alert",18)}</span></div>
+       <div class="exl">${EXQ.map(([id,t,r])=>`<button class="exi" data-id="${id}">${ic("triangle-alert",15)}<span>${esc(t)}</span><b>${esc(ROLE_S[r])}</b></button>`).join("")}</div></div>
+   </div>
+   <div class="cvleg"><span><i class="pdot"></i>Dữ liệu, việc</span><span><i class="pdot red"></i>Ngoại lệ đến người</span><span><i class="ldash"></i>Phản hồi</span><span><i class="hdot"></i>Người chịu trách nhiệm</span><span><i class="lopt"></i>Chỉ khi cần</span></div>`;
+  $("chains").innerHTML=CHUOI.map(c=>`<button class="chc" data-chain="${c.id}"><span class="cic">${ic(CHI[c.id],22)}</span><b>${esc(c.n)}</b><span class="en">${esc(c.en)}</span><span class="ow"><i class="hdot"></i>${esc(c.owner)}</span></button>`).join("");
+  requestAnimationFrame(archWires);
 }
+/* Đường nối vẽ theo vị trí thật của từng thẻ, nên đổi cỡ màn hình là vẽ lại.
+   Màn hẹp (một cột) thì bỏ đường nối, chỉ giữ thứ tự từ trên xuống. */
+function archWires(){
+  const cv=$("arch"), w=$("arch-w"); if(!cv||!w||!cv.offsetParent) return;
+  const C=cv.getBoundingClientRect(); w.setAttribute("viewBox",`0 0 ${C.width} ${C.height}`); w.setAttribute("width",C.width); w.setAttribute("height",C.height);
+  if(C.width<900){w.innerHTML="";return;}
+  const R=id=>{const b=$("ck-"+id).getBoundingClientRect();return {l:b.left-C.left,t:b.top-C.top,r:b.right-C.left,b:b.bottom-C.top,w:b.width,cx:b.left-C.left+b.width/2,cy:b.top-C.top+b.height/2,hy:b.top-C.top+24};};
+  const cl=R("cl"),nh=R("nh"),hd=R("hd"),kv=R("kv"),mk=R("mk"),kd=R("kd"),dv=R("dv"),ht=R("ht"),pf=R("pf"),ex=R("ex");
+  let s=`<defs><marker id="wa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8F8A87"/></marker></defs>`;
+  // điều hành rẽ nhánh xuống ba khối phía cung
+  const lb=$("cvl-cung").getBoundingClientRect(), busY=lb.bottom-C.top+4;
+  [nh,hd,kv].forEach(c=>s+=wire([[cl.cx,cl.b],[cl.cx,busY],[c.cx,busY],[c.cx,c.t]],{arrow:"wa",n:1}));
+  s+=wlab("mục tiêu · ngân sách · chính sách",cl.cx+8,busY-8,"start");
+  // dòng việc và hàng trong từng hàng
+  s+=wire([[nh.r,nh.hy],[hd.l,hd.hy]],{arrow:"wa"})+wire([[hd.r,hd.hy],[kv.l,kv.hy]],{arrow:"wa"})+wire([[mk.r,mk.hy],[kd.l,kd.hy]],{arrow:"wa"});
+  const gy=(kv.b+kd.t)/2, a=kd.l+kd.w*.78, b=kv.l+kv.w*.22;
+  s+=wire([[a,kd.t],[a,gy],[b,gy],[b,kv.b]],{arrow:"wa"})+wlab("đơn đã xác nhận",(a+b)/2,gy-6);
+  const dx=kv.l+kv.w*.6, ux=kv.l+kv.w*.86;
+  s+=wire([[dx,kv.b],[dx,dv.t]],{arrow:"wa"})+wlab("đã giao",dx-6,gy+14,"end");
+  s+=wire([[ux,dv.t],[ux,kv.b]],{arrow:"wa"})+wlab("trả về",ux+6,gy+14,"start");
+  const sx=kd.l+kd.w*.3; s+=wire([[sx,kd.t],[sx,hd.b]],{arrow:"wa",dash:true})+wlab("số bán",sx-6,gy+14,"end");
+  const fy=dv.b+16; s+=wire([[dv.cx,dv.b],[dv.cx,fy],[mk.cx,fy],[mk.cx,mk.b]],{arrow:"wa",dash:true})+wlab("phản hồi khách hàng",(dv.cx+mk.cx)/2,fy-5);
+  // nền tảng nuôi dữ liệu cho mọi khối: trục trái, hạt chạy lên
+  const L=18; s+=wire([[pf.l,pf.cy],[L,pf.cy],[L,cl.cy],[cl.l,cl.cy]],{speed:95});
+  [nh,mk,ht].forEach(c=>s+=wire([[L,c.hy],[c.l,c.hy]],{n:0}));
+  s+=wire([[pf.cx,pf.t],[pf.cx,ht.b]],{arrow:"wa",n:1});
+  // ngoại lệ đi xuống khối "chuyển cho người": trục phải, hạt đỏ
+  const Rr=C.width-18; s+=wire([[cl.r,cl.cy],[Rr,cl.cy],[Rr,ex.cy],[ex.r,ex.cy]],{red:true,arrow:"wa",speed:95});
+  [kv,dv,ht].forEach(c=>s+=wire([[c.r,c.hy],[Rr,c.hy]],{red:true,n:0}));
+  w.innerHTML=s;
+}
+// thẻ lần lượt sáng lên như đang nhận dữ liệu
+let pulseI=0; setInterval(()=>{ if(!isPP()||$("p-arch").hidden||!motionOK()) return;
+  const ids=["nh","hd","kv","mk","kd","dv","ht","pf"]; document.querySelectorAll("#arch .ck.hot").forEach(x=>x.classList.remove("hot"));
+  const el=$("ck-"+ids[pulseI++%ids.length]); if(el) el.classList.add("hot"); },1300);
+if(window.ResizeObserver) new ResizeObserver(()=>{ if(isPP()) archWires(); }).observe(document.getElementById("stage"));
 
-/* ---------- Trang 2 · Luồng vận hành (làn trách nhiệm) ---------- */
+/* ---------- Trang 2 · Luồng vận hành ---------- */
 function swim(c){
-  const n=c.steps.length, W=1280, LW=176, PL=36, PR=46, colW=(W-LW-PL-PR)/n, bw=colW-28, TOP=64;
-  const cT=cpl(bw-16,11.5,.56), cW=cpl(bw-26,10,.55), cX=cpl(bw+6,10.5,.54);
-  const S=c.steps.map((st,i)=>Object.assign({},st,{i,tl:wrapT(st.t,cT),wl:wrapT(st.w,cW),xl:st.x?wrapT("Ngoại lệ: "+st.x,cX).concat(wrapT("→ "+ROLE[st.to],cX)):[]}));
-  const bh=Math.max(...S.map(x=>x.tl.length))*14+Math.max(...S.map(x=>x.wl.length))*12+22;
-  const xh=Math.max(0,...S.map(x=>x.xl.length?x.xl.length*12.5+14:0)), LH=18+bh+xh+16;
+  const n=c.steps.length, W=1280, LW=172, PL=44, PR=58, colW=(W-LW-PL-PR)/n, bw=colW-30, bh=92, TOP=58, LH=bh+64;
+  const S=c.steps.map((st,i)=>Object.assign({},st,{i,ts:STS[c.id][i]}));
   const laneY=l=>TOP+c.lanes.indexOf(l)*LH;
-  S.forEach(st=>{st.x0=LW+PL+st.i*colW+14; st.y0=laneY(st.l)+18; st.cy=st.y0+bh/2;});
-  const H=TOP+c.lanes.length*LH+12;
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Luồng ${esc(c.n)}"><defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--ink)"/></marker></defs>`;
-  s+=`<text x="14" y="${TOP-30}" font-size="10" font-weight="700" letter-spacing="1.4" fill="var(--mute)">LÀN TRÁCH NHIỆM</text>`;
-  c.lanes.forEach((l,i)=>{const yy=TOP+i*LH, ll=wrapT(LANE[l],cpl(LW-28,12.5,.6));
-    s+=`<rect x="0" y="${yy}" width="${W}" height="${LH}" fill="${i%2?"var(--bg)":"var(--card)"}"/><rect x="0" y="${yy}" width="${LW}" height="${LH}" fill="var(--bg2)"/><line x1="0" x2="${W}" y1="${yy}" y2="${yy}" stroke="var(--line)"/>`+
-      tx(ll,14,yy+LH/2-(ll.length-1)*8+4,16,`font-size="12.5" font-weight="800" fill="var(--ink)"`);});
-  s+=`<line x1="0" x2="${W}" y1="${H-12}" y2="${H-12}" stroke="var(--line)"/><line x1="${LW}" x2="${LW}" y1="${TOP}" y2="${H-12}" stroke="var(--ink)" stroke-width="1.5"/>`;
-  // vòng phản hồi, đi trên dải trên cùng
-  if(c.fb){const src=S[c.fb.from-1], xs=src.x0+bw*.72, yb=TOP-20;
-    if(c.fb.to){const dst=S[c.fb.to-1], xd=dst.x0+bw*.72;
-      s+=`<path d="M${xs} ${src.y0} V${yb} H${xd} V${dst.y0-2}" fill="none" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#fa)"/><text x="${(xs+xd)/2}" y="${yb-7}" text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--mute)">↺ ${esc(c.fb.t)}</text>`;}
-    else s+=`<path d="M${xs} ${src.y0} V${yb} H${W-8}" fill="none" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#fa)"/><text x="${W-10}" y="${yb-7}" text-anchor="end" font-size="10.5" font-weight="600" fill="var(--mute)">${esc(c.fb.t)} → ${esc(c.fb.ext)}</text>`;}
-  // mũi tên giữa các bước; đổi làn là điểm bàn giao
+  S.forEach(st=>{st.x0=LW+PL+st.i*colW+15; st.y0=laneY(st.l)+20; st.cy=st.y0+bh/2;});
+  const H=TOP+c.lanes.length*LH+14, MUTE="#9C9794", LINE="#6B6765";
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Luồng ${esc(c.n)}"><defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="${LINE}"/></marker></defs>`;
+  c.lanes.forEach((l,i)=>{const yy=TOP+i*LH, ll=wrapT(LANE[l],15);
+    s+=`<rect x="0" y="${yy}" width="${W}" height="${LH}" fill="${i%2?"#191817":"#151413"}"/><line x1="0" x2="${W}" y1="${yy}" y2="${yy}" stroke="#2A2725"/>`+
+      `<rect x="16" y="${yy+LH/2-17}" width="34" height="34" fill="#232120" stroke="#3D3936"/>`+icS(KHI[l]||"layers",24,yy+LH/2-9,18)+
+      tx(ll,60,yy+LH/2-(ll.length-1)*7+4,14,`font-size="12" font-weight="700" fill="#EDEBEA"`);});
+  s+=`<line x1="${LW}" x2="${LW}" y1="${TOP}" y2="${H-14}" stroke="#3D3936"/>`;
+  // đường đi của việc: một đường liền qua mọi bước, hạt sáng chạy theo
+  const f=S[0], z=S[n-1], P=[[f.x0-30,f.cy],[f.x0,f.cy]];
+  S.forEach((st,i)=>{P.push([st.x0+bw,st.cy]); if(i<n-1){const nx=S[i+1]; if(nx.cy!==st.cy){const gx=st.x0+bw+15; P.push([gx,st.cy],[gx,nx.cy]);} P.push([nx.x0,nx.cy]);}});
+  P.push([z.x0+bw+14,z.cy]);
+  s+=wire(P,{n:Math.max(3,n-2),speed:90});
   S.forEach((st,i)=>{ if(!i) return; const p=S[i-1];
-    if(p.l===st.l) s+=`<path d="M${p.x0+bw} ${p.cy} H${st.x0-1}" stroke="var(--ink)" stroke-width="1.4" fill="none" marker-end="url(#fa)"/>`;
-    else {const gx=p.x0+bw+14, mid=(p.cy+st.cy)/2;
-      s+=`<path d="M${p.x0+bw} ${p.cy} H${gx} V${st.cy} H${st.x0-1}" stroke="var(--ink)" stroke-width="1.4" fill="none" marker-end="url(#fa)"/><rect x="${gx-4.5}" y="${mid-4.5}" width="9" height="9" fill="var(--card)" stroke="var(--ink)" stroke-width="1.6"><title>Bàn giao giữa hai khối</title></rect>`;}});
-  // bắt đầu, kết thúc
-  const f=S[0], z=S[n-1], ex=z.x0+bw;
-  s+=`<circle cx="${f.x0-20}" cy="${f.cy}" r="7" fill="var(--ink)"/><path d="M${f.x0-13} ${f.cy} H${f.x0-1}" stroke="var(--ink)" stroke-width="1.4" marker-end="url(#fa)"/>`;
-  s+=`<path d="M${ex} ${z.cy} H${ex+12}" stroke="var(--ink)" stroke-width="1.4" marker-end="url(#fa)"/><circle cx="${ex+22}" cy="${z.cy}" r="9" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="${ex+22}" cy="${z.cy}" r="4.5" fill="var(--ink)"/>`+
-     tx(wrapT(z.end||"Kết thúc",10),W-6,z.cy+24,12,`text-anchor="end" font-size="10" font-weight="700" fill="var(--ink)"`);
-  // các bước
-  S.forEach(st=>{const nguoi=/người|Người/.test(st.w), wy=st.y0+bh-10-(st.wl.length-1)*12;
-    s+=`<g class="dg-node" tabindex="0" role="button" data-id="${st.nv}" aria-label="${esc(st.t)}"><rect class="bx" x="${st.x0}" y="${st.y0}" width="${bw}" height="${bh}" fill="var(--card)" stroke="var(--ink)" stroke-width="${st.k==="chk"?2.6:1.3}"/>`+
-      (st.k==="chk"?`<path d="M${st.x0} ${st.y0-7} L${st.x0+7} ${st.y0} L${st.x0} ${st.y0+7} L${st.x0-7} ${st.y0} Z" fill="var(--ink)"><title>Điểm kiểm tra hoặc phê duyệt</title></path>`:"")+
-      tx(st.tl,st.x0+9,st.y0+18,14,`font-size="11.5" font-weight="700" fill="var(--ink)"`)+
-      (nguoi?`<circle cx="${st.x0+12}" cy="${wy-3.5}" r="3.5" fill="#EC3013"/>`:"")+
-      tx(st.wl,st.x0+(nguoi?20:9),wy,12,`font-size="10" font-weight="600" fill="var(--mute)"`)+`</g>`;
-    if(st.xl.length){const ty=st.y0+bh;
-      s+=`<line x1="${st.x0+10}" x2="${st.x0+10}" y1="${ty}" y2="${ty+10}" stroke="var(--red)" stroke-width="1.6" stroke-dasharray="3 2"/>`+
-        tx(st.xl,st.x0,ty+22,12.5,`font-size="10.5" font-weight="600" fill="var(--redtx)"`);}});
+    if(p.l===st.l) s+=`<path d="M${p.x0+bw} ${p.cy} H${st.x0-1}" stroke="${LINE}" stroke-width="1.4" fill="none" marker-end="url(#fa)"/>`;
+    else {const gx=p.x0+bw+15, mid=(p.cy+st.cy)/2;
+      s+=`<path d="M${p.x0+bw} ${p.cy} H${gx} V${st.cy} H${st.x0-1}" stroke="${LINE}" stroke-width="1.4" fill="none" marker-end="url(#fa)"/><rect x="${gx-4.5}" y="${mid-4.5}" width="9" height="9" fill="#151413" stroke="#EDEBEA" stroke-width="1.4"><title>Bàn giao giữa hai khối</title></rect>`;}});
+  if(c.fb){const src=S[c.fb.from-1], xs=src.x0+bw*.72, yb=TOP-22;
+    if(c.fb.to){const dst=S[c.fb.to-1], xd=dst.x0+bw*.72;
+      s+=wire([[xs,src.y0],[xs,yb],[xd,yb],[xd,dst.y0-2]],{dash:true,arrow:"fa",n:2})+wlab("↺ "+c.fb.t,(xs+xd)/2,yb-7);}
+    else s+=wire([[xs,src.y0],[xs,yb],[W-10,yb]],{dash:true,arrow:"fa",n:1})+wlab(c.fb.t+" → "+c.fb.ext,W-12,yb-7,"end");}
+  s+=`<circle cx="${f.x0-30}" cy="${f.cy}" r="7" fill="#EDEBEA"/>`;
+  const ex=z.x0+bw;
+  s+=`<circle cx="${ex+24}" cy="${z.cy}" r="9" fill="#151413" stroke="#EDEBEA" stroke-width="2"/><circle cx="${ex+24}" cy="${z.cy}" r="4.5" fill="#EDEBEA"/>`+
+     tx(wrapT(z.end||"Kết thúc",10),W-6,z.cy+26,12,`text-anchor="end" font-size="10" font-weight="700" fill="#EDEBEA"`);
+  S.forEach(st=>{const lv=(st.w.match(/L(\d)/)||[])[1], nguoi=/người|Người/.test(st.w), ico=(NVI[st.nv]||["layers"])[0], tl=wrapT(st.ts,cpl(bw-20,12,.58));
+    s+=`<g class="sn" tabindex="0" role="button" data-step="${st.i}" aria-label="${esc(st.t)}"><rect class="sb" x="${st.x0}" y="${st.y0}" width="${bw}" height="${bh}" fill="#1E1C1B" stroke="${st.k==="chk"?"#EDEBEA":"#3D3936"}" stroke-width="${st.k==="chk"?1.8:1.2}"/>`+
+      (st.k==="chk"?`<path d="M${st.x0} ${st.y0-7} L${st.x0+7} ${st.y0} L${st.x0} ${st.y0+7} L${st.x0-7} ${st.y0} Z" fill="#EDEBEA"><title>Điểm kiểm tra hoặc phê duyệt</title></path>`:"")+
+      `<rect x="${st.x0+10}" y="${st.y0+10}" width="30" height="30" fill="#2A2725" stroke="#3D3936"/>`+icS(ico,st.x0+16,st.y0+16,18)+
+      (lv?icS("bot",st.x0+bw-(nguoi?48:34),st.y0+12,13,MUTE)+`<text x="${st.x0+bw-(nguoi?33:19)}" y="${st.y0+23}" font-size="10" font-weight="700" fill="${MUTE}">L${lv}</text>`:"")+
+      (nguoi?`<circle cx="${st.x0+bw-11}" cy="${st.y0+19}" r="4" fill="#EC3013"><title>Có người làm hoặc duyệt</title></circle>`:"")+
+      tx(tl,st.x0+10,st.y0+bh-12-(tl.length-1)*15,15,`font-size="12" font-weight="700" fill="#EDEBEA"`)+`</g>`;
+    if(st.x) s+=`<g class="sn" data-step="${st.i}">`+icS("triangle-alert",st.x0+2,st.y0+bh+9,14,"#FF7A63")+`<text x="${st.x0+21}" y="${st.y0+bh+20}" font-size="10.5" font-weight="700" fill="#FF7A63">→ ${esc(ROLE_S[st.to])}</text></g>`;});
   return s+"</svg>";
 }
 function flows(){
   const c=CHUOI.find(x=>x.id===chain);
-  $("seg-chain").innerHTML=CHUOI.map(x=>`<button data-v="${x.id}" aria-pressed="${x.id===chain}">${esc(x.s)}</button>`).join("");
-  $("flow-head").innerHTML=`<span class="lbl">${esc(c.en)}</span><h2>${esc(c.n)}</h2><p>${esc(c.flow)}</p><p class="note"><i class="hdot"></i>Người chịu trách nhiệm xuyên suốt: <b style="color:var(--ink)">${esc(c.owner)}</b></p>`;
+  $("seg-chain").innerHTML=CHUOI.map(x=>`<button class="ctab" data-chain="${x.id}" aria-pressed="${x.id===chain}">${ic(CHI[x.id],17)}<span>${esc(x.s)}</span></button>`).join("");
+  $("flow-head").innerHTML=`<div><span class="lbl2">${esc(c.en)}</span><h2>${esc(c.n)}</h2></div><span class="ow"><i class="hdot"></i>${esc(c.owner)}</span>`;
   $("flow").innerHTML=swim(c);
-  $("flow-notes").innerHTML=c.notes.map(t=>`<li>${esc(t)}</li>`).join("");
+  $("flow-notes").innerHTML=c.notes.map(t=>`<li>${ic("circle-check",16)}<span>${esc(t)}</span></li>`).join("");
 }
+function stepHTML(i){const c=CHUOI.find(x=>x.id===chain), st=c.steps[i], n=NV_BY[st.nv];
+  return `<span class="lbl">${esc(c.n)} · bước ${i+1}/${c.steps.length}</span><h2 id="d-title">${esc(STS[c.id][i])}</h2><p class="en">${esc(LANE[st.l])}</p>
+   <div class="latx">${esc(st.t)}</div>
+   <h3>Ai làm</h3><p style="font-weight:700">${/người|Người/.test(st.w)?'<i class="hdot"></i>':""}${esc(st.w)}</p>
+   ${st.k==="chk"?`<h3>Điểm kiểm tra</h3><p>Bước này là điểm kiểm tra hoặc phê duyệt: chưa qua thì luồng không đi tiếp.</p>`:""}
+   ${st.x?`<h3>Chuyển cho người khi</h3><div class="spec">${esc(st.x)} <b>→ ${esc(ROLE[st.to])}</b></div>`:""}
+   ${st.end?`<h3>Kết thúc</h3><p>${esc(st.end)}</p>`:""}
+   ${n?`<h3>Thuộc nghiệp vụ</h3><div class="nvl"><button data-id="${n.id}"><span>${ic(NVI[n.id][0],16)} ${esc(n.n)}</span><span>›</span></button></div>`:""}`;}
 
 /* ---------- Trang 3 · Người + AI ---------- */
 function exmap(){
-  const W=1280, RX=796, RW=246, RH=30, RG=6, R0=40, roles=ROLE_ORDER, cnt=r=>NV.filter(n=>n.to===r).length;
-  const rEnd=R0+roles.length*(RH+RG)-RG, mid=(R0+rEnd)/2, H=rEnd+70;
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cơ chế phê duyệt và xử lý ngoại lệ"><defs><marker id="ea" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--ink)"/></marker></defs>`;
-  // trái: tác vụ AI theo ba mức
-  const LX=40, LWd=300, lv=[["L1","Hỗ trợ","AI tra cứu, tổng hợp, soạn; người làm"],["L2","Đề xuất → người duyệt","AI chuẩn bị trọn, người duyệt trước khi ra ngoài"],["L3","Thực hiện trong giới hạn","AI tự làm đúng luật, chặn việc vượt ngưỡng"]];
-  const LH2=56+lv.length*58, LY=mid-LH2/2;
-  s+=`<rect x="${LX}" y="${LY}" width="${LWd}" height="${LH2}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/><text x="${LX+16}" y="${LY+28}" font-size="14.5" font-weight="800" fill="var(--ink)">Tác vụ AI trong từng nghiệp vụ</text>`;
-  lv.forEach(([l,t,d],i)=>{const yy=LY+46+i*58;
-    s+=`<rect x="${LX+16}" y="${yy}" width="34" height="34" fill="var(--ink)"/><text x="${LX+33}" y="${yy+22}" text-anchor="middle" font-size="13" font-weight="800" fill="var(--inv)">${l}</text><text x="${LX+60}" y="${yy+14}" font-size="12.5" font-weight="700" fill="var(--ink)">${esc(t)}</text><text x="${LX+60}" y="${yy+30}" font-size="11" fill="var(--mute)">${esc(d)}</text>`;});
-  // giữa: phê duyệt và xử lý ngoại lệ
-  const HX=430, HW=320, fields=["Lý do chuyển cho người","Người có thẩm quyền","Thời hạn xử lý","Dữ liệu và phương án đề xuất","Kết quả quyết định và lưu vết"], HH=70+fields.length*24+14, HY=mid-HH/2;
-  s+=`<path d="M${LX+LWd+2} ${mid} H${HX-3}" stroke="var(--ink)" stroke-width="1.6" marker-end="url(#ea)"/>`+tx(["vượt ngưỡng, vượt luật,","bất thường"],(LX+LWd+HX)/2,mid-24,12,`text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--mute)"`);
-  s+=`<rect x="${HX}" y="${HY}" width="${HW}" height="52" fill="var(--ink)"/><text x="${HX+16}" y="${HY+24}" font-size="15" font-weight="800" fill="var(--inv)">Phê duyệt &amp; Xử lý ngoại lệ</text><text x="${HX+16}" y="${HY+41}" font-size="9.5" font-weight="600" letter-spacing="1.1" fill="var(--inv)" opacity=".6">APPROVALS &amp; EXCEPTION MANAGEMENT</text>
-    <rect x="${HX}" y="${HY+52}" width="${HW}" height="${HH-52}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/><text x="${HX+16}" y="${HY+72}" font-size="10" font-weight="700" letter-spacing="1.3" fill="var(--mute)">MỖI NGOẠI LỆ PHẢI CÓ</text>`;
-  fields.forEach((f,i)=>s+=`<text x="${HX+16}" y="${HY+94+i*24}" font-size="12.5" fill="var(--ink)"><tspan font-weight="800">${i+1}</tspan><tspan dx="10">${esc(f)}</tspan></text>`);
-  // phải: vai trò thẩm quyền
-  const BX=RX-16;
-  s+=`<path d="M${HX+HW+2} ${mid} H${BX-3}" stroke="var(--ink)" stroke-width="1.6" marker-end="url(#ea)"/>`+tx(["đến đúng người","có thẩm quyền"],(HX+HW+BX)/2,mid-24,12,`text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--mute)"`);
-  s+=`<path d="M${BX} ${R0+RH/2} V${rEnd-RH/2}" stroke="var(--ink)" stroke-width="1.6"/>`;
+  const W=1280, RX=800, RW=232, RH=30, RG=6, R0=34, roles=ROLE_ORDER, cnt=r=>NV.filter(n=>n.to===r).length;
+  const rEnd=R0+roles.length*(RH+RG)-RG, mid=(R0+rEnd)/2, H=rEnd+64, MUTE="#9C9794";
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cơ chế phê duyệt và xử lý ngoại lệ"><defs><marker id="ea" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8F8A87"/></marker></defs>`;
+  const LX=36, LWd=300, LH2=50+3*58, LY=mid-LH2/2, HX=430, HW=300, HH=58+5*34+12, HY=mid-HH/2, BX=RX-18;
+  s+=wire([[LX+LWd,mid],[HX,mid]],{arrow:"ea",n:2})+wlab("vượt ngưỡng · bất thường",(LX+LWd+HX)/2,mid-8);
+  s+=wire([[HX+HW,mid],[BX,mid]],{red:true,arrow:"ea",n:2})+wlab("đúng người có thẩm quyền",(HX+HW+BX)/2,mid-8);
+  s+=wire([[RX+RW/2,rEnd],[RX+RW/2,rEnd+38],[LX+LWd/2,rEnd+38],[LX+LWd/2,LY+LH2]],{dash:true,arrow:"ea",n:2})+wlab("quyết định được lưu vết, thành luật mới cho AI",(RX+RW/2+LX+LWd/2)/2,rEnd+32);
+  s+=`<rect x="${LX}" y="${LY}" width="${LWd}" height="${LH2}" fill="#1E1C1B" stroke="#3D3936"/>`+icS("bot",LX+16,LY+16,18)+`<text x="${LX+44}" y="${LY+30}" font-size="13.5" font-weight="800" fill="#EDEBEA">Tác vụ AI trong nghiệp vụ</text>`;
+  [1,2,3].forEach((l,i)=>{const yy=LY+48+i*58;
+    s+=`<g class="sn" data-lv="${l}" tabindex="0" role="button" aria-label="Mức L${l}"><rect class="sb" x="${LX+14}" y="${yy}" width="${LWd-28}" height="48" fill="#232120" stroke="#3D3936"/><rect x="${LX+24}" y="${yy+9}" width="30" height="30" fill="#2A2725" stroke="#3D3936"/>`+icS(LV[l][0],LX+30,yy+15,18)+
+      `<text x="${LX+66}" y="${yy+21}" font-size="12.5" font-weight="800" fill="#EDEBEA">L${l} · ${esc(LV[l][1])}</text><text x="${LX+66}" y="${yy+37}" font-size="10.5" fill="${MUTE}">${esc(LV[l][3])}</text></g>`;});
+  s+=`<rect x="${HX}" y="${HY}" width="${HW}" height="${HH}" fill="#1E1C1B" stroke="#EDEBEA" stroke-width="1.4"/>`+icS("workflow",HX+16,HY+16,18)+`<text x="${HX+44}" y="${HY+30}" font-size="13.5" font-weight="800" fill="#EDEBEA">Phê duyệt &amp; xử lý ngoại lệ</text>`;
+  [["message-circle","Lý do chuyển"],["user","Người có thẩm quyền"],["hourglass","Thời hạn xử lý"],["database","Dữ liệu, phương án"],["fingerprint","Kết quả, lưu vết"]].forEach(([i2,t],k)=>{const yy=HY+52+k*34;
+    s+=icS(i2,HX+18,yy,16,MUTE)+`<text x="${HX+44}" y="${yy+12.5}" font-size="12" fill="#EDEBEA">${esc(t)}</text>`;});
+  s+=`<path d="M${BX} ${R0+RH/2} V${rEnd-RH/2}" stroke="#4A4643" stroke-width="1.4"/>`;
   roles.forEach((r,i)=>{const yy=R0+i*(RH+RG), on=haiR===r;
-    s+=`<path d="M${BX} ${yy+RH/2} H${RX}" stroke="var(--ink)" stroke-width="1.2"/><g class="dg-node" tabindex="0" role="button" data-role="${r}" aria-pressed="${on}" aria-label="Lọc theo ${esc(ROLE[r])}"><rect class="bx" x="${RX}" y="${yy}" width="${RW}" height="${RH}" fill="${on?"var(--bg2)":"var(--card)"}" stroke="${on?"var(--ink)":"var(--line)"}" stroke-width="${on?2.2:1}"/><circle cx="${RX+13}" cy="${yy+RH/2}" r="4" fill="#EC3013"/><text x="${RX+24}" y="${yy+RH/2+4.5}" font-size="12" font-weight="700" fill="var(--ink)">${esc(ROLE[r])}</text><text x="${RX+RW-10}" y="${yy+RH/2+4}" text-anchor="end" font-size="10.5" fill="var(--mute)">${cnt(r)} nghiệp vụ</text></g>`;});
-  // ban điều hành: chỉ việc vượt thẩm quyền
-  const CXb=RX+RW+38, CWb=W-CXb-24, CY=mid-42, on=haiR==="ceo";
-  s+=`<path d="M${RX+RW+2} ${mid} H${CXb-3}" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ea)"/>`+
-    `<g class="dg-node" tabindex="0" role="button" data-role="ceo" aria-pressed="${on}" aria-label="Lọc theo Ban điều hành"><rect class="bx" x="${CXb}" y="${CY}" width="${CWb}" height="84" fill="#EC3013" stroke="${on?"var(--ink)":"#EC3013"}" stroke-width="${on?3:1}"/>`+
-    tx(["Ban điều hành"],CXb+14,CY+28,16,`font-size="13.5" font-weight="800" fill="#fff"`)+tx(["chỉ nhận việc vượt","thẩm quyền"],CXb+14,CY+50,13,`font-size="10.5" font-weight="600" fill="#fff"`)+`</g>`+
-    tx([`${cnt("ceo")} nghiệp vụ`,"chuyển thẳng"],CXb,CY+104,12,`font-size="10.5" fill="var(--mute)"`);
-  // vòng lưu vết: quyết định thành luật mới
-  const yb=rEnd+40;
-  s+=`<path d="M${RX+RW/2} ${rEnd+2} V${yb} H${LX+LWd/2} V${LY+LH2+3}" fill="none" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#ea)"/><text x="${(RX+RW/2+LX+LWd/2)/2}" y="${yb-7}" text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--mute)">quyết định được lưu vết và thành luật mới cho AI</text>`;
+    s+=`<path d="M${BX} ${yy+RH/2} H${RX}" stroke="#4A4643" stroke-width="1.2"/><g class="sn" tabindex="0" role="button" data-role="${r}" aria-pressed="${on}" aria-label="Lọc theo ${esc(ROLE[r])}"><rect class="sb" x="${RX}" y="${yy}" width="${RW}" height="${RH}" fill="${on?"#3D3936":"#1E1C1B"}" stroke="${on?"#EDEBEA":"#3D3936"}"/><circle cx="${RX+13}" cy="${yy+RH/2}" r="4" fill="#EC3013"/><text x="${RX+25}" y="${yy+RH/2+4.5}" font-size="12" font-weight="700" fill="#EDEBEA">${esc(ROLE_S[r])}</text><text x="${RX+RW-10}" y="${yy+RH/2+4}" text-anchor="end" font-size="10.5" fill="${MUTE}">${cnt(r)}</text></g>`;});
+  const CXb=RX+RW+44, CWb=W-CXb-28, CY=mid-40, on=haiR==="ceo";
+  s+=wire([[RX+RW,mid],[CXb,mid]],{red:true,dash:true,arrow:"ea",n:1});
+  s+=`<g class="sn" tabindex="0" role="button" data-role="ceo" aria-pressed="${on}" aria-label="Lọc theo Ban điều hành"><rect class="sb" x="${CXb}" y="${CY}" width="${CWb}" height="80" fill="#EC3013" stroke="${on?"#EDEBEA":"#EC3013"}" stroke-width="2"/>`+icS("crown",CXb+14,CY+14,18,"#fff")+
+    `<text x="${CXb+40}" y="${CY+28}" font-size="13.5" font-weight="800" fill="#fff">Ban điều hành</text><text x="${CXb+14}" y="${CY+52}" font-size="10.5" font-weight="600" fill="#fff">Chỉ việc vượt thẩm quyền</text><text x="${CXb+14}" y="${CY+67}" font-size="10.5" fill="#fff" opacity=".85">${cnt("ceo")} nghiệp vụ chuyển thẳng</text></g>`;
   return s+"</svg>";
 }
 function haiTable(){
   $("seg-khoi").innerHTML=`<button data-v="all" aria-pressed="${haiK==="all"}">Tất cả</button>`+KHOI.map(K=>`<button data-v="${K.id}" aria-pressed="${haiK===K.id}">${esc(K.s)}</button>`).join("");
-  $("hai-filter").innerHTML=haiR?`<span class="fchip">Đang lọc theo vai: <b>${esc(ROLE[haiR])}</b> <button class="btn ghost sm" data-role-clear>Bỏ lọc</button></span>`:"";
-  const rows=[];
+  $("hai-filter").innerHTML=haiR?`<span class="fchip"><i class="hdot"></i>${esc(ROLE[haiR])} <button class="btn ghost sm" data-role-clear>Bỏ lọc</button></span>`:"";
+  const out=[];
   KHOI.forEach(K=>{if(haiK!=="all"&&K.id!==haiK) return;
     const list=nvOf(K.id).filter(n=>!haiR||n.o===haiR||n.to===haiR); if(!list.length) return;
-    rows.push(`<tr class="grp"><td colspan="5">${esc(K.n)}</td></tr>`);
-    list.forEach(n=>rows.push(`<tr class="row" tabindex="0" data-id="${n.id}"><td><b>${esc(n.n)}</b>${n.opt?' <span class="pill no">nếu có</span>':""}<div class="note">${esc(n.en)}</div></td><td><i class="hdot"></i>${esc(ROLE[n.o])}</td>
-      <td><div class="tasks">${n.ai.map(([t,l])=>`<div><span class="lvp${l>=3?" on":""}">L${l}</span><span>${esc(t)}</span></div>`).join("")}</div></td>
-      <td>${esc(n.x)} <b class="to">→ ${esc(ROLE[n.to])}</b></td><td class="note">${esc(n.sys)}</td></tr>`));});
-  $("hai-tbl").innerHTML=rows.join("")||`<tr><td colspan="5" class="empty">Không có nghiệp vụ nào khớp bộ lọc.</td></tr>`;
+    out.push(`<div class="ngh">${ic(KHI[K.id],16)}<span>${esc(K.n)}</span></div><div class="ngrid">${list.map(n=>`<button class="nt" data-id="${n.id}" title="${esc(n.n)}">
+      <span class="tic">${ic(NVI[n.id][0])}</span><span class="nb"><b>${esc(NVI[n.id][1])}</b><span class="lvs">${n.ai.map(t=>`<span class="lvp${t[1]>=3?" on":""}">L${t[1]}</span>`).join("")}</span></span>
+      <span class="nr"><i class="hdot"></i>${esc(ROLE_S[n.o])}${n.to!==n.o?` <span class="to">→ ${esc(ROLE_S[n.to])}</span>`:""}</span></button>`).join("")}</div>`);});
+  $("hai-tbl").innerHTML=out.join("")||`<div class="empty">Không có nghiệp vụ nào khớp bộ lọc.</div>`;
   $("exmap").innerHTML=exmap();
 }
 function hai(){
   const T=NV.flatMap(n=>n.ai.map(t=>t[1])), c=l=>T.filter(x=>x===l).length;
-  $("hai-stat").innerHTML=`<div><div class="v">${c(3)}/${T.length}</div><p class="t">tác vụ AI tự thực hiện trong giới hạn (L3)</p></div>
-    <div><div class="v">${c(2)}</div><p class="t">tác vụ AI chuẩn bị trọn, người duyệt trước khi ra ngoài (L2)</p></div>
-    <div><div class="v">${c(1)+c(0)}</div><p class="t">tác vụ AI chỉ hỗ trợ, người làm (L0–L1)</p></div>
-    <div><div class="v red">${NV.length}</div><p class="t">nghiệp vụ, mỗi nghiệp vụ một người chịu trách nhiệm</p></div>`;
+  $("lvrow").innerHTML=LV.map((v,l)=>`<button class="lvt${l>=1&&l<=3?" main":""}" data-lv="${l}"><span class="tic">${ic(v[0],22)}</span><span class="lv">L${l}</span><b>${esc(v[1])}</b><span class="ct">${c(l)} tác vụ</span></button>`).join("");
+  $("hai-stat").innerHTML=[["zap",`${c(3)}/${T.length}`,"tác vụ AI tự làm trong giới hạn"],["file-pen",c(2),"tác vụ AI chuẩn bị, người duyệt"],["lightbulb",c(1)+c(0),"tác vụ AI chỉ hỗ trợ"],["user",NV.length,"nghiệp vụ, mỗi cái một người chịu trách nhiệm"]]
+    .map(([i,v,t],k)=>`<div class="stt"><span class="tic">${ic(i,22)}</span><div><div class="v${k===3?" red":""}">${v}</div><p>${esc(t)}</p></div></div>`).join("");
   haiTable();
 }
+function levelHTML(l){const v=LV[l], rows=[]; NV.forEach(n=>n.ai.forEach(([t,x])=>{if(x===l) rows.push([n,t]);}));
+  return `<span class="lbl">Mức AI đảm nhận việc</span><h2 id="d-title">L${l} · ${esc(v[1])}</h2><p class="en">${esc(v[3])}</p><div class="latx">${esc(v[2])}</div>
+   <h3>${rows.length} tác vụ đang đặt ở mức này</h3>
+   ${rows.length?`<div class="nvl">${rows.map(([n,t])=>`<button data-id="${n.id}"><span>${ic(NVI[n.id][0],16)} ${esc(t)}<span class="note" style="display:block;margin-left:22px">${esc(n.n)}</span></span><span>›</span></button>`).join("")}</div>`:`<p class="note">Thương mại phân phối chưa giao tác vụ nào ở mức này.</p>`}
+   <p class="note" style="margin-top:12px">Một tác vụ lên mức khi số liệu ổn định 4–8 tuần và người chịu trách nhiệm duyệt.</p>`;}
 
 /* ---------- ngăn kéo chi tiết ---------- */
 function blockHTML(k){
   const K=KH(k), open=D?D.ex.filter(e=>(NV_BY[e.act]||{}).k===k):[];
-  const nvl=k==="ht"?NHOM_HT.map(g=>`<div class="g">${esc(g.n)} · <i class="hdot"></i>${esc(ROLE[g.id])}</div>`+NV.filter(n=>n.g===g.id).map(n=>`<button data-id="${n.id}"><span>${esc(n.n)}</span><span>›</span></button>`).join("")).join("")
-    :nvOf(k).map(n=>`<button data-id="${n.id}"><span>${esc(n.n)}${n.opt?' <span class="pill no">nếu có</span>':""}</span><span>›</span></button>`).join("");
-  return `<span class="lbl">${esc(K.tier)} · Thương mại phân phối</span><h2 id="d-title">${esc(K.n)}</h2><p class="en">${esc(K.en)}</p>
+  const btn=n=>`<button data-id="${n.id}"><span>${ic(NVI[n.id][0],16)} ${esc(n.n)}${n.opt?' <span class="pill no">nếu có</span>':""}</span><span>›</span></button>`;
+  const nvl=k==="ht"?NHOM_HT.map(g=>`<div class="g">${esc(g.n)} · <i class="hdot"></i>${esc(ROLE[g.id])}</div>`+NV.filter(n=>n.g===g.id).map(btn).join("")).join(""):nvOf(k).map(btn).join("");
+  return `<div class="dhd"><span class="dic">${ic(KHI[k],26)}</span><div><span class="lbl">${KNO[k]} · ${esc(K.tier)}</span><h2 id="d-title">${esc(K.n)}</h2><p class="en">${esc(K.en)}</p></div></div>
    <div class="latx"><b>Mục tiêu.</b> ${esc(K.goal)}</div>
    ${open.length?`<div class="spec"><b>${open.length} ngoại lệ đang mở:</b> ${esc(open.map(e=>e.tx).join(" / "))}</div>`:""}
    <h3>Các nghiệp vụ</h3><div class="nvl">${nvl}</div>
@@ -1895,7 +1993,7 @@ function blockHTML(k){
 }
 function nvHTML(n){
   const K=KH(n.k), open=D?D.ex.filter(e=>e.act===n.id):[], g=n.g?NHOM_HT.find(x=>x.id===n.g):null;
-  return `<span class="lbl">${esc(K.n)}${g?" · "+esc(g.n):""}</span><h2 id="d-title">${esc(n.n)}</h2><p class="en">${esc(n.en)}${n.opt?" · chỉ khi danh mục có":""}</p>
+  return `<div class="dhd"><span class="dic">${ic(NVI[n.id][0],26)}</span><div><span class="lbl">${esc(K.n)}${g?" · "+esc(g.n):""}</span><h2 id="d-title">${esc(n.n)}</h2><p class="en">${esc(n.en)}${n.opt?" · chỉ khi danh mục có":""}</p></div></div>
    ${open.length?`<div class="spec"><b>${open.length} ngoại lệ đang chờ:</b> ${esc(open.map(e=>e.tx).join(" / "))}</div>`:""}
    <h3>Người chịu trách nhiệm</h3><p style="font-weight:700"><i class="hdot"></i>${esc(ROLE[n.o])}</p>
    <h3>AI làm gì, ở mức nào</h3><div class="ladder">${n.ai.map(([t,l])=>`<div class="rung${l>=3?" start":""}"><span class="rn">L${l}</span><span><span class="rk">${LEVEL_NAMES[l]}</span>${esc(t)}</span></div>`).join("")}</div>
@@ -1906,7 +2004,7 @@ function nvHTML(n){
    <p style="margin-top:18px"><button class="btn ghost sm" data-khoi="${n.k}">Xem cả khối ${esc(K.n)} →</button></p>`;
 }
 function platHTML(i){const p=PF[i];
-  return `<span class="lbl">Nền tảng xuyên suốt</span><h2 id="d-title">${esc(p.n)}</h2><p class="en">${esc(p.en)}</p><div class="latx">${esc(p.text)}</div>
+  return `<div class="dhd"><span class="dic">${ic(PFI[i][0],26)}</span><div><span class="lbl">Nền tảng xuyên suốt</span><h2 id="d-title">${esc(p.n)}</h2><p class="en">${esc(p.en)}</p></div></div><div class="latx">${esc(p.text)}</div>
    <h3>Nguồn chuẩn theo từng loại dữ liệu</h3><div class="tbl" style="border:0"><table style="min-width:0"><thead><tr><th>Dữ liệu</th><th>Nơi quản lý chính thức</th></tr></thead><tbody>${NGUON.map(([a,b])=>`<tr><td>${esc(a)}</td><td>${esc(b)}</td></tr>`).join("")}</tbody></table></div>
    <h3>Nguyên tắc</h3><p>Doanh nghiệp được dùng nhiều hệ thống, nhưng mỗi dữ liệu quan trọng có một nơi quản lý chính thức. AI lấy dữ liệu từ nguồn được chỉ định và ghi kết quả trở lại đúng hệ thống nghiệp vụ. AI không phải một phòng ban có quyền chỉ huy: nó làm việc trong từng khối, qua một lớp điều phối chung.</p>`;}
 
@@ -2335,6 +2433,7 @@ function renderAll(){
 function selectTab(id){
   document.querySelectorAll(".tabs button").forEach(x=>{const on=x.id===id;x.setAttribute("aria-selected",on);$(x.getAttribute("aria-controls")).hidden=!on;});
   if(id==="t-dash") renderDash();
+  if(id==="t-arch") requestAnimationFrame(archWires);
 }
 function setTabs(){
   const set=isPP()?["t-arch","t-flow","t-hai","t-dash"]:["t-map","t-act","t-dash"];
@@ -2362,7 +2461,6 @@ seg("seg-model",v=>{model=v;renderAll();});
   });
 })();
 seg("seg-level",v=>{level=+v;activities();});
-seg("seg-chain",v=>{chain=v;flows();});
 seg("seg-khoi",v=>{haiK=v;haiTable();});
 $("pause").addEventListener("click",()=>{paused=!paused;$("pause").textContent=paused?"Tiếp tục":"Tạm dừng";$("live").classList.toggle("paused",paused);$("live-t").textContent=paused?"Đã tạm dừng":"Trực tiếp · dữ liệu mô phỏng";startTimer();});
 function setEditing(on){editing=on;$("edit").setAttribute("aria-pressed",on);$("edit").textContent=on?"Đang sắp xếp":"Sắp xếp ô";$("editbar").hidden=!on;buildGrid();}
@@ -2397,7 +2495,9 @@ document.addEventListener("click",e=>{
   const di=t.closest("#drawer [data-id]"); if(di&&NV_BY[di.dataset.id]){openDrawer(nvHTML(NV_BY[di.dataset.id]), $("drawer").classList.contains("left")?"left":"right"); return;}
   if(t.closest("#drawer")) return;
   const pf=t.closest("[data-pf]"); if(pf){openDrawer(platHTML(+pf.dataset.pf), sideOf(pf)); return;}
-  const ch=t.closest("[data-chain]"); if(ch){chain=ch.dataset.chain; flows(); selectTab("t-flow"); window.scrollTo({top:0}); return;}
+  const ch=t.closest("[data-chain]"); if(ch){chain=ch.dataset.chain; flows(); if($("p-flow").hidden){selectTab("t-flow"); window.scrollTo({top:0});} return;}
+  const sp=t.closest("[data-step]"); if(sp){openDrawer(stepHTML(+sp.dataset.step), sideOf(sp)); return;}
+  const lvb=t.closest("[data-lv]"); if(lvb){openDrawer(levelHTML(+lvb.dataset.lv), sideOf(lvb)); return;}
   if(t.closest("[data-role-clear]")){haiR=null; haiTable(); return;}
   const rl=t.closest("[data-role]"); if(rl){haiR=haiR===rl.dataset.role?null:rl.dataset.role; haiTable(); return;}
   // open details
@@ -2413,7 +2513,7 @@ document.addEventListener("change",e=>{
 });
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"&&!$("drawer").hidden){closeDrawer();return;}
-  if((e.key==="Enter"||e.key===" ")&&e.target.matches('[role="button"][data-id],[role="button"][data-layer],[role="button"][data-khoi],[role="button"][data-pf],[role="button"][data-role],tr.row')){e.preventDefault();e.target.click();}
+  if((e.key==="Enter"||e.key===" ")&&e.target.matches('[role="button"][data-id],[role="button"][data-layer],[role="button"][data-khoi],[role="button"][data-pf],[role="button"][data-role],[role="button"][data-step],[role="button"][data-lv],tr.row')){e.preventDefault();e.target.click();}
 });
 $("d-close").addEventListener("click",closeDrawer);
 $("scrim").addEventListener("click",closeDrawer);

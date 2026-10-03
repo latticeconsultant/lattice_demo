@@ -589,6 +589,50 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .cvsw button[aria-pressed="true"]{background:var(--ink);color:var(--inv)}
 .sh .cvsw{margin-left:auto}
 .sh .note+.cvsw{margin-left:12px}
+/* thẻ trọng tâm, loại việc, trang cấu hình ngành */
+.ck.core{border:2px solid var(--ct)}
+.ck.core .ck-h{background:var(--ct);color:var(--c0)}
+.ck.core .ck-h .no{background:var(--c0);color:var(--ct)}
+.ck.core .ck-h .ki{background:var(--c0);border-color:var(--c0);color:var(--ct)}
+.ck-h .tag{font-size:9.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid currentColor;padding:2px 6px;white-space:nowrap}
+.lo{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;border:1px solid var(--line);padding:0 5px;color:var(--mute)}
+.lo.lo-cm{border-color:var(--ink);color:var(--ink)}
+.lotag{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;margin-top:8px;color:var(--ink)}
+.tis.big{grid-template-columns:repeat(auto-fit,minmax(86px,1fr))}
+.chains{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.calls{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+#nganh{padding:18px 22px 20px}
+.nghd{display:flex;align-items:center;gap:14px;margin:18px 0 12px}
+.nghd h2{font-size:26px;font-weight:800;color:var(--ct)}
+.nic{width:58px;height:58px;display:grid;place-items:center;background:var(--ct);color:var(--c0);flex:none}
+.nmode{display:inline-flex;flex-wrap:wrap;border:1.5px solid var(--ct)}
+.nmode button{background:transparent;border:0;color:var(--ct);padding:7px 12px;font-size:13px;font-weight:700}
+.nmode button+button{border-left:1.5px solid var(--ct)}
+.nmode button[aria-pressed="true"]{background:var(--ct);color:var(--c0)}
+.nnote,.nwarn{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ct2);background:var(--c1);border:1.5px solid var(--cl);padding:10px 12px;margin-top:10px;max-width:90ch}
+.nnote svg,.nwarn svg{flex:none;margin-top:2px}
+.nwarn{border-color:var(--cr);margin-top:18px}
+.nwarn svg{color:var(--cr)}
+.nunit{display:flex;gap:10px;align-items:center;margin-top:14px;font-size:14px;color:var(--ct)}
+.nunit b{display:block;font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--cm)}
+.nterms{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.nt2{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:center;background:var(--c1);border:1.5px solid var(--cl);padding:10px}
+.nt2 .tic{grid-row:1/3;width:44px;height:44px;display:grid;place-items:center;background:var(--ctile);border:1.5px solid var(--ctb);color:var(--ct)}
+.nt2 b{font-size:13.5px;color:var(--ct)}
+.nt2 span:last-child{font-size:11px;color:var(--cm)}
+.nflow{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.nf{display:inline-flex;align-items:center;gap:7px;background:var(--c1);border:1.5px solid var(--cl);padding:7px 10px;font-size:13px;font-weight:700;color:var(--ct)}
+.nf b{font-size:10.5px;color:var(--c0);background:var(--ct);padding:1px 5px}
+.na{color:var(--cw);display:inline-flex}
+.nduo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.nside{display:flex;gap:12px;background:var(--c1);border:1.5px solid var(--cl);padding:12px 14px;color:var(--ct)}
+.nside .tic{width:42px;height:42px;flex:none;display:grid;place-items:center;background:var(--ctile);border:1.5px solid var(--ctb)}
+.nside.hu .tic{background:#EC3013;border-color:#EC3013;color:#fff}
+.nside b{font-size:14px}
+.nside p{font-size:13px;color:var(--ct2);margin-top:3px}
+.nkpi{display:flex;flex-wrap:wrap;gap:6px}
+.nkpi span{border:1.5px solid var(--ct);color:var(--ct);padding:4px 10px;font-size:12.5px;font-weight:700}
+@container page (max-width:760px){.nduo{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -612,6 +656,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
     <button role="tab" aria-selected="true" aria-controls="p-arch" id="t-arch">Kiến trúc</button>
     <button role="tab" aria-selected="false" aria-controls="p-flow" id="t-flow">Luồng vận hành</button>
     <button role="tab" aria-selected="false" aria-controls="p-hai" id="t-hai">Người + AI</button>
+    <button role="tab" aria-selected="false" aria-controls="p-nganh" id="t-nganh" hidden>Cấu hình ngành</button>
     <button role="tab" aria-selected="false" aria-controls="p-map" id="t-map" hidden>Sơ đồ</button>
     <button role="tab" aria-selected="false" aria-controls="p-act" id="t-act" hidden>Hoạt động</button>
     <button role="tab" aria-selected="false" aria-controls="p-dash" id="t-dash">Dashboard CEO</button>
@@ -690,11 +735,11 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 <section id="p-arch" role="tabpanel" aria-labelledby="t-arch">
   <div class="phead">
     <h1>Tám khối nghiệp vụ, một nền tảng chung</h1>
-    <p class="oneline">Con người sở hữu mục tiêu và trách nhiệm. AI thực hiện tác vụ trong phạm vi được giao. Dữ liệu và quy trình kết nối toàn bộ hoạt động.</p>
+    <p class="oneline" id="arch-line"></p>
   </div>
   <div class="sh"><h2>Kiến trúc nghiệp vụ</h2><span class="note">Bấm tên khối hoặc từng icon để xem chi tiết.</span><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true">◐ Nền tối</button><button data-cvm="light" aria-pressed="false">○ Nền sáng</button></div></div>
   <div class="cv" id="arch"></div>
-  <div class="sh"><h2>Năm chuỗi nghiệp vụ</h2><span class="note">Bấm một chuỗi để xem công việc đi qua các khối.</span></div>
+  <div class="sh"><h2>Các chuỗi nghiệp vụ</h2><span class="note">Bấm một chuỗi để xem công việc đi qua các khối.</span></div>
   <div class="chains" id="chains"></div>
 </section>
 
@@ -704,7 +749,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
     <h1>Công việc đi từ đâu đến đâu</h1>
     <p class="lead">Mỗi làn là một khối, mỗi ô là một bước. Bấm vào ô để xem ai làm, khi nào chuyển cho người.</p>
   </div>
-  <div class="sh"><h2>Năm chuỗi theo làn trách nhiệm</h2><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true">◐ Nền tối</button><button data-cvm="light" aria-pressed="false">○ Nền sáng</button></div></div>
+  <div class="sh"><h2>Chuỗi nghiệp vụ theo làn trách nhiệm</h2><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true">◐ Nền tối</button><button data-cvm="light" aria-pressed="false">○ Nền sáng</button></div></div>
   <div class="cv flowcv">
     <div class="ctabs" id="seg-chain" role="group" aria-label="Chuỗi nghiệp vụ"></div>
     <div class="fhead" id="flow-head"></div>
@@ -725,7 +770,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
     <div class="tr"><span class="tic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/> <rect width="16" height="12" x="4" y="8" rx="2"/> <path d="M2 14h2"/> <path d="M20 14h2"/> <path d="M15 13v2"/> <path d="M9 13v2"/></svg></span><b>AI hỗ trợ nghiệp vụ</b><span>trong phạm vi và mức được giao</span></div><span class="op">+</span>
     <div class="tr"><span class="tic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/> <path d="m9 12 2 2 4-4"/></svg></span><b>Quy trình có kiểm soát</b><span>luật, ngưỡng, phê duyệt, lưu vết</span></div>
   </div>
-  <div class="sh"><h2>Sáu mức AI</h2><span class="note">Phân phối dùng chủ yếu L1–L3. Bấm từng mức để xem tác vụ.</span></div>
+  <div class="sh"><h2>Sáu mức AI</h2><span class="note">Dùng chủ yếu L1–L3. Bấm từng mức để xem tác vụ.</span></div>
   <div class="lvrow2" id="lvrow"></div>
   <div class="sh"><h2>Ngoại lệ đến đúng người</h2><span class="note">Bấm một vai để lọc nghiệp vụ bên dưới.</span><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true">◐ Nền tối</button><button data-cvm="light" aria-pressed="false">○ Nền sáng</button></div></div>
   <div class="cv" style="padding:12px"><div class="fsvg" id="exmap"></div></div>
@@ -735,11 +780,17 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
     <span class="lbl">Khối</span><div class="seg" id="seg-khoi" role="group" aria-label="Lọc theo khối"></div><span id="hai-filter"></span>
   </div>
   <div id="hai-tbl"></div>
-  <div class="calls">
-    <div class="call"><span class="tic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" x2="6" y1="3" y2="15"/> <circle cx="18" cy="6" r="3"/> <circle cx="6" cy="18" r="3"/> <path d="M18 9a9 9 0 0 1-9 9"/></svg></span><div><b>Tách ba việc: tạo, duyệt, thực hiện</b><p>AI đối chiếu và lập đề nghị thanh toán (L2), Tài chính duyệt, lệnh chi chạy qua ngân hàng theo phân quyền.</p></div></div>
-    <div class="call"><span class="tic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/> <circle cx="9" cy="7" r="4"/> <path d="M22 21v-2a4 4 0 0 0-3-3.87"/> <path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div><b>Doanh nghiệp nhỏ: một người, nhiều vai</b><p>Mười hai vai là vai thẩm quyền, không phải mười hai người. Ngoại lệ vẫn đi theo vai, sau này giao vai cho người mới không phải dựng lại luồng.</p></div></div>
-    <div class="call"><span class="tic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/> <rect width="16" height="12" x="4" y="8" rx="2"/> <path d="M2 14h2"/> <path d="M20 14h2"/> <path d="M15 13v2"/> <path d="M9 13v2"/></svg></span><div><b>Vai "Trưởng" có thể là người hoặc AI</b><p>Hoạch định, Marketing, Vận hành, Dịch vụ khách hàng, Hành chính giao được cho AI. AI giữ vai thì chỉ quyết trong luật của vai; việc vượt quyền vai lên Ban điều hành. Ngành hàng, Mua hàng, Kinh doanh, Tài chính, Nhân sự, Pháp chế luôn là người.</p></div></div>
+  <div class="calls" id="hai-calls"></div>
+</section>
+
+<!-- ================= DỊCH VỤ · CẤU HÌNH NGÀNH ================= -->
+<section id="p-nganh" role="tabpanel" aria-labelledby="t-nganh" hidden>
+  <div class="phead">
+    <h1>Một khung, ba cách cấu hình</h1>
+    <p class="lead">Tám khối giữ nguyên. Mỗi ngành đổi đơn vị quản trị, thuật ngữ, luồng và thước đo.</p>
   </div>
+  <div class="sh"><h2>Cấu hình theo ngành</h2><span class="note">Chọn ngành; Sức khỏe và Du lịch còn chọn được phạm vi.</span><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true">◐ Nền tối</button><button data-cvm="light" aria-pressed="false">○ Nền sáng</button></div></div>
+  <div class="cv" id="nganh"></div>
 </section>
 
 <!-- ================= DASHBOARD ================= -->
@@ -1435,11 +1486,13 @@ function layerHTML(i){const L=LAYERS[i];
 /* =================== THƯƠNG MẠI PHÂN PHỐI: KIẾN TRÚC 8 KHỐI ===================
    Nguồn: Kien-truc-doanh-nghiep-phan-phoi-Nguoi-AI.md (03/10/2026). Tab Thương mại
    dùng bộ dữ liệu này thay cho mảng A; Dịch vụ và Sản xuất vẫn chạy trên A. */
-const isPP=()=>model==="tmhh";
-const ROLE={ceo:"Ban điều hành",nh:"Trưởng ngành hàng",mh:"Trưởng mua hàng",hd:"Trưởng hoạch định",mk:"Trưởng marketing",kd:"Trưởng kinh doanh",vh:"Trưởng vận hành",dv:"Trưởng dịch vụ khách hàng",tc:"Tài chính – Kế toán trưởng",ns:"Phụ trách nhân sự",pc:"Phụ trách pháp chế",hc:"Phụ trách hành chính"};
-const ROLE_ORDER=["nh","mh","hd","mk","kd","vh","dv","tc","ns","pc","hc"];
+/* Mỗi loại hình có một bộ dữ liệu riêng (DS); useDS() nạp bộ đang chọn vào các biến chung. */
+const DS={};
+const isPP=()=>!!DS[model];
+const TM_ROLE={ceo:"Ban điều hành",nh:"Trưởng ngành hàng",mh:"Trưởng mua hàng",hd:"Trưởng hoạch định",mk:"Trưởng marketing",kd:"Trưởng kinh doanh",vh:"Trưởng vận hành",dv:"Trưởng dịch vụ khách hàng",tc:"Tài chính – Kế toán trưởng",ns:"Phụ trách nhân sự",pc:"Phụ trách pháp chế",hc:"Phụ trách hành chính"};
+const TM_ROLE_ORDER=["nh","mh","hd","mk","kd","vh","dv","tc","ns","pc","hc"];
 
-const KHOI=[
+const TM_KHOI=[
  {id:"cl",tier:"Tầng 1 · Điều hành & Quản trị",n:"Chiến lược & Điều hành",en:"Strategy & Business Management",o:"ceo",s:"Điều hành",
   goal:"Chọn thị trường, ngành hàng, cách tăng trưởng và cách dùng nguồn lực.",
   nguoi:"Đặt mục tiêu, chọn ưu tiên, phê duyệt chính sách và chịu trách nhiệm kết quả.",
@@ -1505,12 +1558,12 @@ const KHOI=[
   out:["Sổ sách và báo cáo tài chính","Lương thưởng, hồ sơ nhân sự","Hợp đồng, giấy phép còn hiệu lực"],
   exc:[["Duyệt chi ngoài hạn mức","tc"],["Mọi quyết định về con người","ns"],["Cam kết pháp lý ngoài mẫu","pc"]]}
 ];
-const NHOM_HT=[{id:"tc",n:"Tài chính & Kế toán",en:"Finance & Accounting"},{id:"ns",n:"Nhân sự & Phát triển năng lực",en:"People & Capability"},{id:"pc",n:"Pháp chế & Tuân thủ",en:"Legal & Compliance"},{id:"hc",n:"Hành chính & Quản trị tài sản",en:"Administration & Assets"}];
+const TM_NHOM_HT=[{id:"tc",n:"Tài chính & Kế toán",en:"Finance & Accounting"},{id:"ns",n:"Nhân sự & Phát triển năng lực",en:"People & Capability"},{id:"pc",n:"Pháp chế & Tuân thủ",en:"Legal & Compliance"},{id:"hc",n:"Hành chính & Quản trị tài sản",en:"Administration & Assets"}];
 
 /* Mỗi nghiệp vụ: o người chịu trách nhiệm · ai [tác vụ, mức L] · x khi nào chuyển
    cho người · to vai trò nhận ngoại lệ · sys hệ thống ghi nhận · keep quyền người giữ.
    s là nhãn ngắn trên sơ đồ khi tên đầy đủ quá dài. */
-const NV=[
+const TM_NV=[
  // 1 · Chiến lược & Điều hành
  {id:"cl_strat",k:"cl",n:"Chiến lược thị trường & Mô hình kinh doanh",en:"Market Strategy & Business Model",o:"ceo",
   ai:[["Tổng hợp tin thị trường, đối thủ, xu hướng ngành hàng",1],["Mô phỏng kịch bản tăng trưởng, so sánh phương án",1]],
@@ -1682,24 +1735,23 @@ const NV=[
   ai:[["Đặt mua vật tư văn phòng theo định mức",3],["So sánh báo giá dịch vụ",2]],
   x:"Mua ngoài định mức",to:"hc",sys:"Phần mềm kế toán",keep:"Hợp đồng dịch vụ"}
 ];
-const NV_BY={};
-NV.forEach(n=>{n.name=n.n; n.block=n.k; n.rec={tmhh:Math.max(...n.ai.map(t=>t[1]))}; NV_BY[n.id]=n;});
+let NV_BY={};
 const KH=id=>KHOI.find(k=>k.id===id);
 const nvOf=k=>NV.filter(n=>n.k===k);
 
-const PF=[
+const TM_PF=[
  {n:"Dữ liệu chủ",en:"Master Data",text:"Mã hàng, khách hàng, nhà cung cấp, kho, kênh bán, bảng giá và điều kiện thương mại. Mỗi loại dữ liệu có một nơi quản lý chính thức."},
  {n:"Hệ thống nghiệp vụ",en:"Business Applications",text:"ERP, CRM, quản lý đơn hàng, quản lý kho, kế toán và các kênh bán. Dùng nhiều hệ thống cũng được, miễn mỗi dữ liệu biết nguồn chuẩn của nó."},
  {n:"Tri thức & Quy trình",en:"Knowledge & Process Repository",text:"Quy trình chuẩn, chính sách, hợp đồng mẫu, tài liệu sản phẩm và hướng dẫn xử lý. AI chỉ trả lời và làm việc từ nguồn đã duyệt ở đây."},
  {n:"Điều phối tác vụ người–AI",en:"Human–AI Workflow Orchestration",text:"Giao việc, chuyển bước, kiểm tra điều kiện, xin phê duyệt và chuyển ngoại lệ tới đúng người có thẩm quyền."},
  {n:"Quyền truy cập, Kiểm soát & Lưu vết",en:"Access Control, Controls & Audit Trail",text:"Ai được đọc, đề xuất, sửa, duyệt, thực hiện. Mọi hành động quan trọng của người và của AI đều được ghi lại để kiểm tra."}
 ];
-const NGUON=[["Tồn kho thực tế","Hệ thống kho"],["Công nợ, sổ sách","Phần mềm kế toán"],["Quan hệ khách hàng","CRM"],["Đơn hàng","Hệ thống quản lý đơn hàng"],["Mã hàng, thông tin sản phẩm","Hệ thống quản lý sản phẩm"],["Bảng giá, điều kiện thương mại","Bảng giá gốc trong ERP"],["Nhà cung cấp","Danh mục nhà cung cấp"]];
+const TM_NGUON=[["Tồn kho thực tế","Hệ thống kho"],["Công nợ, sổ sách","Phần mềm kế toán"],["Quan hệ khách hàng","CRM"],["Đơn hàng","Hệ thống quản lý đơn hàng"],["Mã hàng, thông tin sản phẩm","Hệ thống quản lý sản phẩm"],["Bảng giá, điều kiện thương mại","Bảng giá gốc trong ERP"],["Nhà cung cấp","Danh mục nhà cung cấp"]];
 
-const LANE={cl:"Chiến lược & Điều hành",nh:"Ngành hàng & Nguồn cung",hd:"Hoạch định Cung–Cầu",mk:"Marketing & Tăng trưởng",kd:"Kinh doanh & Kênh",kv:"Đơn hàng, Kho vận",dv:"Dịch vụ khách hàng",tc:"Tài chính & Kế toán"};
+const TM_LANE={cl:"Chiến lược & Điều hành",nh:"Ngành hàng & Nguồn cung",hd:"Hoạch định Cung–Cầu",mk:"Marketing & Tăng trưởng",kd:"Kinh doanh & Kênh",kv:"Đơn hàng, Kho vận",dv:"Dịch vụ khách hàng",tc:"Tài chính & Kế toán"};
 /* Bước: l làn · t việc · w ai làm · k "chk" là điểm kiểm tra/phê duyệt · x ngoại lệ
    → to vai trò · end nhãn kết thúc · fb vòng phản hồi (đánh số từ 1). */
-const CHUOI=[
+const TM_CHUOI=[
  {id:"pta",s:"Kế hoạch → Hàng sẵn sàng",n:"Từ kế hoạch đến hàng sẵn sàng bán",en:"Plan-to-Availability",owner:"Trưởng hoạch định",
   flow:"Dự báo → cân đối cung–cầu → kế hoạch mua → phân bổ → hàng sẵn sàng bán.",
   lanes:["kd","hd","tc","nh","kv"],
@@ -1774,9 +1826,9 @@ function tx(lines,x,y,lh,a){return `<text x="${x}" y="${y}" ${a}>${lines.map((l,
 const sideOf=el=>{const r=el.getBoundingClientRect();return r.left+r.width/2>innerWidth/2?"left":"right";};
 
 /* Icon: Lucide v0.460 (ISC License, lucide.dev) — chỉ các icon trang dùng. */
-const ICO={"activity":"<path d=\"M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2\"/>","app-window":"<rect x=\"2\" y=\"4\" width=\"20\" height=\"16\" rx=\"2\"/> <path d=\"M10 4v4\"/> <path d=\"M2 8h20\"/> <path d=\"M6 4v4\"/>","arrow-right":"<path d=\"M5 12h14\"/> <path d=\"m12 5 7 7-7 7\"/>","badge-dollar-sign":"<path d=\"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z\"/> <path d=\"M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8\"/> <path d=\"M12 18V6\"/>","badge-percent":"<path d=\"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z\"/> <path d=\"m15 9-6 6\"/> <path d=\"M9 9h.01\"/> <path d=\"M15 15h.01\"/>","book-open":"<path d=\"M12 7v14\"/> <path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\"/>","bot":"<path d=\"M12 8V4H8\"/> <rect width=\"16\" height=\"12\" x=\"4\" y=\"8\" rx=\"2\"/> <path d=\"M2 14h2\"/> <path d=\"M20 14h2\"/> <path d=\"M15 13v2\"/> <path d=\"M9 13v2\"/>","briefcase":"<path d=\"M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\"/> <rect width=\"20\" height=\"14\" x=\"2\" y=\"6\" rx=\"2\"/>","building-2":"<path d=\"M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z\"/> <path d=\"M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2\"/> <path d=\"M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2\"/> <path d=\"M10 6h4\"/> <path d=\"M10 10h4\"/> <path d=\"M10 14h4\"/> <path d=\"M10 18h4\"/>","calculator":"<rect width=\"16\" height=\"20\" x=\"4\" y=\"2\" rx=\"2\"/> <line x1=\"8\" x2=\"16\" y1=\"6\" y2=\"6\"/> <line x1=\"16\" x2=\"16\" y1=\"14\" y2=\"18\"/> <path d=\"M16 10h.01\"/> <path d=\"M12 10h.01\"/> <path d=\"M8 10h.01\"/> <path d=\"M12 14h.01\"/> <path d=\"M8 14h.01\"/> <path d=\"M12 18h.01\"/> <path d=\"M8 18h.01\"/>","calendar-check":"<path d=\"M8 2v4\"/> <path d=\"M16 2v4\"/> <rect width=\"18\" height=\"18\" x=\"3\" y=\"4\" rx=\"2\"/> <path d=\"M3 10h18\"/> <path d=\"m9 16 2 2 4-4\"/>","chart-column":"<path d=\"M3 3v16a2 2 0 0 0 2 2h16\"/> <path d=\"M18 17V9\"/> <path d=\"M13 17V5\"/> <path d=\"M8 17v-3\"/>","chart-pie":"<path d=\"M21 12c.552 0 1.005-.449.95-.998a10 10 0 0 0-8.953-8.951c-.55-.055-.998.398-.998.95v8a1 1 0 0 0 1 1z\"/> <path d=\"M21.21 15.89A10 10 0 1 1 8 2.83\"/>","circle-check":"<circle cx=\"12\" cy=\"12\" r=\"10\"/> <path d=\"m9 12 2 2 4-4\"/>","clipboard-check":"<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\"/> <path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"/> <path d=\"m9 14 2 2 4-4\"/>","clipboard-list":"<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\"/> <path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"/> <path d=\"M12 11h4\"/> <path d=\"M12 16h4\"/> <path d=\"M8 11h.01\"/> <path d=\"M8 16h.01\"/>","compass":"<path d=\"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z\"/> <circle cx=\"12\" cy=\"12\" r=\"10\"/>","credit-card":"<rect width=\"20\" height=\"14\" x=\"2\" y=\"5\" rx=\"2\"/> <line x1=\"2\" x2=\"22\" y1=\"10\" y2=\"10\"/>","crown":"<path d=\"M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z\"/> <path d=\"M5 21h14\"/>","database":"<ellipse cx=\"12\" cy=\"5\" rx=\"9\" ry=\"3\"/> <path d=\"M3 5V19A9 3 0 0 0 21 19V5\"/> <path d=\"M3 12A9 3 0 0 0 21 12\"/>","eye":"<path d=\"M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0\"/> <circle cx=\"12\" cy=\"12\" r=\"3\"/>","file-check":"<path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/> <path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/> <path d=\"m9 15 2 2 4-4\"/>","file-input":"<path d=\"M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4\"/> <path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/> <path d=\"M2 15h10\"/> <path d=\"m9 18 3-3-3-3\"/>","file-pen":"<path d=\"M12.5 22H18a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v9.5\"/> <path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/> <path d=\"M13.378 15.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z\"/>","filter":"<polygon points=\"22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3\"/>","fingerprint":"<path d=\"M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4\"/> <path d=\"M14 13.12c0 2.38 0 6.38-1 8.88\"/> <path d=\"M17.29 21.02c.12-.6.43-2.3.5-3.02\"/> <path d=\"M2 12a10 10 0 0 1 18-6\"/> <path d=\"M2 16h.01\"/> <path d=\"M21.8 16c.2-2 .131-5.354 0-6\"/> <path d=\"M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2\"/> <path d=\"M8.65 22c.21-.66.45-1.32.57-2\"/> <path d=\"M9 6.8a6 6 0 0 1 9 5.2v2\"/>","flag":"<path d=\"M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z\"/> <line x1=\"4\" x2=\"4\" y1=\"22\" y2=\"15\"/>","gauge":"<path d=\"m12 14 4-4\"/> <path d=\"M3.34 19a10 10 0 1 1 17.32 0\"/>","gem":"<path d=\"M6 3h12l4 6-10 13L2 9Z\"/> <path d=\"M11 3 8 9l4 13 4-13-3-6\"/> <path d=\"M2 9h20\"/>","git-branch":"<line x1=\"6\" x2=\"6\" y1=\"3\" y2=\"15\"/> <circle cx=\"18\" cy=\"6\" r=\"3\"/> <circle cx=\"6\" cy=\"18\" r=\"3\"/> <path d=\"M18 9a9 9 0 0 1-9 9\"/>","graduation-cap":"<path d=\"M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z\"/> <path d=\"M22 10v6\"/> <path d=\"M6 12.5V16a6 3 0 0 0 12 0v-3.5\"/>","hand-coins":"<path d=\"M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17\"/> <path d=\"m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9\"/> <path d=\"m2 16 6 6\"/> <circle cx=\"16\" cy=\"9\" r=\"2.9\"/> <circle cx=\"6\" cy=\"5\" r=\"3\"/>","handshake":"<path d=\"m11 17 2 2a1 1 0 1 0 3-3\"/> <path d=\"m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4\"/> <path d=\"m21 3 1 11h-2\"/> <path d=\"M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3\"/> <path d=\"M3 4h8\"/>","headset":"<path d=\"M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z\"/> <path d=\"M21 16v2a4 4 0 0 1-4 4h-5\"/>","heart-handshake":"<path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z\"/> <path d=\"M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66\"/> <path d=\"m18 15-2-2\"/> <path d=\"m15 18-2-2\"/>","hourglass":"<path d=\"M5 22h14\"/> <path d=\"M5 2h14\"/> <path d=\"M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22\"/> <path d=\"M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2\"/>","inbox":"<polyline points=\"22 12 16 12 14 15 10 15 8 12 2 12\"/> <path d=\"M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z\"/>","landmark":"<line x1=\"3\" x2=\"21\" y1=\"22\" y2=\"22\"/> <line x1=\"6\" x2=\"6\" y1=\"18\" y2=\"11\"/> <line x1=\"10\" x2=\"10\" y1=\"18\" y2=\"11\"/> <line x1=\"14\" x2=\"14\" y1=\"18\" y2=\"11\"/> <line x1=\"18\" x2=\"18\" y1=\"18\" y2=\"11\"/> <polygon points=\"12 2 20 7 4 7\"/>","layers":"<path d=\"m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z\"/> <path d=\"m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65\"/> <path d=\"m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65\"/>","layout-grid":"<rect width=\"7\" height=\"7\" x=\"3\" y=\"3\" rx=\"1\"/> <rect width=\"7\" height=\"7\" x=\"14\" y=\"3\" rx=\"1\"/> <rect width=\"7\" height=\"7\" x=\"14\" y=\"14\" rx=\"1\"/> <rect width=\"7\" height=\"7\" x=\"3\" y=\"14\" rx=\"1\"/>","lightbulb":"<path d=\"M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5\"/> <path d=\"M9 18h6\"/> <path d=\"M10 22h4\"/>","lock":"<rect width=\"18\" height=\"11\" x=\"3\" y=\"11\" rx=\"2\" ry=\"2\"/> <path d=\"M7 11V7a5 5 0 0 1 10 0v4\"/>","magnet":"<path d=\"m6 15-4-4 6.75-6.77a7.79 7.79 0 0 1 11 11L13 22l-4-4 6.39-6.36a2.14 2.14 0 0 0-3-3L6 15\"/> <path d=\"m5 8 4 4\"/> <path d=\"m12 15 4 4\"/>","megaphone":"<path d=\"m3 11 18-5v12L3 14v-3z\"/> <path d=\"M11.6 16.8a3 3 0 1 1-5.8-1.6\"/>","message-circle":"<path d=\"M7.9 20A9 9 0 1 0 4 16.1L2 22Z\"/>","network":"<rect x=\"16\" y=\"16\" width=\"6\" height=\"6\" rx=\"1\"/> <rect x=\"2\" y=\"16\" width=\"6\" height=\"6\" rx=\"1\"/> <rect x=\"9\" y=\"2\" width=\"6\" height=\"6\" rx=\"1\"/> <path d=\"M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3\"/> <path d=\"M12 12V8\"/>","package-check":"<path d=\"m16 16 2 2 4-4\"/> <path d=\"M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14\"/> <path d=\"m7.5 4.27 9 5.15\"/> <polyline points=\"3.29 7 12 12 20.71 7\"/> <line x1=\"12\" x2=\"12\" y1=\"22\" y2=\"12\"/>","package-open":"<path d=\"M12 22v-9\"/> <path d=\"M15.17 2.21a1.67 1.67 0 0 1 1.63 0L21 4.57a1.93 1.93 0 0 1 0 3.36L8.82 14.79a1.655 1.655 0 0 1-1.64 0L3 12.43a1.93 1.93 0 0 1 0-3.36z\"/> <path d=\"M20 13v3.87a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13\"/> <path d=\"M21 12.43a1.93 1.93 0 0 0 0-3.36L8.83 2.2a1.64 1.64 0 0 0-1.63 0L3 4.57a1.93 1.93 0 0 0 0 3.36l12.18 6.86a1.636 1.636 0 0 0 1.63 0z\"/>","package-search":"<path d=\"M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14\"/> <path d=\"m7.5 4.27 9 5.15\"/> <polyline points=\"3.29 7 12 12 20.71 7\"/> <line x1=\"12\" x2=\"12\" y1=\"22\" y2=\"12\"/> <circle cx=\"18.5\" cy=\"15.5\" r=\"2.5\"/> <path d=\"M20.27 17.27 22 19\"/>","package":"<path d=\"M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z\"/> <path d=\"M12 22V12\"/> <path d=\"m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7\"/> <path d=\"m7.5 4.27 9 5.15\"/>","pen-tool":"<path d=\"M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z\"/> <path d=\"m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18\"/> <path d=\"m2.3 2.3 7.286 7.286\"/> <circle cx=\"11\" cy=\"11\" r=\"2\"/>","play":"<polygon points=\"6 3 20 12 6 21 6 3\"/>","receipt":"<path d=\"M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z\"/> <path d=\"M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8\"/> <path d=\"M12 17.5v-11\"/>","refresh-ccw":"<path d=\"M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"/> <path d=\"M3 3v5h5\"/> <path d=\"M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16\"/> <path d=\"M16 16h5v5\"/>","refresh-cw":"<path d=\"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8\"/> <path d=\"M21 3v5h-5\"/> <path d=\"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16\"/> <path d=\"M8 16H3v5\"/>","rocket":"<path d=\"M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z\"/> <path d=\"m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z\"/> <path d=\"M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0\"/> <path d=\"M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5\"/>","scale":"<path d=\"m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z\"/> <path d=\"m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z\"/> <path d=\"M7 21h10\"/> <path d=\"M12 3v18\"/> <path d=\"M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2\"/>","scroll-text":"<path d=\"M15 12h-5\"/> <path d=\"M15 8h-5\"/> <path d=\"M19 17V5a2 2 0 0 0-2-2H4\"/> <path d=\"M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3\"/>","search":"<circle cx=\"11\" cy=\"11\" r=\"8\"/> <path d=\"m21 21-4.3-4.3\"/>","settings":"<path d=\"M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z\"/> <circle cx=\"12\" cy=\"12\" r=\"3\"/>","shield-alert":"<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/> <path d=\"M12 8v4\"/> <path d=\"M12 16h.01\"/>","shield-check":"<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/> <path d=\"m9 12 2 2 4-4\"/>","shopping-bag":"<path d=\"M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z\"/> <path d=\"M3 6h18\"/> <path d=\"M16 10a4 4 0 0 1-8 0\"/>","shopping-cart":"<circle cx=\"8\" cy=\"21\" r=\"1\"/> <circle cx=\"19\" cy=\"21\" r=\"1\"/> <path d=\"M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12\"/>","signature":"<path d=\"m21 17-2.156-1.868A.5.5 0 0 0 18 15.5v.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1c0-2.545-3.991-3.97-8.5-4a1 1 0 0 0 0 5c4.153 0 4.745-11.295 5.708-13.5a2.5 2.5 0 1 1 3.31 3.284\"/> <path d=\"M3 21h18\"/>","sliders-horizontal":"<line x1=\"21\" x2=\"14\" y1=\"4\" y2=\"4\"/> <line x1=\"10\" x2=\"3\" y1=\"4\" y2=\"4\"/> <line x1=\"21\" x2=\"12\" y1=\"12\" y2=\"12\"/> <line x1=\"8\" x2=\"3\" y1=\"12\" y2=\"12\"/> <line x1=\"21\" x2=\"16\" y1=\"20\" y2=\"20\"/> <line x1=\"12\" x2=\"3\" y1=\"20\" y2=\"20\"/> <line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"6\"/> <line x1=\"8\" x2=\"8\" y1=\"10\" y2=\"14\"/> <line x1=\"16\" x2=\"16\" y1=\"18\" y2=\"22\"/>","split":"<path d=\"M16 3h5v5\"/> <path d=\"M8 3H3v5\"/> <path d=\"M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3\"/> <path d=\"m15 9 6-6\"/>","star":"<path d=\"M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z\"/>","store":"<path d=\"m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7\"/> <path d=\"M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8\"/> <path d=\"M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4\"/> <path d=\"M2 7h20\"/> <path d=\"M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7\"/>","tag":"<path d=\"M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z\"/> <circle cx=\"7.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\"/>","target":"<circle cx=\"12\" cy=\"12\" r=\"10\"/> <circle cx=\"12\" cy=\"12\" r=\"6\"/> <circle cx=\"12\" cy=\"12\" r=\"2\"/>","thumbs-up":"<path d=\"M7 10v12\"/> <path d=\"M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z\"/>","ticket":"<path d=\"M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z\"/> <path d=\"M13 5v2\"/> <path d=\"M13 17v2\"/> <path d=\"M13 11v2\"/>","trending-up":"<polyline points=\"22 7 13.5 15.5 8.5 10.5 2 17\"/> <polyline points=\"16 7 22 7 22 13\"/>","triangle-alert":"<path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/> <path d=\"M12 9v4\"/> <path d=\"M12 17h.01\"/>","truck":"<path d=\"M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2\"/> <path d=\"M15 18H9\"/> <path d=\"M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14\"/> <circle cx=\"17\" cy=\"18\" r=\"2\"/> <circle cx=\"7\" cy=\"18\" r=\"2\"/>","undo-2":"<path d=\"M9 14 4 9l5-5\"/> <path d=\"M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11\"/>","user-plus":"<path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/> <circle cx=\"9\" cy=\"7\" r=\"4\"/> <line x1=\"19\" x2=\"19\" y1=\"8\" y2=\"14\"/> <line x1=\"22\" x2=\"16\" y1=\"11\" y2=\"11\"/>","user":"<path d=\"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2\"/> <circle cx=\"12\" cy=\"7\" r=\"4\"/>","users":"<path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/> <circle cx=\"9\" cy=\"7\" r=\"4\"/> <path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"/> <path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/>","wallet":"<path d=\"M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1\"/> <path d=\"M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4\"/>","warehouse":"<path d=\"M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z\"/> <path d=\"M6 18h12\"/> <path d=\"M6 14h12\"/> <rect width=\"12\" height=\"12\" x=\"6\" y=\"10\"/>","workflow":"<rect width=\"8\" height=\"8\" x=\"3\" y=\"3\" rx=\"2\"/> <path d=\"M7 11v4a2 2 0 0 0 2 2h4\"/> <rect width=\"8\" height=\"8\" x=\"13\" y=\"13\" rx=\"2\"/>","zap":"<path d=\"M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z\"/>"};
+const ICO={"activity":"<path d=\"M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2\"/>","app-window":"<rect x=\"2\" y=\"4\" width=\"20\" height=\"16\" rx=\"2\"/> <path d=\"M10 4v4\"/> <path d=\"M2 8h20\"/> <path d=\"M6 4v4\"/>","arrow-right-left":"<path d=\"m16 3 4 4-4 4\"/> <path d=\"M20 7H4\"/> <path d=\"m8 21-4-4 4-4\"/> <path d=\"M4 17h16\"/>","arrow-right":"<path d=\"M5 12h14\"/> <path d=\"m12 5 7 7-7 7\"/>","award":"<path d=\"m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526\"/> <circle cx=\"12\" cy=\"8\" r=\"6\"/>","badge-check":"<path d=\"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z\"/> <path d=\"m9 12 2 2 4-4\"/>","badge-dollar-sign":"<path d=\"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z\"/> <path d=\"M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8\"/> <path d=\"M12 18V6\"/>","badge-percent":"<path d=\"M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z\"/> <path d=\"m15 9-6 6\"/> <path d=\"M9 9h.01\"/> <path d=\"M15 15h.01\"/>","book-open":"<path d=\"M12 7v14\"/> <path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\"/>","bot":"<path d=\"M12 8V4H8\"/> <rect width=\"16\" height=\"12\" x=\"4\" y=\"8\" rx=\"2\"/> <path d=\"M2 14h2\"/> <path d=\"M20 14h2\"/> <path d=\"M15 13v2\"/> <path d=\"M9 13v2\"/>","briefcase":"<path d=\"M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\"/> <rect width=\"20\" height=\"14\" x=\"2\" y=\"6\" rx=\"2\"/>","building-2":"<path d=\"M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z\"/> <path d=\"M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2\"/> <path d=\"M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2\"/> <path d=\"M10 6h4\"/> <path d=\"M10 10h4\"/> <path d=\"M10 14h4\"/> <path d=\"M10 18h4\"/>","calculator":"<rect width=\"16\" height=\"20\" x=\"4\" y=\"2\" rx=\"2\"/> <line x1=\"8\" x2=\"16\" y1=\"6\" y2=\"6\"/> <line x1=\"16\" x2=\"16\" y1=\"14\" y2=\"18\"/> <path d=\"M16 10h.01\"/> <path d=\"M12 10h.01\"/> <path d=\"M8 10h.01\"/> <path d=\"M12 14h.01\"/> <path d=\"M8 14h.01\"/> <path d=\"M12 18h.01\"/> <path d=\"M8 18h.01\"/>","calendar-check":"<path d=\"M8 2v4\"/> <path d=\"M16 2v4\"/> <rect width=\"18\" height=\"18\" x=\"3\" y=\"4\" rx=\"2\"/> <path d=\"M3 10h18\"/> <path d=\"m9 16 2 2 4-4\"/>","calendar-clock":"<path d=\"M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5\"/> <path d=\"M16 2v4\"/> <path d=\"M8 2v4\"/> <path d=\"M3 10h5\"/> <path d=\"M17.5 17.5 16 16.3V14\"/> <circle cx=\"16\" cy=\"16\" r=\"6\"/>","calendar-x":"<path d=\"M8 2v4\"/> <path d=\"M16 2v4\"/> <rect width=\"18\" height=\"18\" x=\"3\" y=\"4\" rx=\"2\"/> <path d=\"M3 10h18\"/> <path d=\"m14 14-4 4\"/> <path d=\"m10 14 4 4\"/>","chart-column":"<path d=\"M3 3v16a2 2 0 0 0 2 2h16\"/> <path d=\"M18 17V9\"/> <path d=\"M13 17V5\"/> <path d=\"M8 17v-3\"/>","chart-pie":"<path d=\"M21 12c.552 0 1.005-.449.95-.998a10 10 0 0 0-8.953-8.951c-.55-.055-.998.398-.998.95v8a1 1 0 0 0 1 1z\"/> <path d=\"M21.21 15.89A10 10 0 1 1 8 2.83\"/>","circle-check":"<circle cx=\"12\" cy=\"12\" r=\"10\"/> <path d=\"m9 12 2 2 4-4\"/>","clipboard-check":"<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\"/> <path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"/> <path d=\"m9 14 2 2 4-4\"/>","clipboard-list":"<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\"/> <path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"/> <path d=\"M12 11h4\"/> <path d=\"M12 16h4\"/> <path d=\"M8 11h.01\"/> <path d=\"M8 16h.01\"/>","compass":"<path d=\"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z\"/> <circle cx=\"12\" cy=\"12\" r=\"10\"/>","credit-card":"<rect width=\"20\" height=\"14\" x=\"2\" y=\"5\" rx=\"2\"/> <line x1=\"2\" x2=\"22\" y1=\"10\" y2=\"10\"/>","crown":"<path d=\"M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z\"/> <path d=\"M5 21h14\"/>","database":"<ellipse cx=\"12\" cy=\"5\" rx=\"9\" ry=\"3\"/> <path d=\"M3 5V19A9 3 0 0 0 21 19V5\"/> <path d=\"M3 12A9 3 0 0 0 21 12\"/>","eye":"<path d=\"M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0\"/> <circle cx=\"12\" cy=\"12\" r=\"3\"/>","file-check":"<path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/> <path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/> <path d=\"m9 15 2 2 4-4\"/>","file-input":"<path d=\"M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4\"/> <path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/> <path d=\"M2 15h10\"/> <path d=\"m9 18 3-3-3-3\"/>","file-lock":"<path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/> <rect width=\"8\" height=\"6\" x=\"8\" y=\"12\" rx=\"1\"/> <path d=\"M10 12v-2a2 2 0 1 1 4 0v2\"/>","file-pen":"<path d=\"M12.5 22H18a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v9.5\"/> <path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/> <path d=\"M13.378 15.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z\"/>","file-text":"<path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/> <path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/> <path d=\"M10 9H8\"/> <path d=\"M16 13H8\"/> <path d=\"M16 17H8\"/>","filter":"<polygon points=\"22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3\"/>","fingerprint":"<path d=\"M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4\"/> <path d=\"M14 13.12c0 2.38 0 6.38-1 8.88\"/> <path d=\"M17.29 21.02c.12-.6.43-2.3.5-3.02\"/> <path d=\"M2 12a10 10 0 0 1 18-6\"/> <path d=\"M2 16h.01\"/> <path d=\"M21.8 16c.2-2 .131-5.354 0-6\"/> <path d=\"M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2\"/> <path d=\"M8.65 22c.21-.66.45-1.32.57-2\"/> <path d=\"M9 6.8a6 6 0 0 1 9 5.2v2\"/>","flag":"<path d=\"M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z\"/> <line x1=\"4\" x2=\"4\" y1=\"22\" y2=\"15\"/>","folder-open":"<path d=\"m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2\"/>","gauge":"<path d=\"m12 14 4-4\"/> <path d=\"M3.34 19a10 10 0 1 1 17.32 0\"/>","gem":"<path d=\"M6 3h12l4 6-10 13L2 9Z\"/> <path d=\"M11 3 8 9l4 13 4-13-3-6\"/> <path d=\"M2 9h20\"/>","git-branch":"<line x1=\"6\" x2=\"6\" y1=\"3\" y2=\"15\"/> <circle cx=\"18\" cy=\"6\" r=\"3\"/> <circle cx=\"6\" cy=\"18\" r=\"3\"/> <path d=\"M18 9a9 9 0 0 1-9 9\"/>","graduation-cap":"<path d=\"M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z\"/> <path d=\"M22 10v6\"/> <path d=\"M6 12.5V16a6 3 0 0 0 12 0v-3.5\"/>","hand-coins":"<path d=\"M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17\"/> <path d=\"m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9\"/> <path d=\"m2 16 6 6\"/> <circle cx=\"16\" cy=\"9\" r=\"2.9\"/> <circle cx=\"6\" cy=\"5\" r=\"3\"/>","hand-heart":"<path d=\"M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16\"/> <path d=\"m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9\"/> <path d=\"m2 15 6 6\"/> <path d=\"M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.73 2.73 0 0 0 16 4a2.78 2.78 0 0 0-5 1.8c0 1.2.8 2 1.5 2.8L16 12Z\"/>","handshake":"<path d=\"m11 17 2 2a1 1 0 1 0 3-3\"/> <path d=\"m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4\"/> <path d=\"m21 3 1 11h-2\"/> <path d=\"M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3\"/> <path d=\"M3 4h8\"/>","headset":"<path d=\"M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z\"/> <path d=\"M21 16v2a4 4 0 0 1-4 4h-5\"/>","heart-handshake":"<path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z\"/> <path d=\"M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66\"/> <path d=\"m18 15-2-2\"/> <path d=\"m15 18-2-2\"/>","heart-pulse":"<path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z\"/> <path d=\"M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27\"/>","hourglass":"<path d=\"M5 22h14\"/> <path d=\"M5 2h14\"/> <path d=\"M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22\"/> <path d=\"M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2\"/>","inbox":"<polyline points=\"22 12 16 12 14 15 10 15 8 12 2 12\"/> <path d=\"M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z\"/>","info":"<circle cx=\"12\" cy=\"12\" r=\"10\"/> <path d=\"M12 16v-4\"/> <path d=\"M12 8h.01\"/>","key-round":"<path d=\"M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z\"/> <circle cx=\"16.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\"/>","landmark":"<line x1=\"3\" x2=\"21\" y1=\"22\" y2=\"22\"/> <line x1=\"6\" x2=\"6\" y1=\"18\" y2=\"11\"/> <line x1=\"10\" x2=\"10\" y1=\"18\" y2=\"11\"/> <line x1=\"14\" x2=\"14\" y1=\"18\" y2=\"11\"/> <line x1=\"18\" x2=\"18\" y1=\"18\" y2=\"11\"/> <polygon points=\"12 2 20 7 4 7\"/>","layers":"<path d=\"m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z\"/> <path d=\"m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65\"/> <path d=\"m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65\"/>","layout-grid":"<rect width=\"7\" height=\"7\" x=\"3\" y=\"3\" rx=\"1\"/> <rect width=\"7\" height=\"7\" x=\"14\" y=\"3\" rx=\"1\"/> <rect width=\"7\" height=\"7\" x=\"14\" y=\"14\" rx=\"1\"/> <rect width=\"7\" height=\"7\" x=\"3\" y=\"14\" rx=\"1\"/>","layout-template":"<rect width=\"18\" height=\"7\" x=\"3\" y=\"3\" rx=\"1\"/> <rect width=\"9\" height=\"7\" x=\"3\" y=\"14\" rx=\"1\"/> <rect width=\"5\" height=\"7\" x=\"16\" y=\"14\" rx=\"1\"/>","lightbulb":"<path d=\"M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5\"/> <path d=\"M9 18h6\"/> <path d=\"M10 22h4\"/>","list-ordered":"<path d=\"M10 12h11\"/> <path d=\"M10 18h11\"/> <path d=\"M10 6h11\"/> <path d=\"M4 10h2\"/> <path d=\"M4 6h1v4\"/> <path d=\"M6 18H4c0-1 2-2 2-3s-1-1.5-2-1\"/>","lock":"<rect width=\"18\" height=\"11\" x=\"3\" y=\"11\" rx=\"2\" ry=\"2\"/> <path d=\"M7 11V7a5 5 0 0 1 10 0v4\"/>","magnet":"<path d=\"m6 15-4-4 6.75-6.77a7.79 7.79 0 0 1 11 11L13 22l-4-4 6.39-6.36a2.14 2.14 0 0 0-3-3L6 15\"/> <path d=\"m5 8 4 4\"/> <path d=\"m12 15 4 4\"/>","map":"<path d=\"M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z\"/> <path d=\"M15 5.764v15\"/> <path d=\"M9 3.236v15\"/>","megaphone":"<path d=\"m3 11 18-5v12L3 14v-3z\"/> <path d=\"M11.6 16.8a3 3 0 1 1-5.8-1.6\"/>","message-circle":"<path d=\"M7.9 20A9 9 0 1 0 4 16.1L2 22Z\"/>","network":"<rect x=\"16\" y=\"16\" width=\"6\" height=\"6\" rx=\"1\"/> <rect x=\"2\" y=\"16\" width=\"6\" height=\"6\" rx=\"1\"/> <rect x=\"9\" y=\"2\" width=\"6\" height=\"6\" rx=\"1\"/> <path d=\"M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3\"/> <path d=\"M12 12V8\"/>","package-check":"<path d=\"m16 16 2 2 4-4\"/> <path d=\"M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14\"/> <path d=\"m7.5 4.27 9 5.15\"/> <polyline points=\"3.29 7 12 12 20.71 7\"/> <line x1=\"12\" x2=\"12\" y1=\"22\" y2=\"12\"/>","package-open":"<path d=\"M12 22v-9\"/> <path d=\"M15.17 2.21a1.67 1.67 0 0 1 1.63 0L21 4.57a1.93 1.93 0 0 1 0 3.36L8.82 14.79a1.655 1.655 0 0 1-1.64 0L3 12.43a1.93 1.93 0 0 1 0-3.36z\"/> <path d=\"M20 13v3.87a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13\"/> <path d=\"M21 12.43a1.93 1.93 0 0 0 0-3.36L8.83 2.2a1.64 1.64 0 0 0-1.63 0L3 4.57a1.93 1.93 0 0 0 0 3.36l12.18 6.86a1.636 1.636 0 0 0 1.63 0z\"/>","package-search":"<path d=\"M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14\"/> <path d=\"m7.5 4.27 9 5.15\"/> <polyline points=\"3.29 7 12 12 20.71 7\"/> <line x1=\"12\" x2=\"12\" y1=\"22\" y2=\"12\"/> <circle cx=\"18.5\" cy=\"15.5\" r=\"2.5\"/> <path d=\"M20.27 17.27 22 19\"/>","package":"<path d=\"M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z\"/> <path d=\"M12 22V12\"/> <path d=\"m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7\"/> <path d=\"m7.5 4.27 9 5.15\"/>","pen-tool":"<path d=\"M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z\"/> <path d=\"m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18\"/> <path d=\"m2.3 2.3 7.286 7.286\"/> <circle cx=\"11\" cy=\"11\" r=\"2\"/>","plane":"<path d=\"M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z\"/>","play":"<polygon points=\"6 3 20 12 6 21 6 3\"/>","receipt":"<path d=\"M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z\"/> <path d=\"M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8\"/> <path d=\"M12 17.5v-11\"/>","refresh-ccw":"<path d=\"M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"/> <path d=\"M3 3v5h5\"/> <path d=\"M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16\"/> <path d=\"M16 16h5v5\"/>","refresh-cw":"<path d=\"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8\"/> <path d=\"M21 3v5h-5\"/> <path d=\"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16\"/> <path d=\"M8 16H3v5\"/>","rocket":"<path d=\"M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z\"/> <path d=\"m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z\"/> <path d=\"M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0\"/> <path d=\"M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5\"/>","route":"<circle cx=\"6\" cy=\"19\" r=\"3\"/> <path d=\"M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15\"/> <circle cx=\"18\" cy=\"5\" r=\"3\"/>","scale":"<path d=\"m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z\"/> <path d=\"m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z\"/> <path d=\"M7 21h10\"/> <path d=\"M12 3v18\"/> <path d=\"M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2\"/>","scan-search":"<path d=\"M3 7V5a2 2 0 0 1 2-2h2\"/> <path d=\"M17 3h2a2 2 0 0 1 2 2v2\"/> <path d=\"M21 17v2a2 2 0 0 1-2 2h-2\"/> <path d=\"M7 21H5a2 2 0 0 1-2-2v-2\"/> <circle cx=\"12\" cy=\"12\" r=\"3\"/> <path d=\"m16 16-1.9-1.9\"/>","scroll-text":"<path d=\"M15 12h-5\"/> <path d=\"M15 8h-5\"/> <path d=\"M19 17V5a2 2 0 0 0-2-2H4\"/> <path d=\"M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3\"/>","search":"<circle cx=\"11\" cy=\"11\" r=\"8\"/> <path d=\"m21 21-4.3-4.3\"/>","settings":"<path d=\"M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z\"/> <circle cx=\"12\" cy=\"12\" r=\"3\"/>","shield-alert":"<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/> <path d=\"M12 8v4\"/> <path d=\"M12 16h.01\"/>","shield-check":"<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/> <path d=\"m9 12 2 2 4-4\"/>","shopping-bag":"<path d=\"M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z\"/> <path d=\"M3 6h18\"/> <path d=\"M16 10a4 4 0 0 1-8 0\"/>","shopping-cart":"<circle cx=\"8\" cy=\"21\" r=\"1\"/> <circle cx=\"19\" cy=\"21\" r=\"1\"/> <path d=\"M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12\"/>","signature":"<path d=\"m21 17-2.156-1.868A.5.5 0 0 0 18 15.5v.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1c0-2.545-3.991-3.97-8.5-4a1 1 0 0 0 0 5c4.153 0 4.745-11.295 5.708-13.5a2.5 2.5 0 1 1 3.31 3.284\"/> <path d=\"M3 21h18\"/>","siren":"<path d=\"M7 18v-6a5 5 0 1 1 10 0v6\"/> <path d=\"M5 21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z\"/> <path d=\"M21 12h1\"/> <path d=\"M18.5 4.5 18 5\"/> <path d=\"M2 12h1\"/> <path d=\"M12 2v1\"/> <path d=\"m4.929 4.929.707.707\"/> <path d=\"M12 12v6\"/>","sliders-horizontal":"<line x1=\"21\" x2=\"14\" y1=\"4\" y2=\"4\"/> <line x1=\"10\" x2=\"3\" y1=\"4\" y2=\"4\"/> <line x1=\"21\" x2=\"12\" y1=\"12\" y2=\"12\"/> <line x1=\"8\" x2=\"3\" y1=\"12\" y2=\"12\"/> <line x1=\"21\" x2=\"16\" y1=\"20\" y2=\"20\"/> <line x1=\"12\" x2=\"3\" y1=\"20\" y2=\"20\"/> <line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"6\"/> <line x1=\"8\" x2=\"8\" y1=\"10\" y2=\"14\"/> <line x1=\"16\" x2=\"16\" y1=\"18\" y2=\"22\"/>","smile":"<circle cx=\"12\" cy=\"12\" r=\"10\"/> <path d=\"M8 14s1.5 2 4 2 4-2 4-2\"/> <line x1=\"9\" x2=\"9.01\" y1=\"9\" y2=\"9\"/> <line x1=\"15\" x2=\"15.01\" y1=\"9\" y2=\"9\"/>","split":"<path d=\"M16 3h5v5\"/> <path d=\"M8 3H3v5\"/> <path d=\"M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3\"/> <path d=\"m15 9 6-6\"/>","star":"<path d=\"M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z\"/>","stethoscope":"<path d=\"M11 2v2\"/> <path d=\"M5 2v2\"/> <path d=\"M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1\"/> <path d=\"M8 15a6 6 0 0 0 12 0v-3\"/> <circle cx=\"20\" cy=\"10\" r=\"2\"/>","store":"<path d=\"m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7\"/> <path d=\"M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8\"/> <path d=\"M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4\"/> <path d=\"M2 7h20\"/> <path d=\"M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7\"/>","tag":"<path d=\"M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z\"/> <circle cx=\"7.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\"/>","target":"<circle cx=\"12\" cy=\"12\" r=\"10\"/> <circle cx=\"12\" cy=\"12\" r=\"6\"/> <circle cx=\"12\" cy=\"12\" r=\"2\"/>","thumbs-up":"<path d=\"M7 10v12\"/> <path d=\"M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z\"/>","ticket":"<path d=\"M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z\"/> <path d=\"M13 5v2\"/> <path d=\"M13 17v2\"/> <path d=\"M13 11v2\"/>","timer":"<line x1=\"10\" x2=\"14\" y1=\"2\" y2=\"2\"/> <line x1=\"12\" x2=\"15\" y1=\"14\" y2=\"11\"/> <circle cx=\"12\" cy=\"14\" r=\"8\"/>","trending-up":"<polyline points=\"22 7 13.5 15.5 8.5 10.5 2 17\"/> <polyline points=\"16 7 22 7 22 13\"/>","triangle-alert":"<path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"/> <path d=\"M12 9v4\"/> <path d=\"M12 17h.01\"/>","truck":"<path d=\"M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2\"/> <path d=\"M15 18H9\"/> <path d=\"M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14\"/> <circle cx=\"17\" cy=\"18\" r=\"2\"/> <circle cx=\"7\" cy=\"18\" r=\"2\"/>","undo-2":"<path d=\"M9 14 4 9l5-5\"/> <path d=\"M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11\"/>","user-check":"<path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/> <circle cx=\"9\" cy=\"7\" r=\"4\"/> <polyline points=\"16 11 18 13 22 9\"/>","user-plus":"<path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/> <circle cx=\"9\" cy=\"7\" r=\"4\"/> <line x1=\"19\" x2=\"19\" y1=\"8\" y2=\"14\"/> <line x1=\"22\" x2=\"16\" y1=\"11\" y2=\"11\"/>","user":"<path d=\"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2\"/> <circle cx=\"12\" cy=\"7\" r=\"4\"/>","users":"<path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/> <circle cx=\"9\" cy=\"7\" r=\"4\"/> <path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"/> <path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/>","wallet":"<path d=\"M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1\"/> <path d=\"M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4\"/>","warehouse":"<path d=\"M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z\"/> <path d=\"M6 18h12\"/> <path d=\"M6 14h12\"/> <rect width=\"12\" height=\"12\" x=\"6\" y=\"10\"/>","workflow":"<rect width=\"8\" height=\"8\" x=\"3\" y=\"3\" rx=\"2\"/> <path d=\"M7 11v4a2 2 0 0 0 2 2h4\"/> <rect width=\"8\" height=\"8\" x=\"13\" y=\"13\" rx=\"2\"/>","zap":"<path d=\"M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z\"/>"};
 /* ---------- icon & nhãn ngắn: chữ ít, bấm vào mới ra chi tiết ---------- */
-const NVI={cl_strat:["compass","Chiến lược"],cl_plan:["calendar-check","Kế hoạch"],cl_perf:["gauge","Hiệu quả"],cl_risk:["shield-alert","Rủi ro"],cl_change:["rocket","Chuyển đổi"],
+const TM_NVI={cl_strat:["compass","Chiến lược"],cl_plan:["calendar-check","Kế hoạch"],cl_perf:["gauge","Hiệu quả"],cl_risk:["shield-alert","Rủi ro"],cl_change:["rocket","Chuyển đổi"],
  nh_assort:["layout-grid","Danh mục"],nh_pl:["tag","Nhãn riêng"],nh_src:["search","Tìm nguồn"],nh_neg:["signature","Hợp đồng mua"],nh_srm:["star","Chấm điểm NCC"],nh_pim:["clipboard-list","Thông tin SP"],
  hd_fc:["trending-up","Dự báo"],hd_ibp:["scale","Cân đối"],hd_rep:["shopping-cart","Bổ sung hàng"],hd_pol:["sliders-horizontal","Mức tồn"],hd_alloc:["split","Phân bổ"],hd_slow:["hourglass","Hàng chậm"],
  mk_res:["lightbulb","Thấu hiểu"],mk_brand:["gem","Thương hiệu"],mk_content:["pen-tool","Nội dung"],mk_lead:["magnet","Khách mới"],mk_trade:["store","Điểm bán"],mk_camp:["chart-column","Chiến dịch"],
@@ -1787,30 +1839,30 @@ const NVI={cl_strat:["compass","Chiến lược"],cl_plan:["calendar-check","K�
  ns_plan:["user-plus","Tuyển dụng"],ns_pay:["badge-dollar-sign","Lương"],ns_skill:["graduation-cap","Đào tạo"],
  pc_ct:["scroll-text","Hợp đồng"],pc_comp:["shield-check","Tuân thủ"],pc_data:["lock","Dữ liệu cá nhân"],
  hc_asset:["building-2","Tài sản"],hc_svc:["settings","Dịch vụ nội bộ"]};
-const KHI={cl:"target",nh:"package-search",hd:"scale",mk:"megaphone",kd:"handshake",kv:"truck",dv:"headset",ht:"landmark",tc:"receipt"};
-const KNO={cl:"01",nh:"02",hd:"03",kv:"04",mk:"05",kd:"06",dv:"07",ht:"08"};
-const GRI={tc:"receipt",ns:"users",pc:"shield-check",hc:"building-2"};
-const PFI=[["database","Dữ liệu chủ"],["app-window","Hệ thống"],["book-open","Tri thức"],["workflow","Điều phối"],["fingerprint","Kiểm soát"]];
-const ROLE_S={ceo:"Ban điều hành",nh:"Ngành hàng",mh:"Mua hàng",hd:"Hoạch định",mk:"Marketing",kd:"Kinh doanh",vh:"Vận hành",dv:"Dịch vụ KH",tc:"Tài chính",ns:"Nhân sự",pc:"Pháp chế",hc:"Hành chính"};
+const TM_KHI={cl:"target",nh:"package-search",hd:"scale",mk:"megaphone",kd:"handshake",kv:"truck",dv:"headset",ht:"landmark",tc:"receipt"};
+const TM_KNO={cl:"01",nh:"02",hd:"03",kv:"04",mk:"05",kd:"06",dv:"07",ht:"08"};
+const TM_GRI={tc:"receipt",ns:"users",pc:"shield-check",hc:"building-2"};
+const TM_PFI=[["database","Dữ liệu chủ"],["app-window","Hệ thống"],["book-open","Tri thức"],["workflow","Điều phối"],["fingerprint","Kiểm soát"]];
+const TM_ROLE_S={ceo:"Ban điều hành",nh:"Ngành hàng",mh:"Mua hàng",hd:"Hoạch định",mk:"Marketing",kd:"Kinh doanh",vh:"Vận hành",dv:"Dịch vụ KH",tc:"Tài chính",ns:"Nhân sự",pc:"Pháp chế",hc:"Hành chính"};
 /* Vai thẩm quyền giao được cho AI: quyết định dựa trên luật, ngưỡng và đảo ngược được.
    AI giữ vai thì chỉ quyết trong luật của vai; việc vượt quyền vai chuyển lên Ban điều hành. */
-const ROLE_AI={hd:1,mk:1,vh:1,dv:1,hc:1};
+const TM_ROLE_AI={hd:1,mk:1,vh:1,dv:1,hc:1};
 const RAI_NOTE="Vai này giao được cho AI. Khi AI giữ vai, AI chỉ quyết trong luật và ngưỡng của vai; việc vượt quyền vai chuyển lên Ban điều hành.";
 const rai=r=>ROLE_AI[r]?`<span class="rai" title="${RAI_NOTE}">${ic("bot",14)}</span>`:"";
 const rmk=(r,short)=>`<i class="hdot"></i>${esc((short?ROLE_S:ROLE)[r])}${rai(r)}`;
-const CHI={pta:"package",stp:"credit-card",lto:"magnet",otc:"receipt",ctr:"headset"};
-const STS={pta:["Số bán","Dự báo","Cân đối cung–cầu","Kế hoạch mua","Duyệt vốn","Chốt nguồn","Đặt mua, nhập kho","Phân bổ"],
+const TM_CHI={pta:"package",stp:"credit-card",lto:"magnet",otc:"receipt",ctr:"headset"};
+const TM_STS={pta:["Số bán","Dự báo","Cân đối cung–cầu","Kế hoạch mua","Duyệt vốn","Chốt nguồn","Đặt mua, nhập kho","Phân bổ"],
  stp:["Nhu cầu mua","So sánh báo giá","Chốt hợp đồng","Phát đơn mua","Nhận, kiểm hàng","Đối chiếu 3 chiều","Duyệt chi","Ghi sổ phải trả"],
  lto:["Chiến dịch","Thu khách","Chấm điểm","Tư vấn","Báo giá","Kiểm chiết khấu","Hợp đồng sỉ","Chốt đơn"],
  otc:["Đơn vào","Kiểm tra đơn","Kiểm tín dụng","Giữ hàng","Đóng gói","Giao, xác nhận","Hóa đơn, thu tiền","Đối soát, ghi sổ"],
  ctr:["Tiếp nhận","Xác minh","Xét điều kiện","Nhận hàng trả","Hoàn tiền","Đóng yêu cầu","Cải tiến"]};
-const EXQ=[["kd_price","Chiết khấu ngoài khung","kd"],["hd_pol","Vượt trần vốn tồn kho","tc"],["dv_ret","Bồi hoàn vượt hạn mức","dv"],["nh_src","Nhà cung cấp mới","mh"],["kv_om","Thiếu hàng sau khi nhận đơn","vh"],["cl_strat","Đổi chính sách lớn","ceo"]];
+const TM_EXQ=[["kd_price","Chiết khấu ngoài khung","kd"],["hd_pol","Vượt trần vốn tồn kho","tc"],["dv_ret","Bồi hoàn vượt hạn mức","dv"],["nh_src","Nhà cung cấp mới","mh"],["kv_om","Thiếu hàng sau khi nhận đơn","vh"],["cl_strat","Đổi chính sách lớn","ceo"]];
 const LV=[["eye","Quan sát","AI chỉ thu thập và báo cáo, không tạo đầu ra.","Người làm toàn bộ"],
  ["lightbulb","Đề xuất","AI tra cứu, tổng hợp, phân tích và soạn thảo; người chọn và làm.","≈ A1 · Hỗ trợ"],
  ["file-pen","Chuẩn bị","AI làm trọn việc; không gì ra ngoài khi người chưa duyệt.","≈ A2 · Đề xuất → người duyệt"],
  ["zap","Thực hiện có giới hạn","AI tự làm trong luật và ngưỡng; việc vượt ngưỡng bị chặn và chuyển cho người.","≈ A3 · Thực hiện trong giới hạn"],
- ["refresh-cw","Tự vận hành","AI tự lập kế hoạch và tối ưu trong trần ngân sách.","Hiếm dùng trong phân phối"],
- ["shield-check","Tự chủ có giám sát","AI điều hành cả chức năng; người kiểm toán định kỳ. Chỉ cho việc rủi ro thấp, đảo ngược được.","Hiếm dùng trong phân phối"]];
+ ["refresh-cw","Tự vận hành","AI tự lập kế hoạch và tối ưu trong trần ngân sách.","Hiếm dùng"],
+ ["shield-check","Tự chủ có giám sát","AI điều hành cả chức năng; người kiểm toán định kỳ. Chỉ cho việc rủi ro thấp, đảo ngược được.","Hiếm dùng"]];
 /* Icon nét (Lucide, ISC). Trong HTML dùng ic(), trong SVG dùng icS(). */
 const ic=(n,sz)=>`<svg viewBox="0 0 24 24" width="${sz||20}" height="${sz||20}" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[n]||""}</svg>`;
 const icS=(n,x,y,sz,col)=>`<svg x="${x}" y="${y}" width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="none" stroke="${col||"var(--ct)"}" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">${ICO[n]||""}</svg>`;
@@ -1825,6 +1877,306 @@ function wire(pts,o){o=o||{};
   return s;}
 const wlab=(t,x,y,a)=>`<text x="${x}" y="${y}" class="wl" text-anchor="${a||"middle"}">${esc(t)}</text>`;
 
+DS.tmhh={ROLE:TM_ROLE,ROLE_ORDER:TM_ROLE_ORDER,KHOI:TM_KHOI,NHOM_HT:TM_NHOM_HT,NV:TM_NV,PF:TM_PF,NGUON:TM_NGUON,LANE:TM_LANE,CHUOI:TM_CHUOI,NVI:TM_NVI,KHI:TM_KHI,KNO:TM_KNO,GRI:TM_GRI,PFI:TM_PFI,ROLE_S:TM_ROLE_S,CHI:TM_CHI,STS:TM_STS,EXQ:TM_EXQ,ROLE_AI:TM_ROLE_AI,
+ rows:[["nh","hd","kv"],["mk","kd","dv"]],rowLab:[["Phía cung","— có đúng hàng, đúng lúc"],["Phía cầu","— có khách, thu được tiền"]],core:null,
+ line:"Con người sở hữu mục tiêu và trách nhiệm. AI thực hiện tác vụ trong phạm vi được giao. Dữ liệu và quy trình kết nối toàn bộ hoạt động.",
+ pfSub:"Dữ liệu thống nhất — nguồn chuẩn theo từng loại dữ liệu",
+ pfNote:"Doanh nghiệp được dùng nhiều hệ thống, nhưng mỗi dữ liệu quan trọng có một nơi quản lý chính thức. AI lấy dữ liệu từ nguồn được chỉ định và ghi kết quả trở lại đúng hệ thống nghiệp vụ. AI không phải một phòng ban có quyền chỉ huy: nó làm việc trong từng khối, qua một lớp điều phối chung.",
+ heat:[["Điều hành và phía cung",["cl","nh","hd","kv"]],["Phía cầu và hỗ trợ",["mk","kd","dv","ht"]]],watch:"hd",
+ exIn:[["Vượt ngưỡng","chiết khấu ngoài khung, đơn mua vượt hạn mức, bồi hoàn vượt mức tự duyệt."],["Ngoài luật","tình huống chính sách chưa viết tới, điều khoản lệch hợp đồng mẫu."],["Bất thường","tiền về lệch, chênh lệch kiểm kê, đơn nghi gian lận, dự báo lệch xa thực tế."],["Việc thuộc quyền người","ký hợp đồng, chọn nhà cung cấp mới, quyết định về con người."]],
+ calls:[["git-branch","Tách ba việc: tạo, duyệt, thực hiện","AI đối chiếu và lập đề nghị thanh toán (L2), Tài chính duyệt, lệnh chi chạy qua ngân hàng theo phân quyền."],
+  ["users","Doanh nghiệp nhỏ: một người, nhiều vai","Mười hai vai là vai thẩm quyền, không phải mười hai người. Ngoại lệ vẫn đi theo vai, sau này giao vai cho người mới không phải dựng lại luồng."],
+  ["bot","Vai có thể là người hoặc AI","Hoạch định, Marketing, Vận hành, Dịch vụ khách hàng, Hành chính giao được cho AI. AI giữ vai chỉ quyết trong luật của vai; vượt quyền lên Ban điều hành. Ngành hàng, Mua hàng, Kinh doanh, Tài chính, Nhân sự, Pháp chế luôn là người."]]};
+
+/* =================== DỊCH VỤ: KIẾN TRÚC 8 KHỐI ===================
+   Nguồn: Kien-truc-doanh-nghiep-dich-vu-Nguoi-AI.md (04/10/2026). Khối trung tâm là
+   Thực hiện dịch vụ & Quản trị chuyên môn. lo: loại việc — quản trị, hành chính,
+   điều phối, chuyên môn. AI hỗ trợ việc chuyên môn, không tự quyết chuyên môn. */
+DS.dv={
+ ROLE:{ceo:"Ban điều hành",tk:"Trưởng thiết kế dịch vụ",mk:"Trưởng marketing",kd:"Trưởng kinh doanh",vh:"Trưởng vận hành – điều phối",dt:"Phụ trách đối tác",cm:"Trưởng chuyên môn",tn:"Trưởng trải nghiệm khách hàng",tc:"Tài chính – Kế toán trưởng",ns:"Phụ trách nhân sự",pc:"Phụ trách pháp chế & tuân thủ",hc:"Phụ trách hành chính"},
+ ROLE_S:{ceo:"Ban điều hành",tk:"Thiết kế DV",mk:"Marketing",kd:"Kinh doanh",vh:"Vận hành",dt:"Đối tác",cm:"Chuyên môn",tn:"Trải nghiệm",tc:"Tài chính",ns:"Nhân sự",pc:"Pháp chế",hc:"Hành chính"},
+ ROLE_ORDER:["tk","mk","kd","vh","dt","cm","tn","tc","ns","pc","hc"],
+ ROLE_AI:{mk:1,vh:1,tn:1,hc:1},
+ KHOI:[
+ {id:"cl",tier:"Tầng 1 · Điều hành",n:"Chiến lược & Quản trị doanh nghiệp",en:"Strategy & Business Governance",o:"ceo",s:"Điều hành",
+  goal:"Chọn thị trường, mô hình dịch vụ và cách phân bổ nguồn lực để tăng trưởng có hiệu quả.",
+  nguoi:"Quyết định chiến lược, chính sách và phân bổ nguồn lực.",ai:"Tổng hợp dữ liệu quản trị, phân tích chênh lệch, mô phỏng kịch bản, phát hiện bất thường.",
+  kpi:["Doanh thu","Lợi nhuận hoạt động","Dòng tiền","Hiệu quả danh mục dịch vụ","Tiến độ mục tiêu"],
+  in:["Số liệu từ mọi khối","Tín hiệu thị trường","Báo cáo rủi ro, chất lượng"],out:["Mục tiêu, ngân sách","Chính sách, hạn mức","Ưu tiên hoạt động"],
+  exc:[["Thay đổi chính sách lớn","ceo"],["Vượt ngân sách trọng yếu","ceo"],["Xung đột ưu tiên giữa các khối","ceo"]]},
+ {id:"tk",tier:"Tầng 2 · Thiết kế và tạo nhu cầu",n:"Danh mục, Thiết kế & Tiêu chuẩn dịch vụ",en:"Service Portfolio, Design & Standards",o:"tk",s:"Thiết kế DV",
+  goal:"Xác định cung cấp dịch vụ gì, cho ai, bằng phương pháp nào và theo tiêu chuẩn nào.",
+  nguoi:"Xác nhận tính khả thi, tiêu chuẩn chuyên môn và cam kết có thể cung cấp.",ai:"Tổng hợp phản hồi, hỗ trợ soạn tài liệu, mô phỏng chi phí, đề xuất cải tiến.",
+  kpi:["Hiệu quả từng dịch vụ","Mức độ chuẩn hóa","Thời gian phát triển dịch vụ","Đáp ứng nhu cầu"],
+  in:["Nhu cầu, phản hồi khách hàng","Kết quả và sự cố khi thực hiện","Chi phí thực tế"],out:["Danh mục, phạm vi chuẩn, điều kiện tiếp nhận","Quy trình, tiêu chí chất lượng","Giá cơ sở, tri thức đã duyệt"],
+  exc:[["Mở hoặc dừng một dịch vụ","ceo"],["Tiêu chuẩn chuyên môn","cm"],["Giá cơ sở dưới chi phí","tc"]]},
+ {id:"mk",tier:"Tầng 2 · Thiết kế và tạo nhu cầu",n:"Thị trường, Marketing & Phát triển kênh",en:"Market Development, Marketing & Channels",o:"mk",s:"Marketing",
+  goal:"Tạo nhu cầu phù hợp và phát triển các kênh đưa khách đến doanh nghiệp.",
+  nguoi:"Phê duyệt thông điệp, định vị, quan hệ đối tác và ngân sách.",ai:"Phân tích nhu cầu, hỗ trợ nội dung, phân nhóm khách, theo dõi hiệu quả.",
+  kpi:["Khách tiềm năng đủ điều kiện","Chi phí thu hút","Chuyển đổi theo kênh","Đóng góp doanh thu"],
+  in:["Danh mục và phạm vi dịch vụ đã duyệt","Ngân sách","Phản hồi khách"],out:["Khách tiềm năng","Nguồn giới thiệu","Kỳ vọng của khách"],
+  exc:[["Nội dung hứa vượt phạm vi dịch vụ","pc"],["Chiến dịch vượt ngân sách","mk"],["Khủng hoảng truyền thông","ceo"]]},
+ {id:"kd",tier:"Tầng 2 · Cam kết, nguồn lực, thực hiện",n:"Đánh giá nhu cầu, Kinh doanh & Cam kết dịch vụ",en:"Needs Assessment, Sales & Service Contracting",o:"kd",s:"Kinh doanh",
+  goal:"Chuyển nhu cầu phù hợp thành cam kết rõ ràng, làm được và thu được tiền.",
+  nguoi:"Đánh giá yêu cầu phức tạp, đàm phán, phê duyệt cam kết hoặc thay đổi trọng yếu.",ai:"Thu thông tin, phân loại yêu cầu, lập dự thảo đề xuất, kiểm thông tin còn thiếu.",
+  kpi:["Tỷ lệ chuyển đổi","Thời gian chốt","Lợi nhuận dự kiến","Độ rõ phạm vi","Thay đổi ngoài kế hoạch"],
+  in:["Khách tiềm năng","Danh mục, giá, điều kiện tiếp nhận","Công suất khả dụng"],out:["Hồ sơ dịch vụ được chấp nhận","Phạm vi, giá, tiêu chí hoàn thành","Yêu cầu nguồn lực"],
+  exc:[["Giá ngoại lệ, phạm vi ngoài chuẩn","kd"],["Điều kiện chuyên môn","cm"],["Điều khoản ngoài mẫu","pc"]]},
+ {id:"nl",tier:"Tầng 2 · Cam kết, nguồn lực, thực hiện",n:"Hoạch định & Điều phối nguồn lực",en:"Capacity Planning & Resource Coordination",o:"vh",s:"Nguồn lực",
+  goal:"Bố trí đúng người, thời gian, địa điểm, thiết bị và đối tác cho từng cam kết.",
+  nguoi:"Quyết định ưu tiên, bố trí nguồn lực khan hiếm, xử lý xung đột.",ai:"Gợi ý lịch, kiểm trùng, ghép năng lực với yêu cầu, nhắc xác nhận, cảnh báo quá tải.",
+  kpi:["Sử dụng công suất phù hợp","Thời gian chờ","Tỷ lệ vắng hẹn","Xung đột lịch","Sẵn sàng nguồn lực"],
+  in:["Cam kết kèm yêu cầu nguồn lực","Hồ sơ năng lực, lịch trống","Xác nhận của đối tác"],out:["Lịch, kế hoạch nguồn lực đã xác nhận","Điều kiện sẵn sàng thực hiện"],
+  exc:[["Thiếu nguồn lực, quá tải","vh"],["Đối tác chưa xác nhận","dt"],["Không đủ người đủ điều kiện","cm"]]},
+ {id:"th",tier:"Tầng 2 · Cam kết, nguồn lực, thực hiện",n:"Thực hiện dịch vụ & Quản trị chuyên môn",en:"Service Delivery & Professional Governance",o:"cm",s:"Thực hiện",
+  goal:"Làm đúng phạm vi, bảo đảm chất lượng và ghi nhận kết quả của từng hồ sơ.",
+  nguoi:"Chịu trách nhiệm chuyên môn, làm phần việc cần có mặt, xác nhận chất lượng.",ai:"Hỗ trợ tài liệu, checklist, theo dõi tiến độ, tổng hợp hồ sơ, phát hiện thiếu sót. Không quyết định chuyên môn.",
+  kpi:["Đúng hạn","Đáp ứng phạm vi","Tỷ lệ làm lại","Sai sót","Chất lượng hồ sơ","Sự cố"],
+  in:["Hồ sơ dịch vụ, lịch, nguồn lực sẵn sàng","Tiêu chuẩn, quy trình đã duyệt"],out:["Dịch vụ hoặc sản phẩm bàn giao","Hồ sơ hoàn thành, sự cố","Nhu cầu tiếp theo"],
+  exc:[["Sai sót chuyên môn, an toàn","cm"],["Sự cố khẩn cấp: đi thẳng, không chờ hàng đợi","cm"],["Trễ mốc ảnh hưởng cam kết","vh"]]},
+ {id:"tn",tier:"Tầng 2 · Thiết kế và tạo nhu cầu",n:"Trải nghiệm khách hàng & Phát triển quan hệ",en:"Customer Experience & Relationship Development",o:"tn",s:"Trải nghiệm",
+  goal:"Hỗ trợ khách suốt hành trình, giải quyết vấn đề và giữ quan hệ phù hợp.",
+  nguoi:"Xử lý tranh chấp, tình huống nhạy cảm và quan hệ quan trọng.",ai:"Nhắc việc, trả lời thông tin đã duyệt, phân loại yêu cầu, theo dõi hạn xử lý, tổng hợp phản hồi.",
+  kpi:["Hài lòng","Thời gian giải quyết","Tỷ lệ tái sử dụng","Duy trì khách","Khiếu nại lặp lại"],
+  in:["Hồ sơ và lịch dịch vụ","Yêu cầu, phản hồi từ mọi kênh"],out:["Yêu cầu đã giải quyết","Cơ hội gia hạn","Hành động cải tiến cho thiết kế dịch vụ"],
+  exc:[["Tranh chấp, khắc phục ngoài chính sách","tn"],["Vấn đề chuyên môn","cm"],["Hoàn tiền","tc"]]},
+ {id:"ht",tier:"Tầng 3 · Năng lực hỗ trợ",n:"Tài chính & Năng lực hỗ trợ",en:"Finance & Enterprise Services",o:"tc",s:"Hỗ trợ",
+  goal:"Giữ tiền, người, pháp lý và tài sản đúng, đủ, kiểm soát được.",
+  nguoi:"Phê duyệt, kiểm soát và chịu trách nhiệm tính đúng đắn.",ai:"Đối chiếu chứng từ, hỗ trợ báo cáo, dự báo dòng tiền, nhắc hồ sơ hết hạn, tổng hợp chi phí.",
+  kpi:["Thu tiền đúng hạn","Dòng tiền","Lợi nhuận hồ sơ","Năng lực nhân sự","Sẵn sàng tài sản","Tuân thủ"],
+  in:["Chứng từ, mốc thanh toán","Lịch thực hiện, chấm công","Hợp đồng, giấy phép"],out:["Thông tin tài chính","Nhân sự đủ điều kiện","Tài sản sẵn sàng, hồ sơ quản trị"],
+  exc:[["Hoàn tiền, công nợ","tc"],["Quyết định về con người","ns"],["Hợp đồng, quyền dữ liệu","pc"]]}
+ ],
+ NHOM_HT:[{id:"tc",n:"Tài chính & Kế toán",en:"Finance & Accounting"},{id:"ns",n:"Nhân sự & Phát triển năng lực",en:"People & Capability"},{id:"pc",n:"Pháp chế, Tuân thủ & Dữ liệu",en:"Legal, Compliance & Data"},{id:"hc",n:"Hành chính & Quản trị tài sản",en:"Administration & Assets"}],
+ NV:[
+ {id:"cl_strat",k:"cl",lo:"ql",n:"Chiến lược thị trường & Mô hình kinh doanh",en:"Market Strategy & Business Model",o:"ceo",ai:[["Tổng hợp tin thị trường, đối thủ, xu hướng ngành dịch vụ",1],["Mô phỏng kịch bản tăng trưởng, so sánh mô hình dịch vụ",1]],x:"Mọi quyết định chọn thị trường, mô hình dịch vụ",to:"ceo",sys:"Sổ quyết định chiến lược",keep:"Chọn thị trường và mô hình dịch vụ"},
+ {id:"cl_plan",k:"cl",lo:"ql",n:"Kế hoạch kinh doanh & Ngân sách",en:"Business Planning & Budgeting",o:"ceo",ai:[["Dựng nháp kế hoạch, ngân sách từ số liệu kỳ trước",2],["Theo dõi chi thực tế so với ngân sách",3]],x:"Chi vượt ngân sách trọng yếu",to:"ceo",sys:"Phần mềm kế toán, bảng ngân sách",keep:"Duyệt kế hoạch, phân bổ ngân sách"},
+ {id:"cl_perf",k:"cl",lo:"ql",n:"Quản trị hiệu quả & Danh mục hoạt động",s:"Hiệu quả & Danh mục hoạt động",en:"Performance & Business Portfolio Management",o:"ceo",ai:[["Tổng hợp báo cáo vận hành, lãi lỗ theo dịch vụ",3],["Phân tích dịch vụ nào lãi, dịch vụ nào kéo lùi",2]],x:"Dịch vụ lỗ kéo dài, chỉ số lệch hai kỳ liền",to:"ceo",sys:"Bảng điều hành",keep:"Giữ, mở rộng hay dừng một dịch vụ"},
+ {id:"cl_risk",k:"cl",lo:"ql",n:"Quản trị rủi ro & Kiểm soát nội bộ",en:"Risk Management & Internal Control",o:"ceo",ai:[["Rà giao dịch, lịch, hồ sơ bất thường",3],["Cập nhật sổ rủi ro, nhắc mốc kiểm soát",2]],x:"Rủi ro cao, nghi gian lận",to:"ceo",sys:"Sổ rủi ro, nhật ký kiểm soát",keep:"Mức chấp nhận rủi ro"},
+ {id:"cl_change",k:"cl",lo:"ql",n:"Quản trị thay đổi & Cải tiến mô hình",s:"Thay đổi & Cải tiến mô hình",en:"Transformation & Business Improvement",o:"ceo",ai:[["Theo dõi tiến độ dự án cải tiến, cổng nghiệm thu",3],["Đề xuất nâng mức AI cho tác vụ đã ổn định 4–8 tuần",2]],x:"Đề nghị nâng mức AI, dự án trễ cổng",to:"ceo",sys:"Công cụ quản lý dự án",keep:"Duyệt nâng mức AI"},
+
+ {id:"tk_port",k:"tk",lo:"ql",n:"Quản trị danh mục dịch vụ",en:"Service Portfolio Management",o:"tk",ai:[["Phân tích từng dịch vụ: nhu cầu, biên lãi, công suất",3],["Đề xuất dịch vụ nên mở, gộp, dừng",2]],x:"Mở hoặc dừng một dịch vụ",to:"ceo",sys:"Danh mục dịch vụ",keep:"Danh mục dịch vụ"},
+ {id:"tk_pkg",k:"tk",lo:"ql",n:"Thiết kế gói dịch vụ & Hành trình khách hàng",s:"Gói dịch vụ & Hành trình khách",en:"Service Package & Customer Journey Design",o:"tk",ai:[["Gom phản hồi thành điểm vướng trên hành trình khách",3],["Soạn nháp gói, phạm vi chuẩn, điều kiện tiếp nhận",2]],x:"Gói mới, đổi phạm vi chuẩn",to:"tk",sys:"Danh mục dịch vụ",keep:"Phạm vi chuẩn và điều kiện tiếp nhận"},
+ {id:"tk_proc",k:"tk",lo:"dp",n:"Thiết kế quy trình cung cấp dịch vụ",s:"Quy trình cung cấp dịch vụ",en:"Service Delivery Process Design",o:"tk",ai:[["Viết nháp quy trình chuẩn, checklist từ cách đang làm",2],["Tìm bước trùng, bước thừa trong hồ sơ thực hiện",1]],x:"Quy trình chạm tới an toàn, chuyên môn",to:"cm",sys:"Kho quy trình chuẩn",keep:"Ban hành quy trình"},
+ {id:"tk_std",k:"tk",lo:"cm",n:"Xây dựng tiêu chuẩn chuyên môn & Chất lượng",s:"Tiêu chuẩn chuyên môn & Chất lượng",en:"Professional & Quality Standards Development",o:"cm",ai:[["Tổng hợp tiêu chuẩn tham chiếu, so với cách đang làm",1],["Soạn tiêu chí chất lượng để chuyên môn duyệt",2]],x:"Mọi tiêu chuẩn chuyên môn",to:"cm",sys:"Kho tiêu chuẩn",keep:"Tiêu chuẩn chuyên môn"},
+ {id:"tk_cost",k:"tk",lo:"ql",n:"Thiết kế mô hình chi phí & Giá dịch vụ",s:"Mô hình chi phí & Giá",en:"Service Cost Model & Pricing Design",o:"tk",ai:[["Tính chi phí theo giờ công, vật tư, đối tác",3],["Mô phỏng biên lãi cho từng mức giá",2]],x:"Giá cơ sở mới, giá dưới chi phí",to:"tc",sys:"Bảng giá dịch vụ",keep:"Giá cơ sở"},
+ {id:"tk_know",k:"tk",lo:"cm",n:"Quản trị tri thức & Phát triển phương pháp",s:"Tri thức & Phương pháp",en:"Knowledge & Methodology Development",o:"cm",ai:[["Gom bài học từ hồ sơ đã hoàn thành",3],["Soạn tài liệu phương pháp để chuyên môn duyệt",2]],x:"Nội dung chuyên môn đưa vào kho tri thức",to:"cm",sys:"Kho tri thức",keep:"Duyệt tri thức chuyên môn"},
+
+ {id:"mk_res",k:"mk",lo:"ql",n:"Nghiên cứu thị trường & Thấu hiểu khách hàng",s:"Nghiên cứu & Thấu hiểu khách",en:"Market Research & Customer Insights",o:"mk",ai:[["Gom đánh giá, câu hỏi, khảo sát thành chủ đề",3],["Phân nhóm khách theo nhu cầu",3]],x:"Kết luận dẫn tới đổi định vị",to:"ceo",sys:"CRM, kho khảo sát",keep:"Rút kết luận chiến lược"},
+ {id:"mk_brand",k:"mk",lo:"ql",n:"Định vị & Quản trị thương hiệu",en:"Brand Positioning & Management",o:"mk",ai:[["Kiểm nội dung đúng giọng thương hiệu",3],["Soạn phương án thông điệp",1]],x:"Thông điệp mới, khủng hoảng truyền thông",to:"ceo",sys:"Bộ nhận diện thương hiệu",keep:"Định vị, thông điệp lõi"},
+ {id:"mk_content",k:"mk",lo:"ql",n:"Nội dung & Truyền thông",en:"Content & Communications",o:"mk",ai:[["Viết nháp bài theo lịch nội dung",2],["Kiểm nội dung không hứa vượt phạm vi dịch vụ",3]],x:"Nội dung có hứa hẹn kết quả, chủ đề nhạy cảm",to:"pc",sys:"Lịch nội dung",keep:"Nội dung ngoài chủ đề đã duyệt"},
+ {id:"mk_lead",k:"mk",lo:"ql",n:"Thu hút khách hàng tiềm năng",en:"Demand Generation & Lead Acquisition",o:"mk",ai:[["Chạy quảng cáo trong trần ngân sách",3],["Thu và chấm điểm khách, chuyển cho kinh doanh",3]],x:"Chi phí thu hút vượt ngưỡng",to:"mk",sys:"CRM, tài khoản quảng cáo",keep:"Ngân sách quảng cáo"},
+ {id:"mk_ref",k:"mk",lo:"ql",n:"Quản trị kênh & Đối tác giới thiệu",s:"Kênh & Đối tác giới thiệu",en:"Channel & Referral Partner Management",o:"mk",ai:[["Theo dõi khách, doanh thu theo nguồn giới thiệu",3],["Tính hoa hồng giới thiệu theo chính sách",3]],x:"Đối tác giới thiệu mới, hoa hồng ngoài chính sách",to:"kd",sys:"CRM",keep:"Chọn đối tác giới thiệu"},
+ {id:"mk_camp",k:"mk",lo:"ql",n:"Quản trị chiến dịch & Hiệu quả marketing",s:"Chiến dịch & Hiệu quả",en:"Campaign & Marketing Performance Management",o:"mk",ai:[["Tổng hợp hiệu quả chiến dịch theo kênh",3],["Đề xuất dời ngân sách sang kênh hiệu quả",2]],x:"Chiến dịch lỗ quá ngưỡng",to:"mk",sys:"Bảng hiệu quả marketing",keep:"Mở, dừng chiến dịch"},
+
+ {id:"kd_intake",k:"kd",lo:"hc",n:"Tiếp nhận & Đánh giá nhu cầu",en:"Inquiry Intake & Needs Assessment",o:"kd",ai:[["Thu thông tin, phân loại yêu cầu, hỏi phần còn thiếu",3],["Tóm tắt nhu cầu cho người tư vấn",3]],x:"Yêu cầu phức tạp, ngoài danh mục",to:"kd",sys:"CRM",keep:"Nhận hay từ chối yêu cầu đặc biệt"},
+ {id:"kd_elig",k:"kd",lo:"cm",n:"Xác định điều kiện tiếp nhận",en:"Eligibility & Acceptance Assessment",o:"cm",ai:[["Kiểm điều kiện hành chính: giấy tờ, thời gian, địa điểm",3],["Đánh dấu dấu hiệu cần chuyên môn xem",1]],x:"Điều kiện chuyên môn: chỉ người phụ trách chuyên môn quyết",to:"cm",sys:"Hồ sơ dịch vụ",keep:"Tiếp nhận về mặt chuyên môn"},
+ {id:"kd_opp",k:"kd",lo:"ql",n:"Quản trị cơ hội & Quan hệ kinh doanh",s:"Cơ hội & Quan hệ",en:"Opportunity & Account Management",o:"kd",ai:[["Chấm điểm cơ hội, nhắc việc",3],["Tóm tắt lịch sử quan hệ khách lớn",3]],x:"Khách lớn, cam kết dài hạn",to:"kd",sys:"CRM",keep:"Quan hệ khách lớn"},
+ {id:"kd_prop",k:"kd",lo:"ql",n:"Đề xuất phương án, Báo giá & Phạm vi",s:"Đề xuất, Báo giá & Phạm vi",en:"Proposal, Quotation & Scope Definition",o:"kd",ai:[["Báo giá gói chuẩn theo bảng giá",3],["Soạn nháp đề xuất, phạm vi ngoài chuẩn",2]],x:"Giá ngoại lệ, phạm vi ngoài chuẩn",to:"kd",sys:"CRM, hồ sơ dịch vụ",keep:"Phạm vi và giá ngoài chuẩn"},
+ {id:"kd_ct",k:"kd",lo:"hc",n:"Hợp đồng, Điều khoản & Xác nhận dịch vụ",s:"Hợp đồng & Xác nhận",en:"Contracting, Terms & Service Confirmation",o:"kd",ai:[["Soạn hợp đồng theo mẫu đã duyệt",2],["Gửi xác nhận dịch vụ, điều kiện hủy và thanh toán",3]],x:"Điều khoản ngoài mẫu",to:"pc",sys:"Hồ sơ dịch vụ, kho hợp đồng",keep:"Ký cam kết dịch vụ"},
+ {id:"kd_chg",k:"kd",lo:"ql",n:"Thay đổi phạm vi & Điều kiện thương mại",s:"Thay đổi phạm vi",en:"Scope Change & Commercial Terms Management",o:"kd",ai:[["Ghi yêu cầu thay đổi, tính chênh lệch giá và lịch",2],["Cập nhật phụ lục sau khi được duyệt",3]],x:"Thay đổi trọng yếu về phạm vi, giá",to:"kd",sys:"Hồ sơ dịch vụ",keep:"Duyệt thay đổi phạm vi"},
+
+ {id:"nl_cap",k:"nl",lo:"dp",n:"Dự báo nhu cầu & Hoạch định công suất",s:"Dự báo & Công suất",en:"Demand Forecasting & Capacity Planning",o:"vh",ai:[["Dự báo lượng đặt theo ngày, loại dịch vụ",3],["Cảnh báo ngày quá tải, ngày trống",3]],x:"Nhu cầu vượt công suất kéo dài",to:"vh",sys:"Hệ thống đặt lịch",keep:"Mở thêm ca, thuê thêm người"},
+ {id:"nl_book",k:"nl",lo:"dp",n:"Lập lịch & Quản trị đặt chỗ",s:"Lịch & Đặt chỗ",en:"Scheduling & Booking Management",o:"vh",ai:[["Nhắc lịch, xác nhận thông tin hành chính",3],["Gợi ý lịch theo năng lực, thời gian, thiết bị",2]],x:"Trùng lịch không tự giải được",to:"vh",sys:"Hệ thống đặt lịch",keep:"Ưu tiên khi xung đột lịch"},
+ {id:"nl_assign",k:"nl",lo:"dp",n:"Phân công theo năng lực",en:"Competency-Based Resource Assignment",o:"vh",ai:[["Ghép người có chứng chỉ, kỹ năng phù hợp",2],["Cảnh báo người quá tải, chứng chỉ sắp hết hạn",3]],x:"Không đủ người đủ điều kiện",to:"cm",sys:"Hồ sơ năng lực, lịch",keep:"Phân công ca khó"},
+ {id:"nl_part",k:"nl",lo:"dp",n:"Điều phối đối tác & Nguồn lực thuê ngoài",s:"Đối tác & Thuê ngoài",en:"Partner & Subcontractor Coordination",o:"dt",ai:[["Gửi yêu cầu đặt dịch vụ cho đối tác",3],["Theo dõi xác nhận; chưa xác nhận thì không báo khách là đã bảo đảm",3]],x:"Đối tác không xác nhận đúng hạn",to:"dt",sys:"Danh mục đối tác, hồ sơ đặt chỗ",keep:"Chọn, đổi đối tác"},
+ {id:"nl_ready",k:"nl",lo:"dp",n:"Bảo đảm vật tư, Thiết bị & Địa điểm",s:"Vật tư, Thiết bị & Địa điểm",en:"Supplies, Equipment & Facility Readiness",o:"vh",ai:[["Kiểm vật tư, thiết bị, phòng trước mỗi ca",3],["Đặt bù vật tư tiêu hao theo định mức",3]],x:"Thiết bị hỏng, thiếu vật tư sát giờ",to:"vh",sys:"Sổ tài sản, vật tư",keep:"Dời ca khi thiếu điều kiện"},
+ {id:"nl_resch",k:"nl",lo:"dp",n:"Thay đổi lịch & Khả năng liên tục phục vụ",s:"Đổi lịch & Liên tục phục vụ",en:"Rescheduling & Service Continuity Management",o:"vh",ai:[["Đổi lịch theo chính sách, báo các bên",3],["Tìm người, địa điểm thay thế khi có sự cố",2]],x:"Hủy sát giờ, không có người thay",to:"vh",sys:"Hệ thống đặt lịch",keep:"Hủy, dời dịch vụ phía doanh nghiệp"},
+
+ {id:"th_hand",k:"th",lo:"dp",n:"Tiếp nhận bàn giao & Xác nhận sẵn sàng",s:"Bàn giao & Sẵn sàng",en:"Delivery Handover & Readiness Verification",o:"cm",ai:[["Lập checklist sẵn sàng từ hồ sơ dịch vụ",3],["Báo phần còn thiếu trước giờ thực hiện",3]],x:"Chưa đủ điều kiện thực hiện",to:"cm",sys:"Hồ sơ dịch vụ",keep:"Quyết định bắt đầu thực hiện"},
+ {id:"th_exec",k:"th",lo:"cm",n:"Thực hiện chuyên môn",en:"Professional Service Execution",o:"cm",ai:[["Chuẩn bị tài liệu, tra cứu tri thức đã duyệt",1],["Ghi chép, tóm tắt nháp để người làm xác minh",1]],x:"Mọi quyết định chuyên môn",to:"cm",sys:"Hồ sơ thực hiện",keep:"Quyết định chuyên môn"},
+ {id:"th_prog",k:"th",lo:"dp",n:"Quản trị tiến độ & Công việc",s:"Tiến độ & Công việc",en:"Delivery Progress & Task Management",o:"cm",ai:[["Theo dõi mốc, nhắc việc trễ",3],["Tổng hợp tiến độ cho khách và quản lý",3]],x:"Trễ mốc ảnh hưởng cam kết",to:"vh",sys:"Công cụ quản lý hồ sơ, dự án",keep:"Dời mốc với khách"},
+ {id:"th_qc",k:"th",lo:"cm",n:"Kiểm soát chất lượng & Rà soát chuyên môn",s:"Chất lượng & Rà soát",en:"Quality Control & Professional Review",o:"cm",ai:[["Kiểm hồ sơ đủ mục theo checklist",3],["Đánh dấu điểm lệch tiêu chuẩn để người rà soát",2]],x:"Lệch tiêu chuẩn chuyên môn",to:"cm",sys:"Hồ sơ thực hiện",keep:"Kết luận rà soát"},
+ {id:"th_inc",k:"th",lo:"cm",n:"Quản trị sự cố & Liên tục cung cấp dịch vụ",s:"Sự cố & Liên tục",en:"Incident & Service Continuity Management",o:"cm",ai:[["Ghi nhận sự cố, báo ngay người phụ trách",3],["Soạn báo cáo sự cố, gợi ý nguyên nhân",2]],x:"Sự cố an toàn, khẩn cấp: đi thẳng, không chờ hàng đợi",to:"cm",sys:"Sổ sự cố",keep:"Xử lý sự cố"},
+ {id:"th_rec",k:"th",lo:"cm",n:"Hồ sơ thực hiện & Bằng chứng kết quả",s:"Hồ sơ & Bằng chứng",en:"Service Records & Delivery Evidence",o:"cm",ai:[["Tổng hợp hồ sơ từ ghi chép đã xác minh",2],["Kiểm hồ sơ thiếu chữ ký, thiếu bằng chứng",3]],x:"Hồ sơ chuyên môn cần xác nhận",to:"cm",sys:"Hồ sơ chuyên môn, xem theo nhiệm vụ",keep:"Xác nhận hồ sơ chuyên môn"},
+ {id:"th_done",k:"th",lo:"cm",n:"Xác nhận hoàn thành & Bàn giao",s:"Hoàn thành & Bàn giao",en:"Completion Confirmation & Handover",o:"cm",ai:[["Soạn biên bản hoàn thành theo loại dịch vụ",2],["Báo kế toán mốc thanh toán đã đạt",3]],x:"Khách không xác nhận hoàn thành",to:"kd",sys:"Hồ sơ dịch vụ",keep:"Xác nhận hoàn thành"},
+
+ {id:"tn_pre",k:"tn",lo:"hc",n:"Hướng dẫn & Chuẩn bị trước dịch vụ",s:"Chuẩn bị trước dịch vụ",en:"Customer Onboarding & Pre-Service Guidance",o:"tn",ai:[["Gửi hướng dẫn, giấy tờ cần chuẩn bị",3],["Trả lời câu hỏi từ nội dung đã duyệt",3]],x:"Câu hỏi chuyên môn",to:"cm",sys:"CRM, cổng khách hàng",keep:"Nội dung hướng dẫn mới"},
+ {id:"tn_in",k:"tn",lo:"hc",n:"Hỗ trợ trong quá trình sử dụng",s:"Hỗ trợ khi đang dùng",en:"In-Service Customer Support",o:"tn",ai:[["Trả lời thông tin đã duyệt 24/7",3],["Chuyển ngay vấn đề chuyên môn cho người phụ trách",3]],x:"Vấn đề chuyên môn, an toàn",to:"cm",sys:"Hộp thư hợp nhất",keep:"Trả lời vấn đề chuyên môn"},
+ {id:"tn_case",k:"tn",lo:"hc",n:"Yêu cầu, Khiếu nại & Khắc phục dịch vụ",s:"Khiếu nại & Khắc phục",en:"Requests, Complaints & Service Recovery",o:"tn",ai:[["Phân loại yêu cầu, theo dõi hạn xử lý",3],["Soạn phương án khắc phục theo chính sách",2]],x:"Tranh chấp, khắc phục ngoài chính sách",to:"tn",sys:"Hệ thống phiếu yêu cầu",keep:"Khắc phục ngoài chính sách"},
+ {id:"tn_follow",k:"tn",lo:"hc",n:"Theo dõi sau dịch vụ",en:"Post-Service Follow-Up",o:"tn",ai:[["Gửi hỏi thăm, khảo sát theo lịch",3],["Gom phản hồi bất thường cho chuyên môn",3]],x:"Phản hồi có dấu hiệu chuyên môn, an toàn",to:"cm",sys:"CRM",keep:"Hành động theo dõi chuyên môn"},
+ {id:"tn_keep",k:"tn",lo:"ql",n:"Duy trì, Gia hạn & Tái sử dụng",s:"Gia hạn & Tái sử dụng",en:"Retention, Renewal & Repeat Use",o:"tn",ai:[["Nhắc gia hạn, đặt lại theo chu kỳ",3],["Phát hiện khách có dấu hiệu rời đi",3]],x:"Khách giá trị cao sắp rời đi",to:"kd",sys:"CRM",keep:"Ưu đãi giữ chân"},
+ {id:"tn_voc",k:"tn",lo:"ql",n:"Phản hồi & Cải tiến trải nghiệm",s:"Phản hồi & Cải tiến",en:"Feedback & Experience Improvement",o:"tn",ai:[["Gom phản hồi lặp lại theo dịch vụ, khâu",3],["Đề xuất cải tiến cho thiết kế dịch vụ",1]],x:"Lỗi lặp lại do thiết kế dịch vụ",to:"tk",sys:"Sổ cải tiến",keep:"Chọn việc cải tiến"},
+
+ {id:"tc_acc",k:"ht",g:"tc",lo:"hc",n:"Kế toán & Thuế",en:"Accounting & Tax",o:"tc",ai:[["Hạch toán chứng từ theo luật đã cài",3],["Chuẩn bị tờ khai thuế",2]],x:"Tờ khai cần ký, bút toán bất thường",to:"tc",sys:"Phần mềm kế toán",keep:"Ký tờ khai"},
+ {id:"tc_inv",k:"ht",g:"tc",lo:"hc",n:"Lập hóa đơn & Phải thu",en:"Invoicing & Receivables",o:"tc",ai:[["Xuất hóa đơn theo mốc đã đạt",3],["Nhắc nợ theo tuổi nợ",3]],x:"Nợ quá hạn, hóa đơn ngoài mốc",to:"tc",sys:"Phần mềm kế toán, hóa đơn điện tử",keep:"Gia hạn nợ"},
+ {id:"tc_dep",k:"ht",g:"tc",lo:"hc",n:"Tiền đặt cọc & Trả trước",s:"Đặt cọc & Trả trước",en:"Deposits & Prepayments",o:"tc",ai:[["Khớp tiền cọc với hồ sơ dịch vụ",3],["Theo dõi riêng tiền nhận trước và doanh thu đã ghi nhận",3]],x:"Tiền cọc lệch, khách đòi lại cọc",to:"tc",sys:"Phần mềm kế toán",keep:"Hoàn cọc ngoài chính sách"},
+ {id:"tc_pay",k:"ht",g:"tc",lo:"hc",n:"Ngân quỹ, Thanh toán & Hoàn tiền",s:"Ngân quỹ & Hoàn tiền",en:"Treasury, Payments & Refunds",o:"tc",ai:[["Dự báo dòng tiền 13 tuần",3],["Lập lệnh hoàn tiền đã được duyệt",2]],x:"Hoàn tiền vượt hạn mức, thanh toán ngoài lịch",to:"tc",sys:"Ngân hàng điện tử",keep:"Duyệt chi, hoàn tiền"},
+ {id:"tc_pa",k:"ht",g:"tc",lo:"ql",n:"Lợi nhuận theo dịch vụ & Hồ sơ",s:"Lợi nhuận theo hồ sơ",en:"Service & Engagement Profitability",o:"tc",ai:[["Tính lãi từng hồ sơ sau giờ công, đối tác, vật tư",3],["Cảnh báo dịch vụ, hồ sơ lỗ",3]],x:"Dịch vụ lỗ kéo dài",to:"ceo",sys:"Kho dữ liệu báo cáo",keep:"Cách phân bổ chi phí chung"},
+ {id:"ns_plan",k:"ht",g:"ns",lo:"hc",n:"Hoạch định nhân sự & Tuyển dụng",s:"Tuyển dụng",en:"Workforce Planning & Recruitment",o:"ns",ai:[["Soạn mô tả công việc, lọc hồ sơ",2],["Dự báo thiếu người theo công suất",3]],x:"Quyết định tuyển, cho nghỉ",to:"ns",sys:"Hồ sơ nhân sự",keep:"Tuyển, cho nghỉ"},
+ {id:"ns_cert",k:"ht",g:"ns",lo:"hc",n:"Năng lực & Chứng chỉ",en:"Competency & Certification",o:"ns",ai:[["Theo dõi chứng chỉ, nhắc trước khi hết hạn",3],["Cập nhật hồ sơ năng lực sau đào tạo",3]],x:"Người hết chứng chỉ vẫn được xếp lịch",to:"cm",sys:"Hồ sơ năng lực",keep:"Công nhận năng lực"},
+ {id:"ns_pay",k:"ht",g:"ns",lo:"hc",n:"Lương thưởng & Hiệu suất",en:"Compensation & Performance",o:"ns",ai:[["Tính công từ lịch thực hiện",2],["Tổng hợp KPI từng người",3]],x:"Lương thưởng ngoài chính sách",to:"ceo",sys:"Phần mềm chấm công, tính lương",keep:"Đánh giá, lương thưởng"},
+ {id:"ns_skill",k:"ht",g:"ns",lo:"hc",n:"Đào tạo & Phối hợp người–AI",s:"Đào tạo & Làm việc cùng AI",en:"Training & Human–AI Capability",o:"ns",ai:[["Dựng bài học từ quy trình và sự cố",2],["Hướng dẫn người mới theo checklist",3]],x:"Nội dung đào tạo chuyên môn",to:"cm",sys:"Kho tri thức",keep:"Duyệt nội dung đào tạo"},
+ {id:"pc_ct",k:"ht",g:"pc",lo:"hc",n:"Hợp đồng",en:"Contracts",o:"pc",ai:[["Rà dự thảo, đánh dấu điều khoản lệch mẫu",2],["Nhắc mốc gia hạn",3]],x:"Điều khoản lệch mẫu",to:"pc",sys:"Kho hợp đồng",keep:"Ký cam kết pháp lý"},
+ {id:"pc_lic",k:"ht",g:"pc",lo:"hc",n:"Điều kiện hành nghề",en:"Practice Licensing",o:"pc",ai:[["Theo dõi giấy phép, phạm vi hành nghề từng người",3],["Chặn xếp lịch ngoài phạm vi hành nghề",3]],x:"Giấy phép hết hạn, làm ngoài phạm vi",to:"pc",sys:"Sổ tuân thủ, hồ sơ năng lực",keep:"Phạm vi hành nghề"},
+ {id:"pc_data",k:"ht",g:"pc",lo:"hc",n:"Quyền truy cập dữ liệu & Hồ sơ",s:"Quyền dữ liệu & Hồ sơ",en:"Data Access & Records Management",o:"pc",ai:[["Cấp quyền xem hồ sơ theo nhiệm vụ",3],["Ghi nhật ký truy cập hồ sơ nhạy cảm",3]],x:"Yêu cầu xuất, chia sẻ hồ sơ; nghi lộ dữ liệu",to:"pc",sys:"Nhật ký truy cập",keep:"Chia sẻ hồ sơ ra ngoài"},
+ {id:"pc_comp",k:"ht",g:"pc",lo:"hc",n:"Tuân thủ ngành",en:"Industry Compliance",o:"pc",ai:[["Đối chiếu quy trình với quy định ngành",1],["Nhắc mốc báo cáo, kiểm tra định kỳ",3]],x:"Dấu hiệu vi phạm quy định ngành",to:"pc",sys:"Sổ tuân thủ",keep:"Làm việc với cơ quan quản lý"},
+ {id:"hc_fac",k:"ht",g:"hc",lo:"hc",n:"Cơ sở vật chất & Bảo trì",en:"Facilities & Maintenance",o:"hc",ai:[["Lập lịch bảo trì, nhắc trước hạn",3]],x:"Hỏng hóc ảnh hưởng an toàn",to:"hc",sys:"Sổ tài sản",keep:"Sửa chữa lớn"},
+ {id:"hc_asset",k:"ht",g:"hc",lo:"hc",n:"Tài sản",en:"Assets",o:"hc",ai:[["Theo dõi tài sản, bảo hiểm, khấu hao",3]],x:"Mua, thanh lý tài sản lớn",to:"ceo",sys:"Sổ tài sản",keep:"Mua, thanh lý tài sản"},
+ {id:"hc_svc",k:"ht",g:"hc",lo:"hc",n:"Dịch vụ nội bộ & Mua sắm",en:"Internal Services & Procurement",o:"hc",ai:[["Đặt mua vật tư theo định mức",3],["So sánh báo giá dịch vụ",2]],x:"Mua ngoài định mức",to:"hc",sys:"Phần mềm kế toán",keep:"Hợp đồng dịch vụ"}
+ ],
+ PF:[
+  {n:"Dữ liệu chủ",en:"Master Data",text:"Khách hàng, dịch vụ, nhân sự và năng lực, đối tác, địa điểm, thiết bị, giá và điều kiện. Mỗi loại có một nơi quản lý chính thức."},
+  {n:"Hồ sơ dịch vụ",en:"Service Engagement / Case Records",text:"Mỗi hồ sơ nối nhu cầu, phạm vi, hợp đồng, lịch, thực hiện, kết quả, chi phí, thanh toán và phản hồi bằng một mã. Các chuỗi nghiệp vụ liên kết với nhau qua mã này."},
+  {n:"Tri thức & Tiêu chuẩn",en:"Knowledge & Standards",text:"Quy trình chuẩn, phương pháp, checklist, biểu mẫu và nội dung đã được chuyên môn duyệt. AI chỉ dùng nội dung đã duyệt."},
+  {n:"Hệ thống nghiệp vụ",en:"Business Applications",text:"CRM, đặt lịch, quản lý hồ sơ hoặc dự án, hệ thống ngành, kế toán và cổng khách hàng."},
+  {n:"Điều phối người–AI",en:"Human–AI Orchestration",text:"Giao việc, gọi công cụ, kiểm tra điều kiện, bàn giao, xin phê duyệt và chuyển ngoại lệ tới đúng người có thẩm quyền."},
+  {n:"Quyền truy cập & Lưu vết",en:"Access Control & Audit Trail",text:"Quyền theo vai trò và theo hồ sơ; lịch sử hành động; nguồn dữ liệu; phiên bản và quyết định. Mỗi kết quả AI quan trọng truy được hồ sơ nguồn, thời điểm dữ liệu và người duyệt."}],
+ NGUON:[["Quan hệ khách hàng","CRM"],["Lịch, đặt chỗ","Hệ thống đặt lịch"],["Hồ sơ thực hiện chuyên môn","Hệ thống hồ sơ ngành — xem theo nhiệm vụ"],["Năng lực, chứng chỉ","Hồ sơ nhân sự"],["Giá, điều kiện dịch vụ","Bảng giá dịch vụ"],["Tiền cọc, công nợ, doanh thu","Phần mềm kế toán"],["Đối tác, xác nhận đặt chỗ","Danh mục đối tác"]],
+ pfSub:"Dữ liệu thống nhất — nguồn chuẩn theo từng loại — truy cập theo thẩm quyền",
+ pfNote:"Dữ liệu dùng chung không có nghĩa ai và AI nào cũng xem được mọi hồ sơ. Hồ sơ chuyên môn nhạy cảm chỉ mở theo nhiệm vụ. Lịch sử CRM tách khỏi hồ sơ thực hiện chuyên môn; không chép nội dung nhạy cảm vào báo cáo marketing hay công cụ AI chung.",
+ LANE:{cl:"Chiến lược & Quản trị",tk:"Thiết kế dịch vụ",mk:"Marketing & Kênh",kd:"Kinh doanh & Cam kết",nl:"Điều phối nguồn lực",th:"Thực hiện & Chuyên môn",tn:"Trải nghiệm khách hàng",tc:"Tài chính & Kế toán"},
+ CHUOI:[
+ {id:"i2c",s:"Nhu cầu → Cam kết",n:"Từ nhu cầu đến cam kết dịch vụ",en:"Inquiry-to-Commitment",owner:"Trưởng kinh doanh, phối hợp chuyên môn",flow:"Tiếp nhận → đánh giá phù hợp → xác định phạm vi → báo giá, điều kiện → xác nhận.",
+  lanes:["mk","kd","th"],
+  steps:[{l:"mk",t:"Khách tiềm năng đến từ các kênh",w:"AI L3",nv:"mk_lead"},
+   {l:"kd",t:"Tiếp nhận, hỏi thông tin còn thiếu",w:"AI L3",nv:"kd_intake"},
+   {l:"kd",t:"Kiểm điều kiện hành chính",k:"chk",w:"AI L3",nv:"kd_elig",x:"Không đủ điều kiện: từ chối rõ ràng hoặc chuyển nơi phù hợp",to:"kd"},
+   {l:"th",t:"Chuyên môn xác nhận phù hợp",k:"chk",w:"Người quyết",nv:"kd_elig",x:"Không phù hợp về chuyên môn",to:"cm"},
+   {l:"kd",t:"Xác định phạm vi, soạn đề xuất",w:"AI L2 · người duyệt",nv:"kd_prop"},
+   {l:"kd",t:"Báo giá, điều kiện hủy và thanh toán",k:"chk",w:"AI L3 · giá ngoại lệ do người",nv:"kd_prop",x:"Giá ngoại lệ, phạm vi ngoài chuẩn",to:"kd"},
+   {l:"kd",t:"Ký hợp đồng, xác nhận dịch vụ",w:"Người ký · AI soạn",nv:"kd_ct",end:"Có cam kết dịch vụ"}],
+  fb:{from:7,ext:"điều phối nguồn lực",t:"Cam kết kèm yêu cầu nguồn lực"},
+  notes:["Bán hàng không quyết điều kiện chuyên môn; bước 4 thuộc người phụ trách chuyên môn.","Không đủ điều kiện thì từ chối rõ ràng hoặc chuyển nơi phù hợp, không cố bán.","Chỉ ký cam kết khi phạm vi, giá, tiêu chí hoàn thành và yêu cầu nguồn lực đã rõ."]},
+ {id:"p2r",s:"Kế hoạch → Sẵn sàng",n:"Từ kế hoạch đến nguồn lực sẵn sàng",en:"Plan-to-Readiness",owner:"Trưởng vận hành – điều phối",flow:"Dự báo → cân đối công suất → phân công → xác nhận đối tác, thiết bị → kiểm tra sẵn sàng.",
+  lanes:["kd","nl","th"],
+  steps:[{l:"kd",t:"Cam kết kèm yêu cầu nguồn lực",w:"AI L3",nv:"kd_ct"},
+   {l:"nl",t:"Dự báo nhu cầu theo ngày, loại dịch vụ",w:"AI L3",nv:"nl_cap"},
+   {l:"nl",t:"Cân đối công suất",k:"chk",w:"Người quyết ưu tiên",nv:"nl_cap",x:"Thiếu nguồn lực: dời lịch hoặc thuê ngoài",to:"vh"},
+   {l:"nl",t:"Phân công người đủ năng lực",w:"AI L2 · người duyệt",nv:"nl_assign",x:"Không đủ người đủ điều kiện",to:"cm"},
+   {l:"nl",t:"Đặt đối tác, chờ xác nhận",k:"chk",w:"AI L3",nv:"nl_part",x:"Đối tác chưa xác nhận: chưa báo khách là đã bảo đảm",to:"dt"},
+   {l:"nl",t:"Kiểm vật tư, thiết bị, địa điểm",w:"AI L3",nv:"nl_ready"},
+   {l:"th",t:"Kiểm tra sẵn sàng trước giờ",k:"chk",w:"Người xác nhận",nv:"th_hand",end:"Sẵn sàng thực hiện"}],
+  fb:{from:7,to:2,t:"Công suất thực tế, vắng hẹn → dự báo kỳ sau"},
+  notes:["Đặt chỗ của doanh nghiệp và xác nhận của đối tác là hai bước riêng; chưa có xác nhận thì không báo khách là đã bảo đảm.","Tận dụng công suất nhưng không vượt năng lực thực hiện và không đánh đổi chất lượng."]},
+ {id:"c2c",s:"Cam kết → Hoàn thành",n:"Từ cam kết đến hoàn thành dịch vụ",en:"Commitment-to-Completion",owner:"Trưởng chuyên môn",flow:"Bàn giao → chuẩn bị → thực hiện → kiểm soát → xác nhận hoàn thành.",
+  lanes:["nl","th","tn"],
+  steps:[{l:"nl",t:"Bàn giao hồ sơ, lịch, nguồn lực",w:"AI L3",nv:"th_hand"},
+   {l:"th",t:"Xác nhận sẵn sàng",k:"chk",w:"Người xác nhận",nv:"th_hand",x:"Chưa đủ điều kiện: dời, không làm liều",to:"cm"},
+   {l:"tn",t:"Hướng dẫn khách chuẩn bị",w:"AI L3",nv:"tn_pre"},
+   {l:"th",t:"Thực hiện chuyên môn",w:"Người làm · AI hỗ trợ tài liệu",nv:"th_exec",x:"Sự cố an toàn: báo thẳng, không chờ",to:"cm"},
+   {l:"th",t:"Theo dõi tiến độ, mốc",w:"AI L3",nv:"th_prog"},
+   {l:"th",t:"Kiểm soát chất lượng, rà soát",k:"chk",w:"AI kiểm hồ sơ · người kết luận",nv:"th_qc",x:"Lệch tiêu chuẩn: làm lại",to:"cm"},
+   {l:"th",t:"Hồ sơ, bằng chứng kết quả",w:"AI L2 · người xác minh",nv:"th_rec"},
+   {l:"th",t:"Xác nhận hoàn thành, báo mốc thanh toán",w:"Người xác nhận · AI báo kế toán",nv:"th_done",end:"Hoàn thành"}],
+  fb:{from:8,ext:"thiết kế dịch vụ",t:"Kết quả, làm lại, sự cố"},
+  notes:["Cách xác nhận hoàn thành khác nhau theo ngành: tư vấn nghiệm thu theo hợp đồng; sức khỏe ghi nhận hoàn thành lượt dịch vụ, không dùng chữ nghiệm thu; du lịch xác nhận hoàn thành chuyến và các phát sinh.","AI hỗ trợ tài liệu, checklist và hồ sơ; quyết định chuyên môn do người có thẩm quyền."]},
+ {id:"b2c",s:"Giao dịch → Thu tiền",n:"Từ giao dịch đến thu tiền",en:"Contract/Booking-to-Cash",owner:"Người sở hữu quy trình thu tiền",flow:"Điều kiện thanh toán → đặt cọc, trả trước hoặc tín dụng → hóa đơn theo mốc → thu tiền → đối chiếu.",
+  lanes:["kd","th","tc"],
+  steps:[{l:"kd",t:"Chốt điều kiện thanh toán: trước, theo mốc hoặc sau",k:"chk",w:"Người duyệt · AI soạn",nv:"kd_ct"},
+   {l:"tc",t:"Thu cọc, trả trước hoặc kiểm hạn mức tín dụng",w:"AI L3",nv:"tc_dep",x:"Cọc lệch, vượt hạn mức tín dụng",to:"tc"},
+   {l:"th",t:"Đạt mốc thực hiện",w:"AI L3 báo mốc",nv:"th_done"},
+   {l:"tc",t:"Xuất hóa đơn theo mốc",w:"AI L3",nv:"tc_inv"},
+   {l:"tc",t:"Thu tiền, nhắc nợ",w:"AI L3",nv:"tc_inv",x:"Nợ quá hạn",to:"tc"},
+   {l:"tc",t:"Hủy, đổi: tính hoàn tiền theo chính sách",k:"chk",w:"AI L2 · người duyệt",nv:"tc_pay",x:"Hoàn tiền ngoài chính sách",to:"tc"},
+   {l:"tc",t:"Đối chiếu, ghi nhận doanh thu",w:"AI L3",nv:"tc_acc",end:"Đã thu, đã ghi nhận"}],
+  fb:{from:7,ext:"lợi nhuận theo hồ sơ",t:"Số thu và chi phí"},
+  notes:["Thu tiền có thể trước, trong hoặc sau khi thực hiện; mỗi loại dịch vụ chốt một mô hình ở bước 1.","Tiền nhận trước, doanh thu đã ghi nhận và dịch vụ đã hoàn thành là ba trạng thái khác nhau, theo dõi riêng."]},
+ {id:"p2p",s:"Đối tác → Thanh toán",n:"Từ nhu cầu đối tác đến thanh toán",en:"Partner-to-Pay",owner:"Phụ trách đối tác, phối hợp tài chính",flow:"Yêu cầu → lựa chọn → hợp đồng, đặt dịch vụ → xác nhận thực hiện → đối chiếu → thanh toán.",
+  lanes:["nl","th","tc"],
+  steps:[{l:"nl",t:"Phát sinh nhu cầu đối tác",w:"AI L3",nv:"nl_part"},
+   {l:"nl",t:"Chọn đối tác, so sánh báo giá",w:"AI L2",nv:"nl_part"},
+   {l:"nl",t:"Hợp đồng, đặt dịch vụ với đối tác",k:"chk",w:"Người duyệt",nv:"nl_part",x:"Đối tác mới, điều khoản ngoài mẫu",to:"dt"},
+   {l:"nl",t:"Chờ đối tác xác nhận",k:"chk",w:"AI L3",nv:"nl_part",x:"Không xác nhận đúng hạn: đổi đối tác",to:"dt"},
+   {l:"th",t:"Xác nhận đối tác đã thực hiện",w:"Người xác nhận",nv:"th_done",x:"Đối tác làm không đạt",to:"cm"},
+   {l:"tc",t:"Đối chiếu đặt chỗ, xác nhận, hóa đơn",k:"chk",w:"AI L3",nv:"tc_pay",x:"Lệch số tiền hoặc lệch dịch vụ",to:"dt"},
+   {l:"tc",t:"Thanh toán đối tác",w:"AI L2 · người duyệt",nv:"tc_pay",end:"Đã thanh toán"}],
+  fb:{from:7,to:2,t:"Chất lượng, đúng hạn → chọn đối tác lần sau"},
+  notes:["Không trả tiền trước khi đặt dịch vụ, xác nhận thực hiện và hóa đơn khớp nhau.","Người đặt đối tác, người duyệt chi và người chi tách riêng."]},
+ {id:"c2r",s:"Yêu cầu → Khắc phục",n:"Từ yêu cầu đến khắc phục & cải tiến",en:"Case-to-Resolution",owner:"Trưởng trải nghiệm, phối hợp chuyên môn",flow:"Tiếp nhận → phân loại → xử lý → khắc phục, hoàn tiền khi được duyệt → đóng → cải tiến.",
+  lanes:["tn","th","tc","tk"],
+  steps:[{l:"tn",t:"Tiếp nhận yêu cầu từ mọi kênh",w:"AI L3",nv:"tn_case"},
+   {l:"tn",t:"Phân loại: hành chính hay chuyên môn",k:"chk",w:"AI L3",nv:"tn_case",x:"Vấn đề chuyên môn, an toàn: chuyển chuyên môn",to:"cm"},
+   {l:"th",t:"Chuyên môn xem xét, khắc phục",w:"Người quyết",nv:"th_qc"},
+   {l:"tn",t:"Phương án khắc phục cho khách",w:"AI L2 · người duyệt",nv:"tn_case",x:"Tranh chấp, ngoài chính sách",to:"tn"},
+   {l:"tc",t:"Hoàn tiền khi được duyệt",k:"chk",w:"AI L2 · người duyệt",nv:"tc_pay",x:"Hoàn tiền vượt hạn mức",to:"tc"},
+   {l:"tn",t:"Báo khách, đóng yêu cầu",w:"AI L3",nv:"tn_case"},
+   {l:"tk",t:"Gom lỗi lặp lại, cải tiến dịch vụ",w:"AI L3 gom · người chọn việc",nv:"tn_voc",end:"Đã khắc phục"}],
+  fb:{from:7,ext:"thiết kế dịch vụ",t:"Phản hồi khách hàng"},
+  notes:["Trải nghiệm tiếp nhận và giao tiếp; chuyên môn xử lý vấn đề chuyên môn; tài chính hoàn tiền theo quyết định đã duyệt.","Sự cố khẩn cấp đi thẳng tới người phụ trách chuyên môn, không chờ hàng đợi thông thường hay chờ CEO."]}
+ ],
+ NVI:{cl_strat:["compass","Chiến lược"],cl_plan:["calendar-check","Kế hoạch"],cl_perf:["gauge","Hiệu quả"],cl_risk:["shield-alert","Rủi ro"],cl_change:["rocket","Cải tiến mô hình"],
+  tk_port:["layout-grid","Danh mục DV"],tk_pkg:["route","Gói & Hành trình"],tk_proc:["workflow","Quy trình"],tk_std:["award","Tiêu chuẩn"],tk_cost:["calculator","Chi phí & Giá"],tk_know:["book-open","Tri thức"],
+  mk_res:["lightbulb","Thấu hiểu"],mk_brand:["gem","Thương hiệu"],mk_content:["pen-tool","Nội dung"],mk_lead:["magnet","Khách mới"],mk_ref:["network","Giới thiệu"],mk_camp:["chart-column","Chiến dịch"],
+  kd_intake:["inbox","Tiếp nhận"],kd_elig:["user-check","Điều kiện"],kd_opp:["filter","Cơ hội"],kd_prop:["file-text","Đề xuất, báo giá"],kd_ct:["signature","Hợp đồng"],kd_chg:["git-branch","Đổi phạm vi"],
+  nl_cap:["trending-up","Công suất"],nl_book:["calendar-clock","Lịch, đặt chỗ"],nl_assign:["users","Phân công"],nl_part:["handshake","Đối tác"],nl_ready:["package-check","Vật tư, địa điểm"],nl_resch:["calendar-x","Đổi lịch"],
+  th_hand:["clipboard-check","Sẵn sàng"],th_exec:["briefcase","Thực hiện"],th_prog:["activity","Tiến độ"],th_qc:["scan-search","Rà soát"],th_inc:["siren","Sự cố"],th_rec:["folder-open","Hồ sơ"],th_done:["badge-check","Hoàn thành"],
+  tn_pre:["clipboard-list","Chuẩn bị"],tn_in:["message-circle","Hỗ trợ"],tn_case:["ticket","Khiếu nại"],tn_follow:["heart-pulse","Theo dõi"],tn_keep:["refresh-cw","Gia hạn"],tn_voc:["thumbs-up","Cải tiến"],
+  tc_acc:["calculator","Kế toán"],tc_inv:["receipt","Hóa đơn"],tc_dep:["wallet","Đặt cọc"],tc_pay:["credit-card","Hoàn tiền"],tc_pa:["chart-pie","Lợi nhuận"],
+  ns_plan:["user-plus","Tuyển dụng"],ns_cert:["award","Chứng chỉ"],ns_pay:["badge-dollar-sign","Lương"],ns_skill:["graduation-cap","Đào tạo"],
+  pc_ct:["scroll-text","Hợp đồng"],pc_lic:["shield-check","Hành nghề"],pc_data:["file-lock","Quyền hồ sơ"],pc_comp:["scale","Tuân thủ ngành"],
+  hc_fac:["building-2","Cơ sở vật chất"],hc_asset:["package","Tài sản"],hc_svc:["settings","Dịch vụ nội bộ"]},
+ KHI:{cl:"target",tk:"layout-template",mk:"megaphone",kd:"signature",nl:"calendar-clock",th:"badge-check",tn:"smile",ht:"landmark",tc:"receipt"},
+ KNO:{cl:"01",tk:"02",mk:"03",kd:"04",nl:"05",th:"06",tn:"07",ht:"08"},
+ GRI:{tc:"receipt",ns:"users",pc:"shield-check",hc:"building-2"},
+ PFI:[["database","Dữ liệu chủ"],["folder-open","Hồ sơ dịch vụ"],["book-open","Tri thức"],["app-window","Hệ thống"],["workflow","Điều phối"],["fingerprint","Quyền & lưu vết"]],
+ CHI:{i2c:"signature",p2r:"calendar-clock",c2c:"badge-check",b2c:"receipt",p2p:"handshake",c2r:"headset"},
+ STS:{i2c:["Khách tiềm năng","Tiếp nhận","Điều kiện hành chính","Xác nhận chuyên môn","Phạm vi, đề xuất","Báo giá","Xác nhận dịch vụ"],
+  p2r:["Yêu cầu nguồn lực","Dự báo","Cân đối công suất","Phân công","Đối tác xác nhận","Vật tư, địa điểm","Kiểm sẵn sàng"],
+  c2c:["Bàn giao","Sẵn sàng","Hướng dẫn khách","Thực hiện","Tiến độ","Rà soát chất lượng","Hồ sơ kết quả","Xác nhận hoàn thành"],
+  b2c:["Điều kiện thanh toán","Cọc, trả trước","Đạt mốc","Hóa đơn","Thu tiền","Hủy, hoàn tiền","Đối chiếu, ghi nhận"],
+  p2p:["Nhu cầu đối tác","Chọn đối tác","Hợp đồng, đặt chỗ","Đối tác xác nhận","Xác nhận đã làm","Đối chiếu 3 chiều","Thanh toán"],
+  c2r:["Tiếp nhận","Phân loại","Chuyên môn xem","Phương án","Hoàn tiền","Đóng yêu cầu","Cải tiến"]},
+ EXQ:[["kd_prop","Giá, phạm vi ngoài chuẩn","kd"],["nl_part","Đối tác chưa xác nhận","dt"],["th_qc","Sai sót chuyên môn, an toàn","cm"],["th_inc","Sự cố khẩn cấp: đi thẳng","cm"],["tc_pay","Hoàn tiền vượt hạn mức","tc"],["pc_data","Quyền dữ liệu, hợp đồng","pc"],["cl_strat","Vượt thẩm quyền","ceo"]],
+ rows:[["tk","mk","kd"],["tn","th","nl"]],
+ rowLab:[["Thiết kế và tạo nhu cầu","— từ dịch vụ chuẩn đến cam kết"],["Thực hiện","— nguồn lực sẵn sàng, làm đúng, khách hài lòng"]],
+ core:"th",
+ heat:[["Thiết kế và tạo nhu cầu",["cl","tk","mk","kd"]],["Thực hiện và hỗ trợ",["nl","th","tn","ht"]]],watch:"nl",
+ exIn:[["Vượt ngưỡng","giá ngoại lệ, hoàn tiền vượt hạn mức, thay đổi phạm vi trọng yếu."],["Ngoài luật","yêu cầu ngoài danh mục, điều khoản lệch hợp đồng mẫu."],["Bất thường","trùng lịch, đối tác chưa xác nhận, tiền cọc lệch, hồ sơ thiếu bằng chứng."],["Chuyên môn và an toàn","mọi quyết định chuyên môn; sự cố khẩn cấp đi thẳng tới người phụ trách chuyên môn, không chờ hàng đợi."]],
+ calls:[["git-branch","Tách ba việc: tạo, duyệt, thực hiện","AI lập lệnh hoàn tiền (L2), Tài chính duyệt, lệnh chi chạy qua ngân hàng theo phân quyền."],
+  ["award","AI hỗ trợ chuyên môn, không quyết chuyên môn","Việc chuyên môn AI chỉ ở L1–L2: chuẩn bị tài liệu, checklist, tóm tắt để người xác minh. Quyết định chuyên môn luôn do người có thẩm quyền."],
+  ["users","Doanh nghiệp nhỏ: một người, nhiều vai","Mười hai vai là vai thẩm quyền, không phải mười hai người. Ngoại lệ vẫn đi theo vai."],
+  ["bot","Vai có thể là người hoặc AI","Marketing, Vận hành – điều phối, Trải nghiệm khách hàng, Hành chính giao được cho AI. AI giữ vai chỉ quyết trong luật của vai; vượt quyền lên Ban điều hành."]]
+};
+/* Cấu hình theo ngành: trang thứ tư của Dịch vụ */
+const NGANH=[
+ {id:"tv",n:"Tư vấn",en:"Consulting & Professional Services",ic:"briefcase",unit:"Hợp đồng tư vấn · dự án · nhiệm vụ chuyên môn",
+  terms:[["file-text","Phạm vi công việc","Statement of Work"],["package","Sản phẩm bàn giao","Deliverables"],["flag","Mốc tiến độ","Milestones"],["git-branch","Thay đổi phạm vi","Change Control"],["users","Phân công chuyên gia","Expert Staffing"],["scan-search","Rà soát chuyên môn","Professional Review"],["circle-check","Nghiệm thu","Acceptance"],["timer","Giờ tính phí","Billable Time & Utilization"]],
+  flow:["Nhu cầu","Phạm vi","Đề xuất","Hợp đồng","Phân công","Thực hiện","Rà soát","Nghiệm thu","Thu theo mốc","Theo dõi"],
+  ai:"Nghiên cứu, hỗ trợ phân tích, dự thảo tài liệu, theo dõi tiến độ, chuẩn bị báo cáo.",nguoi:"Kiểm chứng kết luận, tư vấn, giữ quan hệ, chịu trách nhiệm sản phẩm bàn giao.",
+  kpi:["Lợi nhuận dự án","Đúng hạn","Thay đổi phạm vi","Làm lại","Giờ tính phí","Thu tiền"],warn:"Nghiệm thu theo hợp đồng. Mọi thay đổi phạm vi đi qua kiểm soát thay đổi trước khi làm."},
+ {id:"sk",n:"Chăm sóc sức khỏe",en:"Healthcare & Wellness Services",ic:"stethoscope",unit:"Hồ sơ khách hàng hoặc người bệnh · lượt dịch vụ · chương trình theo dõi",
+  modes:[["kcb","Khám, chữa bệnh"],["cs","Chăm sóc không thuộc khám, chữa bệnh"]],
+  modeNote:{kcb:"Phạm vi khám, chữa bệnh: cần điều kiện hành nghề, hồ sơ chuyên môn và quản trị chuyên môn theo quy định chuyên ngành. Quyết định chuyên môn chỉ do người có chứng chỉ hành nghề phù hợp.",cs:"Chăm sóc không thuộc khám, chữa bệnh: không mô tả hay quảng cáo như điều trị; vẫn cần quy trình an toàn, đồng ý của khách và giới hạn rõ phạm vi."},
+  terms:[["clipboard-list","Tiếp nhận & Đánh giá ban đầu","Intake & Initial Assessment"],["list-ordered","Phân loại ưu tiên","Triage"],["shield-check","Phạm vi hành nghề","Scope of Practice"],["signature","Đồng ý sử dụng dịch vụ","Service / Informed Consent"],["calendar-check","Kế hoạch chăm sóc","Care Plan"],["file-lock","Hồ sơ chuyên môn","Professional / Clinical Records"],["shield-alert","Quản trị chuyên môn & An toàn","Clinical Governance & Safety"],["arrow-right-left","Theo dõi & Chuyển tuyến","Follow-Up & Referral"]],
+  flow:["Tiếp nhận","Đánh giá, ưu tiên","Phạm vi, đồng ý","Bố trí","Thực hiện","Ghi hồ sơ","Hướng dẫn sau","Theo dõi, chuyển tiếp"],
+  ai:"Hành chính, lịch hẹn, thông tin chuẩn, tổng hợp hồ sơ có kiểm chứng, nhắc theo dõi.",nguoi:"Thực hiện và quyết định chuyên môn trong phạm vi đủ điều kiện; xử lý an toàn; xác nhận hồ sơ.",
+  kpi:["An toàn","Chất lượng hồ sơ","Tuân thủ quy trình","Thời gian chờ","Hoàn thành theo dõi","Trải nghiệm"],warn:"Không lấy doanh số hay công suất làm thước đo duy nhất. Không dùng chữ “nghiệm thu” cho kết quả sức khỏe."},
+ {id:"dl",n:"Du lịch",en:"Travel & Tourism Services",ic:"plane",unit:"Hồ sơ đặt dịch vụ · booking · đoàn · chuyến đi",
+  modes:[["dl1","Đại lý đặt dịch vụ"],["dl2","Đơn vị tổ chức tour"]],
+  modeNote:{dl1:"Đại lý đặt dịch vụ: bán và đặt dịch vụ của nhà cung cấp; trọng tâm là xác nhận đặt chỗ đúng, chứng từ và hoàn hủy.",dl2:"Đơn vị tổ chức và điều hành tour: thêm năng lực thực hiện tại điểm đến — hướng dẫn viên, điều hành tour, xử lý sự cố trong hành trình."},
+  terms:[["map","Thiết kế hành trình","Itinerary Design"],["calculator","Báo giá & Giá thành chuyến","Trip Quotation & Costing"],["circle-check","Khả dụng & Xác nhận đặt chỗ","Availability & Booking Confirmation"],["compass","Điều hành tour","Tour Operations"],["building-2","Nhà cung cấp tại điểm đến","Destination Supplier Management"],["ticket","Chứng từ dịch vụ","Vouchers & Service Documents"],["refresh-ccw","Thay đổi, Hủy & Hoàn tiền","Changes, Cancellations & Refunds"],["headset","Hỗ trợ trong hành trình","In-Trip Assistance"]],
+  flow:["Nhu cầu","Hành trình","Kiểm khả dụng","Báo giá","Đặt cọc","Đối tác xác nhận","Hồ sơ trước chuyến","Thực hiện, hỗ trợ","Đối soát","Phản hồi"],
+  ai:"Dự thảo hành trình, tổng hợp lựa chọn, đối chiếu booking, nhắc hồ sơ, hỗ trợ thông tin.",nguoi:"Xác nhận cam kết với đối tác, xử lý sự cố, bảo đảm thực hiện, quyết định thay đổi trọng yếu.",
+  kpi:["Lợi nhuận booking, chuyến","Xác nhận đúng","Sai sót đặt chỗ","Xử lý hoàn tiền","Chất lượng đối tác","Hài lòng"],warn:"Không dùng thông tin khả dụng cũ làm xác nhận đặt chỗ. Điều kiện nhập cảnh, lịch vận chuyển phải kiểm từ nguồn hiện hành trước khi báo khách."}
+];
+let nganh="tv", nganhMode={sk:"kcb",dl:"dl1"};
+const LO={ql:["briefcase","Quản trị"],hc:["file-text","Hành chính"],dp:["calendar-clock","Điều phối"],cm:["award","Chuyên môn"]};
+
+
+let ROLE,ROLE_ORDER,KHOI,NHOM_HT,NV,PF,NGUON,LANE,CHUOI,NVI,KHI,KNO,GRI,PFI,ROLE_S,CHI,STS,EXQ,ROLE_AI;
+function useDS(m){const d=DS[m];
+  ROLE=d.ROLE;ROLE_ORDER=d.ROLE_ORDER;KHOI=d.KHOI;NHOM_HT=d.NHOM_HT;NV=d.NV;PF=d.PF;NGUON=d.NGUON;LANE=d.LANE;CHUOI=d.CHUOI;
+  NVI=d.NVI;KHI=d.KHI;KNO=d.KNO;GRI=d.GRI;PFI=d.PFI;ROLE_S=d.ROLE_S;CHI=d.CHI;STS=d.STS;EXQ=d.EXQ;ROLE_AI=d.ROLE_AI;
+  NV_BY={}; NV.forEach(n=>{n.name=n.n; n.block=n.k; n.rec={[m]:Math.max(...n.ai.map(t=>t[1]))}; NV_BY[n.id]=n;});
+  if(!CHUOI.some(c=>c.id===chain)) chain=CHUOI[0].id; haiK="all"; haiR=null;}
+
+/* ---------- Trang 4 · Cấu hình ngành (Dịch vụ) ---------- */
+function nganhView(){
+  const g=NGANH.find(x=>x.id===nganh), md=g.modes?nganhMode[g.id]:null;
+  $("nganh").innerHTML=`<div class="ctabs">${NGANH.map(x=>`<button class="ctab" data-nganh="${x.id}" aria-pressed="${x.id===nganh}">${ic(x.ic,17)}<span>${esc(x.n)}</span></button>`).join("")}</div>
+   <div class="nghd"><span class="nic">${ic(g.ic,30)}</span><div><span class="lbl2">${esc(g.en)}</span><h2>${esc(g.n)}</h2></div></div>
+   ${g.modes?`<div class="nmode">${g.modes.map(([k,t])=>`<button data-nmode="${k}" aria-pressed="${k===md}">${esc(t)}</button>`).join("")}</div><p class="nnote">${ic("info",15)}<span>${esc(g.modeNote[md])}</span></p>`:""}
+   <div class="nunit">${ic("folder-open",18)}<span><b>Đơn vị quản trị</b>${esc(g.unit)}</span></div>
+   <div class="cvl">Thuật ngữ cần có</div>
+   <div class="nterms">${g.terms.map(([i,t,e])=>`<div class="nt2"><span class="tic">${ic(i,22)}</span><b>${esc(t)}</b><span>${esc(e)}</span></div>`).join("")}</div>
+   <div class="cvl">Luồng</div>
+   <div class="nflow">${g.flow.map((t,i)=>`<span class="nf"><b>${String(i+1).padStart(2,"0")}</b>${esc(t)}</span>`).join(`<span class="na">${ic("arrow-right",14)}</span>`)}</div>
+   <div class="nduo"><div class="nside hu"><span class="tic">${ic("user",20)}</span><div><b>Người</b><p>${esc(g.nguoi)}</p></div></div><div class="nside"><span class="tic">${ic("bot",20)}</span><div><b>AI</b><p>${esc(g.ai)}</p></div></div></div>
+   <div class="cvl">Thước đo đặc thù</div><div class="nkpi">${g.kpi.map(t=>`<span>${esc(t)}</span>`).join("")}</div>
+   <p class="nwarn">${ic("triangle-alert",16)}<span>${esc(g.warn)}</span></p>`;
+  try{setCv(localStorage.getItem("lattice-mophong-cv")||"dark");}catch(e){}
+}
 /* Nền sơ đồ: tối mặc định, người xem chuyển sang sáng được; nhớ trên trình duyệt. */
 function setCv(m){document.querySelectorAll(".cv").forEach(c=>c.classList.toggle("light",m==="light"));
   document.querySelectorAll("[data-cvm]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.cvm===m?"true":"false"));
@@ -1832,21 +2184,20 @@ function setCv(m){document.querySelectorAll(".cv").forEach(c=>c.classList.toggle
 /* ---------- Trang 1 · Kiến trúc nghiệp vụ ---------- */
 const tile=n=>`<button class="ti${n.opt?" opt":""}" data-id="${n.id}" title="${esc(n.n)}${n.opt?" (nếu có)":""}"><span class="tic">${ic(NVI[n.id][0],23)}</span><span class="tl">${esc(NVI[n.id][1])}</span></button>`;
 function card(k,extra){const K=KH(k);
-  return `<div class="ck${extra?" "+extra:""}" id="ck-${k}"><button class="ck-h" data-khoi="${k}" aria-label="Chi tiết khối ${esc(K.n)}"><span class="no">${KNO[k]}</span><span class="nm">${esc(K.n)}</span><span class="ki">${ic(KHI[k],18)}</span></button>
+  return `<div class="ck${extra?" "+extra:""}" id="ck-${k}"><button class="ck-h" data-khoi="${k}" aria-label="Chi tiết khối ${esc(K.n)}"><span class="no">${KNO[k]}</span><span class="nm">${esc(K.n)}</span>${extra==="core"?'<span class="tag">Trọng tâm</span>':""}<span class="ki">${ic(KHI[k],18)}</span></button>
     <div class="tis">${nvOf(k).map(tile).join("")}</div><div class="ck-o">${rmk(K.o)}</div></div>`;}
 function arch(){
-  const K3=KH("ht");
+  const K3=KH("ht"), DD=DS[model]; $("arch-line").textContent=DD.line;
   $("arch").innerHTML=`<svg class="wires" id="arch-w" aria-hidden="true"></svg>
    <div class="cvl">Điều hành</div>${card("cl","wide")}
-   <div class="cvl" id="cvl-cung">Phía cung <em>— có đúng hàng, đúng lúc</em></div><div class="g3">${card("nh")}${card("hd")}${card("kv")}</div>
-   <div class="cvl">Phía cầu <em>— có khách, thu được tiền</em></div><div class="g3">${card("mk")}${card("kd")}${card("dv")}</div>
+   ${DD.rows.map((r,i)=>`<div class="cvl"${i?"":' id="cvl-cung"'}>${esc(DD.rowLab[i][0])} <em>${esc(DD.rowLab[i][1])}</em></div><div class="g3">${r.map(k=>card(k,DD.core===k?"core":"")).join("")}</div>`).join("")}
    <div class="cvl">Năng lực hỗ trợ</div>
    <div class="ck wide" id="ck-ht"><button class="ck-h" data-khoi="ht" aria-label="Chi tiết khối ${esc(K3.n)}"><span class="no">${KNO.ht}</span><span class="nm">${esc(K3.n)}</span><span class="ki">${ic(KHI.ht,18)}</span></button>
      <div class="g4">${NHOM_HT.map(g=>`<div class="grp"><div class="gh">${ic(GRI[g.id],15)}<span>${esc(g.n)}</span></div><div class="tis">${NV.filter(n=>n.g===g.id).map(tile).join("")}</div><div class="ck-o">${rmk(g.id)}</div></div>`).join("")}</div></div>
    <div class="cvl">Nền tảng &amp; ngoại lệ</div>
    <div class="g75">
      <div class="ck" id="ck-pf"><div class="ck-h st"><span class="no">09</span><span class="nm">Dữ liệu, Hệ thống &amp; Điều phối AI</span><span class="ki">${ic("layers",18)}</span></div>
-       <p class="sub">Dữ liệu thống nhất — nguồn chuẩn theo từng loại dữ liệu</p>
+       <p class="sub">${esc(DD.pfSub)}</p>
        <div class="tis big">${PF.map((p,i)=>`<button class="ti big" data-pf="${i}" title="${esc(p.n)}"><span class="tic">${ic(PFI[i][0],28)}</span><span class="tl">${esc(PFI[i][1])}</span></button>`).join("")}</div></div>
      <div class="ck" id="ck-ex"><div class="ck-h st"><span class="no">10</span><span class="nm">Điều gì chuyển cho người</span><span class="ki">${ic("triangle-alert",18)}</span></div>
        <div class="exl">${EXQ.map(([id,t,r])=>`<button class="exi" data-id="${id}">${ic("triangle-alert",15)}<span>${esc(t)}</span><b>${esc(ROLE_S[r])}</b></button>`).join("")}</div></div>
@@ -1855,6 +2206,25 @@ function arch(){
   $("chains").innerHTML=CHUOI.map(c=>`<button class="chc" data-chain="${c.id}"><span class="cic">${ic(CHI[c.id],22)}</span><b>${esc(c.n)}</b><span class="en">${esc(c.en)}</span><span class="ow"><i class="hdot"></i>${esc(c.owner)}</span></button>`).join("");
   requestAnimationFrame(archWires);
 }
+const s0=()=>`<defs><marker id="wa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--cw)"/></marker></defs>`;
+/* Dịch vụ: vòng chữ U — thiết kế → marketing → cam kết, rồi xuống nguồn lực → thực hiện → trải nghiệm,
+   phản hồi đi ngược lên thiết kế dịch vụ. */
+function wiresDV(R,C){
+  const cl=R("cl"),tk=R("tk"),mk=R("mk"),kd=R("kd"),nl=R("nl"),th=R("th"),tn=R("tn"),ht=R("ht"),pf=R("pf"),ex=R("ex");
+  let s=""; const lb=$("cvl-cung").getBoundingClientRect(), busY=lb.bottom-C.top+4;
+  [tk,mk,kd].forEach(c=>s+=wire([[cl.cx,cl.b],[cl.cx,busY],[c.cx,busY],[c.cx,c.t]],{arrow:"wa",n:1}));
+  s+=wlab("mục tiêu · ngân sách · chính sách",cl.cx+8,busY-8,"start");
+  s+=wire([[tk.r,tk.hy],[mk.l,mk.hy]],{arrow:"wa"})+wire([[mk.r,mk.hy],[kd.l,kd.hy]],{arrow:"wa"});
+  const gy=(kd.b+nl.t)/2, x1=kd.cx;
+  s+=wire([[x1,kd.b],[x1,nl.t]],{arrow:"wa"})+wlab("cam kết đã xác nhận",x1+8,gy-12,"start");
+  s+=wire([[nl.l,nl.hy],[th.r,th.hy]],{arrow:"wa"})+wire([[th.l,th.hy],[tn.r,tn.hy]],{arrow:"wa"});
+  s+=wire([[tk.cx,tn.t],[tk.cx,tk.b]],{arrow:"wa",dash:true})+wlab("phản hồi → cải tiến dịch vụ",tk.cx+8,gy-12,"start");
+  const L=18; s+=wire([[pf.l,pf.cy],[L,pf.cy],[L,cl.cy],[cl.l,cl.cy]],{speed:95});
+  [tk,tn,ht].forEach(c=>s+=wire([[L,c.hy],[c.l,c.hy]],{n:0}));
+  s+=wire([[pf.cx,pf.t],[pf.cx,ht.b]],{arrow:"wa",n:1});
+  const Rr=C.width-18; s+=wire([[cl.r,cl.cy],[Rr,cl.cy],[Rr,ex.cy],[ex.r,ex.cy]],{red:true,arrow:"wa",speed:95});
+  [kd,nl,ht].forEach(c=>s+=wire([[c.r,c.hy],[Rr,c.hy]],{red:true,n:0}));
+  return s;}
 /* Đường nối vẽ theo vị trí thật của từng thẻ, nên đổi cỡ màn hình là vẽ lại.
    Màn hẹp (một cột) thì bỏ đường nối, chỉ giữ thứ tự từ trên xuống. */
 function archWires(){
@@ -1862,6 +2232,7 @@ function archWires(){
   const C=cv.getBoundingClientRect(); w.setAttribute("viewBox",`0 0 ${C.width} ${C.height}`); w.setAttribute("width",C.width); w.setAttribute("height",C.height);
   if(C.width<900){w.innerHTML="";return;}
   const R=id=>{const b=$("ck-"+id).getBoundingClientRect();return {l:b.left-C.left,t:b.top-C.top,r:b.right-C.left,b:b.bottom-C.top,w:b.width,cx:b.left-C.left+b.width/2,cy:b.top-C.top+b.height/2,hy:b.top-C.top+24};};
+  if(model==="dv"){w.innerHTML=s0()+wiresDV(R,C); return;}
   const cl=R("cl"),nh=R("nh"),hd=R("hd"),kv=R("kv"),mk=R("mk"),kd=R("kd"),dv=R("dv"),ht=R("ht"),pf=R("pf"),ex=R("ex");
   let s=`<defs><marker id="wa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--cw)"/></marker></defs>`;
   // điều hành rẽ nhánh xuống ba khối phía cung
@@ -1980,11 +2351,7 @@ function exmap(){
 function exInfoHTML(k){
   if(k==="in") return `<div class="dhd"><span class="dic">${ic("triangle-alert",26)}</span><div><span class="lbl">Phê duyệt &amp; xử lý ngoại lệ</span><h2 id="d-title">Khi nào AI chuyển việc cho người</h2><p class="en">AI dừng lại, không tự quyết</p></div></div>
    <div class="latx">AI làm trong luật và ngưỡng đã duyệt. Gặp một trong bốn trường hợp dưới đây, việc dừng lại và chuyển sang hàng đợi ngoại lệ, kèm lý do, dữ liệu và phương án đề xuất.</div>
-   <h3>Bốn trường hợp</h3><ul>
-    <li><b>Vượt ngưỡng</b>: chiết khấu ngoài khung, đơn mua vượt hạn mức, bồi hoàn vượt mức tự duyệt.</li>
-    <li><b>Ngoài luật</b>: tình huống chính sách chưa viết tới, điều khoản lệch hợp đồng mẫu.</li>
-    <li><b>Bất thường</b>: tiền về lệch, chênh lệch kiểm kê, đơn nghi gian lận, dự báo lệch xa thực tế.</li>
-    <li><b>Việc thuộc quyền người</b>: ký hợp đồng, chọn nhà cung cấp mới, quyết định về con người.</li></ul>
+   <h3>Bốn trường hợp</h3><ul>${DS[model].exIn.map(([a,b])=>`<li><b>${a}</b>: ${b}</li>`).join("")}</ul>
    <h3>Theo mức AI</h3><p><b>L1</b> người làm nên không phát sinh ngoại lệ. <b>L2</b> mọi đầu ra chờ người duyệt. <b>L3</b> AI tự làm, chỉ chuyển những việc vượt ngưỡng.</p>`;
   const rows=ROLE_ORDER.concat(["ceo"]).map(r=>{const l=NV.filter(n=>n.to===r);return l.length?`<tr><td>${rmk(r)}</td><td class="c num">${l.length}</td><td>${esc(l[0].x)}</td></tr>`:"";}).join("");
   return `<div class="dhd"><span class="dic" style="background:#EC3013;color:#fff">${ic("user",26)}</span><div><span class="lbl">Phê duyệt &amp; xử lý ngoại lệ</span><h2 id="d-title">Đến đúng người có thẩm quyền</h2><p class="en">Không dồn mọi việc lên CEO</p></div></div>
@@ -2000,7 +2367,7 @@ function haiTable(){
   KHOI.forEach(K=>{if(haiK!=="all"&&K.id!==haiK) return;
     const list=nvOf(K.id).filter(n=>!haiR||n.o===haiR||n.to===haiR); if(!list.length) return;
     out.push(`<div class="ngh">${ic(KHI[K.id],16)}<span>${esc(K.n)}</span></div><div class="ngrid">${list.map(n=>`<button class="nt" data-id="${n.id}" title="${esc(n.n)}">
-      <span class="tic">${ic(NVI[n.id][0])}</span><span class="nb"><b>${esc(NVI[n.id][1])}</b><span class="lvs">${n.ai.map(t=>`<span class="lvp${t[1]>=3?" on":""}">L${t[1]}</span>`).join("")}</span></span>
+      <span class="tic">${ic(NVI[n.id][0])}</span><span class="nb"><b>${esc(NVI[n.id][1])}</b><span class="lvs">${n.ai.map(t=>`<span class="lvp${t[1]>=3?" on":""}">L${t[1]}</span>`).join("")}${n.lo?`<span class="lo lo-${n.lo}">${ic(LO[n.lo][0],11)}${LO[n.lo][1]}</span>`:""}</span></span>
       <span class="nr">${rmk(n.o,1)}${n.to!==n.o?` <span class="to">→ ${esc(ROLE_S[n.to])}</span>`:""}</span></button>`).join("")}</div>`);});
   $("hai-tbl").innerHTML=out.join("")||`<div class="empty">Không có nghiệp vụ nào khớp bộ lọc.</div>`;
   $("exmap").innerHTML=exmap();
@@ -2010,12 +2377,13 @@ function hai(){
   $("lvrow").innerHTML=LV.map((v,l)=>`<button class="lvt${l>=1&&l<=3?" main":""}" data-lv="${l}"><span class="tic">${ic(v[0],22)}</span><span class="lv">L${l}</span><b>${esc(v[1])}</b><span class="ct">${c(l)} tác vụ</span></button>`).join("");
   $("hai-stat").innerHTML=[["zap",`${c(3)}/${T.length}`,"tác vụ AI tự làm trong giới hạn"],["file-pen",c(2),"tác vụ AI chuẩn bị, người duyệt"],["lightbulb",c(1)+c(0),"tác vụ AI chỉ hỗ trợ"],["user",NV.length,"nghiệp vụ, mỗi cái một người chịu trách nhiệm"]]
     .map(([i,v,t],k)=>`<div class="stt"><span class="tic">${ic(i,22)}</span><div><div class="v${k===3?" red":""}">${v}</div><p>${esc(t)}</p></div></div>`).join("");
+  $("hai-calls").innerHTML=DS[model].calls.map(([i,b,t])=>`<div class="call"><span class="tic">${ic(i,22)}</span><div><b>${esc(b)}</b><p>${esc(t)}</p></div></div>`).join("");
   haiTable();
 }
 function levelHTML(l){const v=LV[l], rows=[]; NV.forEach(n=>n.ai.forEach(([t,x])=>{if(x===l) rows.push([n,t]);}));
   return `<span class="lbl">Mức AI đảm nhận việc</span><h2 id="d-title">L${l} · ${esc(v[1])}</h2><p class="en">${esc(v[3])}</p><div class="latx">${esc(v[2])}</div>
    <h3>${rows.length} tác vụ đang đặt ở mức này</h3>
-   ${rows.length?`<div class="nvl">${rows.map(([n,t])=>`<button data-id="${n.id}"><span>${ic(NVI[n.id][0],16)} ${esc(t)}<span class="note" style="display:block;margin-left:22px">${esc(n.n)}</span></span><span>›</span></button>`).join("")}</div>`:`<p class="note">Thương mại phân phối chưa giao tác vụ nào ở mức này.</p>`}
+   ${rows.length?`<div class="nvl">${rows.map(([n,t])=>`<button data-id="${n.id}"><span>${ic(NVI[n.id][0],16)} ${esc(t)}<span class="note" style="display:block;margin-left:22px">${esc(n.n)}</span></span><span>›</span></button>`).join("")}</div>`:`<p class="note">Chưa giao tác vụ nào ở mức này.</p>`}
    <p class="note" style="margin-top:12px">Một tác vụ lên mức khi số liệu ổn định 4–8 tuần và người chịu trách nhiệm duyệt.</p>`;}
 
 /* ---------- ngăn kéo chi tiết ---------- */
@@ -2037,6 +2405,7 @@ function blockHTML(k){
 function nvHTML(n){
   const K=KH(n.k), open=D?D.ex.filter(e=>e.act===n.id):[], g=n.g?NHOM_HT.find(x=>x.id===n.g):null;
   return `<div class="dhd"><span class="dic">${ic(NVI[n.id][0],26)}</span><div><span class="lbl">${esc(K.n)}${g?" · "+esc(g.n):""}</span><h2 id="d-title">${esc(n.n)}</h2><p class="en">${esc(n.en)}${n.opt?" · chỉ khi danh mục có":""}</p></div></div>
+   ${n.lo?`<p class="lotag">${ic(LO[n.lo][0],14)} Việc ${LO[n.lo][1].toLowerCase()}${n.lo==="cm"?" — AI chỉ hỗ trợ, quyết định chuyên môn do người có thẩm quyền.":""}</p>`:""}
    ${open.length?`<div class="spec"><b>${open.length} ngoại lệ đang chờ:</b> ${esc(open.map(e=>e.tx).join(" / "))}</div>`:""}
    <h3>Người chịu trách nhiệm</h3><p style="font-weight:700">${rmk(n.o)}</p>${ROLE_AI[n.o]?`<p class="note">${RAI_NOTE}</p>`:""}
    <h3>AI làm gì, ở mức nào</h3><div class="ladder">${n.ai.map(([t,l])=>`<div class="rung${l>=3?" start":""}"><span class="rn">L${l}</span><span><span class="rk">${LEVEL_NAMES[l]}</span>${esc(t)}</span></div>`).join("")}</div>
@@ -2049,7 +2418,7 @@ function nvHTML(n){
 function platHTML(i){const p=PF[i];
   return `<div class="dhd"><span class="dic">${ic(PFI[i][0],26)}</span><div><span class="lbl">Nền tảng xuyên suốt</span><h2 id="d-title">${esc(p.n)}</h2><p class="en">${esc(p.en)}</p></div></div><div class="latx">${esc(p.text)}</div>
    <h3>Nguồn chuẩn theo từng loại dữ liệu</h3><div class="tbl" style="border:0"><table style="min-width:0"><thead><tr><th>Dữ liệu</th><th>Nơi quản lý chính thức</th></tr></thead><tbody>${NGUON.map(([a,b])=>`<tr><td>${esc(a)}</td><td>${esc(b)}</td></tr>`).join("")}</tbody></table></div>
-   <h3>Nguyên tắc</h3><p>Doanh nghiệp được dùng nhiều hệ thống, nhưng mỗi dữ liệu quan trọng có một nơi quản lý chính thức. AI lấy dữ liệu từ nguồn được chỉ định và ghi kết quả trở lại đúng hệ thống nghiệp vụ. AI không phải một phòng ban có quyền chỉ huy: nó làm việc trong từng khối, qua một lớp điều phối chung.</p>`;}
+   <h3>Nguyên tắc</h3><p>${esc(DS[model].pfNote)}</p>`;}
 
 
 /* =================== DASHBOARD SIMULATION =================== */
@@ -2069,8 +2438,8 @@ const CFG={
  dv:{unit:"Lịch hẹn",perDay:22,aov:1250000,conv:.32,burn:41e6,
    channels:[["Website",.31,.42],["Giới thiệu",.27,.55],["Facebook",.22,.28],["Đối tác",.12,.33],["Google Maps",.08,.47]],
    funnel:["Lượt tiếp cận","Khách hỏi","Được tư vấn","Đặt lịch","Quay lại gói tiếp"],
-   agents:[["AI Tư vấn","sales"],["AI Lịch hẹn","cap"],["AI Nội dung","brand"],["AI Chăm sóc","care"],["AI Kế toán","cash"],["AI Quy trình","process"]],
-   ex:[["cap","Trùng lịch {h}:00 giữa hai khách","Lịch"],["cap","Khách hủy lịch lần hai, có giữ cọc {v}?","Hoàn cọc"],["sales","Khách cần phạm vi ngoài gói chuẩn, báo giá riêng","Báo giá"],["brand","Khách đồng ý đăng ảnh trước/sau, cần xác nhận","Đồng ý"],["after","Đánh giá 2 sao sau buổi dịch vụ sáng nay","Chất lượng"],["cash","Yêu cầu xuất hóa đơn công ty cho gói {v}","Hóa đơn"],["care","Khách gói năm chưa quay lại sau 45 ngày","Giữ khách"],["crew","Chuyên viên báo nghỉ đột xuất ca chiều","Nhân sự"]],
+   agents:[["AI Tiếp nhận","kd_intake"],["AI Lịch hẹn","nl_book"],["AI Nội dung","mk_content"],["AI Trải nghiệm","tn_in"],["AI Kế toán","tc_inv"],["AI Hồ sơ","th_rec"]],
+   ex:[["nl_book","Trùng lịch {h}:00 giữa hai khách","Lịch"],["tc_dep","Khách hủy lịch lần hai, có giữ cọc {v}?","Hoàn cọc"],["kd_prop","Khách cần phạm vi ngoài gói chuẩn, báo giá riêng","Báo giá"],["mk_content","Bài đăng có câu hứa kết quả, cần duyệt","Nội dung"],["tn_case","Đánh giá 2 sao sau buổi dịch vụ sáng nay","Chất lượng"],["tc_inv","Yêu cầu xuất hóa đơn công ty cho gói {v}","Hóa đơn"],["tn_keep","Khách gói năm chưa quay lại sau 45 ngày","Giữ khách"],["nl_assign","Chuyên viên báo nghỉ đột xuất ca chiều","Nhân sự"],["nl_part","Đối tác chưa xác nhận lịch ngày mai","Đối tác"],["th_qc","Hồ sơ buổi #{n} thiếu bước theo tiêu chuẩn","Chuyên môn"],["ns_cert","Chứng chỉ của một chuyên viên hết hạn sau 7 ngày","Chứng chỉ"]],
    status:[["Chờ xác nhận",.08],["Đã đặt cọc",.22],["Đang thực hiện",.12],["Hoàn tất",.51],["Hủy / vắng",.07]],
    cost:[["Nhân sự",46],["Mặt bằng",18],["Marketing",14],["Vật tư",10],["Vận hành",8],["Công cụ AI",4]],
    top:[["Gói 3 tháng",.33,1],["Gói tư vấn 1 buổi",.22,-1],["Gói năm",.2,1],["Dịch vụ tại nhà",.15,1],["Gói doanh nghiệp",.1,1]],
@@ -2106,6 +2475,11 @@ const LOGT={sales:["Trả lời {k} khách hỏi giá","Gửi báo giá cho khá
  cost:["Chốt giá thành lô #{n}","So sánh định mức và thực tế {k} mã","Cảnh báo mã bán dưới giá vốn"],
  process:["Kiểm tra điểm kiểm soát quy trình #{n}","Hướng dẫn người mới bước 4","Ghi nhận sai lệch quy trình #{n}"],
  logi:["Tạo {k} vận đơn","Bám tiến độ {k} đơn đang giao","Mở khiếu nại với nhà xe cho đơn #{n}"],
+ kd_intake:["Tiếp nhận {k} yêu cầu mới","Hỏi bổ sung thông tin cho yêu cầu #{n}","Chuyển {k} khách đủ điều kiện cho tư vấn"],
+ nl_book:["Nhắc lịch hẹn cho khách #{n}","Lấp khe trống {h}:00 từ danh sách chờ","Xác nhận cọc lịch #{n}"],
+ tn_in:["Trả lời {k} câu hỏi của khách","Gửi hướng dẫn chuẩn bị cho khách #{n}","Chuyển một câu hỏi chuyên môn cho người phụ trách"],
+ tc_inv:["Xuất hóa đơn mốc cho hồ sơ #{n}","Khớp {k} khoản cọc với hồ sơ","Nhắc công nợ khách #{n}"],
+ th_rec:["Tổng hợp hồ sơ buổi #{n} để chuyên viên xác minh","Kiểm {k} hồ sơ thiếu chữ ký","Báo mốc hoàn thành hồ sơ #{n} cho kế toán"],
  kd_quote:["Gửi báo giá cho khách #{n}","Trả lời {k} khách hỏi giá","Chấm điểm {k} khách tiềm năng mới"],
  kv_om:["Kiểm tra và xác nhận đơn #{n}","Gộp {k} đơn từ sàn và website","Báo khách đơn #{n} đang giao"],
  mk_content:["Đăng bài theo lịch đã duyệt","Trả lời {k} bình luận","Soạn 3 phương án tiêu đề cho video mới"],
@@ -2187,7 +2561,7 @@ function tickData(silent){
   D.orders+=n; D.rev+=amt; D.today.push(D.rev);
   D.cash+=amt*0.12-c.burn/7/NSTEP;
   D.aiTasks+=Math.round(3+r()*9+n*4);
-  D.agents.forEach(a=>{a.count+=Math.round(r()*4+(["orders","sales","kv_om","kd_quote"].includes(a.id)?n*2:0));});
+  D.agents.forEach(a=>{a.count+=Math.round(r()*4+(["orders","sales","kv_om","kd_quote","kd_intake","nl_book"].includes(a.id)?n*2:0));});
   if(D.sx) D.sx.lots.forEach((l,i)=>{ if(l.xong<l.kh && r()<(i<2?.55:.3)) l.xong=Math.min(l.kh, l.xong+Math.round(l.kh*(.004+r()*.012))); });
   D.step++;
   if(!silent && D.step>=NSTEP){D.yday=D.today.slice();while(D.yday.length<NSTEP)D.yday.push(D.yday[D.yday.length-1]);D.monthBase+=D.rev;D.monthDay++;D.today=[];D.rev=0;D.orders=0;D.step=0;D.aiTasks=0;D.exLog=[];D.done=0;}
@@ -2322,9 +2696,9 @@ const WIDGETS={
    const mx=Math.max(...D.ar.map(x=>x[1]));
    b.innerHTML=`<div class="rows">${D.ar.map(([n,v],i)=>`<div class="rw"><span class="nm">${n}</span><div class="bb${i>=2?" red":i===1?" warn":""}"><i style="width:${v/mx*100}%"></i></div><span class="vv">${fmtM(v)}</span></div>`).join("")}</div><p class="note" style="margin-top:8px">AI Kế toán tự nhắc nợ dưới 60 ngày. Nợ quá 60 ngày lên bảng ngoại lệ.</p>`;}},
  heat:{t:"Sức khỏe cấu trúc",sizes:["l","xl","f"],lbl:"Theo ngoại lệ đang mở",r:b=>{
-   if(isPP()){const lb2={ok:"Ổn",wa:"Theo dõi",bad:"Cần xử lý"},st2=k=>{const n=D.ex.filter(e=>(NV_BY[e.act]||{}).k===k).length;return n>=2?"bad":(n===1||k==="hd")?"wa":"ok";};
+   if(isPP()){const lb2={ok:"Ổn",wa:"Theo dõi",bad:"Cần xử lý"},st2=k=>{const n=D.ex.filter(e=>(NV_BY[e.act]||{}).k===k).length;return n>=2?"bad":(n===1||k===DS[model].watch)?"wa":"ok";};
      const col2=(h,ids)=>`<div><h4>${h}</h4>${ids.map(k=>{const s2=st2(k);return `<button class="hc ${s2}" data-khoi="${k}"><span>${esc(KH(k).n)}</span><span style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--mute)">${lb2[s2]}<i class="sd"></i></span></button>`;}).join("")}</div>`;
-     b.innerHTML=`<div class="heat">${col2("Điều hành và phía cung",["cl","nh","hd","kv"])}${col2("Phía cầu và hỗ trợ",["mk","kd","dv","ht"])}</div>`; return;}
+     b.innerHTML=`<div class="heat">${DS[model].heat.map(([h,ids])=>col2(h,ids)).join("")}</div>`; return;}
    const BW={tmhh:["buy","wh"],dv:["cap","crew"],sx:["shop","qc"]}[model];
    const st=a=>{const n=D.ex.filter(e=>e.act===a.id).length;return n>=2?"bad":(n===1||BW.includes(a.id))?"wa":"ok";}, lb={ok:"Ổn",wa:"Theo dõi",bad:"Cần xử lý"};
    const col=bk=>`<div><h4>${bk==="front"?"Khối Thị trường":"Khối Điều hành"}</h4>${A.filter(a=>a.block===bk&&show(a)).map(a=>{const s=st(a);return `<button class="hc ${s}" data-id="${a.id}"><span>${esc(nameOf(a))}</span><span style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--mute)">${lb[s]}<i class="sd"></i></span></button>`;}).join("")}</div>`;
@@ -2465,7 +2839,7 @@ $("dgrid").addEventListener("dragend",()=>{if(dragId){dragId=null;buildGrid();}}
 /* ---------- render all ---------- */
 function renderAll(){
   $("model-note").textContent=NOTE[model];
-  if(isPP()){arch();flows();hai();} else {diagram();sequence();allocation();activities();}
+  if(isPP()){useDS(model);arch();flows();hai();if(model==="dv")nganhView();} else {diagram();sequence();allocation();activities();}
   setTabs(); initDash(); buildGrid();
   if(!$("drawer").hidden && $("clist")) refreshCustom();
 }
@@ -2479,7 +2853,7 @@ function selectTab(id){
   if(id==="t-arch") requestAnimationFrame(archWires);
 }
 function setTabs(){
-  const set=isPP()?["t-arch","t-flow","t-hai","t-dash"]:["t-map","t-act","t-dash"];
+  const set=isPP()?(model==="dv"?["t-arch","t-flow","t-hai","t-nganh","t-dash"]:["t-arch","t-flow","t-hai","t-dash"]):["t-map","t-act","t-dash"];
   document.querySelectorAll(".tabs button").forEach(b=>b.hidden=!set.includes(b.id));
   const cur=document.querySelector('.tabs button[aria-selected="true"]');
   if(!cur||cur.hidden) selectTab(({"t-map":"t-arch","t-act":"t-hai","t-arch":"t-map","t-flow":"t-map","t-hai":"t-act"})[cur&&cur.id]||set[0]);
@@ -2540,6 +2914,8 @@ document.addEventListener("click",e=>{
   const pf=t.closest("[data-pf]"); if(pf){openDrawer(platHTML(+pf.dataset.pf), sideOf(pf)); return;}
   const ch=t.closest("[data-chain]"); if(ch){chain=ch.dataset.chain; flows(); if($("p-flow").hidden){selectTab("t-flow"); window.scrollTo({top:0});} return;}
   const cvb=t.closest("[data-cvm]"); if(cvb){setCv(cvb.dataset.cvm); return;}
+  const ng=t.closest("[data-nganh]"); if(ng){nganh=ng.dataset.nganh; nganhView(); return;}
+  const nm=t.closest("[data-nmode]"); if(nm){nganhMode[nganh]=nm.dataset.nmode; nganhView(); return;}
   const sp=t.closest("[data-step]"); if(sp){openDrawer(stepHTML(+sp.dataset.step), sideOf(sp)); return;}
   const xi=t.closest("[data-exinfo]"); if(xi){openDrawer(exInfoHTML(xi.dataset.exinfo), sideOf(xi)); return;}
   const lvb=t.closest("[data-lv]"); if(lvb){openDrawer(levelHTML(+lvb.dataset.lv), sideOf(lvb)); return;}

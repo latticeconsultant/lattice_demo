@@ -423,9 +423,9 @@ body.dev-phone .toast{max-width:360px}
 /* ===== thương mại phân phối: kiến trúc, luồng, người + AI =====
    Khung sơ đồ luôn tối (như một màn hình điều hành), góc vuông, bảng màu LATTICE.
    Hạt trắng là dữ liệu và việc đang chạy, hạt đỏ là ngoại lệ đi tới người. */
-.cv{--c0:#121110;--cb:#181716;--c1:#1D1B1A;--ch:#252220;--c2:#2B2826;--c3:#3A3633;--cl:#4E4946;--ct:#F3F1F0;--ct2:#E2DEDB;--cm:#ABA5A2;--cw:#938D89;--cwire:rgba(243,241,240,.45);--cwred:rgba(236,48,19,.7);--cp:#F3F1F0;--cpg:rgba(255,255,255,.9);--cglow:rgba(243,241,240,.22);--cr:var(--cr);--cdot:rgba(237,235,234,.08);
+.cv{--c0:#121110;--cb:#181716;--c1:#1D1B1A;--ch:#252220;--c2:#2B2826;--c3:#3A3633;--cl:#4E4946;--ct:#F3F1F0;--ct2:#E2DEDB;--cm:#ABA5A2;--cw:#938D89;--cwire:rgba(243,241,240,.45);--cwred:rgba(236,48,19,.7);--cp:#F3F1F0;--cpg:rgba(255,255,255,.9);--cglow:rgba(243,241,240,.22);--cr:#FF7A63;--cdot:rgba(237,235,234,.08);--ctile:#34302D;--ctb:#7A746F;
   position:relative;background-color:var(--c0);background-image:radial-gradient(var(--cdot) 1px,transparent 1.3px);background-size:22px 22px;color:var(--ct);border:2px solid var(--ink);padding:22px 46px 18px}
-.cv.light{--c0:#F6F5F4;--cb:#EEECEB;--c1:#FFFFFF;--ch:#ECEAE9;--c2:#F1EFEE;--c3:#E3E0DE;--cl:#9E9894;--ct:#1A1817;--ct2:#2E2B29;--cm:#5E5956;--cw:#6E6864;--cwire:rgba(26,24,23,.42);--cwred:rgba(200,38,12,.7);--cp:#1A1817;--cpg:rgba(26,24,23,.45);--cglow:rgba(26,24,23,.16);--cr:#C02A10;--cdot:rgba(26,24,23,.1)}
+.cv.light{--c0:#F6F5F4;--cb:#EEECEB;--c1:#FFFFFF;--ch:#ECEAE9;--c2:#F1EFEE;--c3:#E3E0DE;--cl:#9E9894;--ct:#1A1817;--ct2:#2E2B29;--cm:#5E5956;--cw:#6E6864;--cwire:rgba(26,24,23,.42);--cwred:rgba(200,38,12,.7);--cp:#1A1817;--cpg:rgba(26,24,23,.45);--cglow:rgba(26,24,23,.16);--cr:#C02A10;--cdot:rgba(26,24,23,.1);--ctile:#FFFFFF;--ctb:#4E4946}
 .cv .wires{position:absolute;left:0;top:0;pointer-events:none;overflow:visible;z-index:0}
 .wr{fill:none;stroke:var(--cwire);stroke-width:1.8}
 .wr.dash{stroke-dasharray:4 5}
@@ -447,15 +447,15 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .ck-h .no{font-size:11px;font-weight:800;color:var(--c0);background:var(--ct);padding:3px 6px;line-height:1;font-variant-numeric:tabular-nums}
 .ck-h .nm{flex:1;font-size:15.5px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
 .ck-h .ki{width:34px;height:34px;display:grid;place-items:center;border:1.5px solid var(--cl);background:var(--c1);flex:none}
-.tis{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:12px 6px;padding:14px 12px 6px}
+.tis{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:12px 6px;padding:14px 12px 6px}
 .wide>.tis{grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}
 .ti{display:grid;justify-items:center;align-content:start;gap:6px;background:transparent;border:0;color:var(--ct);padding:2px;min-width:0}
-.ti .tic{width:46px;height:46px;display:grid;place-items:center;background:var(--c2);border:1.5px solid var(--cl);transition:border-color .2s,box-shadow .2s,background .2s}
-.ti:hover .tic,.ti:focus-visible .tic{border-color:var(--ct);box-shadow:0 0 12px var(--cglow);background:var(--c3)}
+.ti .tic{width:50px;height:50px;display:grid;place-items:center;background:var(--ctile);border:1.5px solid var(--ctb);color:var(--ct);transition:border-color .2s,box-shadow .2s,background .2s}
+.ti:hover .tic,.ti:focus-visible .tic{border-color:var(--ct);box-shadow:0 0 14px var(--cglow);background:var(--ct);color:var(--c0)}
 .ti:focus-visible{outline:none}
 .ti.opt .tic{border-style:dashed}
 .ti .tl{font-size:11.5px;font-weight:600;line-height:1.25;text-align:center;color:var(--ct2)}
-.ti.big .tic{width:58px;height:58px}
+.ti.big .tic{width:62px;height:62px}
 .tis.big{grid-template-columns:repeat(5,minmax(0,1fr));padding-bottom:16px}
 .ck-o{font-size:12px;font-weight:700;color:var(--cm);padding:6px 14px 12px}
 .ck .sub{font-size:12.5px;color:var(--cm);padding:10px 14px 0}
@@ -480,6 +480,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .lhand{display:inline-block;width:9px;height:9px;border:1.4px solid var(--ct)}
 .hdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#EC3013;margin-right:7px;vertical-align:1px}
 .cvleg .hdot{margin-right:0}
+.rai{display:inline-flex;vertical-align:-2px;margin-left:5px;opacity:.85}
 .chains{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
 .chc{display:grid;gap:4px;align-content:start;text-align:left;background:var(--card);border:1px solid var(--line);padding:14px;color:var(--ink)}
 .chc:hover{border-color:var(--ink)}
@@ -510,7 +511,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .trio{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;margin-top:24px}
 .tr{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:center;background:var(--card);border:1px solid var(--line);padding:14px}
 .tr .tic{grid-row:1/3}
-.trio .tic,.lvt .tic,.stt .tic,.call .tic,.nt .tic{width:44px;height:44px;flex:none;display:grid;place-items:center;background:var(--ink);color:var(--inv)}
+.trio .tic,.lvt .tic,.stt .tic,.call .tic,.nt .tic{width:46px;height:46px;flex:none;display:grid;place-items:center;background:var(--ink);color:var(--inv)}
 .tr .tic.hu{background:#EC3013;color:#fff}
 .tr b{font-size:15px}
 .tr>span:last-child{font-size:12.5px;color:var(--mute)}
@@ -542,7 +543,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .nt .nr{grid-column:1/-1;font-size:11.5px;color:var(--mute)}
 .nt .to{color:var(--redtx);font-weight:600}
 .fchip{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--ink);padding:4px 4px 4px 10px;font-size:12.5px;background:var(--bg2)}
-.calls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.calls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:22px}
 .call{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);padding:14px}
 .call b{font-size:14px}
 .call p{font-size:13px;color:var(--mute);margin-top:4px}
@@ -737,6 +738,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
   <div class="calls">
     <div class="call"><span class="tic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" x2="6" y1="3" y2="15"/> <circle cx="18" cy="6" r="3"/> <circle cx="6" cy="18" r="3"/> <path d="M18 9a9 9 0 0 1-9 9"/></svg></span><div><b>Tách ba việc: tạo, duyệt, thực hiện</b><p>AI đối chiếu và lập đề nghị thanh toán (L2), Tài chính duyệt, lệnh chi chạy qua ngân hàng theo phân quyền.</p></div></div>
     <div class="call"><span class="tic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/> <circle cx="9" cy="7" r="4"/> <path d="M22 21v-2a4 4 0 0 0-3-3.87"/> <path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div><b>Doanh nghiệp nhỏ: một người, nhiều vai</b><p>Mười hai vai là vai thẩm quyền, không phải mười hai người. Ngoại lệ vẫn đi theo vai, sau này giao vai cho người mới không phải dựng lại luồng.</p></div></div>
+    <div class="call"><span class="tic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/> <rect width="16" height="12" x="4" y="8" rx="2"/> <path d="M2 14h2"/> <path d="M20 14h2"/> <path d="M15 13v2"/> <path d="M9 13v2"/></svg></span><div><b>Vai "Trưởng" có thể là người hoặc AI</b><p>Hoạch định, Marketing, Vận hành, Dịch vụ khách hàng, Hành chính giao được cho AI. AI giữ vai thì chỉ quyết trong luật của vai; việc vượt quyền vai lên Ban điều hành. Ngành hàng, Mua hàng, Kinh doanh, Tài chính, Nhân sự, Pháp chế luôn là người.</p></div></div>
   </div>
 </section>
 
@@ -1790,6 +1792,12 @@ const KNO={cl:"01",nh:"02",hd:"03",kv:"04",mk:"05",kd:"06",dv:"07",ht:"08"};
 const GRI={tc:"receipt",ns:"users",pc:"shield-check",hc:"building-2"};
 const PFI=[["database","Dữ liệu chủ"],["app-window","Hệ thống"],["book-open","Tri thức"],["workflow","Điều phối"],["fingerprint","Kiểm soát"]];
 const ROLE_S={ceo:"Ban điều hành",nh:"Ngành hàng",mh:"Mua hàng",hd:"Hoạch định",mk:"Marketing",kd:"Kinh doanh",vh:"Vận hành",dv:"Dịch vụ KH",tc:"Tài chính",ns:"Nhân sự",pc:"Pháp chế",hc:"Hành chính"};
+/* Vai thẩm quyền giao được cho AI: quyết định dựa trên luật, ngưỡng và đảo ngược được.
+   AI giữ vai thì chỉ quyết trong luật của vai; việc vượt quyền vai chuyển lên Ban điều hành. */
+const ROLE_AI={hd:1,mk:1,vh:1,dv:1,hc:1};
+const RAI_NOTE="Vai này giao được cho AI. Khi AI giữ vai, AI chỉ quyết trong luật và ngưỡng của vai; việc vượt quyền vai chuyển lên Ban điều hành.";
+const rai=r=>ROLE_AI[r]?`<span class="rai" title="${RAI_NOTE}">${ic("bot",14)}</span>`:"";
+const rmk=(r,short)=>`<i class="hdot"></i>${esc((short?ROLE_S:ROLE)[r])}${rai(r)}`;
 const CHI={pta:"package",stp:"credit-card",lto:"magnet",otc:"receipt",ctr:"headset"};
 const STS={pta:["Số bán","Dự báo","Cân đối cung–cầu","Kế hoạch mua","Duyệt vốn","Chốt nguồn","Đặt mua, nhập kho","Phân bổ"],
  stp:["Nhu cầu mua","So sánh báo giá","Chốt hợp đồng","Phát đơn mua","Nhận, kiểm hàng","Đối chiếu 3 chiều","Duyệt chi","Ghi sổ phải trả"],
@@ -1804,8 +1812,8 @@ const LV=[["eye","Quan sát","AI chỉ thu thập và báo cáo, không tạo đ
  ["refresh-cw","Tự vận hành","AI tự lập kế hoạch và tối ưu trong trần ngân sách.","Hiếm dùng trong phân phối"],
  ["shield-check","Tự chủ có giám sát","AI điều hành cả chức năng; người kiểm toán định kỳ. Chỉ cho việc rủi ro thấp, đảo ngược được.","Hiếm dùng trong phân phối"]];
 /* Icon nét (Lucide, ISC). Trong HTML dùng ic(), trong SVG dùng icS(). */
-const ic=(n,sz)=>`<svg viewBox="0 0 24 24" width="${sz||20}" height="${sz||20}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[n]||""}</svg>`;
-const icS=(n,x,y,sz,col)=>`<svg x="${x}" y="${y}" width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="none" stroke="${col||"var(--ct)"}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICO[n]||""}</svg>`;
+const ic=(n,sz)=>`<svg viewBox="0 0 24 24" width="${sz||20}" height="${sz||20}" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[n]||""}</svg>`;
+const icS=(n,x,y,sz,col)=>`<svg x="${x}" y="${y}" width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="none" stroke="${col||"var(--ct)"}" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">${ICO[n]||""}</svg>`;
 const motionOK=()=>!matchMedia("(prefers-reduced-motion: reduce)").matches;
 /* Hạt sáng chạy dọc một đường gấp khúc pts; tốc độ đều theo độ dài. */
 function wire(pts,o){o=o||{};
@@ -1822,10 +1830,10 @@ function setCv(m){document.querySelectorAll(".cv").forEach(c=>c.classList.toggle
   document.querySelectorAll("[data-cvm]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.cvm===m?"true":"false"));
   try{localStorage.setItem("lattice-mophong-cv",m);}catch(e){}}
 /* ---------- Trang 1 · Kiến trúc nghiệp vụ ---------- */
-const tile=n=>`<button class="ti${n.opt?" opt":""}" data-id="${n.id}" title="${esc(n.n)}${n.opt?" (nếu có)":""}"><span class="tic">${ic(NVI[n.id][0])}</span><span class="tl">${esc(NVI[n.id][1])}</span></button>`;
+const tile=n=>`<button class="ti${n.opt?" opt":""}" data-id="${n.id}" title="${esc(n.n)}${n.opt?" (nếu có)":""}"><span class="tic">${ic(NVI[n.id][0],23)}</span><span class="tl">${esc(NVI[n.id][1])}</span></button>`;
 function card(k,extra){const K=KH(k);
   return `<div class="ck${extra?" "+extra:""}" id="ck-${k}"><button class="ck-h" data-khoi="${k}" aria-label="Chi tiết khối ${esc(K.n)}"><span class="no">${KNO[k]}</span><span class="nm">${esc(K.n)}</span><span class="ki">${ic(KHI[k],18)}</span></button>
-    <div class="tis">${nvOf(k).map(tile).join("")}</div><div class="ck-o"><i class="hdot"></i>${esc(ROLE[K.o])}</div></div>`;}
+    <div class="tis">${nvOf(k).map(tile).join("")}</div><div class="ck-o">${rmk(K.o)}</div></div>`;}
 function arch(){
   const K3=KH("ht");
   $("arch").innerHTML=`<svg class="wires" id="arch-w" aria-hidden="true"></svg>
@@ -1834,16 +1842,16 @@ function arch(){
    <div class="cvl">Phía cầu <em>— có khách, thu được tiền</em></div><div class="g3">${card("mk")}${card("kd")}${card("dv")}</div>
    <div class="cvl">Năng lực hỗ trợ</div>
    <div class="ck wide" id="ck-ht"><button class="ck-h" data-khoi="ht" aria-label="Chi tiết khối ${esc(K3.n)}"><span class="no">${KNO.ht}</span><span class="nm">${esc(K3.n)}</span><span class="ki">${ic(KHI.ht,18)}</span></button>
-     <div class="g4">${NHOM_HT.map(g=>`<div class="grp"><div class="gh">${ic(GRI[g.id],15)}<span>${esc(g.n)}</span></div><div class="tis">${NV.filter(n=>n.g===g.id).map(tile).join("")}</div><div class="ck-o"><i class="hdot"></i>${esc(ROLE[g.id])}</div></div>`).join("")}</div></div>
+     <div class="g4">${NHOM_HT.map(g=>`<div class="grp"><div class="gh">${ic(GRI[g.id],15)}<span>${esc(g.n)}</span></div><div class="tis">${NV.filter(n=>n.g===g.id).map(tile).join("")}</div><div class="ck-o">${rmk(g.id)}</div></div>`).join("")}</div></div>
    <div class="cvl">Nền tảng &amp; ngoại lệ</div>
    <div class="g75">
      <div class="ck" id="ck-pf"><div class="ck-h st"><span class="no">09</span><span class="nm">Dữ liệu, Hệ thống &amp; Điều phối AI</span><span class="ki">${ic("layers",18)}</span></div>
        <p class="sub">Dữ liệu thống nhất — nguồn chuẩn theo từng loại dữ liệu</p>
-       <div class="tis big">${PF.map((p,i)=>`<button class="ti big" data-pf="${i}" title="${esc(p.n)}"><span class="tic">${ic(PFI[i][0],24)}</span><span class="tl">${esc(PFI[i][1])}</span></button>`).join("")}</div></div>
+       <div class="tis big">${PF.map((p,i)=>`<button class="ti big" data-pf="${i}" title="${esc(p.n)}"><span class="tic">${ic(PFI[i][0],28)}</span><span class="tl">${esc(PFI[i][1])}</span></button>`).join("")}</div></div>
      <div class="ck" id="ck-ex"><div class="ck-h st"><span class="no">10</span><span class="nm">Điều gì chuyển cho người</span><span class="ki">${ic("triangle-alert",18)}</span></div>
        <div class="exl">${EXQ.map(([id,t,r])=>`<button class="exi" data-id="${id}">${ic("triangle-alert",15)}<span>${esc(t)}</span><b>${esc(ROLE_S[r])}</b></button>`).join("")}</div></div>
    </div>
-   <div class="cvleg"><span><i class="pdot"></i>Dữ liệu, việc</span><span><i class="pdot red"></i>Ngoại lệ đến người</span><span><i class="ldash"></i>Phản hồi</span><span><i class="hdot"></i>Người chịu trách nhiệm</span><span><i class="lopt"></i>Chỉ khi cần</span></div>`;
+   <div class="cvleg"><span><i class="pdot"></i>Dữ liệu, việc</span><span><i class="pdot red"></i>Ngoại lệ đến người</span><span><i class="ldash"></i>Phản hồi</span><span><i class="hdot"></i>Người chịu trách nhiệm</span><span>${ic("bot",14)}Vai giao được cho AI</span><span><i class="lopt"></i>Chỉ khi cần</span></div>`;
   $("chains").innerHTML=CHUOI.map(c=>`<button class="chc" data-chain="${c.id}"><span class="cic">${ic(CHI[c.id],22)}</span><b>${esc(c.n)}</b><span class="en">${esc(c.en)}</span><span class="ow"><i class="hdot"></i>${esc(c.owner)}</span></button>`).join("");
   requestAnimationFrame(archWires);
 }
@@ -1917,7 +1925,7 @@ function swim(c){
   S.forEach(st=>{const lv=(st.w.match(/L(\d)/)||[])[1], nguoi=/người|Người/.test(st.w), ico=(NVI[st.nv]||["layers"])[0], tl=wrapT(st.ts,cpl(bw-20,12,.58));
     s+=`<g class="sn" tabindex="0" role="button" data-step="${st.i}" aria-label="${esc(st.t)}"><rect class="sb" x="${st.x0}" y="${st.y0}" width="${bw}" height="${bh}" fill="var(--c1)" stroke="${st.k==="chk"?"var(--ct)":"var(--cl)"}" stroke-width="${st.k==="chk"?2.2:1.5}"/>`+
       (st.k==="chk"?`<path d="M${st.x0} ${st.y0-7} L${st.x0+7} ${st.y0} L${st.x0} ${st.y0+7} L${st.x0-7} ${st.y0} Z" fill="var(--ct)"><title>Điểm kiểm tra hoặc phê duyệt</title></path>`:"")+
-      `<rect x="${st.x0+10}" y="${st.y0+10}" width="30" height="30" fill="var(--c2)" stroke="var(--cl)"/>`+icS(ico,st.x0+16,st.y0+16,18)+
+      `<rect x="${st.x0+9}" y="${st.y0+9}" width="34" height="34" fill="var(--ctile)" stroke="var(--ctb)" stroke-width="1.5"/>`+icS(ico,st.x0+15,st.y0+15,22)+
       (lv?icS("bot",st.x0+bw-(nguoi?48:34),st.y0+12,13,MUTE)+`<text x="${st.x0+bw-(nguoi?33:19)}" y="${st.y0+23}" font-size="10" font-weight="700" fill="${MUTE}">L${lv}</text>`:"")+
       (nguoi?`<circle cx="${st.x0+bw-11}" cy="${st.y0+19}" r="4" fill="#EC3013"><title>Có người làm hoặc duyệt</title></circle>`:"")+
       tx(tl,st.x0+10,st.y0+bh-12-(tl.length-1)*15,15,`font-size="12.5" font-weight="800" fill="var(--ct)"`)+`</g>`;
@@ -1958,7 +1966,7 @@ function exmap(){
     s+=icS(i2,HX+18,yy,16,MUTE)+`<text x="${HX+44}" y="${yy+12.5}" font-size="12" fill="var(--ct)">${esc(t)}</text>`;});
   s+=`<path d="M${BX} ${R0+RH/2} V${rEnd-RH/2}" stroke="var(--cw)" stroke-width="1.4"/>`;
   roles.forEach((r,i)=>{const yy=R0+i*(RH+RG), on=haiR===r;
-    s+=`<path d="M${BX} ${yy+RH/2} H${RX}" stroke="var(--cw)" stroke-width="1.2"/><g class="sn" tabindex="0" role="button" data-role="${r}" aria-pressed="${on}" aria-label="Lọc theo ${esc(ROLE[r])}"><rect class="sb" x="${RX}" y="${yy}" width="${RW}" height="${RH}" fill="${on?"var(--cl)":"var(--c1)"}" stroke="${on?"var(--ct)":"var(--cl)"}"/><circle cx="${RX+13}" cy="${yy+RH/2}" r="4" fill="#EC3013"/><text x="${RX+25}" y="${yy+RH/2+4.5}" font-size="12" font-weight="700" fill="var(--ct)">${esc(ROLE_S[r])}</text><text x="${RX+RW-10}" y="${yy+RH/2+4}" text-anchor="end" font-size="10.5" fill="${MUTE}">${cnt(r)}</text></g>`;});
+    s+=`<path d="M${BX} ${yy+RH/2} H${RX}" stroke="var(--cw)" stroke-width="1.2"/><g class="sn" tabindex="0" role="button" data-role="${r}" aria-pressed="${on}" aria-label="Lọc theo ${esc(ROLE[r])}"><rect class="sb" x="${RX}" y="${yy}" width="${RW}" height="${RH}" fill="${on?"var(--cl)":"var(--c1)"}" stroke="${on?"var(--ct)":"var(--cl)"}"/><circle cx="${RX+13}" cy="${yy+RH/2}" r="4" fill="#EC3013"/><text x="${RX+25}" y="${yy+RH/2+4.5}" font-size="12" font-weight="700" fill="var(--ct)">${esc(ROLE_S[r])}</text>${ROLE_AI[r]?icS("bot",RX+RW-46,yy+RH/2-7,14,"var(--cm)"):""}<text x="${RX+RW-10}" y="${yy+RH/2+4}" text-anchor="end" font-size="10.5" fill="${MUTE}">${cnt(r)}</text></g>`;});
   const CXb=RX+RW+44, CWb=W-CXb-28, CY=mid-40, on=haiR==="ceo";
   s+=wire([[RX+RW,mid],[CXb,mid]],{red:true,dash:true,arrow:"ea",n:1});
   s+=`<g class="sn" tabindex="0" role="button" data-role="ceo" aria-pressed="${on}" aria-label="Lọc theo Ban điều hành"><rect class="sb" x="${CXb}" y="${CY}" width="${CWb}" height="80" fill="#EC3013" stroke="${on?"var(--ct)":"#EC3013"}" stroke-width="2"/>`+icS("crown",CXb+14,CY+14,18,"#fff")+
@@ -1978,21 +1986,22 @@ function exInfoHTML(k){
     <li><b>Bất thường</b>: tiền về lệch, chênh lệch kiểm kê, đơn nghi gian lận, dự báo lệch xa thực tế.</li>
     <li><b>Việc thuộc quyền người</b>: ký hợp đồng, chọn nhà cung cấp mới, quyết định về con người.</li></ul>
    <h3>Theo mức AI</h3><p><b>L1</b> người làm nên không phát sinh ngoại lệ. <b>L2</b> mọi đầu ra chờ người duyệt. <b>L3</b> AI tự làm, chỉ chuyển những việc vượt ngưỡng.</p>`;
-  const rows=ROLE_ORDER.concat(["ceo"]).map(r=>{const l=NV.filter(n=>n.to===r);return l.length?`<tr><td><i class="hdot"></i>${esc(ROLE[r])}</td><td class="c num">${l.length}</td><td>${esc(l[0].x)}</td></tr>`:"";}).join("");
+  const rows=ROLE_ORDER.concat(["ceo"]).map(r=>{const l=NV.filter(n=>n.to===r);return l.length?`<tr><td>${rmk(r)}</td><td class="c num">${l.length}</td><td>${esc(l[0].x)}</td></tr>`:"";}).join("");
   return `<div class="dhd"><span class="dic" style="background:#EC3013;color:#fff">${ic("user",26)}</span><div><span class="lbl">Phê duyệt &amp; xử lý ngoại lệ</span><h2 id="d-title">Đến đúng người có thẩm quyền</h2><p class="en">Không dồn mọi việc lên CEO</p></div></div>
    <div class="latx">Mỗi nghiệp vụ ghi sẵn ngoại lệ chuyển cho vai nào. Hệ thống điều phối gửi thẳng tới vai đó, đặt thời hạn xử lý và lưu lại quyết định. Ban điều hành chỉ nhận việc vượt thẩm quyền của các khối hoặc ảnh hưởng trọng yếu.</div>
    <h3>Vai nhận ngoại lệ</h3><div class="tbl" style="border:0"><table style="min-width:0"><thead><tr><th>Vai</th><th class="c">Nghiệp vụ</th><th>Ví dụ</th></tr></thead><tbody>${rows}</tbody></table></div>
+   <h3>Vai có thể là người, có thể là AI</h3><p>Vai có biểu tượng ${ic("bot",14)} giao được cho AI: ${Object.keys(ROLE_AI).map(r=>esc(ROLE[r])).join(", ")}. Khi AI giữ vai, AI chỉ quyết trong luật và ngưỡng của vai; việc vượt quyền vai chuyển lên Ban điều hành. Các vai còn lại luôn là người.</p>
    <p class="note" style="margin-top:10px">Doanh nghiệp nhỏ có thể để một người giữ nhiều vai; ngoại lệ vẫn đi theo vai.</p>`;
 }
 function haiTable(){
   $("seg-khoi").innerHTML=`<button data-v="all" aria-pressed="${haiK==="all"}">Tất cả</button>`+KHOI.map(K=>`<button data-v="${K.id}" aria-pressed="${haiK===K.id}">${esc(K.s)}</button>`).join("");
-  $("hai-filter").innerHTML=haiR?`<span class="fchip"><i class="hdot"></i>${esc(ROLE[haiR])} <button class="btn ghost sm" data-role-clear>Bỏ lọc</button></span>`:"";
+  $("hai-filter").innerHTML=haiR?`<span class="fchip">${rmk(haiR)} <button class="btn ghost sm" data-role-clear>Bỏ lọc</button></span>`:"";
   const out=[];
   KHOI.forEach(K=>{if(haiK!=="all"&&K.id!==haiK) return;
     const list=nvOf(K.id).filter(n=>!haiR||n.o===haiR||n.to===haiR); if(!list.length) return;
     out.push(`<div class="ngh">${ic(KHI[K.id],16)}<span>${esc(K.n)}</span></div><div class="ngrid">${list.map(n=>`<button class="nt" data-id="${n.id}" title="${esc(n.n)}">
       <span class="tic">${ic(NVI[n.id][0])}</span><span class="nb"><b>${esc(NVI[n.id][1])}</b><span class="lvs">${n.ai.map(t=>`<span class="lvp${t[1]>=3?" on":""}">L${t[1]}</span>`).join("")}</span></span>
-      <span class="nr"><i class="hdot"></i>${esc(ROLE_S[n.o])}${n.to!==n.o?` <span class="to">→ ${esc(ROLE_S[n.to])}</span>`:""}</span></button>`).join("")}</div>`);});
+      <span class="nr">${rmk(n.o,1)}${n.to!==n.o?` <span class="to">→ ${esc(ROLE_S[n.to])}</span>`:""}</span></button>`).join("")}</div>`);});
   $("hai-tbl").innerHTML=out.join("")||`<div class="empty">Không có nghiệp vụ nào khớp bộ lọc.</div>`;
   $("exmap").innerHTML=exmap();
 }
@@ -2013,13 +2022,14 @@ function levelHTML(l){const v=LV[l], rows=[]; NV.forEach(n=>n.ai.forEach(([t,x])
 function blockHTML(k){
   const K=KH(k), open=D?D.ex.filter(e=>(NV_BY[e.act]||{}).k===k):[];
   const btn=n=>`<button data-id="${n.id}"><span>${ic(NVI[n.id][0],16)} ${esc(n.n)}${n.opt?' <span class="pill no">nếu có</span>':""}</span><span>›</span></button>`;
-  const nvl=k==="ht"?NHOM_HT.map(g=>`<div class="g">${esc(g.n)} · <i class="hdot"></i>${esc(ROLE[g.id])}</div>`+NV.filter(n=>n.g===g.id).map(btn).join("")).join(""):nvOf(k).map(btn).join("");
+  const nvl=k==="ht"?NHOM_HT.map(g=>`<div class="g">${esc(g.n)} · ${rmk(g.id)}</div>`+NV.filter(n=>n.g===g.id).map(btn).join("")).join(""):nvOf(k).map(btn).join("");
   return `<div class="dhd"><span class="dic">${ic(KHI[k],26)}</span><div><span class="lbl">${KNO[k]} · ${esc(K.tier)}</span><h2 id="d-title">${esc(K.n)}</h2><p class="en">${esc(K.en)}</p></div></div>
    <div class="latx"><b>Mục tiêu.</b> ${esc(K.goal)}</div>
    ${open.length?`<div class="spec"><b>${open.length} ngoại lệ đang mở:</b> ${esc(open.map(e=>e.tx).join(" / "))}</div>`:""}
    <h3>Các nghiệp vụ</h3><div class="nvl">${nvl}</div>
    <div class="io"><div><h3>Đầu vào</h3><ul>${K.in.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div><div><h3>Đầu ra</h3><ul>${K.out.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div></div>
    <h3>Người phụ trách</h3><p><i class="hdot"></i><b>${esc(ROLE[K.o])}</b>${k==="ht"?" và ba vai còn lại của khối hỗ trợ":""}. ${esc(K.nguoi)}</p>
+   ${ROLE_AI[K.o]?`<p class="note" style="margin-top:6px">${RAI_NOTE}</p>`:""}
    <h3>AI làm gì</h3><p>${esc(K.ai)}</p>
    <h3>Chỉ tiêu chính</h3><div class="kpil">${K.kpi.map(t=>`<span>${esc(t)}</span>`).join("")}</div>
    <h3>Ngoại lệ chuyển cho người</h3><ul>${K.exc.map(([t,r])=>`<li>${esc(t)} <b>→ ${esc(ROLE[r])}</b></li>`).join("")}</ul>`;
@@ -2028,7 +2038,7 @@ function nvHTML(n){
   const K=KH(n.k), open=D?D.ex.filter(e=>e.act===n.id):[], g=n.g?NHOM_HT.find(x=>x.id===n.g):null;
   return `<div class="dhd"><span class="dic">${ic(NVI[n.id][0],26)}</span><div><span class="lbl">${esc(K.n)}${g?" · "+esc(g.n):""}</span><h2 id="d-title">${esc(n.n)}</h2><p class="en">${esc(n.en)}${n.opt?" · chỉ khi danh mục có":""}</p></div></div>
    ${open.length?`<div class="spec"><b>${open.length} ngoại lệ đang chờ:</b> ${esc(open.map(e=>e.tx).join(" / "))}</div>`:""}
-   <h3>Người chịu trách nhiệm</h3><p style="font-weight:700"><i class="hdot"></i>${esc(ROLE[n.o])}</p>
+   <h3>Người chịu trách nhiệm</h3><p style="font-weight:700">${rmk(n.o)}</p>${ROLE_AI[n.o]?`<p class="note">${RAI_NOTE}</p>`:""}
    <h3>AI làm gì, ở mức nào</h3><div class="ladder">${n.ai.map(([t,l])=>`<div class="rung${l>=3?" start":""}"><span class="rn">L${l}</span><span><span class="rk">${LEVEL_NAMES[l]}</span>${esc(t)}</span></div>`).join("")}</div>
    <p class="note" style="margin-top:8px">Mức gắn cho từng tác vụ, không gắn cho cả khối. Một tác vụ lên mức khi số liệu ổn định 4–8 tuần.</p>
    <h3>Chuyển cho người khi</h3><div class="spec">${esc(n.x)} <b>→ ${esc(ROLE[n.to])}</b></div>

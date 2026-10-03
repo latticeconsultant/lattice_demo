@@ -299,6 +299,11 @@ tr.row{cursor:pointer} tr.row:hover td{background:var(--bg2)}
 .kpi{background:var(--card);padding:10px 12px;border:0!important;min-width:0;box-shadow:1px 0 0 var(--line),0 1px 0 var(--line)}
 .kpi .v{font-size:28px}
 
+/* dải chỉ số chính: chia đều 6 / 3 / 2 cột theo bề rộng ô */
+.w .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+@container (min-width:600px){.w .kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@container (min-width:960px){.w .kpis{grid-template-columns:repeat(6,minmax(0,1fr))}}
+
 /* donut */
 .donut{display:grid;grid-template-columns:minmax(110px,160px) 1fr;gap:14px;align-items:center}
 .donut svg{width:100%;height:auto;display:block}
@@ -699,8 +704,6 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
     <button role="tab" aria-selected="false" aria-controls="p-nganh" id="t-nganh" hidden>Cấu hình ngành</button>
     <button role="tab" aria-selected="false" aria-controls="p-sxdata" id="t-sxdata" hidden>Dữ liệu &amp; Hệ thống</button>
     <button role="tab" aria-selected="false" aria-controls="p-sxcfg" id="t-sxcfg" hidden>Cấu hình sản xuất</button>
-    <button role="tab" aria-selected="false" aria-controls="p-map" id="t-map" hidden>Sơ đồ</button>
-    <button role="tab" aria-selected="false" aria-controls="p-act" id="t-act" hidden>Hoạt động</button>
     <button role="tab" aria-selected="false" aria-controls="p-dash" id="t-dash">Dashboard CEO</button>
   </div>
   </div>
@@ -715,63 +718,6 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
   </div>
   <span class="note" id="model-note"></span>
 </div>
-
-<!-- ================= SƠ ĐỒ ================= -->
-<section id="p-map" role="tabpanel" aria-labelledby="t-map" hidden>
-  <div class="phead">
-    <h1>Một doanh nghiệp, ba khối, một trục</h1>
-    <p class="lead">Khối Thị trường tạo ra khách, đơn và tiền. Khối Cung ứng lo hàng và nguồn lực để giao được. Khối Điều hành giữ dữ liệu, tiền, quy trình và con người. Trục LATTICE ở giữa nối ba khối bằng một nguồn dữ liệu, một bộ luật và một Team AI, rồi chỉ đưa lên người những việc vượt ngưỡng.</p>
-    <p class="oneline">AI thực hiện. Hệ thống kiểm soát. Con người quyết định ngoại lệ.</p>
-  </div>
-
-  <div class="sh"><h2>Sơ đồ cấu trúc</h2><span class="note">Bấm vào từng ô để xem lỗi đau và việc AI đảm nhận. Số Lx là mức AI khởi điểm.</span></div>
-  <div class="diagram" id="diagram"></div>
-
-  <div class="sh"><h2 id="seq-title">Một đơn hàng đi qua LATTICE</h2>
-    <div class="legend"><span><i class="sw ai"></i>AI xử lý</span><span><i class="sw hu"></i>Người xử lý</span></div></div>
-  <div class="seq" id="seq"></div>
-
-  <div class="sh"><h2>Sáu mức AI đảm nhận việc</h2><span class="note">Mức đo quyền hạn được giao, không đo độ thông minh. Lên mức khi số liệu ổn định 4–8 tuần.</span></div>
-  <div class="stairs">
-    <div class="stair"><span class="lv">L0</span><h3>Quan sát</h3><p>AI chỉ thu thập và báo cáo, không tạo đầu ra.</p><span class="who">Người làm toàn bộ</span></div>
-    <div class="stair"><span class="lv">L1</span><h3>Đề xuất</h3><p>AI phân tích và đưa phương án để người chọn.</p><span class="who">Người quyết và làm</span></div>
-    <div class="stair"><span class="lv">L2</span><h3>Chuẩn bị</h3><p>AI làm trọn việc, không gì ra ngoài khi chưa duyệt.</p><span class="who">Người duyệt từng việc</span></div>
-    <div class="stair"><span class="lv">L3</span><h3>Thực hiện có giới hạn</h3><p>AI tự làm trong ngưỡng, hệ thống chặn việc vượt ngưỡng.</p><span class="who">Người xử lý ngoại lệ</span></div>
-    <div class="stair"><span class="lv">L4</span><h3>Tự vận hành</h3><p>AI tự lập kế hoạch và tối ưu trong trần ngân sách.</p><span class="who">Người giám sát chỉ số</span></div>
-    <div class="stair"><span class="lv">L5</span><h3>Tự chủ có giám sát</h3><p>AI điều hành cả chức năng. Chỉ cho việc rủi ro thấp, đảo ngược được.</p><span class="who">Người kiểm toán định kỳ</span></div>
-  </div>
-
-  <div class="sh"><h2>Ai gánh bao nhiêu việc ở khởi điểm</h2><div class="legend"><span><i class="sw ai"></i>AI</span><span><i class="sw hu"></i>Người</span></div></div>
-  <div class="alloc" id="alloc"></div>
-  <div class="bigstat" id="bigstat"></div>
-</section>
-
-<!-- ================= HOẠT ĐỘNG ================= -->
-<section id="p-act" role="tabpanel" aria-labelledby="t-act" hidden>
-  <div class="phead">
-    <h1>Hoạt động và mức AI</h1>
-    <p class="lead">Kéo mức AI lên để thấy AI làm được gì ở từng hoạt động. Ô viền đỏ là vượt mức trần LATTICE khuyến nghị.</p>
-  </div>
-  <div class="bar-model" style="border-bottom:0;padding-top:18px">
-    <span class="lbl">Mức AI hiển thị</span>
-    <div class="seg" id="seg-level" role="group" aria-label="Mức AI">
-      <button data-v="-1" aria-pressed="true">Khởi điểm</button>
-      <button data-v="0" aria-pressed="false">L0</button>
-      <button data-v="1" aria-pressed="false">L1</button>
-      <button data-v="2" aria-pressed="false">L2</button>
-      <button data-v="3" aria-pressed="false">L3</button>
-      <button data-v="4" aria-pressed="false">L4</button>
-      <button data-v="5" aria-pressed="false">L5</button>
-    </div>
-  </div>
-  <div class="cols">
-    <div><div class="colh"><h2 id="h-front">Khối Thị trường</h2><span class="en" id="h-front-en">Market Front</span></div><div id="c-front"></div></div>
-    <div><div class="colh"><h2 id="h-sup">Khối Cung ứng</h2><span class="en" id="h-sup-en">Supply</span></div><div id="c-sup"></div></div>
-    <div><div class="colh"><h2>Khối Điều hành</h2><span class="en">Operating Core</span></div><div id="c-core"></div></div>
-  </div>
-  <div class="sh"><h2>Mức khởi điểm theo loại hình</h2><span class="note">Cột đỏ là loại hình đang chọn.</span></div>
-  <div class="tbl"><table><thead><tr><th>Hoạt động</th><th class="c" data-m="dv">Dịch vụ</th><th class="c" data-m="sx">Sản xuất</th><th class="c">Trần</th></tr></thead><tbody id="matrix"></tbody></table></div>
-</section>
 
 <!-- ================= THƯƠNG MẠI PHÂN PHỐI · KIẾN TRÚC ================= -->
 <section id="p-arch" role="tabpanel" aria-labelledby="t-arch">
@@ -886,607 +832,16 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 
 <script>
 const MODELS = {tmhh:"Thương mại & Hàng hóa", dv:"Dịch vụ", sx:"Sản xuất"};
-const BLOCK_NAMES = {
- front:{tmhh:["Khối Thị trường","Market Front"], dv:["Khối Thị trường","Market Front"], sx:["Chuẩn bị sản xuất","Production Setup"]},
- sup:{tmhh:["Khối Cung ứng","Supply"], dv:["Khối Nguồn lực","Resources"], sx:["Xưởng & Chất lượng","Plant & Quality"]},
- core:{tmhh:["Khối Điều hành","Operating Core"], dv:["Khối Điều hành","Operating Core"], sx:["Khối Điều hành","Operating Core"]}
-};
 const LEVEL_NAMES = ["Quan sát", "Đề xuất", "Chuẩn bị", "Thực hiện có giới hạn", "Tự vận hành", "Tự chủ có giám sát"];
 
-const LAYERS = [
-  {name:"Dữ liệu một nguồn", en:"Single source of truth",
-   text:"Khách hàng, sản phẩm, đơn hàng, tiền và việc mỗi thứ có một bản gốc duy nhất. Mọi kênh đọc và ghi vào bản gốc đó, nên AI và người luôn nhìn cùng một con số.",
-   items:["Mã khách, mã sản phẩm, mã đơn thống nhất","Mọi tương tác tự ghi vào hồ sơ","Phân quyền xem theo vai trò"]},
-  {name:"Luật & ngưỡng", en:"Rules & thresholds",
-   text:"Chính sách của doanh nghiệp được viết thành luật máy đọc được: giá sàn, chiết khấu tối đa, hạn mức chi, điều kiện hoàn tiền. Ngưỡng là ranh giới giữa việc AI tự làm và việc phải hỏi người.",
-   items:["Bảng giá và khung chiết khấu","Hạn mức chi theo vai trò","Điều kiện đổi trả, hoàn phí"]},
-  {name:"Team AI", en:"AI team",
-   text:"Các tác tử AI được tổ chức như một đội: mỗi tác tử có vai trò, quyền hạn, quy trình chuẩn để làm theo và người chịu trách nhiệm.",
-   items:["AI tư vấn, đơn hàng, nội dung, kế toán…","Mỗi tác tử có mức L1–L4 riêng","Nhật ký mọi hành động để kiểm tra lại"]},
-  {name:"Hàng đợi vượt ngưỡng", en:"Exception queue",
-   text:"Thay cho báo cáo dài: người chỉ nhìn những việc vượt ngưỡng, bị chặn hoặc bất thường. Mỗi ngoại lệ đã xử lý trở thành dữ liệu để chỉnh luật.",
-   items:["Đơn lệch tiền, khiếu nại, chi vượt hạn mức","Việc trễ hạn, tác tử bị vướng","Quyết định của người được ghi lại thành luật mới"]}
-];
-
-const A = [
- // ===== TRÁI · KHỐI THỊ TRƯỜNG (thương mại, dịch vụ) =====
- {id:"market", block:"front", mo:["tmhh","dv"], name:"Thị trường & Danh mục", nameBy:{dv:"Thị trường & Gói dịch vụ"}, en:"Market & Assortment",
-  tasks:["Đọc nhu cầu, đọc đối thủ","Chọn hàng hoặc gói dịch vụ để bán","Thử mã mới trên quy mô nhỏ","Bỏ mã bán kém, giữ mã bán tốt"],
-  pains:["Chọn hàng theo cảm tính và lời đồn","Nhập về mới biết không ai mua","Không theo kịp đối thủ đổi giá, đổi mẫu","Danh mục phình to, quản không xuể"],
-  spec:{tmhh:"Nhập hàng là tiêu tiền trước, biết kết quả sau; chọn sai là chôn vốn trong kho.",dv:"Gói dịch vụ mơ hồ về phạm vi nên khó bán và khó tính giá."},
-  lattice:"Dữ liệu bán, dữ liệu tồn và tín hiệu thị trường gom về một chỗ. Mỗi mã có hồ sơ vòng đời: thử, mở rộng, giữ, loại.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Thị trường & Danh mục, cảnh báo số liệu bất thường, không tạo đầu ra","Tổng hợp tin thị trường, theo dõi giá đối thủ","Dựng hồ sơ mã mới kèm dự báo; người duyệt chọn mã","Tự theo dõi hiệu quả từng mã, đề xuất loại mã kém trong ngưỡng","Tự chạy thử mã mới quy mô nhỏ theo ngân sách khoán","Điều hành trọn Thị trường & Danh mục; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2,dv:2}, cap:3, capWhy:"Chọn bán cái gì là quyết định đặt cược vốn, thuộc về người.",
-  keep:"Mở hoặc bỏ dòng hàng, dòng dịch vụ"},
-
- {id:"brand", block:"front", mo:["tmhh","dv"], name:"Marketing", en:"Brand & Marketing",
-  tasks:["Định vị thương hiệu, thông điệp lõi","Sản xuất nội dung đa kênh","Quảng cáo, tiếp cận khách mới","Đo hiệu quả từng kênh"],
-  pains:["Đăng bài theo cảm hứng, không theo kế hoạch","Mỗi kênh một giọng, thương hiệu bị loãng","Chi quảng cáo nhưng không biết khách thật đến từ đâu","Nội dung ngốn thời gian của chủ"],
-  spec:{tmhh:"Cạnh tranh giá theo mùa vụ, nội dung phải bám lịch khuyến mãi.",dv:"Khó cho khách thấy chất lượng trước khi dùng; niềm tin dựa vào chứng thực."},
-  lattice:"Bộ nhận diện và giọng thương hiệu viết thành sách hướng dẫn mà AI đọc được. Lịch nội dung gắn với mục tiêu doanh số. Khách tiềm năng mang mã nguồn kênh về thẳng dữ liệu khách hàng.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Marketing, cảnh báo số liệu bất thường, không tạo đầu ra","Gợi ý ý tưởng, viết nháp bài và kịch bản theo giọng thương hiệu","Soạn trọn lịch nội dung tháng; người duyệt từng bài","Tự đăng bài thuộc chủ đề đã duyệt, chỉnh ngân sách quảng cáo trong ngưỡng; đẩy bình luận tiêu cực lên người","Tự thử nghiệm A/B, phân bổ ngân sách theo doanh thu thực","Điều hành trọn Marketing; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2,dv:2}, cap:3, capWhy:"Định vị và xử lý khủng hoảng truyền thông cần phán đoán của người.",
-  keep:"Định vị, thông điệp lõi, khủng hoảng truyền thông"},
-
- {id:"price", block:"front", mo:["tmhh","dv"], name:"Chính sách giá", nameBy:{dv:"Chính sách giá & gói"}, en:"Pricing",
-  tasks:["Bảng giá theo kênh, theo nhóm khách","Khung chiết khấu và điều kiện","Chương trình khuyến mãi","Theo dõi biên sau khuyến mãi"],
-  pains:["Mỗi nhân viên báo một giá","Khuyến mãi xong mới biết lỗ","Giá trên sàn và tại cửa hàng lệch nhau","Chiết khấu cho khách quen không có điểm dừng"],
-  spec:{tmhh:"Sàn ép giá liên tục; giảm giá là phản xạ đầu tiên khi doanh số chậm.",dv:"Giá phụ thuộc phạm vi công việc nên dễ bị thương lượng từng ca."},
-  lattice:"Một bảng giá gốc chảy ra mọi kênh. Khung chiết khấu có trần và điều kiện. Mỗi chương trình được tính biên trước khi chạy và đo lại sau khi kết thúc.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Chính sách giá, cảnh báo số liệu bất thường, không tạo đầu ra","Tính thử biên lợi nhuận cho từng phương án giá","Soạn chương trình khuyến mãi kèm dự báo; người duyệt","Tự áp giá và chiết khấu trong khung, tự đồng bộ giá các kênh; chặn đề nghị vượt khung","Tự điều chỉnh giá theo tồn, mùa vụ và đối thủ trong biên đã khoán","Điều hành trọn Chính sách giá; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2,dv:2}, cap:3, capWhy:"Khung giá là quyết định chiến lược, không giao cho AI.",
-  keep:"Khung giá, trần chiết khấu"},
-
- {id:"sales", block:"front", mo:["tmhh","dv"], name:"Bán hàng", nameBy:{dv:"Tư vấn & Bán"}, en:"Sales",
-  tasks:["Tiếp nhận yêu cầu đa kênh","Phân loại, chấm điểm khách tiềm năng","Tư vấn, báo giá","Chốt đơn, ký hợp đồng"],
-  pains:["Trả lời chậm, khách đi mất ngoài giờ","Mỗi người tư vấn một kiểu, báo giá lệch nhau","Khách tiềm năng nằm rải rác trong Zalo, Messenger, sổ tay","Không biết vì sao khách không mua"],
-  spec:{tmhh:"Câu hỏi giá, tồn kho, phí ship lặp lại hàng trăm lần mỗi ngày.",dv:"Mất nhiều vòng hỏi lại mới chốt được phạm vi và lịch."},
-  lattice:"Một hộp thư hợp nhất cho mọi kênh. Kịch bản tư vấn và bảng giá chuẩn. Luật chấm điểm khách tiềm năng. Mỗi cuộc trao đổi ghi lại lý do thắng hoặc thua.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Bán hàng, cảnh báo số liệu bất thường, không tạo đầu ra","Gợi ý câu trả lời, tóm tắt hội thoại","Trả lời 24/7, soạn báo giá; người duyệt trước khi gửi","Tự tư vấn và báo giá theo bảng giá, chiết khấu cho phép; chuyển người khi khách lớn hoặc xin giảm ngoài ngưỡng","Dẫn trọn hành trình đến thanh toán với đơn nhỏ, tự tối ưu kịch bản theo tỷ lệ chốt","Điều hành trọn Bán hàng; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:3,dv:2}, cap:4, capWhy:"L4 chỉ cho đơn giá trị nhỏ; hợp đồng lớn luôn do người ký.",
-  keep:"Hợp đồng lớn, chiết khấu ngoài chính sách"},
-
- {id:"orders", block:"front", mo:["tmhh","dv"], name:"Đơn hàng", nameBy:{dv:"Lịch hẹn & Thực hiện"}, en:"Order to Cash",
-  tasks:["Xác nhận đơn, đặt lịch hẹn","Thực hiện đơn, điều phối người và hàng","Đối soát thanh toán","Theo dõi tiến độ, báo khách"],
-  pains:["Nhập đơn tay từ nhiều kênh, sai địa chỉ, sai mã","Đối soát tiền sàn, COD mất hàng giờ mỗi tuần","Đơn chậm nhưng không ai báo khách","Trùng lịch, khách không đến"],
-  spec:{tmhh:"Đơn đa sàn cộng COD, tỷ lệ hoàn cao.",dv:"Đơn chính là lịch hẹn của người làm: trùng lịch, quên nhắc, khách hủy sát giờ."},
-  lattice:"Mọi kênh đổ về một luồng đơn với trạng thái chuẩn. Luật xác nhận tự động. Tiền về khớp tự động với đơn qua sao kê hoặc webhook ngân hàng.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Đơn hàng, cảnh báo số liệu bất thường, không tạo đầu ra","Phát hiện đơn bất thường, gợi ý cách xử lý","Xác nhận đơn, soạn phiếu giao, xếp lịch; người duyệt đơn có cảnh báo","Tự xác nhận, tạo vận đơn, khớp thanh toán; chỉ đẩy đơn lệch tiền hoặc nghi gian lận","Tự chọn kho và đơn vị vận chuyển tối ưu chi phí, thời gian","Điều hành trọn Đơn hàng; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:3,dv:3}, cap:3, capWhy:"Đơn lệch tiền và đơn giá trị lớn cần người xác nhận.",
-  keep:"Đơn lệch tiền, đơn giá trị lớn"},
-
- {id:"after", block:"front", mo:["tmhh","dv"], name:"Hậu mãi", nameBy:{dv:"Hậu mãi & Bảo hành"}, en:"After-sales",
-  tasks:["Tiếp nhận lỗi, bảo hành","Đổi trả, hoàn tiền, làm lại dịch vụ","Khiếu nại và xin lỗi khách","Quy trách nhiệm về lô hàng, người làm"],
-  pains:["Mỗi lần xử lý một kiểu, khách so bì nhau","Hoàn tiền tùy hứng, thủng biên lợi nhuận","Không gom được lỗi lặp lại để sửa gốc","Khách bực rồi mới tới tay chủ"],
-  spec:{tmhh:"Đổi trả trên sàn có thời hạn ngặt; chậm một ngày là mất quyền khiếu nại.",dv:"Làm lại dịch vụ tốn giờ công, phải quyết ai chịu chi phí đó."},
-  lattice:"Quy trình đổi trả có điều kiện rõ ràng và hạn mức tự duyệt. Mỗi ca hậu mãi gắn với đơn, lô hàng và người thực hiện. Lỗi lặp lại tự thành yêu cầu sửa quy trình.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Hậu mãi, cảnh báo số liệu bất thường, không tạo đầu ra","Phân loại khiếu nại, gợi ý phương án theo chính sách","Soạn phản hồi và phiếu đổi trả; người duyệt khoản hoàn","Tự duyệt đổi trả trong hạn mức, tự theo dõi hàng hoàn; đẩy ca vượt hạn mức lên người","Tự phát hiện cụm lỗi theo lô và đề xuất đổi nhà cung cấp hoặc sửa quy trình","Điều hành trọn Hậu mãi; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2,dv:2}, cap:3, capWhy:"Hoàn tiền lớn và thu hồi hàng chạm tới tiền và uy tín.",
-  keep:"Hoàn tiền vượt hạn mức, thu hồi hàng"},
-
- {id:"care", block:"front", mo:["tmhh","dv"], name:"Chăm sóc khách hàng", en:"Customer Success",
-  tasks:["Hỏi thăm sau mua, hướng dẫn sử dụng","Giữ chân, nhắc mua lại","Bán thêm, bán chéo","Chương trình giới thiệu từ khách cũ"],
-  pains:["Bán xong là quên khách","Không biết khách nào sắp rời bỏ","Khách hài lòng nhưng không có cơ chế để họ giới thiệu","Chăm sóc phụ thuộc trí nhớ của nhân viên"],
-  spec:{tmhh:"Bỏ lỡ chu kỳ mua lại của hàng tiêu dùng.",dv:"Khách dùng một lần rồi không quay lại vì thiếu lộ trình nâng cấp."},
-  lattice:"Hồ sơ khách 360 độ. Hành trình chăm sóc theo mốc: ngày 1, ngày 7, ngày 30, chu kỳ mua. Điểm sức khỏe khách hàng. Mã giới thiệu gắn với từng khách cũ.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Chăm sóc khách hàng, cảnh báo số liệu bất thường, không tạo đầu ra","Nhắc việc chăm sóc, soạn tin nhắn cá nhân hóa","Gửi theo hành trình; người duyệt mẫu tin và ưu đãi","Tự gửi, tự đề xuất ưu đãi trong ngân sách; báo khách có nguy cơ rời bỏ","Dự đoán thời điểm mua lại, tự thiết kế ưu đãi theo giá trị vòng đời khách","Điều hành trọn Chăm sóc khách hàng; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:3,dv:2}, cap:4, capWhy:"",
-  keep:"Khách VIP, khách giá trị cao sắp rời đi"},
-
- {id:"chan", block:"front", mo:["tmhh","dv"], name:"Kênh bán", nameBy:{dv:"Kênh & Đối tác giới thiệu"}, en:"Channels & Partners",
-  tasks:["Sàn, đại lý, cộng tác viên","Tiếp thị liên kết, KOC","Đối tác giới thiệu khách","Đối soát phí và hoa hồng"],
-  pains:["Mỗi sàn một chính sách, thay đổi liên tục","Hoa hồng tính tay, dễ tranh chấp","Không biết kênh nào thật sự có lãi sau mọi khoản phí","Đối tác giới thiệu khách nhưng không được ghi nhận"],
-  spec:{tmhh:"Phụ thuộc sàn; phí sàn tăng là biên lợi nhuận mất theo.",dv:"Nguồn khách chủ yếu từ giới thiệu, cần đo được ai giới thiệu ai."},
-  lattice:"Sổ đối tác ghi rõ điều khoản và hoa hồng. Lãi gộp theo từng kênh sau mọi phí. Cổng để đối tác tự xem số liệu của mình.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Kênh bán, cảnh báo số liệu bất thường, không tạo đầu ra","Theo dõi và tóm tắt thay đổi chính sách kênh","Tính hoa hồng, soạn báo cáo đối tác; người duyệt chi trả","Tự tính và chi hoa hồng trong ngưỡng, tự cập nhật giá và khuyến mãi theo luật","Tự phân bổ hàng và ngân sách giữa các kênh theo lãi thực","Điều hành trọn Kênh bán; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2,dv:2}, cap:3, capWhy:"Ký hợp tác và chính sách giá kênh ảnh hưởng toàn mạng lưới.",
-  keep:"Ký hợp tác, chính sách giá kênh"},
-
- // ===== TRÁI · CHUẨN BỊ SẢN XUẤT =====
- {id:"rnd", block:"front", mo:["sx"], name:"R&D sản phẩm", en:"Product R&D",
-  tasks:["Nghiên cứu mẫu theo yêu cầu thị trường","Thử nghiệm vật liệu, công thức","Chạy thử lô đầu","Chuyển giao cho sản xuất đại trà"],
-  pains:["Mẫu đẹp nhưng xưởng làm không ra","Thử nghiệm không ghi lại, làm lại từ đầu","Chuyển giao bằng lời nói, xưởng hiểu sai","Không tính giá thành trước khi chốt mẫu"],
-  spec:{sx:"Mẫu chốt rồi mới có định mức và quy trình công nghệ cho xưởng."},
-  lattice:"Mỗi mẫu có hồ sơ: yêu cầu thị trường, phương án thử, kết quả đo, giá thành dự tính. Chốt mẫu là tự sinh định mức nháp cho xưởng.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi R&D sản phẩm, cảnh báo số liệu bất thường, không tạo đầu ra","Tra cứu vật liệu, tổng hợp kết quả thử nghiệm","Dựng hồ sơ mẫu và tính giá thành dự tính; người duyệt","Tự theo dõi lô chạy thử, so với tiêu chuẩn, báo sai lệch","Tự đề xuất vật liệu thay thế khi giá hoặc nguồn cung đổi","Điều hành trọn R&D sản phẩm; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{sx:1}, cap:2, capWhy:"Chốt mẫu là cam kết về chất lượng và chi phí dài hạn.",
-  keep:"Chốt mẫu, chọn vật liệu chính"},
-
- {id:"bom", block:"front", mo:["sx"], name:"Định mức BOM", en:"BOM & Routing",
-  tasks:["Định mức nguyên vật liệu từng mã","Quy trình công nghệ, thứ tự công đoạn","Định mức hao hụt và thời gian máy","Phiên bản và ngày hiệu lực"],
-  pains:["Định mức sai làm giá thành sai","Mỗi công nhân làm một kiểu, hao hụt khác nhau","Đổi nhà cung cấp là định mức lệch mà không ai sửa","Nhiều phiên bản, không biết bản nào đang chạy"],
-  spec:{sx:"Đây là gốc của giá thành, kế hoạch nguyên liệu và điều độ xưởng."},
-  lattice:"Một bản định mức duy nhất có phiên bản và ngày hiệu lực. Mọi lệnh sản xuất lấy định mức theo ngày. Hao hụt thực tế đổ ngược về để hiệu chỉnh.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Định mức BOM, cảnh báo số liệu bất thường, không tạo đầu ra","Soát định mức, phát hiện mã thiếu hoặc trùng","Dựng định mức nháp từ hồ sơ R&D; người duyệt ban hành","Tự đối chiếu hao hụt thực tế với định mức, đề xuất hiệu chỉnh trong ngưỡng","Tự tối ưu thứ tự công đoạn theo dữ liệu thời gian máy","Điều hành trọn Định mức BOM; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{sx:2}, cap:3, capWhy:"Ban hành định mức ảnh hưởng giá thành toàn bộ sản phẩm.",
-  keep:"Ban hành định mức, đổi vật liệu chính"},
-
- {id:"plan", block:"front", mo:["sx"], name:"Kế hoạch sản xuất", en:"Production Planning",
-  tasks:["Dự báo nhu cầu từ đơn và lịch sử","Cân đối năng lực xưởng","Kế hoạch tháng, kế hoạch tuần","Kế hoạch nguyên vật liệu"],
-  pains:["Hứa ngày giao mà xưởng không kham nổi","Chạy theo đơn gấp, đảo kế hoạch liên tục","Thiếu nguyên liệu giữa chừng phải dừng máy","Làm thừa thành phẩm, chôn vốn"],
-  spec:{sx:"Kế hoạch sai kéo theo cả chuỗi: mua hàng, điều độ, xuất kho."},
-  lattice:"Một kế hoạch duy nhất nối đơn, năng lực xưởng và nguyên liệu. Mỗi lần nhận đơn gấp, hệ thống tính ngay phần phải lùi lại.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Kế hoạch sản xuất, cảnh báo số liệu bất thường, không tạo đầu ra","Dự báo nhu cầu, cảnh báo lệch kế hoạch","Lập kế hoạch tuần kèm phương án thay thế; người duyệt","Tự xếp kế hoạch trong năng lực đã khoán, tự đặt nguyên liệu theo định mức; đẩy phần vượt năng lực lên người","Tự cân đối nhiều nhà máy hoặc nhà thầu phụ theo chi phí và thời gian","Điều hành trọn Kế hoạch sản xuất; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{sx:2}, cap:3, capWhy:"Nhận hay từ chối đơn gấp là quyết định đánh đổi khách và chi phí.",
-  keep:"Nhận đơn gấp, dừng hoặc đổi kế hoạch lớn"},
-
- {id:"buyraw", block:"front", mo:["sx"], name:"Mua nguyên liệu", en:"Raw Procurement",
-  tasks:["Yêu cầu mua theo định mức và kế hoạch","So sánh chào giá, đặt hàng","Theo dõi giao nhận, chất lượng nhà cung cấp","Công nợ và điều khoản thanh toán"],
-  pains:["Mua gấp giá cao vì không có kế hoạch","Nhà cung cấp giao trễ làm dừng chuyền","Không so sánh được nhà cung cấp bằng số liệu","Giá nguyên liệu đổi mà giá thành không cập nhật"],
-  spec:{sx:"Giá và tiến độ nguyên liệu quyết định cả giá thành lẫn ngày giao."},
-  lattice:"Mọi đơn mua gắn với lệnh sản xuất hoặc kế hoạch. Danh mục nhà cung cấp có chấm điểm theo giao đúng hạn và tỷ lệ đạt kiểm.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Mua nguyên liệu, cảnh báo số liệu bất thường, không tạo đầu ra","Tổng hợp báo giá, cảnh báo nguyên liệu sắp hết","Lập đề xuất mua theo kế hoạch; người duyệt đơn mua","Tự đặt hàng lặp lại với nhà cung cấp đã duyệt trong hạn mức; báo giá tăng, giao trễ","Tự chọn nhà cung cấp theo điểm số và tổng chi phí trong khung đã khoán","Điều hành trọn Mua nguyên liệu; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{sx:2}, cap:3, capWhy:"Chọn nhà cung cấp mới và hợp đồng khung là cam kết dài hạn.",
-  keep:"Nhà cung cấp mới, hợp đồng khung"},
-
- {id:"whraw", block:"front", mo:["sx"], name:"Kho nguyên liệu", en:"Raw Warehouse",
-  tasks:["Nhập kho nguyên liệu, ghi lô và hạn dùng","Cấp phát theo lệnh sản xuất","Kiểm kê, xử lý hao hụt","Theo dõi nguyên liệu tồn lâu"],
-  pains:["Sổ sách một đằng, kho một nẻo","Cấp phát không theo lệnh nên không truy được lô","Nguyên liệu quá hạn mới phát hiện","Thiếu một mã nhỏ là dừng cả lô"],
-  spec:{sx:"Mỗi lần cấp phát phải gắn với lệnh sản xuất thì mới truy xuất được về sau."},
-  lattice:"Một con số tồn duy nhất theo lô và hạn dùng. Phiếu cấp phát sinh thẳng từ lệnh sản xuất. Cảnh báo tồn thấp chạy theo kế hoạch tuần.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Kho nguyên liệu, cảnh báo số liệu bất thường, không tạo đầu ra","Đối chiếu sổ và thực tế, lập phiếu kiểm kê","Đề xuất mức tồn tối thiểu theo kế hoạch; người duyệt","Tự cấp phát theo lệnh, tự đề nghị mua bù; báo chênh lệch kiểm kê","Tự phân bổ nguyên liệu giữa các lệnh theo mức ưu tiên","Điều hành trọn Kho nguyên liệu; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{sx:2}, cap:3, capWhy:"Xử lý chênh lệch kiểm kê và hủy nguyên liệu là quyết định về tài sản.",
-  keep:"Chênh lệch kiểm kê, hủy nguyên liệu"},
-
- // ===== PHẢI · KHỐI CUNG ỨNG (thương mại) =====
- {id:"buy", block:"sup", mo:["tmhh"], name:"Mua hàng & Nhập hàng", en:"Purchasing",
-  tasks:["Chọn và đánh giá nhà cung cấp","Đặt hàng, theo dõi giao nhận","Điều khoản giá, công nợ, đổi trả","Nhập hàng về kho"],
-  pains:["Hết hàng bán chạy, ứ hàng bán chậm","Không so sánh được nhà cung cấp bằng số liệu","Mua gấp giá cao vì không có kế hoạch","Hàng về không khớp đơn đặt"],
-  spec:{tmhh:"Nhập hàng theo cảm tính; tồn kho là chỗ chôn vốn lớn nhất."},
-  lattice:"Danh mục nhà cung cấp có chấm điểm. Điểm đặt hàng lại tự động theo tồn và tốc độ bán. Mỗi lần nhập đều đối chiếu đơn đặt, phiếu giao và hóa đơn.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Mua hàng & Nhập hàng, cảnh báo số liệu bất thường, không tạo đầu ra","Tổng hợp báo giá, cảnh báo tồn thấp","Lập đề xuất nhập theo dự báo; người duyệt đơn mua","Tự đặt hàng lặp lại với nhà cung cấp đã duyệt trong hạn mức; báo giá tăng, giao trễ","Tự chọn nhà cung cấp theo điểm số và tổng chi phí trong khung","Điều hành trọn Mua hàng & Nhập hàng; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2}, cap:3, capWhy:"Chọn nhà cung cấp mới và hợp đồng khung là cam kết dài hạn.",
-  keep:"Nhà cung cấp mới, hợp đồng khung"},
-
- {id:"wh", block:"sup", mo:["tmhh"], name:"Kho hàng của mình", en:"Own Warehouse",
-  tasks:["Nhập, xuất, chuyển kho","Sắp xếp vị trí, mã vạch","Kiểm kê định kỳ","Hàng hỏng, hàng cận hạn"],
-  pains:["Tìm hàng mất thời gian, lấy nhầm mã","Tồn trên hệ thống khác tồn thực tế","Mất mát không truy được trách nhiệm","Hàng cận hạn phát hiện muộn"],
-  spec:{tmhh:"Bán nhiều kênh nên một sai số tồn kho là bán trùng hàng đã hết."},
-  lattice:"Mỗi vị trí và mỗi mã có mã vạch. Mọi lần nhập xuất đều có chứng từ và người chịu trách nhiệm. Tồn hệ thống bằng tồn thực tế sau mỗi ca kiểm.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Kho hàng của mình, cảnh báo số liệu bất thường, không tạo đầu ra","Gợi ý vị trí lưu, lập phiếu kiểm kê","Lên kế hoạch kiểm kê và sắp xếp lại kho; người duyệt","Tự tạo phiếu nhập xuất theo đơn, tự cảnh báo lệch tồn và hàng cận hạn","Tự tối ưu vị trí lưu theo tốc độ bán","Điều hành trọn Kho hàng của mình; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2}, cap:3, capWhy:"Xử lý chênh lệch kiểm kê và hủy hàng là quyết định về tài sản.",
-  keep:"Chênh lệch kiểm kê, hủy hàng"},
-
- {id:"drop", block:"sup", mo:["tmhh"], name:"Kho đối tác & Dropship", en:"Partner Stock",
-  tasks:["Kết nối tồn kho của nhà cung cấp","Chuyển đơn thẳng cho đối tác giao","Theo dõi tiến độ giao của đối tác","Đối soát công nợ và phí"],
-  pains:["Bán hàng mình không có trong tay, đối tác hết hàng mới biết","Khách phàn nàn mà mình không nắm được tiến độ","Số liệu tồn của đối tác cập nhật chậm","Lẫn lộn đơn kho mình và đơn dropship"],
-  spec:{tmhh:"Dropship giảm vốn tồn nhưng đổi lại mình mất quyền kiểm soát tiến độ và chất lượng."},
-  lattice:"Tồn của đối tác được kéo về theo giờ và đánh dấu rõ là tồn không thuộc sở hữu. Mỗi đơn dropship có trạng thái riêng và mốc cam kết của đối tác.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Kho đối tác & Dropship, cảnh báo số liệu bất thường, không tạo đầu ra","Tổng hợp tồn đối tác, cảnh báo mã sắp hết","Tạo đơn chuyển cho đối tác; người duyệt đơn giá trị lớn","Tự chuyển đơn, tự bám tiến độ đối tác, báo khách; đẩy đơn trễ cam kết lên người","Tự chọn giữa kho mình và kho đối tác theo chi phí và thời gian giao","Điều hành trọn Kho đối tác & Dropship; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2}, cap:3, capWhy:"Chọn đối tác dropship là giao mặt tiền của mình cho người khác.",
-  keep:"Chọn đối tác dropship, mức cam kết"},
-
- {id:"fromsx", block:"sup", mo:["tmhh"], name:"Nhập kho từ Sản xuất", en:"Inbound from Plant", xdep:true,
-  tasks:["Nhận thành phẩm từ xưởng theo lệnh","Đối chiếu số lượng và hồ sơ lô","Nhập kho, gắn mã truy xuất","Phản hồi ngược cho xưởng về lỗi phát hiện sau"],
-  pains:["Số giao của xưởng lệch số nhập của kho","Không có hồ sơ lô nên khách khiếu nại là chịu","Hàng về dồn một lúc, kho không kịp xếp","Lỗi phát hiện ở kho không quay lại được xưởng"],
-  spec:{tmhh:"Đây là điểm nối giữa khối sản xuất và khối thương mại; sai ở đây là sai cả hai bên."},
-  lattice:"Một chứng từ duy nhất cho cả hai bên: xưởng xuất bao nhiêu thì kho nhận bấy nhiêu, kèm mã lô. Lỗi phát hiện ở kho tự sinh phản hồi về lệnh sản xuất tương ứng.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Nhập kho từ Sản xuất, cảnh báo số liệu bất thường, không tạo đầu ra","Đối chiếu phiếu xuất của xưởng với phiếu nhập của kho","Lập lịch nhận hàng theo kế hoạch sản xuất; người duyệt","Tự nhập kho theo lệnh, tự gắn mã truy xuất; đẩy chênh lệch số lượng lên người","Tự cân lịch nhận giữa các kho theo chỗ trống và tốc độ bán","Điều hành trọn Nhập kho từ Sản xuất; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2}, cap:3, capWhy:"Chênh lệch giữa xưởng và kho là tranh chấp nội bộ, phải có người chốt.",
-  keep:"Chênh lệch số giao và số nhận"},
-
- {id:"iqc", block:"sup", mo:["tmhh"], name:"Kiểm hàng đầu vào", en:"Inbound QC",
-  tasks:["Kiểm số lượng, quy cách khi nhận","Kiểm chất lượng theo mẫu","Lập biên bản hàng lỗi","Trả hàng, đòi bồi thường nhà cung cấp"],
-  pains:["Nhận hàng không kiểm, đến tay khách mới biết lỗi","Không có tiêu chí kiểm nên mỗi người kiểm một kiểu","Hàng lỗi nhập rồi khó đòi lại nhà cung cấp","Không thống kê được nhà cung cấp nào hay lỗi"],
-  spec:{tmhh:"Kiểm đầu vào là hàng rào rẻ nhất: bắt lỗi ở kho rẻ hơn bắt lỗi ở tay khách."},
-  lattice:"Mỗi mã có tiêu chí kiểm và cỡ mẫu. Kết quả kiểm gắn với lô và nhà cung cấp, chảy thẳng vào điểm số nhà cung cấp.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Kiểm hàng đầu vào, cảnh báo số liệu bất thường, không tạo đầu ra","Ghi nhận kết quả kiểm, dựng thống kê lỗi theo nhà cung cấp","Soạn biên bản và yêu cầu đổi trả; người duyệt","Tự chặn lô không đạt, tự mở yêu cầu đổi trả với nhà cung cấp; đẩy quyết định nhận nhượng bộ lên người","Tự điều chỉnh cỡ mẫu kiểm theo lịch sử chất lượng từng nhà cung cấp","Điều hành trọn Kiểm hàng đầu vào; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2}, cap:3, capWhy:"Nhận hay trả lô hàng lỗi là quyết định thương lượng với nhà cung cấp.",
-  keep:"Nhận nhượng bộ, trả lô hàng"},
-
- {id:"stocklv", block:"sup", mo:["tmhh"], name:"Tồn kho & Điểm đặt lại", en:"Stock Levels",
-  tasks:["Mức tồn tối thiểu và tối đa theo mã","Điểm đặt hàng lại","Dự báo nhu cầu theo mùa vụ","Xử lý hàng ứ đọng"],
-  pains:["Hết mã bán chạy ngay mùa cao điểm","Vốn chôn trong mã bán chậm","Đặt hàng theo cảm tính của một người","Khuyến mãi xả hàng muộn, lỗ nặng"],
-  spec:{tmhh:"Đây là nơi quyết định vốn lưu động nằm ở đâu: trong kho hay trong tài khoản."},
-  lattice:"Mỗi mã có mức tồn và điểm đặt lại tính từ tốc độ bán và thời gian giao của nhà cung cấp. Hàng ứ đọng tự vào danh sách xả theo mốc ngày.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Tồn kho & Điểm đặt lại, cảnh báo số liệu bất thường, không tạo đầu ra","Tính tốc độ bán, cảnh báo mã sắp hết và mã ứ","Đề xuất mức tồn và điểm đặt lại; người duyệt","Tự điều chỉnh mức tồn trong ngưỡng, tự kích đơn mua khi chạm điểm đặt lại","Tự dự báo theo mùa vụ và tự phân bổ tồn giữa các kênh","Điều hành trọn Tồn kho & Điểm đặt lại; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2}, cap:3, capWhy:"Mức vốn tồn kho là quyết định tài chính của chủ.",
-  keep:"Trần vốn tồn kho, quyết định xả hàng"},
-
- {id:"logi", block:"sup", mo:["tmhh"], name:"Kết nối logistics", en:"Logistics",
-  tasks:["Chọn và kết nối đơn vị vận chuyển","Tạo vận đơn, theo dõi hành trình","Xử lý hàng hoàn, hàng thất lạc","Chi phí giao trên từng đơn"],
-  pains:["Phí vận chuyển ăn mòn lợi nhuận mà không ai đo","Giao trễ, khách gọi mới biết","Hàng hoàn về chậm, không ai nhập lại kho","Mất hàng trên đường không ai chịu trách nhiệm"],
-  spec:{tmhh:"Phí giao và hàng hoàn là hai khoản âm thầm xóa lãi của đơn nhỏ."},
-  lattice:"Nhiều đơn vị vận chuyển nối vào một luồng đơn. Chi phí và tỷ lệ giao thành công đo theo từng tuyến. Hàng hoàn có quy trình nhập lại kho rõ ràng.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Kết nối logistics, cảnh báo số liệu bất thường, không tạo đầu ra","So sánh cước, tổng hợp tỷ lệ giao đúng hạn","Tạo vận đơn hàng loạt; người duyệt đơn đặc biệt","Tự chọn đơn vị vận chuyển theo luật, tự báo khách tiến độ, tự mở khiếu nại khi trễ","Tự tối ưu tuyến và thời điểm giao theo chi phí và cam kết","Điều hành trọn Kết nối logistics; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:3}, cap:3, capWhy:"Hợp đồng vận chuyển khung và đền bù mất hàng do người quyết.",
-  keep:"Hợp đồng vận chuyển, đền bù mất hàng"},
-
- // ===== PHẢI · KHỐI NGUỒN LỰC (dịch vụ) =====
- {id:"cap", block:"sup", mo:["dv"], name:"Lịch & Công suất phục vụ", en:"Capacity & Scheduling",
-  tasks:["Lịch làm việc của từng người, từng phòng","Khung giờ nhận khách","Đặt chỗ, xếp hàng chờ","Lấp đầy giờ trống"],
-  pains:["Giờ cao điểm quá tải, giờ thấp điểm ngồi không","Khách hủy sát giờ, không ai lấp chỗ","Xếp lịch bằng sổ tay, dễ trùng","Không biết công suất thật còn bao nhiêu"],
-  spec:{dv:"Giờ công là hàng hóa không lưu kho được: giờ trống trôi qua là mất hẳn."},
-  lattice:"Một lịch duy nhất cho người, phòng và thiết bị. Mỗi khe giờ có giá và điều kiện hủy. Khách hủy là hệ thống tự mời danh sách chờ.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Lịch & Công suất phục vụ, cảnh báo số liệu bất thường, không tạo đầu ra","Hiển thị công suất còn trống, nhắc khách trước giờ hẹn","Xếp lịch theo kỹ năng và tải; người duyệt","Tự xếp và tự lấp khe trống từ danh sách chờ; đẩy ca đặc biệt hoặc khách VIP lên người","Tự điều chỉnh khung giờ và giá theo nhu cầu từng ngày","Điều hành trọn Lịch & Công suất phục vụ; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{dv:3}, cap:4, capWhy:"",
-  keep:"Nhận ca ngoài khung, cam kết với khách lớn"},
-
- {id:"crew", block:"sup", mo:["dv"], name:"Nhân lực thực hiện", en:"Service Crew",
-  tasks:["Kỹ năng và chứng chỉ từng người","Phân công theo ca và theo ca khó","Chất lượng thực hiện của từng người","Đào tạo tay nghề"],
-  pains:["Khách chỉ tin một người, người đó nghỉ là mất khách","Chất lượng mỗi người một kiểu","Không đo được ai làm tốt hơn ai","Người mới vào không ai kèm"],
-  spec:{dv:"Giá trị dịch vụ nằm trong tay người làm, nên rủi ro cũng nằm ở đó."},
-  lattice:"Hồ sơ kỹ năng và chứng chỉ gắn với từng người. Luật phân công theo kỹ năng, tải và đánh giá của khách. Mỗi ca để lại dữ liệu chất lượng.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Nhân lực thực hiện, cảnh báo số liệu bất thường, không tạo đầu ra","Gợi ý phân công theo kỹ năng và tải","Lập lịch phân công cả tuần; người duyệt","Tự phân công trong khung đã duyệt, tự cảnh báo người quá tải hoặc chất lượng tụt","Không khuyến nghị: đánh giá và kỷ luật người là việc của người","Không khuyến nghị: mức này không áp dụng cho Nhân lực thực hiện"],
-  rec:{dv:2}, cap:3, capWhy:"Phân công và đánh giá con người thuộc về người quản lý.",
-  keep:"Đánh giá, kỷ luật, phân ca đặc biệt"},
-
- {id:"vendor", block:"sup", mo:["dv"], name:"Đối tác thuê ngoài", en:"Subcontractors",
-  tasks:["Cộng tác viên, freelancer, nhà thầu phụ","Điều khoản và đơn giá","Giao việc và nghiệm thu","Thanh toán theo khối lượng"],
-  pains:["Chất lượng thuê ngoài không kiểm soát được","Đơn giá mỗi người một kiểu","Giao việc qua tin nhắn rồi quên","Thanh toán tranh cãi vì không có nghiệm thu"],
-  spec:{dv:"Thuê ngoài giúp co giãn công suất nhưng kéo theo rủi ro chất lượng và uy tín."},
-  lattice:"Sổ đối tác có đơn giá, phạm vi và điểm chất lượng. Mỗi việc giao ra ngoài đều có phiếu giao và tiêu chí nghiệm thu.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Đối tác thuê ngoài, cảnh báo số liệu bất thường, không tạo đầu ra","Tổng hợp khối lượng, tính tiền theo đơn giá","Soạn phiếu giao việc và biên bản nghiệm thu; người duyệt","Tự giao việc cho đối tác đã duyệt trong hạn mức, tự nhắc tiến độ; đẩy ca không đạt lên người","Tự chọn đối tác theo điểm chất lượng và chi phí trong khung","Điều hành trọn Đối tác thuê ngoài; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{dv:2}, cap:3, capWhy:"Ký hợp tác và mức đơn giá là cam kết dài hạn.",
-  keep:"Ký hợp tác, đơn giá khung"},
-
- {id:"consum", block:"sup", mo:["dv"], name:"Vật tư tiêu hao", en:"Consumables",
-  tasks:["Danh mục vật tư và định mức theo ca","Nhập, cấp phát, tồn","Hạn dùng và điều kiện bảo quản","Mua bổ sung"],
-  pains:["Hết vật tư giữa ca phục vụ","Dùng vượt định mức mà không ai để ý","Vật tư quá hạn vẫn nằm trong kho","Chi phí vật tư không tính được vào giá ca"],
-  spec:{dv:"Vật tư nhỏ nhưng thiếu là phải hủy ca, mất cả doanh thu lẫn uy tín."},
-  lattice:"Định mức vật tư theo từng loại ca. Tồn và hạn dùng theo lô. Chi phí vật tư chảy thẳng vào giá thành của ca.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Vật tư tiêu hao, cảnh báo số liệu bất thường, không tạo đầu ra","Theo dõi tồn, cảnh báo sắp hết và sắp hết hạn","Đề xuất đơn mua theo lịch ca; người duyệt","Tự đặt mua trong hạn mức, tự trừ tồn theo ca thực hiện","Tự điều chỉnh định mức theo mức dùng thực tế","Điều hành trọn Vật tư tiêu hao; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{dv:2}, cap:3, capWhy:"Hủy vật tư quá hạn là quyết định về tài sản.",
-  keep:"Hủy vật tư, đổi nhà cung cấp"},
-
- {id:"fac", block:"sup", mo:["dv"], name:"Cơ sở vật chất & Thiết bị", en:"Facilities",
-  tasks:["Mặt bằng, phòng, ghế, giường, bàn","Thiết bị chuyên dùng và bảo trì","Vệ sinh, an toàn, trải nghiệm tại chỗ","Giấy phép liên quan đến cơ sở"],
-  pains:["Thiết bị hỏng giữa ca, phải hoãn khách","Bảo trì chỉ làm khi đã hỏng","Không gian xuống cấp mà chủ quen mắt không thấy","Giấy phép hết hạn mới nhớ"],
-  spec:{dv:"Khách đánh giá dịch vụ bằng cả chỗ ngồi, mùi, tiếng ồn, chứ không chỉ bằng tay nghề."},
-  lattice:"Mỗi thiết bị và mỗi phòng có lý lịch, lịch bảo trì và lịch vệ sinh. Giấy phép có mốc nhắc. Phản hồi của khách về cơ sở tự gắn vào đúng phòng.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Cơ sở vật chất & Thiết bị, cảnh báo số liệu bất thường, không tạo đầu ra","Nhắc lịch bảo trì, vệ sinh, hạn giấy phép","Lập kế hoạch bảo trì và dự trù chi phí; người duyệt","Tự lên lịch bảo trì vào khe trống, tự mở phiếu sửa khi có báo hỏng","Dự đoán hỏng hóc theo giờ sử dụng, tự đề xuất thay trước khi hỏng","Điều hành trọn Cơ sở vật chất & Thiết bị; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{dv:1}, cap:3, capWhy:"Đầu tư cơ sở vật chất là quyết định vốn.",
-  keep:"Đầu tư, sửa lớn, đổi mặt bằng"},
-
- // ===== PHẢI · XƯỞNG & CHẤT LƯỢNG (sản xuất) =====
- {id:"shop", block:"sup", mo:["sx"], name:"Điều độ xưởng", en:"Shop Floor Control",
-  tasks:["Phát lệnh sản xuất xuống chuyền","Phân ca, phân máy, phân người","Theo dõi tiến độ từng lô theo giờ","Xử lý dừng chuyền, đổi lệnh"],
-  pains:["Không biết lô nào đang ở công đoạn nào","Máy chờ người, người chờ nguyên liệu","Báo cáo sản lượng cuối ngày mới có","Đổi lệnh bằng miệng, chuyền làm nhầm"],
-  spec:{sx:"Đây là nơi kế hoạch biến thành sản lượng thật hoặc thành hàng chờ."},
-  lattice:"Mỗi lệnh sản xuất có trạng thái theo công đoạn, cập nhật ngay tại chuyền. Dừng máy quá ngưỡng là một ngoại lệ, không phải một dòng báo cáo.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Điều độ xưởng, cảnh báo số liệu bất thường, không tạo đầu ra","Tổng hợp tiến độ, cảnh báo lô trễ","Xếp lịch chuyền và ca; người duyệt trước khi phát lệnh","Tự phát lệnh theo kế hoạch đã duyệt, tự điều chuyển trong ngưỡng; đẩy sự cố dừng chuyền lên người","Tự xếp lại thứ tự lô theo hạn giao và chi phí đổi khuôn","Điều hành trọn Điều độ xưởng; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{sx:2}, cap:3, capWhy:"Dừng chuyền và đổi thứ tự lô lớn ảnh hưởng cam kết giao hàng.",
-  keep:"Dừng chuyền, đổi thứ tự lô lớn"},
-
- {id:"run", block:"sup", mo:["sx"], name:"Vận hành chuyền", en:"Line Operations",
-  tasks:["Thao tác chuẩn tại từng công đoạn","Ghi nhận sản lượng và hao hụt theo giờ","Đổi khuôn, đổi mã, cài đặt thông số","Bàn giao giữa các ca"],
-  pains:["Mỗi ca làm một kiểu, sản lượng chênh nhau","Hao hụt ghi cuối ngày, không biết mất ở đâu","Đổi khuôn lâu, mất giờ chạy","Bàn giao ca sơ sài, lỗi lặp lại"],
-  spec:{sx:"Chênh lệch giữa các ca thường lớn hơn chênh lệch giữa các máy."},
-  lattice:"Thao tác chuẩn và thông số cài đặt nằm trong quy trình máy đọc được. Sản lượng và hao hụt ghi theo giờ, so ngay với định mức. Bàn giao ca có biểu mẫu bắt buộc.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Vận hành chuyền, cảnh báo số liệu bất thường, không tạo đầu ra","Hướng dẫn thao tác, nhắc thông số cài đặt","Ghi nhận sản lượng, dựng báo cáo ca; người duyệt","Tự so sản lượng và hao hụt với định mức theo giờ, báo lệch ngay trong ca","Tự đề xuất thông số tối ưu theo dữ liệu các lô đã chạy","Điều hành trọn Vận hành chuyền; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{sx:2}, cap:3, capWhy:"Đổi thông số công nghệ ảnh hưởng chất lượng toàn lô.",
-  keep:"Đổi thông số công nghệ"},
-
- {id:"qc", block:"sup", mo:["sx"], name:"Chất lượng & Truy xuất lô", en:"Quality & Traceability",
-  tasks:["Kiểm nguyên liệu đầu vào","Kiểm trong chuyền theo điểm kiểm soát","Kiểm trước khi nhập kho thành phẩm","Hồ sơ lô và truy xuất nguồn gốc"],
-  pains:["Phát hiện lỗi khi hàng đã rời xưởng","Kiểm bằng mắt, không có số liệu","Không truy được lô khi có khiếu nại","Lỗi lặp lại mà không tìm nguyên nhân gốc"],
-  spec:{sx:"Một lô lỗi lọt ra ngoài có thể kéo theo thu hồi và mất khách lớn."},
-  lattice:"Mỗi lô mang mã truy xuất gắn với nguyên liệu, ca máy và người làm. Điểm kiểm soát nằm trong quy trình, không đạt là chặn bước sau.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Chất lượng & Truy xuất lô, cảnh báo số liệu bất thường, không tạo đầu ra","Ghi nhận kết quả kiểm, dựng biểu đồ xu hướng lỗi","Soạn hồ sơ lô và phiếu kiểm; người duyệt kết luận","Tự chặn lô không đạt, tự truy ngược nguyên liệu và ca máy; đẩy quyết định xử lý lô lên người","Tự phát hiện cụm lỗi sớm và đề xuất chỉnh thông số trước khi hỏng lô","Điều hành trọn Chất lượng & Truy xuất lô; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{sx:2}, cap:3, capWhy:"Quyết định cho lô lỗi đi tiếp, sửa hay hủy thuộc về người.",
-  keep:"Xử lý lô không đạt, thu hồi"},
-
- {id:"maint", block:"sup", mo:["sx"], name:"Bảo trì thiết bị", en:"Maintenance",
-  tasks:["Lịch bảo trì định kỳ","Xử lý sự cố dừng máy","Vật tư và phụ tùng thay thế","Lý lịch và hiệu suất thiết bị"],
-  pains:["Chạy đến khi hỏng mới sửa","Dừng máy giữa đơn gấp","Phụ tùng không có sẵn, chờ nhập","Không biết máy nào hay hỏng nhất"],
-  spec:{sx:"Một giờ dừng máy ở công đoạn nghẽn là một giờ mất của cả chuyền."},
-  lattice:"Mỗi thiết bị có lý lịch, lịch bảo trì theo giờ chạy thật và định mức phụ tùng. Giờ chạy lấy thẳng từ điều độ xưởng.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Bảo trì thiết bị, cảnh báo số liệu bất thường, không tạo đầu ra","Nhắc lịch bảo trì, tổng hợp giờ dừng máy","Lập kế hoạch bảo trì và dự trù phụ tùng; người duyệt","Tự lên lịch bảo trì vào khe trống của kế hoạch, tự đặt phụ tùng trong hạn mức","Dự đoán hỏng hóc theo dữ liệu vận hành, đề xuất thay trước khi hỏng","Điều hành trọn Bảo trì thiết bị; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{sx:1}, cap:3, capWhy:"Dừng máy theo kế hoạch đánh đổi với tiến độ giao hàng.",
-  keep:"Lịch dừng máy lớn, đầu tư thiết bị"},
-
- {id:"ehs", block:"sup", mo:["sx"], name:"An toàn & Môi trường", en:"Safety & Environment",
-  tasks:["An toàn lao động, bảo hộ, huấn luyện","Phòng cháy chữa cháy","Xử lý chất thải, nước thải","Kỷ luật xưởng và 5S"],
-  pains:["Làm cho có hồ sơ, không làm thật","Tai nạn rồi mới rà lại quy định","Hồ sơ môi trường thiếu khi đoàn kiểm tra đến","Nhắc nhở bằng miệng, không ai theo dõi"],
-  spec:{sx:"Đây là điều kiện để nhà máy được phép hoạt động, không phải việc làm thêm."},
-  lattice:"Lịch huấn luyện, kiểm tra và hồ sơ môi trường có mốc nhắc. Mỗi sự cố và suýt sự cố đều được ghi, thành đầu vào sửa quy trình.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi An toàn & Môi trường, cảnh báo số liệu bất thường, không tạo đầu ra","Nhắc hạn huấn luyện, hạn hồ sơ, soạn biểu mẫu","Dựng hồ sơ an toàn và môi trường; người duyệt","Tự theo dõi hạn và điểm kiểm tra, cảnh báo vi phạm lặp lại","Không khuyến nghị: trách nhiệm an toàn luôn thuộc về người","Không khuyến nghị: mức này không áp dụng cho An toàn & Môi trường"],
-  rec:{sx:1}, cap:2, capWhy:"Trách nhiệm pháp lý về an toàn không ủy quyền được cho máy.",
-  keep:"Mọi quyết định về an toàn lao động"},
-
- {id:"whfg", block:"sup", mo:["sx"], name:"Kho thành phẩm & Xuất kho", en:"Finished Goods", xout:true,
-  tasks:["Nhập thành phẩm từ chuyền theo lô","Bảo quản, sắp xếp, kiểm kê","Xuất kho giao cho khối thương mại hoặc khách","Hồ sơ lô đi kèm hàng"],
-  pains:["Thành phẩm dồn ứ vì bán chậm","Xuất nhầm lô, nhầm quy cách","Không có hồ sơ lô đi kèm khi giao","Kiểm kê lệch mà không ai truy"],
-  spec:{sx:"Đây là điểm kết thúc của khối sản xuất: hàng rời xưởng là trách nhiệm chuyển sang bên nhận."},
-  lattice:"Nhập kho theo lệnh sản xuất, xuất kho theo phiếu có mã lô. Một chứng từ dùng chung cho xưởng và bên nhận, không ai nhập lại số.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Kho thành phẩm & Xuất kho, cảnh báo số liệu bất thường, không tạo đầu ra","Đối chiếu lô nhập và lô xuất, lập phiếu kiểm kê","Lập kế hoạch xuất theo đơn và theo lịch; người duyệt","Tự xuất kho theo phiếu đã duyệt, tự gắn hồ sơ lô; đẩy chênh lệch và hàng tồn lâu lên người","Tự xếp thứ tự xuất theo hạn dùng và tốc độ tiêu thụ","Điều hành trọn Kho thành phẩm & Xuất kho; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{sx:2}, cap:3, capWhy:"Chênh lệch kiểm kê và hủy thành phẩm là quyết định về tài sản.",
-  keep:"Chênh lệch kiểm kê, hủy thành phẩm"},
-
- // ===== DƯỚI · KHỐI ĐIỀU HÀNH (dùng chung ba mô hình) =====
- {id:"budget", block:"core", nhom:"Điều hành & Số liệu", name:"Kế hoạch & Ngân sách", en:"Planning & Budget",
-  tasks:["Kế hoạch năm, kế hoạch quý","Giao mục tiêu cho từng mảng","Phân ngân sách và hạn mức chi","Rà soát định kỳ, điều chỉnh"],
-  pains:["Kế hoạch nằm trong đầu chủ, không ai biết số","Giao mục tiêu miệng, cuối kỳ tranh cãi","Tiêu vượt rồi mới biết","Kế hoạch lập xong để đó, không ai rà lại"],
-  spec:{tmhh:"Mùa vụ dồn doanh thu vào vài tháng nên ngân sách phải chia theo mùa.",dv:"Doanh thu gắn với giờ công nên kế hoạch phải bắt đầu từ công suất.",sx:"Kế hoạch bán phải khớp năng lực xưởng, nếu không là hứa suông."},
-  lattice:"Một bản kế hoạch có số, có chủ sở hữu và có mốc rà soát. Hạn mức chi nối thẳng vào luật duyệt chi, vượt hạn là một ngoại lệ chứ không phải một email xin phép.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Kế hoạch & Ngân sách, cảnh báo số liệu bất thường, không tạo đầu ra","Dựng bản nháp kế hoạch từ số liệu kỳ trước","Lập nhiều kịch bản ngân sách; người duyệt chọn","Tự theo dõi thực hiện so với kế hoạch, cảnh báo lệch sớm và chặn chi vượt hạn mức","Tự đề xuất phân bổ lại ngân sách giữa các mảng theo hiệu quả","Điều hành trọn Kế hoạch & Ngân sách; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:1,dv:1,sx:1}, cap:2, capWhy:"Đặt mục tiêu và chia tiền là quyền của chủ doanh nghiệp.",
-  keep:"Mục tiêu năm, phân bổ ngân sách"},
-
- {id:"bi", block:"core", nhom:"Điều hành & Số liệu", name:"Báo cáo & Phân tích", en:"Reporting & Analytics",
-  tasks:["Bảng điều hành và chỉ số chính","Báo cáo định kỳ cho từng vai trò","Định nghĩa cách tính từng chỉ số","Phân tích nguyên nhân khi số bất thường"],
-  pains:["Mỗi người lấy số một kiểu, họp xong cãi nhau về số","Báo cáo làm tay, mất ngày cuối tháng","Nhiều biểu đồ nhưng không ai quyết định gì","Số bất thường không ai truy nguyên nhân"],
-  spec:{tmhh:"Số nằm rải ở nhiều sàn và nhiều ví điện tử.",dv:"Chỉ số quan trọng nhất là lấp đầy lịch và tỷ lệ quay lại.",sx:"Số sản lượng và chất lượng phải lấy ngay tại chuyền mới kịp xử lý."},
-  lattice:"Mỗi chỉ số có một định nghĩa duy nhất và một nguồn duy nhất. Bảng điều hành chỉ giữ những ô làm thay đổi quyết định; phần còn lại nằm trong báo cáo định kỳ.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Báo cáo & Phân tích, cảnh báo số liệu bất thường, không tạo đầu ra","Tổng hợp số liệu, dựng báo cáo theo mẫu","Phân tích chênh lệch và viết nhận định; người duyệt","Tự cập nhật bảng điều hành, tự cảnh báo chỉ số lệch ngưỡng và truy nguyên nhân sơ bộ","Tự phát hiện quan hệ giữa các chỉ số và đề xuất điều chỉnh vận hành","Điều hành trọn Báo cáo & Phân tích; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:3,dv:3,sx:3}, cap:4, capWhy:"",
-  keep:"Chọn chỉ số điều hành chính"},
-
- {id:"work", block:"core", nhom:"Điều hành & Số liệu", name:"Công việc", en:"Work & Time",
-  tasks:["Kế hoạch tuần, kế hoạch ngày","Giao việc cho người và cho tác tử AI","Theo dõi tiến độ, nhắc hạn","Họp và biên bản"],
-  pains:["Chủ doanh nghiệp làm lính cứu hỏa cả ngày","Việc giao qua chat rồi trôi mất","Không ai biết ai đang làm gì","Họp nhiều, quyết định ít"],
-  spec:{tmhh:"Việc vặt như đăng sản phẩm, trả lời, đóng gói nuốt thời gian chiến lược.",dv:"Lịch người làm vừa là việc vừa là doanh thu nên không được xếp lộn.",sx:"Việc văn phòng và việc xưởng chạy hai nhịp khác nhau, dễ lệch."},
-  lattice:"Một bảng việc chung cho người và Team AI. Mỗi việc có người chịu trách nhiệm, hạn và tiêu chí hoàn thành. Hàng đợi vượt ngưỡng thay cho báo cáo dài.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Công việc, cảnh báo số liệu bất thường, không tạo đầu ra","Tóm tắt việc trong ngày, soạn biên bản họp","Lập kế hoạch tuần, phân việc; người duyệt","Tự giao việc cho các tác tử AI, tự đôn đốc, chỉ báo việc trễ hoặc vướng","Tự cân tải giữa người và AI, đề xuất đổi quy trình khi thấy tắc","Điều hành trọn Công việc; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:3,dv:3,sx:2}, cap:4, capWhy:"",
-  keep:"Thứ tự ưu tiên chiến lược"},
-
- {id:"process", block:"core", nhom:"Điều hành & Số liệu", name:"Quy trình", en:"Process & SOP",
-  tasks:["Quy trình chuẩn và biểu mẫu","Điểm kiểm soát trong từng quy trình","Phiên bản và hiệu lực","Cải tiến theo nhật ký sai lệch"],
-  pains:["Quy trình nằm trong đầu chủ","Người mới học bằng cách hỏi lại","Cùng một việc, mỗi lần làm một kiểu","Không ai sửa quy trình khi nó đã lỗi thời"],
-  spec:{tmhh:"Đóng gói và kiểm hàng thiếu chuẩn nên tỷ lệ lỗi giao cao.",dv:"Chất lượng phụ thuộc từng người làm nếu không có quy trình.",sx:"Tiêu chuẩn chất lượng, an toàn và truy xuất phải nằm trong quy trình."},
-  lattice:"Quy trình chuẩn viết ở dạng AI đọc và thực thi được. Mỗi bước có điểm kiểm soát. Nhật ký sai lệch là đầu vào để cải tiến.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Quy trình, cảnh báo số liệu bất thường, không tạo đầu ra","Viết quy trình từ ghi âm, thao tác thực tế","Hướng dẫn từng bước khi người làm; người duyệt thay đổi","Thực thi quy trình, kiểm tra điểm kiểm soát, chặn bước sai","Phát hiện điểm tắc, đề xuất phiên bản mới kèm số liệu","Điều hành trọn Quy trình; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2,dv:2,sx:3}, cap:3, capWhy:"Ban hành quy trình và chính sách là quyền của người điều hành.",
-  keep:"Ban hành, thay đổi chính sách"},
-
- {id:"cdata", block:"core", nhom:"Dữ liệu nền", name:"Dữ liệu khách hàng", en:"Customer Data",
-  tasks:["Hồ sơ khách hợp nhất","Phân nhóm khách","Lịch sử giao dịch, tương tác","Đồng ý và bảo vệ dữ liệu cá nhân"],
-  pains:["Một khách có năm hồ sơ ở năm nơi","Dữ liệu nằm trong điện thoại nhân viên, nghỉ việc là mất","Không phân nhóm được nên gửi tin đại trà","Rủi ro pháp lý về dữ liệu cá nhân"],
-  spec:{tmhh:"Dữ liệu khách mua qua sàn thuộc về sàn, không thuộc về mình.",dv:"Thông tin nhạy cảm như sức khỏe, tài chính cần bảo vệ chặt.",sx:"Khách B2B có nhiều người liên hệ, nhiều cấp quyết định."},
-  lattice:"Một mã khách duy nhất. Luật gộp hồ sơ trùng. Phân quyền xem theo vai trò. Nhật ký đồng ý theo quy định bảo vệ dữ liệu cá nhân.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Dữ liệu khách hàng, cảnh báo số liệu bất thường, không tạo đầu ra","Gợi ý gộp hồ sơ trùng, làm sạch dữ liệu","Phân nhóm, làm giàu hồ sơ; người duyệt luật phân nhóm","Tự cập nhật hồ sơ từ mọi tương tác, che dữ liệu nhạy cảm; cảnh báo truy xuất bất thường","Tự phát hiện phân khúc mới, đề xuất sản phẩm cho từng phân khúc","Điều hành trọn Dữ liệu khách hàng; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:3,dv:2,sx:2}, cap:3, capWhy:"Xuất hoặc chia sẻ dữ liệu khách là quyết định có trách nhiệm pháp lý.",
-  keep:"Xuất, chia sẻ dữ liệu ra ngoài"},
-
- {id:"pdata", block:"core", nhom:"Dữ liệu nền", name:"Dữ liệu sản phẩm", nameBy:{sx:"Dữ liệu kỹ thuật"}, en:"Product Data",
-  tasks:["Danh mục, mã, thuộc tính","Mô tả, hình ảnh, tài liệu","Đồng bộ ra mọi nơi dùng đến","Vòng đời mã hàng"],
-  pains:["Thông tin mỗi nơi một kiểu","Mô tả sai hoặc thiếu","Thêm một mã mới mất cả ngày","Ảnh và tài liệu thất lạc"],
-  spec:{tmhh:"Hàng nghìn mã với biến thể màu, kích cỡ.",dv:"Gói dịch vụ mơ hồ về phạm vi nên khó mô tả thống nhất.",sx:"Bản vẽ, thông số kỹ thuật và chứng nhận phải luôn là bản mới nhất."},
-  lattice:"Một nguồn gốc duy nhất cho thông tin sản phẩm, đồng bộ ra mọi kênh và mọi tài liệu. Lịch sử mọi lần thay đổi.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Dữ liệu sản phẩm, cảnh báo số liệu bất thường, không tạo đầu ra","Viết mô tả, chuẩn hóa thuộc tính","Tạo trọn hồ sơ sản phẩm; người duyệt","Tự đồng bộ, phát hiện lệch thông tin giữa các nơi và sửa theo bản gốc","Tự chuẩn hóa toàn danh mục, đề xuất gộp hoặc tách mã","Điều hành trọn Dữ liệu sản phẩm; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:3,dv:2,sx:2}, cap:3, capWhy:"Ra mắt và khai tử mã hàng là quyết định kinh doanh.",
-  keep:"Ra mắt, khai tử mã hàng"},
-
- {id:"sys", block:"core", nhom:"Dữ liệu nền", name:"Hệ thống & Tích hợp", en:"Systems & Integration",
-  tasks:["Phần mềm đang dùng và tài khoản","Kết nối giữa các công cụ","Sao lưu và khôi phục dữ liệu","Phân quyền kỹ thuật, nhật ký truy cập"],
-  pains:["Mỗi bộ phận một phần mềm, số liệu không nói chuyện được với nhau","Nhập lại cùng một dữ liệu ở ba nơi","Không ai biết dữ liệu được sao lưu ở đâu","Nhân viên nghỉ việc mà tài khoản vẫn còn quyền"],
-  spec:{tmhh:"Sàn, vận chuyển, ngân hàng mỗi bên một hệ thống, phải nối lại.",dv:"Lịch hẹn, hồ sơ khách và thanh toán thường nằm ở ba phần mềm khác nhau.",sx:"Số liệu tại chuyền phải chảy về hệ thống, không chép tay vào cuối ca."},
-  lattice:"Một sơ đồ hệ thống ghi rõ dữ liệu chảy từ đâu tới đâu. Mỗi kết nối có người chịu trách nhiệm và có cảnh báo khi đứt. Sao lưu tự động và có diễn tập khôi phục.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Hệ thống & Tích hợp, cảnh báo số liệu bất thường, không tạo đầu ra","Lập danh sách phần mềm, tài khoản, quyền","Dựng kết nối theo mẫu, kiểm tra luồng dữ liệu; người duyệt","Tự theo dõi kết nối, tự báo đứt luồng và sai lệch dữ liệu giữa hai hệ thống","Tự đề xuất bỏ công cụ trùng chức năng và nối lại luồng cho gọn","Điều hành trọn Hệ thống & Tích hợp; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2,dv:2,sx:2}, cap:3, capWhy:"Đổi hệ thống lõi và cấp quyền quản trị là quyết định của người.",
-  keep:"Đổi hệ thống lõi, cấp quyền quản trị"},
-
- {id:"channels", block:"core", nhom:"Dữ liệu nền", name:"Kênh truyền thông", en:"Channel Operations",
-  tasks:["Tài khoản và quyền truy cập các kênh","Kho tài nguyên: ảnh, video, mẫu","Lịch nội dung và phê duyệt","Báo cáo hiệu quả kênh"],
-  pains:["Mật khẩu fanpage nằm trong tay một người","Ảnh, video thất lạc, phải làm lại nhiều lần","Không có bước duyệt, đăng nhầm","Số liệu mỗi nền tảng nằm một nơi"],
-  spec:{tmhh:"Hàng trăm ảnh sản phẩm với nhiều phiên bản.",dv:"Ảnh trước sau và chứng thực của khách cần sự đồng ý rõ ràng.",sx:"Catalogue và tài liệu kỹ thuật phải luôn là bản mới nhất."},
-  lattice:"Sổ tài sản kênh ghi ai sở hữu, ai có quyền. Kho tài nguyên gắn thẻ. Luồng duyệt hai bước. Bảng số liệu hợp nhất mọi nền tảng.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Kênh truyền thông, cảnh báo số liệu bất thường, không tạo đầu ra","Gắn thẻ tài nguyên, tổng hợp số liệu","Xếp lịch, kiểm tra bài theo chuẩn thương hiệu; người duyệt","Tự đăng theo lịch đã duyệt; cảnh báo truy cập lạ và bài vi phạm chính sách nền tảng","Tự tối ưu giờ đăng và định dạng theo hiệu quả","Điều hành trọn Kênh truyền thông; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2,dv:2,sx:1}, cap:3, capWhy:"Quyền quản trị tài khoản là tài sản của doanh nghiệp.",
-  keep:"Quyền sở hữu, quản trị tài khoản"},
-
- {id:"cash", block:"core", nhom:"Tiền", name:"Dòng tiền", en:"Cash Flow",
-  tasks:["Thu chi hằng ngày","Công nợ phải thu, phải trả","Kế hoạch tiền 13 tuần","Hạn mức chi theo ngân sách"],
-  pains:["Tiền cá nhân và tiền công ty lẫn lộn","Cuối tháng mới biết thiếu tiền","Công nợ quá hạn không ai đòi","Không biết điểm hòa vốn"],
-  spec:{tmhh:"Biên mỏng; phí sàn, vận chuyển và hàng hoàn âm thầm xóa lãi.",dv:"Tiền thu trước cho gói dễ bị tiêu như đã lãi.",sx:"Vốn lưu động kẹt trong nguyên liệu và thành phẩm."},
-  lattice:"Tài khoản công ty tách bạch. Mọi khoản thu khớp với đơn, mọi khoản chi gắn chứng từ và hạn mức. Bảng dòng tiền 13 tuần cập nhật hằng ngày.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Dòng tiền, cảnh báo số liệu bất thường, không tạo đầu ra","Đọc, phân loại chứng từ, nhập liệu","Lập báo cáo tuần, bảng công nợ; người duyệt","Tự khớp sao kê, nhắc công nợ, chi trong hạn mức đã duyệt; đẩy mọi khoản vượt hạn mức","Dự báo dòng tiền, cảnh báo sớm thiếu hụt, đề xuất cắt chi","Điều hành trọn Dòng tiền; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2,dv:2,sx:2}, cap:3, capWhy:"Mọi lệnh chi ngoài hạn mức do người quyết.",
-  keep:"Duyệt chi ngoài hạn mức"},
-
- {id:"tax", block:"core", nhom:"Tiền", name:"Kế toán & Thuế", en:"Accounting & Tax",
-  tasks:["Hóa đơn điện tử","Sổ sách, bút toán","Kê khai và nộp thuế","Hồ sơ quyết toán"],
-  pains:["Thiếu hóa đơn, chứng từ khi quyết toán","Kê khai sát hạn, làm vội","Sổ kế toán và số liệu bán hàng lệch nhau","Quy định thay đổi mà không biết"],
-  spec:{tmhh:"Bán lẻ và bán sàn sinh rất nhiều hóa đơn nhỏ.",dv:"Hóa đơn cho gói trả trước và phần hoàn phí dễ ghi sai kỳ.",sx:"Hóa đơn nguyên liệu, gia công và xuất bán đan nhau, dễ thiếu chứng từ."},
-  lattice:"Hóa đơn phát hành thẳng từ đơn hàng, không nhập lại. Mỗi bút toán truy ngược được về chứng từ gốc. Lịch thuế có mốc nhắc.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Kế toán & Thuế, cảnh báo số liệu bất thường, không tạo đầu ra","Đọc hóa đơn, chứng từ và phân loại","Lập bút toán và tờ khai nháp; kế toán duyệt","Tự phát hành hóa đơn theo đơn, tự đối chiếu sổ; đẩy sai lệch và tờ khai lên người","Không khuyến nghị: ký tờ khai và quyết toán luôn do người","Không khuyến nghị: mức này không áp dụng cho Kế toán & Thuế"],
-  rec:{tmhh:2,dv:2,sx:2}, cap:3, capWhy:"Ký tờ khai và quyết toán thuế là trách nhiệm pháp lý của người.",
-  keep:"Ký tờ khai, quyết toán thuế"},
-
- {id:"cost", block:"core", nhom:"Tiền", name:"Giá thành", en:"Costing & Margin",
-  tasks:["Giá vốn theo mã hàng, theo ca dịch vụ","Giá thành theo lô, theo đơn","Phân bổ chi phí chung","Biên lợi nhuận theo kênh, theo khách"],
-  pains:["Không biết giá vốn thật nên không biết lãi thật","Chi phí chung phân bổ theo cảm tính","Bán nhiều mà không có lãi","Lỗ ở đâu không chỉ ra được"],
-  spec:{tmhh:"Lãi thật của đơn chỉ hiện ra sau khi trừ phí kênh, vận chuyển và hàng hoàn.",dv:"Giá thành một ca là giờ công cộng vật tư cộng chi phí chỗ ngồi.",sx:"Giá thành phải tính theo từng lô mới biết công đoạn nào ăn tiền."},
-  lattice:"Công thức giá thành lấy thẳng từ định mức, nguyên liệu, giờ công và giờ máy. Mỗi lô, mỗi ca và mỗi đơn có giá thành thực tế so với định mức ngay khi đóng.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Giá thành, cảnh báo số liệu bất thường, không tạo đầu ra","Tính giá vốn, dựng bảng so sánh định mức và thực tế","Lập báo cáo biên theo kênh và sản phẩm; người duyệt cách phân bổ","Tự tính giá thành từng lô, cảnh báo lô vượt định mức và mã bán dưới giá vốn","Tự đề xuất bỏ mã lỗ, đổi nhà cung cấp hoặc đổi công đoạn","Điều hành trọn Giá thành; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2,dv:2,sx:2}, cap:3, capWhy:"Cách phân bổ chi phí chung ảnh hưởng mọi quyết định giá.",
-  keep:"Cách phân bổ chi phí chung"},
-
- {id:"fund", block:"core", nhom:"Tiền", name:"Vốn & Ngân hàng", en:"Funding & Banking",
-  tasks:["Hạn mức tín dụng, vay và trả nợ","Quan hệ ngân hàng, hồ sơ vay","Vốn góp, cổ đông","Báo cáo cho bên cấp vốn"],
-  pains:["Cần tiền mới đi vay, hồ sơ không kịp","Không biết chi phí vốn thật là bao nhiêu","Cổ đông hỏi số mà không có báo cáo sẵn","Vay ngắn hạn để nuôi tài sản dài hạn"],
-  spec:{tmhh:"Vốn chủ yếu nằm trong tồn kho và công nợ khách.",dv:"Ít tài sản thế chấp nên vay khó hơn, phải dựa vào dòng tiền.",sx:"Đầu tư thiết bị cần vốn dài hạn, không thể dùng vốn lưu động."},
-  lattice:"Một bảng theo dõi các khoản vay, lãi suất, kỳ trả và tài sản bảo đảm. Bộ hồ sơ cho ngân hàng và cổ đông sinh tự động từ số liệu vận hành.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Vốn & Ngân hàng, cảnh báo số liệu bất thường, không tạo đầu ra","Tổng hợp dư nợ, lịch trả, tính chi phí vốn","Dựng bộ hồ sơ vay và báo cáo cổ đông; người duyệt","Tự nhắc kỳ trả nợ, tự cảnh báo khi hệ số nợ vượt ngưỡng","Không khuyến nghị: vay và huy động vốn luôn do người quyết","Không khuyến nghị: mức này không áp dụng cho Vốn & Ngân hàng"],
-  rec:{tmhh:1,dv:1,sx:1}, cap:2, capWhy:"Vay nợ và huy động vốn là cam kết lớn nhất của doanh nghiệp.",
-  keep:"Vay vốn, huy động, chia cổ tức"},
-
- {id:"people", block:"core", nhom:"Người & Tuân thủ", name:"Nhân sự", nameBy:{sx:"Nhân sự & Ca kíp"}, en:"People & KPI",
-  tasks:["Vai trò, quyền hạn của người và tác tử AI","Tuyển dụng, thử việc","KPI, đánh giá","Chấm công, lương thưởng"],
-  pains:["KPI đặt cho có, không gắn số liệu thật","Đánh giá theo cảm tính","Chưa ai định nghĩa AI được làm gì, không được làm gì","Chấm công thủ công, tranh cãi cuối tháng"],
-  spec:{tmhh:"Nhân sự thời vụ vào mùa cao điểm.",dv:"Người giỏi nghỉ việc là mất khách theo.",sx:"Ca kíp, tay nghề và an toàn lao động ràng buộc lẫn nhau."},
-  lattice:"Sơ đồ vai trò cho cả người và tác tử AI, ghi quyền hạn và hạn mức. KPI tự đo từ dữ liệu vận hành. Chấm công lấy từ hệ thống, không chép tay.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Nhân sự, cảnh báo số liệu bất thường, không tạo đầu ra","Soạn mô tả công việc, lọc hồ sơ ứng viên","Chấm công, dựng bảng lương nháp; quản lý duyệt","Tự đo KPI, báo lệch mục tiêu, đề xuất hỗ trợ","Không khuyến nghị: AI chỉ cung cấp dữ liệu cho quyết định về con người","Không khuyến nghị: mức này không áp dụng cho Nhân sự"],
-  rec:{tmhh:1,dv:1,sx:2}, cap:3, capWhy:"Tuyển, thưởng, kỷ luật là quyết định về con người.",
-  keep:"Mọi quyết định về con người"},
-
- {id:"know", block:"core", nhom:"Người & Tuân thủ", name:"Tri thức & Đào tạo", en:"Knowledge & Training",
-  tasks:["Kho tri thức doanh nghiệp","Đào tạo người mới theo quy trình","Bài học rút ra sau sự cố","Sổ quyết định đã ban hành"],
-  pains:["Tri thức chỉ nằm trong đầu vài người","Người mới học bằng cách làm sai rồi sửa","Sự cố cũ lặp lại vì không ai ghi lại","Quyết định cũ bị tranh cãi lại từ đầu"],
-  spec:{tmhh:"Mẹo bán hàng và xử lý sàn nằm rải trong đầu từng nhân viên.",dv:"Tay nghề truyền miệng, người giỏi nghỉ là mất.",sx:"Kinh nghiệm chỉnh máy và xử lý lỗi nằm ở vài thợ lâu năm."},
-  lattice:"Kho tri thức là nguồn cho mọi tác tử AI, nên viết một lần thì cả người lẫn máy cùng dùng. Mỗi sự cố đóng lại bằng một bài học có mã số.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Tri thức & Đào tạo, cảnh báo số liệu bất thường, không tạo đầu ra","Soạn tài liệu từ ghi âm và thao tác thực tế","Dựng lộ trình đào tạo, chấm bài; người duyệt","Tự trả lời câu hỏi nội bộ theo kho tri thức, tự nhắc cập nhật tài liệu lỗi thời","Tự phát hiện lỗ hổng kiến thức qua câu hỏi lặp lại và đề xuất bổ sung","Điều hành trọn Tri thức & Đào tạo; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:2,dv:2,sx:2}, cap:4, capWhy:"",
-  keep:"Duyệt nội dung đào tạo chính thức"},
-
- {id:"legal", block:"core", nhom:"Người & Tuân thủ", name:"Pháp lý & Tuân thủ", en:"Legal & Compliance",
-  tasks:["Hợp đồng, giấy phép, mốc gia hạn","Điều khoản với khách và đối tác","Tuân thủ quy định ngành","Sổ rủi ro"],
-  pains:["Hợp đồng hết hạn mà không ai theo dõi","Quy định thay đổi mà không biết","Điều khoản mỗi hợp đồng một kiểu","Rủi ro biết nhưng không ai ghi lại"],
-  spec:{tmhh:"Ghi nhãn, nguồn gốc hàng hóa và quy định bán trên sàn.",dv:"Giấy phép hành nghề, điều khoản dịch vụ, chính sách hoàn phí.",sx:"Tiêu chuẩn, công bố sản phẩm, hồ sơ môi trường."},
-  lattice:"Sổ hợp đồng và giấy phép có mốc nhắc. Bộ điều khoản mẫu dùng chung. Mỗi rủi ro có người chịu trách nhiệm và mức chấp nhận được.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Pháp lý & Tuân thủ, cảnh báo số liệu bất thường, không tạo đầu ra","Tóm tắt hợp đồng, rà điều khoản rủi ro","Soạn hợp đồng theo mẫu; người duyệt, luật sư khi cần","Theo dõi hạn, tự nhắc, cảnh báo quy định mới liên quan","Không khuyến nghị: ký kết và cam kết pháp lý luôn do người","Không khuyến nghị: mức này không áp dụng cho Pháp lý & Tuân thủ"],
-  rec:{tmhh:2,dv:2,sx:2}, cap:3, capWhy:"AI không thay luật sư; ký kết luôn do người.",
-  keep:"Ký kết, cam kết pháp lý"},
-
- {id:"admin", block:"core", nhom:"Người & Tuân thủ", name:"Hành chính & Tài sản", en:"Admin & Assets",
-  tasks:["Mặt bằng, điện nước, hợp đồng thuê","Tài sản cố định, công cụ dụng cụ","Bảo hiểm, khấu hao","Mua sắm nội bộ"],
-  pains:["Không biết doanh nghiệp đang có những tài sản gì","Hợp đồng thuê hết hạn mới nhớ","Tài sản hỏng, mất không ai chịu trách nhiệm","Mua sắm nội bộ tùy hứng, không so giá"],
-  spec:{tmhh:"Mặt bằng kho và cửa hàng là khoản chi cố định lớn.",dv:"Mặt bằng phục vụ khách vừa là chi phí vừa là trải nghiệm.",sx:"Nhà xưởng và thiết bị là phần lớn tài sản của doanh nghiệp."},
-  lattice:"Sổ tài sản ghi người giữ, nơi đặt, giá trị còn lại và lịch bảo hiểm. Hợp đồng thuê và dịch vụ có mốc nhắc. Mua sắm nội bộ đi theo hạn mức như mọi khoản chi.",
-  ai:["Chỉ thu thập và báo cáo: theo dõi Hành chính & Tài sản, cảnh báo số liệu bất thường, không tạo đầu ra","Lập sổ tài sản, nhắc hạn hợp đồng và bảo hiểm","Dự trù chi phí hành chính, so sánh báo giá; người duyệt","Tự theo dõi hạn, tự mở yêu cầu mua trong hạn mức, cảnh báo tài sản hết khấu hao","Tự đề xuất thanh lý hoặc thuê thay vì mua theo chi phí vòng đời","Điều hành trọn Hành chính & Tài sản; người chỉ kiểm toán định kỳ và xem lại khi có sự cố"],
-  rec:{tmhh:1,dv:1,sx:1}, cap:3, capWhy:"Thuê mặt bằng và mua tài sản lớn là quyết định vốn.",
-  keep:"Thuê mặt bằng, mua và thanh lý tài sản"}
-];
-
-
-
-
 /* ---------- state ---------- */
-let model="tmhh", level=-1, lastFocus=null;
+let model="tmhh", lastFocus=null;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const nameOf=a=>(a.nameBy&&a.nameBy[model])||a.name;
-const byId=id=>(isPP()&&NV_BY[id])||A.find(a=>a.id===id)||NV_BY[id];
-const show=a=>!a.mo||a.mo.includes(model);
-const inB=b=>A.filter(a=>a.block===b&&show(a));
-const BLOCKS=new Proxy({},{get:(_,b)=>(BLOCK_NAMES[b]||{})[model]});
+const byId=id=>NV_BY[id];
 const SH={0:.08,1:.25,2:.5,3:.75,4:.9,5:.97};
 const NOTE={tmhh:"Thương mại phân phối: mua từ nhà cung cấp, bán qua đại lý, cửa hàng, sàn và bán trực tiếp; tiền nằm trong tồn kho và công nợ.",dv:"Dịch vụ: bán giờ công và chỗ phục vụ, giờ trống trôi qua là mất hẳn.",sx:"Sản xuất: làm ra hàng rồi xuất kho; dừng ở cửa kho, không chạm tới kênh bán."};
-
-/* ---------- diagram ---------- */
-function diagram(){
-  const front=inB("front"), sup=inB("sup"), core=inB("core");
-  const W=1280, cx=640;
-  const fx=120, fw=300, fh=48, fg=10, fy0=120, fl=front.length*fh+(front.length-1)*fg;
-  const kx=860, kw=300, kh=48, kg=10, ky0=120, kl=sup.length*kh+(sup.length-1)*kg;
-  // trục giữa, đọc từ dưới lên: DATA → Team AI → hàng đợi → CEO
-  const dw=236, dh=64, dy=372;            // ô DATA · luật & ngưỡng
-  const tw=170, th=44, ty=272;            // ô Team AI
-  const qr=50, qy=172;                    // vòng tròn hàng đợi
-  const cw=250, ch=44, cy2=28;            // ô CEO
-  const byTop=Math.max(fy0+fl, ky0+kl)+86;
-  const nhom=[...new Set(core.map(a=>a.nhom))];
-  const bw=280, bh=46, bgx=20, bgy=10, bx0=(W-(nhom.length*bw+(nhom.length-1)*bgx))/2;
-  const hang=Math.max(...nhom.map(g=>core.filter(a=>a.nhom===g).length));
-  // khung khối điều hành: ôm tiêu đề và bốn cột, cách mép 20
-  const kfx=bx0-20, kfy=byTop-42, kfw=W-2*kfx, kfh=(byTop+26+hang*(bh+bgy)-bgy+20)-kfy;
-  const H=kfy+kfh+24;
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Sơ đồ cấu trúc doanh nghiệp trên LATTICE">`;
-  s+=`<defs><marker id="mui" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--ink)"/></marker></defs>`;
-  s+=`<rect x="${kfx}" y="${kfy}" width="${kfw}" height="${kfh}" fill="var(--bg)" stroke="var(--ink)" stroke-width="2"/>`;
-  // tiêu đề ba khối
-  s+=`<text x="${fx}" y="${fy0-34}" font-size="19" font-weight="800" fill="var(--ink)">${BLOCKS.front[0]}</text><text x="${fx}" y="${fy0-16}" font-size="10.5" font-weight="600" letter-spacing="1.6" fill="var(--mute)">${BLOCKS.front[1].toUpperCase()}</text>`;
-  s+=`<text x="${kx}" y="${ky0-34}" font-size="19" font-weight="800" fill="var(--ink)">${BLOCKS.sup[0]}</text><text x="${kx}" y="${ky0-16}" font-size="10.5" font-weight="600" letter-spacing="1.6" fill="var(--mute)">${BLOCKS.sup[1].toUpperCase()}</text>`;
-  s+=`<text x="${bx0}" y="${byTop-10}" font-size="19" font-weight="800" fill="var(--ink)">${BLOCKS.core[0]}</text><text x="${bx0+Math.round(BLOCKS.core[0].length*10.6)+14}" y="${byTop-10}" font-size="10.5" font-weight="600" letter-spacing="1.6" fill="var(--mute)">${BLOCKS.core[1].toUpperCase()}</text>`;
-  // nối hai cột vào ô DATA
-  front.forEach((a,i)=>{const y=fy0+i*(fh+fg)+fh/2, d=`M${fx+fw} ${y} C ${fx+fw+60} ${y}, ${cx-dw/2-70} ${dy+dh/2}, ${cx-dw/2} ${dy+dh/2}`;
-    s+=`<path class="flowline" d="${d}"/><path class="flowpulse" d="${d}" style="animation-delay:${-i*.4}s"/>`;});
-  sup.forEach((a,i)=>{const y=ky0+i*(kh+kg)+kh/2, d=`M${kx} ${y} C ${kx-60} ${y}, ${cx+dw/2+70} ${dy+dh/2}, ${cx+dw/2} ${dy+dh/2}`;
-    s+=`<path class="flowline" d="${d}"/><path class="flowpulse" d="${d}" style="animation-delay:${-i*.35}s"/>`;});
-  // nối khối điều hành với ô DATA: mũi tên hai chiều, dữ liệu đi lên và luật đi xuống
-  const dk=`M${cx} ${dy+dh+2} L${cx} ${kfy-2}`;
-  s+=`<path class="flowline" d="${dk}" stroke-width="2.5" marker-start="url(#mui)" marker-end="url(#mui)"/><path class="flowpulse" d="${dk}"/><path class="flowpulse rev" d="${dk}" style="animation-delay:-1.2s"/>`;
-  // trục dọc
-  const mui=(y1,y2)=>`<path class="flowline" d="M${cx} ${y1} L${cx} ${y2}" stroke-width="2.5" marker-end="url(#mui)"/>`;
-  s+=mui(dy, ty+th)+mui(ty, qy+qr)+mui(qy-qr, cy2+ch);
-  // ô CEO
-  s+=`<rect x="${cx-cw/2}" y="${cy2}" width="${cw}" height="${ch}" fill="var(--red)"/><text x="${cx}" y="${cy2+28}" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">CEO · quyết định ngoại lệ</text>`;
-  // vòng tròn hàng đợi
-  s+=`<g class="dg-node" tabindex="0" role="button" data-layer="3" aria-label="Hàng đợi vượt ngưỡng">
-    <circle cx="${cx}" cy="${qy}" r="${qr}" fill="var(--card)" stroke="var(--ink)" stroke-width="3"/>
-    <text x="${cx}" y="${qy-3}" text-anchor="middle" font-size="13" font-weight="800" fill="var(--ink)">Hàng đợi</text>
-    <text x="${cx}" y="${qy+15}" text-anchor="middle" font-size="13" font-weight="800" fill="var(--ink)">vượt ngưỡng</text></g>`;
-  // ô Team AI
-  s+=`<g class="dg-node" tabindex="0" role="button" data-layer="2" aria-label="Team AI">
-    <rect x="${cx-tw/2}" y="${ty}" width="${tw}" height="${th}" fill="var(--ink)"/>
-    <text x="${cx}" y="${ty+28}" text-anchor="middle" font-size="15" font-weight="800" fill="var(--inv)">Team AI</text></g>`;
-  // ô DATA · luật & ngưỡng
-  s+=`<g class="dg-node" tabindex="0" role="button" data-layer="0" aria-label="Dữ liệu một nguồn, luật và ngưỡng">
-    <rect x="${cx-dw/2}" y="${dy}" width="${dw}" height="${dh}" fill="var(--card)" stroke="var(--ink)" stroke-width="3"/>
-    <circle cx="${cx-dw/2+26}" cy="${dy+dh/2}" r="9" fill="#EC3013"/>
-    <text x="${cx+12}" y="${dy+27}" text-anchor="middle" font-size="14" font-weight="800" letter-spacing="1.5" fill="var(--ink)">DATA một nguồn</text>
-    <text x="${cx+12}" y="${dy+47}" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">Luật &amp; ngưỡng</text></g>`;
-  // ô nghiệp vụ
-  const node=(a,x,y,w,h,dark)=>{const lv=a.rec[model]; const nm=nameOf(a);
-    const vua = nm.length*7.3 + a.en.length*5.4 + 26 <= w-46;
-    const en = vua ? ` <tspan font-size="10" font-weight="600" opacity=".5">(${esc(a.en)})</tspan>` : "";
-    return `<g class="dg-node" tabindex="0" role="button" data-id="${a.id}" aria-label="${esc(nm)}, mức L${lv}">
-      <rect class="bx" x="${x}" y="${y}" width="${w}" height="${h}" fill="${dark?"var(--ink)":"var(--card)"}" stroke="var(--ink)" stroke-width="1.5"/>
-      <text x="${x+12}" y="${y+h/2+4}" font-size="13" font-weight="700" fill="${dark?"var(--inv)":"var(--ink)"}">${esc(nm)}${en}</text>
-      <rect x="${x+w-38}" y="${y+h/2-11}" width="28" height="22" fill="${dark?"var(--inv)":"var(--ink)"}"/>
-      <text x="${x+w-24}" y="${y+h/2+5}" text-anchor="middle" font-size="12" font-weight="800" fill="${dark?"var(--ink)":"var(--inv)"}">L${lv}</text></g>`;};
-  front.forEach((a,i)=>s+=node(a,fx,fy0+i*(fh+fg),fw,fh,true));
-  sup.forEach((a,i)=>s+=node(a,kx,ky0+i*(kh+kg),kw,kh,false));
-  // dải khối điều hành, chia theo nhóm
-  nhom.forEach((g,c)=>{const x=bx0+c*(bw+bgx);
-    s+=`<text x="${x}" y="${byTop+14}" font-size="10.5" font-weight="700" letter-spacing="1.4" fill="var(--mute)">${g.toUpperCase()}</text>`;
-    core.filter(a=>a.nhom===g).forEach((a,i)=>s+=node(a,x,byTop+26+i*(bh+bgy),bw,bh,false));});
-  s+="</svg>";
-  $("diagram").innerHTML=s;
-}
-
-/* ---------- sequence ---------- */
-const SEQ={
- tmhh:{title:"Một đơn hàng đi qua LATTICE",steps:[["brand","Thu hút khách","Bình luận tiêu cực, chiến dịch mới"],["sales","Tư vấn & báo giá","Xin giảm ngoài khung, đơn lớn"],["orders","Xác nhận đơn","Đơn nghi gian lận, địa chỉ lạ"],["wh","Lấy hàng, đóng gói","Hết hàng, lệch tồn"],["logi","Giao hàng","Giao trễ quá hạn cam kết"],["cash","Đối soát tiền","Tiền về lệch so với đơn"],["after","Hậu mãi","Đổi trả vượt hạn mức"],["care","Chăm sóc & mua lại","Khách VIP có dấu hiệu rời đi"]]},
- dv:{title:"Một lịch hẹn đi qua LATTICE",steps:[["brand","Thu hút khách","Chứng thực cần khách đồng ý"],["sales","Tư vấn phạm vi","Yêu cầu ngoài gói chuẩn"],["cap","Xếp lịch & cọc","Trùng lịch, khách hủy lần hai"],["crew","Phân người thực hiện","Người giỏi kín lịch, khách đòi đích danh"],["orders","Thực hiện dịch vụ","Khách không hài lòng tại chỗ"],["cash","Thanh toán","Hoàn cọc, hóa đơn đặc biệt"],["after","Bảo hành dịch vụ","Làm lại, ai chịu chi phí"],["care","Chăm sóc & gói tiếp","Khách giá trị cao chưa quay lại"]]},
- sx:{title:"Một lệnh sản xuất đi qua LATTICE",steps:[["plan","Lên kế hoạch & năng lực","Vượt công suất tuần"],["buyraw","Mua nguyên liệu","Nhà cung cấp tăng giá, giao trễ"],["whraw","Cấp phát nguyên liệu","Thiếu mã, lệch định mức"],["shop","Điều độ xưởng","Dừng chuyền, đổi thứ tự lô"],["run","Chạy chuyền","Hao hụt vượt định mức"],["qc","Kiểm chất lượng","Lô không đạt, phải xử lý"],["whfg","Nhập kho & xuất kho","Lệch số lượng so với lệnh"],["cost","Chốt giá thành lô","Lô vượt định mức"]]}
-};
-
-
-function sequence(){
-  const q=SEQ[model]; $("seq-title").textContent=q.title;
-  $("seq").innerHTML=q.steps.map(([id,t,w],i)=>{const a=byId(id),lv=a.rec[model],p=Math.round(SH[lv]*100);
-    return `<div class="step" tabindex="0" role="button" data-id="${id}">
-      <div class="n">${String(i+1).padStart(2,"0")}</div>
-      <div class="blk ${a.block}">${a.block==="front"?"Thị trường":"Điều hành"} · L${lv}</div>
-      <h3>${esc(t)}</h3>
-      <div class="share" aria-hidden="true"><i style="width:${p}%"></i><b></b></div>
-      <div class="sharelbl"><span>AI ${p}%</span><span>Người ${100-p}%</span></div>
-      <p class="when"><b>Người vào khi:</b> ${esc(w)}</p></div>`;}).join("");
-}
-
-/* ---------- allocation ---------- */
-function allocation(){
-  const col=b=>`<div><div class="lbl" style="margin-bottom:8px">${BLOCKS[b][0]}</div>`+
-    inB(b).map(a=>{const p=Math.round(SH[a.rec[model]]*100);
-      return `<div class="arow" tabindex="0" role="button" data-id="${a.id}"><span class="an">${esc(nameOf(a))}</span><span class="abar"><i style="width:${p}%"></i><b></b></span><span class="num" style="text-align:right;font-weight:700">${p}%</span></div>`;}).join("")+`</div>`;
-  $("alloc").innerHTML=col("front")+col("sup")+col("core");
-  const V=A.filter(show);
-  const avg=Math.round(V.reduce((s,a)=>s+SH[a.rec[model]],0)/V.length*100);
-  const l3=V.filter(a=>a.rec[model]>=3).length;
-  $("bigstat").innerHTML=`<div><div class="v">${avg}%</div><p class="t">khối lượng việc bàn giấy AI gánh ở mức khởi điểm</p></div>
-   <div><div class="v">${l3}/${V.length}</div><p class="t">hoạt động AI tự chạy trong ngưỡng (L3 trở lên)</p></div>
-   <div><div class="v red">${V.length}</div><p class="t">loại quyết định người luôn giữ, mỗi hoạt động một loại</p></div>`;
-  $("bigstat").insertAdjacentHTML("beforeend", `<p class="note" style="flex:1 1 100%;margin:4px 0 0">Con số này tính trên ${V.length} nghiệp vụ điều hành liệt kê ở đây, không phải trên toàn bộ chuỗi giá trị. Trần tự động hóa theo ngành ở Biểu đồ 10 của trang chính thấp hơn vì tính cả phần việc vật lý không ủy quyền được cho AI.</p>`);
-}
-
-/* ---------- activities ---------- */
-function activities(){
-  ["front","sup","core"].forEach(b=>{
-    $("c-"+b).innerHTML=inB(b).map(a=>{const lv=level>=0?level:a.rec[model],over=lv>a.cap;
-      return `<button class="card${over?" over":""}" data-id="${a.id}"><span class="top"><span class="nm">${esc(nameOf(a))}</span><span class="pill ${over?"red":"ink"}">L${lv}</span></span><span class="ai">${over?"Vượt trần L"+a.cap+". ":""}${esc(a.ai[lv])}</span></button>`;}).join("");
-  });
-  const rows=[];
-  ["front","sup","core"].forEach(b=>{rows.push(`<tr class="grp"><td colspan="4">${BLOCKS[b][0]}</td></tr>`);
-    inB(b).forEach(a=>{const c=m=>`<td class="c${m===model?" cur":""}">${a.rec[m]?`<span class="pill ${a.rec[m]>=3?"ink":"no"}">L${a.rec[m]}</span>`:"—"}</td>`;
-      rows.push(`<tr class="row" tabindex="0" data-id="${a.id}"><td>${esc(nameOf(a))}</td>${c("dv")}${c("sx")}<td class="c">L${a.cap}</td></tr>`);});});
-  $("matrix").innerHTML=rows.join("");
-  ["front","sup"].forEach(b=>{const h=$("h-"+b); if(h){h.textContent=BLOCKS[b][0]; $("h-"+b+"-en").textContent=BLOCKS[b][1];}});
-  document.querySelectorAll("th[data-m]").forEach(th=>th.classList.toggle("cur",th.dataset.m===model));
-}
-
-/* Ô nằm bên trái sơ đồ thì panel mở bên phải và ngược lại. Dải điều hành chia
-   bốn cột: hai cột đầu tính là bên trái, hai cột sau tính là bên phải. */
-function benMo(a, t){
-  if(!t || !t.closest("#diagram")) return "right";
-  if(a.block==="sup") return "left";
-  if(a.block==="core"){
-    const g=[...new Set(A.filter(x=>x.block==="core").map(x=>x.nhom))];
-    return g.indexOf(a.nhom) >= Math.ceil(g.length/2) ? "left" : "right";
-  }
-  return "right";
-}
 
 /* Chi tiết dòng tiền: mở từ ô Dòng tiền 13 tuần. Số liệu lấy thẳng từ D.tien
    nên luôn khớp với biểu đồ, với P&L và với công nợ. */
@@ -1522,29 +877,6 @@ function closeDrawer(){
   const d=$("drawer"); d.classList.remove("on"); $("scrim").classList.remove("on");
   document.body.style.overflow=""; setTimeout(()=>{d.hidden=true;},260); if(lastFocus) lastFocus.focus();
 }
-function activityHTML(a){
-  const start=a.rec[model];
-  const ladder=a.ai.map((t,i)=>{const n=i;
-    const cls=["rung",n===start?"start":"",n>a.cap?"beyond":"",(level>=0&&n===level)?"sel":""].join(" ");
-    const tag=n===start?" · khởi điểm":(n>a.cap?" · vượt trần":"");
-    return `<div class="${cls}"><span class="rn">L${n}</span><span><span class="rk">${LEVEL_NAMES[n]}${tag}</span>${esc(t)}</span></div>`;}).join("");
-  const open=D?D.ex.filter(e=>e.act===a.id):[];
-  return `<span class="lbl">${BLOCKS[a.block][0]} · ${MODELS[model]}</span>
-   <h2 id="d-title">${esc(nameOf(a))}</h2><p class="en">${esc(a.en)}</p>
-   ${open.length?`<div class="spec"><b>${open.length} ngoại lệ đang chờ:</b> ${esc(open.map(e=>e.tx).join(" / "))}</div>`:""}
-   <h3>Gồm những việc</h3><ul>${a.tasks.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
-   <h3>Lỗi đau thường gặp</h3><ul>${a.pains.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
-   <div class="spec"><b>Riêng với ${MODELS[model].toLowerCase()}:</b> ${esc(a.spec[model])}</div>
-   <h3>LATTICE xử lý thế nào</h3><div class="latx">${esc(a.lattice)}</div>
-   <h3>AI làm gì ở từng mức</h3><div class="ladder">${ladder}</div>
-   ${a.cap<4?`<p class="capnote">Trần khuyến nghị L${a.cap}. ${esc(a.capWhy)}</p>`:(a.capWhy?`<p class="capnote">${esc(a.capWhy)}</p>`:"")}
-   <h3>Người luôn giữ quyền</h3><p style="font-weight:700">${esc(a.keep)}</p>`;
-}
-function layerHTML(i){const L=LAYERS[i];
-  return `<span class="lbl">Trục LATTICE</span><h2 id="d-title">${esc(L.name)}</h2><p class="en">${esc(L.en)}</p>
-   <div class="latx">${esc(L.text)}</div><h3>Gồm</h3><ul>${L.items.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
-   <h3>Vì sao nằm ở giữa</h3><p>Khối Thị trường tạo ra dữ liệu: đơn, khách, phản hồi. Khối Điều hành dùng dữ liệu đó để quyết định: tiền, người, quy trình. Trục LATTICE là nơi hai dòng gặp nhau, nên AI ở khối nào cũng làm việc trên cùng một sự thật và cùng một bộ luật.</p>`;}
-
 /* =================== THƯƠNG MẠI PHÂN PHỐI: KIẾN TRÚC 8 KHỐI ===================
    Nguồn: Kien-truc-doanh-nghiep-phan-phoi-Nguoi-AI.md (03/10/2026). Tab Thương mại
    dùng bộ dữ liệu này thay cho mảng A; Dịch vụ và Sản xuất vẫn chạy trên A. */
@@ -2916,10 +2248,11 @@ function initDash(){
   const c=CFG[model], r=rng(model.charCodeAt(0)*97+7);
   const yday=[]; let ys=0;
   for(let i=0;i<NSTEP;i++){ys+=c.perDay*SHAPE[i]/SUM*c.aov*(0.7+r()*0.6);yday.push(ys);}
-  D={c,r,step:72,yday,today:[],orders:0,rev:0,ex:[],exLog:[],done:0,aiTasks:0,log:[],
+  const now=new Date(), phut=now.getHours()*60+now.getMinutes();
+  D={c,r,step:Math.max(24,Math.min(NSTEP-12,Math.round((phut-T0)/STEP))),yday,today:[],orders:0,rev:0,ex:[],exLog:[],done:0,aiTasks:0,log:[],
      hist:{rev:[],ord:[],conv:[],cash:[],ex:[],ai:[],margin:[],ar:[],stock:[],ret:[],csat:[]},
      agents:c.agents.map(([n,id])=>({n,id,count:Math.round(40+r()*160)})),kv:{}};
-  const cr=rng(model.charCodeAt(1)*31+3); D.flow=[]; let bal=c.burn*3.0;
+  const cr=rng(model.charCodeAt(1)*31+3); D.flow=[]; let bal=c.burn*4.2;
   for(let w=0;w<13;w++){const inn=c.burn*(0.92+cr()*0.3)*(w===6||w===7?0.6:1), out=c.burn*(0.95+cr()*0.2)*(w===5?1.4:1); bal+=inn-out; D.flow.push({inn,out,bal});}
   D.cash=D.flow[3].bal; D.thr=c.burn*2.4;
   if(model==="sx"){
@@ -2935,7 +2268,8 @@ function initDash(){
   }
   const ar=c.burn*{tmhh:1.1,dv:1.6,sx:.9}[model];
   D.ar=[["0–30 ngày",ar*.62],["31–60 ngày",ar*.21],["61–90 ngày",ar*.11],["Trên 90 ngày",ar*.06]];
-  D.monthDay=18; D.monthBase=c.perDay*c.aov*(D.monthDay-1)*1.02; D.target=c.perDay*c.aov*30*1.12;
+  D.monthDay=now.getDate(); D.dim=new Date(now.getFullYear(),now.getMonth()+1,0).getDate(); D.thang=now.getMonth()+1;
+  D.monthBase=c.perDay*c.aov*(D.monthDay-1)*1.02; D.target=c.perDay*c.aov*D.dim*1.12;
   // Tài chính: mọi ô lấy chung một gốc — doanh thu tháng chuẩn, biên lãi gộp của
   // mô hình, và cơ cấu chi phí c.cost. Nhờ vậy P&L, dòng tiền và công nợ khớp nhau.
   (function(){
@@ -2944,7 +2278,7 @@ function initDash(){
     const opexTy=bien*0.62;                    // chi phí vận hành tính trên doanh thu
     const chuan=c.perDay*c.aov*30;             // doanh thu một tháng ở nhịp chuẩn
     D.bien=bien; D.opexTy=opexTy; D.nhipDuBao=1.02+fr()*0.1;
-    D.pnl=["Tháng 6","Tháng 7","Tháng 8","Tháng 9"].map(function(k){
+    D.pnl=[4,3,2,1].map(function(lui){const k="Tháng "+(((D.thang-lui-1)%12+12)%12+1);
       // chi phí vận hành tháng nào cũng lệch nhau một chút, để biên ròng không
       // phẳng lì một con số — tháng có chiến dịch thì nặng hơn
       const dt=chuan*(0.82+fr()*0.3), gv=dt*(1-bien), opex=dt*opexTy*(0.88+fr()*0.26);
@@ -2977,7 +2311,7 @@ function tickData(silent){
   D.agents.forEach(a=>{a.count+=Math.round(r()*4+(["orders","sales","kv_om","kd_quote","kd_intake","nl_book","sx_rel","hd_mps"].includes(a.id)?n*2:0));});
   if(D.sx) D.sx.lots.forEach((l,i)=>{ if(l.xong<l.kh && r()<(i<2?.55:.3)) l.xong=Math.min(l.kh, l.xong+Math.round(l.kh*(.004+r()*.012))); });
   D.step++;
-  if(!silent && D.step>=NSTEP){D.yday=D.today.slice();while(D.yday.length<NSTEP)D.yday.push(D.yday[D.yday.length-1]);D.monthBase+=D.rev;D.monthDay++;D.today=[];D.rev=0;D.orders=0;D.step=0;D.aiTasks=0;D.exLog=[];D.done=0;}
+  if(!silent && D.step>=NSTEP){D.yday=D.today.slice();while(D.yday.length<NSTEP)D.yday.push(D.yday[D.yday.length-1]);D.monthBase+=D.rev;D.monthDay=Math.min(D.monthDay+1,D.dim);D.today=[];D.rev=0;D.orders=0;D.step=0;D.aiTasks=0;D.exLog=[];D.done=0;}
 }
 function addEx(silent){
   const c=D.c,r=D.r; if(D.ex.length>=7) return;
@@ -3029,7 +2363,7 @@ const KPIS={
  rev:()=>{const i=Math.max(0,D.today.length-1),y=D.yday[Math.min(i,NSTEP-1)]||1,d=(D.rev/y-1)*100;return["Doanh thu hôm nay",fmtM(D.rev),`${d>=0?"▲":"▼"} ${Math.abs(d).toFixed(1)}% so với hôm qua cùng giờ`,d>=0?"up":"dn"];},
  ord:()=>[D.c.unit+" hôm nay",fmtN(D.orders),`Giá trị TB ${fmtM(D.orders?D.rev/D.orders:D.c.aov)}`,""],
  conv:()=>["Tỷ lệ chốt",pct(D.conv,1),`Mục tiêu ${pct(D.c.conv)}`,D.conv>=D.c.conv?"up":"dn"],
- cash:()=>{const w=D.cash/D.c.burn;return["Tiền khả dụng",fmtM(D.cash),`Đủ chi ${w.toFixed(1)} tuần`,w>=6?"up":"dn"];},
+ cash:()=>{const w=D.cash/D.c.burn, an=D.thr/D.c.burn;return["Tiền khả dụng",fmtM(D.cash),`Đủ chi ${w.toFixed(1).replace(".",",")} tuần · an toàn từ ${an.toFixed(1).replace(".",",")}`,D.cash>=D.thr?"up":"dn"];},
  ex:()=>["Ngoại lệ chờ bạn",String(D.ex.length),`Đã xử lý hôm nay: ${D.done}`,"",D.ex.length>=5],
  ai:()=>["AI tự xử lý",pct(D.aiPct,1),`${fmtN(D.aiTasks)} việc · ${D.ex.length+D.done} cần người`,"up"],
  margin:()=>{const k=D.c.kx.margin;return[k[1],pct(D.kv.margin,1),k[2],D.kv.margin>=k[0]?"up":"dn"];},
@@ -3058,7 +2392,7 @@ const WIDGETS={
      return `<div class="ex${e.fresh?" new":""}" data-ex="${e.id}"><div class="meta"><span class="pill red">${esc(e.tag)}</span><span>${esc(nameOf(a))}</span>${e.to?`<b style="font-size:11.5px;color:var(--ink)">→ ${esc(ROLE[e.to])}</b>`:""}<span class="num">${hhmm(e.at)}</span></div><div class="tx">${esc(e.tx)}</div><div class="acts"><button class="btn sm" data-act="ok">Duyệt</button><button class="btn ghost sm" data-act="no">Từ chối</button><button class="btn ghost sm" data-act="hu">Giao người</button></div></div>`;}).join(""):`<div class="empty">Không có ngoại lệ. Mọi việc đang chạy trong ngưỡng.</div>`}</div>`;
    D.ex.forEach(e=>e.fresh=false);}},
  target:{t:"Tiến độ mục tiêu tháng",sizes:["s","m","l"],lbl:"Doanh thu",r:b=>{
-   const mtd=D.monthBase+D.rev, p=Math.min(mtd/D.target,1.2), tp=(D.monthDay-1+(D.step/NSTEP))/30, proj=mtd/Math.max(tp,.01);
+   const mtd=D.monthBase+D.rev, p=Math.min(mtd/D.target,1.2), tp=(D.monthDay-1+(D.step/NSTEP))/D.dim, proj=mtd/Math.max(tp,.01);
    const ahead=p>=tp, a0=-Math.PI/2, a1=a0+Math.PI*Math.min(p,1), at=a0+Math.PI*tp;
    const mk=[100+92*Math.sin(at),110-92*Math.cos(at)],mk2=[100+50*Math.sin(at),110-50*Math.cos(at)];
    b.innerHTML=`<div class="gauge"><svg viewBox="0 0 200 122" role="img" aria-label="Đạt ${pct(p)} mục tiêu tháng">
@@ -3066,7 +2400,7 @@ const WIDGETS={
      <line x1="${mk2[0]}" y1="${mk2[1]}" x2="${mk[0]}" y2="${mk[1]}" stroke="var(--red)" stroke-width="2.5"/>
      <text x="100" y="98" text-anchor="middle" class="dc2">${pct(p)}</text><text x="100" y="116" text-anchor="middle" class="dc1">đã đạt</text></svg>
      <div class="gmeta"><div>Đã thu<b>${fmtM(mtd)}</b></div><div>Mục tiêu<b>${fmtM(D.target)}</b></div><div>Dự phóng<b style="color:${proj>=D.target?"var(--ok)":"var(--redtx)"}">${fmtM(proj)}</b></div></div>
-     <p class="note">Ngày ${D.monthDay}/30. Vạch đỏ là tiến độ cần có theo thời gian. ${ahead?"Đang vượt tiến độ.":"Đang chậm so với tiến độ."}</p></div>`;}},
+     <p class="note">Ngày ${D.monthDay}/${D.dim}. Vạch đỏ là tiến độ cần có theo thời gian. ${ahead?"Đang vượt tiến độ.":"Đang chậm so với tiến độ."}</p></div>`;}},
  mix:{t:"Cơ cấu doanh thu theo kênh",sizes:["m","l"],lbl:"Tháng này",r:b=>{
    const m=D.monthBase+D.rev; b.innerHTML=donut(D.c.channels.map(([n,s])=>[n,m*s]),"Tháng này",fmtM(m),{fmt:fmtM,label:"Cơ cấu doanh thu theo kênh"});}},
  status:{t:"Trạng thái "+"đơn",sizes:["m","l"],lbl:"Hôm nay",r:b=>{
@@ -3111,11 +2445,7 @@ const WIDGETS={
  heat:{t:"Sức khỏe cấu trúc",sizes:["l","xl","f"],lbl:"Theo ngoại lệ đang mở",r:b=>{
    if(isPP()){const lb2={ok:"Ổn",wa:"Theo dõi",bad:"Cần xử lý"},st2=k=>{const n=D.ex.filter(e=>(NV_BY[e.act]||{}).k===k).length;return n>=2?"bad":(n===1||k===DS[model].watch)?"wa":"ok";};
      const col2=(h,ids)=>`<div><h4>${h}</h4>${ids.map(k=>{const s2=st2(k);return `<button class="hc ${s2}" data-khoi="${k}"><span>${esc(KH(k).n)}</span><span style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--mute)">${lb2[s2]}<i class="sd"></i></span></button>`;}).join("")}</div>`;
-     b.innerHTML=`<div class="heat">${DS[model].heat.map(([h,ids])=>col2(h,ids)).join("")}</div>`; return;}
-   const BW={tmhh:["buy","wh"],dv:["cap","crew"],sx:["shop","qc"]}[model];
-   const st=a=>{const n=D.ex.filter(e=>e.act===a.id).length;return n>=2?"bad":(n===1||BW.includes(a.id))?"wa":"ok";}, lb={ok:"Ổn",wa:"Theo dõi",bad:"Cần xử lý"};
-   const col=bk=>`<div><h4>${bk==="front"?"Khối Thị trường":"Khối Điều hành"}</h4>${A.filter(a=>a.block===bk&&show(a)).map(a=>{const s=st(a);return `<button class="hc ${s}" data-id="${a.id}"><span>${esc(nameOf(a))}</span><span style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--mute)">${lb[s]}<i class="sd"></i></span></button>`;}).join("")}</div>`;
-   b.innerHTML=`<div class="heat">${col("front")}${col("core")}</div>`;}},
+     b.innerHTML=`<div class="heat">${DS[model].heat.map(([h,ids])=>col2(h,ids)).join("")}</div>`;}}},
  log:{t:"Team AI vừa làm gì",sizes:["m","l"],lbl:"Nhật ký trực tiếp",r:b=>{
    b.innerHTML=`<div class="log">${D.log.map(l=>`<div class="${l.fresh?"new":""}"><span class="t">${hhmm(l.at)}</span><span><b>${esc(l.ag)}</b> ${esc(l.tx)}</span></div>`).join("")}</div>`; D.log.forEach(l=>l.fresh=false);}},
  top:{t:"",sizes:["m","l"],lbl:"Tỷ trọng doanh thu",r:b=>{
@@ -3153,11 +2483,11 @@ const WIDGETS={
  pnl:{t:"Lãi lỗ theo tháng và dự báo",sizes:["l","xl","f"],lbl:"Doanh thu · giá vốn · vận hành",r:b=>{
    // Hai dòng cuối tính ngay lúc vẽ, dùng đúng công thức dự phóng của ô Tiến độ
    // mục tiêu tháng, để hai ô không bao giờ lệch nhau.
-   const mtd=D.monthBase+D.rev, tp=(D.monthDay-1+(D.step/NSTEP))/30, duPhong=mtd/Math.max(tp,.01);
+   const mtd=D.monthBase+D.rev, tp=(D.monthDay-1+(D.step/NSTEP))/D.dim, duPhong=mtd/Math.max(tp,.01);
    const dong=dt=>{const gv=dt*(1-D.bien), opex=dt*D.opexTy; return {dt:dt,gv:gv,opex:opex,ln:dt-gv-opex};};
    const P=D.pnl.concat([
-     Object.assign({ky:"Tháng 10 (đang chạy)", dangChay:true}, dong(duPhong)),
-     Object.assign({ky:"Tháng 11 (dự báo)", duBao:true}, dong(duPhong*D.nhipDuBao))]);
+     Object.assign({ky:"Tháng "+D.thang+" (đang chạy)", dangChay:true}, dong(duPhong)),
+     Object.assign({ky:"Tháng "+(D.thang%12+1)+" (dự báo)", duBao:true}, dong(duPhong*D.nhipDuBao))]);
    b.innerHTML=`<div class="tbl" style="border:0"><table><thead><tr><th>Kỳ</th><th class="c">Doanh thu</th><th class="c">Giá vốn</th><th class="c">Vận hành</th><th class="c">Lãi ròng</th><th class="c">Biên ròng</th></tr></thead><tbody>
     ${P.map(x=>`<tr${x.dangChay?' class="cur"':""}><td>${esc(x.ky)}${x.duBao?' <span class="pill no">dự báo</span>':""}</td>
       <td class="c num">${fmtM(x.dt)}</td><td class="c num">${fmtM(x.gv)}</td><td class="c num">${fmtM(x.opex)}</td>
@@ -3252,24 +2582,24 @@ $("dgrid").addEventListener("dragend",()=>{if(dragId){dragId=null;buildGrid();}}
 /* ---------- render all ---------- */
 function renderAll(){
   $("model-note").textContent=NOTE[model];
-  if(isPP()){useDS(model);arch();flows();hai();if(model==="dv")nganhView(); if(model==="sx"){sxDataView();sxCfgView();}} else {diagram();sequence();allocation();activities();}
+  if(isPP()){useDS(model);arch();flows();hai();if(model==="dv")nganhView(); if(model==="sx"){sxDataView();sxCfgView();}}
   setTabs(); initDash(); buildGrid();
   if(!$("drawer").hidden && $("clist")) refreshCustom();
 }
 
 /* ---------- events ---------- */
-/* Thương mại có bốn tab, Dịch vụ và Sản xuất có ba. Đổi loại hình thì nhảy sang
-   tab tương ứng, Dashboard giữ nguyên. */
+/* Mỗi loại hình có bộ tab riêng: Dịch vụ thêm Cấu hình ngành, Sản xuất thêm Dữ liệu
+   & Hệ thống và Cấu hình sản xuất. Đổi loại hình thì giữ tab đang xem nếu còn. */
 function selectTab(id){
   document.querySelectorAll(".tabs button").forEach(x=>{const on=x.id===id;x.setAttribute("aria-selected",on);$(x.getAttribute("aria-controls")).hidden=!on;});
   if(id==="t-dash") renderDash();
   if(id==="t-arch") requestAnimationFrame(archWires);
 }
 function setTabs(){
-  const set=isPP()?(model==="dv"?["t-arch","t-flow","t-hai","t-nganh","t-dash"]:model==="sx"?["t-arch","t-flow","t-hai","t-sxdata","t-sxcfg","t-dash"]:["t-arch","t-flow","t-hai","t-dash"]):["t-map","t-act","t-dash"];
+  const set=isPP()?(model==="dv"?["t-arch","t-flow","t-hai","t-nganh","t-dash"]:model==="sx"?["t-arch","t-flow","t-hai","t-sxdata","t-sxcfg","t-dash"]:["t-arch","t-flow","t-hai","t-dash"]):[];
   document.querySelectorAll(".tabs button").forEach(b=>b.hidden=!set.includes(b.id));
   const cur=document.querySelector('.tabs button[aria-selected="true"]');
-  if(!cur||cur.hidden) selectTab(({"t-map":"t-arch","t-act":"t-hai","t-arch":"t-map","t-flow":"t-map","t-hai":"t-act"})[cur&&cur.id]||set[0]);
+  if(!cur||cur.hidden) selectTab(set[0]);
 }
 document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>selectTab(b.id)));
 function seg(id,cb){$(id).addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
@@ -3290,7 +2620,6 @@ seg("seg-model",v=>{model=v;renderAll();});
     try{localStorage.setItem(K,moi);}catch(e){}
   });
 })();
-seg("seg-level",v=>{level=+v;activities();});
 seg("seg-khoi",v=>{haiK=v;haiTable();});
 $("pause").addEventListener("click",()=>{paused=!paused;$("pause").textContent=paused?"Tiếp tục":"Tạm dừng";$("live").classList.toggle("paused",paused);$("live-t").textContent=paused?"Đã tạm dừng":"Trực tiếp · dữ liệu mô phỏng";startTimer();});
 function setEditing(on){editing=on;$("edit").setAttribute("aria-pressed",on);$("edit").textContent=on?"Đang sắp xếp":"Sắp xếp ô";$("editbar").hidden=!on;buildGrid();}
@@ -3339,8 +2668,7 @@ document.addEventListener("click",e=>{
   const rl=t.closest("[data-role]"); if(rl){haiR=haiR===rl.dataset.role?null:rl.dataset.role; haiTable(); return;}
   // open details
   if(t.closest("[data-tien]")){ openDrawer(tienHTML()); return; }
-  const n=t.closest("[data-id]"); if(n){const a=byId(n.dataset.id); if(a&&a.k){openDrawer(nvHTML(a), sideOf(n)); return;} openDrawer(activityHTML(a), benMo(a, t)); return;}
-  const l=t.closest("[data-layer]"); if(l) openDrawer(layerHTML(+l.dataset.layer));
+  const n=t.closest("[data-id]"); if(n){const a=byId(n.dataset.id); if(a) openDrawer(nvHTML(a), sideOf(n)); return;}
 });
 document.addEventListener("change",e=>{
   const t=e.target;
@@ -3350,7 +2678,7 @@ document.addEventListener("change",e=>{
 });
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"&&!$("drawer").hidden){closeDrawer();return;}
-  if((e.key==="Enter"||e.key===" ")&&e.target.matches('[role="button"][data-id],[role="button"][data-layer],[role="button"][data-khoi],[role="button"][data-pf],[role="button"][data-role],[role="button"][data-step],[role="button"][data-lv],[role="button"][data-exinfo],tr.row')){e.preventDefault();e.target.click();}
+  if((e.key==="Enter"||e.key===" ")&&e.target.matches('[role="button"][data-id],[role="button"][data-khoi],[role="button"][data-pf],[role="button"][data-role],[role="button"][data-step],[role="button"][data-lv],[role="button"][data-exinfo],tr.row')){e.preventDefault();e.target.click();}
 });
 $("d-close").addEventListener("click",closeDrawer);
 $("scrim").addEventListener("click",closeDrawer);

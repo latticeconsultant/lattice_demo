@@ -46,11 +46,14 @@ en/index.html               bản tiếng Anh — SINH TỰ ĐỘNG, không sử
 dang-ky/index.html          biểu mẫu đăng ký bốn bước, bản Việt — viết tay
 register/index.html         biểu mẫu đăng ký bốn bước, bản Anh — viết tay
 quan-tri/index.html         trang quản trị: hồ sơ, thanh toán, lịch làm việc
+mophong/index.html          trang mô phỏng: kiến trúc, luồng vận hành, người + AI, dashboard cho ba loại hình — NGUỒN DỮ LIỆU NGHIỆP VỤ
+khao-sat/                   khảo sát nhanh; nv.js và dòng đầu day-du.js SINH TỰ ĐỘNG từ mophong, không sửa tay
 work/                       bản mẫu LATTICE Work (lattice.business/work) — chép từ thư mục Lattice-Works, dữ liệu mẫu hư cấu, chạy trong trình duyệt
 docs/
   doanh-nghiep-mot-nguoi.md   tài liệu nền tảng, bản Việt
   one-person-business.en.md   tài liệu nền tảng, bản Anh (bản địa hóa, không dịch máy)
 tools/
+  build-khao-sat.mjs        sinh dữ liệu nghiệp vụ cho khảo sát từ mophong/index.html
   build-doc.py              dựng khung tài liệu từ markdown vào index.html
   build-en.py               sinh en/index.html từ index.html + từ điển, quét chữ Việt còn sót
   extract-strings.py        trích chuỗi tiếng Việt mới cần dịch
@@ -93,6 +96,14 @@ python3 tools/build-en.py           # bản Anh → en/index.html
 ```
 
 Hai script ghi đè phần giữa `<!-- DOC:START -->` và `<!-- DOC:END -->`. Đừng sửa tay đoạn đó — lần chạy sau sẽ mất.
+
+**Sửa nghiệp vụ trong mô phỏng** — sửa bộ dữ liệu `DS` trong `mophong/index.html` (Thương mại, Dịch vụ, Sản xuất), rồi chạy:
+
+```bash
+node tools/build-khao-sat.mjs       # khao-sat/nv.js + dòng đầu khao-sat/day-du.js
+```
+
+Khảo sát không giữ bản chép tay danh sách nghiệp vụ; bỏ bước này là khảo sát lệch với mô phỏng.
 
 **Sửa hai trang đăng ký** — `dang-ky/` và `register/` viết tay, không qua `build-en.py`. Sửa bản Việt thì sửa bản Anh tương ứng bằng tay. Đổi địa chỉ hai trang này thì chạy lại `python3 tools/make-qr.py`, nếu không mã QR cũ trỏ vào trang không còn tồn tại.
 

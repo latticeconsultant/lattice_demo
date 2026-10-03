@@ -423,59 +423,61 @@ body.dev-phone .toast{max-width:360px}
 /* ===== thương mại phân phối: kiến trúc, luồng, người + AI =====
    Khung sơ đồ luôn tối (như một màn hình điều hành), góc vuông, bảng màu LATTICE.
    Hạt trắng là dữ liệu và việc đang chạy, hạt đỏ là ngoại lệ đi tới người. */
-.cv{--c0:#141312;--c1:#1D1B1A;--c2:#272423;--cl:#3D3936;--ct:#EDEBEA;--cm:#9C9794;position:relative;background-color:var(--c0);background-image:radial-gradient(rgba(237,235,234,.07) 1px,transparent 1.3px);background-size:22px 22px;color:var(--ct);border:2px solid var(--ink);padding:22px 46px 18px}
+.cv{--c0:#121110;--cb:#181716;--c1:#1D1B1A;--ch:#252220;--c2:#2B2826;--c3:#3A3633;--cl:#4E4946;--ct:#F3F1F0;--ct2:#E2DEDB;--cm:#ABA5A2;--cw:#938D89;--cwire:rgba(243,241,240,.45);--cwred:rgba(236,48,19,.7);--cp:#F3F1F0;--cpg:rgba(255,255,255,.9);--cglow:rgba(243,241,240,.22);--cr:var(--cr);--cdot:rgba(237,235,234,.08);
+  position:relative;background-color:var(--c0);background-image:radial-gradient(var(--cdot) 1px,transparent 1.3px);background-size:22px 22px;color:var(--ct);border:2px solid var(--ink);padding:22px 46px 18px}
+.cv.light{--c0:#F6F5F4;--cb:#EEECEB;--c1:#FFFFFF;--ch:#ECEAE9;--c2:#F1EFEE;--c3:#E3E0DE;--cl:#9E9894;--ct:#1A1817;--ct2:#2E2B29;--cm:#5E5956;--cw:#6E6864;--cwire:rgba(26,24,23,.42);--cwred:rgba(200,38,12,.7);--cp:#1A1817;--cpg:rgba(26,24,23,.45);--cglow:rgba(26,24,23,.16);--cr:#C02A10;--cdot:rgba(26,24,23,.1)}
 .cv .wires{position:absolute;left:0;top:0;pointer-events:none;overflow:visible;z-index:0}
-.wr{fill:none;stroke:rgba(237,235,234,.3);stroke-width:1.4}
+.wr{fill:none;stroke:var(--cwire);stroke-width:1.8}
 .wr.dash{stroke-dasharray:4 5}
-.wr.red{stroke:rgba(236,48,19,.55)}
-.pt{fill:#EDEBEA;filter:drop-shadow(0 0 3px rgba(255,255,255,.9))}
+.wr.red{stroke:var(--cwred)}
+.pt{fill:var(--cp);filter:drop-shadow(0 0 3px var(--cpg))}
 .pt.red{fill:#FF5A3C;filter:drop-shadow(0 0 4px rgba(236,48,19,.95))}
-.wl{fill:#9C9794;font-size:10.5px;font-weight:600}
-.cvl{position:relative;z-index:1;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cm);margin:24px 0 10px}
+.wl{fill:var(--cm);font-size:11px;font-weight:700}
+.cvl{position:relative;z-index:1;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--cm);margin:24px 0 10px}
 .cv>.cvl:nth-child(2){margin-top:0}
 .cvl em{font-style:normal;letter-spacing:.04em;text-transform:none;font-weight:500}
 .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:64px;position:relative;z-index:1}
 .g3+.cvl{margin-top:60px}
 .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;padding:6px 14px 14px}
 .g75{display:grid;grid-template-columns:7fr 5fr;gap:28px;position:relative;z-index:1}
-.ck{position:relative;z-index:1;background:var(--c1);border:1px solid var(--cl);transition:border-color .35s,box-shadow .35s}
-.ck:hover,.ck.hot{border-color:rgba(237,235,234,.85);box-shadow:0 0 0 1px rgba(237,235,234,.22),0 0 24px rgba(237,235,234,.14)}
-.ck-h{display:flex;align-items:center;gap:10px;width:100%;background:transparent;border:0;border-bottom:1px solid var(--cl);padding:10px 12px 10px 14px;color:var(--ct);text-align:left}
+.ck{position:relative;z-index:1;background:var(--c1);border:1.5px solid var(--cl);transition:border-color .35s,box-shadow .35s}
+.ck:hover,.ck.hot{border-color:var(--ct);box-shadow:0 0 0 1px var(--cglow),0 0 24px var(--cglow)}
+.ck-h{display:flex;align-items:center;gap:10px;width:100%;background:transparent;border:0;border-bottom:1.5px solid var(--cl);padding:10px 12px 10px 12px;color:var(--ct);text-align:left;background:var(--ch)}
 button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
-.ck-h .no{font-size:11px;font-weight:800;color:var(--cm);font-variant-numeric:tabular-nums}
-.ck-h .nm{flex:1;font-size:14.5px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
-.ck-h .ki{width:32px;height:32px;display:grid;place-items:center;border:1px solid var(--cl);background:var(--c2);flex:none}
+.ck-h .no{font-size:11px;font-weight:800;color:var(--c0);background:var(--ct);padding:3px 6px;line-height:1;font-variant-numeric:tabular-nums}
+.ck-h .nm{flex:1;font-size:15.5px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
+.ck-h .ki{width:34px;height:34px;display:grid;place-items:center;border:1.5px solid var(--cl);background:var(--c1);flex:none}
 .tis{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:12px 6px;padding:14px 12px 6px}
 .wide>.tis{grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}
 .ti{display:grid;justify-items:center;align-content:start;gap:6px;background:transparent;border:0;color:var(--ct);padding:2px;min-width:0}
-.ti .tic{width:40px;height:40px;display:grid;place-items:center;background:var(--c2);border:1px solid var(--cl);transition:border-color .2s,box-shadow .2s,background .2s}
-.ti:hover .tic,.ti:focus-visible .tic{border-color:var(--ct);box-shadow:0 0 12px rgba(237,235,234,.35);background:#33302E}
+.ti .tic{width:46px;height:46px;display:grid;place-items:center;background:var(--c2);border:1.5px solid var(--cl);transition:border-color .2s,box-shadow .2s,background .2s}
+.ti:hover .tic,.ti:focus-visible .tic{border-color:var(--ct);box-shadow:0 0 12px var(--cglow);background:var(--c3)}
 .ti:focus-visible{outline:none}
 .ti.opt .tic{border-style:dashed}
-.ti .tl{font-size:11px;line-height:1.25;text-align:center;color:#D6D2CF}
-.ti.big .tic{width:52px;height:52px}
+.ti .tl{font-size:11.5px;font-weight:600;line-height:1.25;text-align:center;color:var(--ct2)}
+.ti.big .tic{width:58px;height:58px}
 .tis.big{grid-template-columns:repeat(5,minmax(0,1fr));padding-bottom:16px}
-.ck-o{font-size:11.5px;font-weight:600;color:var(--cm);padding:6px 14px 12px}
+.ck-o{font-size:12px;font-weight:700;color:var(--cm);padding:6px 14px 12px}
 .ck .sub{font-size:12.5px;color:var(--cm);padding:10px 14px 0}
 .grp .gh{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:var(--ct);padding-top:6px}
 .grp .tis{padding:10px 0 4px}
 .grp .ck-o{padding:4px 0 0}
 .exl{display:grid;padding:4px 0}
-.exi{display:grid;grid-template-columns:18px 1fr auto;gap:10px;align-items:center;background:transparent;border:0;border-bottom:1px solid rgba(61,57,54,.8);color:var(--ct);text-align:left;padding:9px 14px;font-size:13px}
+.exi{display:grid;grid-template-columns:18px 1fr auto;gap:10px;align-items:center;background:transparent;border:0;border-bottom:1px solid var(--cl);font-weight:600;color:var(--ct);text-align:left;padding:9px 14px;font-size:13px}
 .exi:last-child{border-bottom:0}
-.exi svg{color:#FF7A63}
-.exi b{font-size:11px;font-weight:700;color:#FF7A63;white-space:nowrap}
+.exi svg{color:var(--cr)}
+.exi b{font-size:11px;font-weight:700;color:var(--cr);white-space:nowrap}
 .exi:hover{background:var(--c2)}
 .cvleg{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:11.5px;color:var(--cm);margin-top:18px;padding-top:12px;border-top:1px solid var(--cl)}
 .cvleg span{display:inline-flex;align-items:center;gap:7px}
-.cvleg .rd{color:#FF7A63}
-.pdot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#EDEBEA;box-shadow:0 0 6px #fff}
+.cvleg .rd{color:var(--cr)}
+.pdot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ct);box-shadow:0 0 6px var(--cpg)}
 .pdot.red{background:#FF5A3C;box-shadow:0 0 6px #EC3013}
 .ldash{display:inline-block;width:24px;border-top:1.5px dashed var(--cm)}
 .lopt{display:inline-block;width:14px;height:14px;border:1px dashed var(--cm)}
-.ldot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#EDEBEA}
-.ldia{display:inline-block;width:9px;height:9px;background:#EDEBEA;transform:rotate(45deg)}
-.lhand{display:inline-block;width:9px;height:9px;border:1.4px solid #EDEBEA}
+.ldot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ct)}
+.ldia{display:inline-block;width:9px;height:9px;background:var(--ct);transform:rotate(45deg)}
+.lhand{display:inline-block;width:9px;height:9px;border:1.4px solid var(--ct)}
 .hdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#EC3013;margin-right:7px;vertical-align:1px}
 .cvleg .hdot{margin-right:0}
 .chains{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
@@ -488,18 +490,18 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 /* luồng vận hành */
 .flowcv{padding:16px 16px 14px}
 .ctabs{display:flex;flex-wrap:wrap;gap:6px}
-.ctab{display:inline-flex;align-items:center;gap:8px;background:var(--c1);border:1px solid var(--cl);color:var(--ct);padding:8px 12px;font-size:12.5px;font-weight:600}
+.ctab{display:inline-flex;align-items:center;gap:8px;background:var(--c1);border:1.5px solid var(--cl);color:var(--ct);padding:8px 12px;font-size:13px;font-weight:700}
 .ctab:hover{border-color:var(--cm)}
-.ctab[aria-pressed="true"]{border-color:var(--ct);background:var(--c2);box-shadow:0 0 14px rgba(237,235,234,.18)}
+.ctab[aria-pressed="true"]{border-color:var(--ct);background:var(--c2);box-shadow:0 0 14px var(--cglow)}
 .fhead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin:16px 0 10px}
 .fhead h2{font-size:22px;font-weight:800;color:var(--ct)}
 .lbl2{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cm)}
 .fhead .ow{color:var(--cm);font-size:12.5px}
-.fsvg{overflow-x:auto;border:1px solid var(--cl)}
+.fsvg{overflow-x:auto;border:1.5px solid var(--cl)}
 .fsvg svg{display:block;min-width:1000px;width:100%;height:auto}
 .cv>.fsvg{border:0}
 .sn{cursor:pointer}
-.sn:hover .sb,.sn:focus-visible .sb{stroke:#EDEBEA;stroke-width:1.8}
+.sn:hover .sb,.sn:focus-visible .sb{stroke:var(--ct);stroke-width:2.4}
 .sn:focus{outline:none}
 .fnotes{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;max-width:90ch}
 .fnotes li{display:grid;grid-template-columns:18px 1fr;gap:10px;font-size:14px}
@@ -579,6 +581,13 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
   .g4{grid-template-columns:1fr}
   .stats{grid-template-columns:1fr}
 }
+/* chuyển nền sáng / tối cho riêng các sơ đồ */
+.cvsw{display:inline-flex;border:1px solid var(--ink)}
+.cvsw button{display:inline-flex;align-items:center;gap:6px;background:transparent;border:0;padding:6px 10px;font-size:12px;font-weight:700;color:var(--ink)}
+.cvsw button+button{border-left:1px solid var(--ink)}
+.cvsw button[aria-pressed="true"]{background:var(--ink);color:var(--inv)}
+.sh .cvsw{margin-left:auto}
+.sh .note+.cvsw{margin-left:12px}
 </style>
 </head>
 <body>
@@ -682,7 +691,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
     <h1>Tám khối nghiệp vụ, một nền tảng chung</h1>
     <p class="oneline">Con người sở hữu mục tiêu và trách nhiệm. AI thực hiện tác vụ trong phạm vi được giao. Dữ liệu và quy trình kết nối toàn bộ hoạt động.</p>
   </div>
-  <div class="sh"><h2>Kiến trúc nghiệp vụ</h2><span class="note">Bấm tên khối hoặc từng icon để xem chi tiết.</span></div>
+  <div class="sh"><h2>Kiến trúc nghiệp vụ</h2><span class="note">Bấm tên khối hoặc từng icon để xem chi tiết.</span><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true">◐ Nền tối</button><button data-cvm="light" aria-pressed="false">○ Nền sáng</button></div></div>
   <div class="cv" id="arch"></div>
   <div class="sh"><h2>Năm chuỗi nghiệp vụ</h2><span class="note">Bấm một chuỗi để xem công việc đi qua các khối.</span></div>
   <div class="chains" id="chains"></div>
@@ -694,6 +703,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
     <h1>Công việc đi từ đâu đến đâu</h1>
     <p class="lead">Mỗi làn là một khối, mỗi ô là một bước. Bấm vào ô để xem ai làm, khi nào chuyển cho người.</p>
   </div>
+  <div class="sh"><h2>Năm chuỗi theo làn trách nhiệm</h2><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true">◐ Nền tối</button><button data-cvm="light" aria-pressed="false">○ Nền sáng</button></div></div>
   <div class="cv flowcv">
     <div class="ctabs" id="seg-chain" role="group" aria-label="Chuỗi nghiệp vụ"></div>
     <div class="fhead" id="flow-head"></div>
@@ -716,7 +726,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
   </div>
   <div class="sh"><h2>Sáu mức AI</h2><span class="note">Phân phối dùng chủ yếu L1–L3. Bấm từng mức để xem tác vụ.</span></div>
   <div class="lvrow2" id="lvrow"></div>
-  <div class="sh"><h2>Ngoại lệ đến đúng người</h2><span class="note">Bấm một vai để lọc nghiệp vụ bên dưới.</span></div>
+  <div class="sh"><h2>Ngoại lệ đến đúng người</h2><span class="note">Bấm một vai để lọc nghiệp vụ bên dưới.</span><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true">◐ Nền tối</button><button data-cvm="light" aria-pressed="false">○ Nền sáng</button></div></div>
   <div class="cv" style="padding:12px"><div class="fsvg" id="exmap"></div></div>
   <div class="sh"><h2>Phân quyền theo nghiệp vụ</h2><span class="note">Bấm từng ô để xem đầy đủ.</span></div>
   <div class="stats" id="hai-stat"></div>
@@ -1794,8 +1804,8 @@ const LV=[["eye","Quan sát","AI chỉ thu thập và báo cáo, không tạo đ
  ["refresh-cw","Tự vận hành","AI tự lập kế hoạch và tối ưu trong trần ngân sách.","Hiếm dùng trong phân phối"],
  ["shield-check","Tự chủ có giám sát","AI điều hành cả chức năng; người kiểm toán định kỳ. Chỉ cho việc rủi ro thấp, đảo ngược được.","Hiếm dùng trong phân phối"]];
 /* Icon nét (Lucide, ISC). Trong HTML dùng ic(), trong SVG dùng icS(). */
-const ic=(n,sz)=>`<svg viewBox="0 0 24 24" width="${sz||20}" height="${sz||20}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[n]||""}</svg>`;
-const icS=(n,x,y,sz,col)=>`<svg x="${x}" y="${y}" width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="none" stroke="${col||"#EDEBEA"}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICO[n]||""}</svg>`;
+const ic=(n,sz)=>`<svg viewBox="0 0 24 24" width="${sz||20}" height="${sz||20}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[n]||""}</svg>`;
+const icS=(n,x,y,sz,col)=>`<svg x="${x}" y="${y}" width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="none" stroke="${col||"var(--ct)"}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICO[n]||""}</svg>`;
 const motionOK=()=>!matchMedia("(prefers-reduced-motion: reduce)").matches;
 /* Hạt sáng chạy dọc một đường gấp khúc pts; tốc độ đều theo độ dài. */
 function wire(pts,o){o=o||{};
@@ -1803,10 +1813,14 @@ function wire(pts,o){o=o||{};
   let len=0; for(let i=1;i<pts.length;i++) len+=Math.abs(pts[i][0]-pts[i-1][0])+Math.abs(pts[i][1]-pts[i-1][1]);
   let s=`<path d="${d}" class="wr${o.dash?" dash":""}${o.red?" red":""}"${o.arrow?` marker-end="url(#${o.arrow})"`:""}/>`;
   if(motionOK()&&o.n!==0){const n=o.n||Math.max(1,Math.round(len/170)), dur=Math.max(1.6,len/(o.speed||75));
-    for(let k=0;k<n;k++) s+=`<circle r="${o.red?2.6:2.2}" class="pt${o.red?" red":""}"><animateMotion dur="${dur.toFixed(2)}s" begin="-${(dur*k/n).toFixed(2)}s" repeatCount="indefinite" path="${d}"/></circle>`;}
+    for(let k=0;k<n;k++) s+=`<circle r="${o.red?3:2.6}" class="pt${o.red?" red":""}"><animateMotion dur="${dur.toFixed(2)}s" begin="-${(dur*k/n).toFixed(2)}s" repeatCount="indefinite" path="${d}"/></circle>`;}
   return s;}
 const wlab=(t,x,y,a)=>`<text x="${x}" y="${y}" class="wl" text-anchor="${a||"middle"}">${esc(t)}</text>`;
 
+/* Nền sơ đồ: tối mặc định, người xem chuyển sang sáng được; nhớ trên trình duyệt. */
+function setCv(m){document.querySelectorAll(".cv").forEach(c=>c.classList.toggle("light",m==="light"));
+  document.querySelectorAll("[data-cvm]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.cvm===m?"true":"false"));
+  try{localStorage.setItem("lattice-mophong-cv",m);}catch(e){}}
 /* ---------- Trang 1 · Kiến trúc nghiệp vụ ---------- */
 const tile=n=>`<button class="ti${n.opt?" opt":""}" data-id="${n.id}" title="${esc(n.n)}${n.opt?" (nếu có)":""}"><span class="tic">${ic(NVI[n.id][0])}</span><span class="tl">${esc(NVI[n.id][1])}</span></button>`;
 function card(k,extra){const K=KH(k);
@@ -1841,7 +1855,7 @@ function archWires(){
   if(C.width<900){w.innerHTML="";return;}
   const R=id=>{const b=$("ck-"+id).getBoundingClientRect();return {l:b.left-C.left,t:b.top-C.top,r:b.right-C.left,b:b.bottom-C.top,w:b.width,cx:b.left-C.left+b.width/2,cy:b.top-C.top+b.height/2,hy:b.top-C.top+24};};
   const cl=R("cl"),nh=R("nh"),hd=R("hd"),kv=R("kv"),mk=R("mk"),kd=R("kd"),dv=R("dv"),ht=R("ht"),pf=R("pf"),ex=R("ex");
-  let s=`<defs><marker id="wa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8F8A87"/></marker></defs>`;
+  let s=`<defs><marker id="wa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--cw)"/></marker></defs>`;
   // điều hành rẽ nhánh xuống ba khối phía cung
   const lb=$("cvl-cung").getBoundingClientRect(), busY=lb.bottom-C.top+4;
   [nh,hd,kv].forEach(c=>s+=wire([[cl.cx,cl.b],[cl.cx,busY],[c.cx,busY],[c.cx,c.t]],{arrow:"wa",n:1}));
@@ -1876,13 +1890,13 @@ function swim(c){
   const S=c.steps.map((st,i)=>Object.assign({},st,{i,ts:STS[c.id][i]}));
   const laneY=l=>TOP+c.lanes.indexOf(l)*LH;
   S.forEach(st=>{st.x0=LW+PL+st.i*colW+15; st.y0=laneY(st.l)+20; st.cy=st.y0+bh/2;});
-  const H=TOP+c.lanes.length*LH+14, MUTE="#9C9794", LINE="#6B6765";
+  const H=TOP+c.lanes.length*LH+14, MUTE="var(--cm)", LINE="var(--cw)";
   let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Luồng ${esc(c.n)}"><defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="${LINE}"/></marker></defs>`;
   c.lanes.forEach((l,i)=>{const yy=TOP+i*LH, ll=wrapT(LANE[l],15);
-    s+=`<rect x="0" y="${yy}" width="${W}" height="${LH}" fill="${i%2?"#191817":"#151413"}"/><line x1="0" x2="${W}" y1="${yy}" y2="${yy}" stroke="#2A2725"/>`+
-      `<rect x="16" y="${yy+LH/2-17}" width="34" height="34" fill="#232120" stroke="#3D3936"/>`+icS(KHI[l]||"layers",24,yy+LH/2-9,18)+
-      tx(ll,60,yy+LH/2-(ll.length-1)*7+4,14,`font-size="12" font-weight="700" fill="#EDEBEA"`);});
-  s+=`<line x1="${LW}" x2="${LW}" y1="${TOP}" y2="${H-14}" stroke="#3D3936"/>`;
+    s+=`<rect x="0" y="${yy}" width="${W}" height="${LH}" fill="${i%2?"var(--cb)":"var(--c0)"}"/><line x1="0" x2="${W}" y1="${yy}" y2="${yy}" stroke="var(--c2)"/>`+
+      `<rect x="16" y="${yy+LH/2-17}" width="34" height="34" fill="var(--c2)" stroke="var(--cl)"/>`+icS(KHI[l]||"layers",24,yy+LH/2-9,18)+
+      tx(ll,60,yy+LH/2-(ll.length-1)*7+4,14,`font-size="12" font-weight="700" fill="var(--ct)"`);});
+  s+=`<line x1="${LW}" x2="${LW}" y1="${TOP}" y2="${H-14}" stroke="var(--cl)"/>`;
   // đường đi của việc: một đường liền qua mọi bước, hạt sáng chạy theo
   const f=S[0], z=S[n-1], P=[[f.x0-30,f.cy],[f.x0,f.cy]];
   S.forEach((st,i)=>{P.push([st.x0+bw,st.cy]); if(i<n-1){const nx=S[i+1]; if(nx.cy!==st.cy){const gx=st.x0+bw+15; P.push([gx,st.cy],[gx,nx.cy]);} P.push([nx.x0,nx.cy]);}});
@@ -1891,23 +1905,23 @@ function swim(c){
   S.forEach((st,i)=>{ if(!i) return; const p=S[i-1];
     if(p.l===st.l) s+=`<path d="M${p.x0+bw} ${p.cy} H${st.x0-1}" stroke="${LINE}" stroke-width="1.4" fill="none" marker-end="url(#fa)"/>`;
     else {const gx=p.x0+bw+15, mid=(p.cy+st.cy)/2;
-      s+=`<path d="M${p.x0+bw} ${p.cy} H${gx} V${st.cy} H${st.x0-1}" stroke="${LINE}" stroke-width="1.4" fill="none" marker-end="url(#fa)"/><rect x="${gx-4.5}" y="${mid-4.5}" width="9" height="9" fill="#151413" stroke="#EDEBEA" stroke-width="1.4"><title>Bàn giao giữa hai khối</title></rect>`;}});
+      s+=`<path d="M${p.x0+bw} ${p.cy} H${gx} V${st.cy} H${st.x0-1}" stroke="${LINE}" stroke-width="1.4" fill="none" marker-end="url(#fa)"/><rect x="${gx-4.5}" y="${mid-4.5}" width="9" height="9" fill="var(--c0)" stroke="var(--ct)" stroke-width="1.4"><title>Bàn giao giữa hai khối</title></rect>`;}});
   if(c.fb){const src=S[c.fb.from-1], xs=src.x0+bw*.72, yb=TOP-22;
     if(c.fb.to){const dst=S[c.fb.to-1], xd=dst.x0+bw*.72;
       s+=wire([[xs,src.y0],[xs,yb],[xd,yb],[xd,dst.y0-2]],{dash:true,arrow:"fa",n:2})+wlab("↺ "+c.fb.t,(xs+xd)/2,yb-7);}
     else s+=wire([[xs,src.y0],[xs,yb],[W-10,yb]],{dash:true,arrow:"fa",n:1})+wlab(c.fb.t+" → "+c.fb.ext,W-12,yb-7,"end");}
-  s+=`<circle cx="${f.x0-30}" cy="${f.cy}" r="7" fill="#EDEBEA"/>`;
+  s+=`<circle cx="${f.x0-30}" cy="${f.cy}" r="7" fill="var(--ct)"/>`;
   const ex=z.x0+bw;
-  s+=`<circle cx="${ex+24}" cy="${z.cy}" r="9" fill="#151413" stroke="#EDEBEA" stroke-width="2"/><circle cx="${ex+24}" cy="${z.cy}" r="4.5" fill="#EDEBEA"/>`+
-     tx(wrapT(z.end||"Kết thúc",10),W-6,z.cy+26,12,`text-anchor="end" font-size="10" font-weight="700" fill="#EDEBEA"`);
+  s+=`<circle cx="${ex+24}" cy="${z.cy}" r="9" fill="var(--c0)" stroke="var(--ct)" stroke-width="2"/><circle cx="${ex+24}" cy="${z.cy}" r="4.5" fill="var(--ct)"/>`+
+     tx(wrapT(z.end||"Kết thúc",10),W-6,z.cy+26,12,`text-anchor="end" font-size="10" font-weight="700" fill="var(--ct)"`);
   S.forEach(st=>{const lv=(st.w.match(/L(\d)/)||[])[1], nguoi=/người|Người/.test(st.w), ico=(NVI[st.nv]||["layers"])[0], tl=wrapT(st.ts,cpl(bw-20,12,.58));
-    s+=`<g class="sn" tabindex="0" role="button" data-step="${st.i}" aria-label="${esc(st.t)}"><rect class="sb" x="${st.x0}" y="${st.y0}" width="${bw}" height="${bh}" fill="#1E1C1B" stroke="${st.k==="chk"?"#EDEBEA":"#3D3936"}" stroke-width="${st.k==="chk"?1.8:1.2}"/>`+
-      (st.k==="chk"?`<path d="M${st.x0} ${st.y0-7} L${st.x0+7} ${st.y0} L${st.x0} ${st.y0+7} L${st.x0-7} ${st.y0} Z" fill="#EDEBEA"><title>Điểm kiểm tra hoặc phê duyệt</title></path>`:"")+
-      `<rect x="${st.x0+10}" y="${st.y0+10}" width="30" height="30" fill="#2A2725" stroke="#3D3936"/>`+icS(ico,st.x0+16,st.y0+16,18)+
+    s+=`<g class="sn" tabindex="0" role="button" data-step="${st.i}" aria-label="${esc(st.t)}"><rect class="sb" x="${st.x0}" y="${st.y0}" width="${bw}" height="${bh}" fill="var(--c1)" stroke="${st.k==="chk"?"var(--ct)":"var(--cl)"}" stroke-width="${st.k==="chk"?2.2:1.5}"/>`+
+      (st.k==="chk"?`<path d="M${st.x0} ${st.y0-7} L${st.x0+7} ${st.y0} L${st.x0} ${st.y0+7} L${st.x0-7} ${st.y0} Z" fill="var(--ct)"><title>Điểm kiểm tra hoặc phê duyệt</title></path>`:"")+
+      `<rect x="${st.x0+10}" y="${st.y0+10}" width="30" height="30" fill="var(--c2)" stroke="var(--cl)"/>`+icS(ico,st.x0+16,st.y0+16,18)+
       (lv?icS("bot",st.x0+bw-(nguoi?48:34),st.y0+12,13,MUTE)+`<text x="${st.x0+bw-(nguoi?33:19)}" y="${st.y0+23}" font-size="10" font-weight="700" fill="${MUTE}">L${lv}</text>`:"")+
       (nguoi?`<circle cx="${st.x0+bw-11}" cy="${st.y0+19}" r="4" fill="#EC3013"><title>Có người làm hoặc duyệt</title></circle>`:"")+
-      tx(tl,st.x0+10,st.y0+bh-12-(tl.length-1)*15,15,`font-size="12" font-weight="700" fill="#EDEBEA"`)+`</g>`;
-    if(st.x) s+=`<g class="sn" data-step="${st.i}">`+icS("triangle-alert",st.x0+2,st.y0+bh+9,14,"#FF7A63")+`<text x="${st.x0+21}" y="${st.y0+bh+20}" font-size="10.5" font-weight="700" fill="#FF7A63">→ ${esc(ROLE_S[st.to])}</text></g>`;});
+      tx(tl,st.x0+10,st.y0+bh-12-(tl.length-1)*15,15,`font-size="12.5" font-weight="800" fill="var(--ct)"`)+`</g>`;
+    if(st.x) s+=`<g class="sn" data-step="${st.i}">`+icS("triangle-alert",st.x0+2,st.y0+bh+9,14,"var(--cr)")+`<text x="${st.x0+21}" y="${st.y0+bh+20}" font-size="10.5" font-weight="700" fill="var(--cr)">→ ${esc(ROLE_S[st.to])}</text></g>`;});
   return s+"</svg>";
 }
 function flows(){
@@ -1929,25 +1943,25 @@ function stepHTML(i){const c=CHUOI.find(x=>x.id===chain), st=c.steps[i], n=NV_BY
 /* ---------- Trang 3 · Người + AI ---------- */
 function exmap(){
   const W=1280, RX=800, RW=232, RH=30, RG=6, R0=34, roles=ROLE_ORDER, cnt=r=>NV.filter(n=>n.to===r).length;
-  const rEnd=R0+roles.length*(RH+RG)-RG, mid=(R0+rEnd)/2, H=rEnd+64, MUTE="#9C9794";
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cơ chế phê duyệt và xử lý ngoại lệ"><defs><marker id="ea" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8F8A87"/></marker></defs>`;
+  const rEnd=R0+roles.length*(RH+RG)-RG, mid=(R0+rEnd)/2, H=rEnd+64, MUTE="var(--cm)";
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cơ chế phê duyệt và xử lý ngoại lệ"><defs><marker id="ea" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--cw)"/></marker></defs>`;
   const LX=36, LWd=300, LH2=50+3*58, LY=mid-LH2/2, HX=430, HW=300, HH=58+5*34+12, HY=mid-HH/2, BX=RX-18;
   s+=wire([[LX+LWd,mid],[HX,mid]],{arrow:"ea",n:2})+wlab("vượt ngưỡng · bất thường",(LX+LWd+HX)/2,mid-8);
   s+=wire([[HX+HW,mid],[BX,mid]],{red:true,arrow:"ea",n:2})+wlab("đúng người có thẩm quyền",(HX+HW+BX)/2,mid-8);
   s+=wire([[RX+RW/2,rEnd],[RX+RW/2,rEnd+38],[LX+LWd/2,rEnd+38],[LX+LWd/2,LY+LH2]],{dash:true,arrow:"ea",n:2})+wlab("quyết định được lưu vết, thành luật mới cho AI",(RX+RW/2+LX+LWd/2)/2,rEnd+32);
-  s+=`<rect x="${LX}" y="${LY}" width="${LWd}" height="${LH2}" fill="#1E1C1B" stroke="#3D3936"/>`+icS("bot",LX+16,LY+16,18)+`<text x="${LX+44}" y="${LY+30}" font-size="13.5" font-weight="800" fill="#EDEBEA">Tác vụ AI trong nghiệp vụ</text>`;
+  s+=`<rect x="${LX}" y="${LY}" width="${LWd}" height="${LH2}" fill="var(--c1)" stroke="var(--cl)"/>`+icS("bot",LX+16,LY+16,18)+`<text x="${LX+44}" y="${LY+30}" font-size="13.5" font-weight="800" fill="var(--ct)">Tác vụ AI trong nghiệp vụ</text>`;
   [1,2,3].forEach((l,i)=>{const yy=LY+48+i*58;
-    s+=`<g class="sn" data-lv="${l}" tabindex="0" role="button" aria-label="Mức L${l}"><rect class="sb" x="${LX+14}" y="${yy}" width="${LWd-28}" height="48" fill="#232120" stroke="#3D3936"/><rect x="${LX+24}" y="${yy+9}" width="30" height="30" fill="#2A2725" stroke="#3D3936"/>`+icS(LV[l][0],LX+30,yy+15,18)+
-      `<text x="${LX+66}" y="${yy+21}" font-size="12.5" font-weight="800" fill="#EDEBEA">L${l} · ${esc(LV[l][1])}</text><text x="${LX+66}" y="${yy+37}" font-size="10.5" fill="${MUTE}">${esc(LV[l][3])}</text></g>`;});
-  s+=`<rect x="${HX}" y="${HY}" width="${HW}" height="${HH}" fill="#1E1C1B" stroke="#EDEBEA" stroke-width="1.4"/>`+icS("workflow",HX+16,HY+16,18)+`<text x="${HX+44}" y="${HY+30}" font-size="13.5" font-weight="800" fill="#EDEBEA">Phê duyệt &amp; xử lý ngoại lệ</text>`;
+    s+=`<g class="sn" data-lv="${l}" tabindex="0" role="button" aria-label="Mức L${l}"><rect class="sb" x="${LX+14}" y="${yy}" width="${LWd-28}" height="48" fill="var(--c2)" stroke="var(--cl)"/><rect x="${LX+24}" y="${yy+9}" width="30" height="30" fill="var(--c2)" stroke="var(--cl)"/>`+icS(LV[l][0],LX+30,yy+15,18)+
+      `<text x="${LX+66}" y="${yy+21}" font-size="12.5" font-weight="800" fill="var(--ct)">L${l} · ${esc(LV[l][1])}</text><text x="${LX+66}" y="${yy+37}" font-size="10.5" fill="${MUTE}">${esc(LV[l][3])}</text></g>`;});
+  s+=`<rect x="${HX}" y="${HY}" width="${HW}" height="${HH}" fill="var(--c1)" stroke="var(--ct)" stroke-width="1.4"/>`+icS("workflow",HX+16,HY+16,18)+`<text x="${HX+44}" y="${HY+30}" font-size="13.5" font-weight="800" fill="var(--ct)">Phê duyệt &amp; xử lý ngoại lệ</text>`;
   [["message-circle","Lý do chuyển"],["user","Người có thẩm quyền"],["hourglass","Thời hạn xử lý"],["database","Dữ liệu, phương án"],["fingerprint","Kết quả, lưu vết"]].forEach(([i2,t],k)=>{const yy=HY+52+k*34;
-    s+=icS(i2,HX+18,yy,16,MUTE)+`<text x="${HX+44}" y="${yy+12.5}" font-size="12" fill="#EDEBEA">${esc(t)}</text>`;});
-  s+=`<path d="M${BX} ${R0+RH/2} V${rEnd-RH/2}" stroke="#4A4643" stroke-width="1.4"/>`;
+    s+=icS(i2,HX+18,yy,16,MUTE)+`<text x="${HX+44}" y="${yy+12.5}" font-size="12" fill="var(--ct)">${esc(t)}</text>`;});
+  s+=`<path d="M${BX} ${R0+RH/2} V${rEnd-RH/2}" stroke="var(--cw)" stroke-width="1.4"/>`;
   roles.forEach((r,i)=>{const yy=R0+i*(RH+RG), on=haiR===r;
-    s+=`<path d="M${BX} ${yy+RH/2} H${RX}" stroke="#4A4643" stroke-width="1.2"/><g class="sn" tabindex="0" role="button" data-role="${r}" aria-pressed="${on}" aria-label="Lọc theo ${esc(ROLE[r])}"><rect class="sb" x="${RX}" y="${yy}" width="${RW}" height="${RH}" fill="${on?"#3D3936":"#1E1C1B"}" stroke="${on?"#EDEBEA":"#3D3936"}"/><circle cx="${RX+13}" cy="${yy+RH/2}" r="4" fill="#EC3013"/><text x="${RX+25}" y="${yy+RH/2+4.5}" font-size="12" font-weight="700" fill="#EDEBEA">${esc(ROLE_S[r])}</text><text x="${RX+RW-10}" y="${yy+RH/2+4}" text-anchor="end" font-size="10.5" fill="${MUTE}">${cnt(r)}</text></g>`;});
+    s+=`<path d="M${BX} ${yy+RH/2} H${RX}" stroke="var(--cw)" stroke-width="1.2"/><g class="sn" tabindex="0" role="button" data-role="${r}" aria-pressed="${on}" aria-label="Lọc theo ${esc(ROLE[r])}"><rect class="sb" x="${RX}" y="${yy}" width="${RW}" height="${RH}" fill="${on?"var(--cl)":"var(--c1)"}" stroke="${on?"var(--ct)":"var(--cl)"}"/><circle cx="${RX+13}" cy="${yy+RH/2}" r="4" fill="#EC3013"/><text x="${RX+25}" y="${yy+RH/2+4.5}" font-size="12" font-weight="700" fill="var(--ct)">${esc(ROLE_S[r])}</text><text x="${RX+RW-10}" y="${yy+RH/2+4}" text-anchor="end" font-size="10.5" fill="${MUTE}">${cnt(r)}</text></g>`;});
   const CXb=RX+RW+44, CWb=W-CXb-28, CY=mid-40, on=haiR==="ceo";
   s+=wire([[RX+RW,mid],[CXb,mid]],{red:true,dash:true,arrow:"ea",n:1});
-  s+=`<g class="sn" tabindex="0" role="button" data-role="ceo" aria-pressed="${on}" aria-label="Lọc theo Ban điều hành"><rect class="sb" x="${CXb}" y="${CY}" width="${CWb}" height="80" fill="#EC3013" stroke="${on?"#EDEBEA":"#EC3013"}" stroke-width="2"/>`+icS("crown",CXb+14,CY+14,18,"#fff")+
+  s+=`<g class="sn" tabindex="0" role="button" data-role="ceo" aria-pressed="${on}" aria-label="Lọc theo Ban điều hành"><rect class="sb" x="${CXb}" y="${CY}" width="${CWb}" height="80" fill="#EC3013" stroke="${on?"var(--ct)":"#EC3013"}" stroke-width="2"/>`+icS("crown",CXb+14,CY+14,18,"#fff")+
     `<text x="${CXb+40}" y="${CY+28}" font-size="13.5" font-weight="800" fill="#fff">Ban điều hành</text><text x="${CXb+14}" y="${CY+52}" font-size="10.5" font-weight="600" fill="#fff">Chỉ việc vượt thẩm quyền</text><text x="${CXb+14}" y="${CY+67}" font-size="10.5" fill="#fff" opacity=".85">${cnt("ceo")} nghiệp vụ chuyển thẳng</text></g>`;
   return s+"</svg>";
 }
@@ -2496,6 +2510,7 @@ document.addEventListener("click",e=>{
   if(t.closest("#drawer")) return;
   const pf=t.closest("[data-pf]"); if(pf){openDrawer(platHTML(+pf.dataset.pf), sideOf(pf)); return;}
   const ch=t.closest("[data-chain]"); if(ch){chain=ch.dataset.chain; flows(); if($("p-flow").hidden){selectTab("t-flow"); window.scrollTo({top:0});} return;}
+  const cvb=t.closest("[data-cvm]"); if(cvb){setCv(cvb.dataset.cvm); return;}
   const sp=t.closest("[data-step]"); if(sp){openDrawer(stepHTML(+sp.dataset.step), sideOf(sp)); return;}
   const lvb=t.closest("[data-lv]"); if(lvb){openDrawer(levelHTML(+lvb.dataset.lv), sideOf(lvb)); return;}
   if(t.closest("[data-role-clear]")){haiR=null; haiTable(); return;}
@@ -2529,6 +2544,7 @@ document.querySelectorAll("[data-dev]").forEach(b=>b.addEventListener("click",()
 try{setDev(localStorage.getItem("lattice-dev")||"laptop");}catch(e){setDev("laptop");}
 
 renderAll(); startTimer();
+try{setCv(localStorage.getItem("lattice-mophong-cv")||"dark");}catch(e){setCv("dark");}
 </script>
 </body>
 </html>

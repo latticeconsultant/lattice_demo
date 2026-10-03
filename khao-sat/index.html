@@ -76,6 +76,20 @@ input:focus,textarea:focus{outline:2px solid var(--red);outline-offset:-2px}
 footer{border-top:1px solid var(--line);margin-top:34px;padding-top:16px;font-size:13px;color:var(--mute)}
 footer a{color:inherit}
 @media (max-width:560px){.cau{padding:16px 15px}.wrap{padding:0 14px 60px}}
+.qt-bang{background:var(--ink);color:var(--inv);padding:10px 14px;font-size:13px;font-weight:600;
+  letter-spacing:.06em;display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0}
+.qt-bang button{font:inherit;font-size:12px;padding:5px 10px;background:transparent;color:inherit;
+  border:1px solid currentColor;cursor:pointer;margin-left:auto}
+.muc{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;padding:10px 12px;background:var(--bg);border:1px solid var(--line2)}
+.muc .nhan{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.muc b{font-size:15px}
+.muc b.do{color:var(--redtx)}
+.tbl{overflow-x:auto;border:1px solid var(--line);background:var(--card);margin-top:10px}
+.tbl table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px}
+.tbl th,.tbl td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line2)}
+.tbl th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);background:var(--bg)}
+.tbl td.c,.tbl th.c{text-align:center;font-variant-numeric:tabular-nums}
+.tbl tr.dau td{font-weight:700}
 </style>
 </head>
 <body>
@@ -124,7 +138,42 @@ document.getElementById('sangtoi').addEventListener('click', function () {
   try { localStorage.setItem('lnx-theme', moi); } catch (e) {}
 });
 
-/* ---------- mười bốn câu, chia bốn phần ----------
+/* ---------- chế độ quản trị ----------
+   Ba lần bấm vào logo trong vòng 1,5 giây là bật hoặc tắt. Khách không biết cử
+   chỉ này; với khách, nút mở khoá vẫn dẫn sang trang trả phí như thường. */
+const KHOA_QT = 'lattice-qt';
+let laQT = false;
+try {
+  if (new URLSearchParams(location.search).get('qt') === '1') localStorage.setItem(KHOA_QT, '1');
+  laQT = localStorage.getItem(KHOA_QT) === '1';
+} catch (e) {}
+(function () {
+  let dem = 0, hen = 0;
+  document.querySelector('header .mark').addEventListener('click', function () {
+    clearTimeout(hen); dem++;
+    hen = setTimeout(function () { dem = 0; }, 1500);
+    if (dem < 3) return;
+    dem = 0; laQT = !laQT;
+    try { laQT ? localStorage.setItem(KHOA_QT, '1') : localStorage.removeItem(KHOA_QT); } catch (e) {}
+    veBangQT();
+  });
+})();
+function veBangQT() {
+  const cu = document.getElementById('qt-bang'); if (cu) cu.remove();
+  if (!laQT) return;
+  const o = document.createElement('div');
+  o.id = 'qt-bang'; o.className = 'qt-bang';
+  o.innerHTML = 'CHẾ ĐỘ QUẢN TRỊ · bản đầy đủ mở sẵn để kiểm tra, khách không thấy phần này' +
+    '<button type="button" id="qt-tat">Tắt</button>';
+  document.querySelector('header.top').after(o);
+  document.getElementById('qt-tat').addEventListener('click', function () {
+    laQT = false; try { localStorage.removeItem(KHOA_QT); } catch (e) {}
+    location.reload();
+  });
+}
+veBangQT();
+
+/* ---------- mười lăm câu, chia bốn phần ----------
    Mỗi câu: id, phần, loại, câu hỏi, gợi ý, các lựa chọn.
    'nv' là câu chọn nghiệp vụ đau nhất — danh sách lấy theo mô hình đã chọn ở câu 1,
    nên hai nơi không bao giờ lệch nhau với trang mô phỏng. */
@@ -486,7 +535,33 @@ window.dungBaoCao = function (d) {
   $('tien').remove(); $('tien-chu').remove();
   $('ks').innerHTML = html;
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (laQT) moBanDayDu(d, kq, uu);
 };
+
+/* Bản đầy đủ nằm ở file riêng, chỉ tải khi ở chế độ quản trị. Sau này Apps
+   Script sẽ trả file này về sau khi xác nhận khách đã trả phí. */
+function moBanDayDu(d, kq, uu) {
+  const xong = function () {
+    if (typeof window.NOI_DUNG_DAY_DU !== 'function') return;
+    const o = document.createElement('div');
+    o.className = 'bc';
+    o.innerHTML = '<div class="qt-bang" style="margin-top:30px">PHẦN DƯỚI ĐÂY KHÁCH KHÔNG THẤY · chỉ mở sau khi trả phí</div>'
+      + window.NOI_DUNG_DAY_DU(d, kq, uu, tenNV, nvTheoMo);
+    document.querySelector('.bc').after(o);
+    document.querySelectorAll('.kin').forEach(function (x) { x.style.display = 'none'; });
+  };
+  if (typeof window.NOI_DUNG_DAY_DU === 'function') { xong(); return; }
+  const s = document.createElement('script');
+  s.src = 'day-du.js';
+  s.onload = xong;
+  s.onerror = function () {
+    const o = document.createElement('p');
+    o.className = 'loi';
+    o.textContent = 'Không tải được bản đầy đủ (day-du.js).';
+    document.querySelector('.bc').after(o);
+  };
+  document.head.appendChild(s);
+}
 </script>
 
 </body>

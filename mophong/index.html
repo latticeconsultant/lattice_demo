@@ -419,6 +419,58 @@ body.dev-phone .toast{max-width:360px}
   .hright .tabs{width:100%}
   .hright .tabs button{padding:9px 4px;font-size:11px;letter-spacing:.04em}
 }
+
+/* ===== thương mại phân phối: kiến trúc, luồng, người + AI ===== */
+.hdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#EC3013;margin-right:7px;vertical-align:1px}
+.xleg{margin-top:10px}
+.xleg .ln{display:inline-block;width:26px;border-top:2px solid var(--ink)}
+.xleg .ln.d{border-top-style:dashed}
+.xleg .dot0{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--ink)}
+.xleg .dot1{display:inline-block;width:14px;height:14px;border-radius:50%;border:2px solid var(--ink);background:radial-gradient(var(--ink) 0 3px,transparent 3.5px)}
+.xleg .hand{display:inline-block;width:9px;height:9px;border:1.6px solid var(--ink);background:var(--card)}
+.flowhead{border:2px solid var(--ink);border-bottom:0;background:var(--card);padding:14px 16px;margin-top:6px;display:grid;gap:4px}
+.flowhead h2{font-size:22px;font-weight:800}
+.flownotes{margin:0;padding-left:20px;max-width:80ch}
+.flownotes li{margin:4px 0}
+.formula{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;margin-top:24px}
+.formula .f{border:2px solid var(--ink);background:var(--card);padding:14px 16px}
+.formula .f b{display:block;font-size:17px;font-weight:800}
+.formula .f span{font-size:13px;color:var(--mute)}
+.formula .op{font-size:30px;font-weight:800;line-height:1}
+.lvrow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border:1px solid var(--ink);background:var(--card)}
+.lvrow>div{padding:12px;border-right:1px solid var(--line);display:grid;gap:4px;align-content:start}
+.lvrow>div:last-child{border-right:0}
+.lvrow>div.main{background:var(--bg2)}
+.lvrow .lv{font-size:34px;font-weight:800;line-height:.9;font-stretch:70%}
+.lvrow b{font-size:14px} .lvrow p{font-size:12.5px;color:var(--mute)}
+.lvrow .pill{justify-self:start;margin-top:4px}
+.haitbl td{vertical-align:top}
+.tasks{display:grid;gap:5px}
+.tasks>div{display:grid;grid-template-columns:30px 1fr;gap:8px;font-size:13px;align-items:baseline}
+.lvp{font-size:10.5px;font-weight:800;border:1px solid var(--ink);text-align:center;padding:1px 0}
+.lvp.on{background:var(--ink);color:var(--inv)}
+.haitbl b.to{color:var(--redtx);white-space:nowrap}
+.fchip{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--ink);padding:4px 4px 4px 10px;font-size:12.5px;background:var(--bg2)}
+.nvl{display:grid;gap:4px}
+.nvl button{display:flex;justify-content:space-between;gap:10px;text-align:left;border:1px solid var(--line);background:var(--bg);padding:7px 10px;font-size:13.5px}
+.nvl button:hover{border-color:var(--ink)}
+.nvl .g{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:10px 0 2px}
+.io{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.kpil{display:flex;flex-wrap:wrap;gap:6px}
+.kpil span{border:1px solid var(--ink);padding:3px 9px;font-size:12.5px;font-weight:600}
+@container page (max-width:1100px){
+  .lvrow{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .lvrow>div:nth-child(3){border-right:0}
+  .lvrow>div:nth-child(-n+3){border-bottom:1px solid var(--line)}
+}
+@container page (max-width:760px){
+  .formula{grid-template-columns:1fr}
+  .formula .op{text-align:center}
+  .lvrow{grid-template-columns:1fr 1fr}
+  .lvrow>div{border-right:1px solid var(--line)!important;border-bottom:1px solid var(--line)}
+  .lvrow>div:nth-child(2n){border-right:0!important}
+  .io{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -439,8 +491,11 @@ body.dev-phone .toast{max-width:360px}
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M12 3.5 A8.5 8.5 0 0 1 12 20.5 Z" fill="currentColor"></path></svg>
     </button>
     <div class="tabs" role="tablist">
-    <button role="tab" aria-selected="true" aria-controls="p-map" id="t-map">Sơ đồ</button>
-    <button role="tab" aria-selected="false" aria-controls="p-act" id="t-act">Hoạt động</button>
+    <button role="tab" aria-selected="true" aria-controls="p-arch" id="t-arch">Kiến trúc</button>
+    <button role="tab" aria-selected="false" aria-controls="p-flow" id="t-flow">Luồng vận hành</button>
+    <button role="tab" aria-selected="false" aria-controls="p-hai" id="t-hai">Người + AI</button>
+    <button role="tab" aria-selected="false" aria-controls="p-map" id="t-map" hidden>Sơ đồ</button>
+    <button role="tab" aria-selected="false" aria-controls="p-act" id="t-act" hidden>Hoạt động</button>
     <button role="tab" aria-selected="false" aria-controls="p-dash" id="t-dash">Dashboard CEO</button>
   </div>
   </div>
@@ -457,7 +512,7 @@ body.dev-phone .toast{max-width:360px}
 </div>
 
 <!-- ================= SƠ ĐỒ ================= -->
-<section id="p-map" role="tabpanel" aria-labelledby="t-map">
+<section id="p-map" role="tabpanel" aria-labelledby="t-map" hidden>
   <div class="phead">
     <h1>Một doanh nghiệp, ba khối, một trục</h1>
     <p class="lead">Khối Thị trường tạo ra khách, đơn và tiền. Khối Cung ứng lo hàng và nguồn lực để giao được. Khối Điều hành giữ dữ liệu, tiền, quy trình và con người. Trục LATTICE ở giữa nối ba khối bằng một nguồn dữ liệu, một bộ luật và một Team AI, rồi chỉ đưa lên người những việc vượt ngưỡng.</p>
@@ -510,7 +565,85 @@ body.dev-phone .toast{max-width:360px}
     <div><div class="colh"><h2>Khối Điều hành</h2><span class="en">Operating Core</span></div><div id="c-core"></div></div>
   </div>
   <div class="sh"><h2>Mức khởi điểm theo loại hình</h2><span class="note">Cột đỏ là loại hình đang chọn.</span></div>
-  <div class="tbl"><table><thead><tr><th>Hoạt động</th><th class="c" data-m="tmhh">Thương mại</th><th class="c" data-m="dv">Dịch vụ</th><th class="c" data-m="sx">Sản xuất</th><th class="c">Trần</th></tr></thead><tbody id="matrix"></tbody></table></div>
+  <div class="tbl"><table><thead><tr><th>Hoạt động</th><th class="c" data-m="dv">Dịch vụ</th><th class="c" data-m="sx">Sản xuất</th><th class="c">Trần</th></tr></thead><tbody id="matrix"></tbody></table></div>
+</section>
+
+<!-- ================= THƯƠNG MẠI PHÂN PHỐI · KIẾN TRÚC ================= -->
+<section id="p-arch" role="tabpanel" aria-labelledby="t-arch">
+  <div class="phead">
+    <h1>Tám khối nghiệp vụ, một nền tảng chung</h1>
+    <p class="lead">Doanh nghiệp thương mại phân phối được tổ chức theo chuỗi giá trị. Phía cung lo có đúng hàng, đúng lúc; phía cầu lo có khách và thu được tiền. Điều hành đặt hướng ở trên, năng lực hỗ trợ đỡ ở dưới, còn dữ liệu, hệ thống và điều phối AI nối mọi khối với nhau.</p>
+    <p class="oneline">Con người sở hữu mục tiêu và trách nhiệm. AI thực hiện tác vụ trong phạm vi được giao. Dữ liệu và quy trình kết nối toàn bộ hoạt động.</p>
+  </div>
+  <div class="sh"><h2>Kiến trúc nghiệp vụ</h2><span class="note">Bấm tên khối để xem mục tiêu, đầu vào, đầu ra, KPI và ngoại lệ. Bấm từng nghiệp vụ để xem việc của người và AI.</span></div>
+  <div class="diagram" id="arch"></div>
+  <div class="legend xleg">
+    <span><i class="sw" style="background:var(--ink)"></i>Khối nghiệp vụ</span>
+    <span><i class="sw" style="background:var(--bg2)"></i>Năng lực hỗ trợ</span>
+    <span><i class="sw" style="background:repeating-linear-gradient(45deg,var(--card) 0 3px,var(--line) 3px 4px)"></i>Nền tảng</span>
+    <span><i class="hdot"></i>Người chịu trách nhiệm, điểm quyết định của người</span>
+    <span><i class="ln"></i>Luồng việc, luồng hàng</span>
+    <span><i class="ln d"></i>Dữ liệu, phản hồi</span>
+  </div>
+  <div class="sh"><h2>Năm chuỗi nghiệp vụ chạy xuyên các khối</h2><span class="note">Sơ đồ tổ chức trả lời ai phụ trách mảng nào. Chuỗi nghiệp vụ trả lời công việc đi từ đâu đến đâu.</span></div>
+  <div class="tbl"><table><thead><tr><th>Chuỗi</th><th>Luồng chính</th><th>Chịu trách nhiệm xuyên suốt</th><th class="c"></th></tr></thead><tbody id="chains"></tbody></table></div>
+  <p class="note foot">Tám khối là bản đồ năng lực cần được bao phủ, không phải số phòng ban. Doanh nghiệp nhỏ có thể để một người giữ nhiều khối; nhãn hàng riêng, hạn sử dụng hay bảo hành chỉ triển khai khi danh mục hàng cần đến.</p>
+</section>
+
+<!-- ================= THƯƠNG MẠI PHÂN PHỐI · LUỒNG VẬN HÀNH ================= -->
+<section id="p-flow" role="tabpanel" aria-labelledby="t-flow" hidden>
+  <div class="phead">
+    <h1>Công việc đi từ đâu đến đâu</h1>
+    <p class="lead">Năm chuỗi nghiệp vụ, mỗi chuỗi vẽ theo làn trách nhiệm: mỗi làn là một khối, mỗi ô là một bước. Ô viền đậm là điểm kiểm tra hoặc phê duyệt, chữ đỏ là ngoại lệ chuyển cho người có thẩm quyền.</p>
+  </div>
+  <div class="bar-model" style="border-bottom:0;padding-top:18px">
+    <span class="lbl">Chuỗi nghiệp vụ</span>
+    <div class="seg" id="seg-chain" role="group" aria-label="Chuỗi nghiệp vụ"></div>
+  </div>
+  <div class="flowhead" id="flow-head"></div>
+  <div class="diagram" id="flow"></div>
+  <div class="legend xleg">
+    <span><i class="dot0"></i>Bắt đầu</span><span><i class="dot1"></i>Kết thúc</span>
+    <span><i class="sw" style="border-width:2.5px"></i>Điểm kiểm tra, phê duyệt</span>
+    <span><i class="hand"></i>Bàn giao giữa hai khối</span>
+    <span><i class="hdot"></i>Có người làm hoặc duyệt</span>
+    <span style="color:var(--redtx)">Chữ đỏ: ngoại lệ → người có thẩm quyền</span>
+    <span><i class="ln"></i>Luồng việc</span><span><i class="ln d"></i>Vòng phản hồi</span>
+  </div>
+  <div class="sh"><h2>Điểm cần chú ý</h2></div>
+  <ul class="flownotes" id="flow-notes"></ul>
+</section>
+
+<!-- ================= THƯƠNG MẠI PHÂN PHỐI · NGƯỜI + AI ================= -->
+<section id="p-hai" role="tabpanel" aria-labelledby="t-hai" hidden>
+  <div class="phead">
+    <h1>Người + AI trong từng nghiệp vụ</h1>
+    <p class="lead">Mức AI gắn cho từng tác vụ, không gắn cho cả phòng ban: trong cùng một khối, lập báo cáo và duyệt chiết khấu có quyền rất khác nhau. AI không phải phòng ban có quyền chỉ huy; nó làm việc trong từng khối, qua một lớp điều phối chung.</p>
+  </div>
+  <div class="formula">
+    <div class="f"><b>Người chịu trách nhiệm</b><span>Sở hữu mục tiêu, chính sách và kết quả của nghiệp vụ.</span></div><span class="op">+</span>
+    <div class="f"><b>AI hỗ trợ nghiệp vụ</b><span>Làm tác vụ trong phạm vi và mức được giao.</span></div><span class="op">+</span>
+    <div class="f"><b>Quy trình có kiểm soát</b><span>Luật, ngưỡng, phê duyệt và lưu vết.</span></div>
+  </div>
+  <div class="sh"><h2>Sáu mức AI đảm nhận việc</h2><span class="note">Thương mại phân phối dùng chủ yếu L1–L3. L4–L5 chỉ cho việc rủi ro thấp, đảo ngược được.</span></div>
+  <div class="lvrow">
+    <div><span class="lv">L0</span><b>Quan sát</b><p>Chỉ thu thập, báo cáo.</p></div>
+    <div class="main"><span class="lv">L1</span><b>Đề xuất</b><p>Tra cứu, tổng hợp, soạn thảo; người làm.</p><span class="pill ink">≈ A1 · Hỗ trợ</span></div>
+    <div class="main"><span class="lv">L2</span><b>Chuẩn bị</b><p>Làm trọn, người duyệt trước khi ra ngoài.</p><span class="pill ink">≈ A2 · Đề xuất → duyệt</span></div>
+    <div class="main"><span class="lv">L3</span><b>Thực hiện có giới hạn</b><p>Tự làm trong luật, chặn việc vượt ngưỡng.</p><span class="pill ink">≈ A3 · Trong giới hạn</span></div>
+    <div><span class="lv">L4</span><b>Tự vận hành</b><p>Tự lập kế hoạch trong trần ngân sách.</p></div>
+    <div><span class="lv">L5</span><b>Tự chủ có giám sát</b><p>Điều hành cả chức năng, kiểm toán định kỳ.</p></div>
+  </div>
+  <div class="sh"><h2>Phê duyệt &amp; xử lý ngoại lệ</h2><span class="note">Ngoại lệ đến đúng người có thẩm quyền. Bấm một vai để lọc bảng bên dưới.</span></div>
+  <div class="diagram" id="exmap"></div>
+  <div class="sh"><h2>Phân quyền theo từng tác vụ</h2><span class="note">Bấm một dòng để xem đầy đủ.</span></div>
+  <div class="bigstat" id="hai-stat"></div>
+  <div class="bar-model" style="border-bottom:0;padding-top:18px">
+    <span class="lbl">Khối</span><div class="seg" id="seg-khoi" role="group" aria-label="Lọc theo khối"></div><span id="hai-filter"></span>
+  </div>
+  <div class="tbl haitbl"><table><thead><tr><th>Nghiệp vụ</th><th>Người chịu trách nhiệm</th><th>AI làm gì · mức</th><th>Chuyển cho người khi</th><th>Hệ thống ghi nhận</th></tr></thead><tbody id="hai-tbl"></tbody></table></div>
+  <div class="latx" style="margin-top:14px;background:var(--card)"><b>Tách ba việc: tạo giao dịch, duyệt, thực hiện.</b> Mức AI cao không có nghĩa AI có mọi quyền. Ví dụ thanh toán nhà cung cấp: AI đối chiếu và lập đề nghị (L2), Tài chính duyệt, lệnh chi chạy qua ngân hàng theo phân quyền.</div>
+  <div class="latx" style="margin-top:10px;background:var(--card)"><b>Doanh nghiệp nhỏ: một người, nhiều vai.</b> Mười hai vai trên đây là vai trò thẩm quyền, không phải mười hai người. Khi một người giữ nhiều vai, ngoại lệ vẫn đi theo vai, để sau này giao vai cho người mới không phải dựng lại luồng.</div>
 </section>
 
 <!-- ================= DASHBOARD ================= -->
@@ -1005,12 +1138,12 @@ let model="tmhh", level=-1, lastFocus=null;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const nameOf=a=>(a.nameBy&&a.nameBy[model])||a.name;
-const byId=id=>A.find(a=>a.id===id);
+const byId=id=>(isPP()&&NV_BY[id])||A.find(a=>a.id===id)||NV_BY[id];
 const show=a=>!a.mo||a.mo.includes(model);
 const inB=b=>A.filter(a=>a.block===b&&show(a));
 const BLOCKS=new Proxy({},{get:(_,b)=>(BLOCK_NAMES[b]||{})[model]});
 const SH={0:.08,1:.25,2:.5,3:.75,4:.9,5:.97};
-const NOTE={tmhh:"Thương mại hàng hóa: mua về bán lại, biên mỏng, tiền nằm trong tồn kho và công nợ.",dv:"Dịch vụ: bán giờ công và chỗ phục vụ, giờ trống trôi qua là mất hẳn.",sx:"Sản xuất: làm ra hàng rồi xuất kho; dừng ở cửa kho, không chạm tới kênh bán."};
+const NOTE={tmhh:"Thương mại phân phối: mua từ nhà cung cấp, bán qua đại lý, cửa hàng, sàn và bán trực tiếp; tiền nằm trong tồn kho và công nợ.",dv:"Dịch vụ: bán giờ công và chỗ phục vụ, giờ trống trôi qua là mất hẳn.",sx:"Sản xuất: làm ra hàng rồi xuất kho; dừng ở cửa kho, không chạm tới kênh bán."};
 
 /* ---------- diagram ---------- */
 function diagram(){
@@ -1027,9 +1160,12 @@ function diagram(){
   const nhom=[...new Set(core.map(a=>a.nhom))];
   const bw=280, bh=46, bgx=20, bgy=10, bx0=(W-(nhom.length*bw+(nhom.length-1)*bgx))/2;
   const hang=Math.max(...nhom.map(g=>core.filter(a=>a.nhom===g).length));
-  const H=byTop+28+hang*(bh+bgy)+26;
+  // khung khối điều hành: ôm tiêu đề và bốn cột, cách mép 20
+  const kfx=bx0-20, kfy=byTop-42, kfw=W-2*kfx, kfh=(byTop+26+hang*(bh+bgy)-bgy+20)-kfy;
+  const H=kfy+kfh+24;
   let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Sơ đồ cấu trúc doanh nghiệp trên LATTICE">`;
   s+=`<defs><marker id="mui" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--ink)"/></marker></defs>`;
+  s+=`<rect x="${kfx}" y="${kfy}" width="${kfw}" height="${kfh}" fill="var(--bg)" stroke="var(--ink)" stroke-width="2"/>`;
   // tiêu đề ba khối
   s+=`<text x="${fx}" y="${fy0-34}" font-size="19" font-weight="800" fill="var(--ink)">${BLOCKS.front[0]}</text><text x="${fx}" y="${fy0-16}" font-size="10.5" font-weight="600" letter-spacing="1.6" fill="var(--mute)">${BLOCKS.front[1].toUpperCase()}</text>`;
   s+=`<text x="${kx}" y="${ky0-34}" font-size="19" font-weight="800" fill="var(--ink)">${BLOCKS.sup[0]}</text><text x="${kx}" y="${ky0-16}" font-size="10.5" font-weight="600" letter-spacing="1.6" fill="var(--mute)">${BLOCKS.sup[1].toUpperCase()}</text>`;
@@ -1039,8 +1175,9 @@ function diagram(){
     s+=`<path class="flowline" d="${d}"/><path class="flowpulse" d="${d}" style="animation-delay:${-i*.4}s"/>`;});
   sup.forEach((a,i)=>{const y=ky0+i*(kh+kg)+kh/2, d=`M${kx} ${y} C ${kx-60} ${y}, ${cx+dw/2+70} ${dy+dh/2}, ${cx+dw/2} ${dy+dh/2}`;
     s+=`<path class="flowline" d="${d}"/><path class="flowpulse" d="${d}" style="animation-delay:${-i*.35}s"/>`;});
-  // nối khối điều hành lên ô DATA
-  s+=`<path class="flowline" d="M${cx} ${byTop-34} L${cx} ${dy+dh}" stroke-width="2"/>`;
+  // nối khối điều hành với ô DATA: mũi tên hai chiều, dữ liệu đi lên và luật đi xuống
+  const dk=`M${cx} ${dy+dh+2} L${cx} ${kfy-2}`;
+  s+=`<path class="flowline" d="${dk}" stroke-width="2.5" marker-start="url(#mui)" marker-end="url(#mui)"/><path class="flowpulse" d="${dk}"/><path class="flowpulse rev" d="${dk}" style="animation-delay:-1.2s"/>`;
   // trục dọc
   const mui=(y1,y2)=>`<path class="flowline" d="M${cx} ${y1} L${cx} ${y2}" stroke-width="2.5" marker-end="url(#mui)"/>`;
   s+=mui(dy, ty+th)+mui(ty, qy+qr)+mui(qy-qr, cy2+ch);
@@ -1122,9 +1259,9 @@ function activities(){
       return `<button class="card${over?" over":""}" data-id="${a.id}"><span class="top"><span class="nm">${esc(nameOf(a))}</span><span class="pill ${over?"red":"ink"}">L${lv}</span></span><span class="ai">${over?"Vượt trần L"+a.cap+". ":""}${esc(a.ai[lv])}</span></button>`;}).join("");
   });
   const rows=[];
-  ["front","sup","core"].forEach(b=>{rows.push(`<tr class="grp"><td colspan="5">${BLOCKS[b][0]}</td></tr>`);
+  ["front","sup","core"].forEach(b=>{rows.push(`<tr class="grp"><td colspan="4">${BLOCKS[b][0]}</td></tr>`);
     inB(b).forEach(a=>{const c=m=>`<td class="c${m===model?" cur":""}">${a.rec[m]?`<span class="pill ${a.rec[m]>=3?"ink":"no"}">L${a.rec[m]}</span>`:"—"}</td>`;
-      rows.push(`<tr class="row" tabindex="0" data-id="${a.id}"><td>${esc(nameOf(a))}</td>${c("tmhh")}${c("dv")}${c("sx")}<td class="c">L${a.cap}</td></tr>`);});});
+      rows.push(`<tr class="row" tabindex="0" data-id="${a.id}"><td>${esc(nameOf(a))}</td>${c("dv")}${c("sx")}<td class="c">L${a.cap}</td></tr>`);});});
   $("matrix").innerHTML=rows.join("");
   ["front","sup"].forEach(b=>{const h=$("h-"+b); if(h){h.textContent=BLOCKS[b][0]; $("h-"+b+"-en").textContent=BLOCKS[b][1];}});
   document.querySelectorAll("th[data-m]").forEach(th=>th.classList.toggle("cur",th.dataset.m===model));
@@ -1199,14 +1336,589 @@ function layerHTML(i){const L=LAYERS[i];
    <div class="latx">${esc(L.text)}</div><h3>Gồm</h3><ul>${L.items.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
    <h3>Vì sao nằm ở giữa</h3><p>Khối Thị trường tạo ra dữ liệu: đơn, khách, phản hồi. Khối Điều hành dùng dữ liệu đó để quyết định: tiền, người, quy trình. Trục LATTICE là nơi hai dòng gặp nhau, nên AI ở khối nào cũng làm việc trên cùng một sự thật và cùng một bộ luật.</p>`;}
 
+/* =================== THƯƠNG MẠI PHÂN PHỐI: KIẾN TRÚC 8 KHỐI ===================
+   Nguồn: Kien-truc-doanh-nghiep-phan-phoi-Nguoi-AI.md (03/10/2026). Tab Thương mại
+   dùng bộ dữ liệu này thay cho mảng A; Dịch vụ và Sản xuất vẫn chạy trên A. */
+const isPP=()=>model==="tmhh";
+const ROLE={ceo:"Ban điều hành",nh:"Trưởng ngành hàng",mh:"Trưởng mua hàng",hd:"Trưởng hoạch định",mk:"Trưởng marketing",kd:"Trưởng kinh doanh",vh:"Trưởng vận hành",dv:"Trưởng dịch vụ khách hàng",tc:"Tài chính – Kế toán trưởng",ns:"Phụ trách nhân sự",pc:"Phụ trách pháp chế",hc:"Phụ trách hành chính"};
+const ROLE_ORDER=["nh","mh","hd","mk","kd","vh","dv","tc","ns","pc","hc"];
+
+const KHOI=[
+ {id:"cl",tier:"Tầng 1 · Điều hành & Quản trị",n:"Chiến lược & Điều hành",en:"Strategy & Business Management",o:"ceo",s:"Điều hành",
+  goal:"Chọn thị trường, ngành hàng, cách tăng trưởng và cách dùng nguồn lực.",
+  nguoi:"Đặt mục tiêu, chọn ưu tiên, phê duyệt chính sách và chịu trách nhiệm kết quả.",
+  ai:"Tổng hợp thông tin, phân tích chênh lệch kế hoạch và thực tế, mô phỏng kịch bản, cảnh báo rủi ro.",
+  kpi:["Doanh thu","Lợi nhuận hoạt động","Vốn lưu động","Dòng tiền","Tiến độ mục tiêu"],
+  in:["Số liệu kinh doanh từ mọi khối","Tín hiệu thị trường, đối thủ","Báo cáo rủi ro và kiểm soát"],
+  out:["Mục tiêu năm, quý cho từng khối","Ngân sách và hạn mức chi","Chính sách và ma trận phân quyền"],
+  exc:[["Thay đổi chính sách lớn","ceo"],["Vượt ngân sách trọng yếu","ceo"],["Xung đột ưu tiên giữa các khối","ceo"]]},
+ {id:"nh",tier:"Tầng 2 · Phía cung",n:"Ngành hàng & Nguồn cung",en:"Category Management & Strategic Sourcing",o:"nh",s:"Ngành hàng",
+  goal:"Quyết định bán hàng gì, mua từ ai và mua với điều kiện nào.",
+  nguoi:"Chọn ngành hàng, thẩm định đối tác, đàm phán điều kiện trọng yếu.",
+  ai:"So sánh báo giá, chấm điểm nhà cung cấp, chuẩn hóa thông tin sản phẩm, đề xuất cơ cấu danh mục.",
+  kpi:["Lợi nhuận gộp ngành hàng","Hiệu quả tồn kho","Chất lượng hàng","Độ tin cậy nhà cung cấp"],
+  in:["Số bán và biên lãi theo mã","Phản hồi của khách hàng","Báo giá, hồ sơ nhà cung cấp"],
+  out:["Danh mục hàng được duyệt","Nhà cung cấp và hợp đồng mua","Thông tin sản phẩm chuẩn cho mọi kênh"],
+  exc:[["Mở hoặc khai tử một ngành hàng","ceo"],["Duyệt nhà cung cấp mới","mh"],["Điều kiện mua ngoài mẫu hợp đồng","mh"]]},
+ {id:"hd",tier:"Tầng 2 · Phía cung",n:"Hoạch định Cung–Cầu & Tồn kho",en:"Demand, Supply & Inventory Planning",o:"hd",s:"Hoạch định",
+  goal:"Đúng hàng, đúng lượng, đúng nơi, đúng lúc, với mức vốn tồn kho phù hợp.",
+  nguoi:"Thống nhất một kế hoạch giữa kinh doanh, ngành hàng, vận hành và tài chính; quyết định khi nhu cầu vượt nguồn lực.",
+  ai:"Dự báo theo mã, kênh, địa điểm; đề xuất bổ sung hàng; cảnh báo thiếu hàng, dư hàng và bất thường.",
+  kpi:["Độ chính xác dự báo","Tỷ lệ đáp ứng","Số ngày tồn kho","Tỷ lệ thiếu hàng","Tồn chậm luân chuyển"],
+  in:["Số bán, sell-out, kế hoạch khuyến mãi","Tồn thực tế từ hệ thống kho","Thời gian giao của nhà cung cấp"],
+  out:["Kế hoạch mua và bổ sung hàng","Phân bổ hàng cho kho và kênh","Danh sách hàng chậm luân chuyển, cận hạn"],
+  exc:[["Nhu cầu vượt nguồn hàng","hd"],["Vượt trần vốn tồn kho","tc"],["Xả hàng dưới giá vốn","tc"]]},
+ {id:"mk",tier:"Tầng 2 · Phía cầu",n:"Thị trường, Marketing & Tăng trưởng",en:"Market Development, Marketing & Growth",o:"mk",s:"Marketing",
+  goal:"Tạo nhu cầu có chất lượng và mở rộng thị trường cho hệ thống phân phối.",
+  nguoi:"Quyết định định vị, thông điệp, chương trình và ngân sách.",
+  ai:"Phân tích thị trường, hỗ trợ làm nội dung, phân nhóm khách, tối ưu chiến dịch trong trần ngân sách.",
+  kpi:["Khách tiềm năng đủ điều kiện","Chi phí thu hút","Tỷ lệ chuyển đổi","Hiệu quả chương trình tại kênh"],
+  in:["Mục tiêu tăng trưởng và ngân sách","Danh mục hàng, chính sách giá","Dữ liệu và phản hồi khách hàng"],
+  out:["Khách tiềm năng đủ điều kiện cho kinh doanh","Chương trình hỗ trợ bán tại kênh","Nội dung và thương hiệu nhất quán"],
+  exc:[["Định vị, thông điệp mới","ceo"],["Chiến dịch vượt ngân sách","mk"],["Khủng hoảng truyền thông","ceo"]]},
+ {id:"kd",tier:"Tầng 2 · Phía cầu",n:"Kinh doanh & Kênh phân phối",en:"Sales & Channel Management",o:"kd",s:"Kinh doanh",
+  goal:"Chuyển nhu cầu thành doanh thu có lợi nhuận và thu được tiền.",
+  nguoi:"Xây quan hệ, đàm phán, phát triển đại lý, quyết định ngoại lệ thương mại.",
+  ai:"Chấm điểm cơ hội, gợi ý bán thêm, báo giá theo chính sách, nhắc việc, kiểm tra điều kiện đơn.",
+  kpi:["Doanh thu","Lợi nhuận gộp","Độ phủ kênh","Khách hàng hoạt động","Tỷ lệ chuyển đổi","Công nợ quá hạn"],
+  in:["Khách tiềm năng từ marketing","Bảng giá, chính sách thương mại","Tồn kho khả dụng"],
+  out:["Đơn hàng đã xác nhận","Báo giá, hợp đồng","Số sell-in và sell-out"],
+  exc:[["Chiết khấu ngoài khung","kd"],["Hợp đồng lớn","kd"],["Bán chịu ngoài hạn mức","tc"]]},
+ {id:"kv",tier:"Tầng 2 · Phía cung",n:"Đơn hàng, Kho vận & Giao nhận",en:"Order Management, Warehousing & Logistics",o:"vh",s:"Kho vận",
+  goal:"Biến cam kết bán hàng thành hàng giao đúng, đủ và có chứng từ xác nhận.",
+  nguoi:"Làm phần việc vật lý, xác minh chênh lệch, xử lý sự cố, quản lý đối tác giao nhận.",
+  ai:"Kiểm tra đơn, gợi ý phân bổ tồn, xếp ưu tiên xử lý, hỗ trợ lập tuyến, cảnh báo nguy cơ giao trễ.",
+  kpi:["Giao đúng hạn, đủ hàng","Độ chính xác đơn","Độ chính xác tồn kho","Thời gian xử lý","Chi phí giao hàng"],
+  in:["Đơn hàng đã xác nhận","Đơn mua đã duyệt","Hàng trả về từ dịch vụ khách hàng"],
+  out:["Hàng đã giao kèm xác nhận giao","Tồn kho chính xác","Chứng từ cho kế toán"],
+  exc:[["Thiếu hàng sau khi đã nhận đơn","vh"],["Chênh lệch kiểm kê vượt ngưỡng","tc"],["Mất hàng, hư hỏng khi giao","vh"]]},
+ {id:"dv",tier:"Tầng 2 · Phía cầu",n:"Dịch vụ khách hàng & Phát triển quan hệ",en:"Customer Service & Relationship Development",o:"dv",s:"Dịch vụ KH",
+  goal:"Giải quyết vấn đề sau bán, giữ khách và tăng giá trị quan hệ lâu dài.",
+  nguoi:"Xử lý khiếu nại phức tạp, tranh chấp và các quan hệ nhạy cảm.",
+  ai:"Trả lời từ nguồn thông tin đã duyệt, phân loại yêu cầu, tra cứu đơn, theo dõi thời hạn xử lý.",
+  kpi:["Thời gian giải quyết","Mức hài lòng","Tỷ lệ tái mua","Khiếu nại lặp lại"],
+  in:["Yêu cầu, khiếu nại từ mọi kênh","Lịch sử đơn hàng","Chính sách đổi trả, bảo hành"],
+  out:["Yêu cầu đã giải quyết","Lệnh nhận hàng trả về cho kho","Phản hồi cho ngành hàng, marketing"],
+  exc:[["Khiếu nại phức tạp, tranh chấp","dv"],["Bồi hoàn vượt hạn mức","tc"],["Khách giá trị cao sắp rời đi","kd"]]},
+ {id:"ht",tier:"Tầng 3 · Năng lực hỗ trợ",n:"Tài chính & Năng lực hỗ trợ",en:"Finance & Enterprise Services",o:"tc",s:"Hỗ trợ",
+  goal:"Giữ tiền, người, pháp lý và tài sản đúng, đủ và kiểm soát được.",
+  nguoi:"Chịu trách nhiệm tính đúng đắn, phê duyệt và kiểm soát.",
+  ai:"Xử lý chứng từ, đối chiếu, dự báo dòng tiền, rà soát hồ sơ, tổng hợp báo cáo.",
+  kpi:["Thời gian thu tiền","Dòng tiền","Độ chính xác báo cáo","Hiệu suất nhân sự","Mức độ tuân thủ"],
+  in:["Chứng từ mua, bán, thu, chi","Dữ liệu chấm công, hiệu suất","Hợp đồng, hồ sơ hàng hóa"],
+  out:["Sổ sách và báo cáo tài chính","Lương thưởng, hồ sơ nhân sự","Hợp đồng, giấy phép còn hiệu lực"],
+  exc:[["Duyệt chi ngoài hạn mức","tc"],["Mọi quyết định về con người","ns"],["Cam kết pháp lý ngoài mẫu","pc"]]}
+];
+const NHOM_HT=[{id:"tc",n:"Tài chính & Kế toán",en:"Finance & Accounting"},{id:"ns",n:"Nhân sự & Phát triển năng lực",en:"People & Capability"},{id:"pc",n:"Pháp chế & Tuân thủ",en:"Legal & Compliance"},{id:"hc",n:"Hành chính & Quản trị tài sản",en:"Administration & Assets"}];
+
+/* Mỗi nghiệp vụ: o người chịu trách nhiệm · ai [tác vụ, mức L] · x khi nào chuyển
+   cho người · to vai trò nhận ngoại lệ · sys hệ thống ghi nhận · keep quyền người giữ.
+   s là nhãn ngắn trên sơ đồ khi tên đầy đủ quá dài. */
+const NV=[
+ // 1 · Chiến lược & Điều hành
+ {id:"cl_strat",k:"cl",n:"Chiến lược thị trường & Mô hình kinh doanh",en:"Market Strategy & Business Model",o:"ceo",
+  ai:[["Tổng hợp tin thị trường, đối thủ, xu hướng ngành hàng",1],["Mô phỏng kịch bản tăng trưởng, so sánh phương án",1]],
+  x:"Mọi quyết định chọn thị trường, ngành hàng, mô hình",to:"ceo",sys:"Sổ quyết định chiến lược",keep:"Chọn thị trường, ngành hàng, mô hình kinh doanh"},
+ {id:"cl_plan",k:"cl",n:"Kế hoạch kinh doanh & Ngân sách",en:"Business Planning & Budgeting",o:"ceo",
+  ai:[["Dựng bản nháp kế hoạch, ngân sách từ số liệu kỳ trước",2],["Theo dõi chi thực tế so với ngân sách",3]],
+  x:"Chi vượt ngân sách trọng yếu, xin điều chỉnh ngân sách",to:"ceo",sys:"Phần mềm kế toán và bảng ngân sách",keep:"Duyệt kế hoạch, phân bổ ngân sách"},
+ {id:"cl_perf",k:"cl",n:"Quản trị hiệu quả kinh doanh",en:"Business Performance Management",o:"ceo",
+  ai:[["Tổng hợp báo cáo bán hàng, lãi lỗ hằng tuần",3],["Phân tích chênh lệch kế hoạch và thực tế, tìm nguyên nhân",2]],
+  x:"Chỉ số trọng yếu lệch quá ngưỡng hai kỳ liền",to:"ceo",sys:"Bảng điều hành, kho dữ liệu báo cáo",keep:"Chọn chỉ số điều hành, đánh giá kết quả"},
+ {id:"cl_risk",k:"cl",n:"Quản trị rủi ro & Kiểm soát nội bộ",en:"Risk Management & Internal Control",o:"ceo",
+  ai:[["Rà giao dịch bất thường: trùng hóa đơn, chiết khấu lạ, chênh lệch kho",3],["Cập nhật sổ rủi ro, nhắc mốc kiểm soát",2]],
+  x:"Nghi gian lận, rủi ro mức cao",to:"ceo",sys:"Sổ rủi ro, nhật ký kiểm soát",keep:"Mức chấp nhận rủi ro, xử lý vi phạm"},
+ {id:"cl_change",k:"cl",n:"Quản trị chương trình thay đổi",en:"Transformation Program Management",o:"ceo",
+  ai:[["Theo dõi tiến độ và cổng nghiệm thu của từng dự án",3],["Đề xuất nâng mức AI cho tác vụ đã ổn định 4–8 tuần",2]],
+  x:"Dự án trễ cổng nghiệm thu, đề nghị nâng mức AI",to:"ceo",sys:"Công cụ quản lý dự án",keep:"Duyệt nâng mức AI, mở hoặc dừng dự án"},
+ // 2 · Ngành hàng & Nguồn cung
+ {id:"nh_assort",k:"nh",n:"Quản trị danh mục & Cơ cấu hàng hóa",en:"Assortment & Portfolio Management",o:"nh",
+  ai:[["Phân tích từng mã: doanh số, biên lãi, vòng quay",3],["Đề xuất mã nên thêm, giữ, loại",2]],
+  x:"Thêm hoặc loại mã ngoài kế hoạch ngành hàng",to:"nh",sys:"Hệ thống quản lý sản phẩm, ERP",keep:"Cơ cấu danh mục, mở hoặc loại mã"},
+ {id:"nh_pl",k:"nh",n:"Phát triển sản phẩm thương mại / Nhãn hàng riêng",s:"Sản phẩm thương mại & Nhãn riêng",en:"Commercial Product Development / Private Label",o:"nh",opt:true,
+  ai:[["Tổng hợp nhu cầu, so sánh sản phẩm cùng phân khúc",1],["Soạn hồ sơ đặt làm: quy cách, bao bì, nhãn",2]],
+  x:"Đặt làm lô đầu, cam kết số lượng tối thiểu",to:"nh",sys:"Hồ sơ sản phẩm",keep:"Ra mắt nhãn hàng riêng"},
+ {id:"nh_src",k:"nh",n:"Tìm kiếm & Đánh giá nhà cung cấp",en:"Supplier Sourcing & Qualification",o:"mh",
+  ai:[["Lập danh sách nhà cung cấp tiềm năng",2],["So sánh báo giá và hồ sơ năng lực",2]],
+  x:"Phê duyệt nhà cung cấp mới",to:"mh",sys:"Danh mục nhà cung cấp",keep:"Phê duyệt nhà cung cấp mới"},
+ {id:"nh_neg",k:"nh",n:"Đàm phán & Quản trị hợp đồng mua",s:"Đàm phán & Hợp đồng mua",en:"Procurement Negotiation & Contract Management",o:"mh",
+  ai:[["Soạn dự thảo hợp đồng theo mẫu đã duyệt",2],["Nhắc mốc gia hạn, điều khoản sắp hết hiệu lực",3]],
+  x:"Điều khoản ngoài mẫu, giá trị vượt thẩm quyền",to:"mh",sys:"Kho hợp đồng",keep:"Đàm phán điều kiện trọng yếu, ký hợp đồng"},
+ {id:"nh_srm",k:"nh",n:"Quản trị quan hệ & Hiệu suất nhà cung cấp",s:"Quan hệ & Hiệu suất nhà cung cấp",en:"Supplier Relationship & Performance Management",o:"mh",
+  ai:[["Chấm điểm nhà cung cấp: đúng hạn, đủ hàng, chất lượng",3],["Cảnh báo nhà cung cấp tụt điểm",3]],
+  x:"Nhà cung cấp chính tụt điểm hai kỳ liền",to:"mh",sys:"Danh mục nhà cung cấp",keep:"Cắt hoặc giảm nhà cung cấp"},
+ {id:"nh_pim",k:"nh",n:"Quản trị thông tin sản phẩm",en:"Product Information Management",o:"nh",
+  ai:[["Chuẩn hóa mã, thuộc tính, mô tả, hình ảnh",3],["Đồng bộ thông tin sản phẩm ra mọi kênh bán",3]],
+  x:"Thông tin liên quan tới công bố, nhãn, an toàn sản phẩm",to:"pc",sys:"Hệ thống quản lý thông tin sản phẩm",keep:"Nội dung có giá trị pháp lý: công bố, nhãn"},
+ // 3 · Hoạch định Cung–Cầu & Tồn kho
+ {id:"hd_fc",k:"hd",n:"Dự báo nhu cầu",en:"Demand Forecasting",o:"hd",
+  ai:[["Dự báo theo mã, kênh, địa điểm",3],["Điều chỉnh dự báo theo khuyến mãi, mùa vụ",2]],
+  x:"Dự báo lệch thực tế quá 25% hai kỳ liền",to:"hd",sys:"Công cụ hoạch định, ERP",keep:"Chốt số dự báo dùng cho kế hoạch"},
+ {id:"hd_ibp",k:"hd",n:"Hoạch định kinh doanh tích hợp",en:"Integrated Business Planning",o:"hd",
+  ai:[["Chuẩn bị bộ số cho cuộc họp cân đối cung–cầu hằng tháng",3],["Mô phỏng kịch bản thiếu hàng, dư hàng",2]],
+  x:"Kinh doanh và tài chính không thống nhất được kế hoạch",to:"ceo",sys:"Biên bản cân đối, ERP",keep:"Chốt một kế hoạch chung"},
+ {id:"hd_rep",k:"hd",n:"Kế hoạch mua hàng & Bổ sung hàng",s:"Kế hoạch mua & Bổ sung hàng",en:"Purchasing & Replenishment Planning",o:"hd",
+  ai:[["Tính lượng cần mua theo điểm đặt lại và thời gian giao",3],["Đề xuất đơn mua bổ sung để người duyệt",2]],
+  x:"Đơn mua vượt hạn mức hoặc ngoài kế hoạch",to:"hd",sys:"ERP",keep:"Duyệt đơn mua vượt hạn mức"},
+ {id:"hd_pol",k:"hd",n:"Chính sách tồn kho & Mức phục vụ",en:"Inventory Policy & Service Level Management",o:"hd",
+  ai:[["Tính tồn an toàn, tồn tối đa theo nhóm hàng",2],["Theo dõi mức phục vụ thực tế so với mục tiêu",3]],
+  x:"Đổi mức phục vụ hoặc trần vốn tồn kho",to:"tc",sys:"ERP",keep:"Mức phục vụ mục tiêu, trần vốn tồn kho"},
+ {id:"hd_alloc",k:"hd",n:"Phân bổ hàng giữa kho và kênh bán",s:"Phân bổ hàng giữa kho & kênh",en:"Inventory Allocation",o:"hd",
+  ai:[["Tự cân lại tồn giữa các kho theo luật đã duyệt",3],["Đề xuất phân bổ khi không đủ hàng cho mọi kênh",2]],
+  x:"Thiếu hàng, phải chọn kênh hoặc khách ưu tiên",to:"kd",sys:"Hệ thống kho, ERP",keep:"Thứ tự ưu tiên kênh, khách khi thiếu hàng"},
+ {id:"hd_slow",k:"hd",n:"Hàng chậm luân chuyển & Hàng cận hạn",s:"Hàng chậm luân chuyển & Cận hạn",en:"Slow-Moving & Near-Expiry Inventory",o:"hd",
+  ai:[["Lập danh sách hàng tồn lâu, cận hạn mỗi tuần",3],["Đề xuất chuyển kênh, khuyến mãi hoặc trả nhà cung cấp",2]],
+  x:"Xả hàng dưới giá vốn, tiêu hủy",to:"tc",sys:"Hệ thống kho, ERP",keep:"Quyết định xả hàng, tiêu hủy"},
+ // 4 · Thị trường, Marketing & Tăng trưởng
+ {id:"mk_res",k:"mk",n:"Nghiên cứu thị trường & Thấu hiểu khách hàng",s:"Nghiên cứu & Thấu hiểu khách hàng",en:"Market Research & Customer Insights",o:"mk",
+  ai:[["Gom đánh giá, bình luận, khảo sát thành chủ đề",3],["Phân nhóm khách theo hành vi mua",3]],
+  x:"Kết luận dẫn tới đổi định vị hoặc ngành hàng",to:"ceo",sys:"CRM, kho khảo sát",keep:"Rút kết luận chiến lược"},
+ {id:"mk_brand",k:"mk",n:"Định vị & Quản trị thương hiệu",en:"Brand Positioning & Management",o:"mk",
+  ai:[["Kiểm tra nội dung đúng bộ nhận diện, giọng thương hiệu",3],["Soạn phương án thông điệp",1]],
+  x:"Thông điệp mới, khủng hoảng truyền thông",to:"ceo",sys:"Bộ nhận diện, sách hướng dẫn thương hiệu",keep:"Định vị, thông điệp lõi"},
+ {id:"mk_content",k:"mk",n:"Quản trị nội dung & Truyền thông",s:"Nội dung & Truyền thông",en:"Content & Communications Management",o:"mk",
+  ai:[["Viết nháp bài, kịch bản theo lịch nội dung",2],["Đăng bài thuộc chủ đề đã duyệt",3]],
+  x:"Bình luận tiêu cực, chủ đề nhạy cảm",to:"mk",sys:"Lịch nội dung, kho tài nguyên",keep:"Nội dung ngoài chủ đề đã duyệt"},
+ {id:"mk_lead",k:"mk",n:"Thu hút khách hàng tiềm năng",en:"Demand Generation & Lead Acquisition",o:"mk",
+  ai:[["Chạy quảng cáo, chỉnh ngân sách trong trần đã khoán",3],["Thu và chấm điểm khách tiềm năng, chuyển cho kinh doanh",3]],
+  x:"Chi phí thu hút vượt ngưỡng, xin tăng ngân sách",to:"mk",sys:"CRM, tài khoản quảng cáo",keep:"Ngân sách quảng cáo"},
+ {id:"mk_trade",k:"mk",n:"Marketing tại kênh phân phối",en:"Trade Marketing",o:"mk",
+  ai:[["Lập kế hoạch trưng bày, vật phẩm theo điểm bán",2],["Đo hiệu quả chương trình kích cầu theo sell-out",3]],
+  x:"Chương trình cho đại lý ngoài chính sách",to:"kd",sys:"Hệ thống quản lý kênh, CRM",keep:"Chương trình hỗ trợ đại lý"},
+ {id:"mk_camp",k:"mk",n:"Quản trị chiến dịch & Hiệu quả marketing",s:"Chiến dịch & Hiệu quả marketing",en:"Campaign & Marketing Performance Management",o:"mk",
+  ai:[["Tổng hợp hiệu quả từng chiến dịch, từng kênh",3],["Đề xuất dời ngân sách sang kênh hiệu quả",2]],
+  x:"Chiến dịch lỗ quá ngưỡng",to:"mk",sys:"Bảng hiệu quả marketing",keep:"Mở, dừng chiến dịch"},
+ // 5 · Kinh doanh & Kênh phân phối
+ {id:"kd_chan",k:"kd",n:"Phát triển & Quản trị kênh phân phối",en:"Channel Development & Management",o:"kd",
+  ai:[["Theo dõi sell-in, sell-out, tồn tại từng đại lý",3],["Cảnh báo đại lý tồn cao, bán chậm",3]],
+  x:"Mở, chấm dứt đại lý; đổi chính sách kênh",to:"kd",sys:"Hệ thống quản lý kênh phân phối",keep:"Chọn đại lý, chính sách kênh"},
+ {id:"kd_kam",k:"kd",n:"Quản trị khách hàng trọng điểm",s:"Khách hàng trọng điểm",en:"Key Account Management",o:"kd",
+  ai:[["Tóm tắt lịch sử, công nợ, cơ hội của từng khách lớn",3],["Nhắc lịch chăm sóc, gợi ý bán thêm",2]],
+  x:"Mọi cam kết với khách trọng điểm",to:"kd",sys:"CRM",keep:"Quan hệ và cam kết với khách lớn"},
+ {id:"kd_pipe",k:"kd",n:"Quản trị cơ hội & Hoạt động bán hàng",s:"Cơ hội & Hoạt động bán hàng",en:"Sales Pipeline & Sales Execution",o:"kd",
+  ai:[["Chấm điểm cơ hội, nhắc việc cho người bán",3],["Trả lời câu hỏi thường gặp về hàng, giá, tồn",3]],
+  x:"Khách lớn, yêu cầu ngoài chính sách",to:"kd",sys:"CRM",keep:"Chốt cơ hội lớn"},
+ {id:"kd_price",k:"kd",n:"Quản trị giá & Chính sách thương mại",s:"Giá & Chính sách thương mại",en:"Pricing & Commercial Policy Management",o:"kd",
+  ai:[["Tính biên lãi cho từng phương án giá, khuyến mãi",1],["Đồng bộ bảng giá đã duyệt ra mọi kênh",3]],
+  x:"Giá dưới sàn, chiết khấu vượt khung",to:"kd",sys:"Bảng giá gốc trong ERP",keep:"Khung giá, trần chiết khấu"},
+ {id:"kd_quote",k:"kd",n:"Báo giá, Hợp đồng & Tiếp nhận đơn hàng",s:"Báo giá, Hợp đồng & Tiếp nhận đơn",en:"Quotation, Contracting & Order Capture",o:"kd",
+  ai:[["Báo giá theo bảng giá và điều kiện đã duyệt",3],["Kiểm tra điều kiện đơn trước khi nhận",3]],
+  x:"Chiết khấu ngoài khung, hợp đồng ngoài mẫu",to:"kd",sys:"CRM, chuyển sang hệ thống đơn hàng",keep:"Ký hợp đồng"},
+ {id:"kd_omni",k:"kd",n:"Vận hành bán hàng đa kênh",en:"Omnichannel Sales Operations",o:"kd",
+  ai:[["Quản lý gian hàng trên sàn: sản phẩm, giá, chương trình của sàn",3],["Trả lời khách trên mọi kênh từ nguồn thông tin đã duyệt",3]],
+  x:"Gian hàng bị phạt, tranh chấp với sàn",to:"kd",sys:"Hệ thống bán hàng đa kênh",keep:"Tham gia chương trình của sàn"},
+ // 6 · Đơn hàng, Kho vận & Giao nhận
+ {id:"kv_om",k:"kv",n:"Quản trị đơn hàng",en:"Order Management",o:"vh",
+  ai:[["Kiểm tra đơn, gộp đơn từ mọi kênh",3],["Trả lời khách về trạng thái đơn",3]],
+  x:"Đơn nghi gian lận, thiếu hàng sau khi nhận đơn",to:"vh",sys:"Hệ thống quản lý đơn hàng",keep:"Hủy, tách đơn đã cam kết"},
+ {id:"kv_po",k:"kv",n:"Thực hiện mua hàng & Theo dõi hàng về",en:"Purchasing Execution & Inbound Tracking",o:"mh",
+  ai:[["Phát đơn mua đã duyệt cho nhà cung cấp",3],["Theo dõi hàng về, cảnh báo trễ",3]],
+  x:"Nhà cung cấp giao trễ làm thiếu hàng bán",to:"mh",sys:"ERP",keep:"Đổi nhà cung cấp, sửa đơn mua"},
+ {id:"kv_rcv",k:"kv",n:"Tiếp nhận & Kiểm tra hàng nhập",en:"Goods Receiving & Incoming Inspection",o:"vh",
+  ai:[["Đối chiếu phiếu nhận với đơn mua",3],["Lập biên bản hàng thiếu, hàng lỗi",2]],
+  x:"Lô lỗi: nhận có điều kiện hay trả lô",to:"mh",sys:"Hệ thống kho",keep:"Nhận hay trả lô hàng"},
+ {id:"kv_wh",k:"kv",n:"Quản lý kho & Độ chính xác tồn kho",en:"Warehouse Operations & Inventory Accuracy",o:"vh",
+  ai:[["Đề xuất vị trí xếp hàng, lịch kiểm kê xoay vòng",2],["So tồn hệ thống với kiểm đếm, báo chênh lệch",3]],
+  x:"Chênh lệch kiểm kê vượt ngưỡng",to:"tc",sys:"Hệ thống kho",keep:"Điều chỉnh tồn, hủy hàng"},
+ {id:"kv_pick",k:"kv",n:"Soạn hàng, Đóng gói & Xuất hàng",en:"Picking, Packing & Dispatch",o:"vh",
+  ai:[["Xếp thứ tự soạn hàng theo hạn giao",3],["Tạo phiếu xuất và vận đơn",3]],
+  x:"Không kịp hạn bàn giao của sàn",to:"vh",sys:"Hệ thống kho",keep:"Ưu tiên đơn khi quá tải"},
+ {id:"kv_tms",k:"kv",n:"Vận tải & Xác nhận giao hàng",en:"Transportation & Proof of Delivery",o:"vh",
+  ai:[["Chọn hãng giao, gợi ý tuyến",2],["Theo dõi hành trình, cảnh báo nguy cơ giao trễ",3]],
+  x:"Mất hàng, hư hỏng, khách từ chối nhận",to:"vh",sys:"Cổng các hãng vận chuyển",keep:"Đền bù, hợp đồng vận chuyển"},
+ {id:"kv_rev",k:"kv",n:"Truy xuất hàng hóa & Logistics ngược",s:"Truy xuất & Logistics ngược",en:"Product Traceability & Reverse Logistics",o:"vh",
+  ai:[["Truy lô, hạn dùng của hàng đã bán",3],["Phân loại hàng trả về: bán lại, sửa, hủy",2]],
+  x:"Thu hồi lô hàng, hủy hàng trả về",to:"nh",sys:"Hệ thống kho",keep:"Thu hồi sản phẩm, tiêu hủy"},
+ // 7 · Dịch vụ khách hàng & Phát triển quan hệ
+ {id:"dv_sup",k:"dv",n:"Hỗ trợ & Tư vấn khách hàng",en:"Customer Support & Advisory",o:"dv",
+  ai:[["Trả lời khách 24/7 từ nguồn thông tin đã duyệt",3],["Tra cứu đơn, hướng dẫn sử dụng",3]],
+  x:"Câu hỏi nằm ngoài nguồn đã duyệt",to:"dv",sys:"Hộp thư hợp nhất, CRM",keep:"Câu trả lời mới được đưa vào nguồn đã duyệt"},
+ {id:"dv_case",k:"dv",n:"Quản trị yêu cầu dịch vụ & Khiếu nại",s:"Yêu cầu dịch vụ & Khiếu nại",en:"Service Request & Complaint Management",o:"dv",
+  ai:[["Phân loại yêu cầu, gán người, theo dõi thời hạn",3],["Soạn phản hồi khiếu nại theo chính sách",2]],
+  x:"Khiếu nại phức tạp, khách dọa đưa lên mạng xã hội",to:"dv",sys:"Hệ thống phiếu yêu cầu",keep:"Xin lỗi, đền bù ngoài chính sách"},
+ {id:"dv_ret",k:"dv",n:"Đổi trả, Bảo hành & Bồi hoàn",en:"Returns, Warranty & Claims Management",o:"dv",
+  ai:[["Kiểm tra điều kiện đổi trả, bảo hành",3],["Duyệt đổi trả trong hạn mức, báo kho nhận hàng",3]],
+  x:"Bồi hoàn vượt hạn mức tự duyệt",to:"dv",sys:"Hệ thống phiếu yêu cầu, chuyển sang hệ thống kho",keep:"Bồi hoàn vượt hạn mức"},
+ {id:"dv_keep",k:"dv",n:"Duy trì khách hàng & Tái mua",en:"Customer Retention & Repeat Purchase",o:"dv",
+  ai:[["Nhắc mua lại theo chu kỳ dùng hàng",3],["Phát hiện khách có dấu hiệu rời đi",3]],
+  x:"Khách giá trị cao sắp rời đi",to:"kd",sys:"CRM",keep:"Ưu đãi giữ chân khách lớn"},
+ {id:"dv_voc",k:"dv",n:"Phản hồi & Cải tiến trải nghiệm",en:"Customer Feedback & Experience Improvement",o:"dv",
+  ai:[["Gom lỗi lặp lại theo mã hàng, nhà cung cấp, khâu",3],["Đề xuất sửa quy trình hoặc đổi nhà cung cấp",1]],
+  x:"Lỗi lặp lại do sản phẩm hoặc nhà cung cấp",to:"nh",sys:"Hệ thống phiếu yêu cầu, sổ cải tiến",keep:"Chọn việc cải tiến"},
+ // 8 · Tài chính & Năng lực hỗ trợ
+ {id:"tc_acc",k:"ht",g:"tc",n:"Kế toán & Thuế",en:"Accounting & Tax",o:"tc",
+  ai:[["Đọc chứng từ, hạch toán theo luật đã cài",3],["Chuẩn bị tờ khai thuế",2]],
+  x:"Bút toán bất thường, tờ khai cần ký",to:"tc",sys:"Phần mềm kế toán, hóa đơn điện tử",keep:"Ký tờ khai, quyết toán"},
+ {id:"tc_ar",k:"ht",g:"tc",n:"Công nợ phải thu & Tín dụng khách hàng",s:"Phải thu & Tín dụng khách hàng",en:"Receivables & Customer Credit",o:"tc",
+  ai:[["Nhắc nợ theo tuổi nợ",3],["Đề xuất hạn mức tín dụng cho khách",2]],
+  x:"Cấp hoặc tăng hạn mức, nợ quá 60 ngày",to:"tc",sys:"Phần mềm kế toán",keep:"Cấp hạn mức tín dụng"},
+ {id:"tc_ap",k:"ht",g:"tc",n:"Công nợ phải trả & Thanh toán",en:"Payables & Payments",o:"tc",
+  ai:[["Đối chiếu đơn mua, phiếu nhận, hóa đơn",3],["Lập đề nghị thanh toán theo hạn",2]],
+  x:"Lệch đối chiếu, thanh toán ngoài lịch",to:"tc",sys:"Phần mềm kế toán, ngân hàng điện tử",keep:"Duyệt và ký lệnh chi"},
+ {id:"tc_cash",k:"ht",g:"tc",n:"Ngân quỹ & Dòng tiền",en:"Treasury & Cash Management",o:"tc",
+  ai:[["Dự báo dòng tiền 13 tuần",3],["Đối soát tiền về từ sàn, COD, ngân hàng",3]],
+  x:"Số dư dự báo dưới mức an toàn, tiền về lệch",to:"tc",sys:"Ngân hàng điện tử, phần mềm kế toán",keep:"Vay, dời khoản chi lớn"},
+ {id:"tc_pa",k:"ht",g:"tc",n:"Phân tích lợi nhuận",en:"Profitability Analysis",o:"tc",
+  ai:[["Tính lãi theo mã, kênh, khách sau mọi phí",3],["Cảnh báo mã, kênh bán dưới giá vốn",3]],
+  x:"Kênh hoặc khách lỗ kéo dài",to:"ceo",sys:"Kho dữ liệu báo cáo",keep:"Cách phân bổ chi phí chung"},
+ {id:"ns_plan",k:"ht",g:"ns",n:"Hoạch định nhân lực & Tuyển dụng",en:"Workforce Planning & Recruitment",o:"ns",
+  ai:[["Soạn mô tả công việc, lọc hồ sơ theo tiêu chí",2],["Đề xuất việc nên giao người hay giao AI",1]],
+  x:"Mọi quyết định tuyển dụng, cho nghỉ",to:"ns",sys:"Hồ sơ nhân sự",keep:"Tuyển, cho nghỉ"},
+ {id:"ns_pay",k:"ht",g:"ns",n:"Lương thưởng & Hiệu suất",en:"Compensation & Performance",o:"ns",
+  ai:[["Tính công, tính lương nháp từ dữ liệu chấm công",2],["Tổng hợp KPI từng người",3]],
+  x:"Lương, thưởng ngoài chính sách",to:"ceo",sys:"Phần mềm chấm công, tính lương",keep:"Đánh giá, lương thưởng"},
+ {id:"ns_skill",k:"ht",g:"ns",n:"Đào tạo & Năng lực làm việc cùng AI",s:"Đào tạo & Làm việc cùng AI",en:"Training & Human–AI Capability",o:"ns",
+  ai:[["Dựng bài học từ quy trình chuẩn và sự cố đã xử lý",2],["Hướng dẫn người mới theo từng bước",3]],
+  x:"Ban hành nội dung đào tạo chính thức",to:"ns",sys:"Kho tri thức",keep:"Duyệt nội dung đào tạo"},
+ {id:"pc_ct",k:"ht",g:"pc",n:"Hợp đồng",en:"Contracts",o:"pc",
+  ai:[["Rà dự thảo, đánh dấu điều khoản lệch mẫu",2],["Nhắc mốc gia hạn, hết hiệu lực",3]],
+  x:"Điều khoản lệch mẫu",to:"pc",sys:"Kho hợp đồng",keep:"Ký kết, cam kết pháp lý"},
+ {id:"pc_comp",k:"ht",g:"pc",n:"Tuân thủ & Hồ sơ hàng hóa",en:"Compliance & Product Records",o:"pc",
+  ai:[["Theo dõi hạn giấy phép, công bố sản phẩm",3],["Kiểm nhãn, mô tả sản phẩm theo quy định",2]],
+  x:"Hồ sơ hàng hóa thiếu hoặc sắp hết hạn",to:"pc",sys:"Sổ tuân thủ",keep:"Làm việc với cơ quan quản lý"},
+ {id:"pc_data",k:"ht",g:"pc",n:"Bảo vệ dữ liệu cá nhân",en:"Data Protection",o:"pc",
+  ai:[["Kiểm tra sự đồng ý trước khi dùng dữ liệu khách",3],["Ghi nhật ký truy cập dữ liệu khách",3]],
+  x:"Yêu cầu xuất, xóa dữ liệu; nghi lộ dữ liệu",to:"pc",sys:"CRM, nhật ký truy cập",keep:"Chia sẻ dữ liệu ra ngoài"},
+ {id:"hc_asset",k:"ht",g:"hc",n:"Tài sản & Cơ sở vật chất",en:"Assets & Facilities",o:"hc",
+  ai:[["Theo dõi tài sản, lịch bảo trì, bảo hiểm",3]],
+  x:"Mua hoặc thanh lý tài sản lớn",to:"ceo",sys:"Sổ tài sản",keep:"Mua, thanh lý tài sản"},
+ {id:"hc_svc",k:"ht",g:"hc",n:"Dịch vụ nội bộ & Mua sắm phục vụ hoạt động",s:"Dịch vụ nội bộ & Mua sắm",en:"Internal Services & Operational Procurement",o:"hc",
+  ai:[["Đặt mua vật tư văn phòng theo định mức",3],["So sánh báo giá dịch vụ",2]],
+  x:"Mua ngoài định mức",to:"hc",sys:"Phần mềm kế toán",keep:"Hợp đồng dịch vụ"}
+];
+const NV_BY={};
+NV.forEach(n=>{n.name=n.n; n.block=n.k; n.rec={tmhh:Math.max(...n.ai.map(t=>t[1]))}; NV_BY[n.id]=n;});
+const KH=id=>KHOI.find(k=>k.id===id);
+const nvOf=k=>NV.filter(n=>n.k===k);
+
+const PF=[
+ {n:"Dữ liệu chủ",en:"Master Data",text:"Mã hàng, khách hàng, nhà cung cấp, kho, kênh bán, bảng giá và điều kiện thương mại. Mỗi loại dữ liệu có một nơi quản lý chính thức."},
+ {n:"Hệ thống nghiệp vụ",en:"Business Applications",text:"ERP, CRM, quản lý đơn hàng, quản lý kho, kế toán và các kênh bán. Dùng nhiều hệ thống cũng được, miễn mỗi dữ liệu biết nguồn chuẩn của nó."},
+ {n:"Tri thức & Quy trình",en:"Knowledge & Process Repository",text:"Quy trình chuẩn, chính sách, hợp đồng mẫu, tài liệu sản phẩm và hướng dẫn xử lý. AI chỉ trả lời và làm việc từ nguồn đã duyệt ở đây."},
+ {n:"Điều phối tác vụ người–AI",en:"Human–AI Workflow Orchestration",text:"Giao việc, chuyển bước, kiểm tra điều kiện, xin phê duyệt và chuyển ngoại lệ tới đúng người có thẩm quyền."},
+ {n:"Quyền truy cập, Kiểm soát & Lưu vết",en:"Access Control, Controls & Audit Trail",text:"Ai được đọc, đề xuất, sửa, duyệt, thực hiện. Mọi hành động quan trọng của người và của AI đều được ghi lại để kiểm tra."}
+];
+const NGUON=[["Tồn kho thực tế","Hệ thống kho"],["Công nợ, sổ sách","Phần mềm kế toán"],["Quan hệ khách hàng","CRM"],["Đơn hàng","Hệ thống quản lý đơn hàng"],["Mã hàng, thông tin sản phẩm","Hệ thống quản lý sản phẩm"],["Bảng giá, điều kiện thương mại","Bảng giá gốc trong ERP"],["Nhà cung cấp","Danh mục nhà cung cấp"]];
+
+const LANE={cl:"Chiến lược & Điều hành",nh:"Ngành hàng & Nguồn cung",hd:"Hoạch định Cung–Cầu",mk:"Marketing & Tăng trưởng",kd:"Kinh doanh & Kênh",kv:"Đơn hàng, Kho vận",dv:"Dịch vụ khách hàng",tc:"Tài chính & Kế toán"};
+/* Bước: l làn · t việc · w ai làm · k "chk" là điểm kiểm tra/phê duyệt · x ngoại lệ
+   → to vai trò · end nhãn kết thúc · fb vòng phản hồi (đánh số từ 1). */
+const CHUOI=[
+ {id:"pta",s:"Kế hoạch → Hàng sẵn sàng",n:"Từ kế hoạch đến hàng sẵn sàng bán",en:"Plan-to-Availability",owner:"Trưởng hoạch định",
+  flow:"Dự báo → cân đối cung–cầu → kế hoạch mua → phân bổ → hàng sẵn sàng bán.",
+  lanes:["kd","hd","tc","nh","kv"],
+  steps:[{l:"kd",t:"Gửi số bán, sell-out, kế hoạch khuyến mãi",w:"AI L3",nv:"kd_chan"},
+   {l:"hd",t:"Dự báo nhu cầu theo mã, kênh, địa điểm",w:"AI L3",nv:"hd_fc"},
+   {l:"hd",t:"Cân đối cung–cầu với kinh doanh, tài chính",k:"chk",w:"Người quyết",nv:"hd_ibp",x:"Nhu cầu vượt nguồn hàng",to:"hd"},
+   {l:"hd",t:"Lập kế hoạch mua và bổ sung hàng",w:"AI L2 · người duyệt",nv:"hd_rep"},
+   {l:"tc",t:"Duyệt vốn cho tồn kho",k:"chk",w:"Người duyệt",nv:"tc_cash",x:"Vượt trần vốn tồn kho",to:"tc"},
+   {l:"nh",t:"Xác nhận nguồn và điều kiện mua",w:"AI L2 · người duyệt",nv:"nh_neg"},
+   {l:"kv",t:"Đặt mua, theo dõi hàng về, nhập kho",w:"AI L3 · người nhận hàng",nv:"kv_po"},
+   {l:"hd",t:"Phân bổ hàng cho kho và kênh",w:"AI L3",nv:"hd_alloc",x:"Thiếu hàng, phải chọn kênh ưu tiên",to:"kd",end:"Hàng sẵn sàng bán"}],
+  fb:{from:8,to:2,t:"Tồn thực tế, hàng chậm luân chuyển → dự báo kỳ sau"},
+  notes:["Bước 3 là nơi kinh doanh, ngành hàng, vận hành và tài chính chốt một kế hoạch chung, không mỗi bên một con số.","Theo dõi cả sell-in lẫn sell-out để không dự báo theo hàng đã đẩy vào kênh nhưng khách cuối chưa mua.","Vốn cho tồn kho do tài chính duyệt; hoạch định chỉ đề xuất."]},
+ {id:"stp",s:"Nguồn cung → Thanh toán",n:"Từ nguồn cung đến thanh toán",en:"Source-to-Pay",owner:"Trưởng mua hàng, phối hợp tài chính",
+  flow:"Chọn nhà cung cấp → hợp đồng → đơn mua → nhận hàng → đối chiếu → thanh toán.",
+  lanes:["nh","kv","tc"],
+  steps:[{l:"nh",t:"Nhận nhu cầu mua đã duyệt",w:"Từ kế hoạch mua",nv:"hd_rep"},
+   {l:"nh",t:"Tìm và so sánh báo giá nhà cung cấp",w:"AI L2",nv:"nh_src"},
+   {l:"nh",t:"Chốt nhà cung cấp, hợp đồng mua",k:"chk",w:"Người duyệt",nv:"nh_neg",x:"Nhà cung cấp mới, điều khoản ngoài mẫu",to:"mh"},
+   {l:"kv",t:"Phát đơn mua, theo dõi hàng về",w:"AI L3",nv:"kv_po"},
+   {l:"kv",t:"Nhận hàng, kiểm số lượng và chất lượng",w:"Người làm · AI đối chiếu",nv:"kv_rcv",x:"Hàng thiếu, hàng lỗi",to:"mh"},
+   {l:"tc",t:"Đối chiếu đơn mua, phiếu nhận, hóa đơn",k:"chk",w:"AI L3",nv:"tc_ap",x:"Lệch số lượng hoặc giá, trả về mua hàng xử lý",to:"mh"},
+   {l:"tc",t:"Duyệt và thực hiện thanh toán",k:"chk",w:"AI L2 · người duyệt",nv:"tc_ap",x:"Thanh toán ngoài lịch, ngoài hạn mức",to:"tc"},
+   {l:"tc",t:"Ghi sổ phải trả",w:"AI L3",nv:"tc_acc",end:"Đã thanh toán"}],
+  fb:{from:8,to:2,t:"Đúng hạn, đủ hàng, chất lượng → điểm nhà cung cấp cho lần chọn sau"},
+  notes:["Không trả tiền trước khi đơn mua, phiếu nhận và hóa đơn khớp nhau. Chênh lệch quay về mua hàng xử lý, không tự trả.","Người tạo đơn mua, người duyệt chi và người thực hiện chi tách riêng, kể cả khi AI làm một phần."]},
+ {id:"lto",s:"Cơ hội → Đơn hàng",n:"Từ cơ hội đến đơn hàng",en:"Lead-to-Order",owner:"Trưởng kinh doanh",
+  flow:"Thu hút → đánh giá cơ hội → tư vấn → báo giá → chốt đơn.",
+  lanes:["mk","kd"],
+  steps:[{l:"mk",t:"Chạy chiến dịch, chương trình tại kênh",w:"AI L3 trong ngân sách",nv:"mk_lead"},
+   {l:"mk",t:"Thu nhận khách tiềm năng",w:"AI L3",nv:"mk_lead"},
+   {l:"mk",t:"Chấm điểm, chuyển khách đủ điều kiện",w:"AI L3",nv:"mk_lead"},
+   {l:"kd",t:"Tư vấn, làm rõ nhu cầu",w:"AI L3 · khách lớn do người",nv:"kd_pipe",x:"Khách trọng điểm",to:"kd"},
+   {l:"kd",t:"Báo giá theo bảng giá đã duyệt",w:"AI L3",nv:"kd_quote"},
+   {l:"kd",t:"Kiểm chiết khấu và điều kiện",k:"chk",w:"AI kiểm · người duyệt ngoại lệ",nv:"kd_price",x:"Chiết khấu ngoài khung, giá dưới sàn",to:"kd"},
+   {l:"kd",t:"Đàm phán, ký hợp đồng với khách sỉ",w:"Người",nv:"kd_kam"},
+   {l:"kd",t:"Chốt đơn, chuyển sang Đơn hàng → Thu tiền",w:"AI L3",nv:"kd_quote",end:"Có đơn hàng"}],
+  fb:{from:8,to:1,t:"Lý do thắng, thua → chiến dịch và thông điệp"},
+  notes:["Khách bán lẻ, đơn nhỏ: AI dẫn trọn từ tư vấn tới báo giá. Khách trọng điểm, hợp đồng sỉ: người dẫn, AI chuẩn bị.","Chiết khấu trong khung AI tự áp; ngoài khung chuyển Trưởng kinh doanh, kèm số biên lãi của phương án."]},
+ {id:"otc",s:"Đơn hàng → Thu tiền",n:"Từ đơn hàng đến thu tiền",en:"Order-to-Cash",owner:"Người sở hữu quy trình Order-to-Cash được bổ nhiệm",
+  flow:"Kiểm tra đơn → kiểm tra tín dụng → giữ hàng → giao hàng → hóa đơn → thu tiền.",
+  lanes:["kd","kv","tc"],
+  steps:[{l:"kd",t:"Đơn hàng vào từ mọi kênh",w:"AI L3",nv:"kd_omni"},
+   {l:"kv",t:"Kiểm tra đơn: mã, giá, địa chỉ",w:"AI L3",nv:"kv_om",x:"Đơn nghi gian lận",to:"vh"},
+   {l:"tc",t:"Kiểm tra tín dụng khi bán chịu",k:"chk",w:"AI L3 trong hạn mức",nv:"tc_ar",x:"Vượt hạn mức, nợ quá hạn",to:"tc"},
+   {l:"kv",t:"Kiểm tồn và giữ hàng",k:"chk",w:"AI L3",nv:"kv_om",x:"Thiếu hàng sau khi nhận đơn",to:"vh"},
+   {l:"kv",t:"Soạn, đóng gói, xuất hàng",w:"Người làm · AI xếp thứ tự",nv:"kv_pick"},
+   {l:"kv",t:"Giao hàng, xác nhận đã giao",w:"AI L3 theo dõi",nv:"kv_tms",x:"Mất hàng, giao trễ, khách từ chối",to:"vh"},
+   {l:"tc",t:"Xuất hóa đơn, thu tiền",w:"AI L3",nv:"tc_acc"},
+   {l:"tc",t:"Đối soát, ghi công nợ và sổ kế toán",w:"AI L3",nv:"tc_cash",x:"Tiền về lệch",to:"tc",end:"Đã thu tiền"}],
+  fb:{from:8,ext:"kế hoạch cung–cầu",t:"Số bán và thu tiền"},
+  notes:["Kiểm tồn và kiểm tín dụng xong mới cam kết đơn với khách.","Tiền về tự khớp vào công nợ và sổ kế toán, không nhập tay lần hai.","Một người sở hữu cả chuỗi, dù việc đi qua kinh doanh, kho vận và kế toán."]},
+ {id:"ctr",s:"Yêu cầu → Giải quyết",n:"Từ yêu cầu đến giải quyết",en:"Case-to-Resolution",owner:"Trưởng dịch vụ khách hàng",
+  flow:"Tiếp nhận → xác minh → xử lý → đổi trả, bồi hoàn → đóng yêu cầu → cải tiến.",
+  lanes:["dv","kv","tc","nh"],
+  steps:[{l:"dv",t:"Tiếp nhận yêu cầu từ mọi kênh",w:"AI L3",nv:"dv_sup"},
+   {l:"dv",t:"Phân loại, xác minh với đơn hàng",w:"AI L3",nv:"dv_case"},
+   {l:"dv",t:"Xét điều kiện đổi trả, bảo hành",k:"chk",w:"AI L3 trong hạn mức",nv:"dv_ret",x:"Vượt hạn mức, khiếu nại phức tạp",to:"dv"},
+   {l:"kv",t:"Nhận và kiểm hàng trả về",w:"Người làm · AI phân loại",nv:"kv_rev"},
+   {l:"tc",t:"Hoàn tiền hoặc bồi hoàn",k:"chk",w:"AI L2 · người duyệt",nv:"tc_ap",x:"Bồi hoàn vượt hạn mức",to:"tc"},
+   {l:"dv",t:"Báo khách, đóng yêu cầu",w:"AI L3",nv:"dv_case"},
+   {l:"nh",t:"Gom lỗi lặp lại để cải tiến",w:"AI L3 gom · người chọn việc",nv:"dv_voc",end:"Đã giải quyết"}],
+  fb:{from:7,ext:"ngành hàng, marketing, nguồn cung",t:"Phản hồi khách hàng"},
+  notes:["Dịch vụ khách hàng giữ điều kiện và lời với khách; kho vận nhận, kiểm và xử lý hàng trả về.","Mỗi yêu cầu đã đóng thành dữ liệu cải tiến cho ngành hàng và nhà cung cấp."]}
+];
+let chain="pta", haiK="all", haiR=null;
+
+/* ---------- chữ trong SVG ---------- */
+function wrapT(s,max){const out=[];let cur="";String(s).split(" ").forEach(w=>{if(!cur)cur=w;else if((cur+" "+w).length<=max)cur+=" "+w;else{out.push(cur);cur=w;}});if(cur)out.push(cur);return out;}
+const cpl=(w,fs,k)=>Math.max(8,Math.floor(w/(fs*(k||.55))));
+function tx(lines,x,y,lh,a){return `<text x="${x}" y="${y}" ${a}>${lines.map((l,i)=>`<tspan x="${x}" dy="${i?lh:0}">${esc(l)}</tspan>`).join("")}</text>`;}
+const sideOf=el=>{const r=el.getBoundingClientRect();return r.left+r.width/2>innerWidth/2?"left":"right";};
+
+/* ---------- Trang 1 · Kiến trúc nghiệp vụ ---------- */
+function arch(){
+  const W=1280,X0=56,XW=1168,BW=344,G=68,CX=[X0,X0+BW+G,X0+2*(BW+G)],RED="#EC3013";
+  let s="",y=28; const ticks=[];
+  const tier=(t,yy,anchorEnd)=>`<text x="${anchorEnd?X0+XW:X0}" y="${yy}" ${anchorEnd?'text-anchor="end"':""} font-size="10.5" font-weight="700" letter-spacing="1.6" fill="var(--mute)">${esc(t)}</text>`;
+  const role=(o,x,yy,col)=>`<circle cx="${x+4}" cy="${yy-4}" r="4" fill="${RED}"/><text x="${x+14}" y="${yy}" font-size="11.5" font-weight="700" fill="${col||"var(--ink)"}">${esc(ROLE[o])}</text>`;
+  const item=(n,x,yy,w,h)=>`<g class="dg-node" tabindex="0" role="button" data-id="${n.id}" aria-label="${esc(n.n)}"><rect class="bx" x="${x}" y="${yy}" width="${w}" height="${h}" fill="var(--card)" stroke="var(--line)" stroke-width="1"/><text x="${x+11}" y="${yy+h/2+4.5}" font-size="12.5" font-weight="600" fill="var(--ink)">${esc(n.s||n.n)}${n.opt?`<tspan fill="var(--mute)" font-weight="500"> · nếu có</tspan>`:""}</text><text x="${x+w-14}" y="${yy+h/2+5}" font-size="14" fill="var(--mute)">›</text></g>`;
+  const arrow=(d,dash)=>`<path d="${d}" fill="none" stroke="var(--ink)" stroke-width="1.6" ${dash?'stroke-dasharray="5 4"':""} marker-end="url(#pa)"/>`;
+  const lab=(lines,x,yy,anchor,col)=>tx(lines,x,yy,12,`font-size="10.5" font-weight="600" text-anchor="${anchor||"middle"}" fill="${col||"var(--mute)"}"`);
+
+  // ===== Tầng 1
+  s+=tier("TẦNG 1 · ĐIỀU HÀNH & QUẢN TRỊ",y); y+=12;
+  const K1=KH("cl"), L1=nvOf("cl"), LW=360;
+  const n1=wrapT(K1.n,cpl(LW-32,18,.6)), g1=wrapT(K1.goal,cpl(LW-32,12.5,.52));
+  const IW=(XW-LW-16*3)/2, IH=34, IG=8, rows1=Math.ceil(L1.length/2);
+  const leftH=30+(n1.length-1)*22+18+22+(g1.length-1)*16+42, rightH=32+rows1*IH+(rows1-1)*IG, H1=Math.max(leftH,rightH);
+  s+=`<rect x="${X0}" y="${y}" width="${XW}" height="${H1}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/>`;
+  let cy=y+30;
+  s+=`<g class="dg-node" tabindex="0" role="button" data-khoi="cl" aria-label="${esc(K1.n)}"><rect class="bx" x="${X0}" y="${y}" width="${LW}" height="${H1}" fill="var(--ink)" stroke="var(--ink)"/>`+tx(n1,X0+16,cy,22,`font-size="18" font-weight="800" fill="var(--inv)"`);
+  cy+=(n1.length-1)*22+18;
+  s+=`<text x="${X0+16}" y="${cy}" font-size="9.5" font-weight="600" letter-spacing="1.1" fill="var(--inv)" opacity=".6">${esc(K1.en.toUpperCase())}</text>`;
+  cy+=22; s+=tx(g1,X0+16,cy,16,`font-size="12.5" fill="var(--inv)" opacity=".8"`);
+  s+=role(K1.o,X0+16,y+H1-16,"var(--inv)")+`</g>`;
+  L1.forEach((n,i)=>{const c=i%2,r=Math.floor(i/2); s+=item(n,X0+LW+16+c*(IW+16),y+16+r*(IH+IG),IW,IH);});
+  ticks.push(y+H1/2); y+=H1;
+
+  // ===== Tầng 2: sáu khối, hai hàng
+  y+=46; s+=tier("TẦNG 2 · CÁC KHỐI NGHIỆP VỤ CỐT LÕI",y)+tier("PHÍA CUNG — CÓ ĐÚNG HÀNG, ĐÚNG LÚC",y,true);
+  const R1=["nh","hd","kv"], R2=["mk","kd","dv"];
+  const dims=ids=>{const nl=Math.max(...ids.map(id=>wrapT(KH(id).n,cpl(BW-28,14.5,.6)).length)),gl=Math.max(...ids.map(id=>wrapT(KH(id).goal,cpl(BW-28,12,.52)).length)),it=Math.max(...ids.map(id=>nvOf(id).length));
+    return {hh:22+(nl-1)*18+30, gl, bh:20+(gl-1)*15+26+12+it*27+6};};
+  const block=(id,x,yy,d)=>{const K=KH(id),nl=wrapT(K.n,cpl(BW-28,14.5,.6)),gl=wrapT(K.goal,cpl(BW-28,12,.52));
+    let o=`<g class="dg-node" tabindex="0" role="button" data-khoi="${id}" aria-label="${esc(K.n)}"><rect class="bx" x="${x}" y="${yy}" width="${BW}" height="${d.hh}" fill="var(--ink)" stroke="var(--ink)"/>`+tx(nl,x+14,yy+22,18,`font-size="14.5" font-weight="800" fill="var(--inv)"`)+
+      `<text x="${x+14}" y="${yy+22+(nl.length-1)*18+17}" font-size="9.5" font-weight="600" letter-spacing="1.1" fill="var(--inv)" opacity=".6">${esc(K.en.toUpperCase())}</text></g>`;
+    o+=`<rect x="${x}" y="${yy+d.hh}" width="${BW}" height="${d.bh}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/>`;
+    const gy=yy+d.hh+20; o+=tx(gl,x+14,gy,15,`font-size="12" fill="var(--mute)"`);
+    const ry=gy+(d.gl-1)*15+26; o+=role(K.o,x+14,ry);
+    nvOf(id).forEach((n,i)=>o+=item(n,x+8,ry+12+i*27,BW-16,25));
+    return o;};
+  const r1y=y+12, d1=dims(R1); R1.forEach((id,i)=>s+=block(id,CX[i],r1y,d1));
+  const r1b=r1y+d1.hh+d1.bh, RG=78, r2y=r1b+RG, my=r1b+RG/2, d2=dims(R2);
+  R2.forEach((id,i)=>s+=block(id,CX[i],r2y,d2));
+  const r2b=r2y+d2.hh+d2.bh;
+  s+=tier("PHÍA CẦU — CÓ KHÁCH VÀ THU ĐƯỢC TIỀN",r2y-10);
+  // luồng liền: việc và hàng
+  const ay1=r1y+d1.hh+34, ay2=r2y+d2.hh+34;
+  [[0,["danh mục,","nguồn hàng"]],[1,["kế hoạch mua,","phân bổ"]]].forEach(([i,t])=>{s+=arrow(`M${CX[i]+BW+4} ${ay1} H${CX[i+1]-4}`)+lab(t,CX[i]+BW+G/2,ay1-20);});
+  s+=arrow(`M${CX[0]+BW+4} ${ay2} H${CX[1]-4}`)+lab(["khách","tiềm năng"],CX[0]+BW+G/2,ay2-20);
+  const sx=CX[1]+BW*.8, ex=CX[2]+BW*.2;
+  s+=arrow(`M${sx} ${r2y-2} V${my} H${ex} V${r1b+3}`)+lab(["đơn hàng đã xác nhận"],(sx+ex)/2,my-7,"middle","var(--ink)");
+  const dx=CX[2]+BW*.55, ux=CX[2]+BW*.85;
+  s+=arrow(`M${dx} ${r1b+2} V${r2y-3}`)+lab(["đã giao"],dx-6,my+16,"end","var(--ink)");
+  s+=arrow(`M${ux} ${r2y-2} V${r1b+3}`)+lab(["hàng trả về"],ux+6,my+16,"start","var(--ink)");
+  // nét đứt: dữ liệu và phản hồi
+  const kx=CX[1]+BW*.3;
+  s+=arrow(`M${kx} ${r2y-2} V${r1b+3}`,true)+lab(["số bán, sell-out","→ kế hoạch"],kx-6,my-2,"end");
+  const fbY=r2b+26;
+  s+=arrow(`M${CX[2]+BW*.5} ${r2b+2} V${fbY} H${CX[0]+BW*.5} V${r2b+3}`,true)+lab(["phản hồi khách hàng → marketing, ngành hàng, nguồn cung"],W/2,fbY-7);
+  ticks.push(r1y+d1.hh/2, r2y+d2.hh/2); y=fbY;
+
+  // ===== Tầng 3: năng lực hỗ trợ
+  y+=40; s+=tier("TẦNG 3 · NĂNG LỰC HỖ TRỢ",y); y+=12;
+  const K3=KH("ht"), GW=(XW-16*5)/4, maxIt=Math.max(...NHOM_HT.map(g=>NV.filter(n=>n.g===g.id).length)), bh3=74+maxIt*27+8;
+  s+=`<g class="dg-node" tabindex="0" role="button" data-khoi="ht" aria-label="${esc(K3.n)}"><rect class="bx" x="${X0}" y="${y}" width="${XW}" height="44" fill="var(--bg2)" stroke="var(--ink)" stroke-width="1.5"/>
+    <text x="${X0+16}" y="${y+28}" font-size="15.5" font-weight="800" fill="var(--ink)">${esc(K3.n)}<tspan dx="14" font-size="9.5" font-weight="600" letter-spacing="1.1" fill="var(--mute)">${esc(K3.en.toUpperCase())}</tspan></text>
+    <text x="${X0+XW-16}" y="${y+28}" text-anchor="end" font-size="12" fill="var(--mute)">${esc(K3.goal)}</text></g>`;
+  const by=y+44; s+=`<rect x="${X0}" y="${by}" width="${XW}" height="${bh3}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/>`;
+  NHOM_HT.forEach((g,i)=>{const x=X0+16+i*(GW+16);
+    s+=`<text x="${x}" y="${by+24}" font-size="12.5" font-weight="800" fill="var(--ink)">${esc(g.n)}</text><text x="${x}" y="${by+38}" font-size="9" font-weight="600" letter-spacing="1" fill="var(--mute)">${esc(g.en.toUpperCase())}</text>`+role(g.id,x,by+60);
+    NV.filter(n=>n.g===g.id).forEach((n,j)=>s+=item(n,x,by+70+j*27,GW,25));});
+  ticks.push(y+22); y=by+bh3;
+
+  // ===== Nền tảng
+  y+=40; s+=tier("NỀN TẢNG XUYÊN SUỐT",y); y+=12;
+  const TW=(XW-32-4*12)/5, tl=PF.map(p=>({n:wrapT(p.n,cpl(TW-24,12.5,.6)),e:wrapT(p.en,cpl(TW-24,10,.55))})),
+        TH=18+Math.max(...tl.map(t=>t.n.length))*16+Math.max(...tl.map(t=>t.e.length))*13+10, PH=64+TH+16;
+  s+=`<rect x="${X0}" y="${y}" width="${XW}" height="${PH}" fill="var(--card)" stroke="var(--ink)" stroke-width="3"/><rect x="${X0+1.5}" y="${y+1.5}" width="${XW-3}" height="${PH-3}" fill="url(#ph)" opacity=".6"/>
+    <text x="${X0+16}" y="${y+28}" font-size="17" font-weight="800" fill="var(--ink)">Dữ liệu, Hệ thống &amp; Điều phối AI</text>
+    <text x="${X0+16}" y="${y+48}" font-size="12.5" font-weight="600" fill="var(--ink)">Dữ liệu thống nhất — nguồn chuẩn theo từng loại dữ liệu</text>
+    <text x="${X0+XW-16}" y="${y+28}" text-anchor="end" font-size="9.5" font-weight="600" letter-spacing="1.1" fill="var(--mute)">DATA, SYSTEMS &amp; AI ORCHESTRATION</text>`;
+  PF.forEach((p,i)=>{const x=X0+16+i*(TW+12),yy=y+64;
+    s+=`<g class="dg-node" tabindex="0" role="button" data-pf="${i}" aria-label="${esc(p.n)}"><rect class="bx" x="${x}" y="${yy}" width="${TW}" height="${TH}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/>`+
+      tx(tl[i].n,x+12,yy+22,16,`font-size="12.5" font-weight="800" fill="var(--ink)"`)+tx(tl[i].e,x+12,yy+22+tl[i].n.length*16+2,13,`font-size="10" fill="var(--mute)"`)+`</g>`;});
+  const py=y+PH/2; y+=PH;
+
+  // trục dữ liệu hai bên: nền tảng nối tới mọi tầng
+  let bus=`<path d="M30 ${ticks[0]} V${py} M1250 ${ticks[0]} V${py}" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4" fill="none"/>`;
+  ticks.concat([py]).forEach(t=>{bus+=`<path d="M30 ${t} H${X0} M1250 ${t} H${X0+XW}" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/><circle cx="30" cy="${t}" r="3.5" fill="var(--ink)"/><circle cx="1250" cy="${t}" r="3.5" fill="var(--ink)"/>`;});
+  bus+=`<text transform="translate(19 ${(ticks[0]+py)/2}) rotate(-90)" text-anchor="middle" font-size="10" font-weight="600" letter-spacing="1.2" fill="var(--mute)">DỮ LIỆU &amp; ĐIỀU PHỐI AI NỐI MỌI KHỐI</text>`;
+  const H=y+24;
+  $("arch").innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Kiến trúc nghiệp vụ doanh nghiệp thương mại phân phối"><defs><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--ink)"/></marker><pattern id="ph" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="var(--line)" stroke-width="1.4"/></pattern></defs>${bus}${s}</svg>`;
+  $("chains").innerHTML=CHUOI.map(c=>`<tr class="row" tabindex="0" data-chain="${c.id}"><td><b>${esc(c.n)}</b><div class="note">${esc(c.en)}</div></td><td>${esc(c.flow)}</td><td>${esc(c.owner)}</td><td class="c"><span class="pill ink">Xem luồng →</span></td></tr>`).join("");
+}
+
+/* ---------- Trang 2 · Luồng vận hành (làn trách nhiệm) ---------- */
+function swim(c){
+  const n=c.steps.length, W=1280, LW=176, PL=36, PR=46, colW=(W-LW-PL-PR)/n, bw=colW-28, TOP=64;
+  const cT=cpl(bw-16,11.5,.56), cW=cpl(bw-26,10,.55), cX=cpl(bw+6,10.5,.54);
+  const S=c.steps.map((st,i)=>Object.assign({},st,{i,tl:wrapT(st.t,cT),wl:wrapT(st.w,cW),xl:st.x?wrapT("Ngoại lệ: "+st.x,cX).concat(wrapT("→ "+ROLE[st.to],cX)):[]}));
+  const bh=Math.max(...S.map(x=>x.tl.length))*14+Math.max(...S.map(x=>x.wl.length))*12+22;
+  const xh=Math.max(0,...S.map(x=>x.xl.length?x.xl.length*12.5+14:0)), LH=18+bh+xh+16;
+  const laneY=l=>TOP+c.lanes.indexOf(l)*LH;
+  S.forEach(st=>{st.x0=LW+PL+st.i*colW+14; st.y0=laneY(st.l)+18; st.cy=st.y0+bh/2;});
+  const H=TOP+c.lanes.length*LH+12;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Luồng ${esc(c.n)}"><defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--ink)"/></marker></defs>`;
+  s+=`<text x="14" y="${TOP-30}" font-size="10" font-weight="700" letter-spacing="1.4" fill="var(--mute)">LÀN TRÁCH NHIỆM</text>`;
+  c.lanes.forEach((l,i)=>{const yy=TOP+i*LH, ll=wrapT(LANE[l],cpl(LW-28,12.5,.6));
+    s+=`<rect x="0" y="${yy}" width="${W}" height="${LH}" fill="${i%2?"var(--bg)":"var(--card)"}"/><rect x="0" y="${yy}" width="${LW}" height="${LH}" fill="var(--bg2)"/><line x1="0" x2="${W}" y1="${yy}" y2="${yy}" stroke="var(--line)"/>`+
+      tx(ll,14,yy+LH/2-(ll.length-1)*8+4,16,`font-size="12.5" font-weight="800" fill="var(--ink)"`);});
+  s+=`<line x1="0" x2="${W}" y1="${H-12}" y2="${H-12}" stroke="var(--line)"/><line x1="${LW}" x2="${LW}" y1="${TOP}" y2="${H-12}" stroke="var(--ink)" stroke-width="1.5"/>`;
+  // vòng phản hồi, đi trên dải trên cùng
+  if(c.fb){const src=S[c.fb.from-1], xs=src.x0+bw*.72, yb=TOP-20;
+    if(c.fb.to){const dst=S[c.fb.to-1], xd=dst.x0+bw*.72;
+      s+=`<path d="M${xs} ${src.y0} V${yb} H${xd} V${dst.y0-2}" fill="none" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#fa)"/><text x="${(xs+xd)/2}" y="${yb-7}" text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--mute)">↺ ${esc(c.fb.t)}</text>`;}
+    else s+=`<path d="M${xs} ${src.y0} V${yb} H${W-8}" fill="none" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#fa)"/><text x="${W-10}" y="${yb-7}" text-anchor="end" font-size="10.5" font-weight="600" fill="var(--mute)">${esc(c.fb.t)} → ${esc(c.fb.ext)}</text>`;}
+  // mũi tên giữa các bước; đổi làn là điểm bàn giao
+  S.forEach((st,i)=>{ if(!i) return; const p=S[i-1];
+    if(p.l===st.l) s+=`<path d="M${p.x0+bw} ${p.cy} H${st.x0-1}" stroke="var(--ink)" stroke-width="1.4" fill="none" marker-end="url(#fa)"/>`;
+    else {const gx=p.x0+bw+14, mid=(p.cy+st.cy)/2;
+      s+=`<path d="M${p.x0+bw} ${p.cy} H${gx} V${st.cy} H${st.x0-1}" stroke="var(--ink)" stroke-width="1.4" fill="none" marker-end="url(#fa)"/><rect x="${gx-4.5}" y="${mid-4.5}" width="9" height="9" fill="var(--card)" stroke="var(--ink)" stroke-width="1.6"><title>Bàn giao giữa hai khối</title></rect>`;}});
+  // bắt đầu, kết thúc
+  const f=S[0], z=S[n-1], ex=z.x0+bw;
+  s+=`<circle cx="${f.x0-20}" cy="${f.cy}" r="7" fill="var(--ink)"/><path d="M${f.x0-13} ${f.cy} H${f.x0-1}" stroke="var(--ink)" stroke-width="1.4" marker-end="url(#fa)"/>`;
+  s+=`<path d="M${ex} ${z.cy} H${ex+12}" stroke="var(--ink)" stroke-width="1.4" marker-end="url(#fa)"/><circle cx="${ex+22}" cy="${z.cy}" r="9" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="${ex+22}" cy="${z.cy}" r="4.5" fill="var(--ink)"/>`+
+     tx(wrapT(z.end||"Kết thúc",10),W-6,z.cy+24,12,`text-anchor="end" font-size="10" font-weight="700" fill="var(--ink)"`);
+  // các bước
+  S.forEach(st=>{const nguoi=/người|Người/.test(st.w), wy=st.y0+bh-10-(st.wl.length-1)*12;
+    s+=`<g class="dg-node" tabindex="0" role="button" data-id="${st.nv}" aria-label="${esc(st.t)}"><rect class="bx" x="${st.x0}" y="${st.y0}" width="${bw}" height="${bh}" fill="var(--card)" stroke="var(--ink)" stroke-width="${st.k==="chk"?2.6:1.3}"/>`+
+      (st.k==="chk"?`<path d="M${st.x0} ${st.y0-7} L${st.x0+7} ${st.y0} L${st.x0} ${st.y0+7} L${st.x0-7} ${st.y0} Z" fill="var(--ink)"><title>Điểm kiểm tra hoặc phê duyệt</title></path>`:"")+
+      tx(st.tl,st.x0+9,st.y0+18,14,`font-size="11.5" font-weight="700" fill="var(--ink)"`)+
+      (nguoi?`<circle cx="${st.x0+12}" cy="${wy-3.5}" r="3.5" fill="#EC3013"/>`:"")+
+      tx(st.wl,st.x0+(nguoi?20:9),wy,12,`font-size="10" font-weight="600" fill="var(--mute)"`)+`</g>`;
+    if(st.xl.length){const ty=st.y0+bh;
+      s+=`<line x1="${st.x0+10}" x2="${st.x0+10}" y1="${ty}" y2="${ty+10}" stroke="var(--red)" stroke-width="1.6" stroke-dasharray="3 2"/>`+
+        tx(st.xl,st.x0,ty+22,12.5,`font-size="10.5" font-weight="600" fill="var(--redtx)"`);}});
+  return s+"</svg>";
+}
+function flows(){
+  const c=CHUOI.find(x=>x.id===chain);
+  $("seg-chain").innerHTML=CHUOI.map(x=>`<button data-v="${x.id}" aria-pressed="${x.id===chain}">${esc(x.s)}</button>`).join("");
+  $("flow-head").innerHTML=`<span class="lbl">${esc(c.en)}</span><h2>${esc(c.n)}</h2><p>${esc(c.flow)}</p><p class="note"><i class="hdot"></i>Người chịu trách nhiệm xuyên suốt: <b style="color:var(--ink)">${esc(c.owner)}</b></p>`;
+  $("flow").innerHTML=swim(c);
+  $("flow-notes").innerHTML=c.notes.map(t=>`<li>${esc(t)}</li>`).join("");
+}
+
+/* ---------- Trang 3 · Người + AI ---------- */
+function exmap(){
+  const W=1280, RX=796, RW=246, RH=30, RG=6, R0=40, roles=ROLE_ORDER, cnt=r=>NV.filter(n=>n.to===r).length;
+  const rEnd=R0+roles.length*(RH+RG)-RG, mid=(R0+rEnd)/2, H=rEnd+70;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cơ chế phê duyệt và xử lý ngoại lệ"><defs><marker id="ea" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--ink)"/></marker></defs>`;
+  // trái: tác vụ AI theo ba mức
+  const LX=40, LWd=300, lv=[["L1","Hỗ trợ","AI tra cứu, tổng hợp, soạn; người làm"],["L2","Đề xuất → người duyệt","AI chuẩn bị trọn, người duyệt trước khi ra ngoài"],["L3","Thực hiện trong giới hạn","AI tự làm đúng luật, chặn việc vượt ngưỡng"]];
+  const LH2=56+lv.length*58, LY=mid-LH2/2;
+  s+=`<rect x="${LX}" y="${LY}" width="${LWd}" height="${LH2}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/><text x="${LX+16}" y="${LY+28}" font-size="14.5" font-weight="800" fill="var(--ink)">Tác vụ AI trong từng nghiệp vụ</text>`;
+  lv.forEach(([l,t,d],i)=>{const yy=LY+46+i*58;
+    s+=`<rect x="${LX+16}" y="${yy}" width="34" height="34" fill="var(--ink)"/><text x="${LX+33}" y="${yy+22}" text-anchor="middle" font-size="13" font-weight="800" fill="var(--inv)">${l}</text><text x="${LX+60}" y="${yy+14}" font-size="12.5" font-weight="700" fill="var(--ink)">${esc(t)}</text><text x="${LX+60}" y="${yy+30}" font-size="11" fill="var(--mute)">${esc(d)}</text>`;});
+  // giữa: phê duyệt và xử lý ngoại lệ
+  const HX=430, HW=320, fields=["Lý do chuyển cho người","Người có thẩm quyền","Thời hạn xử lý","Dữ liệu và phương án đề xuất","Kết quả quyết định và lưu vết"], HH=70+fields.length*24+14, HY=mid-HH/2;
+  s+=`<path d="M${LX+LWd+2} ${mid} H${HX-3}" stroke="var(--ink)" stroke-width="1.6" marker-end="url(#ea)"/>`+tx(["vượt ngưỡng, vượt luật,","bất thường"],(LX+LWd+HX)/2,mid-24,12,`text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--mute)"`);
+  s+=`<rect x="${HX}" y="${HY}" width="${HW}" height="52" fill="var(--ink)"/><text x="${HX+16}" y="${HY+24}" font-size="15" font-weight="800" fill="var(--inv)">Phê duyệt &amp; Xử lý ngoại lệ</text><text x="${HX+16}" y="${HY+41}" font-size="9.5" font-weight="600" letter-spacing="1.1" fill="var(--inv)" opacity=".6">APPROVALS &amp; EXCEPTION MANAGEMENT</text>
+    <rect x="${HX}" y="${HY+52}" width="${HW}" height="${HH-52}" fill="var(--card)" stroke="var(--ink)" stroke-width="1.5"/><text x="${HX+16}" y="${HY+72}" font-size="10" font-weight="700" letter-spacing="1.3" fill="var(--mute)">MỖI NGOẠI LỆ PHẢI CÓ</text>`;
+  fields.forEach((f,i)=>s+=`<text x="${HX+16}" y="${HY+94+i*24}" font-size="12.5" fill="var(--ink)"><tspan font-weight="800">${i+1}</tspan><tspan dx="10">${esc(f)}</tspan></text>`);
+  // phải: vai trò thẩm quyền
+  const BX=RX-16;
+  s+=`<path d="M${HX+HW+2} ${mid} H${BX-3}" stroke="var(--ink)" stroke-width="1.6" marker-end="url(#ea)"/>`+tx(["đến đúng người","có thẩm quyền"],(HX+HW+BX)/2,mid-24,12,`text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--mute)"`);
+  s+=`<path d="M${BX} ${R0+RH/2} V${rEnd-RH/2}" stroke="var(--ink)" stroke-width="1.6"/>`;
+  roles.forEach((r,i)=>{const yy=R0+i*(RH+RG), on=haiR===r;
+    s+=`<path d="M${BX} ${yy+RH/2} H${RX}" stroke="var(--ink)" stroke-width="1.2"/><g class="dg-node" tabindex="0" role="button" data-role="${r}" aria-pressed="${on}" aria-label="Lọc theo ${esc(ROLE[r])}"><rect class="bx" x="${RX}" y="${yy}" width="${RW}" height="${RH}" fill="${on?"var(--bg2)":"var(--card)"}" stroke="${on?"var(--ink)":"var(--line)"}" stroke-width="${on?2.2:1}"/><circle cx="${RX+13}" cy="${yy+RH/2}" r="4" fill="#EC3013"/><text x="${RX+24}" y="${yy+RH/2+4.5}" font-size="12" font-weight="700" fill="var(--ink)">${esc(ROLE[r])}</text><text x="${RX+RW-10}" y="${yy+RH/2+4}" text-anchor="end" font-size="10.5" fill="var(--mute)">${cnt(r)} nghiệp vụ</text></g>`;});
+  // ban điều hành: chỉ việc vượt thẩm quyền
+  const CXb=RX+RW+38, CWb=W-CXb-24, CY=mid-42, on=haiR==="ceo";
+  s+=`<path d="M${RX+RW+2} ${mid} H${CXb-3}" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ea)"/>`+
+    `<g class="dg-node" tabindex="0" role="button" data-role="ceo" aria-pressed="${on}" aria-label="Lọc theo Ban điều hành"><rect class="bx" x="${CXb}" y="${CY}" width="${CWb}" height="84" fill="#EC3013" stroke="${on?"var(--ink)":"#EC3013"}" stroke-width="${on?3:1}"/>`+
+    tx(["Ban điều hành"],CXb+14,CY+28,16,`font-size="13.5" font-weight="800" fill="#fff"`)+tx(["chỉ nhận việc vượt","thẩm quyền"],CXb+14,CY+50,13,`font-size="10.5" font-weight="600" fill="#fff"`)+`</g>`+
+    tx([`${cnt("ceo")} nghiệp vụ`,"chuyển thẳng"],CXb,CY+104,12,`font-size="10.5" fill="var(--mute)"`);
+  // vòng lưu vết: quyết định thành luật mới
+  const yb=rEnd+40;
+  s+=`<path d="M${RX+RW/2} ${rEnd+2} V${yb} H${LX+LWd/2} V${LY+LH2+3}" fill="none" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#ea)"/><text x="${(RX+RW/2+LX+LWd/2)/2}" y="${yb-7}" text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--mute)">quyết định được lưu vết và thành luật mới cho AI</text>`;
+  return s+"</svg>";
+}
+function haiTable(){
+  $("seg-khoi").innerHTML=`<button data-v="all" aria-pressed="${haiK==="all"}">Tất cả</button>`+KHOI.map(K=>`<button data-v="${K.id}" aria-pressed="${haiK===K.id}">${esc(K.s)}</button>`).join("");
+  $("hai-filter").innerHTML=haiR?`<span class="fchip">Đang lọc theo vai: <b>${esc(ROLE[haiR])}</b> <button class="btn ghost sm" data-role-clear>Bỏ lọc</button></span>`:"";
+  const rows=[];
+  KHOI.forEach(K=>{if(haiK!=="all"&&K.id!==haiK) return;
+    const list=nvOf(K.id).filter(n=>!haiR||n.o===haiR||n.to===haiR); if(!list.length) return;
+    rows.push(`<tr class="grp"><td colspan="5">${esc(K.n)}</td></tr>`);
+    list.forEach(n=>rows.push(`<tr class="row" tabindex="0" data-id="${n.id}"><td><b>${esc(n.n)}</b>${n.opt?' <span class="pill no">nếu có</span>':""}<div class="note">${esc(n.en)}</div></td><td><i class="hdot"></i>${esc(ROLE[n.o])}</td>
+      <td><div class="tasks">${n.ai.map(([t,l])=>`<div><span class="lvp${l>=3?" on":""}">L${l}</span><span>${esc(t)}</span></div>`).join("")}</div></td>
+      <td>${esc(n.x)} <b class="to">→ ${esc(ROLE[n.to])}</b></td><td class="note">${esc(n.sys)}</td></tr>`));});
+  $("hai-tbl").innerHTML=rows.join("")||`<tr><td colspan="5" class="empty">Không có nghiệp vụ nào khớp bộ lọc.</td></tr>`;
+  $("exmap").innerHTML=exmap();
+}
+function hai(){
+  const T=NV.flatMap(n=>n.ai.map(t=>t[1])), c=l=>T.filter(x=>x===l).length;
+  $("hai-stat").innerHTML=`<div><div class="v">${c(3)}/${T.length}</div><p class="t">tác vụ AI tự thực hiện trong giới hạn (L3)</p></div>
+    <div><div class="v">${c(2)}</div><p class="t">tác vụ AI chuẩn bị trọn, người duyệt trước khi ra ngoài (L2)</p></div>
+    <div><div class="v">${c(1)+c(0)}</div><p class="t">tác vụ AI chỉ hỗ trợ, người làm (L0–L1)</p></div>
+    <div><div class="v red">${NV.length}</div><p class="t">nghiệp vụ, mỗi nghiệp vụ một người chịu trách nhiệm</p></div>`;
+  haiTable();
+}
+
+/* ---------- ngăn kéo chi tiết ---------- */
+function blockHTML(k){
+  const K=KH(k), open=D?D.ex.filter(e=>(NV_BY[e.act]||{}).k===k):[];
+  const nvl=k==="ht"?NHOM_HT.map(g=>`<div class="g">${esc(g.n)} · <i class="hdot"></i>${esc(ROLE[g.id])}</div>`+NV.filter(n=>n.g===g.id).map(n=>`<button data-id="${n.id}"><span>${esc(n.n)}</span><span>›</span></button>`).join("")).join("")
+    :nvOf(k).map(n=>`<button data-id="${n.id}"><span>${esc(n.n)}${n.opt?' <span class="pill no">nếu có</span>':""}</span><span>›</span></button>`).join("");
+  return `<span class="lbl">${esc(K.tier)} · Thương mại phân phối</span><h2 id="d-title">${esc(K.n)}</h2><p class="en">${esc(K.en)}</p>
+   <div class="latx"><b>Mục tiêu.</b> ${esc(K.goal)}</div>
+   ${open.length?`<div class="spec"><b>${open.length} ngoại lệ đang mở:</b> ${esc(open.map(e=>e.tx).join(" / "))}</div>`:""}
+   <h3>Các nghiệp vụ</h3><div class="nvl">${nvl}</div>
+   <div class="io"><div><h3>Đầu vào</h3><ul>${K.in.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div><div><h3>Đầu ra</h3><ul>${K.out.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div></div>
+   <h3>Người phụ trách</h3><p><i class="hdot"></i><b>${esc(ROLE[K.o])}</b>${k==="ht"?" và ba vai còn lại của khối hỗ trợ":""}. ${esc(K.nguoi)}</p>
+   <h3>AI làm gì</h3><p>${esc(K.ai)}</p>
+   <h3>Chỉ tiêu chính</h3><div class="kpil">${K.kpi.map(t=>`<span>${esc(t)}</span>`).join("")}</div>
+   <h3>Ngoại lệ chuyển cho người</h3><ul>${K.exc.map(([t,r])=>`<li>${esc(t)} <b>→ ${esc(ROLE[r])}</b></li>`).join("")}</ul>`;
+}
+function nvHTML(n){
+  const K=KH(n.k), open=D?D.ex.filter(e=>e.act===n.id):[], g=n.g?NHOM_HT.find(x=>x.id===n.g):null;
+  return `<span class="lbl">${esc(K.n)}${g?" · "+esc(g.n):""}</span><h2 id="d-title">${esc(n.n)}</h2><p class="en">${esc(n.en)}${n.opt?" · chỉ khi danh mục có":""}</p>
+   ${open.length?`<div class="spec"><b>${open.length} ngoại lệ đang chờ:</b> ${esc(open.map(e=>e.tx).join(" / "))}</div>`:""}
+   <h3>Người chịu trách nhiệm</h3><p style="font-weight:700"><i class="hdot"></i>${esc(ROLE[n.o])}</p>
+   <h3>AI làm gì, ở mức nào</h3><div class="ladder">${n.ai.map(([t,l])=>`<div class="rung${l>=3?" start":""}"><span class="rn">L${l}</span><span><span class="rk">${LEVEL_NAMES[l]}</span>${esc(t)}</span></div>`).join("")}</div>
+   <p class="note" style="margin-top:8px">Mức gắn cho từng tác vụ, không gắn cho cả khối. Một tác vụ lên mức khi số liệu ổn định 4–8 tuần.</p>
+   <h3>Chuyển cho người khi</h3><div class="spec">${esc(n.x)} <b>→ ${esc(ROLE[n.to])}</b></div>
+   <h3>Người luôn giữ quyền</h3><p style="font-weight:700">${esc(n.keep)}</p>
+   <h3>Hệ thống ghi nhận kết quả</h3><div class="latx">${esc(n.sys)}</div>
+   <p style="margin-top:18px"><button class="btn ghost sm" data-khoi="${n.k}">Xem cả khối ${esc(K.n)} →</button></p>`;
+}
+function platHTML(i){const p=PF[i];
+  return `<span class="lbl">Nền tảng xuyên suốt</span><h2 id="d-title">${esc(p.n)}</h2><p class="en">${esc(p.en)}</p><div class="latx">${esc(p.text)}</div>
+   <h3>Nguồn chuẩn theo từng loại dữ liệu</h3><div class="tbl" style="border:0"><table style="min-width:0"><thead><tr><th>Dữ liệu</th><th>Nơi quản lý chính thức</th></tr></thead><tbody>${NGUON.map(([a,b])=>`<tr><td>${esc(a)}</td><td>${esc(b)}</td></tr>`).join("")}</tbody></table></div>
+   <h3>Nguyên tắc</h3><p>Doanh nghiệp được dùng nhiều hệ thống, nhưng mỗi dữ liệu quan trọng có một nơi quản lý chính thức. AI lấy dữ liệu từ nguồn được chỉ định và ghi kết quả trở lại đúng hệ thống nghiệp vụ. AI không phải một phòng ban có quyền chỉ huy: nó làm việc trong từng khối, qua một lớp điều phối chung.</p>`;}
+
+
 /* =================== DASHBOARD SIMULATION =================== */
 function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 const CFG={
  tmhh:{unit:"Đơn hàng",perDay:140,aov:420000,conv:.18,burn:62e6,
    channels:[["Shopee",.34,.07],["TikTok Shop",.27,.11],["Website",.22,.31],["Facebook/Zalo",.11,.24],["Đại lý",.06,.18]],
    funnel:["Lượt tiếp cận","Khách hỏi","Được tư vấn","Chốt đơn","Mua lại 30 ngày"],
-   agents:[["AI Tư vấn","sales"],["AI Đơn hàng","orders"],["AI Nội dung","brand"],["AI Chăm sóc","care"],["AI Kế toán","cash"],["AI Kho & Mua hàng","buy"]],
-   ex:[["orders","Đơn #{n} lệch tiền COD {m}","Lệch tiền"],["sales","Khách xin giảm 15% cho đơn {v}, vượt ngưỡng 10%","Chiết khấu"],["brand","Bình luận tiêu cực về giao hàng chậm trên fanpage","Uy tín"],["buy","Nhà cung cấp báo tăng giá 8% cho mã bán chạy","Giá vốn"],["cash","Đề nghị tăng ngân sách quảng cáo ngày lên {v}","Chi vượt mức"],["orders","Yêu cầu hoàn tiền {v}, vượt ngưỡng tự duyệt","Hoàn tiền"],["logi","Đơn vị vận chuyển báo tăng cước 9% từ tuần sau","Giao hàng"],["care","Khách VIP 3 tháng chưa mua lại","Giữ khách"]],
+   agents:[["AI Kinh doanh","kd_quote"],["AI Đơn hàng","kv_om"],["AI Nội dung","mk_content"],["AI Dịch vụ KH","dv_sup"],["AI Kế toán","tc_cash"],["AI Hoạch định","hd_rep"]],
+   ex:[["tc_cash","Tiền COD đơn #{n} về lệch {m}","Lệch tiền"],["kd_quote","Khách xin giảm 15% cho đơn {v}, vượt khung 10%","Chiết khấu"],["mk_content","Bình luận tiêu cực về giao hàng chậm trên fanpage","Uy tín"],["nh_neg","Nhà cung cấp báo tăng giá 8% cho mã bán chạy","Giá vốn"],["mk_lead","Đề nghị tăng ngân sách quảng cáo ngày lên {v}","Chi vượt mức"],["dv_ret","Yêu cầu bồi hoàn {v}, vượt hạn mức tự duyệt","Bồi hoàn"],["kv_tms","Hãng vận chuyển báo tăng cước 9% từ tuần sau","Giao hàng"],["dv_keep","Khách VIP 3 tháng chưa mua lại","Giữ khách"],["hd_rep","Đơn mua bổ sung {v} vượt hạn mức","Mua hàng"],["tc_ar","Đại lý #{n} xin nâng hạn mức công nợ lên {v}","Tín dụng"],["kv_om","Đơn #{n} nghi gian lận, địa chỉ lạ","Đơn hàng"],["tc_pa","Kênh TikTok Shop lỗ sau phí hai tháng liền","Lợi nhuận"]],
    status:[["Mới",.06],["Đã xác nhận",.14],["Đang giao",.31],["Hoàn tất",.44],["Hoàn / hủy",.05]],
    cost:[["Giá vốn",58],["Phí sàn & vận chuyển",14],["Marketing",11],["Nhân sự",9],["Vận hành",5],["Công cụ AI",3]],
    top:[["Bình giữ nhiệt 500ml",.24,1],["Bộ hộp cơm thủy tinh",.19,1],["Máy xay cầm tay",.16,-1],["Khăn tắm cotton",.12,1],["Đèn ngủ cảm biến",.09,-1]],
@@ -1253,6 +1965,12 @@ const LOGT={sales:["Trả lời {k} khách hỏi giá","Gửi báo giá cho khá
  cost:["Chốt giá thành lô #{n}","So sánh định mức và thực tế {k} mã","Cảnh báo mã bán dưới giá vốn"],
  process:["Kiểm tra điểm kiểm soát quy trình #{n}","Hướng dẫn người mới bước 4","Ghi nhận sai lệch quy trình #{n}"],
  logi:["Tạo {k} vận đơn","Bám tiến độ {k} đơn đang giao","Mở khiếu nại với nhà xe cho đơn #{n}"],
+ kd_quote:["Gửi báo giá cho khách #{n}","Trả lời {k} khách hỏi giá","Chấm điểm {k} khách tiềm năng mới"],
+ kv_om:["Kiểm tra và xác nhận đơn #{n}","Gộp {k} đơn từ sàn và website","Báo khách đơn #{n} đang giao"],
+ mk_content:["Đăng bài theo lịch đã duyệt","Trả lời {k} bình luận","Soạn 3 phương án tiêu đề cho video mới"],
+ dv_sup:["Trả lời {k} câu hỏi về đơn hàng","Hướng dẫn sử dụng cho khách #{n}","Nhắc mua lại cho {k} khách đến chu kỳ"],
+ tc_cash:["Khớp {k} giao dịch tiền về từ sàn","Đối soát tiền COD đợt #{n}","Cập nhật dự báo dòng tiền tuần"],
+ hd_rep:["Tính lượng cần mua cho {k} mã chạm điểm đặt lại","Đề xuất đơn mua bổ sung #{n}","Cảnh báo {k} mã có nguy cơ thiếu hàng"],
  chan:["Tính hoa hồng tuần cho {k} cộng tác viên","Cập nhật giá trên sàn theo bảng giá gốc","Gửi báo cáo tháng cho đại lý #{n}"]};
 
 
@@ -1328,7 +2046,7 @@ function tickData(silent){
   D.orders+=n; D.rev+=amt; D.today.push(D.rev);
   D.cash+=amt*0.12-c.burn/7/NSTEP;
   D.aiTasks+=Math.round(3+r()*9+n*4);
-  D.agents.forEach(a=>{a.count+=Math.round(r()*4+(a.id==="orders"||a.id==="sales"?n*2:0));});
+  D.agents.forEach(a=>{a.count+=Math.round(r()*4+(["orders","sales","kv_om","kd_quote"].includes(a.id)?n*2:0));});
   if(D.sx) D.sx.lots.forEach((l,i)=>{ if(l.xong<l.kh && r()<(i<2?.55:.3)) l.xong=Math.min(l.kh, l.xong+Math.round(l.kh*(.004+r()*.012))); });
   D.step++;
   if(!silent && D.step>=NSTEP){D.yday=D.today.slice();while(D.yday.length<NSTEP)D.yday.push(D.yday[D.yday.length-1]);D.monthBase+=D.rev;D.monthDay++;D.today=[];D.rev=0;D.orders=0;D.step=0;D.aiTasks=0;D.exLog=[];D.done=0;}
@@ -1337,7 +2055,7 @@ function addEx(silent){
   const c=D.c,r=D.r; if(D.ex.length>=7) return;
   const t=c.ex[Math.floor(r()*c.ex.length)];
   const tx=t[1].replace("{n}",String(exSeq++)).replace("{v}",fmtM(c.aov*(1+r()*4))).replace("{m}",fmtN(Math.round(15+r()*80)*1000)+"đ").replace("{h}",String(9+Math.floor(r()*9)));
-  D.ex.unshift({id:"e"+exSeq,act:t[0],tx,tag:t[2],at:T0+D.step*STEP,fresh:!silent});
+  D.ex.unshift({id:"e"+exSeq,act:t[0],tx,tag:t[2],to:isPP()?(NV_BY[t[0]]||{}).to:null,at:T0+D.step*STEP,fresh:!silent});
   D.exLog.push(t[0]);
 }
 function addLog(silent){
@@ -1407,9 +2125,9 @@ const WIDGETS={
    if(D.today.length>1){const pts=D.today.map((v,i)=>X(i)+","+Y(v)).join(" "),li=D.today.length-1;
      s+=`<polygon class="ar-today" points="${X(0)},${Y(0)} ${pts} ${X(li)},${Y(0)}"/><polyline class="ln-today" points="${pts}"/><line x1="${X(li)}" x2="${X(li)}" y1="${pt}" y2="${pt+ih}" stroke="var(--red)" stroke-dasharray="2 3"/><circle class="dot-now" cx="${X(li)}" cy="${Y(D.rev)}" r="5"/><text x="${Math.min(X(li)+8,W-120)}" y="${Math.max(Y(D.rev)-10,pt+12)}" font-size="13" font-weight="800" fill="var(--ink)">${fmtM(D.rev)}</text>`;}
    b.innerHTML=`<div class="chart">${s}</svg></div><div class="legend" style="margin-top:6px"><span><i class="sw ai" style="height:3px"></i>Hôm nay</span><span><i class="sw" style="height:0;border:0;border-top:2px dashed var(--mute)"></i>Hôm qua</span></div>`;}},
- ex:{t:"Hàng đợi vượt ngưỡng",sizes:["m","l"],strong:true,lbl:"Chờ CEO",r:b=>{
-   b.innerHTML=`<div class="exhead"><span class="note">Chỉ những việc AI không được tự quyết.</span><span class="pill red">${D.ex.length} chờ</span></div><div class="exq">${D.ex.length?D.ex.map(e=>{const a=byId(e.act);
-     return `<div class="ex${e.fresh?" new":""}" data-ex="${e.id}"><div class="meta"><span class="pill red">${esc(e.tag)}</span><span>${esc(nameOf(a))}</span><span class="num">${hhmm(e.at)}</span></div><div class="tx">${esc(e.tx)}</div><div class="acts"><button class="btn sm" data-act="ok">Duyệt</button><button class="btn ghost sm" data-act="no">Từ chối</button><button class="btn ghost sm" data-act="hu">Giao người</button></div></div>`;}).join(""):`<div class="empty">Không có ngoại lệ. Mọi việc đang chạy trong ngưỡng.</div>`}</div>`;
+ ex:{t:"Hàng đợi vượt ngưỡng",sizes:["m","l"],strong:true,lbl:()=>isPP()?"Theo thẩm quyền":"Chờ CEO",r:b=>{
+   b.innerHTML=`<div class="exhead"><span class="note">${isPP()?"Mỗi việc đến đúng người có thẩm quyền.":"Chỉ những việc AI không được tự quyết."}</span><span class="pill red">${D.ex.length} chờ</span></div><div class="exq">${D.ex.length?D.ex.map(e=>{const a=byId(e.act);
+     return `<div class="ex${e.fresh?" new":""}" data-ex="${e.id}"><div class="meta"><span class="pill red">${esc(e.tag)}</span><span>${esc(nameOf(a))}</span>${e.to?`<b style="font-size:11.5px;color:var(--ink)">→ ${esc(ROLE[e.to])}</b>`:""}<span class="num">${hhmm(e.at)}</span></div><div class="tx">${esc(e.tx)}</div><div class="acts"><button class="btn sm" data-act="ok">Duyệt</button><button class="btn ghost sm" data-act="no">Từ chối</button><button class="btn ghost sm" data-act="hu">Giao người</button></div></div>`;}).join(""):`<div class="empty">Không có ngoại lệ. Mọi việc đang chạy trong ngưỡng.</div>`}</div>`;
    D.ex.forEach(e=>e.fresh=false);}},
  target:{t:"Tiến độ mục tiêu tháng",sizes:["s","m","l"],lbl:"Doanh thu",r:b=>{
    const mtd=D.monthBase+D.rev, p=Math.min(mtd/D.target,1.2), tp=(D.monthDay-1+(D.step/NSTEP))/30, proj=mtd/Math.max(tp,.01);
@@ -1458,14 +2176,17 @@ const WIDGETS={
    s+=`<line x1="${pl+4*bw}" x2="${pl+4*bw}" y1="${pt}" y2="${pt+ih}" stroke="var(--ink)" stroke-dasharray="2 3"/><text x="${pl+4*bw+5}" y="${pt+10}" font-size="10.5" fill="var(--mute)">Dự báo</text><polyline class="hbl" points="${f.map((w,i)=>(pl+i*bw+bw/2)+","+Y(w.bal)).join(" ")}"/>`;
    const low=f.map((w,i)=>[w.bal,i]).filter(([v])=>v<D.thr);
    f.forEach((w,i)=>{const lo=w.bal<D.thr;s+=`<circle cx="${pl+i*bw+bw/2}" cy="${Y(w.bal)}" r="${lo?5:3}" fill="${lo?"var(--red)":"var(--card)"}" stroke="var(--red)" stroke-width="2"/>`;});
-   b.innerHTML=`<div class="chart">${s}</svg></div><div class="legend" style="margin-top:6px"><span><i class="sw ai"></i>Thu</span><span><i class="sw" style="background:var(--line)"></i>Chi</span><span><i class="sw" style="height:0;border:0;border-top:2px solid var(--red)"></i>Số dư</span></div><p class="note" style="margin-top:6px">${low.length?`<b style="color:var(--redtx)">Cảnh báo sớm:</b> số dư dự báo xuống dưới mức an toàn ở tuần ${low.map(l=>"T"+(l[1]+1)).join(", ")}. AI Kế toán đề xuất dời hai khoản chi không gấp và nhắc ba khoản công nợ; chờ CEO duyệt.`:"Số dư dự báo luôn trên mức an toàn trong 13 tuần."}</p><p style="margin:10px 0 0"><button class="btn ghost sm" data-tien>Xem chi tiết các dòng tiền →</button></p>`;}},
+   b.innerHTML=`<div class="chart">${s}</svg></div><div class="legend" style="margin-top:6px"><span><i class="sw ai"></i>Thu</span><span><i class="sw" style="background:var(--line)"></i>Chi</span><span><i class="sw" style="height:0;border:0;border-top:2px solid var(--red)"></i>Số dư</span></div><p class="note" style="margin-top:6px">${low.length?`<b style="color:var(--redtx)">Cảnh báo sớm:</b> số dư dự báo xuống dưới mức an toàn ở tuần ${low.map(l=>"T"+(l[1]+1)).join(", ")}. AI Kế toán đề xuất dời hai khoản chi không gấp và nhắc ba khoản công nợ; chờ ${isPP()?"Tài chính":"CEO"} duyệt.`:"Số dư dự báo luôn trên mức an toàn trong 13 tuần."}</p><p style="margin:10px 0 0"><button class="btn ghost sm" data-tien>Xem chi tiết các dòng tiền →</button></p>`;}},
  ar:{t:"Công nợ phải thu theo tuổi nợ",sizes:["m","l"],lbl:"Tài chính",r:b=>{
    const mx=Math.max(...D.ar.map(x=>x[1]));
    b.innerHTML=`<div class="rows">${D.ar.map(([n,v],i)=>`<div class="rw"><span class="nm">${n}</span><div class="bb${i>=2?" red":i===1?" warn":""}"><i style="width:${v/mx*100}%"></i></div><span class="vv">${fmtM(v)}</span></div>`).join("")}</div><p class="note" style="margin-top:8px">AI Kế toán tự nhắc nợ dưới 60 ngày. Nợ quá 60 ngày lên bảng ngoại lệ.</p>`;}},
  heat:{t:"Sức khỏe cấu trúc",sizes:["l","xl","f"],lbl:"Theo ngoại lệ đang mở",r:b=>{
+   if(isPP()){const lb2={ok:"Ổn",wa:"Theo dõi",bad:"Cần xử lý"},st2=k=>{const n=D.ex.filter(e=>(NV_BY[e.act]||{}).k===k).length;return n>=2?"bad":(n===1||k==="hd")?"wa":"ok";};
+     const col2=(h,ids)=>`<div><h4>${h}</h4>${ids.map(k=>{const s2=st2(k);return `<button class="hc ${s2}" data-khoi="${k}"><span>${esc(KH(k).n)}</span><span style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--mute)">${lb2[s2]}<i class="sd"></i></span></button>`;}).join("")}</div>`;
+     b.innerHTML=`<div class="heat">${col2("Điều hành và phía cung",["cl","nh","hd","kv"])}${col2("Phía cầu và hỗ trợ",["mk","kd","dv","ht"])}</div>`; return;}
    const BW={tmhh:["buy","wh"],dv:["cap","crew"],sx:["shop","qc"]}[model];
    const st=a=>{const n=D.ex.filter(e=>e.act===a.id).length;return n>=2?"bad":(n===1||BW.includes(a.id))?"wa":"ok";}, lb={ok:"Ổn",wa:"Theo dõi",bad:"Cần xử lý"};
-   const col=bk=>`<div><h4>${bk==="front"?"Khối Thị trường":"Khối Điều hành"}</h4>${A.filter(a=>a.block===bk).map(a=>{const s=st(a);return `<button class="hc ${s}" data-id="${a.id}"><span>${esc(nameOf(a))}</span><span style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--mute)">${lb[s]}<i class="sd"></i></span></button>`;}).join("")}</div>`;
+   const col=bk=>`<div><h4>${bk==="front"?"Khối Thị trường":"Khối Điều hành"}</h4>${A.filter(a=>a.block===bk&&show(a)).map(a=>{const s=st(a);return `<button class="hc ${s}" data-id="${a.id}"><span>${esc(nameOf(a))}</span><span style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--mute)">${lb[s]}<i class="sd"></i></span></button>`;}).join("")}</div>`;
    b.innerHTML=`<div class="heat">${col("front")}${col("core")}</div>`;}},
  log:{t:"Team AI vừa làm gì",sizes:["m","l"],lbl:"Nhật ký trực tiếp",r:b=>{
    b.innerHTML=`<div class="log">${D.log.map(l=>`<div class="${l.fresh?"new":""}"><span class="t">${hhmm(l.at)}</span><span><b>${esc(l.ag)}</b> ${esc(l.tx)}</span></div>`).join("")}</div>`; D.log.forEach(l=>l.fresh=false);}},
@@ -1547,7 +2268,7 @@ function buildGrid(){
   const vis=L.order.filter(id=>!L.hidden.includes(id) && hop(id));
   g.innerHTML=vis.length?vis.map((id,i)=>{const w=WIDGETS[id],sz=L.size[id]||w.sizes[0];
     return `<section class="w w-${sz}${w.strong?" strong":""}" data-w="${id}" ${editing?'draggable="true"':""} aria-label="${esc(wTitle(id))}">
-      <div class="wh">${editing?'<span class="grip" aria-hidden="true">⋮⋮</span>':""}<h3>${esc(wTitle(id))}</h3><span class="lbl">${esc(w.lbl||"")}</span>
+      <div class="wh">${editing?'<span class="grip" aria-hidden="true">⋮⋮</span>':""}<h3>${esc(wTitle(id))}</h3><span class="lbl">${esc((typeof w.lbl==="function"?w.lbl():w.lbl)||"")}</span>
         <span class="wctl"><button class="ic" data-mv="-1" aria-label="Chuyển ${esc(wTitle(id))} lên trước" ${i===0?"disabled":""}>↑</button><button class="ic" data-mv="1" aria-label="Chuyển ${esc(wTitle(id))} ra sau" ${i===vis.length-1?"disabled":""}>↓</button>${w.sizes.length>1?`<button class="ic" data-sz aria-label="Đổi cỡ, hiện tại ${SIZE_NAMES[sz]}">${SIZE_NAMES[sz]}</button>`:""}<button class="ic x" data-hide aria-label="Ẩn ${esc(wTitle(id))}">Ẩn</button></span></div>
       <div class="wb" id="wb-${id}"></div></section>`;}).join(""):`<div class="w w-f"><div class="wb empty">Bảng đang trống. Bấm Tùy biến bảng để bật các ô.</div></div>`;
   renderDash();
@@ -1603,16 +2324,25 @@ $("dgrid").addEventListener("dragend",()=>{if(dragId){dragId=null;buildGrid();}}
 /* ---------- render all ---------- */
 function renderAll(){
   $("model-note").textContent=NOTE[model];
-  diagram();sequence();allocation();activities();
-  initDash(); buildGrid();
+  if(isPP()){arch();flows();hai();} else {diagram();sequence();allocation();activities();}
+  setTabs(); initDash(); buildGrid();
   if(!$("drawer").hidden && $("clist")) refreshCustom();
 }
 
 /* ---------- events ---------- */
-document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>{
-  document.querySelectorAll(".tabs button").forEach(x=>{const on=x===b;x.setAttribute("aria-selected",on);$(x.getAttribute("aria-controls")).hidden=!on;});
-  if(b.id==="t-dash") renderDash();
-}));
+/* Thương mại có bốn tab, Dịch vụ và Sản xuất có ba. Đổi loại hình thì nhảy sang
+   tab tương ứng, Dashboard giữ nguyên. */
+function selectTab(id){
+  document.querySelectorAll(".tabs button").forEach(x=>{const on=x.id===id;x.setAttribute("aria-selected",on);$(x.getAttribute("aria-controls")).hidden=!on;});
+  if(id==="t-dash") renderDash();
+}
+function setTabs(){
+  const set=isPP()?["t-arch","t-flow","t-hai","t-dash"]:["t-map","t-act","t-dash"];
+  document.querySelectorAll(".tabs button").forEach(b=>b.hidden=!set.includes(b.id));
+  const cur=document.querySelector('.tabs button[aria-selected="true"]');
+  if(!cur||cur.hidden) selectTab(({"t-map":"t-arch","t-act":"t-hai","t-arch":"t-map","t-flow":"t-map","t-hai":"t-act"})[cur&&cur.id]||set[0]);
+}
+document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>selectTab(b.id)));
 function seg(id,cb){$(id).addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
   $(id).querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));cb(b.dataset.v);});}
 seg("seg-model",v=>{model=v;renderAll();});
@@ -1632,6 +2362,8 @@ seg("seg-model",v=>{model=v;renderAll();});
   });
 })();
 seg("seg-level",v=>{level=+v;activities();});
+seg("seg-chain",v=>{chain=v;flows();});
+seg("seg-khoi",v=>{haiK=v;haiTable();});
 $("pause").addEventListener("click",()=>{paused=!paused;$("pause").textContent=paused?"Tiếp tục":"Tạm dừng";$("live").classList.toggle("paused",paused);$("live-t").textContent=paused?"Đã tạm dừng":"Trực tiếp · dữ liệu mô phỏng";startTimer();});
 function setEditing(on){editing=on;$("edit").setAttribute("aria-pressed",on);$("edit").textContent=on?"Đang sắp xếp":"Sắp xếp ô";$("editbar").hidden=!on;buildGrid();}
 $("edit").addEventListener("click",()=>setEditing(!editing));
@@ -1646,7 +2378,7 @@ document.addEventListener("click",e=>{
   // exceptions
   const ab=t.closest(".exq button[data-act]");
   if(ab){const id=ab.closest(".ex").dataset.ex,ex=D.ex.find(x=>x.id===id);if(!ex)return;D.ex=D.ex.filter(x=>x.id!==id);D.done++;
-    const msg={ok:"Đã duyệt. AI tiếp tục xử lý và ghi quyết định vào nhật ký.",no:"Đã từ chối. AI báo lại cho bên liên quan.",hu:"Đã giao cho người phụ trách "+nameOf(byId(ex.act)).toLowerCase()+"."}[ab.dataset.act];
+    const msg={ok:"Đã duyệt. AI tiếp tục xử lý và ghi quyết định vào nhật ký.",no:"Đã từ chối. AI báo lại cho bên liên quan.",hu:ex.to?"Đã chuyển cho "+ROLE[ex.to]+".":"Đã giao cho người phụ trách "+nameOf(byId(ex.act)).toLowerCase()+"."}[ab.dataset.act];
     pushHist();renderDash();toast(msg);return;}
   if(t.closest(".exq")) return;
   // widget controls (edit mode)
@@ -1660,10 +2392,17 @@ document.addEventListener("click",e=>{
   const pr=t.closest("[data-preset]");
   if(pr){Object.assign(L,PRESETS[pr.dataset.preset]());if(pr.dataset.preset==="mobile"){Object.assign(L.size,{rev:"f",cash:"f"});}saveL();buildGrid();$("d-body").innerHTML=customHTML();toast("Đã áp dụng bố cục: "+pr.textContent+".");return;}
   if(t.closest("[data-reset]")){L=JSON.parse(JSON.stringify(DEFAULT));saveL();buildGrid();$("d-body").innerHTML=customHTML();toast("Đã khôi phục bố cục mặc định.");return;}
+  // thương mại phân phối: khối, nền tảng, chuỗi, vai trò
+  const dk=t.closest("[data-khoi]"); if(dk){openDrawer(blockHTML(dk.dataset.khoi), dk.closest("#drawer")?($("drawer").classList.contains("left")?"left":"right"):sideOf(dk)); return;}
+  const di=t.closest("#drawer [data-id]"); if(di&&NV_BY[di.dataset.id]){openDrawer(nvHTML(NV_BY[di.dataset.id]), $("drawer").classList.contains("left")?"left":"right"); return;}
   if(t.closest("#drawer")) return;
+  const pf=t.closest("[data-pf]"); if(pf){openDrawer(platHTML(+pf.dataset.pf), sideOf(pf)); return;}
+  const ch=t.closest("[data-chain]"); if(ch){chain=ch.dataset.chain; flows(); selectTab("t-flow"); window.scrollTo({top:0}); return;}
+  if(t.closest("[data-role-clear]")){haiR=null; haiTable(); return;}
+  const rl=t.closest("[data-role]"); if(rl){haiR=haiR===rl.dataset.role?null:rl.dataset.role; haiTable(); return;}
   // open details
   if(t.closest("[data-tien]")){ openDrawer(tienHTML()); return; }
-  const n=t.closest("[data-id]"); if(n){const a=byId(n.dataset.id); openDrawer(activityHTML(a), benMo(a, t)); return;}
+  const n=t.closest("[data-id]"); if(n){const a=byId(n.dataset.id); if(a&&a.k){openDrawer(nvHTML(a), sideOf(n)); return;} openDrawer(activityHTML(a), benMo(a, t)); return;}
   const l=t.closest("[data-layer]"); if(l) openDrawer(layerHTML(+l.dataset.layer));
 });
 document.addEventListener("change",e=>{
@@ -1674,7 +2413,7 @@ document.addEventListener("change",e=>{
 });
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"&&!$("drawer").hidden){closeDrawer();return;}
-  if((e.key==="Enter"||e.key===" ")&&e.target.matches('[role="button"][data-id],[role="button"][data-layer],tr.row')){e.preventDefault();e.target.click();}
+  if((e.key==="Enter"||e.key===" ")&&e.target.matches('[role="button"][data-id],[role="button"][data-layer],[role="button"][data-khoi],[role="button"][data-pf],[role="button"][data-role],tr.row')){e.preventDefault();e.target.click();}
 });
 $("d-close").addEventListener("click",closeDrawer);
 $("scrim").addEventListener("click",closeDrawer);

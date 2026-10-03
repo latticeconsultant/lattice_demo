@@ -1946,8 +1946,8 @@ function exmap(){
   const rEnd=R0+roles.length*(RH+RG)-RG, mid=(R0+rEnd)/2, H=rEnd+64, MUTE="var(--cm)";
   let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cơ chế phê duyệt và xử lý ngoại lệ"><defs><marker id="ea" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--cw)"/></marker></defs>`;
   const LX=36, LWd=300, LH2=50+3*58, LY=mid-LH2/2, HX=430, HW=300, HH=58+5*34+12, HY=mid-HH/2, BX=RX-18;
-  s+=wire([[LX+LWd,mid],[HX,mid]],{arrow:"ea",n:2})+wlab("vượt ngưỡng · bất thường",(LX+LWd+HX)/2,mid-8);
-  s+=wire([[HX+HW,mid],[BX,mid]],{red:true,arrow:"ea",n:2})+wlab("đúng người có thẩm quyền",(HX+HW+BX)/2,mid-8);
+  s+=wire([[LX+LWd,mid],[HX,mid]],{arrow:"ea",n:2});
+  s+=wire([[HX+HW,mid],[BX,mid]],{red:true,arrow:"ea",n:2});
   s+=wire([[RX+RW/2,rEnd],[RX+RW/2,rEnd+38],[LX+LWd/2,rEnd+38],[LX+LWd/2,LY+LH2]],{dash:true,arrow:"ea",n:2})+wlab("quyết định được lưu vết, thành luật mới cho AI",(RX+RW/2+LX+LWd/2)/2,rEnd+32);
   s+=`<rect x="${LX}" y="${LY}" width="${LWd}" height="${LH2}" fill="var(--c1)" stroke="var(--cl)"/>`+icS("bot",LX+16,LY+16,18)+`<text x="${LX+44}" y="${LY+30}" font-size="13.5" font-weight="800" fill="var(--ct)">Tác vụ AI trong nghiệp vụ</text>`;
   [1,2,3].forEach((l,i)=>{const yy=LY+48+i*58;
@@ -1963,7 +1963,26 @@ function exmap(){
   s+=wire([[RX+RW,mid],[CXb,mid]],{red:true,dash:true,arrow:"ea",n:1});
   s+=`<g class="sn" tabindex="0" role="button" data-role="ceo" aria-pressed="${on}" aria-label="Lọc theo Ban điều hành"><rect class="sb" x="${CXb}" y="${CY}" width="${CWb}" height="80" fill="#EC3013" stroke="${on?"var(--ct)":"#EC3013"}" stroke-width="2"/>`+icS("crown",CXb+14,CY+14,18,"#fff")+
     `<text x="${CXb+40}" y="${CY+28}" font-size="13.5" font-weight="800" fill="#fff">Ban điều hành</text><text x="${CXb+14}" y="${CY+52}" font-size="10.5" font-weight="600" fill="#fff">Chỉ việc vượt thẩm quyền</text><text x="${CXb+14}" y="${CY+67}" font-size="10.5" fill="#fff" opacity=".85">${cnt("ceo")} nghiệp vụ chuyển thẳng</text></g>`;
+  // nút giải thích trên hai mũi tên: chữ không vừa khe hẹp nên bấm mới mở
+  const ibtn=(k,x,ico,bg,fg,lb)=>`<g class="sn ib" tabindex="0" role="button" data-exinfo="${k}" aria-label="${lb}"><title>${lb}</title><rect class="sb" x="${x-16}" y="${mid-16}" width="32" height="32" fill="${bg}" stroke="${bg==="var(--c1)"?"var(--ct)":bg}" stroke-width="1.8"/>`+icS(ico,x-9,mid-9,18,fg)+`</g>`;
+  s+=ibtn("in",(LX+LWd+HX)/2,"triangle-alert","var(--c1)","var(--ct)","Khi nào AI chuyển việc cho người");
+  s+=ibtn("out",(HX+HW+BX)/2,"user","#EC3013","#fff","Ngoại lệ đến đúng người có thẩm quyền");
   return s+"</svg>";
+}
+function exInfoHTML(k){
+  if(k==="in") return `<div class="dhd"><span class="dic">${ic("triangle-alert",26)}</span><div><span class="lbl">Phê duyệt &amp; xử lý ngoại lệ</span><h2 id="d-title">Khi nào AI chuyển việc cho người</h2><p class="en">AI dừng lại, không tự quyết</p></div></div>
+   <div class="latx">AI làm trong luật và ngưỡng đã duyệt. Gặp một trong bốn trường hợp dưới đây, việc dừng lại và chuyển sang hàng đợi ngoại lệ, kèm lý do, dữ liệu và phương án đề xuất.</div>
+   <h3>Bốn trường hợp</h3><ul>
+    <li><b>Vượt ngưỡng</b>: chiết khấu ngoài khung, đơn mua vượt hạn mức, bồi hoàn vượt mức tự duyệt.</li>
+    <li><b>Ngoài luật</b>: tình huống chính sách chưa viết tới, điều khoản lệch hợp đồng mẫu.</li>
+    <li><b>Bất thường</b>: tiền về lệch, chênh lệch kiểm kê, đơn nghi gian lận, dự báo lệch xa thực tế.</li>
+    <li><b>Việc thuộc quyền người</b>: ký hợp đồng, chọn nhà cung cấp mới, quyết định về con người.</li></ul>
+   <h3>Theo mức AI</h3><p><b>L1</b> người làm nên không phát sinh ngoại lệ. <b>L2</b> mọi đầu ra chờ người duyệt. <b>L3</b> AI tự làm, chỉ chuyển những việc vượt ngưỡng.</p>`;
+  const rows=ROLE_ORDER.concat(["ceo"]).map(r=>{const l=NV.filter(n=>n.to===r);return l.length?`<tr><td><i class="hdot"></i>${esc(ROLE[r])}</td><td class="c num">${l.length}</td><td>${esc(l[0].x)}</td></tr>`:"";}).join("");
+  return `<div class="dhd"><span class="dic" style="background:#EC3013;color:#fff">${ic("user",26)}</span><div><span class="lbl">Phê duyệt &amp; xử lý ngoại lệ</span><h2 id="d-title">Đến đúng người có thẩm quyền</h2><p class="en">Không dồn mọi việc lên CEO</p></div></div>
+   <div class="latx">Mỗi nghiệp vụ ghi sẵn ngoại lệ chuyển cho vai nào. Hệ thống điều phối gửi thẳng tới vai đó, đặt thời hạn xử lý và lưu lại quyết định. Ban điều hành chỉ nhận việc vượt thẩm quyền của các khối hoặc ảnh hưởng trọng yếu.</div>
+   <h3>Vai nhận ngoại lệ</h3><div class="tbl" style="border:0"><table style="min-width:0"><thead><tr><th>Vai</th><th class="c">Nghiệp vụ</th><th>Ví dụ</th></tr></thead><tbody>${rows}</tbody></table></div>
+   <p class="note" style="margin-top:10px">Doanh nghiệp nhỏ có thể để một người giữ nhiều vai; ngoại lệ vẫn đi theo vai.</p>`;
 }
 function haiTable(){
   $("seg-khoi").innerHTML=`<button data-v="all" aria-pressed="${haiK==="all"}">Tất cả</button>`+KHOI.map(K=>`<button data-v="${K.id}" aria-pressed="${haiK===K.id}">${esc(K.s)}</button>`).join("");
@@ -2512,6 +2531,7 @@ document.addEventListener("click",e=>{
   const ch=t.closest("[data-chain]"); if(ch){chain=ch.dataset.chain; flows(); if($("p-flow").hidden){selectTab("t-flow"); window.scrollTo({top:0});} return;}
   const cvb=t.closest("[data-cvm]"); if(cvb){setCv(cvb.dataset.cvm); return;}
   const sp=t.closest("[data-step]"); if(sp){openDrawer(stepHTML(+sp.dataset.step), sideOf(sp)); return;}
+  const xi=t.closest("[data-exinfo]"); if(xi){openDrawer(exInfoHTML(xi.dataset.exinfo), sideOf(xi)); return;}
   const lvb=t.closest("[data-lv]"); if(lvb){openDrawer(levelHTML(+lvb.dataset.lv), sideOf(lvb)); return;}
   if(t.closest("[data-role-clear]")){haiR=null; haiTable(); return;}
   const rl=t.closest("[data-role]"); if(rl){haiR=haiR===rl.dataset.role?null:rl.dataset.role; haiTable(); return;}
@@ -2528,7 +2548,7 @@ document.addEventListener("change",e=>{
 });
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"&&!$("drawer").hidden){closeDrawer();return;}
-  if((e.key==="Enter"||e.key===" ")&&e.target.matches('[role="button"][data-id],[role="button"][data-layer],[role="button"][data-khoi],[role="button"][data-pf],[role="button"][data-role],[role="button"][data-step],[role="button"][data-lv],tr.row')){e.preventDefault();e.target.click();}
+  if((e.key==="Enter"||e.key===" ")&&e.target.matches('[role="button"][data-id],[role="button"][data-layer],[role="button"][data-khoi],[role="button"][data-pf],[role="button"][data-role],[role="button"][data-step],[role="button"][data-lv],[role="button"][data-exinfo],tr.row')){e.preventDefault();e.target.click();}
 });
 $("d-close").addEventListener("click",closeDrawer);
 $("scrim").addEventListener("click",closeDrawer);

@@ -440,6 +440,8 @@ body.dev-phone .toast{max-width:360px}
 .wl{fill:var(--cm);font-size:11px;font-weight:700}
 .cvl{position:relative;z-index:1;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--cm);margin:24px 0 10px}
 .cv>.cvl:nth-child(2){margin-top:0}
+/* hàng đầu: chừa chỗ cho đường rẽ nhánh từ khối Điều hành, không để đường dính sát mép khối */
+#cvl-cung{margin-bottom:34px}
 .cvl em{font-style:normal;letter-spacing:.04em;text-transform:none;font-weight:500}
 .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:64px;position:relative;z-index:1}
 .g3+.cvl{margin-top:60px}
@@ -1927,7 +1929,7 @@ const s0=()=>`<defs><marker id="wa" viewBox="0 0 10 10" refX="9" refY="5" marker
    phản hồi đi ngược lên thiết kế dịch vụ. */
 function wiresDV(R,C){
   const cl=R("cl"),tk=R("tk"),mk=R("mk"),kd=R("kd"),nl=R("nl"),th=R("th"),tn=R("tn"),ht=R("ht"),pf=R("pf"),ex=R("ex");
-  let s=""; const lb=$("cvl-cung").getBoundingClientRect(), busY=lb.bottom-C.top+4;
+  let s=""; const lb=$("cvl-cung").getBoundingClientRect(), busY=Math.round((lb.bottom-C.top+tk.t)/2);
   [tk,mk,kd].forEach(c=>s+=wire([[cl.cx,cl.b],[cl.cx,busY],[c.cx,busY],[c.cx,c.t]],{arrow:"wa",n:1}));
   s+=wlab("mục tiêu · ngân sách · chính sách",cl.cx+8,busY-8,"start");
   s+=wire([[tk.r,tk.hy],[mk.l,mk.hy]],{arrow:"wa"})+wire([[mk.r,mk.hy],[kd.l,kd.hy]],{arrow:"wa"});
@@ -1945,7 +1947,7 @@ function wiresDV(R,C){
    gồm phiên bản kỹ thuật và phản hồi không phù hợp về kỹ thuật. */
 function wiresSX(R,C){
   const cl=R("cl"),kd=R("kd"),kt=R("kt"),hd=R("hd"),mh=R("mh"),tb=R("tb"),sx=R("sx"),qa=R("qa"),kv=R("kv"),ht=R("ht"),pf=R("pf"),ex=R("ex");
-  let s=""; const lb=$("cvl-cung").getBoundingClientRect(), busY=lb.bottom-C.top+4;
+  let s=""; const lb=$("cvl-cung").getBoundingClientRect(), busY=Math.round((lb.bottom-C.top+kd.t)/2);
   [kd,kt,hd,mh].forEach(c=>s+=wire([[cl.cx,cl.b],[cl.cx,busY],[c.cx,busY],[c.cx,c.t]],{arrow:"wa",n:1}));
   s+=wlab("mục tiêu · ngân sách · chính sách",cl.cx+8,busY-8,"start");
   s+=wire([[kd.r,kd.hy],[kt.l,kt.hy]],{arrow:"wa"})+wire([[kt.r,kt.hy],[hd.l,hd.hy]],{arrow:"wa"})+wire([[hd.r,hd.hy],[mh.l,mh.hy]],{arrow:"wa"});
@@ -1975,7 +1977,7 @@ function archWires(){
   const cl=R("cl"),nh=R("nh"),hd=R("hd"),kv=R("kv"),mk=R("mk"),kd=R("kd"),dv=R("dv"),ht=R("ht"),pf=R("pf"),ex=R("ex");
   let s=`<defs><marker id="wa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--cw)"/></marker></defs>`;
   // điều hành rẽ nhánh xuống ba khối phía cung
-  const lb=$("cvl-cung").getBoundingClientRect(), busY=lb.bottom-C.top+4;
+  const lb=$("cvl-cung").getBoundingClientRect(), busY=Math.round((lb.bottom-C.top+nh.t)/2);
   [nh,hd,kv].forEach(c=>s+=wire([[cl.cx,cl.b],[cl.cx,busY],[c.cx,busY],[c.cx,c.t]],{arrow:"wa",n:1}));
   s+=wlab("mục tiêu · ngân sách · chính sách",cl.cx+8,busY-8,"start");
   // dòng việc và hàng trong từng hàng

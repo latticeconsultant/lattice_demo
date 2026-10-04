@@ -428,9 +428,9 @@ body.dev-phone .toast{max-width:360px}
 /* ===== thương mại phân phối: kiến trúc, luồng, người + AI =====
    Khung sơ đồ luôn tối (như một màn hình điều hành), góc vuông, bảng màu LATTICE.
    Hạt trắng là dữ liệu và việc đang chạy, hạt đỏ là ngoại lệ đi tới người. */
-.cv{--c0:#121110;--cb:#181716;--c1:#1D1B1A;--ch:#252220;--c2:#2B2826;--c3:#3A3633;--cl:#4E4946;--ct:#F3F1F0;--ct2:#E2DEDB;--cm:#ABA5A2;--cw:#938D89;--cwire:rgba(243,241,240,.45);--cwred:rgba(236,48,19,.7);--cp:#F3F1F0;--cpg:rgba(255,255,255,.9);--cglow:rgba(243,241,240,.22);--cr:#FF7A63;--cdot:rgba(237,235,234,.08);--ctile:#34302D;--ctb:#7A746F;
+.cv{--c0:#121110;--cb:#181716;--c1:#1D1B1A;--ch:#252220;--c2:#2B2826;--c3:#3A3633;--cl:#4E4946;--ct:#F3F1F0;--ct2:#E2DEDB;--cm:#ABA5A2;--cw:#938D89;--cwire:rgba(243,241,240,.45);--cwred:rgba(236,48,19,.7);--cp:#F3F1F0;--cpg:rgba(255,255,255,.9);--cglow:rgba(243,241,240,.22);--cr:#FF7A63;--cdot:rgba(237,235,234,.08);--ctile:#F3F1F0;--ctb:#F3F1F0;--ctf:#121110;--hd:#F3F1F0;--hdt:#121110;--ckb:#4E4946;
   position:relative;background-color:var(--c0);background-image:radial-gradient(var(--cdot) 1px,transparent 1.3px);background-size:22px 22px;color:var(--ct);border:2px solid var(--ink);padding:22px 46px 18px}
-.cv.light{--c0:#F6F5F4;--cb:#EEECEB;--c1:#FFFFFF;--ch:#ECEAE9;--c2:#F1EFEE;--c3:#E3E0DE;--cl:#9E9894;--ct:#1A1817;--ct2:#2E2B29;--cm:#5E5956;--cw:#6E6864;--cwire:rgba(26,24,23,.42);--cwred:rgba(200,38,12,.7);--cp:#1A1817;--cpg:rgba(26,24,23,.45);--cglow:rgba(26,24,23,.16);--cr:#C02A10;--cdot:rgba(26,24,23,.1);--ctile:#FFFFFF;--ctb:#4E4946}
+.cv.light{--c0:#F6F5F4;--cb:#EEECEB;--c1:#FFFFFF;--ch:#ECEAE9;--c2:#F1EFEE;--c3:#E3E0DE;--cl:#9E9894;--ct:#1A1817;--ct2:#2E2B29;--cm:#5E5956;--cw:#6E6864;--cwire:rgba(26,24,23,.42);--cwred:rgba(200,38,12,.7);--cp:#1A1817;--cpg:rgba(26,24,23,.45);--cglow:rgba(26,24,23,.16);--cr:#C02A10;--cdot:rgba(26,24,23,.1);--ctile:#1A1817;--ctb:#1A1817;--ctf:#FFFFFF;--hd:#1A1817;--hdt:#FFFFFF;--ckb:#1A1817}
 .cv .wires{position:absolute;left:0;top:0;pointer-events:none;overflow:visible;z-index:0}
 .wr{fill:none;stroke:var(--cwire);stroke-width:1.8}
 .wr.dash{stroke-dasharray:4 5}
@@ -447,20 +447,20 @@ body.dev-phone .toast{max-width:360px}
 .g3+.cvl{margin-top:60px}
 .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;padding:6px 14px 14px}
 .g75{display:grid;grid-template-columns:7fr 5fr;gap:28px;position:relative;z-index:1}
-.ck{position:relative;z-index:1;background:var(--c1);border:1.5px solid var(--cl);transition:border-color .35s,box-shadow .35s}
-.ck:hover,.ck.hot{border-color:var(--ct);box-shadow:0 0 0 1px var(--cglow),0 0 24px var(--cglow)}
-.ck-h{display:flex;align-items:center;gap:10px;width:100%;background:transparent;border:0;border-bottom:1.5px solid var(--cl);padding:10px 12px 10px 12px;color:var(--ct);text-align:left;background:var(--ch)}
+.ck{position:relative;z-index:1;background:var(--c1);border:1.5px solid var(--ckb);transition:border-color .35s,box-shadow .35s}
+.ck:hover,.ck.hot{border-color:#EC3013;box-shadow:0 0 0 1px var(--cglow),0 0 24px var(--cglow)}
+.ck-h{display:flex;align-items:center;gap:10px;width:100%;background:transparent;border:0;border-bottom:0;padding:10px 12px 10px 12px;color:var(--hdt);text-align:left;background:var(--hd)}
 button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
-.ck-h .no{font-size:11px;font-weight:800;color:var(--c0);background:var(--ct);padding:3px 6px;line-height:1;font-variant-numeric:tabular-nums}
+.ck-h .no{font-size:11px;font-weight:800;color:#fff;background:#EC3013;padding:3px 6px;line-height:1;font-variant-numeric:tabular-nums}
 .ck-h .nm{flex:1;min-width:0;font-size:15.5px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
-.ck-h .ki{width:34px;height:34px;display:grid;place-items:center;border:1.5px solid var(--cl);background:var(--c1);flex:none}
+.ck-h .ki{width:34px;height:34px;display:grid;place-items:center;border:1.5px solid var(--hdt);background:transparent;color:var(--hdt);flex:none}
 .tis{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:12px 6px;padding:14px 12px 6px}
 .wide>.tis{grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}
 .ti{display:grid;justify-items:center;align-content:start;gap:6px;background:transparent;border:0;color:var(--ct);padding:2px;min-width:0}
-.ti .tic{width:50px;height:50px;display:grid;place-items:center;background:var(--ctile);border:1.5px solid var(--ctb);color:var(--ct);transition:border-color .2s,box-shadow .2s,background .2s}
-.ti:hover .tic,.ti:focus-visible .tic{border-color:var(--ct);box-shadow:0 0 14px var(--cglow);background:var(--ct);color:var(--c0)}
+.ti .tic{width:50px;height:50px;display:grid;place-items:center;background:var(--ctile);border:1.5px solid var(--ctb);color:var(--ctf);transition:border-color .2s,box-shadow .2s,background .2s}
+.ti:hover .tic,.ti:focus-visible .tic{border-color:#EC3013;box-shadow:0 0 14px rgba(236,48,19,.35);background:#EC3013;color:#fff}
 .ti:focus-visible{outline:none}
-.ti.opt .tic{border-style:dashed}
+.ti.opt .tic{border-style:dashed;background:transparent;border-color:var(--ct);color:var(--ct)}
 .ti .tl{font-size:11.5px;font-weight:600;line-height:1.25;text-align:center;color:var(--ct2)}
 .ti.big .tic{width:62px;height:62px}
 .tis.big{grid-template-columns:repeat(5,minmax(0,1fr));padding-bottom:16px}
@@ -597,10 +597,10 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .sh .cvsw{margin-left:auto}
 .sh .note+.cvsw{margin-left:12px}
 /* thẻ trọng tâm, loại việc, trang cấu hình ngành */
-.ck.core{border:2px solid var(--ct)}
-.ck.core .ck-h{background:var(--ct);color:var(--c0)}
-.ck.core .ck-h .no{background:var(--c0);color:var(--ct)}
-.ck.core .ck-h .ki{background:var(--c0);border-color:var(--c0);color:var(--ct)}
+.ck.core{border:2px solid #EC3013}
+.ck.core .ck-h{background:#EC3013;color:#fff}
+.ck.core .ck-h .no{background:#fff;color:#EC3013}
+.ck.core .ck-h .ki{background:transparent;border-color:#fff;color:#fff}
 .ck-h .tag{font-size:9.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid currentColor;padding:2px 6px;white-space:nowrap}
 .lo{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;border:1px solid var(--line);padding:0 5px;color:var(--mute)}
 .lo.lo-cm{border-color:var(--ink);color:var(--ink)}
@@ -624,7 +624,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .nunit b{display:block;font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--cm)}
 .nterms{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
 .nt2{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:center;background:var(--c1);border:1.5px solid var(--cl);padding:10px}
-.nt2 .tic{grid-row:1/3;width:44px;height:44px;display:grid;place-items:center;background:var(--ctile);border:1.5px solid var(--ctb);color:var(--ct)}
+.nt2 .tic{grid-row:1/3;width:44px;height:44px;display:grid;place-items:center;background:var(--ctile);border:1.5px solid var(--ctb);color:var(--ctf)}
 .nt2 b{font-size:13.5px;color:var(--ct)}
 .nt2 span:last-child{font-size:11px;color:var(--cm)}
 .nflow{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
@@ -633,7 +633,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .na{color:var(--cw);display:inline-flex}
 .nduo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
 .nside{display:flex;gap:12px;background:var(--c1);border:1.5px solid var(--cl);padding:12px 14px;color:var(--ct)}
-.nside .tic{width:42px;height:42px;flex:none;display:grid;place-items:center;background:var(--ctile);border:1.5px solid var(--ctb)}
+.nside .tic{width:42px;height:42px;flex:none;display:grid;place-items:center;background:var(--ctile);border:1.5px solid var(--ctb);color:var(--ctf)}
 .nside.hu .tic{background:#EC3013;border-color:#EC3013;color:#fff}
 .nside b{font-size:14px}
 .nside p{font-size:13px;color:var(--ct2);margin-top:3px}
@@ -654,14 +654,14 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .sysg{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
 .sysb{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:center;text-align:left;background:var(--c1);border:1.5px solid var(--cl);padding:10px;color:var(--ct)}
 .sysb:hover{border-color:var(--ct);box-shadow:0 0 14px var(--cglow)}
-.sysb .tic{grid-row:1/3;width:46px;height:46px;display:grid;place-items:center;background:var(--ctile);border:1.5px solid var(--ctb)}
+.sysb .tic{grid-row:1/3;width:46px;height:46px;display:grid;place-items:center;background:var(--ctile);border:1.5px solid var(--ctb);color:var(--ctf)}
 .sysb b{font-size:15px}
 .sysb .d{font-size:11.5px;color:var(--cm);font-weight:700}
 .sysb .c{grid-column:1/-1;font-size:12px;color:var(--ct2);margin-top:6px}
 .sysb.plant{border-style:dashed}
 .wall{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch}
 .wl1{display:flex;gap:12px;background:var(--c1);border:1.5px solid var(--cl);padding:12px 14px;color:var(--ct)}
-.wl1 .tic{width:42px;height:42px;flex:none;display:grid;place-items:center;background:var(--ctile);border:1.5px solid var(--ctb)}
+.wl1 .tic{width:42px;height:42px;flex:none;display:grid;place-items:center;background:var(--ctile);border:1.5px solid var(--ctb);color:var(--ctf)}
 .wl1 b{font-size:14px}.wl1 p{font-size:12.5px;color:var(--ct2);margin-top:3px}
 .wbar{display:grid;place-items:center;gap:6px;max-width:150px;text-align:center;border-left:3px solid #EC3013;border-right:3px solid #EC3013;padding:8px 10px;color:var(--cr);font-size:11.5px}
 .rules{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:6px 18px}
@@ -1260,8 +1260,8 @@ const LV=[["eye","Quan sát","AI chỉ thu thập và báo cáo, không tạo đ
  ["refresh-cw","Tự vận hành","AI tự lập kế hoạch và tối ưu trong trần ngân sách.","Hiếm dùng"],
  ["shield-check","Tự chủ có giám sát","AI điều hành cả chức năng; người kiểm toán định kỳ. Chỉ cho việc rủi ro thấp, đảo ngược được.","Hiếm dùng"]];
 /* Icon nét (Lucide, ISC). Trong HTML dùng ic(), trong SVG dùng icS(). */
-const ic=(n,sz)=>`<svg viewBox="0 0 24 24" width="${sz||20}" height="${sz||20}" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[n]||""}</svg>`;
-const icS=(n,x,y,sz,col)=>`<svg x="${x}" y="${y}" width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="none" stroke="${col||"var(--ct)"}" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">${ICO[n]||""}</svg>`;
+const ic=(n,sz)=>`<svg viewBox="0 0 24 24" width="${sz||20}" height="${sz||20}" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[n]||""}</svg>`;
+const icS=(n,x,y,sz,col)=>`<svg x="${x}" y="${y}" width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="none" stroke="${col||"var(--ct)"}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">${ICO[n]||""}</svg>`;
 const motionOK=()=>!matchMedia("(prefers-reduced-motion: reduce)").matches;
 /* Hạt sáng chạy dọc một đường gấp khúc pts; tốc độ đều theo độ dài. */
 function wire(pts,o){o=o||{};
@@ -1899,7 +1899,7 @@ function setCv(m){document.querySelectorAll(".cv").forEach(c=>c.classList.toggle
   document.querySelectorAll("[data-cvm]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.cvm===m?"true":"false"));
   try{localStorage.setItem("lattice-mophong-cv",m);}catch(e){}}
 /* ---------- Trang 1 · Kiến trúc nghiệp vụ ---------- */
-const tile=n=>`<button class="ti${n.opt?" opt":""}" data-id="${n.id}" title="${esc(n.n)}${n.opt?" (nếu có)":""}"><span class="tic">${ic(NVI[n.id][0],23)}</span><span class="tl">${esc(NVI[n.id][1])}</span></button>`;
+const tile=n=>`<button class="ti${n.opt?" opt":""}" data-id="${n.id}" title="${esc(n.n)}${n.opt?" (nếu có)":""}"><span class="tic">${ic(NVI[n.id][0],24)}</span><span class="tl">${esc(NVI[n.id][1])}</span></button>`;
 function card(k,extra,tag){const K=KH(k);
   const body=K.sub?`<div class="subs">${K.sub.map(([c,lab,ids,o])=>`<div class="sub"><div class="gh"><b>${c}</b><span>${esc(lab)}</span></div><div class="tis">${ids.map(id=>tile(NV_BY[id])).join("")}</div><div class="ck-o">${rmk(o)}</div></div>`).join("")}</div>`
     :`<div class="tis">${nvOf(k).map(tile).join("")}</div><div class="ck-o">${rmk(K.o)}</div>`;
@@ -2037,7 +2037,7 @@ function swim(c){
   S.forEach(st=>{const lv=(st.w.match(/L(\d)/)||[])[1], nguoi=/người|Người/.test(st.w), ico=(NVI[st.nv]||["layers"])[0], tl=wrapT(st.ts,cpl(bw-20,12,.58));
     s+=`<g class="sn" tabindex="0" role="button" data-step="${st.i}" aria-label="${esc(st.t)}"><rect class="sb" x="${st.x0}" y="${st.y0}" width="${bw}" height="${bh}" fill="var(--c1)" stroke="${st.k==="chk"?"var(--ct)":"var(--cl)"}" stroke-width="${st.k==="chk"?2.2:1.5}"/>`+
       (st.k==="chk"?`<path d="M${st.x0} ${st.y0-7} L${st.x0+7} ${st.y0} L${st.x0} ${st.y0+7} L${st.x0-7} ${st.y0} Z" fill="var(--ct)"><title>Điểm kiểm tra hoặc phê duyệt</title></path>`:"")+
-      `<rect x="${st.x0+9}" y="${st.y0+9}" width="34" height="34" fill="var(--ctile)" stroke="var(--ctb)" stroke-width="1.5"/>`+icS(ico,st.x0+15,st.y0+15,22)+
+      `<rect x="${st.x0+9}" y="${st.y0+9}" width="34" height="34" fill="var(--ctile)" stroke="var(--ctb)" stroke-width="1.5"/>`+icS(ico,st.x0+15,st.y0+15,22,"var(--ctf)")+
       (lv?icS("bot",st.x0+bw-(nguoi?48:34),st.y0+12,13,MUTE)+`<text x="${st.x0+bw-(nguoi?33:19)}" y="${st.y0+23}" font-size="10" font-weight="700" fill="${MUTE}">L${lv}</text>`:"")+
       (nguoi?`<circle cx="${st.x0+bw-11}" cy="${st.y0+19}" r="4" fill="#EC3013"><title>Có người làm hoặc duyệt</title></circle>`:"")+
       tx(tl,st.x0+10,st.y0+bh-12-(tl.length-1)*15,15,`font-size="12.5" font-weight="800" fill="var(--ct)"`)+`</g>`;

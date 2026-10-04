@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tổng quan cho nhà đầu tư chiến lược — LATTICE Next Solutions</title>
-<meta name="description" content="LATTICE Next Solutions — tổng quan dành cho nhà đầu tư chiến lược: năm dòng sản phẩm, một phương pháp, một trục dữ liệu.">
+<meta name="description" content="Năm cấu phần sản phẩm và nguồn thu, mô hình tài chính 24 tháng, cơ cấu huy động vốn hai đợt và rủi ro của LATTICE Next Solutions JSC.">
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" href="../brand/logo/favicon/favicon-32.png" sizes="32x32">
 <script>try{var _t=localStorage.getItem('lnx-theme'); if(_t) document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
@@ -18,329 +18,864 @@
 :root{
   --bg:#F3F2F2; --card:#FBFAFA; --ink:#201E1D; --mute:#605D5D; --line:#BAB6B6; --line2:#D7D3D3;
   --red:#EC3013; --redtx:#AE1800; --redbg:#FBE3DE; --ok:#2E6B4F; --inv:#F3F2F2;
+  --s1:#EC3013; --s2:#3A3634; --s3:#B08900; --s4:#4A6FA5; --s5:#2E6B4F; --s6:#C9C4C2;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#161514; --card:#1C1B1A; --ink:#EDEBEA; --mute:#A8A4A2; --line:#3C3937; --line2:#2A2827;
-  --redtx:#FF7A63; --redbg:#3A1A14; --ok:#7CC6A0; --inv:#161514; color-scheme:dark;}}
+  --bg:#141312; --card:#1C1B1A; --ink:#EDEBEA; --mute:#A8A4A2; --line:#3C3937; --line2:#2A2827;
+  --redtx:#FF7A63; --redbg:#3A1A14; --ok:#7CC6A0; --inv:#141312;
+  --s1:#FF5A3C; --s2:#B9B4B1; --s3:#E0B93A; --s4:#87A8D8; --s5:#7CC6A0; --s6:#45413F; color-scheme:dark;}}
 :root[data-theme="dark"]{
-  --bg:#161514; --card:#1C1B1A; --ink:#EDEBEA; --mute:#A8A4A2; --line:#3C3937; --line2:#2A2827;
-  --redtx:#FF7A63; --redbg:#3A1A14; --ok:#7CC6A0; --inv:#161514; color-scheme:dark;}
+  --bg:#141312; --card:#1C1B1A; --ink:#EDEBEA; --mute:#A8A4A2; --line:#3C3937; --line2:#2A2827;
+  --redtx:#FF7A63; --redbg:#3A1A14; --ok:#7CC6A0; --inv:#141312;
+  --s1:#FF5A3C; --s2:#B9B4B1; --s3:#E0B93A; --s4:#87A8D8; --s5:#7CC6A0; --s6:#45413F; color-scheme:dark;}
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);
-  font-family:Archivo,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15.5px;line-height:1.55}
-.wrap{max-width:760px;margin:0 auto;padding:0 20px 80px}
-header.top{display:flex;align-items:center;gap:14px;padding:18px 0 14px;border-bottom:2px solid var(--ink)}
-header .mark{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.1em;font-size:15px}
-header .mark small{font-weight:400;letter-spacing:0;color:var(--mute);font-size:12.5px}
-.sangtoi{margin-left:auto;width:34px;height:34px;padding:0;border-radius:50%;display:grid;place-items:center;
-  background:transparent;color:var(--ink);border:1px solid var(--ink);cursor:pointer}
+  font-family:Archivo,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.55}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.khung{max-width:1240px;margin:0 auto;padding:0 32px}
+@media(max-width:700px){.khung{padding:0 18px}}
+
+/* ── thanh đầu ── */
+header.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 92%,transparent);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .in{display:flex;align-items:center;gap:14px;height:58px}
+header .mark{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.1em;font-size:14px}
+header .mark small{font-weight:400;letter-spacing:0;color:var(--mute);font-size:12px}
+header nav{margin-left:auto;display:flex;gap:18px;font-size:13px}
+header nav a{color:var(--mute);text-decoration:none;white-space:nowrap}
+header nav a:hover{color:var(--ink)}
+@media(max-width:1000px){header nav{display:none}}
+.sangtoi{width:34px;height:34px;padding:0;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:transparent;color:var(--ink);border:1px solid var(--ink);cursor:pointer;margin-left:14px}
+@media(max-width:1000px){.sangtoi{margin-left:auto}}
 .sangtoi svg{display:block;transition:transform .35s ease}
 :root[data-theme="dark"] .sangtoi svg{transform:rotate(180deg)}
 @media (prefers-reduced-motion:reduce){.sangtoi svg{transition:none}}
-h1{font-size:clamp(26px,4.4vw,38px);line-height:1.08;letter-spacing:-.025em;margin:26px 0 10px}
-.lead{font-size:16.5px;color:var(--mute);margin:0 0 6px;max-width:60ch}
-.tien{display:flex;gap:4px;margin:22px 0 6px}
-.tien i{height:5px;flex:1;background:var(--line2)}
-.tien i.xong{background:var(--ink)}
-.tien i.dang{background:var(--red)}
-.tien-chu{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:18px}
-fieldset{border:0;margin:0;padding:0}
-.cau{background:var(--card);border:1px solid var(--line);padding:20px 22px;margin-bottom:12px}
-.cau legend,.cau .hoi{font-weight:700;font-size:16px;display:block;margin-bottom:4px}
-.cau .goi{font-size:13.5px;color:var(--mute);margin-bottom:14px}
-.chon{display:grid;gap:8px}
-.chon.ngang{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
-label.o{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line2);background:var(--bg);
-  padding:11px 13px;cursor:pointer;font-size:14.5px}
-label.o:hover{border-color:var(--ink)}
-label.o input{margin:2px 0 0;accent-color:var(--red);flex:none}
-label.o.chon-roi{border-color:var(--ink);background:var(--card);box-shadow:inset 3px 0 0 var(--red)}
-label.o b{display:block;font-weight:700}
-label.o span.mo{display:block;color:var(--mute);font-size:13px;margin-top:2px}
-input[type=text],input[type=email],textarea{width:100%;font:inherit;color:inherit;background:var(--bg);
-  border:1px solid var(--line);padding:12px 13px}
-input:focus,textarea:focus{outline:2px solid var(--red);outline-offset:-2px}
-.dieu{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;align-items:center}
-.btn{font:inherit;font-weight:700;font-size:14px;letter-spacing:.06em;padding:14px 22px;border:2px solid var(--ink);
-  background:var(--ink);color:var(--inv);cursor:pointer}
-.btn.phu{background:transparent;color:var(--ink)}
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.btn.do{background:var(--red);border-color:var(--red);color:#fff}
-.ghi{font-size:13px;color:var(--mute);margin-left:auto}
-.loi{color:var(--redtx);font-size:14px;font-weight:600;margin-top:10px;min-height:1.2em}
-.dem-chon{font-size:13px;color:var(--mute);margin-top:8px}
-.nv-luoi{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:6px}
-.nv-khoi{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin:14px 0 6px;grid-column:1/-1}
-.rieng{border-left:3px solid var(--red);background:var(--redbg);padding:12px 15px;font-size:14px;margin-top:14px}
-footer{border-top:1px solid var(--line);margin-top:34px;padding-top:16px;font-size:13px;color:var(--mute)}
+
+/* ── hero ── */
+.hero{position:relative;overflow:hidden;border-bottom:2px solid var(--ink);background:#14110F}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 38%;opacity:.42}
+.hero .phu{position:absolute;inset:0;background:linear-gradient(100deg,#0F0D0CEE 0%,#0F0D0CC4 48%,#0F0D0C66 100%)}
+.hero .noi{position:relative;padding:92px 0 76px;color:#F6F4F3}
+.hero .nhan-tai{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:#FF7A63;font-weight:700;margin:0 0 20px}
+.hero h1{font-size:clamp(32px,5.1vw,62px);line-height:1.03;letter-spacing:-.034em;margin:0 0 20px;max-width:17ch;font-weight:800}
+.hero h1 em{font-style:normal;color:#FF7A63}
+.hero p.dan{font-size:clamp(16px,1.6vw,20px);line-height:1.5;max-width:60ch;color:#D6D1CE;margin:0 0 30px}
+.hero .hoi{display:flex;flex-wrap:wrap;gap:0;border:1px solid #FFFFFF2E;width:fit-content;max-width:100%}
+.hero .hoi div{padding:14px 26px 15px;border-right:1px solid #FFFFFF2E}
+.hero .hoi div:last-child{border-right:0}
+.hero .hoi b{display:block;font-size:26px;font-weight:800;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
+.hero .hoi span{display:block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#A8A29E;margin-top:5px}
+@media(max-width:560px){.hero .noi{padding:60px 0 50px}.hero .hoi div{padding:12px 16px}.hero .hoi b{font-size:21px}}
+
+/* ── khối chung ── */
+section{padding:72px 0;border-bottom:1px solid var(--line2)}
+section.nen{background:var(--card)}
+@media(max-width:700px){section{padding:50px 0}}
+.so-muc{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);font-weight:700;margin:0 0 12px}
+h2{font-size:clamp(25px,3.3vw,40px);line-height:1.08;letter-spacing:-.028em;margin:0 0 14px;max-width:22ch;font-weight:800}
+h3{font-size:19px;margin:0 0 8px;letter-spacing:-.012em}
+p{margin:0 0 14px}
+.dan-muc{font-size:clamp(16px,1.5vw,19px);line-height:1.55;color:var(--mute);max-width:72ch;margin:0 0 30px}
+.luan{font-size:clamp(17px,1.9vw,23px);line-height:1.42;letter-spacing:-.014em;border-left:4px solid var(--red);
+  padding:6px 0 6px 20px;margin:26px 0;max-width:70ch;font-weight:600}
+
+/* ── dải số lớn ── */
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line)}
+.kpi div{background:var(--bg);padding:22px 20px 20px}
+section.nen .kpi div{background:var(--card)}
+.kpi b{display:block;font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-.03em;line-height:1;
+  font-variant-numeric:tabular-nums}
+.kpi b small{font-size:.52em;font-weight:700;letter-spacing:-.01em;color:var(--mute)}
+.kpi span{display:block;font-size:12px;color:var(--mute);margin-top:9px;line-height:1.45;letter-spacing:.02em}
+.kpi .do b{color:var(--redtx)}
+
+/* ── thẻ cấu phần ── */
+.the-luoi{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px;margin-top:8px}
+.the{border:1px solid var(--line);background:var(--bg);display:flex;flex-direction:column}
+section.nen .the{background:var(--card)}
+.the .anh{aspect-ratio:16/8;overflow:hidden;background:var(--line2);border-bottom:1px solid var(--line)}
+.the .anh img{width:100%;height:100%;object-fit:cover;display:block}
+.the .than{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.the .dau{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:9px}
+.the .stt{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--mute)}
+.nhan{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;padding:3px 8px;
+  border:1px solid currentColor;white-space:nowrap}
+.nhan.chay{color:var(--ok)} .nhan.dang{color:var(--redtx)} .nhan.ke{color:var(--mute)}
+.the p{font-size:14.5px;line-height:1.55;color:var(--mute);margin:0 0 14px}
+.the p b{color:var(--ink)}
+.the .so{margin-top:auto;display:flex;gap:0;border-top:1px solid var(--line2);padding-top:12px}
+.the .so div{flex:1;border-right:1px solid var(--line2);padding-right:10px}
+.the .so div:last-child{border-right:0;padding-left:10px;padding-right:0}
+.the .so b{display:block;font-size:18px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.the .so span{display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-top:3px}
+.the a.lien{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--redtx);
+  text-decoration:none;margin-bottom:12px;border-bottom:1px solid currentColor;width:fit-content;padding-bottom:1px}
+
+/* ── biểu đồ ── */
+.bieu{border:1px solid var(--line);background:var(--bg);padding:22px 22px 16px;margin:10px 0 0}
+section.nen .bieu{background:var(--card)}
+.bieu .tieu{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin-bottom:16px}
+.bieu .tieu h3{margin:0;font-size:16px}
+.bieu .tieu span{font-size:13px;color:var(--mute)}
+svg.bd{width:100%;height:auto;display:block;overflow:visible}
+.luoi{stroke:var(--line2);stroke-width:1}
+.luoi.khong{stroke:var(--mute);stroke-width:1.4}
+.truc{font-size:11px;fill:var(--mute);font-family:inherit;font-variant-numeric:tabular-nums}
+.truc.manh{fill:var(--ink);font-weight:700}
+.nhan-y{font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.nguoi-truc{fill:var(--s4)}
+.trong-cot{font-size:13px;font-weight:800;fill:#FFF;font-family:inherit}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .trong-cot{fill:#141312}}
+:root[data-theme="dark"] .trong-cot{fill:#141312}
+.moc{stroke:var(--mute);stroke-width:1.4;stroke-dasharray:4 4}
+.moc.xanh{stroke:var(--ok)}
+.moc-chu{font-size:11px;fill:var(--mute);font-weight:700;font-family:inherit}
+.moc-chu.xanh{fill:var(--ok)}
+.duong{fill:none;stroke:var(--ink);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round}
+.duong.nguoi{stroke:var(--s4);stroke-width:2;stroke-dasharray:5 4}
+.vung{fill:var(--redbg);opacity:.75}
+.cham{fill:var(--ink)} .cham.do{fill:var(--red)}
+.ghi{font-size:11.5px;fill:var(--mute);font-weight:600;font-family:inherit}
+.ghi.manh{fill:var(--ink);font-weight:800;font-size:12.5px}
+.ghi-do{font-size:11.5px;fill:var(--redtx);font-weight:700;font-family:inherit}
+.kb-a{stroke:var(--ink)} .kb-b{stroke:var(--s3);stroke-dasharray:6 4} .kb-c{stroke:var(--s1);stroke-dasharray:2 4}
+.cham.kb-a{fill:var(--ink)} .cham.kb-b{fill:var(--s3)} .cham.kb-c{fill:var(--s1)}
+.nguong{stroke:var(--ink);stroke-width:2;stroke-dasharray:3 3}
+.chu-thich{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--mute)}
+.chu-thich span{display:flex;align-items:center;gap:7px}
+.chu-thich i{width:14px;height:10px;display:block;flex:none}
+.chu-thich i.net{height:0;border-top:2.6px solid var(--ink)}
+.chu-thich i.net2{height:0;border-top:2.6px dashed var(--s3)}
+.chu-thich i.net3{height:0;border-top:2.6px dotted var(--s1)}
+.chu-thich i.net4{height:0;border-top:2px dashed var(--s4)}
+
+/* ── bảng ── */
+.bang{overflow-x:auto;border:1px solid var(--line);background:var(--bg);margin:18px 0 0}
+section.nen .bang{background:var(--card)}
+.bang table{border-collapse:collapse;width:100%;font-size:14px;min-width:640px}
+.bang th,.bang td{padding:12px 15px;text-align:left;border-bottom:1px solid var(--line2);vertical-align:top}
+.bang th{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);background:var(--bg);white-space:nowrap}
+section.nen .bang th{background:var(--card)}
+.bang tr:last-child td{border-bottom:0}
+.bang td.s,.bang th.s{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bang tr.tong td{font-weight:800;border-top:2px solid var(--ink);background:var(--bg)}
+section.nen .bang tr.tong td{background:var(--card)}
+.bang .ten{font-weight:700}
+
+/* ── khối hai cột ── */
+.hai{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+@media(max-width:860px){.hai{grid-template-columns:1fr}}
+.o{border:1px solid var(--line);background:var(--bg);padding:24px 26px}
+section.nen .o{background:var(--card)}
+.o.vien{border:2px solid var(--ink)}
+.o.do{border:2px solid var(--red);background:var(--redbg)}
+.o h3{font-size:17px;margin:0 0 10px}
+.o .lon{font-size:clamp(28px,3.4vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1;
+  font-variant-numeric:tabular-nums;margin:0 0 6px}
+.o ul{margin:10px 0 0;padding-left:19px;font-size:14.5px}
+.o li{margin:6px 0}
+.o dl{display:grid;grid-template-columns:1fr auto;gap:0;margin:14px 0 0;font-size:14px}
+.o dt{padding:8px 0;border-bottom:1px solid var(--line2);color:var(--mute)}
+.o dd{margin:0;padding:8px 0;border-bottom:1px solid var(--line2);text-align:right;font-weight:700;
+  font-variant-numeric:tabular-nums}
+.o dl>:nth-last-child(-n+2){border-bottom:0}
+
+ul.gon{margin:10px 0 16px;padding-left:20px;font-size:15.5px;max-width:74ch}
+ul.gon li{margin:7px 0}
+.canh{border-left:4px solid var(--red);background:var(--redbg);padding:16px 20px;margin:18px 0;font-size:15px;max-width:86ch}
+.trong{border:1px dashed var(--line);padding:16px 20px;margin:18px 0;font-size:14.5px;color:var(--mute);max-width:86ch}
+.lien-luoi{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:10px}
+a.the-lien{display:block;border:1px solid var(--line);background:var(--bg);padding:20px 22px;text-decoration:none;color:inherit}
+section.nen a.the-lien{background:var(--card)}
+a.the-lien:hover{border-color:var(--ink)}
+a.the-lien .u{font-size:12px;color:var(--redtx);word-break:break-all;margin-top:8px;display:block;font-weight:700}
+a.the-lien h3{margin:0 0 6px;font-size:17px}
+a.the-lien p{font-size:13.5px;color:var(--mute);margin:0}
+footer{padding:40px 0 70px;font-size:13px;color:var(--mute)}
 footer a{color:inherit}
-@media (max-width:560px){.cau{padding:16px 15px}.wrap{padding:0 14px 60px}}
-.qt-bang{background:var(--ink);color:var(--inv);padding:10px 14px;font-size:13px;font-weight:600;
-  letter-spacing:.06em;display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0}
-.qt-bang button{font:inherit;font-size:12px;padding:5px 10px;background:transparent;color:inherit;
-  border:1px solid currentColor;cursor:pointer;margin-left:auto}
-.muc{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;padding:10px 12px;background:var(--bg);border:1px solid var(--line2)}
-.muc .nhan{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
-.muc b{font-size:15px}
-.muc b.do{color:var(--redtx)}
-.tbl{overflow-x:auto;border:1px solid var(--line);background:var(--card);margin-top:10px}
-.tbl table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px}
-.tbl th,.tbl td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line2)}
-.tbl th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);background:var(--bg)}
-.tbl td.c,.tbl th.c{text-align:center;font-variant-numeric:tabular-nums}
-.tbl tr.dau td{font-weight:700}
+@media print{
+  header.top,.sangtoi{display:none}
+  section{padding:26px 0;break-inside:avoid}
+  .hero .noi{padding:40px 0}
+  body{font-size:11pt}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header class="top">
+
+<header class="top"><div class="khung in">
   <span class="mark">
-    <svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true"><g stroke="currentColor" stroke-width="6" fill="none"><path d="M50 8 L92 50 L50 92 L8 50 Z"/></g><g fill="var(--bg)" stroke="currentColor" stroke-width="6"><circle cx="50" cy="8" r="7"/><circle cx="92" cy="50" r="7"/><circle cx="50" cy="92" r="7"/><circle cx="8" cy="50" r="7"/></g><circle cx="50" cy="50" r="10" fill="#EC3013"/></svg>
-    LATTICE <small>· tổng quan đầu tư</small>
+    <svg width="24" height="24" viewBox="0 0 100 100" aria-hidden="true"><g stroke="currentColor" stroke-width="6" fill="none"><path d="M50 8 L92 50 L50 92 L8 50 Z"/></g><g fill="var(--bg)" stroke="currentColor" stroke-width="6"><circle cx="50" cy="8" r="7"/><circle cx="92" cy="50" r="7"/><circle cx="50" cy="92" r="7"/><circle cx="8" cy="50" r="7"/></g><circle cx="50" cy="50" r="10" fill="#EC3013"/></svg>
+    LATTICE <small>· nhà đầu tư</small>
   </span>
-  <button class="sangtoi" id="sangtoi" type="button" aria-label="Chuyển chế độ sáng / tối" title="Chuyển chế độ sáng / tối"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M12 3.5 A8.5 8.5 0 0 1 12 20.5 Z" fill="currentColor"></path></svg></button>
-</header>
+  <nav>
+    <a href="#caiphan">Năm cấu phần</a>
+    <a href="#doanhthu">Doanh thu</a>
+    <a href="#von">Huy động vốn</a>
+    <a href="#dongtien">Dòng tiền</a>
+    <a href="#kichban">Kịch bản</a>
+    <a href="#ruiro">Rủi ro</a>
+    <a href="#xem">Xem sản phẩm</a>
+  </nav>
+  <button class="sangtoi" id="sangtoi" type="button" aria-label="Chuyển chế độ sáng / tối" title="Chuyển chế độ sáng / tối"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M12 3.5 A8.5 8.5 0 0 1 12 20.5 Z" fill="currentColor"></path></svg></button>
+</div></header>
 
-<style>
-.wrap{max-width:900px}
-.than{max-width:100%}
-h1{font-size:clamp(30px,5vw,46px);line-height:1.05;letter-spacing:-.03em;margin:30px 0 14px}
-h2{font-size:clamp(22px,3.4vw,30px);letter-spacing:-.022em;margin:46px 0 12px;padding-top:18px;border-top:2px solid var(--ink)}
-h3{font-size:19px;margin:24px 0 8px;letter-spacing:-.01em}
-p{margin:0 0 12px}
-.kicker{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:700;margin:0}
-.luan{font-size:clamp(17px,2.1vw,21px);line-height:1.5;border-left:3px solid var(--red);padding:4px 0 4px 18px;margin:18px 0 22px}
-.so-lon{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2px;background:var(--line);border:2px solid var(--ink);margin:20px 0}
-.so-lon div{background:var(--card);padding:16px 18px}
-.so-lon b{display:block;font-size:30px;font-weight:800;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
-.so-lon span{display:block;font-size:12.5px;color:var(--mute);margin-top:6px;line-height:1.45}
-.bang{overflow-x:auto;border:1px solid var(--line);background:var(--card);margin:16px 0}
-.bang table{border-collapse:collapse;width:100%;font-size:14px;min-width:620px}
-.bang th,.bang td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line2);vertical-align:top}
-.bang th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);background:var(--bg);white-space:nowrap}
-.bang tr:last-child td{border-bottom:0}
-.the{border:1px solid var(--line);background:var(--card);padding:18px 20px;margin-bottom:10px}
-.the .tt{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
-.the h3{margin:0;font-size:20px}
-.nhan{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:3px 8px;border:1px solid currentColor;white-space:nowrap}
-.nhan.chay{color:var(--ok)}
-.nhan.dang{color:var(--redtx)}
-.nhan.ke{color:var(--mute)}
-.the dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:10px 0 0;font-size:14px}
-.the dt{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);padding-top:3px}
-.the dd{margin:0}
-.canh{border-left:3px solid var(--red);background:var(--redbg);padding:13px 16px;margin:16px 0;font-size:14.5px}
-.trong{border:1px dashed var(--line);padding:13px 16px;margin:14px 0;font-size:14px;color:var(--mute)}
-ul.gon{margin:8px 0 14px;padding-left:20px}
-ul.gon li{margin:5px 0}
-.muc-luc{columns:2;column-gap:28px;font-size:14.5px;margin:18px 0 10px}
-.muc-luc a{display:block;padding:4px 0;color:inherit}
-@media(max-width:620px){.muc-luc{columns:1}}
-@media print{.sangtoi,.muc-luc{display:none}h2{break-after:avoid}.the,.so-lon{break-inside:avoid}}
-</style>
-
-<div class="than">
-<p class="kicker">Tài liệu dành cho nhà đầu tư chiến lược · 04/10/2026</p>
-<h1>Chúng tôi không bán phần mềm AI. Chúng tôi bán cách tổ chức lại doanh nghiệp quanh AI.</h1>
-
-<p class="luan">Phần mềm thì ai cũng mua được và sao chép được. Thứ doanh nghiệp nhỏ thiếu là <b>một bộ luật để giao việc cho máy mà không mất kiểm soát</b> — biết việc nào giao được, giao tới mức nào, chặn ở đâu, và ai chịu trách nhiệm khi sai. LATTICE xây đúng bộ luật đó, rồi bán nó năm lần theo năm cách khác nhau.</p>
-
-<div class="muc-luc">
-  <a href="#vande">1 · Vấn đề và thời điểm</a>
-  <a href="#nam">2 · Năm dòng sản phẩm</a>
-  <a href="#conghuong">3 · Vì sao năm mảnh này cộng hưởng</a>
-  <a href="#taisan">4 · Tài sản đã tích lũy</a>
-  <a href="#lotrinh">5 · Lộ trình và thước đo</a>
-  <a href="#kinhte">6 · Đơn vị kinh tế</a>
-  <a href="#ruiro">7 · Rủi ro và cách kiểm soát</a>
-  <a href="#timgi">8 · Tìm gì ở nhà đầu tư chiến lược</a>
+<div class="hero">
+  <img src="../assets/img/lattice-next-solutions-da-nang-1920.jpg" alt="" aria-hidden="true">
+  <div class="phu"></div>
+  <div class="noi"><div class="khung">
+    <p class="nhan-tai">Tài liệu cho nhà đầu tư chiến lược · 05/10/2026</p>
+    <h1>Chúng tôi không bán phần mềm AI. Chúng tôi bán <em>cách tổ chức lại doanh nghiệp</em> quanh AI.</h1>
+    <p class="dan">Phần mềm thì ai cũng mua được. Thứ doanh nghiệp nhỏ thiếu là một bộ luật để giao việc cho máy mà không mất kiểm soát — biết việc nào giao được, giao tới mức nào, chặn ở đâu, ai chịu trách nhiệm khi sai. LATTICE xây bộ luật đó, rồi bán nó năm lần theo năm cách khác nhau.</p>
+    <div class="hoi">
+      <div><b>10 tỷ</b><span>Đang gọi · đợt 2</span></div>
+      <div><b>16,5%</b><span>cho nhà đầu tư mới</span></div>
+      <div><b>46,5 tỷ</b><span>định giá sau vốn</span></div>
+      <div><b>T6/2027</b><span>thời điểm nhận vốn</span></div>
+    </div>
+  </div></div>
 </div>
 
-<h2 id="vande">1 · Vấn đề và thời điểm</h2>
+<section class="nen">
+  <div class="khung">
+    <p class="so-muc">Kế hoạch 24 tháng · kịch bản cơ sở</p>
+    <h2>Sáu con số tóm tắt toàn bộ phương án</h2>
+    <div class="kpi">
+      <div><b>48,8<small> tỷ</small></b><span>Doanh thu cộng dồn 24 tháng</span></div>
+      <div><b>26</b><span>Người cuối tháng 24</span></div>
+      <div class="do"><b>T16</b><span>Tháng đầu dòng tiền hoạt động dương</span></div>
+      <div><b>12,3<small> tỷ</small></b><span>Tiền mặt cuối tháng 24</span></div>
+      <div><b>5,2<small> tỷ</small></b><span>Đáy tiền mặt sau khi có đợt 2</span></div>
+      <div><b>55,1<small>%</small></b><span>Biên lãi gộp bình quân 24 tháng</span></div>
+    </div>
+    <p class="trong">Mọi con số trên trang này được tính lại từ mô hình tài chính bản 9 (05/10/2026) — 24 tháng, năm cấu phần, công thức liên kết từ một bộ giả định duy nhất. Sản lượng của bốn cấu phần mới là <b>giả định có cơ sở chứ chưa phải số thực tế</b>; chỗ nào đã có giá công bố thì ghi rõ. Mục “Kịch bản” cho thấy phương án chịu được bao nhiêu sai số.</p>
+  </div>
+</section>
 
-<p>Doanh nghiệp nhỏ Việt Nam đang bị kẹp giữa hai sức ép cùng lúc. Một bên là chi phí tuân thủ tăng đột ngột — hóa đơn điện tử, tự kê khai, chuẩn hóa sổ sách. Bên kia là chi phí nhân sự tăng trong khi biên lợi nhuận mỏng đi vì cạnh tranh trên sàn.</p>
+<section>
+  <div class="khung">
+    <p class="so-muc">01 · Vấn đề và thời điểm</p>
+    <h2>Khoảng cách giữa “đã dùng AI” và “đã đưa AI vào vận hành”</h2>
+    <p class="dan-muc">Doanh nghiệp nhỏ Việt Nam bị kẹp giữa chi phí tuân thủ tăng đột ngột — hóa đơn điện tử, tự kê khai, chuẩn hóa sổ sách — và biên lợi nhuận mỏng đi vì cạnh tranh trên sàn. AI lẽ ra là lối thoát, nhưng số liệu ngành nói ngược lại.</p>
+    <div class="kpi">
+      <div><b>~88<small>%</small></b><span>dự án thí điểm AI không lên được production</span></div>
+      <div><b>&gt;40<small>%</small></b><span>dự án agentic bị hủy trước hết 2027</span></div>
+      <div><b>~5,1<small> tháng</small></b><span>hoàn vốn trung vị khi triển khai đúng</span></div>
+      <div><b>~74<small>%</small></b><span>chủ doanh nghiệp một người đã dùng AI ở mức nào đó</span></div>
+    </div>
+    <p class="luan">Thất bại không nằm ở công nghệ. Nằm ở chỗ không ai có khung để quyết định giao việc nào, tới mức nào, và chặn ở đâu. Khoảng cách đó chính là thị trường của LATTICE — và nó không phụ thuộc chu kỳ hào hứng công nghệ, vì thứ thúc đẩy nó là chính sách và áp lực chi phí.</p>
+  </div>
+</section>
 
-<p>AI lẽ ra là lối thoát. Nhưng số liệu ngành nói ngược lại: <b>khoảng 88% dự án thí điểm AI không lên được production</b>, và hơn 40% dự án agentic bị hủy trước hết 2027. Không phải vì công nghệ yếu, mà vì doanh nghiệp không có khung để quyết định giao việc nào, tới mức nào, và chặn ở đâu.</p>
+<section class="nen" id="caiphan">
+  <div class="khung">
+    <p class="so-muc">02 · Năm cấu phần</p>
+    <h2>Một bộ luật, bán năm lần ở năm độ sâu</h2>
+    <p class="dan-muc">Ba trạng thái: đang bán, đang dựng, kế hoạch gần. Tất cả dùng chung một phương pháp và một trục dữ liệu. Con số trong mỗi thẻ là doanh thu cộng dồn 24 tháng theo kịch bản cơ sở.</p>
+    <div class="the-luoi"><article class="the">
+  <div class="anh"><img src="../assets/img/lattice-nganh-mo-hinh-1920.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="than">
+    <div class="dau"><span class="stt">Cấu phần 5</span><span class="nhan dang">Đang triển khai</span></div>
+    <h3>VEPIO · SourceLiq</h3>
+    <p><b>SourceLiq</b> là nền tảng — radar ngách, tìm nguồn hàng Trung Quốc · Nhật · Việt Nam, tính lãi thật từng đơn. <b>VEPIO</b> là thương hiệu bán lẻ chạy trên nền tảng đó. Mọi hành động ghi ra ngoài phải qua lớp phân quyền rồi hàng đợi phê duyệt — mô hình ngôn ngữ không bao giờ gọi trực tiếp API ghi dữ liệu. Xong 3/8 chặng MVP, chưa có khách thật.</p>
+    <a class="lien" href="https://app.sourceliq.com" target="_blank" rel="noopener">Xem thật · app.sourceliq.com →</a>
+    <div class="so">
+      <div><b>29,70 tỷ</b><span>Doanh thu 24 tháng</span></div>
+      <div><b>2.920 tr</b><span>Doanh thu tháng 24</span></div>
+    </div>
+  </div>
+</article>
+<article class="the">
+  <div class="anh"><img src="../assets/img/lattice-phuong-phap-trien-khai-1920.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="than">
+    <div class="dau"><span class="stt">Cấu phần 1</span><span class="nhan chay">Đang bán</span></div>
+    <h3>Tư vấn, thiết kế &amp; chuyển giao mô hình</h3>
+    <p>Nền tảng chính. Đọc bộ máy theo ba khối, chấm 47 nghiệp vụ theo sáu mức tự chủ L0–L5, thiết kế lại luồng việc quanh một trục dữ liệu kèm luật và ngưỡng. Sản phẩm giao đi là một bộ máy <b>kiểm toán được</b>: ai quyết gì, máy làm tới đâu, chặn ở đâu, ai chịu trách nhiệm khi sai.</p>
+    <a class="lien" href="https://lattice.business/khao-sat/" target="_blank" rel="noopener">Xem thật · lattice.business/khao-sat →</a>
+    <div class="so">
+      <div><b>7,68 tỷ</b><span>Doanh thu 24 tháng</span></div>
+      <div><b>677 tr</b><span>Doanh thu tháng 24</span></div>
+    </div>
+  </div>
+</article>
+<article class="the">
+  <div class="anh"><img src="../assets/img/lattice-livestream-1920.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="than">
+    <div class="dau"><span class="stt">Cấu phần 3</span><span class="nhan ke">Kế hoạch gần</span></div>
+    <h3>LATTICE SocialNet</h3>
+    <p>Vận hành kênh truyền thông: lịch nội dung, sản xuất, phân phối đa kênh, đo kết quả — chạy theo cùng ma trận quyền quyết định. Sản xuất nội dung là đúng loại việc lặp lại, luật rõ, hậu quả sai thấp và hoàn tác được, nên lên L3–L4 sớm nhất. Dựng T7–T9, ra mắt T10.</p>
+    
+    <div class="so">
+      <div><b>4,45 tỷ</b><span>Doanh thu 24 tháng</span></div>
+      <div><b>550 tr</b><span>Doanh thu tháng 24</span></div>
+    </div>
+  </div>
+</article>
+<article class="the">
+  <div class="anh"><img src="../assets/img/lattice-academy-1920.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="than">
+    <div class="dau"><span class="stt">Cấu phần 4</span><span class="nhan ke">Kế hoạch gần</span></div>
+    <h3>LATTICE Academy</h3>
+    <p>Tư vấn không nhân rộng bằng cách thuê thêm người tư vấn. Academy nhân rộng bằng cách dạy chính phương pháp cho chủ doanh nghiệp, người phụ trách vận hành và — giai đoạn sau — đối tác triển khai theo vùng. <b>Biên cao, nuôi khách cho cấu phần 1.</b> Lớp đầu T4.</p>
+    
+    <div class="so">
+      <div><b>3,74 tỷ</b><span>Doanh thu 24 tháng</span></div>
+      <div><b>345 tr</b><span>Doanh thu tháng 24</span></div>
+    </div>
+  </div>
+</article>
+<article class="the">
+  <div class="anh"><img src="../assets/img/workshop-ai-1920.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="than">
+    <div class="dau"><span class="stt">Cấu phần 2</span><span class="nhan dang">Đang dựng</span></div>
+    <h3>LATTICE Work</h3>
+    <p>Mỗi dự án tư vấn kết thúc bằng một bảng phân quyền. Bảng đó cần nơi để sống sau khi hợp đồng kết thúc — nếu không, ba tháng sau bộ máy trôi về chỗ cũ. Work là nơi đó: người và tác nhân AI cùng một danh sách việc, mỗi việc có mức tự chủ, ngưỡng, và hàng đợi chuyển lên người quyết.</p>
+    <a class="lien" href="https://lattice.business/work/" target="_blank" rel="noopener">Xem thật · lattice.business/work →</a>
+    <div class="so">
+      <div><b>3,24 tỷ</b><span>Doanh thu 24 tháng</span></div>
+      <div><b>362 tr</b><span>Doanh thu tháng 24</span></div>
+    </div>
+  </div>
+</article></div>
+  </div>
+</section>
 
-<div class="so-lon">
-  <div><b>~88%</b><span>dự án thí điểm AI không lên được production</span></div>
-  <div><b>&gt;40%</b><span>dự án agentic bị hủy trước hết 2027</span></div>
-  <div><b>~5,1 tháng</b><span>thời gian hoàn vốn trung vị khi triển khai đúng</span></div>
-  <div><b>~74%</b><span>chủ doanh nghiệp một người đã dùng AI ở mức nào đó</span></div>
-</div>
+<section id="doanhthu">
+  <div class="khung">
+    <p class="so-muc">03 · Doanh thu</p>
+    <h2>48,8 tỷ trong 24 tháng, dồn về nửa sau</h2>
+    <p class="dan-muc">Sáu tháng đầu chạy bằng 2 tỷ của đợt 1 với năm người — đủ để đưa Tư vấn vào guồng và đẩy VEPIO qua giai đoạn thử. Từ T7, vốn đợt 2 mở ba cấu phần còn lại cùng lúc.</p>
+    <div class="bieu">
+      <div class="tieu"><h3>Doanh thu theo tháng, chia theo cấu phần</h3><span>đơn vị: tỷ đồng · chưa gồm VAT</span></div>
+      <svg viewBox="0 0 1160 330" class="bd" role="img" aria-label="Doanh thu theo tháng, chia theo năm cấu phần">
+<line class="luoi" x1="52" y1="296.0" x2="1148" y2="296.0"/>
+<text class="truc" x="44" y="300.0" text-anchor="end">0</text>
+<line class="luoi" x1="52" y1="240.4" x2="1148" y2="240.4"/>
+<text class="truc" x="44" y="244.4" text-anchor="end">1</text>
+<line class="luoi" x1="52" y1="184.8" x2="1148" y2="184.8"/>
+<text class="truc" x="44" y="188.8" text-anchor="end">2</text>
+<line class="luoi" x1="52" y1="129.2" x2="1148" y2="129.2"/>
+<text class="truc" x="44" y="133.2" text-anchor="end">3</text>
+<line class="luoi" x1="52" y1="73.6" x2="1148" y2="73.6"/>
+<text class="truc" x="44" y="77.6" text-anchor="end">4</text>
+<line class="luoi" x1="52" y1="18.0" x2="1148" y2="18.0"/>
+<text class="truc" x="44" y="22.0" text-anchor="end">5</text>
+<text class="truc nhan-y" x="44" y="12" text-anchor="end">tỷ đ</text>
+<rect x="59.3" y="295.6" width="31.1" height="0.39" fill="var(--s2)"/>
+<text class="truc" x="74.8" y="314" text-anchor="middle">T1</text>
+<rect x="105.0" y="295.5" width="31.1" height="0.53" fill="var(--s2)"/>
+<rect x="150.6" y="294.6" width="31.1" height="1.39" fill="var(--s1)"/>
+<rect x="150.6" y="292.3" width="31.1" height="2.28" fill="var(--s2)"/>
+<text class="truc" x="166.2" y="314" text-anchor="middle">T3</text>
+<rect x="196.3" y="291.8" width="31.1" height="4.17" fill="var(--s1)"/>
+<rect x="196.3" y="289.1" width="31.1" height="2.71" fill="var(--s2)"/>
+<rect x="196.3" y="287.0" width="31.1" height="2.08" fill="var(--s4)"/>
+<rect x="196.3" y="285.8" width="31.1" height="1.25" fill="var(--s5)"/>
+<rect x="242.0" y="287.7" width="31.1" height="8.34" fill="var(--s1)"/>
+<rect x="242.0" y="283.2" width="31.1" height="4.50" fill="var(--s2)"/>
+<rect x="242.0" y="281.1" width="31.1" height="2.08" fill="var(--s4)"/>
+<rect x="242.0" y="279.8" width="31.1" height="1.25" fill="var(--s5)"/>
+<rect x="287.6" y="281.3" width="31.1" height="14.73" fill="var(--s1)"/>
+<rect x="287.6" y="274.9" width="31.1" height="6.40" fill="var(--s2)"/>
+<rect x="287.6" y="272.8" width="31.1" height="2.08" fill="var(--s4)"/>
+<rect x="287.6" y="270.8" width="31.1" height="1.95" fill="var(--s5)"/>
+<text class="truc" x="303.2" y="314" text-anchor="middle">T6</text>
+<rect x="333.3" y="273.8" width="31.1" height="22.18" fill="var(--s1)"/>
+<rect x="333.3" y="266.3" width="31.1" height="7.51" fill="var(--s2)"/>
+<rect x="333.3" y="262.1" width="31.1" height="4.17" fill="var(--s4)"/>
+<rect x="333.3" y="260.2" width="31.1" height="1.95" fill="var(--s5)"/>
+<rect x="379.0" y="266.2" width="31.1" height="29.80" fill="var(--s1)"/>
+<rect x="379.0" y="256.5" width="31.1" height="9.66" fill="var(--s2)"/>
+<rect x="379.0" y="250.1" width="31.1" height="6.39" fill="var(--s4)"/>
+<rect x="379.0" y="247.5" width="31.1" height="2.64" fill="var(--s5)"/>
+<rect x="424.6" y="258.6" width="31.1" height="37.42" fill="var(--s1)"/>
+<rect x="424.6" y="247.9" width="31.1" height="10.66" fill="var(--s2)"/>
+<rect x="424.6" y="243.8" width="31.1" height="4.17" fill="var(--s4)"/>
+<rect x="424.6" y="240.7" width="31.1" height="3.06" fill="var(--s5)"/>
+<text class="truc" x="440.2" y="314" text-anchor="middle">T9</text>
+<rect x="470.3" y="251.0" width="31.1" height="45.04" fill="var(--s1)"/>
+<rect x="470.3" y="238.0" width="31.1" height="13.00" fill="var(--s2)"/>
+<rect x="470.3" y="235.2" width="31.1" height="2.78" fill="var(--s3)"/>
+<rect x="470.3" y="228.8" width="31.1" height="6.39" fill="var(--s4)"/>
+<rect x="470.3" y="224.9" width="31.1" height="3.89" fill="var(--s5)"/>
+<rect x="516.0" y="243.2" width="31.1" height="52.82" fill="var(--s1)"/>
+<rect x="516.0" y="229.3" width="31.1" height="13.92" fill="var(--s2)"/>
+<rect x="516.0" y="224.8" width="31.1" height="4.45" fill="var(--s3)"/>
+<rect x="516.0" y="216.3" width="31.1" height="8.48" fill="var(--s4)"/>
+<rect x="516.0" y="211.5" width="31.1" height="4.87" fill="var(--s5)"/>
+<rect x="561.6" y="235.4" width="31.1" height="60.60" fill="var(--s1)"/>
+<rect x="561.6" y="219.2" width="31.1" height="16.24" fill="var(--s2)"/>
+<rect x="561.6" y="213.0" width="31.1" height="6.12" fill="var(--s3)"/>
+<rect x="561.6" y="204.6" width="31.1" height="8.48" fill="var(--s4)"/>
+<rect x="561.6" y="199.0" width="31.1" height="5.56" fill="var(--s5)"/>
+<text class="truc" x="577.2" y="314" text-anchor="middle">T12</text>
+<rect x="607.3" y="227.4" width="31.1" height="68.55" fill="var(--s1)"/>
+<rect x="607.3" y="208.8" width="31.1" height="18.60" fill="var(--s2)"/>
+<rect x="607.3" y="200.8" width="31.1" height="8.01" fill="var(--s3)"/>
+<rect x="607.3" y="192.4" width="31.1" height="8.48" fill="var(--s4)"/>
+<rect x="607.3" y="185.7" width="31.1" height="6.67" fill="var(--s5)"/>
+<rect x="653.0" y="219.5" width="31.1" height="76.51" fill="var(--s1)"/>
+<rect x="653.0" y="199.8" width="31.1" height="19.74" fill="var(--s2)"/>
+<rect x="653.0" y="189.7" width="31.1" height="10.01" fill="var(--s3)"/>
+<rect x="653.0" y="181.3" width="31.1" height="8.48" fill="var(--s4)"/>
+<rect x="653.0" y="173.8" width="31.1" height="7.51" fill="var(--s5)"/>
+<rect x="698.6" y="211.2" width="31.1" height="84.79" fill="var(--s1)"/>
+<rect x="698.6" y="189.3" width="31.1" height="21.89" fill="var(--s2)"/>
+<rect x="698.6" y="177.3" width="31.1" height="12.01" fill="var(--s3)"/>
+<rect x="698.6" y="164.5" width="31.1" height="12.79" fill="var(--s4)"/>
+<rect x="698.6" y="156.2" width="31.1" height="8.34" fill="var(--s5)"/>
+<text class="truc" x="714.2" y="314" text-anchor="middle">T15</text>
+<rect x="744.3" y="202.9" width="31.1" height="93.07" fill="var(--s1)"/>
+<rect x="744.3" y="179.7" width="31.1" height="23.18" fill="var(--s2)"/>
+<rect x="744.3" y="165.7" width="31.1" height="14.01" fill="var(--s3)"/>
+<rect x="744.3" y="155.2" width="31.1" height="10.56" fill="var(--s4)"/>
+<rect x="744.3" y="145.6" width="31.1" height="9.59" fill="var(--s5)"/>
+<rect x="790.0" y="194.6" width="31.1" height="101.36" fill="var(--s1)"/>
+<rect x="790.0" y="168.8" width="31.1" height="25.87" fill="var(--s2)"/>
+<rect x="790.0" y="152.6" width="31.1" height="16.12" fill="var(--s3)"/>
+<rect x="790.0" y="139.9" width="31.1" height="12.79" fill="var(--s4)"/>
+<rect x="790.0" y="129.3" width="31.1" height="10.56" fill="var(--s5)"/>
+<rect x="835.6" y="186.2" width="31.1" height="109.81" fill="var(--s1)"/>
+<rect x="835.6" y="159.4" width="31.1" height="26.79" fill="var(--s2)"/>
+<rect x="835.6" y="141.1" width="31.1" height="18.35" fill="var(--s3)"/>
+<rect x="835.6" y="128.3" width="31.1" height="12.79" fill="var(--s4)"/>
+<rect x="835.6" y="116.3" width="31.1" height="11.95" fill="var(--s5)"/>
+<text class="truc" x="851.2" y="314" text-anchor="middle">T18</text>
+<rect x="881.3" y="177.6" width="31.1" height="118.43" fill="var(--s1)"/>
+<rect x="881.3" y="148.4" width="31.1" height="29.20" fill="var(--s2)"/>
+<rect x="881.3" y="127.8" width="31.1" height="20.57" fill="var(--s3)"/>
+<rect x="881.3" y="112.9" width="31.1" height="14.87" fill="var(--s4)"/>
+<rect x="881.3" y="99.9" width="31.1" height="13.07" fill="var(--s5)"/>
+<rect x="927.0" y="169.0" width="31.1" height="127.05" fill="var(--s1)"/>
+<rect x="927.0" y="137.2" width="31.1" height="31.71" fill="var(--s2)"/>
+<rect x="927.0" y="114.5" width="31.1" height="22.80" fill="var(--s3)"/>
+<rect x="927.0" y="99.6" width="31.1" height="14.87" fill="var(--s4)"/>
+<rect x="927.0" y="85.4" width="31.1" height="14.18" fill="var(--s5)"/>
+<rect x="972.6" y="160.3" width="31.1" height="135.66" fill="var(--s1)"/>
+<rect x="972.6" y="127.5" width="31.1" height="32.87" fill="var(--s2)"/>
+<rect x="972.6" y="102.4" width="31.1" height="25.02" fill="var(--s3)"/>
+<rect x="972.6" y="87.6" width="31.1" height="14.87" fill="var(--s4)"/>
+<rect x="972.6" y="71.9" width="31.1" height="15.71" fill="var(--s5)"/>
+<text class="truc" x="988.2" y="314" text-anchor="middle">T21</text>
+<rect x="1018.3" y="151.7" width="31.1" height="144.28" fill="var(--s1)"/>
+<rect x="1018.3" y="116.4" width="31.1" height="35.32" fill="var(--s2)"/>
+<rect x="1018.3" y="89.2" width="31.1" height="27.24" fill="var(--s3)"/>
+<rect x="1018.3" y="74.3" width="31.1" height="14.87" fill="var(--s4)"/>
+<rect x="1018.3" y="56.9" width="31.1" height="17.38" fill="var(--s5)"/>
+<rect x="1064.0" y="143.1" width="31.1" height="152.90" fill="var(--s1)"/>
+<rect x="1064.0" y="106.6" width="31.1" height="36.49" fill="var(--s2)"/>
+<rect x="1064.0" y="77.1" width="31.1" height="29.47" fill="var(--s3)"/>
+<rect x="1064.0" y="58.0" width="31.1" height="19.18" fill="var(--s4)"/>
+<rect x="1064.0" y="39.2" width="31.1" height="18.77" fill="var(--s5)"/>
+<rect x="1109.6" y="133.6" width="31.1" height="162.35" fill="var(--s1)"/>
+<rect x="1109.6" y="96.0" width="31.1" height="37.65" fill="var(--s2)"/>
+<rect x="1109.6" y="65.4" width="31.1" height="30.58" fill="var(--s3)"/>
+<rect x="1109.6" y="46.2" width="31.1" height="19.18" fill="var(--s4)"/>
+<rect x="1109.6" y="26.1" width="31.1" height="20.15" fill="var(--s5)"/>
+<text class="truc" x="1125.2" y="314" text-anchor="middle">T24</text>
+<line class="moc" x1="303.2" y1="18" x2="303.2" y2="296"/>
+<text class="moc-chu" x="309.2" y="30">T6 · vốn đợt 2 về</text>
+</svg>
+      <div class="chu-thich"><span><i style="background:var(--s1)"></i>VEPIO · SourceLiq</span><span><i style="background:var(--s2)"></i>Tư vấn &amp; chuyển giao</span><span><i style="background:var(--s3)"></i>SocialNet</span><span><i style="background:var(--s4)"></i>Academy</span><span><i style="background:var(--s5)"></i>LATTICE Work</span></div>
+    </div>
+    <div class="bieu" style="margin-top:16px">
+      <div class="tieu"><h3>Tỷ trọng doanh thu cộng dồn 24 tháng</h3><span>tổng 48,8 tỷ</span></div>
+      <svg viewBox="0 0 1160 92" class="bd" role="img" aria-label="Tỷ trọng doanh thu 24 tháng theo cấu phần">
+<rect x="0.0" y="0" width="705.7" height="46" fill="var(--s1)"/>
+<text class="trong-cot" x="352.9" y="29" text-anchor="middle">60,8%</text>
+<text class="truc" x="352.9" y="68" text-anchor="middle">VEPIO · SourceLiq</text>
+<text class="truc manh" x="352.9" y="85" text-anchor="middle">29,7 tỷ</text>
+<rect x="705.7" y="0" width="182.5" height="46" fill="var(--s2)"/>
+<text class="trong-cot" x="797.0" y="29" text-anchor="middle">15,7%</text>
+<text class="truc" x="797.0" y="68" text-anchor="middle">Tư vấn & chuyển giao</text>
+<text class="truc manh" x="797.0" y="85" text-anchor="middle">7,7 tỷ</text>
+<rect x="888.2" y="0" width="105.8" height="46" fill="var(--s3)"/>
+<text class="trong-cot" x="941.1" y="29" text-anchor="middle">9,1%</text>
+<text class="truc" x="941.1" y="68" text-anchor="middle">SocialNet</text>
+<text class="truc manh" x="941.1" y="85" text-anchor="middle">4,5 tỷ</text>
+<rect x="994.0" y="0" width="88.9" height="46" fill="var(--s4)"/>
+<text class="trong-cot" x="1038.5" y="29" text-anchor="middle">7,7%</text>
+<text class="truc" x="994.0" y="68" text-anchor="start">Academy</text>
+<text class="truc manh" x="994.0" y="85" text-anchor="start">3,7 tỷ</text>
+<rect x="1083.0" y="0" width="77.0" height="46" fill="var(--s5)"/>
+<text class="trong-cot" x="1121.5" y="29" text-anchor="middle">6,6%</text>
+<text class="truc" x="1083.0" y="68" text-anchor="start">LATTICE Work</text>
+<text class="truc manh" x="1083.0" y="85" text-anchor="start">3,2 tỷ</text>
+</svg>
+    </div>
+    <div class="canh"><b>Một rủi ro tập trung phải nói trước:</b> VEPIO · SourceLiq chiếm 60,8% doanh thu 24 tháng, nhưng chỉ đóng góp 25% biên trên mỗi đồng doanh số. Doanh thu bán lẻ to về số, mỏng về biên, và ăn vốn lưu động. Bốn cấu phần còn lại mới là phần biên cao và lặp lại — đó là lý do chúng tôi đo sức khỏe công ty bằng <b>doanh thu định kỳ</b>, không bằng tổng doanh thu.</div>
+    <div class="bang"><table>
+<thead><tr><th>Cấu phần</th><th class="s">Bắt đầu thu</th><th class="s">DT 12T (tỷ)</th>
+<th class="s">DT 24T (tỷ)</th><th class="s">Tỷ trọng</th><th>Vai trò trong hệ sinh thái</th></tr></thead>
+<tbody><tr><td class="ten">VEPIO · SourceLiq</td><td class="s">T3 · thuê bao T6</td><td class="s">4,97</td><td class="s">29,70</td><td class="s">60,8%</td><td>Doanh thu lớn nhất, biên mỏng nhất. Bàn thử nghiệm sống của phương pháp.</td></tr><tr><td class="ten">Tư vấn &amp; chuyển giao</td><td class="s">T1</td><td class="s">1,58</td><td class="s">7,68</td><td class="s">15,7%</td><td>Tạo khách, tạo mẫu kiến trúc, kéo khách sang bốn cấu phần còn lại.</td></tr><tr><td class="ten">SocialNet</td><td class="s">T10</td><td class="s">0,24</td><td class="s">4,45</td><td class="s">9,1%</td><td>Cửa vào rẻ cho khách chưa sẵn sàng làm cả bộ máy. Dùng chung lớp phân quyền với Work.</td></tr><tr><td class="ten">Academy</td><td class="s">T4</td><td class="s">0,80</td><td class="s">3,74</td><td class="s">7,7%</td><td>Biên cao. Học viên thành khách và người giới thiệu; nguồn tuyển đối tác triển khai.</td></tr><tr><td class="ten">LATTICE Work</td><td class="s">T4</td><td class="s">0,47</td><td class="s">3,24</td><td class="s">6,6%</td><td>Giữ bộ máy không trôi về chỗ cũ sau hợp đồng. Biến một lần thành lặp lại.</td></tr>
+<tr class="tong"><td>Tổng</td><td class="s">—</td><td class="s">8,06</td>
+<td class="s">48,82</td><td class="s">100%</td><td>Năm nhịp khác nhau, nuôi nhau</td></tr>
+</tbody></table></div>
+  </div>
+</section>
 
-<p>Khoảng cách giữa <i>đã dùng AI</i> và <i>đã đưa AI vào vận hành thật</i> chính là thị trường của LATTICE. Nó không phụ thuộc vào chu kỳ hào hứng công nghệ, vì thứ thúc đẩy nó là chính sách và áp lực chi phí — hai thứ không quay đầu.</p>
+<section class="nen" id="von">
+  <div class="khung">
+    <p class="so-muc">04 · Huy động vốn</p>
+    <h2>Hai đợt, cách nhau sáu tháng và một lần chứng minh</h2>
+    <p class="dan-muc">Đợt 1 đã chốt: 2 tỷ cho 35%, giá 11.500đ mỗi cổ phần — phần góp của nhóm sáng lập là tài sản trí tuệ đã có (nghiên cứu, khảo sát, đề án, bản beta), tính cùng giá và phải qua thẩm định giá theo Điều 36 Luật Doanh nghiệp. Đợt 2 mở sau sáu tháng, khi đã có số thật ở nhiều cấu phần cùng lúc.</p>
+    <div class="hai">
+      <div class="o vien">
+        <h3>Đợt 1 · đã chốt</h3>
+        <p class="lon">2 tỷ</p>
+        <p style="margin:0;color:var(--mute);font-size:14px">cho 35% · giá 11.500đ/CP</p>
+        <dl>
+          <dt>Định giá trước vốn</dt><dd>3,71 tỷ</dd>
+          <dt>Định giá sau vốn</dt><dd>5,71 tỷ</dd>
+          <dt>Vốn điều lệ sau đợt</dt><dd>4,97 tỷ</dd>
+          <dt>Tháng nhận tiền</dt><dd>T1</dd>
+        </dl>
+      </div>
+      <div class="o do">
+        <h3>Đợt 2 · đang gọi</h3>
+        <p class="lon">10 tỷ</p>
+        <p style="margin:0;color:var(--mute);font-size:14px">gồm 7,67 tỷ nhà đầu tư mới + 2,33 tỷ quyền mua của cổ đông hiện hữu</p>
+        <dl>
+          <dt>Cho nhà đầu tư mới</dt><dd>16,5%</dd>
+          <dt>Giá phát hành</dt><dd>≈64.100đ/CP</dd>
+          <dt>Gấp giá đợt 1</dt><dd>5,6 lần</dd>
+          <dt>Định giá sau vốn</dt><dd>46,5 tỷ</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="bieu" style="margin-top:16px">
+      <div class="tieu"><h3>Cơ cấu sở hữu sau đợt 2</h3><span>giả định cổ đông hiện hữu thực hiện 100% quyền mua</span></div>
+      <svg viewBox="0 0 1160 96" class="bd" role="img" aria-label="Cơ cấu sở hữu sau đợt 2">
+<rect x="0.0" y="0" width="591.9" height="48" fill="var(--s2)"/>
+<text class="trong-cot" x="295.9" y="30" text-anchor="middle">51,02%</text>
+<text class="truc" x="295.9" y="70" text-anchor="middle">Nhóm sáng lập</text>
+<rect x="591.9" y="0" width="318.7" height="48" fill="var(--s4)"/>
+<text class="trong-cot" x="751.2" y="30" text-anchor="middle">27,47%</text>
+<text class="truc" x="751.2" y="70" text-anchor="middle">Nhà đầu tư đợt 1</text>
+<rect x="910.6" y="0" width="191.4" height="48" fill="var(--s1)"/>
+<text class="trong-cot" x="1006.3" y="30" text-anchor="middle">16,5%</text>
+<text class="truc" x="1006.3" y="70" text-anchor="middle">Nhà đầu tư đợt 2</text>
+<rect x="1102.0" y="0" width="58.0" height="48" fill="var(--s3)"/>
+<text class="trong-cot" x="1131.0" y="30" text-anchor="middle">5%</text>
+<text class="truc" x="1102.0" y="70" text-anchor="start">ESOP</text>
+<line class="nguong" x1="591.6" y1="-4" x2="591.6" y2="52"/>
+<text class="truc manh" x="597.6" y="90">ngưỡng quá bán 51%</text>
+</svg>
+    </div>
+    <div class="hai" style="margin-top:16px">
+      <div class="o">
+        <h3>Vì sao chỉ 16,5%</h3>
+        <p style="font-size:14.5px;color:var(--mute);margin:0">Đó là mức tối đa mà nhóm sáng lập vẫn giữ được quá bán sau pha loãng — <b style="color:var(--ink)">51,02%</b> — với điều kiện mua đủ quyền ưu đãi, tốn khoảng <b style="color:var(--ink)">1,51 tỷ</b> tiền mặt ở giá ưu đãi 32.060đ/CP (50% giá phát hành, hợp lệ theo Điều 125 khi bán theo tỷ lệ cho mọi cổ đông). Nếu nhóm sáng lập nhường quyền mua cho người khác, tỷ lệ còn 44,52% — vẫn vận hành được nhưng phải viết lại điều khoản biểu quyết.</p>
+      </div>
+      <div class="o">
+        <h3>Điều phải ghi vào thỏa thuận cổ đông</h3>
+        <p style="font-size:14.5px;color:var(--mute);margin:0">Luật Doanh nghiệp đòi ≥65% cho các quyết định quan trọng. Sau đợt 2 không nhóm nào đạt ngưỡng đó một mình, nên <b style="color:var(--ink)">quyền phủ quyết của nhà đầu tư phải được liệt kê rõ ràng trong SHA</b> thay vì để ngỏ. Chúng tôi coi đây là việc phải làm cùng nhà đầu tư trước khi ký, không phải điều khoản đem ra mặc cả sau.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<h2 id="nam">2 · Năm dòng sản phẩm</h2>
+<section id="dongtien">
+  <div class="khung">
+    <p class="so-muc">05 · Dòng tiền</p>
+    <h2>Chỗ mỏng nằm ở tháng 5, không phải ở cuối kỳ</h2>
+    <p class="dan-muc">2 tỷ của đợt 1 đủ đi đến T6 nhưng không dư: đáy tiền mặt khoảng 0,43 tỷ ở T5, vì cùng lúc phải chạy Tư vấn, LATTICE Work và VEPIO. Sau khi đợt 2 về, tiền không xuống dưới 5,2 tỷ trong suốt 18 tháng còn lại.</p>
+    <div class="bieu">
+      <div class="tieu"><h3>Số dư tiền mặt cuối mỗi tháng</h3><span>kịch bản cơ sở · đơn vị: tỷ đồng</span></div>
+      <svg viewBox="0 0 1160 340" class="bd" role="img" aria-label="Số dư tiền mặt 24 tháng">
+<line class="luoi" x1="56" y1="306.0" x2="1146" y2="306.0"/>
+<text class="truc" x="48" y="310.0" text-anchor="end">0</text>
+<line class="luoi" x1="56" y1="265.4" x2="1146" y2="265.4"/>
+<text class="truc" x="48" y="269.4" text-anchor="end">2</text>
+<line class="luoi" x1="56" y1="224.9" x2="1146" y2="224.9"/>
+<text class="truc" x="48" y="228.9" text-anchor="end">4</text>
+<line class="luoi" x1="56" y1="184.3" x2="1146" y2="184.3"/>
+<text class="truc" x="48" y="188.3" text-anchor="end">6</text>
+<line class="luoi" x1="56" y1="143.7" x2="1146" y2="143.7"/>
+<text class="truc" x="48" y="147.7" text-anchor="end">8</text>
+<line class="luoi" x1="56" y1="103.1" x2="1146" y2="103.1"/>
+<text class="truc" x="48" y="107.1" text-anchor="end">10</text>
+<line class="luoi" x1="56" y1="62.6" x2="1146" y2="62.6"/>
+<text class="truc" x="48" y="66.6" text-anchor="end">12</text>
+<line class="luoi" x1="56" y1="22.0" x2="1146" y2="22.0"/>
+<text class="truc" x="48" y="26.0" text-anchor="end">14</text>
+<text class="truc nhan-y" x="48" y="14" text-anchor="end">tỷ đ</text>
+<polygon class="vung" points="56,306.0 56.0,272.7 103.4,279.0 150.8,288.1 198.2,292.6 245.6,297.3 293.0,100.6 340.3,127.6 387.7,143.2 435.1,155.9 482.5,166.4 529.9,174.2 577.3,179.6 624.7,184.7 672.1,187.4 719.5,201.1 766.9,198.0 814.3,192.5 861.7,183.1 909.0,169.9 956.4,153.5 1003.8,134.3 1051.2,111.7 1098.6,85.1 1146.0,55.6 1146,306.0"/>
+<polyline class="duong" points="56.0,272.7 103.4,279.0 150.8,288.1 198.2,292.6 245.6,297.3 293.0,100.6 340.3,127.6 387.7,143.2 435.1,155.9 482.5,166.4 529.9,174.2 577.3,179.6 624.7,184.7 672.1,187.4 719.5,201.1 766.9,198.0 814.3,192.5 861.7,183.1 909.0,169.9 956.4,153.5 1003.8,134.3 1051.2,111.7 1098.6,85.1 1146.0,55.6"/>
+<line class="moc" x1="56.0" y1="22" x2="56.0" y2="306"/>
+<text class="moc-chu" x="62.0" y="34">Đợt 1 · 2 tỷ</text>
+<line class="moc" x1="293.0" y1="22" x2="293.0" y2="306"/>
+<text class="moc-chu" x="299.0" y="34">Đợt 2 · 10 tỷ</text>
+<circle class="cham do" cx="245.6" cy="297.3" r="5"/>
+<text class="ghi-do" x="255.6" y="301.3">thấp nhất 0,43 tỷ · T5</text>
+<circle class="cham" cx="719.5" cy="201.1" r="5"/>
+<text class="ghi" x="729.5" y="217.1">đáy sau đợt 2 · 5,2 tỷ</text>
+<circle class="cham" cx="1146.0" cy="55.6" r="5"/>
+<text class="ghi manh" x="1140.0" y="43.6" text-anchor="end">cuối T24 · 12,3 tỷ</text>
+<line class="moc xanh" x1="766.9" y1="22" x2="766.9" y2="306"/>
+<text class="moc-chu xanh" x="772.9" y="298">T16 · dòng tiền hoạt động dương</text>
+<text class="truc" x="56.0" y="324" text-anchor="middle">T1</text>
+<text class="truc" x="198.2" y="324" text-anchor="middle">T4</text>
+<text class="truc" x="340.3" y="324" text-anchor="middle">T7</text>
+<text class="truc" x="482.5" y="324" text-anchor="middle">T10</text>
+<text class="truc" x="624.7" y="324" text-anchor="middle">T13</text>
+<text class="truc" x="766.9" y="324" text-anchor="middle">T16</text>
+<text class="truc" x="909.0" y="324" text-anchor="middle">T19</text>
+<text class="truc" x="1051.2" y="324" text-anchor="middle">T22</text>
+</svg>
+    </div>
+    <div class="bieu" style="margin-top:16px">
+      <div class="tieu"><h3>Chi phí cố định, doanh thu và quy mô đội ngũ</h3><span>cột: chi phí cố định · đường liền: doanh thu · đường đứt: số người</span></div>
+      <svg viewBox="0 0 1160 280" class="bd" role="img" aria-label="Chi phí cố định, doanh thu và số người theo tháng">
+<line class="luoi" x1="52" y1="246.0" x2="1114" y2="246.0"/>
+<text class="truc" x="44" y="250.0" text-anchor="end">0</text>
+<line class="luoi" x1="52" y1="200.8" x2="1114" y2="200.8"/>
+<text class="truc" x="44" y="204.8" text-anchor="end">1</text>
+<line class="luoi" x1="52" y1="155.6" x2="1114" y2="155.6"/>
+<text class="truc" x="44" y="159.6" text-anchor="end">2</text>
+<line class="luoi" x1="52" y1="110.4" x2="1114" y2="110.4"/>
+<text class="truc" x="44" y="114.4" text-anchor="end">3</text>
+<line class="luoi" x1="52" y1="65.2" x2="1114" y2="65.2"/>
+<text class="truc" x="44" y="69.2" text-anchor="end">4</text>
+<line class="luoi" x1="52" y1="20.0" x2="1114" y2="20.0"/>
+<text class="truc" x="44" y="24.0" text-anchor="end">5</text>
+<text class="truc nhan-y" x="44" y="14" text-anchor="end">tỷ đ</text>
+<rect x="59.1" y="229.5" width="30.1" height="16.54" fill="var(--s6)"/>
+<rect x="103.3" y="231.6" width="30.1" height="14.41" fill="var(--s6)"/>
+<rect x="147.6" y="224.3" width="30.1" height="21.68" fill="var(--s6)"/>
+<rect x="191.8" y="232.2" width="30.1" height="13.82" fill="var(--s6)"/>
+<rect x="236.1" y="230.2" width="30.1" height="15.81" fill="var(--s6)"/>
+<rect x="280.3" y="223.7" width="30.1" height="22.27" fill="var(--s6)"/>
+<rect x="324.6" y="174.2" width="30.1" height="71.81" fill="var(--s6)"/>
+<rect x="368.8" y="193.8" width="30.1" height="52.15" fill="var(--s6)"/>
+<rect x="413.1" y="198.6" width="30.1" height="47.41" fill="var(--s6)"/>
+<rect x="457.3" y="196.2" width="30.1" height="49.81" fill="var(--s6)"/>
+<rect x="501.6" y="196.2" width="30.1" height="49.81" fill="var(--s6)"/>
+<rect x="545.8" y="196.2" width="30.1" height="49.81" fill="var(--s6)"/>
+<rect x="590.1" y="190.8" width="30.1" height="55.20" fill="var(--s6)"/>
+<rect x="634.3" y="190.8" width="30.1" height="55.20" fill="var(--s6)"/>
+<rect x="678.6" y="157.7" width="30.1" height="88.28" fill="var(--s6)"/>
+<rect x="722.8" y="190.8" width="30.1" height="55.20" fill="var(--s6)"/>
+<rect x="767.1" y="187.8" width="30.1" height="58.19" fill="var(--s6)"/>
+<rect x="811.3" y="190.8" width="30.1" height="55.20" fill="var(--s6)"/>
+<rect x="855.6" y="190.8" width="30.1" height="55.20" fill="var(--s6)"/>
+<rect x="899.8" y="190.8" width="30.1" height="55.20" fill="var(--s6)"/>
+<rect x="944.1" y="190.8" width="30.1" height="55.20" fill="var(--s6)"/>
+<rect x="988.3" y="190.8" width="30.1" height="55.20" fill="var(--s6)"/>
+<rect x="1032.6" y="190.8" width="30.1" height="55.20" fill="var(--s6)"/>
+<rect x="1076.8" y="190.8" width="30.1" height="55.20" fill="var(--s6)"/>
+<polyline class="duong" points="74.1,245.7 118.4,245.6 162.6,243.0 206.9,237.7 251.1,232.9 295.4,225.5 339.6,216.9 383.9,206.6 428.1,201.0 472.4,188.2 516.6,177.3 560.9,167.1 605.1,156.3 649.4,146.6 693.6,132.3 737.9,123.7 782.1,110.5 826.4,99.9 870.6,86.5 914.9,74.8 959.1,63.8 1003.4,51.6 1047.6,37.2 1091.9,26.6"/>
+<polyline class="duong nguoi" points="74.1,208.3 118.4,208.3 162.6,200.8 206.9,200.8 251.1,200.8 295.4,200.8 339.6,110.4 383.9,95.3 428.1,72.7 472.4,65.2 516.6,65.2 560.9,65.2 605.1,50.1 649.4,50.1 693.6,50.1 737.9,50.1 782.1,50.1 826.4,50.1 870.6,50.1 914.9,50.1 959.1,50.1 1003.4,50.1 1047.6,50.1 1091.9,50.1"/>
+<text class="truc nguoi-truc" x="1122" y="250.0">0</text>
+<text class="truc nguoi-truc" x="1122" y="174.7">10</text>
+<text class="truc nguoi-truc" x="1122" y="99.3">20</text>
+<text class="truc nguoi-truc" x="1122" y="24.0">30</text>
+<text class="truc nhan-y nguoi-truc" x="1122" y="14">người</text>
+<text class="truc" x="74.1" y="264" text-anchor="middle">T1</text>
+<text class="truc" x="206.9" y="264" text-anchor="middle">T4</text>
+<text class="truc" x="339.6" y="264" text-anchor="middle">T7</text>
+<text class="truc" x="472.4" y="264" text-anchor="middle">T10</text>
+<text class="truc" x="605.1" y="264" text-anchor="middle">T13</text>
+<text class="truc" x="737.9" y="264" text-anchor="middle">T16</text>
+<text class="truc" x="870.6" y="264" text-anchor="middle">T19</text>
+<text class="truc" x="1003.4" y="264" text-anchor="middle">T22</text>
+</svg>
+      <div class="chu-thich">
+        <span><i style="background:var(--s6)"></i>Chi phí cố định mỗi tháng</span>
+        <span><i class="net"></i>Doanh thu mỗi tháng</span>
+        <span><i class="net4"></i>Số người (trục phải)</span>
+      </div>
+    </div>
+    <div class="kpi" style="margin-top:22px">
+      <div><b>24,9<small> tỷ</small></b><span>Chi phí cố định 24 tháng</span></div>
+      <div><b>26,9<small> tỷ</small></b><span>Lãi gộp 24 tháng</span></div>
+      <div><b>1,49<small> tỷ</small></b><span>Doanh thu định kỳ tháng 24</span></div>
+      <div><b>1,69<small> tỷ</small></b><span>Vốn lưu động VEPIO bị giữ cuối T24</span></div>
+    </div>
+  </div>
+</section>
 
-<p>Năm dòng, ba trạng thái: đang bán, đang dựng, và trong kế hoạch gần. Tất cả dùng chung một phương pháp và một trục dữ liệu.</p>
-<div class="the">
-  <div class="tt"><h3>1 · Tư vấn, thiết kế và chuyển giao mô hình</h3><span class="nhan chay">Đang bán</span></div>
-  <p>Nền tảng chính. Chúng tôi đọc bộ máy của một doanh nghiệp theo ba khối — Thị trường, Cung ứng, Điều hành — chấm từng nghiệp vụ theo sáu mức tự chủ L0–L5, rồi thiết kế lại luồng việc quanh một trục dữ liệu duy nhất kèm luật và ngưỡng. Sản phẩm giao đi không phải một con bot, mà một bộ máy có thể kiểm toán được: ai quyết gì, máy được làm tới đâu, chặn ở đâu, ai chịu trách nhiệm khi sai.</p>
-  <dl>
-    <dt>Phễu</dt><dd>Khảo sát 15 câu miễn phí → báo cáo hiện trạng hé một phần → gói Scan 499.000đ → gói Blueprint 1.499.000đ (khấu trừ 100% vào hợp đồng triển khai nếu ký trong 60 ngày) → hợp đồng triển khai 90 ngày → gói đồng hành theo tháng.</dd>
-    <dt>Doanh thu</dt><dd>Phí trọn gói ở hai bậc đầu, phí dự án chia đợt theo cột mốc ở bậc triển khai, phí thuê bao ở bậc đồng hành. Báo giá triển khai theo phạm vi, không theo bảng giá cố định — trần tự chủ của mỗi mô hình khác nhau quá xa để định giá trước.</dd>
-    <dt>Vì sao khó bắt chước</dt><dd>Mỗi dự án bồi thêm vào thư viện kiến trúc mẫu và bộ eval theo ngành. Dự án thứ mười trong cùng một ngành rút ngắn chẩn đoán hơn dự án đầu — tài sản nằm ở thư viện, không ở người.</dd>
-    <dt>Rủi ro riêng</dt><dd>Phụ thuộc giờ công của đội sáng lập ở giai đoạn đầu. Đây chính là lý do tồn tại của bốn dòng còn lại.</dd>
-  </dl>
-</div>
+<section class="nen" id="kichban">
+  <div class="khung">
+    <p class="so-muc">06 · Kịch bản</p>
+    <h2>Phương án chịu được bao nhiêu sai số</h2>
+    <p class="dan-muc">Chúng tôi không trình một đường cong duy nhất. Dưới đây là ba đường, và chỗ gãy của từng đường.</p>
+    <div class="bieu">
+      <div class="tieu"><h3>Tiền mặt theo ba kịch bản</h3><span>đơn vị: tỷ đồng</span></div>
+      <svg viewBox="0 0 1160 300" class="bd" role="img" aria-label="Ba kịch bản tiền mặt">
+<line class="luoi" x1="56" y1="266.0" x2="1146" y2="266.0"/>
+<text class="truc" x="48" y="270.0" text-anchor="end">-2</text>
+<line class="luoi khong" x1="56" y1="235.2" x2="1146" y2="235.2"/>
+<text class="truc" x="48" y="239.2" text-anchor="end">0</text>
+<line class="luoi" x1="56" y1="204.5" x2="1146" y2="204.5"/>
+<text class="truc" x="48" y="208.5" text-anchor="end">2</text>
+<line class="luoi" x1="56" y1="173.8" x2="1146" y2="173.8"/>
+<text class="truc" x="48" y="177.8" text-anchor="end">4</text>
+<line class="luoi" x1="56" y1="143.0" x2="1146" y2="143.0"/>
+<text class="truc" x="48" y="147.0" text-anchor="end">6</text>
+<line class="luoi" x1="56" y1="112.2" x2="1146" y2="112.2"/>
+<text class="truc" x="48" y="116.2" text-anchor="end">8</text>
+<line class="luoi" x1="56" y1="81.5" x2="1146" y2="81.5"/>
+<text class="truc" x="48" y="85.5" text-anchor="end">10</text>
+<line class="luoi" x1="56" y1="50.8" x2="1146" y2="50.8"/>
+<text class="truc" x="48" y="54.8" text-anchor="end">12</text>
+<line class="luoi" x1="56" y1="20.0" x2="1146" y2="20.0"/>
+<text class="truc" x="48" y="24.0" text-anchor="end">14</text>
+<polyline class="duong kb-a" points="56.0,210.0 103.4,214.8 150.8,221.7 198.2,225.1 245.6,228.6 293.0,79.6 340.3,100.0 387.7,111.8 435.1,121.5 482.5,129.4 529.9,135.4 577.3,139.5 624.7,143.3 672.1,145.4 719.5,155.8 766.9,153.4 814.3,149.2 861.7,142.1 909.0,132.1 956.4,119.7 1003.8,105.1 1051.2,88.0 1098.6,67.8 1146.0,45.5"/>
+<circle class="cham kb-a" cx="1146.0" cy="45.5" r="4"/>
+<polyline class="duong kb-b" points="56.0,210.1 103.4,214.9 150.8,222.0 198.2,226.1 245.6,230.6 293.0,82.9 340.3,105.4 387.7,120.2 435.1,133.0 482.5,145.5 529.9,156.9 577.3,167.4 624.7,178.7 672.1,189.2 719.5,209.4 766.9,217.6 814.3,225.4 861.7,231.2 909.0,235.6 956.4,238.8 1003.8,240.9 1051.2,241.7 1098.6,241.0 1146.0,239.3"/>
+<circle class="cham kb-b" cx="1146.0" cy="239.3" r="4"/>
+<polyline class="duong kb-c" points="56.0,210.1 103.4,214.9 150.8,222.0 198.2,226.1 245.6,230.6 293.0,236.4 340.3,239.1 387.7,240.8 435.1,242.3 482.5,242.5 529.9,241.7 577.3,239.9 624.7,237.4 672.1,234.0 719.5,232.1 766.9,226.4 814.3,220.5 861.7,212.4 909.0,203.0 956.4,192.4 1003.8,180.7 1051.2,167.7 1098.6,153.2 1146.0,137.6"/>
+<circle class="cham kb-c" cx="1146.0" cy="137.6" r="4"/>
+<text class="truc" x="56.0" y="284" text-anchor="middle">T1</text>
+<text class="truc" x="198.2" y="284" text-anchor="middle">T4</text>
+<text class="truc" x="340.3" y="284" text-anchor="middle">T7</text>
+<text class="truc" x="482.5" y="284" text-anchor="middle">T10</text>
+<text class="truc" x="624.7" y="284" text-anchor="middle">T13</text>
+<text class="truc" x="766.9" y="284" text-anchor="middle">T16</text>
+<text class="truc" x="909.0" y="284" text-anchor="middle">T19</text>
+<text class="truc" x="1051.2" y="284" text-anchor="middle">T22</text>
+</svg>
+      <div class="chu-thich">
+        <span><i class="net"></i>A · theo kế hoạch</span>
+        <span><i class="net2"></i>Doanh thu chỉ đạt 50%</span>
+        <span><i class="net3"></i>Không có đợt 2</span>
+      </div>
+    </div>
+    <div class="bang"><table>
+      <thead><tr><th>Kịch bản</th><th class="s">Đáy tiền mặt</th><th>Chỗ gãy</th><th>Việc phải làm</th></tr></thead>
+      <tbody>
+        <tr><td class="ten">A · theo kế hoạch</td><td class="s">+5,2 tỷ</td><td>Không gãy. Cuối T24 còn 12,3 tỷ.</td><td>Giữ nhịp tuyển và nhịp mở cấu phần đúng thứ tự.</td></tr>
+        <tr><td class="ten">Doanh thu chỉ đạt 50%</td><td class="s">−0,42 tỷ</td><td>Hết tiền từ T19, thiếu nhiều nhất ở T22.</td><td>Theo dõi doanh thu từ T12 để kịp cắt chi. 10 tỷ không còn dư như phương án 15 tỷ.</td></tr>
+        <tr><td class="ten">Không có đợt 2</td><td class="s">−0,47 tỷ</td><td>Âm tiền ngay từ cuối T6.</td><td>Phải có vốn cầu nối, hoặc dừng tuyển và giảm nhịp VEPIO trước T6.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="trong">Kịch bản 50% giữ nguyên bộ máy của kịch bản A mà chỉ cắt doanh thu — đây là phép thử nghiêm khắc có chủ ý. Trên thực tế nếu doanh thu hụt tới mức đó, chúng tôi cắt chi phí trước khi chạm đáy; bảng này cho thấy <b>cửa sổ để phát hiện và phản ứng là từ T12 đến T18</b>.</p>
+  </div>
+</section>
 
-<div class="the">
-  <div class="tt"><h3>2 · LATTICE Work — quản lý việc cho người và AI</h3><span class="nhan dang">Đang dựng</span></div>
-  <p>Dòng này là phần sản phẩm hóa của chính phương pháp ở dòng 1. Mỗi dự án tư vấn kết thúc bằng một bảng phân quyền: việc nào ở L0, việc nào được lên L3, ngưỡng nào thì phải chờ người duyệt. Bảng đó cần một nơi để sống sau khi hợp đồng kết thúc — nếu không, ba tháng sau bộ máy trôi về chỗ cũ. LATTICE Work là nơi đó: một bảng việc nơi người và tác nhân AI nằm cùng một danh sách, mỗi việc có mức tự chủ, có ngưỡng, có hàng đợi vượt ngưỡng chuyển lên người quyết.</p>
-  <dl>
-    <dt>Trạng thái</dt><dd>Bản mẫu chạy được, dùng nội bộ. Luật và ngưỡng đã tách thành lớp dữ liệu riêng để không phải sửa mã khi thay luật.</dd>
-    <dt>Doanh thu</dt><dd>Thuê bao theo tháng, tính theo số người cộng số tác nhân. Bán kèm hợp đồng triển khai ở dòng 1 trước, bán rời sau khi đủ số khách dùng thật.</dd>
-    <dt>Vai trò trong danh mục</dt><dd>Biến quan hệ một lần thành doanh thu lặp lại, và biến khách hàng tư vấn thành người dùng sản phẩm. Đây là mảnh chuyển LATTICE từ công ty dịch vụ sang công ty có sản phẩm.</dd>
-  </dl>
-</div>
+<section>
+  <div class="khung">
+    <p class="so-muc">07 · Đơn vị kinh tế</p>
+    <h2>Bậc thang giá: mỗi bậc mua rẻ hơn bậc sau</h2>
+    <p class="dan-muc">Cấu trúc được thiết kế để chi phí có được một khách giảm dần theo bậc. Khách đã trả 499.000đ không còn là khách lạnh ở bậc Blueprint; khách đã có bản thiết kế không phải thuyết phục lại ở bậc triển khai.</p>
+    <div class="bang"><table><thead><tr><th>Bậc</th><th class="s">Giá</th><th>Vai trò</th><th>Ghi chú</th></tr></thead><tbody><tr><td class="ten">Khảo sát 15 câu + báo cáo hé</td><td class="s">Miễn phí</td><td>Thu phễu, sàng lọc</td><td style="color:var(--mute)">Khách nhận kết quả dùng được kể cả khi không mua tiếp</td></tr><tr><td class="ten">LATTICE Scan</td><td class="s">499.000đ</td><td>Cửa vào trả phí</td><td style="color:var(--mute)">Đã công bố</td></tr><tr><td class="ten">LATTICE Compass</td><td class="s">690.000đ</td><td>Bậc giữa</td><td style="color:var(--mute)">Đề xuất, chưa chốt</td></tr><tr><td class="ten">LATTICE Blueprint</td><td class="s">1.499.000đ</td><td>Bản thiết kế mang đi được</td><td style="color:var(--mute)">Đã công bố · khấu trừ 100% vào hợp đồng triển khai nếu ký trong 60 ngày</td></tr><tr><td class="ten">LATTICE Foundry</td><td class="s">2.490.000đ</td><td>Bậc sâu</td><td style="color:var(--mute)">Đề xuất, chưa chốt</td></tr><tr><td class="ten">Bộ Kit theo ngành</td><td class="s">4.900.000đ</td><td>Sản phẩm đóng gói</td><td style="color:var(--mute)">Đề xuất</td></tr><tr><td class="ten">Hợp đồng Build 3–5 tháng</td><td class="s">≈120 triệu/HĐ</td><td>Doanh thu lõi</td><td style="color:var(--mute)">Giá trị bình quân giả định · chia đợt theo cột mốc</td></tr><tr><td class="ten">Đồng hành vận hành</td><td class="s">10 triệu/tháng</td><td>Doanh thu lặp lại</td><td style="color:var(--mute)">70% khách Build chuyển sang · giả định</td></tr><tr><td class="ten">LATTICE Work</td><td class="s">2,5 triệu/tháng/DN</td><td>Lặp lại</td><td style="color:var(--mute)">+ 5 triệu phí khởi tạo · giả định</td></tr><tr><td class="ten">SocialNet phần mềm</td><td class="s">2 triệu/tháng/thương hiệu</td><td>Lặp lại</td><td style="color:var(--mute)">Giả định</td></tr><tr><td class="ten">SocialNet gói media</td><td class="s">20 triệu/tháng/KH</td><td>Dịch vụ</td><td style="color:var(--mute)">Giá vốn 45% doanh thu · giả định</td></tr><tr><td class="ten">Academy lớp mở</td><td class="s">2,5 triệu/học viên</td><td>Biên cao</td><td style="color:var(--mute)">15 học viên mỗi lớp · giả định</td></tr><tr><td class="ten">Academy khóa doanh nghiệp</td><td class="s">40 triệu/khóa</td><td>Biên cao</td><td style="color:var(--mute)">Giá vốn 25% · giả định</td></tr><tr><td class="ten">SourceLiq VN</td><td class="s">3 triệu/tháng/tài khoản</td><td>Lặp lại</td><td style="color:var(--mute)">Chưa có bảng giá chính thức · giả định</td></tr></tbody></table></div>
+    <div class="hai" style="margin-top:18px">
+      <div class="o">
+        <h3>Khoản khấu trừ là một cam kết có giá</h3>
+        <p style="font-size:14.5px;color:var(--mute);margin:0">Phí Blueprint được khấu trừ 100% vào hợp đồng triển khai nếu ký trong 60 ngày. Nó dồn rủi ro về phía chúng tôi: nếu bản thiết kế không thuyết phục, chúng tôi mất công; nếu thuyết phục, khách không phải trả hai lần cho cùng một việc.</p>
+      </div>
+      <div class="o">
+        <h3>Chưa công bố vì chưa đủ số mẫu</h3>
+        <p style="font-size:14.5px;color:var(--mute);margin:0">Tỷ lệ chuyển đổi giữa các bậc, chi phí có được một khách, giá trị hợp đồng triển khai thực tế, tỷ lệ chuyển sang gói đồng hành. Đây đúng là những chỉ số mà sáu tháng chạy bằng vốn đợt 1 được thiết kế để đo — và là thứ chúng tôi sẽ đưa ra bàn ở đợt 2.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="the">
-  <div class="tt"><h3>3 · LATTICE SocialNet — vận hành kênh truyền thông</h3><span class="nhan ke">Kế hoạch gần</span></div>
-  <p>Với khách hàng của chúng tôi, nội dung không còn là marketing mà là hạ tầng phân phối: hơn 72,5% người mua online tại Việt Nam là Gen Z và Millennial, và GMV TikTok Shop đã vượt 10 tỷ USD. Nhưng sản xuất nội dung đa kênh là đúng loại việc lặp lại, có luật rõ, hậu quả sai thấp và hoàn tác được — nghĩa là loại việc đưa lên L3, L4 được sớm nhất. SocialNet là nơi đóng gói đúng việc đó: lịch nội dung, sản xuất, phân phối đa kênh và đo kết quả, chạy theo cùng một ma trận quyền quyết định.</p>
-  <dl>
-    <dt>Thị trường</dt><dd>Social commerce Việt Nam khoảng 20,98 tỷ USD năm 2026, CAGR 9,7% giai đoạn 2026–2031.</dd>
-    <dt>Doanh thu</dt><dd>Thuê bao theo tháng, bậc theo số kênh và dung lượng nội dung.</dd>
-    <dt>Điều kiện khởi động</dt><dd>Chỉ mở sau khi LATTICE Work có số khách dùng thật ổn định. Hai sản phẩm dùng chung lớp phân quyền; mở sớm sẽ phải làm hai lần.</dd>
-  </dl>
-</div>
+<section class="nen" id="xem">
+  <div class="khung">
+    <p class="so-muc">08 · Xem sản phẩm thật</p>
+    <h2>Không kể, mời xem</h2>
+    <p class="dan-muc">Ba thứ dưới đây đang chạy thật và mở được ngay trên trình duyệt. Chúng tôi để nguyên nhãn “bản mẫu” và “dữ liệu minh họa” ở chỗ nào còn là như vậy.</p>
+    <div class="lien-luoi">
+      <a class="the-lien" href="https://lattice.business/work/" target="_blank" rel="noopener">
+        <h3>LATTICE Work →</h3>
+        <p>Bảng việc nơi người và tác nhân AI nằm cùng một danh sách, mỗi việc có mức tự chủ và ngưỡng chuyển lên người quyết. Bản mẫu, đang dùng nội bộ.</p>
+        <span class="u">lattice.business/work</span>
+      </a>
+      <a class="the-lien" href="https://app.sourceliq.com" target="_blank" rel="noopener">
+        <h3>SourceLiq VN →</h3>
+        <p>Hệ điều hành thương mại cho người bán online: radar ngách, nguồn hàng, tính lãi từng đơn. Bản dựng nội bộ, connector còn ở chế độ giả lập.</p>
+        <span class="u">app.sourceliq.com</span>
+      </a>
+      <a class="the-lien" href="https://lattice.business/mophong/" target="_blank" rel="noopener">
+        <h3>Mô phỏng &amp; Dashboard CEO →</h3>
+        <p>Chấm 47 nghiệp vụ theo sáu mức tự chủ L0–L5 cho ba nhóm mô hình kinh doanh, kèm bảng điều hành lợi nhuận, dòng tiền và công nợ.</p>
+        <span class="u">lattice.business/mophong</span>
+      </a>
+      <a class="the-lien" href="https://lattice.business/khao-sat/" target="_blank" rel="noopener">
+        <h3>Phễu chẩn đoán tự động →</h3>
+        <p>Khảo sát 15 câu miễn phí, chấm điểm sẵn sàng theo năm trục, trả báo cáo hiện trạng hé một phần. Đây là cửa vào của cấu phần 1.</p>
+        <span class="u">lattice.business/khao-sat</span>
+      </a>
+    </div>
+  </div>
+</section>
 
-<div class="the">
-  <div class="tt"><h3>4 · LATTICE Academy — chuyển giao năng lực</h3><span class="nhan ke">Kế hoạch gần</span></div>
-  <p>Tư vấn không nhân rộng được bằng cách thuê thêm người tư vấn. Academy nhân rộng bằng cách dạy chính phương pháp: đọc bộ máy theo ba khối, chấm mức tự chủ, đặt ngưỡng, viết luật. Học viên là chủ doanh nghiệp nhỏ, người phụ trách vận hành, và — ở giai đoạn sau — đối tác triển khai theo vùng và theo ngành.</p>
-  <dl>
-    <dt>Doanh thu</dt><dd>Học phí theo khóa cho cá nhân và theo doanh nghiệp cho nhóm. Biên cao, không tăng tuyến tính theo nhân sự.</dd>
-    <dt>Vai trò trong danh mục</dt><dd>Hai chiều: học viên trở thành khách hàng và người giới thiệu của dòng 1; đồng thời là kênh tuyển đối tác triển khai cho giai đoạn nhượng quyền.</dd>
-    <dt>Kênh</dt><dd>Hiệp hội ngành nghề và các chương trình hỗ trợ doanh nghiệp nhỏ — nơi đã có sẵn tập người học và lý do chính đáng để học.</dd>
-  </dl>
-</div>
-<div class="the">
-  <div class="tt"><h3>5 · VEPIO · SourceLiq — hệ điều hành thương mại cho người bán online</h3><span class="nhan dang">Đang triển khai</span></div>
-  <p>Đây là mảnh khác hẳn bốn mảnh trên: không phải dịch vụ, mà là một sản phẩm phần mềm đầy đủ, và là nơi chúng tôi tự chứng minh phương pháp của mình trên chính da thịt mình. <b>SourceLiq</b> là lớp nền tảng — radar ngách, chấm điểm cơ hội, tìm nguồn hàng Trung Quốc · Nhật Bản · Việt Nam, tính lợi nhuận thật và landed cost. <b>VEPIO</b> là thương hiệu bán lẻ chạy trên nền tảng đó.</p>
-  <p>Luận điểm sản phẩm nằm ở chữ <i>profit-first</i>: hệ thống không tối ưu GMV hay ROAS mà tối ưu Contribution Profit và vòng quay tiền. Và ở chữ <i>human-in-the-loop</i> — đúng bộ luật của LATTICE, nhưng viết thành mã: mọi hành động ghi ra ngoài (đăng bài, đổi giá, chi tiền, đặt hàng nhà cung cấp, tăng ngân sách quảng cáo) đều phải đi qua lớp phân quyền rồi tới hàng đợi phê duyệt rồi mới ghi nhận; mô hình ngôn ngữ không bao giờ được gọi trực tiếp API ghi dữ liệu. Toàn bộ phần tính tiền — lợi nhuận, landed cost, thuế FTA, điểm cơ hội — chạy bằng mã tiền định, AI chỉ giải thích và đề xuất.</p>
-  <dl>
-    <dt>Khách hàng</dt><dd>B2B: doanh nghiệp và hộ kinh doanh bán trên Shopee, TikTok Shop, website và fanpage. Hệ thống đã dựng đa tài khoản với bảy vai trò và cách ly dữ liệu cứng ở tầng cơ sở dữ liệu.</dd>
-    <dt>Trạng thái</dt><dd>Xong 3 trong 8 chặng của kế hoạch MVP (tính tới 04/10/2026). Đã deploy được bản web và API nội bộ. <b>Chưa có khách thật, chưa có doanh thu, chưa có dữ liệu thật</b> — mọi số trên bảng điều khiển hiện vẫn là dữ liệu minh họa và được gắn nhãn như vậy ngay trong giao diện. Pilot 5 tài khoản là mục tiêu của chặng 7.</dd>
-    <dt>Đã có trong tay</dt><dd>Monorepo khoảng 30.000 dòng mã (Next.js · FastAPI · PostgreSQL 17 có Row Level Security · Expo cho mobile), 6 bản chuyển đổi cơ sở dữ liệu, 23 tệp kiểm thử backend gồm cả kiểm thử cách ly dữ liệu và kiểm thử vàng cho phần tính tiền, CI và cấu hình triển khai. Tài liệu PRD 1.515 dòng, prototype 40 màn đã duyệt, 5 quyết định kiến trúc có biên bản. Bộ nhận diện thương hiệu hoàn chỉnh 236 tệp. Tên miền và hạ tầng đã cấu hình.</dd>
-    <dt>Mô hình doanh thu</dt><dd><b>Chưa chốt trên giấy.</b> Tài liệu hiện có không nêu giá, gói, hay phí. Hướng đang xét: thuê bao theo tài khoản, khách tự mang khóa API mô hình AI (đẩy chi phí biến đổi lớn nhất sang khách) hoặc quota do nền tảng cấp. Chi phí phục vụ rất thấp — một VPS 2 vCPU/8GB đủ cho 5–20 tài khoản pilot — nên biên gộp có khả năng cao, nhưng chúng tôi chưa công bố con số chưa kiểm chứng.</dd>
-  </dl>
-  <div class="canh"><b>Hai rủi ro phải nói trước.</b> Thứ nhất, toàn bộ phần tự động hóa phụ thuộc quyền API mà <b>chưa bên nào cấp</b>: Shopee Open Platform, TikTok Shop Partner Center, Meta App Review, 1688. Nếu bị từ chối, sản phẩm tụt xuống mức nhập liệu bằng tệp CSV — vẫn dùng được, nhưng luận điểm đổi khác. Thứ hai, khách hàng duy nhất hiện nay là VEPIO, tức thương hiệu bán lẻ của chính nhà sáng lập; chúng tôi coi đây là bàn thử nghiệm, nhưng sẽ phải tách bạch quản trị khi bán nền tảng cho người bán khác.</div>
-</div>
+<section>
+  <div class="khung">
+    <p class="so-muc">09 · Tài sản</p>
+    <h2>Thứ còn lại nếu ngày mai dừng bán</h2>
+    <div class="bang"><table><thead><tr><th style="width:230px">Tài sản</th><th>Hiện trạng</th></tr></thead><tbody><tr><td class="ten">Bộ luật L0–L5</td><td style="color:var(--mute)">Sáu mức tự chủ áp cho 47 nghiệp vụ thuộc ba khối và ba nhóm mô hình kinh doanh. Mỗi nghiệp vụ có mức khuyến nghị, mức trần và phần người luôn giữ. Đã thành công cụ tương tác công khai.</td></tr><tr><td class="ten">Phễu chẩn đoán tự động</td><td style="color:var(--mute)">Khảo sát 15 câu → chấm điểm sẵn sàng năm trục → báo cáo hé → bản đầy đủ sau khi trả phí. Đang chạy trên website.</td></tr><tr><td class="ten">Mô phỏng &amp; Dashboard CEO</td><td style="color:var(--mute)">Cho khách thấy bộ máy của chính họ trước khi ký: sơ đồ ba khối theo mô hình, lợi nhuận theo kỳ và dự phóng, dòng tiền, công nợ, hàng đợi vượt ngưỡng.</td></tr><tr><td class="ten">LATTICE Work</td><td style="color:var(--mute)">Bản mẫu chạy được; lớp luật đã tách khỏi mã nên thay luật không phải sửa mã.</td></tr><tr><td class="ten">VEPIO · SourceLiq</td><td style="color:var(--mute)">≈30.000 dòng mã, 16 module backend, 46 trang web, kiểm thử cách ly dữ liệu và kiểm thử vàng phần tính tiền, hạ tầng triển khai đã dựng, 6 bản chuyển đổi cơ sở dữ liệu. PRD 1.515 dòng, prototype 40 màn đã duyệt, 5 quyết định kiến trúc có biên bản. Bộ nhận diện thương hiệu 236 tệp.</td></tr><tr><td class="ten">Nội dung nền tảng</td><td style="color:var(--mute)">Website hai ngôn ngữ, bộ tài liệu phương pháp, phân tích ngành và khung pháp lý Việt Nam cập nhật tới 2026. Nhãn hiệu LATTICE, VEPIO, SourceLiq trong kế hoạch đăng ký ngay T1.</td></tr><tr><td class="ten">Mô hình tài chính</td><td style="color:var(--mute)">24 tháng, năm cấu phần, mọi ô là công thức liên kết từ một bộ giả định — đổi một giả định là cả mô hình chạy lại. Có sẵn kịch bản A, kịch bản 50% và kịch bản không có đợt 2.</td></tr></tbody></table></div>
+  </div>
+</section>
 
-<h2 id="conghuong">3 · Vì sao năm mảnh này cộng hưởng</h2>
+<section class="nen" id="ruiro">
+  <div class="khung">
+    <p class="so-muc">10 · Rủi ro</p>
+    <h2>Tám điều nhà đầu tư sẽ hỏi, và câu trả lời của chúng tôi</h2>
+    <p class="dan-muc">Nhà đầu tư chiến lược tìm ra những thứ này trong hai mươi phút thẩm định. Nói trước là điểm cộng về độ chín; giấu đi là điểm trừ về độ tin cậy.</p>
+    <div class="bang"><table><thead><tr><th style="width:200px">Rủi ro</th><th>Thực chất</th><th>Cách kiểm soát</th></tr></thead><tbody><tr><td class="ten">Phụ thuộc đội sáng lập</td><td style="color:var(--mute)">Cấu phần 1 vẫn đổi giờ công ra tiền ở giai đoạn đầu.</td><td>Thư viện kiến trúc mẫu và bộ eval rút giờ công ra khỏi mỗi dự án kế tiếp. Academy và ba sản phẩm là đường thoát khỏi mô hình giờ công.</td></tr><tr><td class="ten">Chưa có traction công bố được</td><td style="color:var(--mute)">Số thật mới có ở cấu phần 1; bốn cấu phần còn lại là giả định.</td><td>Nói thẳng, không trang trí. Sáu tháng chạy bằng vốn đợt 1 được thiết kế để sinh ra đúng những con số mà đợt 2 cần.</td></tr><tr><td class="ten">Tập trung doanh thu vào VEPIO</td><td style="color:var(--mute)">60,8% doanh thu 24 tháng đến từ một cấu phần biên mỏng và ăn vốn lưu động.</td><td>Đo sức khỏe bằng doanh thu định kỳ, không bằng tổng doanh thu. Vốn lưu động VEPIO tính riêng trong dòng tiền, không trộn vào lãi gộp.</td></tr><tr><td class="ten">Quyền API chưa bên nào cấp</td><td style="color:var(--mute)">Shopee, TikTok Shop, Meta, 1688 — toàn bộ phần tự động hóa của cấu phần 5 phụ thuộc vào đây.</td><td>Thiết kế theo thang giả lập → nhập tệp → đối tác → trực tiếp, nên sản phẩm có giá trị dùng được ở cả mức thấp nhất. Luật nội bộ cấm tuyên bố đã tự động hóa khi connector còn giả lập.</td></tr><tr><td class="ten">Dữ liệu đầu vào cho AI</td><td style="color:var(--mute)">Cấm lấy dữ liệu trái điều khoản, nhưng chưa có nguồn hợp pháp dài hạn.</td><td>Ngắn hạn dùng tệp do chính chủ tài khoản xuất ra từ công cụ hợp lệ. Dài hạn mua dữ liệu — một dòng chi phí còn phải định lượng.</td></tr><tr><td class="ten">Số thuế, phí sàn, biểu FTA còn là số minh họa</td><td style="color:var(--mute)">Sản phẩm bán giá trị cốt lõi là “tính đúng lợi nhuận và landed cost”.</td><td>Chưa chạy dữ liệu thật trước khi có thẩm định pháp lý · thuế · hải quan. Phần tính tiền viết bằng mã tiền định và có kiểm thử vàng, nên thay số là thay dữ liệu, không viết lại logic.</td></tr><tr><td class="ten">Pháp lý Việt Nam đang đổi nhanh</td><td style="color:var(--mute)">Luật Thương mại điện tử 122/2025/QH15 hiệu lực 01/07/2026, nghĩa vụ thuế trên nền tảng số, bảo vệ dữ liệu cá nhân.</td><td>Coi tuân thủ là sản phẩm chứ không phải chi phí: chính sức ép này tạo ra nhu cầu cho cấu phần 1. Dữ liệu cá nhân bị chặn cứng ở tầng mã, không gửi tới nhà cung cấp mô hình đặt tại Trung Quốc.</td></tr><tr><td class="ten">Rủi ro một người</td><td style="color:var(--mute)">Phần lớn mã và tài liệu do một đội rất nhỏ tạo ra, với sự tham gia nặng của tác nhân AI.</td><td>Đây là rủi ro thật và là một trong ba chỗ hẹp chúng tôi tìm nhà đầu tư để giải. Phần giảm thiểu đã làm: luật nghiệp vụ nằm trong mã và có kiểm thử, quyết định kiến trúc có biên bản, tài liệu đủ để người mới tiếp nhận.</td></tr></tbody></table></div>
+  </div>
+</section>
 
-<p class="luan">Năm dòng không phải năm công ty đặt cạnh nhau. Chúng là một bộ luật được bán năm lần ở năm độ sâu khác nhau — và mỗi lần bán lại bồi thêm cho bốn lần còn lại.</p>
+<section>
+  <div class="khung">
+    <p class="so-muc">11 · Đề nghị</p>
+    <h2>Tìm gì ở nhà đầu tư chiến lược</h2>
+    <p class="luan">Chúng tôi không gọi vốn để mua tăng trưởng. Chúng tôi gọi 10 tỷ để đi qua đúng ba chỗ hẹp, và để không phải bán rẻ thời gian ở sáu tháng mỏng nhất.</p>
+    <div class="hai">
+      <div class="o vien">
+        <h3>Tiền dùng vào đâu</h3>
+        <dl>
+          <dt>Nhân sự 18 tháng còn lại</dt><dd>≈15,5 tỷ</dd>
+          <dt>Hạ tầng, công cụ, hạ tầng AI</dt><dd>≈2,2 tỷ</dd>
+          <dt>Marketing bốn cấu phần</dt><dd>≈2,5 tỷ</dd>
+          <dt>Vốn lưu động VEPIO</dt><dd>≈1,7 tỷ</dd>
+          <dt>Pháp lý, kiểm toán, thiết bị, một lần</dt><dd>≈1,1 tỷ</dd>
+        </dl>
+        <p style="font-size:12.5px;color:var(--mute);margin:12px 0 0">Số làm tròn từ bảng chi phí 24 tháng; phần vượt 10 tỷ được doanh thu trong kỳ gánh.</p>
+      </div>
+      <div class="o">
+        <h3>Ba chỗ hẹp cần nhà đầu tư, không chỉ cần tiền</h3>
+        <ul class="gon" style="font-size:15px;margin-top:4px">
+          <li><b>Đường vào tập khách có sẵn</b> — hiệp hội ngành nghề, chương trình hỗ trợ doanh nghiệp nhỏ, ngân hàng và nhà cung cấp dịch vụ đang phục vụ cùng tập khách. Một cửa vào tốt rút ngắn hai năm xây phễu.</li>
+          <li><b>Quan hệ nền tảng và dữ liệu</b> — quyền API sàn, nhà cung cấp dữ liệu thị trường, đối tác nguồn hàng Trung Quốc và Nhật Bản. Đây là rủi ro tồn tại của cấu phần 5 và không giải được bằng tiền thuần.</li>
+          <li><b>Năng lực đội ngũ</b> — người dẫn phần kỹ thuật sản phẩm để tách khỏi rủi ro một người, và người dẫn phần đào tạo để Academy mở được quy mô.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hai" style="margin-top:16px">
+      <div class="o">
+        <h3>Thứ chúng tôi không đổi</h3>
+        <ul class="gon" style="font-size:15px;margin-top:4px">
+          <li><b>Người giữ cửa phê duyệt.</b> Ma trận quyền quyết định và cơ chế dừng khẩn là sản phẩm, không phải tính năng cắt được để chạy nhanh hơn.</li>
+          <li><b>Không hứa thứ chưa chạy.</b> Không tuyên bố đã tự động hóa khi hệ thống còn ở chế độ giả lập; không trình dự phóng như kết quả.</li>
+          <li><b>Không đi trước pháp luật.</b> Với khách quy mô nhỏ, một sai lầm pháp lý là chấm hết — cho họ và cho uy tín của chúng tôi.</li>
+        </ul>
+      </div>
+      <div class="o do">
+        <h3>Bước tiếp theo</h3>
+        <p style="font-size:15px;margin:0 0 12px">Một buổi 60 phút, chúng tôi mở trực tiếp ba thứ: công cụ chấm mức L0–L5 trên 47 nghiệp vụ, bản mẫu LATTICE Work, và bản dựng nội bộ của SourceLiq — để quý vị thấy phần đang chạy và phần còn là kế hoạch bằng mắt, không qua lời kể.</p>
+        <p style="font-size:15px;margin:0">Mô hình tài chính đầy đủ dạng bảng tính (24 tháng, mọi ô là công thức, đổi được giả định), cấu trúc sở hữu chi tiết và hồ sơ pháp lý gửi sau khi ký thỏa thuận bảo mật.</p>
+        <p style="margin:16px 0 0;font-size:15px"><b>lattice.consultant@gmail.com</b></p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="bang"><table>
-<thead><tr><th>Dòng</th><th>Nhận từ các dòng khác</th><th>Trả lại cho các dòng khác</th></tr></thead>
-<tbody>
-<tr><td><b>Tư vấn &amp; chuyển giao</b></td><td>Học viên Academy trở thành khách. Thư viện mẫu tích lũy rút ngắn chẩn đoán.</td><td>Mỗi dự án sinh ra một bảng phân quyền thật — nguyên liệu để sản phẩm hóa.</td></tr>
-<tr><td><b>LATTICE Work</b></td><td>Khách sẵn có từ dòng 1, không phải mua lại từ đầu.</td><td>Giữ bộ máy không trôi về chỗ cũ sau khi hợp đồng kết thúc. Biến một lần thành lặp lại.</td></tr>
-<tr><td><b>LATTICE SocialNet</b></td><td>Dùng chung lớp phân quyền của LATTICE Work.</td><td>Cửa vào rẻ cho nhóm khách chưa sẵn sàng làm cả bộ máy.</td></tr>
-<tr><td><b>Academy</b></td><td>Phương pháp đã kiểm chứng trên khách thật, không phải lý thuyết.</td><td>Khách và người giới thiệu cho dòng 1. Nguồn tuyển đối tác triển khai.</td></tr>
-<tr><td><b>VEPIO · SourceLiq</b></td><td>Bộ luật L0–L5, ma trận quyền quyết định, cơ chế hàng đợi và dừng khẩn.</td><td>Bằng chứng sống rằng phương pháp chạy được ở mức mã nguồn, không chỉ ở mức tài liệu. Và một nhánh doanh thu không phụ thuộc giờ công.</td></tr>
-</tbody>
-</table></div>
-
-<p>Trên trang công bố của mình, chúng tôi mô tả bốn dòng theo vai trò — Advisory, Architecture, Academy, Ecosystem. Bản này mô tả năm dòng theo sản phẩm. Hai cách gọi cùng một thứ: Advisory và Architecture hợp thành dòng 1; LATTICE Work, SocialNet và VEPIO · SourceLiq là phần sản phẩm hóa mà trang công bố gọi chung là Ecosystem.</p>
-
-<h2 id="taisan">4 · Tài sản đã tích lũy</h2>
-
-<p>Điều quan trọng với nhà đầu tư chiến lược không phải doanh thu hôm nay, mà thứ gì còn lại nếu ngày mai dừng bán.</p>
-
-<div class="bang"><table>
-<thead><tr><th>Tài sản</th><th>Hiện trạng</th></tr></thead>
-<tbody>
-<tr><td><b>Bộ luật L0–L5</b></td><td>Sáu mức tự chủ, áp cho 47 nghiệp vụ thuộc ba khối và ba nhóm mô hình kinh doanh. Mỗi nghiệp vụ có mức khuyến nghị, mức trần, và phần người luôn giữ. Đã chạy thành công cụ tương tác công khai.</td></tr>
-<tr><td><b>Phễu chẩn đoán tự động</b></td><td>Khảo sát 15 câu → chấm điểm sẵn sàng theo năm trục → báo cáo hé một phần → bản đầy đủ sau khi trả phí. Chạy được, đang ở trên website.</td></tr>
-<tr><td><b>Dashboard CEO và trang mô phỏng</b></td><td>Công cụ cho khách thấy bộ máy của chính họ trước khi ký: sơ đồ ba khối theo mô hình, phân tích lợi nhuận theo kỳ và dự phóng, dòng tiền, công nợ, hàng đợi vượt ngưỡng.</td></tr>
-<tr><td><b>LATTICE Work</b></td><td>Bản mẫu chạy được; lớp luật đã tách khỏi mã.</td></tr>
-<tr><td><b>VEPIO · SourceLiq</b></td><td>~30.000 dòng mã, 16 module backend, 46 trang web, kiểm thử cách ly dữ liệu và kiểm thử vàng phần tính tiền, hạ tầng triển khai đã dựng. Bộ nhận diện thương hiệu 236 tệp.</td></tr>
-<tr><td><b>Nội dung nền tảng</b></td><td>Website hai ngôn ngữ, bộ tài liệu phương pháp, phân tích ngành và khung pháp lý Việt Nam cập nhật tới 2026.</td></tr>
-</tbody>
-</table></div>
-
-<h2 id="lotrinh">5 · Lộ trình và thước đo</h2>
-
-<div class="bang"><table>
-<thead><tr><th>Giai đoạn</th><th>Việc phải xong</th><th>Đo bằng gì</th></tr></thead>
-<tbody>
-<tr><td><b>2026</b><br>Chứng minh phương pháp</td><td>Hoàn thiện phương pháp trên số ít khách thật thuộc 2–3 ngành. Dựng thư viện kiến trúc mẫu và bộ eval đầu tiên. Đưa VEPIO · SourceLiq tới pilot có khách ngoài VEPIO.</td><td>Số dự án <b>lên được vận hành thật</b>, không phải số hợp đồng đã ký. Số tài khoản pilot chạy đủ hai tuần không rò dữ liệu chéo và không có hành động ngoài chưa duyệt.</td></tr>
-<tr><td><b>2027–2028</b><br>Nhân rộng qua Academy</td><td>Đóng gói phương pháp thành ba lộ trình đào tạo. Mở LATTICE Work bán rời. Mở SocialNet. Đi qua hiệp hội ngành nghề và chương trình hỗ trợ doanh nghiệp nhỏ.</td><td>Tỷ trọng doanh thu <b>không đến từ giờ công tư vấn</b>. Tỷ lệ học viên trở thành khách hàng.</td></tr>
-<tr><td><b>2029+</b><br>Hệ sinh thái và nhượng quyền</td><td>Cấp phép mẫu kiến trúc, đào tạo đối tác triển khai theo vùng và theo ngành, mở rộng khu vực — bắt đầu từ hành lang đã có quan hệ.</td><td>Doanh thu trên người. Số mẫu kiến trúc được cấp phép.</td></tr>
-</tbody>
-</table></div>
-
-<div class="trong">Các mốc trên là cam kết về <i>thứ tự</i> và <i>cổng nghiệm thu</i>, không phải dự báo tài chính. Dự phóng doanh thu theo từng dòng sẽ gửi riêng cho nhà đầu tư đã ký thỏa thuận bảo mật, kèm giả định được nêu rõ.</div>
-
-<h2 id="kinhte">6 · Đơn vị kinh tế</h2>
-
-<p>Phần này trình bày theo nguyên tắc: con số nào đã có thật thì ghi thật, con số nào chưa đo được thì nói thẳng là chưa đo được. Chúng tôi không trình bày dự phóng như thể là kết quả.</p>
-
-<div class="bang"><table>
-<thead><tr><th>Bậc</th><th>Giá</th><th>Vai trò</th></tr></thead>
-<tbody>
-<tr><td>Khảo sát 15 câu + báo cáo hé</td><td>Miễn phí</td><td>Thu phễu, sàng lọc. Khách nhận được kết quả dùng được kể cả khi không mua tiếp.</td></tr>
-<tr><td>LATTICE Scan</td><td>499.000đ</td><td>Cửa vào trả phí, chi phí thấp để khách thử.</td></tr>
-<tr><td>LATTICE Blueprint</td><td>1.499.000đ</td><td>Bản thiết kế mang đi được. Khấu trừ 100% vào hợp đồng triển khai nếu ký trong 60 ngày.</td></tr>
-<tr><td>Hợp đồng triển khai 90 ngày</td><td>Theo phạm vi</td><td>Doanh thu lõi, giá trị hợp đồng lớn nhất. Chia đợt theo ba cổng nghiệm thu.</td></tr>
-<tr><td>Đồng hành vận hành</td><td>Thuê bao tháng</td><td>Doanh thu lặp lại.</td></tr>
-<tr><td>LATTICE Work · SocialNet</td><td>Thuê bao tháng</td><td>Lặp lại, không tăng tuyến tính theo nhân sự.</td></tr>
-</tbody>
-</table></div>
-
-<p>Cấu trúc này được thiết kế để chi phí có được một khách giảm dần theo bậc: khách đã trả 499.000đ không còn là khách lạnh ở bậc Blueprint, và khách đã có bản thiết kế không còn phải được thuyết phục lại ở bậc triển khai. Khoản khấu trừ 100% của Blueprint là một lời cam kết có giá: nó dồn rủi ro về phía chúng tôi.</p>
-
-<div class="trong">Chưa công bố trong bản này vì chưa đủ số mẫu để nói có nghĩa: tỷ lệ chuyển đổi giữa các bậc, chi phí có được một khách, giá trị hợp đồng triển khai trung bình, tỷ lệ khách chuyển sang gói đồng hành. Đây là đúng những chỉ số mà giai đoạn 2026 được thiết kế để đo.</div>
-
-<h2 id="ruiro">7 · Rủi ro và cách kiểm soát</h2>
-
-<div class="bang"><table>
-<thead><tr><th>Rủi ro</th><th>Cách chúng tôi xử lý</th></tr></thead>
-<tbody>
-<tr><td><b>Phụ thuộc đội sáng lập.</b> Dòng doanh thu lớn nhất hiện vẫn đổi giờ công ra tiền.</td><td>Thư viện kiến trúc mẫu và bộ eval là cơ chế rút giờ công ra khỏi mỗi dự án kế tiếp. Academy và ba sản phẩm là đường thoát khỏi mô hình giờ công. Đây là lý do có mặt của giai đoạn 2027–2028.</td></tr>
-<tr><td><b>Chưa có traction công bố được.</b></td><td>Nói thẳng, không trang trí. Giai đoạn 2026 được đo bằng số dự án lên vận hành thật, không bằng số hợp đồng ký.</td></tr>
-<tr><td><b>VEPIO · SourceLiq phụ thuộc quyền API của Shopee, TikTok Shop, Meta, 1688 — chưa bên nào cấp.</b></td><td>Thiết kế theo thang MOCK → nhập tệp → đối tác → trực tiếp, nên sản phẩm có giá trị dùng được ở cả mức thấp nhất. Nguyên tắc nội bộ cấm tuyên bố đã tự động hóa khi connector còn ở chế độ giả. Việc xin quyền là mục công việc có người chịu trách nhiệm, không phải giả định.</td></tr>
-<tr><td><b>Dữ liệu đầu vào cho AI chưa có nguồn hợp pháp dài hạn.</b></td><td>Cấm tuyệt đối việc lấy dữ liệu trái điều khoản. Ngắn hạn dùng tệp do chính chủ tài khoản xuất ra từ công cụ hợp lệ; dài hạn là mua dữ liệu từ nhà cung cấp — một dòng chi phí chúng tôi còn phải định lượng.</td></tr>
-<tr><td><b>Số thuế, phí sàn, cước và biểu thuế FTA trong sản phẩm hiện là số minh họa.</b></td><td>Chưa chạy dữ liệu thật trước khi có thẩm định pháp lý · thuế · hải quan. Phần tính tiền đã viết bằng mã tiền định và có kiểm thử vàng, nên thay số là thay dữ liệu, không phải viết lại logic.</td></tr>
-<tr><td><b>Pháp lý Việt Nam đang đổi nhanh</b> — Luật Thương mại điện tử 122/2025/QH15 hiệu lực 01/07/2026, nghĩa vụ thuế trên nền tảng số, bảo vệ dữ liệu cá nhân.</td><td>Chúng tôi coi tuân thủ là sản phẩm, không phải chi phí: chính sức ép tuân thủ đang tạo ra nhu cầu cho dòng 1. Dữ liệu cá nhân đã bị chặn cứng ở tầng mã, không gửi tới nhà cung cấp mô hình đặt tại Trung Quốc.</td></tr>
-<tr><td><b>Phạm vi rộng so với nguồn lực.</b></td><td>Thứ tự được khóa cứng: dòng 1 nuôi tiền, LATTICE Work trước SocialNet vì dùng chung lớp phân quyền, VEPIO · SourceLiq đi tới pilot trước khi mở rộng tính năng. Mỗi chặng có cổng nghiệm thu, không qua cổng thì không sang chặng.</td></tr>
-<tr><td><b>Rủi ro một người.</b> Phần lớn mã và tài liệu hiện do một đội rất nhỏ tạo ra với sự tham gia nặng của tác nhân AI.</td><td>Đây là rủi ro thật và là một trong những thứ chúng tôi tìm nhà đầu tư chiến lược để giải. Phần giảm thiểu đã làm: mọi luật nghiệp vụ nằm trong mã và có kiểm thử, quyết định kiến trúc có biên bản, tài liệu đủ để người mới tiếp nhận.</td></tr>
-</tbody>
-</table></div>
-
-<h2 id="timgi">8 · Tìm gì ở nhà đầu tư chiến lược</h2>
-
-<p class="luan">Chúng tôi không tìm vốn để mua tăng trưởng. Chúng tôi tìm vốn và quan hệ để đi nhanh hơn qua đúng ba chỗ hẹp.</p>
-
-<h3>Ba chỗ hẹp</h3>
-<ul class="gon">
-  <li><b>Đường vào tập khách hàng có sẵn.</b> Hiệp hội ngành nghề, chương trình hỗ trợ doanh nghiệp nhỏ, ngân hàng và nhà cung cấp dịch vụ đang phục vụ cùng tập khách. Một cửa vào tốt rút ngắn hai năm xây phễu.</li>
-  <li><b>Quan hệ nền tảng và quyền truy cập dữ liệu.</b> Quyền API sàn, nhà cung cấp dữ liệu thị trường, đối tác nguồn hàng Trung Quốc và Nhật Bản. Đây là rủi ro tồn tại của dòng 5 và không giải được bằng tiền thuần.</li>
-  <li><b>Năng lực đội ngũ.</b> Người dẫn phần kỹ thuật sản phẩm để tách khỏi rủi ro một người, và người dẫn phần đào tạo để Academy mở được quy mô.</li>
-</ul>
-
-<h3>Thứ chúng tôi không đổi</h3>
-<ul class="gon">
-  <li><b>Người giữ cửa phê duyệt.</b> Ma trận quyền quyết định và cơ chế dừng khẩn là sản phẩm, không phải tính năng có thể cắt để chạy nhanh hơn.</li>
-  <li><b>Không hứa thứ chưa chạy.</b> Không tuyên bố đã tự động hóa khi hệ thống còn ở chế độ giả; không trình dự phóng như kết quả.</li>
-  <li><b>Không đi trước pháp luật.</b> Với khách hàng quy mô nhỏ, một sai lầm pháp lý là chấm hết — cho họ và cho uy tín của chúng tôi.</li>
-</ul>
-
-<h3>Bước tiếp theo</h3>
-<p>Một buổi 60 phút, chúng tôi mở trực tiếp ba thứ: công cụ chấm mức L0–L5 trên 47 nghiệp vụ, bản mẫu LATTICE Work, và bản dựng nội bộ của SourceLiq — để quý vị thấy phần đang chạy và phần còn là kế hoạch, bằng mắt chứ không qua lời kể. Hồ sơ tài chính chi tiết, cấu trúc sở hữu và dự phóng theo từng dòng gửi sau khi ký thỏa thuận bảo mật.</p>
-
-<p>Mọi liên hệ qua email <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a>.</p>
-
-</div>
-
-<footer>
+<footer><div class="khung">
   Tài liệu nội bộ dành cho nhà đầu tư chiến lược tiềm năng. Không công bố, không đưa vào chỉ mục tìm kiếm.
-  Mọi con số trong bản này đều ghi rõ là số đã có thật hay số chưa đo được; phần chưa đo được không được trình bày như kết quả.
+  Số liệu tài chính tính lại từ mô hình bản 9 ngày 05/10/2026; sản lượng của các cấu phần mới là giả định, chưa phải số thực tế.
+  Chưa tính VAT đầu ra và thuế thu nhập doanh nghiệp.
   <br>LATTICE NEXT SOLUTIONS JSC · <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a> · <a href="../">lattice.business</a>
-</footer>
-</div>
+</div></footer>
+
 <script>
 (function () {
   var g = document.getElementById('sangtoi');

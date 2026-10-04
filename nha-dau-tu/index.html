@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tổng quan cho nhà đầu tư chiến lược — LATTICE Next Solutions</title>
+<meta name="description" content="LATTICE Next Solutions — tổng quan dành cho nhà đầu tư chiến lược: năm dòng sản phẩm, một phương pháp, một trục dữ liệu.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="../brand/logo/favicon/favicon-32.png" sizes="32x32">
+<script>try{var _t=localStorage.getItem('lnx-theme'); if(_t) document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+<style>
+@font-face{font-family:Archivo;font-style:normal;font-weight:400 800;font-display:swap;
+  src:url("../assets/fonts/archivo-latin.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Archivo;font-style:normal;font-weight:400 800;font-display:swap;
+  src:url("../assets/fonts/archivo-vietnamese.woff2") format("woff2");
+  unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB}
+:root{
+  --bg:#F3F2F2; --card:#FBFAFA; --ink:#201E1D; --mute:#605D5D; --line:#BAB6B6; --line2:#D7D3D3;
+  --red:#EC3013; --redtx:#AE1800; --redbg:#FBE3DE; --ok:#2E6B4F; --inv:#F3F2F2;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#161514; --card:#1C1B1A; --ink:#EDEBEA; --mute:#A8A4A2; --line:#3C3937; --line2:#2A2827;
+  --redtx:#FF7A63; --redbg:#3A1A14; --ok:#7CC6A0; --inv:#161514; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#161514; --card:#1C1B1A; --ink:#EDEBEA; --mute:#A8A4A2; --line:#3C3937; --line2:#2A2827;
+  --redtx:#FF7A63; --redbg:#3A1A14; --ok:#7CC6A0; --inv:#161514; color-scheme:dark;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:Archivo,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15.5px;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px 80px}
+header.top{display:flex;align-items:center;gap:14px;padding:18px 0 14px;border-bottom:2px solid var(--ink)}
+header .mark{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.1em;font-size:15px}
+header .mark small{font-weight:400;letter-spacing:0;color:var(--mute);font-size:12.5px}
+.sangtoi{margin-left:auto;width:34px;height:34px;padding:0;border-radius:50%;display:grid;place-items:center;
+  background:transparent;color:var(--ink);border:1px solid var(--ink);cursor:pointer}
+.sangtoi svg{display:block;transition:transform .35s ease}
+:root[data-theme="dark"] .sangtoi svg{transform:rotate(180deg)}
+@media (prefers-reduced-motion:reduce){.sangtoi svg{transition:none}}
+h1{font-size:clamp(26px,4.4vw,38px);line-height:1.08;letter-spacing:-.025em;margin:26px 0 10px}
+.lead{font-size:16.5px;color:var(--mute);margin:0 0 6px;max-width:60ch}
+.tien{display:flex;gap:4px;margin:22px 0 6px}
+.tien i{height:5px;flex:1;background:var(--line2)}
+.tien i.xong{background:var(--ink)}
+.tien i.dang{background:var(--red)}
+.tien-chu{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:18px}
+fieldset{border:0;margin:0;padding:0}
+.cau{background:var(--card);border:1px solid var(--line);padding:20px 22px;margin-bottom:12px}
+.cau legend,.cau .hoi{font-weight:700;font-size:16px;display:block;margin-bottom:4px}
+.cau .goi{font-size:13.5px;color:var(--mute);margin-bottom:14px}
+.chon{display:grid;gap:8px}
+.chon.ngang{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+label.o{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line2);background:var(--bg);
+  padding:11px 13px;cursor:pointer;font-size:14.5px}
+label.o:hover{border-color:var(--ink)}
+label.o input{margin:2px 0 0;accent-color:var(--red);flex:none}
+label.o.chon-roi{border-color:var(--ink);background:var(--card);box-shadow:inset 3px 0 0 var(--red)}
+label.o b{display:block;font-weight:700}
+label.o span.mo{display:block;color:var(--mute);font-size:13px;margin-top:2px}
+input[type=text],input[type=email],textarea{width:100%;font:inherit;color:inherit;background:var(--bg);
+  border:1px solid var(--line);padding:12px 13px}
+input:focus,textarea:focus{outline:2px solid var(--red);outline-offset:-2px}
+.dieu{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;align-items:center}
+.btn{font:inherit;font-weight:700;font-size:14px;letter-spacing:.06em;padding:14px 22px;border:2px solid var(--ink);
+  background:var(--ink);color:var(--inv);cursor:pointer}
+.btn.phu{background:transparent;color:var(--ink)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.do{background:var(--red);border-color:var(--red);color:#fff}
+.ghi{font-size:13px;color:var(--mute);margin-left:auto}
+.loi{color:var(--redtx);font-size:14px;font-weight:600;margin-top:10px;min-height:1.2em}
+.dem-chon{font-size:13px;color:var(--mute);margin-top:8px}
+.nv-luoi{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:6px}
+.nv-khoi{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin:14px 0 6px;grid-column:1/-1}
+.rieng{border-left:3px solid var(--red);background:var(--redbg);padding:12px 15px;font-size:14px;margin-top:14px}
+footer{border-top:1px solid var(--line);margin-top:34px;padding-top:16px;font-size:13px;color:var(--mute)}
+footer a{color:inherit}
+@media (max-width:560px){.cau{padding:16px 15px}.wrap{padding:0 14px 60px}}
+.qt-bang{background:var(--ink);color:var(--inv);padding:10px 14px;font-size:13px;font-weight:600;
+  letter-spacing:.06em;display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0}
+.qt-bang button{font:inherit;font-size:12px;padding:5px 10px;background:transparent;color:inherit;
+  border:1px solid currentColor;cursor:pointer;margin-left:auto}
+.muc{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;padding:10px 12px;background:var(--bg);border:1px solid var(--line2)}
+.muc .nhan{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.muc b{font-size:15px}
+.muc b.do{color:var(--redtx)}
+.tbl{overflow-x:auto;border:1px solid var(--line);background:var(--card);margin-top:10px}
+.tbl table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px}
+.tbl th,.tbl td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line2)}
+.tbl th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);background:var(--bg)}
+.tbl td.c,.tbl th.c{text-align:center;font-variant-numeric:tabular-nums}
+.tbl tr.dau td{font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <span class="mark">
+    <svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true"><g stroke="currentColor" stroke-width="6" fill="none"><path d="M50 8 L92 50 L50 92 L8 50 Z"/></g><g fill="var(--bg)" stroke="currentColor" stroke-width="6"><circle cx="50" cy="8" r="7"/><circle cx="92" cy="50" r="7"/><circle cx="50" cy="92" r="7"/><circle cx="8" cy="50" r="7"/></g><circle cx="50" cy="50" r="10" fill="#EC3013"/></svg>
+    LATTICE <small>· tổng quan đầu tư</small>
+  </span>
+  <button class="sangtoi" id="sangtoi" type="button" aria-label="Chuyển chế độ sáng / tối" title="Chuyển chế độ sáng / tối"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M12 3.5 A8.5 8.5 0 0 1 12 20.5 Z" fill="currentColor"></path></svg></button>
+</header>
+
+<style>
+.wrap{max-width:900px}
+.than{max-width:100%}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.05;letter-spacing:-.03em;margin:30px 0 14px}
+h2{font-size:clamp(22px,3.4vw,30px);letter-spacing:-.022em;margin:46px 0 12px;padding-top:18px;border-top:2px solid var(--ink)}
+h3{font-size:19px;margin:24px 0 8px;letter-spacing:-.01em}
+p{margin:0 0 12px}
+.kicker{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:700;margin:0}
+.luan{font-size:clamp(17px,2.1vw,21px);line-height:1.5;border-left:3px solid var(--red);padding:4px 0 4px 18px;margin:18px 0 22px}
+.so-lon{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2px;background:var(--line);border:2px solid var(--ink);margin:20px 0}
+.so-lon div{background:var(--card);padding:16px 18px}
+.so-lon b{display:block;font-size:30px;font-weight:800;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
+.so-lon span{display:block;font-size:12.5px;color:var(--mute);margin-top:6px;line-height:1.45}
+.bang{overflow-x:auto;border:1px solid var(--line);background:var(--card);margin:16px 0}
+.bang table{border-collapse:collapse;width:100%;font-size:14px;min-width:620px}
+.bang th,.bang td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line2);vertical-align:top}
+.bang th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);background:var(--bg);white-space:nowrap}
+.bang tr:last-child td{border-bottom:0}
+.the{border:1px solid var(--line);background:var(--card);padding:18px 20px;margin-bottom:10px}
+.the .tt{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+.the h3{margin:0;font-size:20px}
+.nhan{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:3px 8px;border:1px solid currentColor;white-space:nowrap}
+.nhan.chay{color:var(--ok)}
+.nhan.dang{color:var(--redtx)}
+.nhan.ke{color:var(--mute)}
+.the dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:10px 0 0;font-size:14px}
+.the dt{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);padding-top:3px}
+.the dd{margin:0}
+.canh{border-left:3px solid var(--red);background:var(--redbg);padding:13px 16px;margin:16px 0;font-size:14.5px}
+.trong{border:1px dashed var(--line);padding:13px 16px;margin:14px 0;font-size:14px;color:var(--mute)}
+ul.gon{margin:8px 0 14px;padding-left:20px}
+ul.gon li{margin:5px 0}
+.muc-luc{columns:2;column-gap:28px;font-size:14.5px;margin:18px 0 10px}
+.muc-luc a{display:block;padding:4px 0;color:inherit}
+@media(max-width:620px){.muc-luc{columns:1}}
+@media print{.sangtoi,.muc-luc{display:none}h2{break-after:avoid}.the,.so-lon{break-inside:avoid}}
+</style>
+
+<div class="than">
+<p class="kicker">Tài liệu dành cho nhà đầu tư chiến lược · 04/10/2026</p>
+<h1>Chúng tôi không bán phần mềm AI. Chúng tôi bán cách tổ chức lại doanh nghiệp quanh AI.</h1>
+
+<p class="luan">Phần mềm thì ai cũng mua được và sao chép được. Thứ doanh nghiệp nhỏ thiếu là <b>một bộ luật để giao việc cho máy mà không mất kiểm soát</b> — biết việc nào giao được, giao tới mức nào, chặn ở đâu, và ai chịu trách nhiệm khi sai. LATTICE xây đúng bộ luật đó, rồi bán nó năm lần theo năm cách khác nhau.</p>
+
+<div class="muc-luc">
+  <a href="#vande">1 · Vấn đề và thời điểm</a>
+  <a href="#nam">2 · Năm dòng sản phẩm</a>
+  <a href="#conghuong">3 · Vì sao năm mảnh này cộng hưởng</a>
+  <a href="#taisan">4 · Tài sản đã tích lũy</a>
+  <a href="#lotrinh">5 · Lộ trình và thước đo</a>
+  <a href="#kinhte">6 · Đơn vị kinh tế</a>
+  <a href="#ruiro">7 · Rủi ro và cách kiểm soát</a>
+  <a href="#timgi">8 · Tìm gì ở nhà đầu tư chiến lược</a>
+</div>
+
+<h2 id="vande">1 · Vấn đề và thời điểm</h2>
+
+<p>Doanh nghiệp nhỏ Việt Nam đang bị kẹp giữa hai sức ép cùng lúc. Một bên là chi phí tuân thủ tăng đột ngột — hóa đơn điện tử, tự kê khai, chuẩn hóa sổ sách. Bên kia là chi phí nhân sự tăng trong khi biên lợi nhuận mỏng đi vì cạnh tranh trên sàn.</p>
+
+<p>AI lẽ ra là lối thoát. Nhưng số liệu ngành nói ngược lại: <b>khoảng 88% dự án thí điểm AI không lên được production</b>, và hơn 40% dự án agentic bị hủy trước hết 2027. Không phải vì công nghệ yếu, mà vì doanh nghiệp không có khung để quyết định giao việc nào, tới mức nào, và chặn ở đâu.</p>
+
+<div class="so-lon">
+  <div><b>~88%</b><span>dự án thí điểm AI không lên được production</span></div>
+  <div><b>&gt;40%</b><span>dự án agentic bị hủy trước hết 2027</span></div>
+  <div><b>~5,1 tháng</b><span>thời gian hoàn vốn trung vị khi triển khai đúng</span></div>
+  <div><b>~74%</b><span>chủ doanh nghiệp một người đã dùng AI ở mức nào đó</span></div>
+</div>
+
+<p>Khoảng cách giữa <i>đã dùng AI</i> và <i>đã đưa AI vào vận hành thật</i> chính là thị trường của LATTICE. Nó không phụ thuộc vào chu kỳ hào hứng công nghệ, vì thứ thúc đẩy nó là chính sách và áp lực chi phí — hai thứ không quay đầu.</p>
+
+<h2 id="nam">2 · Năm dòng sản phẩm</h2>
+
+<p>Năm dòng, ba trạng thái: đang bán, đang dựng, và trong kế hoạch gần. Tất cả dùng chung một phương pháp và một trục dữ liệu.</p>
+<div class="the">
+  <div class="tt"><h3>1 · Tư vấn, thiết kế và chuyển giao mô hình</h3><span class="nhan chay">Đang bán</span></div>
+  <p>Nền tảng chính. Chúng tôi đọc bộ máy của một doanh nghiệp theo ba khối — Thị trường, Cung ứng, Điều hành — chấm từng nghiệp vụ theo sáu mức tự chủ L0–L5, rồi thiết kế lại luồng việc quanh một trục dữ liệu duy nhất kèm luật và ngưỡng. Sản phẩm giao đi không phải một con bot, mà một bộ máy có thể kiểm toán được: ai quyết gì, máy được làm tới đâu, chặn ở đâu, ai chịu trách nhiệm khi sai.</p>
+  <dl>
+    <dt>Phễu</dt><dd>Khảo sát 15 câu miễn phí → báo cáo hiện trạng hé một phần → gói Scan 499.000đ → gói Blueprint 1.499.000đ (khấu trừ 100% vào hợp đồng triển khai nếu ký trong 60 ngày) → hợp đồng triển khai 90 ngày → gói đồng hành theo tháng.</dd>
+    <dt>Doanh thu</dt><dd>Phí trọn gói ở hai bậc đầu, phí dự án chia đợt theo cột mốc ở bậc triển khai, phí thuê bao ở bậc đồng hành. Báo giá triển khai theo phạm vi, không theo bảng giá cố định — trần tự chủ của mỗi mô hình khác nhau quá xa để định giá trước.</dd>
+    <dt>Vì sao khó bắt chước</dt><dd>Mỗi dự án bồi thêm vào thư viện kiến trúc mẫu và bộ eval theo ngành. Dự án thứ mười trong cùng một ngành rút ngắn chẩn đoán hơn dự án đầu — tài sản nằm ở thư viện, không ở người.</dd>
+    <dt>Rủi ro riêng</dt><dd>Phụ thuộc giờ công của đội sáng lập ở giai đoạn đầu. Đây chính là lý do tồn tại của bốn dòng còn lại.</dd>
+  </dl>
+</div>
+
+<div class="the">
+  <div class="tt"><h3>2 · LATTICE Work — quản lý việc cho người và AI</h3><span class="nhan dang">Đang dựng</span></div>
+  <p>Dòng này là phần sản phẩm hóa của chính phương pháp ở dòng 1. Mỗi dự án tư vấn kết thúc bằng một bảng phân quyền: việc nào ở L0, việc nào được lên L3, ngưỡng nào thì phải chờ người duyệt. Bảng đó cần một nơi để sống sau khi hợp đồng kết thúc — nếu không, ba tháng sau bộ máy trôi về chỗ cũ. LATTICE Work là nơi đó: một bảng việc nơi người và tác nhân AI nằm cùng một danh sách, mỗi việc có mức tự chủ, có ngưỡng, có hàng đợi vượt ngưỡng chuyển lên người quyết.</p>
+  <dl>
+    <dt>Trạng thái</dt><dd>Bản mẫu chạy được, dùng nội bộ. Luật và ngưỡng đã tách thành lớp dữ liệu riêng để không phải sửa mã khi thay luật.</dd>
+    <dt>Doanh thu</dt><dd>Thuê bao theo tháng, tính theo số người cộng số tác nhân. Bán kèm hợp đồng triển khai ở dòng 1 trước, bán rời sau khi đủ số khách dùng thật.</dd>
+    <dt>Vai trò trong danh mục</dt><dd>Biến quan hệ một lần thành doanh thu lặp lại, và biến khách hàng tư vấn thành người dùng sản phẩm. Đây là mảnh chuyển LATTICE từ công ty dịch vụ sang công ty có sản phẩm.</dd>
+  </dl>
+</div>
+
+<div class="the">
+  <div class="tt"><h3>3 · LATTICE SocialNet — vận hành kênh truyền thông</h3><span class="nhan ke">Kế hoạch gần</span></div>
+  <p>Với khách hàng của chúng tôi, nội dung không còn là marketing mà là hạ tầng phân phối: hơn 72,5% người mua online tại Việt Nam là Gen Z và Millennial, và GMV TikTok Shop đã vượt 10 tỷ USD. Nhưng sản xuất nội dung đa kênh là đúng loại việc lặp lại, có luật rõ, hậu quả sai thấp và hoàn tác được — nghĩa là loại việc đưa lên L3, L4 được sớm nhất. SocialNet là nơi đóng gói đúng việc đó: lịch nội dung, sản xuất, phân phối đa kênh và đo kết quả, chạy theo cùng một ma trận quyền quyết định.</p>
+  <dl>
+    <dt>Thị trường</dt><dd>Social commerce Việt Nam khoảng 20,98 tỷ USD năm 2026, CAGR 9,7% giai đoạn 2026–2031.</dd>
+    <dt>Doanh thu</dt><dd>Thuê bao theo tháng, bậc theo số kênh và dung lượng nội dung.</dd>
+    <dt>Điều kiện khởi động</dt><dd>Chỉ mở sau khi LATTICE Work có số khách dùng thật ổn định. Hai sản phẩm dùng chung lớp phân quyền; mở sớm sẽ phải làm hai lần.</dd>
+  </dl>
+</div>
+
+<div class="the">
+  <div class="tt"><h3>4 · LATTICE Academy — chuyển giao năng lực</h3><span class="nhan ke">Kế hoạch gần</span></div>
+  <p>Tư vấn không nhân rộng được bằng cách thuê thêm người tư vấn. Academy nhân rộng bằng cách dạy chính phương pháp: đọc bộ máy theo ba khối, chấm mức tự chủ, đặt ngưỡng, viết luật. Học viên là chủ doanh nghiệp nhỏ, người phụ trách vận hành, và — ở giai đoạn sau — đối tác triển khai theo vùng và theo ngành.</p>
+  <dl>
+    <dt>Doanh thu</dt><dd>Học phí theo khóa cho cá nhân và theo doanh nghiệp cho nhóm. Biên cao, không tăng tuyến tính theo nhân sự.</dd>
+    <dt>Vai trò trong danh mục</dt><dd>Hai chiều: học viên trở thành khách hàng và người giới thiệu của dòng 1; đồng thời là kênh tuyển đối tác triển khai cho giai đoạn nhượng quyền.</dd>
+    <dt>Kênh</dt><dd>Hiệp hội ngành nghề và các chương trình hỗ trợ doanh nghiệp nhỏ — nơi đã có sẵn tập người học và lý do chính đáng để học.</dd>
+  </dl>
+</div>
+<div class="the">
+  <div class="tt"><h3>5 · VEPIO · SourceLiq — hệ điều hành thương mại cho người bán online</h3><span class="nhan dang">Đang triển khai</span></div>
+  <p>Đây là mảnh khác hẳn bốn mảnh trên: không phải dịch vụ, mà là một sản phẩm phần mềm đầy đủ, và là nơi chúng tôi tự chứng minh phương pháp của mình trên chính da thịt mình. <b>SourceLiq</b> là lớp nền tảng — radar ngách, chấm điểm cơ hội, tìm nguồn hàng Trung Quốc · Nhật Bản · Việt Nam, tính lợi nhuận thật và landed cost. <b>VEPIO</b> là thương hiệu bán lẻ chạy trên nền tảng đó.</p>
+  <p>Luận điểm sản phẩm nằm ở chữ <i>profit-first</i>: hệ thống không tối ưu GMV hay ROAS mà tối ưu Contribution Profit và vòng quay tiền. Và ở chữ <i>human-in-the-loop</i> — đúng bộ luật của LATTICE, nhưng viết thành mã: mọi hành động ghi ra ngoài (đăng bài, đổi giá, chi tiền, đặt hàng nhà cung cấp, tăng ngân sách quảng cáo) đều phải đi qua lớp phân quyền rồi tới hàng đợi phê duyệt rồi mới ghi nhận; mô hình ngôn ngữ không bao giờ được gọi trực tiếp API ghi dữ liệu. Toàn bộ phần tính tiền — lợi nhuận, landed cost, thuế FTA, điểm cơ hội — chạy bằng mã tiền định, AI chỉ giải thích và đề xuất.</p>
+  <dl>
+    <dt>Khách hàng</dt><dd>B2B: doanh nghiệp và hộ kinh doanh bán trên Shopee, TikTok Shop, website và fanpage. Hệ thống đã dựng đa tài khoản với bảy vai trò và cách ly dữ liệu cứng ở tầng cơ sở dữ liệu.</dd>
+    <dt>Trạng thái</dt><dd>Xong 3 trong 8 chặng của kế hoạch MVP (tính tới 04/10/2026). Đã deploy được bản web và API nội bộ. <b>Chưa có khách thật, chưa có doanh thu, chưa có dữ liệu thật</b> — mọi số trên bảng điều khiển hiện vẫn là dữ liệu minh họa và được gắn nhãn như vậy ngay trong giao diện. Pilot 5 tài khoản là mục tiêu của chặng 7.</dd>
+    <dt>Đã có trong tay</dt><dd>Monorepo khoảng 30.000 dòng mã (Next.js · FastAPI · PostgreSQL 17 có Row Level Security · Expo cho mobile), 6 bản chuyển đổi cơ sở dữ liệu, 23 tệp kiểm thử backend gồm cả kiểm thử cách ly dữ liệu và kiểm thử vàng cho phần tính tiền, CI và cấu hình triển khai. Tài liệu PRD 1.515 dòng, prototype 40 màn đã duyệt, 5 quyết định kiến trúc có biên bản. Bộ nhận diện thương hiệu hoàn chỉnh 236 tệp. Tên miền và hạ tầng đã cấu hình.</dd>
+    <dt>Mô hình doanh thu</dt><dd><b>Chưa chốt trên giấy.</b> Tài liệu hiện có không nêu giá, gói, hay phí. Hướng đang xét: thuê bao theo tài khoản, khách tự mang khóa API mô hình AI (đẩy chi phí biến đổi lớn nhất sang khách) hoặc quota do nền tảng cấp. Chi phí phục vụ rất thấp — một VPS 2 vCPU/8GB đủ cho 5–20 tài khoản pilot — nên biên gộp có khả năng cao, nhưng chúng tôi chưa công bố con số chưa kiểm chứng.</dd>
+  </dl>
+  <div class="canh"><b>Hai rủi ro phải nói trước.</b> Thứ nhất, toàn bộ phần tự động hóa phụ thuộc quyền API mà <b>chưa bên nào cấp</b>: Shopee Open Platform, TikTok Shop Partner Center, Meta App Review, 1688. Nếu bị từ chối, sản phẩm tụt xuống mức nhập liệu bằng tệp CSV — vẫn dùng được, nhưng luận điểm đổi khác. Thứ hai, khách hàng duy nhất hiện nay là VEPIO, tức thương hiệu bán lẻ của chính nhà sáng lập; chúng tôi coi đây là bàn thử nghiệm, nhưng sẽ phải tách bạch quản trị khi bán nền tảng cho người bán khác.</div>
+</div>
+
+<h2 id="conghuong">3 · Vì sao năm mảnh này cộng hưởng</h2>
+
+<p class="luan">Năm dòng không phải năm công ty đặt cạnh nhau. Chúng là một bộ luật được bán năm lần ở năm độ sâu khác nhau — và mỗi lần bán lại bồi thêm cho bốn lần còn lại.</p>
+
+<div class="bang"><table>
+<thead><tr><th>Dòng</th><th>Nhận từ các dòng khác</th><th>Trả lại cho các dòng khác</th></tr></thead>
+<tbody>
+<tr><td><b>Tư vấn &amp; chuyển giao</b></td><td>Học viên Academy trở thành khách. Thư viện mẫu tích lũy rút ngắn chẩn đoán.</td><td>Mỗi dự án sinh ra một bảng phân quyền thật — nguyên liệu để sản phẩm hóa.</td></tr>
+<tr><td><b>LATTICE Work</b></td><td>Khách sẵn có từ dòng 1, không phải mua lại từ đầu.</td><td>Giữ bộ máy không trôi về chỗ cũ sau khi hợp đồng kết thúc. Biến một lần thành lặp lại.</td></tr>
+<tr><td><b>LATTICE SocialNet</b></td><td>Dùng chung lớp phân quyền của LATTICE Work.</td><td>Cửa vào rẻ cho nhóm khách chưa sẵn sàng làm cả bộ máy.</td></tr>
+<tr><td><b>Academy</b></td><td>Phương pháp đã kiểm chứng trên khách thật, không phải lý thuyết.</td><td>Khách và người giới thiệu cho dòng 1. Nguồn tuyển đối tác triển khai.</td></tr>
+<tr><td><b>VEPIO · SourceLiq</b></td><td>Bộ luật L0–L5, ma trận quyền quyết định, cơ chế hàng đợi và dừng khẩn.</td><td>Bằng chứng sống rằng phương pháp chạy được ở mức mã nguồn, không chỉ ở mức tài liệu. Và một nhánh doanh thu không phụ thuộc giờ công.</td></tr>
+</tbody>
+</table></div>
+
+<p>Trên trang công bố của mình, chúng tôi mô tả bốn dòng theo vai trò — Advisory, Architecture, Academy, Ecosystem. Bản này mô tả năm dòng theo sản phẩm. Hai cách gọi cùng một thứ: Advisory và Architecture hợp thành dòng 1; LATTICE Work, SocialNet và VEPIO · SourceLiq là phần sản phẩm hóa mà trang công bố gọi chung là Ecosystem.</p>
+
+<h2 id="taisan">4 · Tài sản đã tích lũy</h2>
+
+<p>Điều quan trọng với nhà đầu tư chiến lược không phải doanh thu hôm nay, mà thứ gì còn lại nếu ngày mai dừng bán.</p>
+
+<div class="bang"><table>
+<thead><tr><th>Tài sản</th><th>Hiện trạng</th></tr></thead>
+<tbody>
+<tr><td><b>Bộ luật L0–L5</b></td><td>Sáu mức tự chủ, áp cho 47 nghiệp vụ thuộc ba khối và ba nhóm mô hình kinh doanh. Mỗi nghiệp vụ có mức khuyến nghị, mức trần, và phần người luôn giữ. Đã chạy thành công cụ tương tác công khai.</td></tr>
+<tr><td><b>Phễu chẩn đoán tự động</b></td><td>Khảo sát 15 câu → chấm điểm sẵn sàng theo năm trục → báo cáo hé một phần → bản đầy đủ sau khi trả phí. Chạy được, đang ở trên website.</td></tr>
+<tr><td><b>Dashboard CEO và trang mô phỏng</b></td><td>Công cụ cho khách thấy bộ máy của chính họ trước khi ký: sơ đồ ba khối theo mô hình, phân tích lợi nhuận theo kỳ và dự phóng, dòng tiền, công nợ, hàng đợi vượt ngưỡng.</td></tr>
+<tr><td><b>LATTICE Work</b></td><td>Bản mẫu chạy được; lớp luật đã tách khỏi mã.</td></tr>
+<tr><td><b>VEPIO · SourceLiq</b></td><td>~30.000 dòng mã, 16 module backend, 46 trang web, kiểm thử cách ly dữ liệu và kiểm thử vàng phần tính tiền, hạ tầng triển khai đã dựng. Bộ nhận diện thương hiệu 236 tệp.</td></tr>
+<tr><td><b>Nội dung nền tảng</b></td><td>Website hai ngôn ngữ, bộ tài liệu phương pháp, phân tích ngành và khung pháp lý Việt Nam cập nhật tới 2026.</td></tr>
+</tbody>
+</table></div>
+
+<h2 id="lotrinh">5 · Lộ trình và thước đo</h2>
+
+<div class="bang"><table>
+<thead><tr><th>Giai đoạn</th><th>Việc phải xong</th><th>Đo bằng gì</th></tr></thead>
+<tbody>
+<tr><td><b>2026</b><br>Chứng minh phương pháp</td><td>Hoàn thiện phương pháp trên số ít khách thật thuộc 2–3 ngành. Dựng thư viện kiến trúc mẫu và bộ eval đầu tiên. Đưa VEPIO · SourceLiq tới pilot có khách ngoài VEPIO.</td><td>Số dự án <b>lên được vận hành thật</b>, không phải số hợp đồng đã ký. Số tài khoản pilot chạy đủ hai tuần không rò dữ liệu chéo và không có hành động ngoài chưa duyệt.</td></tr>
+<tr><td><b>2027–2028</b><br>Nhân rộng qua Academy</td><td>Đóng gói phương pháp thành ba lộ trình đào tạo. Mở LATTICE Work bán rời. Mở SocialNet. Đi qua hiệp hội ngành nghề và chương trình hỗ trợ doanh nghiệp nhỏ.</td><td>Tỷ trọng doanh thu <b>không đến từ giờ công tư vấn</b>. Tỷ lệ học viên trở thành khách hàng.</td></tr>
+<tr><td><b>2029+</b><br>Hệ sinh thái và nhượng quyền</td><td>Cấp phép mẫu kiến trúc, đào tạo đối tác triển khai theo vùng và theo ngành, mở rộng khu vực — bắt đầu từ hành lang đã có quan hệ.</td><td>Doanh thu trên người. Số mẫu kiến trúc được cấp phép.</td></tr>
+</tbody>
+</table></div>
+
+<div class="trong">Các mốc trên là cam kết về <i>thứ tự</i> và <i>cổng nghiệm thu</i>, không phải dự báo tài chính. Dự phóng doanh thu theo từng dòng sẽ gửi riêng cho nhà đầu tư đã ký thỏa thuận bảo mật, kèm giả định được nêu rõ.</div>
+
+<h2 id="kinhte">6 · Đơn vị kinh tế</h2>
+
+<p>Phần này trình bày theo nguyên tắc: con số nào đã có thật thì ghi thật, con số nào chưa đo được thì nói thẳng là chưa đo được. Chúng tôi không trình bày dự phóng như thể là kết quả.</p>
+
+<div class="bang"><table>
+<thead><tr><th>Bậc</th><th>Giá</th><th>Vai trò</th></tr></thead>
+<tbody>
+<tr><td>Khảo sát 15 câu + báo cáo hé</td><td>Miễn phí</td><td>Thu phễu, sàng lọc. Khách nhận được kết quả dùng được kể cả khi không mua tiếp.</td></tr>
+<tr><td>LATTICE Scan</td><td>499.000đ</td><td>Cửa vào trả phí, chi phí thấp để khách thử.</td></tr>
+<tr><td>LATTICE Blueprint</td><td>1.499.000đ</td><td>Bản thiết kế mang đi được. Khấu trừ 100% vào hợp đồng triển khai nếu ký trong 60 ngày.</td></tr>
+<tr><td>Hợp đồng triển khai 90 ngày</td><td>Theo phạm vi</td><td>Doanh thu lõi, giá trị hợp đồng lớn nhất. Chia đợt theo ba cổng nghiệm thu.</td></tr>
+<tr><td>Đồng hành vận hành</td><td>Thuê bao tháng</td><td>Doanh thu lặp lại.</td></tr>
+<tr><td>LATTICE Work · SocialNet</td><td>Thuê bao tháng</td><td>Lặp lại, không tăng tuyến tính theo nhân sự.</td></tr>
+</tbody>
+</table></div>
+
+<p>Cấu trúc này được thiết kế để chi phí có được một khách giảm dần theo bậc: khách đã trả 499.000đ không còn là khách lạnh ở bậc Blueprint, và khách đã có bản thiết kế không còn phải được thuyết phục lại ở bậc triển khai. Khoản khấu trừ 100% của Blueprint là một lời cam kết có giá: nó dồn rủi ro về phía chúng tôi.</p>
+
+<div class="trong">Chưa công bố trong bản này vì chưa đủ số mẫu để nói có nghĩa: tỷ lệ chuyển đổi giữa các bậc, chi phí có được một khách, giá trị hợp đồng triển khai trung bình, tỷ lệ khách chuyển sang gói đồng hành. Đây là đúng những chỉ số mà giai đoạn 2026 được thiết kế để đo.</div>
+
+<h2 id="ruiro">7 · Rủi ro và cách kiểm soát</h2>
+
+<div class="bang"><table>
+<thead><tr><th>Rủi ro</th><th>Cách chúng tôi xử lý</th></tr></thead>
+<tbody>
+<tr><td><b>Phụ thuộc đội sáng lập.</b> Dòng doanh thu lớn nhất hiện vẫn đổi giờ công ra tiền.</td><td>Thư viện kiến trúc mẫu và bộ eval là cơ chế rút giờ công ra khỏi mỗi dự án kế tiếp. Academy và ba sản phẩm là đường thoát khỏi mô hình giờ công. Đây là lý do có mặt của giai đoạn 2027–2028.</td></tr>
+<tr><td><b>Chưa có traction công bố được.</b></td><td>Nói thẳng, không trang trí. Giai đoạn 2026 được đo bằng số dự án lên vận hành thật, không bằng số hợp đồng ký.</td></tr>
+<tr><td><b>VEPIO · SourceLiq phụ thuộc quyền API của Shopee, TikTok Shop, Meta, 1688 — chưa bên nào cấp.</b></td><td>Thiết kế theo thang MOCK → nhập tệp → đối tác → trực tiếp, nên sản phẩm có giá trị dùng được ở cả mức thấp nhất. Nguyên tắc nội bộ cấm tuyên bố đã tự động hóa khi connector còn ở chế độ giả. Việc xin quyền là mục công việc có người chịu trách nhiệm, không phải giả định.</td></tr>
+<tr><td><b>Dữ liệu đầu vào cho AI chưa có nguồn hợp pháp dài hạn.</b></td><td>Cấm tuyệt đối việc lấy dữ liệu trái điều khoản. Ngắn hạn dùng tệp do chính chủ tài khoản xuất ra từ công cụ hợp lệ; dài hạn là mua dữ liệu từ nhà cung cấp — một dòng chi phí chúng tôi còn phải định lượng.</td></tr>
+<tr><td><b>Số thuế, phí sàn, cước và biểu thuế FTA trong sản phẩm hiện là số minh họa.</b></td><td>Chưa chạy dữ liệu thật trước khi có thẩm định pháp lý · thuế · hải quan. Phần tính tiền đã viết bằng mã tiền định và có kiểm thử vàng, nên thay số là thay dữ liệu, không phải viết lại logic.</td></tr>
+<tr><td><b>Pháp lý Việt Nam đang đổi nhanh</b> — Luật Thương mại điện tử 122/2025/QH15 hiệu lực 01/07/2026, nghĩa vụ thuế trên nền tảng số, bảo vệ dữ liệu cá nhân.</td><td>Chúng tôi coi tuân thủ là sản phẩm, không phải chi phí: chính sức ép tuân thủ đang tạo ra nhu cầu cho dòng 1. Dữ liệu cá nhân đã bị chặn cứng ở tầng mã, không gửi tới nhà cung cấp mô hình đặt tại Trung Quốc.</td></tr>
+<tr><td><b>Phạm vi rộng so với nguồn lực.</b></td><td>Thứ tự được khóa cứng: dòng 1 nuôi tiền, LATTICE Work trước SocialNet vì dùng chung lớp phân quyền, VEPIO · SourceLiq đi tới pilot trước khi mở rộng tính năng. Mỗi chặng có cổng nghiệm thu, không qua cổng thì không sang chặng.</td></tr>
+<tr><td><b>Rủi ro một người.</b> Phần lớn mã và tài liệu hiện do một đội rất nhỏ tạo ra với sự tham gia nặng của tác nhân AI.</td><td>Đây là rủi ro thật và là một trong những thứ chúng tôi tìm nhà đầu tư chiến lược để giải. Phần giảm thiểu đã làm: mọi luật nghiệp vụ nằm trong mã và có kiểm thử, quyết định kiến trúc có biên bản, tài liệu đủ để người mới tiếp nhận.</td></tr>
+</tbody>
+</table></div>
+
+<h2 id="timgi">8 · Tìm gì ở nhà đầu tư chiến lược</h2>
+
+<p class="luan">Chúng tôi không tìm vốn để mua tăng trưởng. Chúng tôi tìm vốn và quan hệ để đi nhanh hơn qua đúng ba chỗ hẹp.</p>
+
+<h3>Ba chỗ hẹp</h3>
+<ul class="gon">
+  <li><b>Đường vào tập khách hàng có sẵn.</b> Hiệp hội ngành nghề, chương trình hỗ trợ doanh nghiệp nhỏ, ngân hàng và nhà cung cấp dịch vụ đang phục vụ cùng tập khách. Một cửa vào tốt rút ngắn hai năm xây phễu.</li>
+  <li><b>Quan hệ nền tảng và quyền truy cập dữ liệu.</b> Quyền API sàn, nhà cung cấp dữ liệu thị trường, đối tác nguồn hàng Trung Quốc và Nhật Bản. Đây là rủi ro tồn tại của dòng 5 và không giải được bằng tiền thuần.</li>
+  <li><b>Năng lực đội ngũ.</b> Người dẫn phần kỹ thuật sản phẩm để tách khỏi rủi ro một người, và người dẫn phần đào tạo để Academy mở được quy mô.</li>
+</ul>
+
+<h3>Thứ chúng tôi không đổi</h3>
+<ul class="gon">
+  <li><b>Người giữ cửa phê duyệt.</b> Ma trận quyền quyết định và cơ chế dừng khẩn là sản phẩm, không phải tính năng có thể cắt để chạy nhanh hơn.</li>
+  <li><b>Không hứa thứ chưa chạy.</b> Không tuyên bố đã tự động hóa khi hệ thống còn ở chế độ giả; không trình dự phóng như kết quả.</li>
+  <li><b>Không đi trước pháp luật.</b> Với khách hàng quy mô nhỏ, một sai lầm pháp lý là chấm hết — cho họ và cho uy tín của chúng tôi.</li>
+</ul>
+
+<h3>Bước tiếp theo</h3>
+<p>Một buổi 60 phút, chúng tôi mở trực tiếp ba thứ: công cụ chấm mức L0–L5 trên 47 nghiệp vụ, bản mẫu LATTICE Work, và bản dựng nội bộ của SourceLiq — để quý vị thấy phần đang chạy và phần còn là kế hoạch, bằng mắt chứ không qua lời kể. Hồ sơ tài chính chi tiết, cấu trúc sở hữu và dự phóng theo từng dòng gửi sau khi ký thỏa thuận bảo mật.</p>
+
+<p>Mọi liên hệ qua email <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a>.</p>
+
+</div>
+
+<footer>
+  Tài liệu nội bộ dành cho nhà đầu tư chiến lược tiềm năng. Không công bố, không đưa vào chỉ mục tìm kiếm.
+  Mọi con số trong bản này đều ghi rõ là số đã có thật hay số chưa đo được; phần chưa đo được không được trình bày như kết quả.
+  <br>LATTICE NEXT SOLUTIONS JSC · <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a> · <a href="../">lattice.business</a>
+</footer>
+</div>
+<script>
+(function () {
+  var g = document.getElementById('sangtoi');
+  if (!g) return;
+  g.addEventListener('click', function () {
+    var h = document.documentElement;
+    var dang = h.getAttribute('data-theme');
+    if (!dang) dang = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+    var moi = dang === 'dark' ? 'light' : 'dark';
+    h.setAttribute('data-theme', moi);
+    try { localStorage.setItem('lnx-theme', moi); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>

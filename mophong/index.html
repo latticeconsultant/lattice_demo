@@ -662,6 +662,11 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .g5 .ck-o{padding:4px 14px 10px}
 .nlk{font-size:12px;color:var(--cm);padding:10px 14px 0;display:grid;gap:3px}
 .ck.nlkey{border-width:2.5px;border-color:var(--ct)}
+.ck-gd{display:block;background:transparent;border:0;padding:3px 0 0;font-size:11px;font-weight:700;color:var(--cm);text-align:left}
+.ck-gd:hover{color:var(--ct);text-decoration:underline}
+.nlw .rw{grid-template-columns:minmax(0,1.7fr) 1fr 86px}
+.nlw .rw .nm{white-space:normal}
+.nlw .vv{text-align:right;white-space:nowrap}
 .ck-own{display:block;width:100%;padding:0;text-align:left;color:inherit}
 .ck-own .ck-h{background:transparent;color:var(--ct);border:0}
 .ck-own .ck-h .ki{border-color:var(--ct);color:var(--ct)}
@@ -813,7 +818,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 <!-- ================= THƯƠNG MẠI PHÂN PHỐI · KIẾN TRÚC ================= -->
 <section id="p-arch" role="tabpanel" aria-labelledby="t-arch">
   <div class="phead">
-    <h1 id="arch-h1">Tám khối nghiệp vụ, một nền tảng chung</h1>
+    <h1 id="arch-h1">Tám khối nghiệp vụ trên năm nguồn lực cốt lõi</h1>
     <p class="oneline" id="arch-line"></p>
   </div>
   <div class="sh"><h2>Kiến trúc nghiệp vụ</h2><span class="note" id="arch-note">Bấm tên khối hoặc từng icon để xem chi tiết.</span><div class="cvbar"><div class="cvsw" role="group" aria-label="Mức chi tiết sơ đồ"><button data-av="simple" aria-pressed="true">Đơn giản</button><button data-av="full" aria-pressed="false">Nâng cao</button></div><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true" aria-label="Nền tối" title="Nền tối"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button><button data-cvm="light" aria-pressed="false" aria-label="Nền sáng" title="Nền sáng"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button></div></div></div>
@@ -999,7 +1004,7 @@ const TM_ROLE={ceo:"Ban điều hành",nh:"Trưởng ngành hàng",mh:"Trưởng
 const TM_ROLE_ORDER=["nh","mh","hd","mk","kd","vh","dv","tc","ns","pc","hc"];
 
 const TM_KHOI=[
- {id:"cl",tier:"Tầng 1 · Điều hành & Quản trị",n:"Chiến lược & Điều hành",en:"Strategy & Business Management",o:"ceo",s:"Điều hành",
+ {id:"cl",tier:"Ban điều hành",n:"Quản trị & Điều hành",en:"Governance & Executive Management",o:"ceo",s:"Điều hành",
   goal:"Chọn thị trường, ngành hàng, cách tăng trưởng và cách dùng nguồn lực.",
   nguoi:"Đặt mục tiêu, chọn ưu tiên, phê duyệt chính sách và chịu trách nhiệm kết quả.",
   ai:"Tổng hợp thông tin, phân tích chênh lệch kế hoạch và thực tế, mô phỏng kịch bản, cảnh báo rủi ro.",
@@ -1007,7 +1012,7 @@ const TM_KHOI=[
   in:["Số liệu kinh doanh từ mọi khối","Tín hiệu thị trường, đối thủ","Báo cáo rủi ro và kiểm soát"],
   out:["Mục tiêu năm, quý cho từng khối","Ngân sách và hạn mức chi","Chính sách và ma trận phân quyền"],
   exc:[["Thay đổi chính sách lớn","ceo"],["Vượt ngân sách trọng yếu","ceo"],["Xung đột ưu tiên giữa các khối","ceo"]]},
- {id:"nh",tier:"Tầng 2 · Phía cung",n:"Ngành hàng & Nguồn cung",en:"Category Management & Strategic Sourcing",o:"nh",s:"Ngành hàng",
+ {id:"nh",tier:"Chuỗi tạo giá trị · Phía cung",n:"Ngành hàng & Nguồn cung",en:"Category Management & Strategic Sourcing",o:"nh",s:"Ngành hàng",
   goal:"Quyết định bán hàng gì, mua từ ai và mua với điều kiện nào.",
   nguoi:"Chọn ngành hàng, thẩm định đối tác, đàm phán điều kiện trọng yếu.",
   ai:"So sánh báo giá, chấm điểm nhà cung cấp, chuẩn hóa thông tin sản phẩm, đề xuất cơ cấu danh mục.",
@@ -1015,7 +1020,7 @@ const TM_KHOI=[
   in:["Số bán và biên lãi theo mã","Phản hồi của khách hàng","Báo giá, hồ sơ nhà cung cấp"],
   out:["Danh mục hàng được duyệt","Nhà cung cấp và hợp đồng mua","Thông tin sản phẩm chuẩn cho mọi kênh"],
   exc:[["Mở hoặc khai tử một ngành hàng","ceo"],["Duyệt nhà cung cấp mới","mh"],["Điều kiện mua ngoài mẫu hợp đồng","mh"]]},
- {id:"hd",tier:"Tầng 2 · Phía cung",n:"Hoạch định Cung–Cầu & Tồn kho",en:"Demand, Supply & Inventory Planning",o:"hd",s:"Hoạch định",
+ {id:"hd",tier:"Chuỗi tạo giá trị · Phía cung",n:"Hoạch định Cung–Cầu & Tồn kho",en:"Demand, Supply & Inventory Planning",o:"hd",s:"Hoạch định",
   goal:"Đúng hàng, đúng lượng, đúng nơi, đúng lúc, với mức vốn tồn kho phù hợp.",
   nguoi:"Thống nhất một kế hoạch giữa kinh doanh, ngành hàng, vận hành và tài chính; quyết định khi nhu cầu vượt nguồn lực.",
   ai:"Dự báo theo mã, kênh, địa điểm; đề xuất bổ sung hàng; cảnh báo thiếu hàng, dư hàng và bất thường.",
@@ -1023,7 +1028,7 @@ const TM_KHOI=[
   in:["Số bán, sell-out, kế hoạch khuyến mãi","Tồn thực tế từ hệ thống kho","Thời gian giao của nhà cung cấp"],
   out:["Kế hoạch mua và bổ sung hàng","Phân bổ hàng cho kho và kênh","Danh sách hàng chậm luân chuyển, cận hạn"],
   exc:[["Nhu cầu vượt nguồn hàng","hd"],["Vượt trần vốn tồn kho","tc"],["Xả hàng dưới giá vốn","tc"]]},
- {id:"mk",tier:"Tầng 2 · Phía cầu",n:"Thị trường, Marketing & Tăng trưởng",en:"Market Development, Marketing & Growth",o:"mk",s:"Marketing",
+ {id:"mk",tier:"Chuỗi tạo giá trị · Phía cầu",n:"Thị trường, Marketing & Tăng trưởng",en:"Market Development, Marketing & Growth",o:"mk",s:"Marketing",
   goal:"Tạo nhu cầu có chất lượng và mở rộng thị trường cho hệ thống phân phối.",
   nguoi:"Quyết định định vị, thông điệp, chương trình và ngân sách.",
   ai:"Phân tích thị trường, hỗ trợ làm nội dung, phân nhóm khách, tối ưu chiến dịch trong trần ngân sách.",
@@ -1031,7 +1036,7 @@ const TM_KHOI=[
   in:["Mục tiêu tăng trưởng và ngân sách","Danh mục hàng, chính sách giá","Dữ liệu và phản hồi khách hàng"],
   out:["Khách tiềm năng đủ điều kiện cho kinh doanh","Chương trình hỗ trợ bán tại kênh","Nội dung và thương hiệu nhất quán"],
   exc:[["Định vị, thông điệp mới","ceo"],["Chiến dịch vượt ngân sách","mk"],["Khủng hoảng truyền thông","ceo"]]},
- {id:"kd",tier:"Tầng 2 · Phía cầu",n:"Kinh doanh & Kênh phân phối",en:"Sales & Channel Management",o:"kd",s:"Kinh doanh",
+ {id:"kd",tier:"Chuỗi tạo giá trị · Phía cầu",n:"Kinh doanh & Kênh phân phối",en:"Sales & Channel Management",o:"kd",s:"Kinh doanh",
   goal:"Chuyển nhu cầu thành doanh thu có lợi nhuận và thu được tiền.",
   nguoi:"Xây quan hệ, đàm phán, phát triển đại lý, quyết định ngoại lệ thương mại.",
   ai:"Chấm điểm cơ hội, gợi ý bán thêm, báo giá theo chính sách, nhắc việc, kiểm tra điều kiện đơn.",
@@ -1039,7 +1044,7 @@ const TM_KHOI=[
   in:["Khách tiềm năng từ marketing","Bảng giá, chính sách thương mại","Tồn kho khả dụng"],
   out:["Đơn hàng đã xác nhận","Báo giá, hợp đồng","Số sell-in và sell-out"],
   exc:[["Chiết khấu ngoài khung","kd"],["Hợp đồng lớn","kd"],["Bán chịu ngoài hạn mức","tc"]]},
- {id:"kv",tier:"Tầng 2 · Phía cung",n:"Đơn hàng, Kho vận & Giao nhận",en:"Order Management, Warehousing & Logistics",o:"vh",s:"Kho vận",
+ {id:"kv",tier:"Chuỗi tạo giá trị · Phía cung",n:"Đơn hàng, Kho vận & Giao nhận",en:"Order Management, Warehousing & Logistics",o:"vh",s:"Kho vận",
   goal:"Biến cam kết bán hàng thành hàng giao đúng, đủ và có chứng từ xác nhận.",
   nguoi:"Làm phần việc vật lý, xác minh chênh lệch, xử lý sự cố, quản lý đối tác giao nhận.",
   ai:"Kiểm tra đơn, gợi ý phân bổ tồn, xếp ưu tiên xử lý, hỗ trợ lập tuyến, cảnh báo nguy cơ giao trễ.",
@@ -1047,7 +1052,7 @@ const TM_KHOI=[
   in:["Đơn hàng đã xác nhận","Đơn mua đã duyệt","Hàng trả về từ dịch vụ khách hàng"],
   out:["Hàng đã giao kèm xác nhận giao","Tồn kho chính xác","Chứng từ cho kế toán"],
   exc:[["Thiếu hàng sau khi đã nhận đơn","vh"],["Chênh lệch kiểm kê vượt ngưỡng","tc"],["Mất hàng, hư hỏng khi giao","vh"]]},
- {id:"dv",tier:"Tầng 2 · Phía cầu",n:"Dịch vụ khách hàng & Phát triển quan hệ",en:"Customer Service & Relationship Development",o:"dv",s:"Dịch vụ khách hàng",
+ {id:"dv",tier:"Chuỗi tạo giá trị · Phía cầu",n:"Dịch vụ khách hàng & Phát triển quan hệ",en:"Customer Service & Relationship Development",o:"dv",s:"Dịch vụ khách hàng",
   goal:"Giải quyết vấn đề sau bán, giữ khách và tăng giá trị quan hệ lâu dài.",
   nguoi:"Xử lý khiếu nại phức tạp, tranh chấp và các quan hệ nhạy cảm.",
   ai:"Trả lời từ nguồn thông tin đã duyệt, phân loại yêu cầu, tra cứu đơn, theo dõi thời hạn xử lý.",
@@ -1055,7 +1060,7 @@ const TM_KHOI=[
   in:["Yêu cầu, khiếu nại từ mọi kênh","Lịch sử đơn hàng","Chính sách đổi trả, bảo hành"],
   out:["Yêu cầu đã giải quyết","Lệnh nhận hàng trả về cho kho","Phản hồi cho ngành hàng, marketing"],
   exc:[["Khiếu nại phức tạp, tranh chấp","dv"],["Bồi hoàn vượt hạn mức","tc"],["Khách giá trị cao sắp rời đi","kd"]]},
- {id:"ht",tier:"Tầng 3 · Năng lực hỗ trợ",n:"Tài chính & Năng lực hỗ trợ",en:"Finance & Enterprise Services",o:"tc",s:"Hỗ trợ",
+ {id:"ht",tier:"Năng lực hỗ trợ",n:"Năng lực hỗ trợ",en:"Support Functions",o:"tc",s:"Hỗ trợ",
   goal:"Giữ tiền, người, pháp lý và tài sản đúng, đủ và kiểm soát được.",
   nguoi:"Chịu trách nhiệm tính đúng đắn, phê duyệt và kiểm soát.",
   ai:"Xử lý chứng từ, đối chiếu, dự báo dòng tiền, rà soát hồ sơ, tổng hợp báo cáo.",
@@ -1254,7 +1259,7 @@ const TM_PF=[
 ];
 const TM_NGUON=[["Tồn kho thực tế","Hệ thống kho"],["Công nợ, sổ sách","Phần mềm kế toán"],["Quan hệ khách hàng","CRM"],["Đơn hàng","Hệ thống quản lý đơn hàng"],["Mã hàng, thông tin sản phẩm","Hệ thống quản lý sản phẩm"],["Bảng giá, điều kiện thương mại","Bảng giá gốc trong ERP"],["Nhà cung cấp","Danh mục nhà cung cấp"]];
 
-const TM_LANE={cl:"Chiến lược & Điều hành",nh:"Ngành hàng & Nguồn cung",hd:"Hoạch định Cung–Cầu",mk:"Marketing & Tăng trưởng",kd:"Kinh doanh & Kênh",kv:"Đơn hàng, Kho vận",dv:"Dịch vụ khách hàng",tc:"Tài chính & Kế toán"};
+const TM_LANE={cl:"Quản trị & Điều hành",nh:"Ngành hàng & Nguồn cung",hd:"Hoạch định Cung–Cầu",mk:"Marketing & Tăng trưởng",kd:"Kinh doanh & Kênh",kv:"Đơn hàng, Kho vận",dv:"Dịch vụ khách hàng",tc:"Tài chính & Kế toán"};
 /* Bước: l làn · t việc · w ai làm · k "chk" là điểm kiểm tra/phê duyệt · x ngoại lệ
    → to vai trò · end nhãn kết thúc · fb vòng phản hồi (đánh số từ 1). */
 const TM_CHUOI=[
@@ -1351,9 +1356,9 @@ const TM_GRI={tc:"receipt",ns:"users",pc:"shield-check",hc:"building-2"};
 const TM_PFI=[["database","Dữ liệu chủ"],["app-window","Hệ thống"],["book-open","Tri thức"],["workflow","Điều phối"],["fingerprint","Kiểm soát"]];
 const TM_ROLE_S={ceo:"Ban điều hành",nh:"Ngành hàng",mh:"Mua hàng",hd:"Hoạch định",mk:"Marketing",kd:"Kinh doanh",vh:"Vận hành",dv:"Dịch vụ khách hàng",tc:"Tài chính",ns:"Nhân sự",pc:"Pháp chế",hc:"Hành chính"};
 /* Vai thẩm quyền giao được cho AI: quyết định dựa trên luật, ngưỡng và đảo ngược được.
-   AI giữ vai thì chỉ quyết trong luật của vai; việc vượt quyền vai chuyển lên Ban điều hành. */
+   AI giữ vai thì chỉ quyết trong luật của vai; việc vượt quyền vai chuyển lên giám đốc phụ trách, rồi Ban điều hành. */
 const TM_ROLE_AI={hd:1,mk:1,vh:1,dv:1,hc:1};
-const RAI_NOTE="Vai này giao được cho AI. Khi AI giữ vai, AI chỉ quyết trong luật và ngưỡng của vai; việc vượt quyền vai chuyển lên Ban điều hành.";
+const RAI_NOTE="Vai này giao được cho AI. Khi AI giữ vai, AI chỉ quyết trong luật và ngưỡng của vai; việc vượt quyền vai chuyển lên giám đốc phụ trách, rồi Ban điều hành.";
 const rai=r=>ROLE_AI[r]?`<span class="rai" title="${RAI_NOTE}">${ic("bot",14)}</span>`:"";
 const rmk=(r,short)=>`<i class="hdot"></i>${esc((short?ROLE_S:ROLE)[r])}${rai(r)}`;
 const TM_CHI={pta:"package",stp:"credit-card",lto:"magnet",otc:"receipt",ctr:"headset"};
@@ -1392,7 +1397,7 @@ DS.tmhh={ROLE:TM_ROLE,ROLE_ORDER:TM_ROLE_ORDER,KHOI:TM_KHOI,NHOM_HT:TM_NHOM_HT,N
  exIn:[["Vượt ngưỡng","chiết khấu ngoài khung, đơn mua vượt hạn mức, bồi hoàn vượt mức tự duyệt."],["Ngoài luật","tình huống chính sách chưa viết tới, điều khoản lệch hợp đồng mẫu."],["Bất thường","tiền về lệch, chênh lệch kiểm kê, đơn nghi gian lận, dự báo lệch xa thực tế."],["Việc thuộc quyền người","ký hợp đồng, chọn nhà cung cấp mới, quyết định về con người."]],
  calls:[["git-branch","Tách ba việc: tạo, duyệt, thực hiện","AI đối chiếu và lập đề nghị thanh toán (L2), Tài chính duyệt, lệnh chi chạy qua ngân hàng theo phân quyền."],
   ["users","Doanh nghiệp nhỏ: một người, nhiều vai","Mười hai vai là vai thẩm quyền, không phải mười hai người. Ngoại lệ vẫn đi theo vai, sau này giao vai cho người mới không phải dựng lại luồng."],
-  ["bot","Vai có thể là người hoặc AI","Hoạch định, Marketing, Vận hành, Dịch vụ khách hàng, Hành chính giao được cho AI. AI giữ vai chỉ quyết trong luật của vai; vượt quyền lên Ban điều hành. Ngành hàng, Mua hàng, Kinh doanh, Tài chính, Nhân sự, Pháp chế luôn là người."]]};
+  ["bot","Vai có thể là người hoặc AI","Hoạch định, Marketing, Vận hành, Dịch vụ khách hàng, Hành chính giao được cho AI. AI giữ vai chỉ quyết trong luật của vai; vượt quyền lên giám đốc phụ trách. Ngành hàng, Mua hàng, Kinh doanh, Tài chính, Nhân sự, Pháp chế luôn là người."]]};
 
 /* =================== DỊCH VỤ: KIẾN TRÚC 8 KHỐI ===================
    Nguồn: Kien-truc-doanh-nghiep-dich-vu-Nguoi-AI.md (04/10/2026). Khối trung tâm là
@@ -1404,49 +1409,49 @@ DS.dv={
  ROLE_ORDER:["tk","mk","kd","vh","dt","cm","tn","tc","ns","pc","hc"],
  ROLE_AI:{mk:1,vh:1,tn:1,hc:1},
  KHOI:[
- {id:"cl",tier:"Tầng 1 · Điều hành",n:"Chiến lược & Quản trị doanh nghiệp",en:"Strategy & Business Governance",o:"ceo",s:"Điều hành",
+ {id:"cl",tier:"Ban điều hành",n:"Quản trị & Điều hành",en:"Governance & Executive Management",o:"ceo",s:"Điều hành",
   goal:"Chọn thị trường, mô hình dịch vụ và cách phân bổ nguồn lực để tăng trưởng có hiệu quả.",
   nguoi:"Quyết định chiến lược, chính sách và phân bổ nguồn lực.",ai:"Tổng hợp dữ liệu quản trị, phân tích chênh lệch, mô phỏng kịch bản, phát hiện bất thường.",
   kpi:["Doanh thu","Lợi nhuận hoạt động","Dòng tiền","Hiệu quả danh mục dịch vụ","Tiến độ mục tiêu"],
   in:["Số liệu từ mọi khối","Tín hiệu thị trường","Báo cáo rủi ro, chất lượng"],out:["Mục tiêu, ngân sách","Chính sách, hạn mức","Ưu tiên hoạt động"],
   exc:[["Thay đổi chính sách lớn","ceo"],["Vượt ngân sách trọng yếu","ceo"],["Xung đột ưu tiên giữa các khối","ceo"]]},
- {id:"tk",tier:"Tầng 2 · Thiết kế và tạo nhu cầu",n:"Danh mục, Thiết kế & Tiêu chuẩn dịch vụ",en:"Service Portfolio, Design & Standards",o:"tk",s:"Thiết kế dịch vụ",
+ {id:"tk",tier:"Chuỗi tạo giá trị · Thiết kế và tạo nhu cầu",n:"Danh mục, Thiết kế & Tiêu chuẩn dịch vụ",en:"Service Portfolio, Design & Standards",o:"tk",s:"Thiết kế dịch vụ",
   goal:"Xác định cung cấp dịch vụ gì, cho ai, bằng phương pháp nào và theo tiêu chuẩn nào.",
   nguoi:"Xác nhận tính khả thi, tiêu chuẩn chuyên môn và cam kết có thể cung cấp.",ai:"Tổng hợp phản hồi, hỗ trợ soạn tài liệu, mô phỏng chi phí, đề xuất cải tiến.",
   kpi:["Hiệu quả từng dịch vụ","Mức độ chuẩn hóa","Thời gian phát triển dịch vụ","Đáp ứng nhu cầu"],
   in:["Nhu cầu, phản hồi khách hàng","Kết quả và sự cố khi thực hiện","Chi phí thực tế"],out:["Danh mục, phạm vi chuẩn, điều kiện tiếp nhận","Quy trình, tiêu chí chất lượng","Giá cơ sở, tri thức đã duyệt"],
   exc:[["Mở hoặc dừng một dịch vụ","ceo"],["Tiêu chuẩn chuyên môn","cm"],["Giá cơ sở dưới chi phí","tc"]]},
- {id:"mk",tier:"Tầng 2 · Thiết kế và tạo nhu cầu",n:"Thị trường, Marketing & Phát triển kênh",en:"Market Development, Marketing & Channels",o:"mk",s:"Marketing",
+ {id:"mk",tier:"Chuỗi tạo giá trị · Thiết kế và tạo nhu cầu",n:"Thị trường, Marketing & Phát triển kênh",en:"Market Development, Marketing & Channels",o:"mk",s:"Marketing",
   goal:"Tạo nhu cầu phù hợp và phát triển các kênh đưa khách đến doanh nghiệp.",
   nguoi:"Phê duyệt thông điệp, định vị, quan hệ đối tác và ngân sách.",ai:"Phân tích nhu cầu, hỗ trợ nội dung, phân nhóm khách, theo dõi hiệu quả.",
   kpi:["Khách tiềm năng đủ điều kiện","Chi phí thu hút","Chuyển đổi theo kênh","Đóng góp doanh thu"],
   in:["Danh mục và phạm vi dịch vụ đã duyệt","Ngân sách","Phản hồi khách"],out:["Khách tiềm năng","Nguồn giới thiệu","Kỳ vọng của khách"],
   exc:[["Nội dung hứa vượt phạm vi dịch vụ","pc"],["Chiến dịch vượt ngân sách","mk"],["Khủng hoảng truyền thông","ceo"]]},
- {id:"kd",tier:"Tầng 2 · Cam kết, nguồn lực, thực hiện",n:"Đánh giá nhu cầu, Kinh doanh & Cam kết dịch vụ",en:"Needs Assessment, Sales & Service Contracting",o:"kd",s:"Kinh doanh",
+ {id:"kd",tier:"Chuỗi tạo giá trị · Cam kết, nguồn lực, thực hiện",n:"Đánh giá nhu cầu, Kinh doanh & Cam kết dịch vụ",en:"Needs Assessment, Sales & Service Contracting",o:"kd",s:"Kinh doanh",
   goal:"Chuyển nhu cầu phù hợp thành cam kết rõ ràng, làm được và thu được tiền.",
   nguoi:"Đánh giá yêu cầu phức tạp, đàm phán, phê duyệt cam kết hoặc thay đổi trọng yếu.",ai:"Thu thông tin, phân loại yêu cầu, lập dự thảo đề xuất, kiểm thông tin còn thiếu.",
   kpi:["Tỷ lệ chuyển đổi","Thời gian chốt","Lợi nhuận dự kiến","Độ rõ phạm vi","Thay đổi ngoài kế hoạch"],
   in:["Khách tiềm năng","Danh mục, giá, điều kiện tiếp nhận","Công suất khả dụng"],out:["Hồ sơ dịch vụ được chấp nhận","Phạm vi, giá, tiêu chí hoàn thành","Yêu cầu nguồn lực"],
   exc:[["Giá ngoại lệ, phạm vi ngoài chuẩn","kd"],["Điều kiện chuyên môn","cm"],["Điều khoản ngoài mẫu","pc"]]},
- {id:"nl",tier:"Tầng 2 · Cam kết, nguồn lực, thực hiện",n:"Hoạch định & Điều phối nguồn lực",en:"Capacity Planning & Resource Coordination",o:"vh",s:"Nguồn lực",
+ {id:"nl",tier:"Chuỗi tạo giá trị · Cam kết, nguồn lực, thực hiện",n:"Hoạch định & Điều phối nguồn lực",en:"Capacity Planning & Resource Coordination",o:"vh",s:"Nguồn lực",
   goal:"Bố trí đúng người, thời gian, địa điểm, thiết bị và đối tác cho từng cam kết.",
   nguoi:"Quyết định ưu tiên, bố trí nguồn lực khan hiếm, xử lý xung đột.",ai:"Gợi ý lịch, kiểm trùng, ghép năng lực với yêu cầu, nhắc xác nhận, cảnh báo quá tải.",
   kpi:["Sử dụng công suất phù hợp","Thời gian chờ","Tỷ lệ vắng hẹn","Xung đột lịch","Sẵn sàng nguồn lực"],
   in:["Cam kết kèm yêu cầu nguồn lực","Hồ sơ năng lực, lịch trống","Xác nhận của đối tác"],out:["Lịch, kế hoạch nguồn lực đã xác nhận","Điều kiện sẵn sàng thực hiện"],
   exc:[["Thiếu nguồn lực, quá tải","vh"],["Đối tác chưa xác nhận","dt"],["Không đủ người đủ điều kiện","cm"]]},
- {id:"th",tier:"Tầng 2 · Cam kết, nguồn lực, thực hiện",n:"Thực hiện dịch vụ & Quản trị chuyên môn",en:"Service Delivery & Professional Governance",o:"cm",s:"Thực hiện",
+ {id:"th",tier:"Chuỗi tạo giá trị · Cam kết, nguồn lực, thực hiện",n:"Thực hiện dịch vụ & Quản trị chuyên môn",en:"Service Delivery & Professional Governance",o:"cm",s:"Thực hiện",
   goal:"Làm đúng phạm vi, bảo đảm chất lượng và ghi nhận kết quả của từng hồ sơ.",
   nguoi:"Chịu trách nhiệm chuyên môn, làm phần việc cần có mặt, xác nhận chất lượng.",ai:"Hỗ trợ tài liệu, checklist, theo dõi tiến độ, tổng hợp hồ sơ, phát hiện thiếu sót. Không quyết định chuyên môn.",
   kpi:["Đúng hạn","Đáp ứng phạm vi","Tỷ lệ làm lại","Sai sót","Chất lượng hồ sơ","Sự cố"],
   in:["Hồ sơ dịch vụ, lịch, nguồn lực sẵn sàng","Tiêu chuẩn, quy trình đã duyệt"],out:["Dịch vụ hoặc sản phẩm bàn giao","Hồ sơ hoàn thành, sự cố","Nhu cầu tiếp theo"],
   exc:[["Sai sót chuyên môn, an toàn","cm"],["Sự cố khẩn cấp: đi thẳng, không chờ hàng đợi","cm"],["Trễ mốc ảnh hưởng cam kết","vh"]]},
- {id:"tn",tier:"Tầng 2 · Thiết kế và tạo nhu cầu",n:"Trải nghiệm khách hàng & Phát triển quan hệ",en:"Customer Experience & Relationship Development",o:"tn",s:"Trải nghiệm",
+ {id:"tn",tier:"Chuỗi tạo giá trị · Thiết kế và tạo nhu cầu",n:"Trải nghiệm khách hàng & Phát triển quan hệ",en:"Customer Experience & Relationship Development",o:"tn",s:"Trải nghiệm",
   goal:"Hỗ trợ khách suốt hành trình, giải quyết vấn đề và giữ quan hệ phù hợp.",
   nguoi:"Xử lý tranh chấp, tình huống nhạy cảm và quan hệ quan trọng.",ai:"Nhắc việc, trả lời thông tin đã duyệt, phân loại yêu cầu, theo dõi hạn xử lý, tổng hợp phản hồi.",
   kpi:["Hài lòng","Thời gian giải quyết","Tỷ lệ tái sử dụng","Duy trì khách","Khiếu nại lặp lại"],
   in:["Hồ sơ và lịch dịch vụ","Yêu cầu, phản hồi từ mọi kênh"],out:["Yêu cầu đã giải quyết","Cơ hội gia hạn","Hành động cải tiến cho thiết kế dịch vụ"],
   exc:[["Tranh chấp, khắc phục ngoài chính sách","tn"],["Vấn đề chuyên môn","cm"],["Hoàn tiền","tc"]]},
- {id:"ht",tier:"Tầng 3 · Năng lực hỗ trợ",n:"Tài chính & Năng lực hỗ trợ",en:"Finance & Enterprise Services",o:"tc",s:"Hỗ trợ",
+ {id:"ht",tier:"Năng lực hỗ trợ",n:"Năng lực hỗ trợ",en:"Support Functions",o:"tc",s:"Hỗ trợ",
   goal:"Giữ tiền, người, pháp lý và tài sản đúng, đủ, kiểm soát được.",
   nguoi:"Phê duyệt, kiểm soát và chịu trách nhiệm tính đúng đắn.",ai:"Đối chiếu chứng từ, hỗ trợ báo cáo, dự báo dòng tiền, nhắc hồ sơ hết hạn, tổng hợp chi phí.",
   kpi:["Thu tiền đúng hạn","Dòng tiền","Lợi nhuận hồ sơ","Năng lực nhân sự","Sẵn sàng tài sản","Tuân thủ"],
@@ -1531,7 +1536,7 @@ DS.dv={
  NGUON:[["Quan hệ khách hàng","CRM"],["Lịch, đặt chỗ","Hệ thống đặt lịch"],["Hồ sơ thực hiện chuyên môn","Hệ thống hồ sơ ngành — xem theo nhiệm vụ"],["Năng lực, chứng chỉ","Hồ sơ nhân sự"],["Giá, điều kiện dịch vụ","Bảng giá dịch vụ"],["Tiền cọc, công nợ, doanh thu","Phần mềm kế toán"],["Đối tác, xác nhận đặt chỗ","Danh mục đối tác"]],
  pfSub:"Dữ liệu thống nhất — nguồn chuẩn theo từng loại — truy cập theo thẩm quyền",
  pfNote:"Dữ liệu dùng chung không có nghĩa ai và AI nào cũng xem được mọi hồ sơ. Hồ sơ chuyên môn nhạy cảm chỉ mở theo nhiệm vụ. Lịch sử CRM tách khỏi hồ sơ thực hiện chuyên môn; không chép nội dung nhạy cảm vào báo cáo marketing hay công cụ AI chung.",
- LANE:{cl:"Chiến lược & Quản trị",tk:"Thiết kế dịch vụ",mk:"Marketing & Kênh",kd:"Kinh doanh & Cam kết",nl:"Điều phối nguồn lực",th:"Thực hiện & Chuyên môn",tn:"Trải nghiệm khách hàng",tc:"Tài chính & Kế toán"},
+ LANE:{cl:"Quản trị & Điều hành",tk:"Thiết kế dịch vụ",mk:"Marketing & Kênh",kd:"Kinh doanh & Cam kết",nl:"Điều phối nguồn lực",th:"Thực hiện & Chuyên môn",tn:"Trải nghiệm khách hàng",tc:"Tài chính & Kế toán"},
  CHUOI:[
  {id:"i2c",s:"Nhu cầu → Cam kết",n:"Từ nhu cầu đến cam kết dịch vụ",en:"Inquiry-to-Commitment",owner:"Trưởng kinh doanh, phối hợp chuyên môn",flow:"Tiếp nhận → đánh giá phù hợp → xác định phạm vi → báo giá, điều kiện → xác nhận.",
   lanes:["mk","kd","th"],
@@ -1632,7 +1637,7 @@ DS.dv={
  calls:[["git-branch","Tách ba việc: tạo, duyệt, thực hiện","AI lập lệnh hoàn tiền (L2), Tài chính duyệt, lệnh chi chạy qua ngân hàng theo phân quyền."],
   ["award","AI hỗ trợ chuyên môn, không quyết chuyên môn","Việc chuyên môn AI chỉ ở L1–L2: chuẩn bị tài liệu, checklist, tóm tắt để người xác minh. Quyết định chuyên môn luôn do người có thẩm quyền."],
   ["users","Doanh nghiệp nhỏ: một người, nhiều vai","Mười hai vai là vai thẩm quyền, không phải mười hai người. Ngoại lệ vẫn đi theo vai."],
-  ["bot","Vai có thể là người hoặc AI","Marketing, Vận hành – điều phối, Trải nghiệm khách hàng, Hành chính giao được cho AI. AI giữ vai chỉ quyết trong luật của vai; vượt quyền lên Ban điều hành."]]
+  ["bot","Vai có thể là người hoặc AI","Marketing, Vận hành – điều phối, Trải nghiệm khách hàng, Hành chính giao được cho AI. AI giữ vai chỉ quyết trong luật của vai; vượt quyền lên giám đốc phụ trách."]]
 };
 /* Cấu hình theo ngành: trang thứ tư của Dịch vụ */
 const NGANH=[
@@ -1670,44 +1675,44 @@ DS.sx={
  ROLE_ORDER:["kd","kt","hd","mh","sx","qa","bt","at","kv","tc","ns","pc","hc"],
  ROLE_AI:{hd:1,kv:1,hc:1},
  KHOI:[
- {id:"cl",tier:"Điều hành",n:"Chiến lược & Quản trị doanh nghiệp",en:"Strategy & Business Governance",o:"ceo",s:"Điều hành",
+ {id:"cl",tier:"Ban điều hành",n:"Quản trị & Điều hành",en:"Governance & Executive Management",o:"ceo",s:"Điều hành",
   goal:"Chọn thị trường, năng lực sản xuất và phân bổ vốn phù hợp mục tiêu.",nguoi:"Quyết định chiến lược, đầu tư, chính sách và ưu tiên.",ai:"Phân tích kịch bản, tổng hợp báo cáo, phát hiện chênh lệch, cảnh báo.",
   kpi:["Lợi nhuận","Dòng tiền","Hiệu quả vốn","Tiến độ mục tiêu","Hiệu quả đầu tư"],in:["Số liệu từ mọi khối","Thị trường, đối thủ","Báo cáo rủi ro, an toàn"],out:["Mục tiêu, ngân sách","Chính sách","Quyết định công suất, danh mục đầu tư"],
   exc:[["Đầu tư công suất, dây chuyền","ceo"],["Vượt ngân sách trọng yếu","ceo"],["Thu hồi sản phẩm","ceo"]]},
- {id:"kd",tier:"Nhu cầu, kỹ thuật & chuẩn bị",n:"Thị trường, Kinh doanh & Quản trị nhu cầu",en:"Market, Sales & Demand Management",o:"kd",s:"Kinh doanh",
+ {id:"kd",tier:"Chuỗi tạo giá trị · Nhu cầu, kỹ thuật & chuẩn bị",n:"Thị trường, Kinh doanh & Quản trị nhu cầu",en:"Market, Sales & Demand Management",o:"kd",s:"Kinh doanh",
   goal:"Chuyển nhu cầu thị trường thành yêu cầu sản phẩm và đơn hàng đáp ứng được.",nguoi:"Đàm phán, xác nhận yêu cầu, phê duyệt cam kết thương mại.",ai:"Tổng hợp nhu cầu, hỗ trợ báo giá, kiểm tra thông tin, đề xuất ngày giao.",
   kpi:["Doanh thu","Biên lợi nhuận","Chuyển đổi","Độ tin cậy cam kết","Hiệu quả khách, kênh"],in:["Nhu cầu thị trường, khách hàng","Tồn kho, năng lực vật tư và công suất"],out:["Đơn hàng, yêu cầu kỹ thuật","Tín hiệu nhu cầu","Giá và cam kết giao"],
   exc:[["Giá, chiết khấu ngoài khung","kd"],["Cam kết vượt khả năng đáp ứng","kd"],["Yêu cầu ngoài năng lực kỹ thuật","kt"]]},
- {id:"kt",tier:"Nhu cầu, kỹ thuật & chuẩn bị",n:"Phát triển sản phẩm & Kỹ thuật sản xuất",en:"Product Development & Manufacturing Engineering",o:"kt",s:"Kỹ thuật",
+ {id:"kt",tier:"Chuỗi tạo giá trị · Nhu cầu, kỹ thuật & chuẩn bị",n:"Phát triển sản phẩm & Kỹ thuật sản xuất",en:"Product Development & Manufacturing Engineering",o:"kt",s:"Kỹ thuật",
   goal:"Biến ý tưởng, yêu cầu thành cấu hình sản phẩm và cách sản xuất đã kiểm chứng.",nguoi:"Phê duyệt thiết kế, công nghệ, thử nghiệm và thay đổi kỹ thuật.",ai:"Hỗ trợ tài liệu, đối chiếu phiên bản, phân tích thử nghiệm, đề xuất cải tiến.",
   kpi:["Thời gian phát triển","Lỗi kỹ thuật","Thời gian chuyển giao","Ổn định sản xuất thử"],in:["Yêu cầu sản phẩm","Phản hồi lỗi, thực tế sản xuất"],out:["Bản vẽ, cấu hình","BOM hoặc công thức; routing (hai dữ liệu riêng)","Tiêu chuẩn, phiên bản phát hành"],
   exc:[["Thay đổi BOM, công thức, thông số chuẩn","kt"],["Vật tư thay thế ngoài cấu hình","kt"],["Chuyển giao khi chưa ổn định","kt"]]},
- {id:"hd",tier:"Nhu cầu, kỹ thuật & chuẩn bị",n:"Hoạch định sản xuất & Chuỗi cung ứng",en:"Manufacturing & Supply Chain Planning",o:"hd",s:"Hoạch định",
+ {id:"hd",tier:"Chuỗi tạo giá trị · Nhu cầu, kỹ thuật & chuẩn bị",n:"Hoạch định sản xuất & Chuỗi cung ứng",en:"Manufacturing & Supply Chain Planning",o:"hd",s:"Hoạch định",
   goal:"Cân đối nhu cầu với vật tư, công suất, tồn kho và vốn.",nguoi:"Quyết định cân đối và ưu tiên khi nguồn lực thiếu.",ai:"Dự báo, mô phỏng, đề xuất kế hoạch, phát hiện xung đột.",
   kpi:["Độ chính xác dự báo","Ổn định kế hoạch","Tồn kho","Thiếu vật tư","Tỷ lệ đáp ứng"],in:["Đơn hàng, dự báo","BOM, routing đã phát hành","Tồn, công suất thực tế"],out:["Kế hoạch sản xuất, mua hàng","Nhu cầu công suất","Ưu tiên thực hiện"],
   exc:[["Thiếu vật tư, công suất","hd"],["Kinh doanh và sản xuất không thống nhất","ceo"],["Đổi trần vốn tồn kho","tc"]]},
- {id:"mh",tier:"Nhu cầu, kỹ thuật & chuẩn bị",n:"Nguồn cung & Mua hàng",en:"Sourcing & Procurement",o:"mh",s:"Mua hàng",
+ {id:"mh",tier:"Chuỗi tạo giá trị · Nhu cầu, kỹ thuật & chuẩn bị",n:"Nguồn cung & Mua hàng",en:"Sourcing & Procurement",o:"mh",s:"Mua hàng",
   goal:"Bảo đảm vật tư, linh kiện, dịch vụ đúng chất lượng, thời gian và tổng chi phí.",nguoi:"Chọn đối tác, đàm phán, phê duyệt điều kiện trọng yếu.",ai:"So sánh báo giá, theo dõi giao hàng, phân tích hiệu suất, cảnh báo.",
   kpi:["Giao đúng hạn","Chất lượng đầu vào","Tổng chi phí mua","Rủi ro nguồn cung"],in:["Kế hoạch mua từ MRP","Yêu cầu kỹ thuật vật tư"],out:["Hợp đồng, đơn mua","Lịch hàng về","Hồ sơ nhà cung cấp"],
   exc:[["Nhà cung cấp mới","mh"],["Vật tư thay thế: kỹ thuật và chất lượng duyệt","kt"],["Lô đầu vào không đạt","qa"]]},
- {id:"sx",tier:"Trung tâm nhà máy",n:"Vận hành sản xuất & Điều độ xưởng",en:"Production Operations & Shop Floor Control",o:"sx",s:"Sản xuất",
+ {id:"sx",tier:"Chuỗi tạo giá trị · Trung tâm nhà máy",n:"Vận hành sản xuất & Điều độ xưởng",en:"Production Operations & Shop Floor Control",o:"sx",s:"Sản xuất",
   goal:"Biến lệnh sản xuất thành sản phẩm đúng quy trình, tiến độ và trạng thái chất lượng.",nguoi:"Vận hành thiết bị, xác nhận sẵn sàng, xử lý hiện trường, giám sát.",ai:"Hỗ trợ xếp lịch, phân tích tổn thất, checklist, cảnh báo. Không điều khiển máy.",
   kpi:["Hoàn thành kế hoạch","Thời gian chu kỳ","Sản lượng đạt","WIP","Tổn thất","Thời gian chuyển đổi"],in:["Lệnh khả thi","Vật tư đúng trạng thái","Phiên bản kỹ thuật, hướng dẫn"],out:["Dở dang, thành phẩm","Tiêu hao thực tế, thông số","Lịch sử thực hiện"],
   exc:[["Lệnh chưa đủ 5 điều kiện sẵn sàng","sx"],["Tiêu hao vượt định mức","sx"],["Thông số lệch, nghi lỗi","qa"]]},
- {id:"qa",tier:"Trung tâm nhà máy",n:"Quản trị chất lượng & Truy xuất",en:"Quality Management & Traceability",o:"qa",s:"Chất lượng",
+ {id:"qa",tier:"Chuỗi tạo giá trị · Trung tâm nhà máy",n:"Quản trị chất lượng & Truy xuất",en:"Quality Management & Traceability",o:"qa",s:"Chất lượng",
   goal:"Ngăn sai lỗi, xác minh sự phù hợp và bảo đảm truy xuất sản phẩm.",nguoi:"Quyết định chấp nhận, cách ly, sửa, loại bỏ hoặc xuất xưởng theo thẩm quyền.",ai:"Phân tích xu hướng, nhận diện lỗi từ hệ thống đã kiểm chứng, tổng hợp hồ sơ, gợi ý nguyên nhân.",
   kpi:["FPY","Phế phẩm","Làm lại","Lỗi đến khách","Thời gian đóng hành động","Độ đầy đủ truy xuất"],in:["Kết quả kiểm đầu vào, công đoạn, thành phẩm","Khiếu nại khách"],out:["Trạng thái chất lượng","Quyết định xử lý, xuất xưởng","Hồ sơ truy xuất"],
   exc:[["Mọi quyết định xử lý hàng không phù hợp","qa"],["Mọi quyết định xuất xưởng","qa"],["Thu hồi sản phẩm","ceo"]]},
- {id:"tb",tier:"Trung tâm nhà máy",n:"Thiết bị, Bảo trì & An toàn nhà máy",en:"Asset Reliability, Maintenance & Plant Safety",o:"bt",s:"Thiết bị & An toàn",
+ {id:"tb",tier:"Chuỗi tạo giá trị · Trung tâm nhà máy",n:"Thiết bị, Bảo trì & An toàn nhà máy",en:"Asset Reliability, Maintenance & Plant Safety",o:"bt",s:"Thiết bị & An toàn",
   goal:"Giữ thiết bị và nhà máy tin cậy, an toàn, sẵn sàng sản xuất.",nguoi:"Quyết định an toàn, thực hiện bảo trì, xác nhận thiết bị đủ điều kiện.",ai:"Phân tích dữ liệu tình trạng, đề xuất lịch, cảnh báo, hỗ trợ hồ sơ. Dừng khẩn cấp và liên động thuộc hệ thống an toàn riêng.",
   kpi:["Độ sẵn sàng","Thời gian dừng","Thời gian sửa chữa","Hoàn thành bảo trì","Năng lượng","Chỉ tiêu an toàn"],in:["Dữ liệu tình trạng máy","Kế hoạch sản xuất"],out:["Trạng thái máy","Kế hoạch bảo trì","Điều kiện vận hành, hồ sơ sự cố"],
   exc:[["Máy hỏng, dừng dài","bt"],["Nguy cơ an toàn: xử lý tại hiện trường","at"],["Sự cố khẩn cấp: đi thẳng, không chờ hàng đợi","at"]],
   sub:[["A","Thiết bị & Hạ tầng",["tb_rel","tb_pm","tb_cm","tb_cal","tb_util"],"bt"],["B","An toàn, Sức khỏe nghề nghiệp & Môi trường",["tb_haz","tb_inc"],"at"]]},
- {id:"kv",tier:"Kho vận & giao hàng",n:"Kho vận, Giao hàng & Dịch vụ sau bán",en:"Warehousing, Distribution & After-Sales Service",o:"kv",s:"Kho vận",
+ {id:"kv",tier:"Chuỗi tạo giá trị · Kho vận & giao hàng",n:"Kho vận, Giao hàng & Dịch vụ sau bán",en:"Warehousing, Distribution & After-Sales Service",o:"kv",s:"Kho vận",
   goal:"Bảo toàn hàng hóa, giao hàng và khép kín vòng phản hồi.",nguoi:"Xử lý vật lý, xác minh chênh lệch, quản lý giao nhận.",ai:"Hỗ trợ phân bổ hàng, gợi ý xử lý, đối chiếu hồ sơ, theo dõi giao.",
   kpi:["Chính xác tồn kho","Giao đúng hạn, đủ hàng (OTIF)","Chi phí logistics","Hư hỏng","Xử lý hàng trả"],in:["Vật tư nhận về","Thành phẩm được phép xuất","Đơn giao hàng"],out:["Tồn theo vị trí, trạng thái, lô","Hàng đã giao","Yêu cầu sau bán"],
   exc:[["Hàng chưa được chất lượng cho xuất","qa"],["Chênh lệch kiểm kê","tc"],["Không kịp giao cam kết","kv"]]},
- {id:"ht",tier:"Năng lực hỗ trợ",n:"Tài chính & Năng lực hỗ trợ",en:"Finance & Enterprise Services",o:"tc",s:"Hỗ trợ",
+ {id:"ht",tier:"Năng lực hỗ trợ",n:"Năng lực hỗ trợ",en:"Support Functions",o:"tc",s:"Hỗ trợ",
   goal:"Giữ tiền, giá thành, người, pháp lý và tài sản đúng, kiểm soát được.",nguoi:"Phê duyệt và kiểm soát tài chính, nhân sự, pháp lý.",ai:"Đối chiếu, tổng hợp báo cáo, phân tích giá thành, nhắc việc.",
   kpi:["Dòng tiền","Độ chính xác giá thành","Thời gian đóng sổ","Năng lực nhân sự","Hiệu quả chi phí"],in:["Định mức kỹ thuật, tiêu hao thực tế","Chứng từ mua, bán"],out:["Báo cáo tài chính, quản trị","Ngân sách","Nhân lực, hồ sơ hỗ trợ"],
   exc:[["Lô vượt định mức trọng yếu","tc"],["Quyết định về con người","ns"],["Chứng nhận sản phẩm hết hạn","pc"]]}
@@ -1805,7 +1810,7 @@ DS.sx={
  NGUON:[["Thiết kế, BOM, công thức, routing, phiên bản","PLM / mô-đun kỹ thuật"],["Đơn hàng, mua hàng, kế hoạch, tài chính","ERP"],["Lệnh, công đoạn, mẻ, sản lượng, WIP","MES / mô-đun xưởng"],["Kiểm tra, không phù hợp, xuất xưởng","QMS / mô-đun chất lượng"],["Vị trí, lô, số lượng, cấp phát","WMS / mô-đun kho"],["Tài sản, bảo trì","CMMS / EAM"],["Thông số máy, điều khiển","PLC / SCADA / historian"],["Khách hàng, yêu cầu","CRM"]],
  pfSub:"Nguồn chuẩn theo từng miền — đồng bộ có kiểm soát — tách quyền AI với quyền điều khiển máy",
  pfNote:"Phân biệt kế hoạch, giao dịch thực tế và đề xuất của AI; phân biệt tồn vật lý, trạng thái chất lượng và lượng có thể cam kết. Quyền của AI trong hệ thống quản trị tách khỏi quyền điều khiển máy; không suy diễn quyền điều khiển từ quyền đọc dữ liệu.",
- LANE:{cl:"Chiến lược & Quản trị",kd:"Kinh doanh & Nhu cầu",kt:"Sản phẩm & Kỹ thuật",hd:"Hoạch định",mh:"Mua hàng",sx:"Sản xuất – Xưởng",qa:"Chất lượng",tb:"Thiết bị & An toàn",kv:"Kho vận & Giao hàng",tc:"Tài chính"},
+ LANE:{cl:"Quản trị & Điều hành",kd:"Kinh doanh & Nhu cầu",kt:"Sản phẩm & Kỹ thuật",hd:"Hoạch định",mh:"Mua hàng",sx:"Sản xuất – Xưởng",qa:"Chất lượng",tb:"Thiết bị & An toàn",kv:"Kho vận & Giao hàng",tc:"Tài chính"},
  CHUOI:[
  {id:"i2i",s:"Ý tưởng → Sẵn sàng SX",n:"Từ ý tưởng đến sẵn sàng sản xuất",en:"Idea-to-Industrialization",owner:"Trưởng sản phẩm – kỹ thuật",flow:"Yêu cầu → thiết kế → thử nghiệm → sản xuất thử → phát hành kỹ thuật → chuyển giao.",
   lanes:["kd","kt","sx","qa"],
@@ -2010,9 +2015,9 @@ function setCv(m){document.querySelectorAll(".cv").forEach(c=>c.classList.toggle
   try{localStorage.setItem("lattice-mophong-cv",m);}catch(e){}}
 /* ---------- Trang 1 · Kiến trúc nghiệp vụ ---------- */
 const tile=n=>`<button class="ti${n.opt?" opt":""}" data-id="${n.id}" title="${esc(n.n)}${n.opt?" (nếu có)":""}"><span class="tic">${ic(NVI[n.id][0],24)}</span><span class="tl">${esc(NVI[n.id][1])}</span></button>`;
-function card(k,extra,tag){const K=KH(k);
+function card(k,extra,tag){const K=KH(k), gd=GD_KHOI[model][k], gdl=o=>`${rmk(o)}${gd?`<button class="ck-gd" data-gd="${gd}">${esc(gdName(gd))} ›</button>`:""}`;
   const body=K.sub?`<div class="subs">${K.sub.map(([c,lab,ids,o])=>`<div class="sub"><div class="gh"><b>${c}</b><span>${esc(lab)}</span></div><div class="tis">${ids.map(id=>tile(NV_BY[id])).join("")}</div><div class="ck-o">${rmk(o)}</div></div>`).join("")}</div>`
-    :`<div class="tis">${nvOf(k).map(tile).join("")}</div><div class="ck-o">${rmk(K.o)}</div>`;
+    :`<div class="tis">${nvOf(k).map(tile).join("")}</div><div class="ck-o">${gdl(K.o)}</div>`;
   return `<div class="ck${extra?" "+extra:""}" id="ck-${k}"><button class="ck-h" data-khoi="${k}" aria-label="Chi tiết khối ${esc(K.n)}"><span class="no">${KNO[k]}</span><span class="nm">${esc(K.n)}</span>${tag?`<span class="tag">${esc(tag)}</span>`:""}<span class="ki">${ic(KHI[k],18)}</span></button>${body}</div>`;}
 /* =================== NGUỒN LỰC CỐT LÕI & BỘ MÁY ===================
    Ba lớp khác bản chất: chuỗi tạo giá trị (việc tạo ra tiền), năng lực hỗ trợ (bộ phận phục vụ)
@@ -2305,21 +2310,21 @@ function setAv(v){archView=v==="full"?"full":"simple";
   if(archView==="simple") simpleArch(); else archWires();}
 function arch(){
   const K3=KH("ht"), DD=DS[model]; $("arch-line").textContent=DD.line||"";
-  const SO=["","Một","Hai","Ba","Bốn","Năm","Sáu","Bảy","Tám","Chín","Mười"]; $("arch-h1").textContent=`${SO[KHOI.length]||KHOI.length} khối nghiệp vụ, một nền tảng chung`;
+  const SO=["","Một","Hai","Ba","Bốn","Năm","Sáu","Bảy","Tám","Chín","Mười"]; $("arch-h1").textContent=`${SO[KHOI.length]||KHOI.length} khối nghiệp vụ trên năm nguồn lực cốt lõi`;
   try{if(!simpMode) archView=localStorage.getItem("lattice-mophong-av")==="full"?"full":"simple";}catch(e){}
   $("arch").innerHTML=`<svg class="wires" id="arch-w" aria-hidden="true"></svg>
    <div class="cvl">Chủ sở hữu</div><button class="ck wide ck-own" data-bmtop="1"><span class="ck-h st"><span class="nm">Chủ sở hữu / Hội đồng quản trị</span><span class="tag">Chiến lược · ngân sách · bổ nhiệm CEO · Hiến chương AI</span><span class="ki">${ic("scale",18)}</span></span></button>
-   <div class="cvl">Điều hành</div>${card("cl","wide")}
-   ${DD.rows.map((r,i)=>`<div class="cvl"${i?"":' id="cvl-cung"'}>${esc(DD.rowLab[i][0])} <em>${esc(DD.rowLab[i][1])}</em></div><div class="g3" style="grid-template-columns:repeat(${r.length},minmax(0,1fr));${r.length>3?"gap:34px":""}">${r.map(k=>{const t=DD.core&&DD.core[k];return card(k,t?"core"+(r.length===1?" wide":""):(r.length===1?"wide":""),t);}).join("")}</div>`).join("")}
+   <div class="cvl">Ban điều hành</div>${card("cl","wide")}
+   ${DD.rows.map((r,i)=>`<div class="cvl"${i?"":' id="cvl-cung"'}>Chuỗi tạo giá trị · ${esc(DD.rowLab[i][0])} <em>${esc(DD.rowLab[i][1])}</em></div><div class="g3" style="grid-template-columns:repeat(${r.length},minmax(0,1fr));${r.length>3?"gap:34px":""}">${r.map(k=>{const t=DD.core&&DD.core[k];return card(k,t?"core"+(r.length===1?" wide":""):(r.length===1?"wide":""),t);}).join("")}</div>`).join("")}
    <div class="cvl">Năng lực hỗ trợ</div>
    <div class="ck wide" id="ck-ht"><button class="ck-h" data-khoi="ht" aria-label="Chi tiết khối ${esc(K3.n)}"><span class="no">${KNO.ht}</span><span class="nm">${esc(K3.n)}</span><span class="ki">${ic(KHI.ht,18)}</span></button>
-     <div class="g4">${NHOM_HT.map(g=>`<div class="grp"><div class="gh">${ic(GRI[g.id],15)}<span>${esc(g.n)}</span></div><div class="tis">${NV.filter(n=>n.g===g.id).map(tile).join("")}</div><div class="ck-o">${rmk(g.id)}</div></div>`).join("")}</div></div>
-   <div class="cvl">Nền tảng &amp; ngoại lệ</div>
+     <div class="g4">${NHOM_HT.map(g=>`<div class="grp"><div class="gh">${ic(GRI[g.id],15)}<span>${esc(g.n)}</span></div><div class="tis">${NV.filter(n=>n.g===g.id).map(tile).join("")}</div><div class="ck-o">${rmk(g.id)}<button class="ck-gd" data-gd="${GD_HT[g.id]}">${esc(gdName(GD_HT[g.id]))} ›</button></div></div>`).join("")}</div></div>
+   <div class="cvl">Trục LATTICE <em>— dữ liệu một nguồn, luật và ngưỡng, Team AI, ngoại lệ đến đúng người</em></div>
    <div class="g75">
-     <div class="ck" id="ck-pf"><div class="ck-h st"><span class="no">09</span><span class="nm">Dữ liệu, Hệ thống &amp; Điều phối AI</span><span class="ki">${ic("layers",18)}</span></div>
+     <div class="ck" id="ck-pf"><div class="ck-h st"><span class="no">09</span><span class="nm">Dữ liệu, hệ thống &amp; Team AI</span><span class="ki">${ic("layers",18)}</span></div>
        <p class="sub">${esc(DD.pfSub)}</p>
        <div class="tis big">${PF.map((p,i)=>`<button class="ti big" data-pf="${i}" title="${esc(p.n)}"><span class="tic">${ic(PFI[i][0],28)}</span><span class="tl">${esc(PFI[i][1])}</span></button>`).join("")}</div></div>
-     <div class="ck" id="ck-ex"><div class="ck-h st"><span class="no">10</span><span class="nm">Điều gì chuyển cho người</span><span class="ki">${ic("triangle-alert",18)}</span></div>
+     <div class="ck" id="ck-ex"><div class="ck-h st"><span class="no">10</span><span class="nm">Ngoại lệ đến đúng người</span><span class="ki">${ic("triangle-alert",18)}</span></div>
        <div class="exl">${EXQ.map(([id,t,r])=>`<button class="exi" data-id="${id}">${ic("triangle-alert",15)}<span>${esc(t)}</span><b>${esc(ROLE_S[r])}</b></button>`).join("")}</div></div>
    </div>
    <div class="cvl">Nguồn lực cốt lõi <em>— mỗi nguồn lực một giám đốc trông giữ; viền đậm là nguồn lực quyết định</em></div>
@@ -2487,7 +2492,7 @@ function exmap(){
   const CXb=RX+RW+44, CWb=W-CXb-28, CY=mid-40, on=haiR==="ceo";
   s+=wire([[RX+RW,mid],[CXb,mid]],{red:true,dash:true,arrow:"ea",n:1});
   s+=`<g class="sn" tabindex="0" role="button" data-role="ceo" aria-pressed="${on}" aria-label="Lọc theo Ban điều hành"><rect class="sb" x="${CXb}" y="${CY}" width="${CWb}" height="80" fill="#EC3013" stroke="${on?"var(--ct)":"#EC3013"}" stroke-width="2"/>`+icS("crown",CXb+14,CY+14,18,"#fff")+
-    `<text x="${CXb+40}" y="${CY+28}" font-size="13.5" font-weight="800" fill="#fff">Ban điều hành</text><text x="${CXb+14}" y="${CY+52}" font-size="10.5" font-weight="600" fill="#fff">Chỉ việc vượt thẩm quyền</text><text x="${CXb+14}" y="${CY+67}" font-size="10.5" fill="#fff" opacity=".85">${cnt("ceo")} nghiệp vụ chuyển thẳng</text></g>`;
+    `<text x="${CXb+40}" y="${CY+28}" font-size="13.5" font-weight="800" fill="#fff">Ban điều hành</text><text x="${CXb+14}" y="${CY+52}" font-size="10.5" font-weight="600" fill="#fff">Vượt quyền vai: giám đốc, rồi CEO</text><text x="${CXb+14}" y="${CY+67}" font-size="10.5" fill="#fff" opacity=".85">${cnt("ceo")} nghiệp vụ chuyển thẳng</text></g>`;
   // nút giải thích trên hai mũi tên: chữ không vừa khe hẹp nên bấm mới mở
   const ibtn=(k,x,ico,bg,fg,lb)=>`<g class="sn ib" tabindex="0" role="button" data-exinfo="${k}" aria-label="${lb}"><title>${lb}</title><rect class="sb" x="${x-16}" y="${mid-16}" width="32" height="32" fill="${bg}" stroke="${bg==="var(--c1)"?"var(--ct)":bg}" stroke-width="1.8"/>`+icS(ico,x-9,mid-9,18,fg)+`</g>`;
   s+=ibtn("in",(LX+LWd+HX)/2,"triangle-alert","var(--c1)","var(--ct)","Khi nào AI chuyển việc cho người");
@@ -2501,9 +2506,9 @@ function exInfoHTML(k){
    <h3>Theo mức AI</h3><p><b>L1</b> người làm nên không phát sinh ngoại lệ. <b>L2</b> mọi đầu ra chờ người duyệt. <b>L3</b> AI tự làm, chỉ chuyển những việc vượt ngưỡng.</p>`;
   const rows=ROLE_ORDER.concat(["ceo"]).map(r=>{const l=NV.filter(n=>n.to===r);return l.length?`<tr><td>${rmk(r)}</td><td class="c num">${l.length}</td><td>${esc(l[0].x)}</td></tr>`:"";}).join("");
   return `<div class="dhd"><span class="dic" style="background:#EC3013;color:#fff">${ic("user",26)}</span><div><span class="lbl">Phê duyệt &amp; xử lý ngoại lệ</span><h2 id="d-title">Đến đúng người có thẩm quyền</h2><p class="en">Không dồn mọi việc lên CEO</p></div></div>
-   <div class="latx">Mỗi nghiệp vụ ghi sẵn ngoại lệ chuyển cho vai nào. Hệ thống điều phối gửi thẳng tới vai đó, đặt thời hạn xử lý và lưu lại quyết định. Ban điều hành chỉ nhận việc vượt thẩm quyền của các khối hoặc ảnh hưởng trọng yếu.</div>
+   <div class="latx">Mỗi nghiệp vụ ghi sẵn ngoại lệ chuyển cho vai nào. Hệ thống điều phối gửi thẳng tới vai đó, đặt thời hạn xử lý và lưu lại quyết định. Việc vượt quyền vai lên giám đốc phụ trách; Ban điều hành (CEO) chỉ nhận việc vượt quyền giám đốc hoặc ảnh hưởng trọng yếu.</div>
    <h3>Vai nhận ngoại lệ</h3><div class="tbl" style="border:0"><table style="min-width:0"><thead><tr><th>Vai</th><th class="c">Nghiệp vụ</th><th>Ví dụ</th></tr></thead><tbody>${rows}</tbody></table></div>
-   <h3>Vai có thể là người, có thể là AI</h3><p>Vai có biểu tượng ${ic("bot",14)} giao được cho AI: ${Object.keys(ROLE_AI).map(r=>esc(ROLE[r])).join(", ")}. Khi AI giữ vai, AI chỉ quyết trong luật và ngưỡng của vai; việc vượt quyền vai chuyển lên Ban điều hành. Các vai còn lại luôn là người.</p>
+   <h3>Vai có thể là người, có thể là AI</h3><p>Vai có biểu tượng ${ic("bot",14)} giao được cho AI: ${Object.keys(ROLE_AI).map(r=>esc(ROLE[r])).join(", ")}. Khi AI giữ vai, AI chỉ quyết trong luật và ngưỡng của vai; việc vượt quyền vai chuyển lên giám đốc phụ trách, rồi Ban điều hành. Các vai còn lại luôn là người.</p>
    <p class="note" style="margin-top:10px">Doanh nghiệp nhỏ có thể để một người giữ nhiều vai; ngoại lệ vẫn đi theo vai.</p>`;
 }
 function haiTable(){
@@ -2554,7 +2559,7 @@ function nvHTML(n){
   return `<div class="dhd"><span class="dic">${ic(NVI[n.id][0],26)}</span><div><span class="lbl">${esc(K.n)}${g?" · "+esc(g.n):""}</span><h2 id="d-title">${esc(n.n)}</h2><p class="en">${esc(n.en)}${n.opt?" · chỉ khi danh mục có":""}</p></div></div>
    ${n.lo?`<p class="lotag">${ic(LO[n.lo][0],14)} Loại việc: ${LO[n.lo][1].toLowerCase()}${LO[n.lo][2]?" — "+LO[n.lo][2]:""}</p>`:""}
    ${open.length?`<div class="spec"><b>${open.length} ngoại lệ đang chờ:</b> ${esc(open.map(e=>e.tx).join(" / "))}</div>`:""}
-   <h3>Người chịu trách nhiệm</h3><p style="font-weight:700">${rmk(n.o)}</p>${ROLE_AI[n.o]?`<p class="note">${RAI_NOTE}</p>`:""}
+   <h3>Người chịu trách nhiệm</h3><p style="font-weight:700">${rmk(n.o)}</p>${gdOfNV(n)?`<div class="nvl" style="margin-top:6px"><button data-gd="${gdOfNV(n)}"><span>${ic(GD_BY[gdOfNV(n)].ic,16)} Giám đốc phụ trách: ${esc(gdName(gdOfNV(n)))}</span><span>›</span></button></div>`:""}${ROLE_AI[n.o]?`<p class="note">${RAI_NOTE}</p>`:""}
    <h3>AI làm gì, ở mức nào</h3><div class="ladder">${n.ai.map(([t,l])=>`<div class="rung${l>=3?" start":""}"><span class="rn">L${l}</span><span><span class="rk">${LEVEL_NAMES[l]}</span>${esc(t)}</span></div>`).join("")}</div>
    <p class="note" style="margin-top:8px">Mức gắn cho từng tác vụ, không gắn cho cả khối. Một tác vụ lên mức khi số liệu ổn định 4–8 tuần.</p>
    <h3>Chuyển cho người khi</h3><div class="spec">${esc(n.x)} <b>→ ${esc(ROLE[n.to])}</b></div>
@@ -2912,6 +2917,10 @@ const WIDGETS={
      <div class="lbl" style="margin:14px 0 6px">Phải trả nhà cung cấp — ${fmtM(tra)}</div>${bang(D.ap)}
      <p class="note" style="margin-top:10px">Chênh lệch ${fmtM(thu-tra)} là phần vốn lưu động đang nằm ngoài tài khoản. Quá hạn trên 30 ngày ở cả hai phía đều tự vào hàng đợi vượt ngưỡng.</p>`;}},
 
+ nl:{t:"Năm nguồn lực cốt lõi",sizes:["m","l"],lbl:"So với tháng trước",r:b=>{
+   const r=rng(model.charCodeAt(0)*53+11), wk=D.cash/D.c.burn;
+   b.innerHTML=`<div class="rows nlw">${NL.map(x=>{const v=NLX[model][x.id], h=x.id==="von"?Math.min(1,wk/8):0.45+r()*0.45, up=x.id==="von"?D.cash>=D.thr:r()>0.35, val=x.id==="von"?wk.toFixed(1)+" tuần":Math.round(h*100)+"%";
+     return `<div class="rw" data-nl="${x.id}" role="button" tabindex="0" style="cursor:pointer"><span class="nm" title="${esc(v.chi[0])}">${v.key?"<b>":""}${esc(x.n)}${v.key?"</b>":""}<br><span style="font-size:11px;color:var(--mute)">${esc(v.chi[0])} · ${esc(gdName(x.gd))}</span></span><div class="bb ${up?"":"red"}"><i style="width:${Math.round(h*100)}%"></i></div><span class="vv num">${val} ${up?"↑":"↓"}</span></div>`;}).join("")}</div><p class="note" style="margin-top:8px">↑ đang được bồi đắp · ↓ đang hao. Chữ đậm: nguồn lực quyết định với loại hình này.</p>`;}},
  csat:{t:"Đánh giá của khách",sizes:["m","l"],lbl:"30 ngày",r:b=>{
    const c=D.c.csat; b.innerHTML=donut(c.map((v,i)=>[(5-i)+" sao",v]),"Điểm TB",D.kv.csat.toFixed(1),{label:"Phân bố đánh giá"});}}
 };
@@ -2920,12 +2929,12 @@ const wTitle=id=>(TITLE_BY[id]&&TITLE_BY[id][model])||WIDGETS[id].t;
 const SIZE_NAMES={s:"Nhỏ",m:"Vừa",l:"Lớn",xl:"Rộng",f:"Toàn dòng"};
 
 /* ---------- layout state ---------- */
-const DEFAULT={order:["kpi","rev","ex","lots","target","oee","mat","mix","status","pcost","fpy","fun","chn","cash","pnl","debt","agents","work","exmix","cost","heat","log","top","stock","ar","csat"],
-  hidden:["ar","csat"],size:{kpi:"f",rev:"xl",ex:"m",lots:"m",target:"m",oee:"m",mat:"m",mix:"m",status:"m",pcost:"m",fpy:"s",fun:"m",chn:"m",agents:"m",work:"m",exmix:"m",cost:"m",cash:"l",pnl:"xl",debt:"l",heat:"l",log:"m",top:"m",stock:"m",ar:"m",csat:"m"},
+const DEFAULT={order:["kpi","rev","ex","lots","target","nl","oee","mat","mix","status","pcost","fpy","fun","chn","cash","pnl","debt","agents","work","exmix","cost","heat","log","top","stock","ar","csat"],
+  hidden:["ar","csat"],size:{kpi:"f",rev:"xl",ex:"m",nl:"m",lots:"m",target:"m",oee:"m",mat:"m",mix:"m",status:"m",pcost:"m",fpy:"s",fun:"m",chn:"m",agents:"m",work:"m",exmix:"m",cost:"m",cash:"l",pnl:"xl",debt:"l",heat:"l",log:"m",top:"m",stock:"m",ar:"m",csat:"m"},
   kpis:["rev","ord","conv","cash","ex","ai"]};
 const LKEY="lattice-ceo-dash-v3";
 let L=JSON.parse(JSON.stringify(DEFAULT)), editing=false;
-try{const s=JSON.parse(localStorage.getItem(LKEY)||"null"); if(s&&s.order){L=Object.assign(L,s); Object.keys(WIDGETS).forEach(id=>{if(!L.order.includes(id)){L.order.push(id);L.hidden.push(id);}});}}catch(e){}
+try{const s=JSON.parse(localStorage.getItem(LKEY)||"null"); if(s&&s.order){L=Object.assign(L,s); Object.keys(WIDGETS).forEach(id=>{if(!L.order.includes(id)){if(id==="nl"){const i=L.order.indexOf("target"); L.order.splice(i<0?1:i+1,0,id);} else {L.order.push(id);L.hidden.push(id);}}});}}catch(e){}
 function saveL(){try{localStorage.setItem(LKEY,JSON.stringify(L));}catch(e){}}
 
 function buildGrid(){
@@ -2965,7 +2974,7 @@ function clist(){
 }
 const PRESETS={
  full:()=>({hidden:[],kpis:Object.keys(KPIS)}),
- money:()=>({order:["kpi","target","cash","rev","mix","cost","ar","chn","ex","top","fun","status","agents","work","exmix","heat","log","stock","csat"],hidden:["fun","status","agents","work","exmix","heat","log","stock","csat"],kpis:["rev","cash","margin","ar","conv","ex"]}),
+ money:()=>({order:["kpi","target","nl","cash","rev","mix","cost","ar","chn","ex","top","fun","status","agents","work","exmix","heat","log","stock","csat"],hidden:["fun","status","agents","work","exmix","heat","log","stock","csat"],kpis:["rev","cash","margin","ar","conv","ex"]}),
  ops:()=>({order:["kpi","ex","heat","agents","log","status","exmix","work","stock","rev","fun","target","mix","chn","cost","cash","ar","top","csat"],hidden:["target","mix","chn","cost","cash","ar","top","csat"],kpis:["ord","ex","ai","ret","stock","csat"]}),
  mobile:()=>({order:["kpi","ex","target","rev","cash","heat","mix","status","fun","chn","agents","work","exmix","cost","log","top","stock","ar","csat"],hidden:["mix","status","fun","chn","agents","work","exmix","cost","log","top","stock","ar","csat","heat"],kpis:["rev","cash","ex","ai"]})
 };

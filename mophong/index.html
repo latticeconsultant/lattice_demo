@@ -3031,11 +3031,13 @@ function buildGrid(){
       <div class="wb" id="wb-${id}"></div></section>`;}).join(""):`<div class="w w-f"><div class="wb empty">Bảng đang trống. Bấm Tùy biến bảng để bật các ô.</div></div>`;
   renderDash();
 }
-/* Thứ, ngày tháng theo lịch thật; giờ là đồng hồ mô phỏng. */
+/* Thứ, ngày tháng và giờ theo đồng hồ thật của máy người xem. */
 const THU=["Chủ nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"];
-const ngayNay=()=>{const d=new Date(),p=n=>String(n).padStart(2,"0");return `${THU[d.getDay()]}, ${p(d.getDate())}/${p(d.getMonth()+1)}/${d.getFullYear()}`;};
+const ngayNay=()=>{const d=new Date(),p=n=>String(n).padStart(2,"0");return `${THU[d.getDay()]}, ${p(d.getDate())}/${p(d.getMonth()+1)}/${d.getFullYear()} | ${p(d.getHours())}:${p(d.getMinutes())}`;};
+/* Đồng hồ vẫn chạy cả khi bảng tạm dừng. */
+setInterval(()=>{const c=document.getElementById("clock"); if(c) c.textContent=ngayNay();},15000);
 function renderDash(){
-  $("clock").textContent=ngayNay()+" | "+hhmm(T0+Math.min(D.step,NSTEP-1)*STEP);
+  $("clock").textContent=ngayNay();
   L.order.forEach(id=>{const b=$("wb-"+id); if(b && WIDGETS[id]) WIDGETS[id].r(b);});
 }
 function move(id,dir){const vis=L.order.filter(x=>!L.hidden.includes(x)),i=vis.indexOf(id),j=i+dir; if(j<0||j>=vis.length)return;

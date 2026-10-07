@@ -952,7 +952,7 @@ const TM_KHOI=[
   in:["Đơn hàng đã xác nhận","Đơn mua đã duyệt","Hàng trả về từ dịch vụ khách hàng"],
   out:["Hàng đã giao kèm xác nhận giao","Tồn kho chính xác","Chứng từ cho kế toán"],
   exc:[["Thiếu hàng sau khi đã nhận đơn","vh"],["Chênh lệch kiểm kê vượt ngưỡng","tc"],["Mất hàng, hư hỏng khi giao","vh"]]},
- {id:"dv",tier:"Tầng 2 · Phía cầu",n:"Dịch vụ khách hàng & Phát triển quan hệ",en:"Customer Service & Relationship Development",o:"dv",s:"Dịch vụ KH",
+ {id:"dv",tier:"Tầng 2 · Phía cầu",n:"Dịch vụ khách hàng & Phát triển quan hệ",en:"Customer Service & Relationship Development",o:"dv",s:"Dịch vụ khách hàng",
   goal:"Giải quyết vấn đề sau bán, giữ khách và tăng giá trị quan hệ lâu dài.",
   nguoi:"Xử lý khiếu nại phức tạp, tranh chấp và các quan hệ nhạy cảm.",
   ai:"Trả lời từ nguồn thông tin đã duyệt, phân loại yêu cầu, tra cứu đơn, theo dõi thời hạn xử lý.",
@@ -1254,7 +1254,7 @@ const TM_KHI={cl:"target",nh:"package-search",hd:"scale",mk:"megaphone",kd:"hand
 const TM_KNO={cl:"01",nh:"02",hd:"03",kv:"04",mk:"05",kd:"06",dv:"07",ht:"08"};
 const TM_GRI={tc:"receipt",ns:"users",pc:"shield-check",hc:"building-2"};
 const TM_PFI=[["database","Dữ liệu chủ"],["app-window","Hệ thống"],["book-open","Tri thức"],["workflow","Điều phối"],["fingerprint","Kiểm soát"]];
-const TM_ROLE_S={ceo:"Ban điều hành",nh:"Ngành hàng",mh:"Mua hàng",hd:"Hoạch định",mk:"Marketing",kd:"Kinh doanh",vh:"Vận hành",dv:"Dịch vụ KH",tc:"Tài chính",ns:"Nhân sự",pc:"Pháp chế",hc:"Hành chính"};
+const TM_ROLE_S={ceo:"Ban điều hành",nh:"Ngành hàng",mh:"Mua hàng",hd:"Hoạch định",mk:"Marketing",kd:"Kinh doanh",vh:"Vận hành",dv:"Dịch vụ khách hàng",tc:"Tài chính",ns:"Nhân sự",pc:"Pháp chế",hc:"Hành chính"};
 /* Vai thẩm quyền giao được cho AI: quyết định dựa trên luật, ngưỡng và đảo ngược được.
    AI giữ vai thì chỉ quyết trong luật của vai; việc vượt quyền vai chuyển lên Ban điều hành. */
 const TM_ROLE_AI={hd:1,mk:1,vh:1,dv:1,hc:1};
@@ -1305,7 +1305,7 @@ DS.tmhh={ROLE:TM_ROLE,ROLE_ORDER:TM_ROLE_ORDER,KHOI:TM_KHOI,NHOM_HT:TM_NHOM_HT,N
    điều phối, chuyên môn. AI hỗ trợ việc chuyên môn, không tự quyết chuyên môn. */
 DS.dv={
  ROLE:{ceo:"Ban điều hành",tk:"Trưởng thiết kế dịch vụ",mk:"Trưởng marketing",kd:"Trưởng kinh doanh",vh:"Trưởng vận hành – điều phối",dt:"Phụ trách đối tác",cm:"Trưởng chuyên môn",tn:"Trưởng trải nghiệm khách hàng",tc:"Tài chính – Kế toán trưởng",ns:"Phụ trách nhân sự",pc:"Phụ trách pháp chế & tuân thủ",hc:"Phụ trách hành chính"},
- ROLE_S:{ceo:"Ban điều hành",tk:"Thiết kế DV",mk:"Marketing",kd:"Kinh doanh",vh:"Vận hành",dt:"Đối tác",cm:"Chuyên môn",tn:"Trải nghiệm",tc:"Tài chính",ns:"Nhân sự",pc:"Pháp chế",hc:"Hành chính"},
+ ROLE_S:{ceo:"Ban điều hành",tk:"Thiết kế dịch vụ",mk:"Marketing",kd:"Kinh doanh",vh:"Vận hành",dt:"Đối tác",cm:"Chuyên môn",tn:"Trải nghiệm",tc:"Tài chính",ns:"Nhân sự",pc:"Pháp chế",hc:"Hành chính"},
  ROLE_ORDER:["tk","mk","kd","vh","dt","cm","tn","tc","ns","pc","hc"],
  ROLE_AI:{mk:1,vh:1,tn:1,hc:1},
  KHOI:[
@@ -1315,7 +1315,7 @@ DS.dv={
   kpi:["Doanh thu","Lợi nhuận hoạt động","Dòng tiền","Hiệu quả danh mục dịch vụ","Tiến độ mục tiêu"],
   in:["Số liệu từ mọi khối","Tín hiệu thị trường","Báo cáo rủi ro, chất lượng"],out:["Mục tiêu, ngân sách","Chính sách, hạn mức","Ưu tiên hoạt động"],
   exc:[["Thay đổi chính sách lớn","ceo"],["Vượt ngân sách trọng yếu","ceo"],["Xung đột ưu tiên giữa các khối","ceo"]]},
- {id:"tk",tier:"Tầng 2 · Thiết kế và tạo nhu cầu",n:"Danh mục, Thiết kế & Tiêu chuẩn dịch vụ",en:"Service Portfolio, Design & Standards",o:"tk",s:"Thiết kế DV",
+ {id:"tk",tier:"Tầng 2 · Thiết kế và tạo nhu cầu",n:"Danh mục, Thiết kế & Tiêu chuẩn dịch vụ",en:"Service Portfolio, Design & Standards",o:"tk",s:"Thiết kế dịch vụ",
   goal:"Xác định cung cấp dịch vụ gì, cho ai, bằng phương pháp nào và theo tiêu chuẩn nào.",
   nguoi:"Xác nhận tính khả thi, tiêu chuẩn chuyên môn và cam kết có thể cung cấp.",ai:"Tổng hợp phản hồi, hỗ trợ soạn tài liệu, mô phỏng chi phí, đề xuất cải tiến.",
   kpi:["Hiệu quả từng dịch vụ","Mức độ chuẩn hóa","Thời gian phát triển dịch vụ","Đáp ứng nhu cầu"],
@@ -1507,7 +1507,7 @@ DS.dv={
   notes:["Trải nghiệm tiếp nhận và giao tiếp; chuyên môn xử lý vấn đề chuyên môn; tài chính hoàn tiền theo quyết định đã duyệt.","Sự cố khẩn cấp đi thẳng tới người phụ trách chuyên môn, không chờ hàng đợi thông thường hay chờ CEO."]}
  ],
  NVI:{cl_strat:["compass","Chiến lược"],cl_plan:["calendar-check","Kế hoạch"],cl_perf:["gauge","Hiệu quả"],cl_risk:["shield-alert","Rủi ro"],cl_change:["rocket","Cải tiến mô hình"],
-  tk_port:["layout-grid","Danh mục DV"],tk_pkg:["route","Gói & Hành trình"],tk_proc:["workflow","Quy trình"],tk_std:["award","Tiêu chuẩn"],tk_cost:["calculator","Chi phí & Giá"],tk_know:["book-open","Tri thức"],
+  tk_port:["layout-grid","Danh mục dịch vụ"],tk_pkg:["route","Gói & Hành trình"],tk_proc:["workflow","Quy trình"],tk_std:["award","Tiêu chuẩn"],tk_cost:["calculator","Chi phí & Giá"],tk_know:["book-open","Tri thức"],
   mk_res:["lightbulb","Thấu hiểu"],mk_brand:["gem","Thương hiệu"],mk_content:["pen-tool","Nội dung"],mk_lead:["magnet","Khách mới"],mk_ref:["network","Giới thiệu"],mk_camp:["chart-column","Chiến dịch"],
   kd_intake:["inbox","Tiếp nhận"],kd_elig:["user-check","Điều kiện"],kd_opp:["filter","Cơ hội"],kd_prop:["file-text","Đề xuất, báo giá"],kd_ct:["signature","Hợp đồng"],kd_chg:["git-branch","Đổi phạm vi"],
   nl_cap:["trending-up","Công suất"],nl_book:["calendar-clock","Lịch, đặt chỗ"],nl_assign:["users","Phân công"],nl_part:["handshake","Đối tác"],nl_ready:["package-check","Vật tư, địa điểm"],nl_resch:["calendar-x","Đổi lịch"],
@@ -2288,7 +2288,7 @@ const CFG={
  tmhh:{unit:"Đơn hàng",perDay:140,aov:420000,conv:.18,burn:62e6,
    channels:[["Shopee",.34,.07],["TikTok Shop",.27,.11],["Website",.22,.31],["Facebook/Zalo",.11,.24],["Đại lý",.06,.18]],
    funnel:["Lượt tiếp cận","Khách hỏi","Được tư vấn","Chốt đơn","Mua lại 30 ngày"],
-   agents:[["AI Kinh doanh","kd_quote"],["AI Đơn hàng","kv_om"],["AI Nội dung","mk_content"],["AI Dịch vụ KH","dv_sup"],["AI Kế toán","tc_cash"],["AI Hoạch định","hd_rep"]],
+   agents:[["AI Kinh doanh","kd_quote"],["AI Đơn hàng","kv_om"],["AI Nội dung","mk_content"],["AI Dịch vụ khách hàng","dv_sup"],["AI Kế toán","tc_cash"],["AI Hoạch định","hd_rep"]],
    ex:[["tc_cash","Tiền COD đơn #{n} về lệch {m}","Lệch tiền"],["kd_quote","Khách xin giảm 15% cho đơn {v}, vượt khung 10%","Chiết khấu"],["mk_content","Bình luận tiêu cực về giao hàng chậm trên fanpage","Uy tín"],["nh_neg","Nhà cung cấp báo tăng giá 8% cho mã bán chạy","Giá vốn"],["mk_lead","Đề nghị tăng ngân sách quảng cáo ngày lên {v}","Chi vượt mức"],["dv_ret","Yêu cầu bồi hoàn {v}, vượt hạn mức tự duyệt","Bồi hoàn"],["kv_tms","Hãng vận chuyển báo tăng cước 9% từ tuần sau","Giao hàng"],["dv_keep","Khách VIP 3 tháng chưa mua lại","Giữ khách"],["hd_rep","Đơn mua bổ sung {v} vượt hạn mức","Mua hàng"],["tc_ar","Đại lý #{n} xin nâng hạn mức công nợ lên {v}","Tín dụng"],["kv_om","Đơn #{n} nghi gian lận, địa chỉ lạ","Đơn hàng"],["tc_pa","Kênh TikTok Shop lỗ sau phí hai tháng liền","Lợi nhuận"]],
    status:[["Mới",.06],["Đã xác nhận",.14],["Đang giao",.31],["Hoàn tất",.44],["Hoàn / hủy",.05]],
    cost:[["Giá vốn",58],["Phí sàn & vận chuyển",14],["Marketing",11],["Nhân sự",9],["Vận hành",5],["Công cụ AI",3]],

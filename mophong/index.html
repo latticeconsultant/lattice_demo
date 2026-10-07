@@ -596,6 +596,18 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .cvsw button[aria-pressed="true"]{background:var(--ink);color:var(--inv)}
 .sh .cvsw{margin-left:auto}
 .sh .note+.cvsw{margin-left:12px}
+.sh .cvsw+.cvsw{margin-left:8px}
+.sh .cvsw[aria-label="Mức chi tiết sơ đồ"]{margin-left:auto}
+.simp .sn text{paint-order:stroke;stroke:var(--c1);stroke-width:5px;stroke-linejoin:round}
+.cvsw button svg{display:block}
+/* sơ đồ đơn giản: một khung SVG, co giãn theo bề ngang */
+.cv.simp{padding:18px 18px 14px}
+.simp svg.ss{display:block;width:100%;height:auto;overflow:visible}
+.simp .sb,.simp .sn{cursor:pointer}
+.simp .sb:hover rect.bx,.simp .sb:focus-visible rect.bx{stroke:#EC3013}
+.simp .sn:hover circle.nd,.simp .sn:focus-visible circle.nd{stroke:#EC3013}
+.simp .sb:focus,.simp .sn:focus{outline:none}
+.simp .xl{fill:none;stroke:var(--cwire);stroke-width:1.2;stroke-dasharray:3 4}
 /* thẻ trọng tâm, loại việc, trang cấu hình ngành */
 .ck.core{border:2px solid #EC3013}
 .ck.core .ck-h{background:#EC3013;color:#fff}
@@ -724,11 +736,12 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 <!-- ================= THƯƠNG MẠI PHÂN PHỐI · KIẾN TRÚC ================= -->
 <section id="p-arch" role="tabpanel" aria-labelledby="t-arch">
   <div class="phead">
-    <h1>Tám khối nghiệp vụ, một nền tảng chung</h1>
+    <h1 id="arch-h1">Tám khối nghiệp vụ, một nền tảng chung</h1>
     <p class="oneline" id="arch-line"></p>
   </div>
-  <div class="sh"><h2>Kiến trúc nghiệp vụ</h2><span class="note">Bấm tên khối hoặc từng icon để xem chi tiết.</span><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true">◐ Nền tối</button><button data-cvm="light" aria-pressed="false">○ Nền sáng</button></div></div>
-  <div class="cv" id="arch"></div>
+  <div class="sh"><h2>Kiến trúc nghiệp vụ</h2><span class="note" id="arch-note">Bấm tên khối hoặc từng icon để xem chi tiết.</span><div class="cvsw" role="group" aria-label="Mức chi tiết sơ đồ"><button data-av="simple" aria-pressed="true">Đơn giản</button><button data-av="full" aria-pressed="false">Nâng cao</button></div><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true" aria-label="Nền tối" title="Nền tối"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button><button data-cvm="light" aria-pressed="false" aria-label="Nền sáng" title="Nền sáng"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button></div></div>
+  <div class="cv simp" id="arch-s"></div>
+  <div class="cv" id="arch" hidden></div>
   <div class="sh"><h2>Các chuỗi nghiệp vụ</h2><span class="note">Bấm một chuỗi để xem công việc đi qua các khối.</span></div>
   <div class="chains" id="chains"></div>
 </section>
@@ -739,7 +752,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
     <h1>Công việc đi từ đâu đến đâu</h1>
     <p class="lead">Mỗi làn là một khối, mỗi ô là một bước. Bấm vào ô để xem ai làm, khi nào chuyển cho người.</p>
   </div>
-  <div class="sh"><h2>Chuỗi nghiệp vụ theo làn trách nhiệm</h2><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true">◐ Nền tối</button><button data-cvm="light" aria-pressed="false">○ Nền sáng</button></div></div>
+  <div class="sh"><h2>Chuỗi nghiệp vụ theo làn trách nhiệm</h2><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true" aria-label="Nền tối" title="Nền tối"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button><button data-cvm="light" aria-pressed="false" aria-label="Nền sáng" title="Nền sáng"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button></div></div>
   <div class="cv flowcv">
     <div class="ctabs" id="seg-chain" role="group" aria-label="Chuỗi nghiệp vụ"></div>
     <div class="fhead" id="flow-head"></div>
@@ -762,7 +775,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
   </div>
   <div class="sh"><h2>Sáu mức AI</h2><span class="note">Dùng chủ yếu L1–L3. Bấm từng mức để xem tác vụ.</span></div>
   <div class="lvrow2" id="lvrow"></div>
-  <div class="sh"><h2>Ngoại lệ đến đúng người</h2><span class="note">Bấm một vai để lọc nghiệp vụ bên dưới.</span><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true">◐ Nền tối</button><button data-cvm="light" aria-pressed="false">○ Nền sáng</button></div></div>
+  <div class="sh"><h2>Ngoại lệ đến đúng người</h2><span class="note">Bấm một vai để lọc nghiệp vụ bên dưới.</span><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true" aria-label="Nền tối" title="Nền tối"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button><button data-cvm="light" aria-pressed="false" aria-label="Nền sáng" title="Nền sáng"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button></div></div>
   <div class="cv" style="padding:12px"><div class="fsvg" id="exmap"></div></div>
   <div class="sh"><h2>Phân quyền theo nghiệp vụ</h2><span class="note">Bấm từng ô để xem đầy đủ.</span></div>
   <div class="stats" id="hai-stat"></div>
@@ -779,7 +792,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
     <h1>Một khung, ba cách cấu hình</h1>
     <p class="lead">Tám khối giữ nguyên. Mỗi ngành đổi đơn vị quản trị, thuật ngữ, luồng và thước đo.</p>
   </div>
-  <div class="sh"><h2>Cấu hình theo ngành</h2><span class="note">Chọn ngành; Sức khỏe và Du lịch còn chọn được phạm vi.</span><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true">◐ Nền tối</button><button data-cvm="light" aria-pressed="false">○ Nền sáng</button></div></div>
+  <div class="sh"><h2>Cấu hình theo ngành</h2><span class="note">Chọn ngành; Sức khỏe và Du lịch còn chọn được phạm vi.</span><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true" aria-label="Nền tối" title="Nền tối"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button><button data-cvm="light" aria-pressed="false" aria-label="Nền sáng" title="Nền sáng"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button></div></div>
   <div class="cv" id="nganh"></div>
 </section>
 
@@ -789,7 +802,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
     <h1>Mỗi miền dữ liệu một nguồn chuẩn</h1>
     <p class="lead">Các hệ thống nối với nhau bằng mã chung. Đây là năng lực hệ thống, không bắt buộc mua đủ từng phần mềm.</p>
   </div>
-  <div class="sh"><h2>Dữ liệu &amp; Hệ thống</h2><span class="note">Bấm từng hệ thống để xem AI được làm gì.</span><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true">◐ Nền tối</button><button data-cvm="light" aria-pressed="false">○ Nền sáng</button></div></div>
+  <div class="sh"><h2>Dữ liệu &amp; Hệ thống</h2><span class="note">Bấm từng hệ thống để xem AI được làm gì.</span><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true" aria-label="Nền tối" title="Nền tối"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button><button data-cvm="light" aria-pressed="false" aria-label="Nền sáng" title="Nền sáng"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button></div></div>
   <div class="cv" id="sxdata"></div>
 </section>
 
@@ -799,7 +812,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
     <h1>Một khung, nhiều cách sản xuất</h1>
     <p class="lead">Chọn cách đáp ứng nhu cầu và công nghệ sản xuất; thuật ngữ, điểm khởi phát và thước đo đổi theo.</p>
   </div>
-  <div class="sh"><h2>Cấu hình mô hình sản xuất</h2><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true">◐ Nền tối</button><button data-cvm="light" aria-pressed="false">○ Nền sáng</button></div></div>
+  <div class="sh"><h2>Cấu hình mô hình sản xuất</h2><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true" aria-label="Nền tối" title="Nền tối"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button><button data-cvm="light" aria-pressed="false" aria-label="Nền sáng" title="Nền sáng"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button></div></div>
   <div class="cv" id="sxcfg"></div>
 </section>
 
@@ -1904,8 +1917,109 @@ function card(k,extra,tag){const K=KH(k);
   const body=K.sub?`<div class="subs">${K.sub.map(([c,lab,ids,o])=>`<div class="sub"><div class="gh"><b>${c}</b><span>${esc(lab)}</span></div><div class="tis">${ids.map(id=>tile(NV_BY[id])).join("")}</div><div class="ck-o">${rmk(o)}</div></div>`).join("")}</div>`
     :`<div class="tis">${nvOf(k).map(tile).join("")}</div><div class="ck-o">${rmk(K.o)}</div>`;
   return `<div class="ck${extra?" "+extra:""}" id="ck-${k}"><button class="ck-h" data-khoi="${k}" aria-label="Chi tiết khối ${esc(K.n)}"><span class="no">${KNO[k]}</span><span class="nm">${esc(K.n)}</span>${tag?`<span class="tag">${esc(tag)}</span>`:""}<span class="ki">${ic(KHI[k],18)}</span></button>${body}</div>`;}
+/* ---------- Kiến trúc · chế độ Đơn giản ----------
+   Hai cột khối nghiệp vụ hai bên, trục LATTICE ở giữa: dữ liệu một nguồn, luật và ngưỡng, Team AI,
+   ngoại lệ chuyển đúng người. Khối Điều hành ở trên, Tài chính & hỗ trợ ở dưới.
+   Hạt trắng: dữ liệu, việc từ khối vào trục. Hạt đỏ: ngoại lệ từ trục về đúng trưởng khối. */
+const SIMPLE={
+ tmhh:{L:["mk","kd","dv"],R:["nh","hd","kv"],lt:["Phía cầu","có khách, thu được tiền"],rt:["Phía cung","đúng hàng, đúng lúc"],
+   xL:[["Khách hàng",["mk","kd","dv"]],["Đại lý, sàn, cửa hàng",["kd"]]],xR:[["Nhà cung cấp",["nh","kv"]],["Đơn vị vận chuyển",["kv"]]]},
+ dv:{L:["tk","mk","kd"],R:["nl","th","tn"],lt:["Thiết kế & tạo nhu cầu","từ dịch vụ chuẩn đến cam kết"],rt:["Thực hiện","nguồn lực sẵn sàng, làm đúng"],
+   xL:[["Khách hàng",["mk","kd"]],["Kênh giới thiệu",["mk"]]],xR:[["Đối tác, chuyên gia",["nl","th"]],["Khách dùng dịch vụ",["th","tn"]]]},
+ sx:{L:["kd","kt","hd","mh"],R:["sx","qa","tb","kv"],lt:["Nhu cầu & chuẩn bị","thiết kế đúng, hoạch định khả thi"],rt:["Nhà máy & giao hàng","làm có kiểm soát, giao đáng tin"],
+   xL:[["Khách hàng, đại lý",["kd"]],["Nhà cung cấp vật tư",["mh"]]],xR:[["Đơn vị vận chuyển",["kv"]],["Cơ quan quản lý",["qa","tb"]]]}
+};
+let archView="simple", simpMode="";
+const pfIdx=icn=>Math.max(0,PFI.findIndex(p=>p[0]===icn));
+/* Hạt chạy dọc một đường cong d; rev: chạy ngược (ngoại lệ đi từ trục về khối). */
+function sPulse(d,o){o=o||{}; if(!motionOK()) return ""; const dur=o.dur||3.2, n=o.n||1; let s="";
+  for(let k=0;k<n;k++) s+=`<circle r="${o.red?3.2:2.6}" class="pt${o.red?" red":""}"><animateMotion dur="${dur}s" begin="-${(o.off||0)+dur*k/n}s" repeatCount="indefinite" path="${d}"${o.rev?' keyPoints="1;0" keyTimes="0;1" calcMode="linear"':""}/></circle>`;
+  return s;}
+function sBox(k,x,y,w,h,dark){const K=KH(k), DD=DS[model], tag=DD.core&&DD.core[k], fg=dark?"var(--c0)":"var(--ct)", n=nvOf(k).length, own=ROLE[K.o]||"";
+  return `<g class="sb" role="button" tabindex="0" data-khoi="${k}" aria-label="Khối ${esc(K.n)}, ${n} nghiệp vụ"><title>${esc(K.n)}</title>
+    <rect class="bx" x="${x}" y="${y}" width="${w}" height="${h}" fill="${dark?"var(--ct)":"var(--c1)"}" stroke="${tag?"#EC3013":"var(--ct)"}" stroke-width="${tag?3:2}"/>
+    ${icS(KHI[k],x+14,y+h/2-19,22,fg)}
+    <text x="${x+48}" y="${y+h/2-3}" font-size="16" font-weight="800" fill="${fg}">${esc(K.s||K.n)}</text>
+    <circle cx="${x+52}" cy="${y+h/2+15}" r="3.5" fill="#EC3013"/>${ROLE_AI[K.o]?icS("bot",x+60,y+h/2+8,14,fg):""}<text x="${x+(ROLE_AI[K.o]?78:61)}" y="${y+h/2+19}" font-size="11" font-weight="600" fill="${fg}" opacity=".78">${esc(own)}</text>
+    <text x="${x+w-14}" y="${y+h/2-3}" text-anchor="end" font-size="18" font-weight="800" fill="${fg}">${n}</text>
+    <text x="${x+w-14}" y="${y+h/2+13}" text-anchor="end" font-size="9.5" font-weight="700" letter-spacing=".08em" fill="${fg}" opacity=".7">VIỆC</text>
+    ${tag?`<rect x="${x+w-14-tag.length*7-14}" y="${y-10}" width="${tag.length*7+14}" height="19" fill="#EC3013"/><text x="${x+w-21}" y="${y+4}" text-anchor="end" font-size="10.5" font-weight="800" letter-spacing=".06em" fill="#fff">${esc(tag.toUpperCase())}</text>`:""}</g>`;}
+function sNode(x,y,attr,lines,anc,dx,dy,red){
+  return `<g class="sn" role="button" tabindex="0" ${attr} aria-label="${esc(lines.join(" "))}"><circle class="nd" cx="${x}" cy="${y}" r="13" fill="var(--c0)" stroke="${red?"#EC3013":"var(--ct)"}" stroke-width="3.2"/>${red?`<circle cx="${x}" cy="${y}" r="5" fill="#EC3013"/>`:""}
+    ${lines.map((t,i)=>`<text x="${x+dx}" y="${y+dy+i*16}" text-anchor="${anc}" font-size="13" font-weight="800" fill="${red?"var(--cr)":"var(--ct)"}">${esc(t)}</text>`).join("")}</g>`;}
+function sExt(x,y,w,t){return `<rect x="${x}" y="${y-17}" width="${w}" height="34" fill="none" stroke="var(--cm)" stroke-dasharray="4 3"/><text x="${x+w/2}" y="${y+4}" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--cm)">${esc(t)}</text>`;}
+function simpleArch(){
+  const box=$("arch-s"); if(!box) return; const cfg=SIMPLE[model], K1=KH("cl"), K3=KH("ht");
+  const narrow=(box.clientWidth||1200)<760; simpMode=model+(narrow?"n":"w");
+  return narrow?simpleNarrow(box,cfg,K1,K3):simpleWide(box,cfg,K1,K3);}
+function simpleWide(box,cfg,K1,K3){
+  const W=1320, cx=W/2, bw=300, bh=70, gap=14, n=Math.max(cfg.L.length,cfg.R.length), colH=n*bh+(n-1)*gap;
+  const colTop=168, cy=colTop+colH/2, R=Math.min(128,colH/2-6), lx=196, rx=W-196-bw, htY=colTop+colH+52, H=htY+84;
+  const yOf=(arr,i)=>colTop+(colH-(arr.length*bh+(arr.length-1)*gap))/2+i*(bh+gap);
+  const pos={}; cfg.L.forEach((k,i)=>pos[k]={x:lx,y:yOf(cfg.L,i)}); cfg.R.forEach((k,i)=>pos[k]={x:rx,y:yOf(cfg.R,i)});
+  let s=`<svg class="ss" viewBox="0 0 ${W} ${H}" role="group" aria-label="Sơ đồ kiến trúc đơn giản">`;
+  // tiêu đề hai cột và bên ngoài
+  [[lx,cfg.lt],[rx,cfg.rt]].forEach(([x,t])=>s+=`<text x="${x}" y="${colTop-30}" font-size="19" font-weight="800" fill="var(--ct)">${esc(t[0])}</text><text x="${x}" y="${colTop-12}" font-size="10.5" font-weight="700" letter-spacing=".12em" fill="var(--cm)">${esc(t[1].toUpperCase())}</text>`);
+  s+=`<text x="16" y="${colTop-12}" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">BÊN NGOÀI</text><text x="${W-16}" y="${colTop-12}" text-anchor="end" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">BÊN NGOÀI</text>`;
+  const ext=(list,x,w,side)=>list.forEach(([t,ks],i)=>{const y=colTop+colH*(i+1)/(list.length+1);
+    ks.forEach(k=>{const p=pos[k], by=p.y+bh/2; s+=side<0?`<path class="xl" d="M${x+w} ${y} C ${x+w+18} ${y}, ${lx-18} ${by}, ${lx} ${by}"/>`:`<path class="xl" d="M${rx+bw} ${by} C ${rx+bw+18} ${by}, ${x-18} ${y}, ${x} ${y}"/>`;});
+    s+=sExt(x,y,w,t);});
+  ext(cfg.xL,16,150,-1); ext(cfg.xR,W-166,150,1);
+  // đường từ khối vào trục: hạt trắng là việc, hạt đỏ là ngoại lệ trở về trưởng khối
+  cfg.L.forEach((k,i)=>{const y=pos[k].y+bh/2, d=`M${lx+bw} ${y} C ${lx+bw+60} ${y}, ${cx-R-70} ${cy}, ${cx-R} ${cy}`;
+    s+=`<path class="wr" d="${d}"/>`+sPulse(d,{off:i*.7})+sPulse(d,{red:true,rev:true,dur:5.5,off:i*1.6});});
+  cfg.R.forEach((k,i)=>{const y=pos[k].y+bh/2, d=`M${rx} ${y} C ${rx-60} ${y}, ${cx+R+70} ${cy}, ${cx+R} ${cy}`;
+    s+=`<path class="wr" d="${d}"/>`+sPulse(d,{off:i*.6})+sPulse(d,{red:true,rev:true,dur:5.5,off:2+i*1.4});});
+  // Điều hành ở trên, Tài chính & hỗ trợ ở dưới
+  const tw=380, th=60, d1=`M${cx} ${20+th} L${cx} ${cy-R}`, d2=`M${cx} ${cy+R} L${cx} ${htY}`;
+  s+=`<path class="wr" d="${d1}"/>`+sPulse(d1,{dur:2.4})+`<path class="wr" d="${d2}"/>`+sPulse(d2,{dur:2.4,rev:true});
+  s+=`<text x="${cx-14}" y="${20+th+28}" text-anchor="end" font-size="11" font-weight="700" fill="var(--cm)">mục tiêu · ngân sách · chính sách</text>`;
+  const wideBox=(k,x,y,w,h)=>{const K=KH(k); return `<g class="sb" role="button" tabindex="0" data-khoi="${k}" aria-label="Khối ${esc(K.n)}"><title>${esc(K.n)}</title><rect class="bx" x="${x}" y="${y}" width="${w}" height="${h}" fill="var(--c1)" stroke="var(--ct)" stroke-width="2.5"/>${icS(KHI[k],x+16,y+h/2-11,22,"var(--ct)")}<text x="${x+50}" y="${y+h/2-2}" font-size="16" font-weight="800" fill="var(--ct)">${esc(K.n)}</text><circle cx="${x+54}" cy="${y+h/2+15}" r="3.5" fill="#EC3013"/><text x="${x+63}" y="${y+h/2+19}" font-size="11.5" font-weight="600" fill="var(--ct)" opacity=".78">${esc(ROLE[K.o]||"")}</text></g>`;};
+  s+=wideBox("cl",cx-tw/2,20,tw,th)+wideBox("ht",cx-tw/2,htY,tw,th);
+  s+=`<path class="xl" d="M${cx+tw/2} ${htY+th/2} L${W-166} ${htY+th/2}"/>`+sExt(W-166,htY+th/2,150,"Ngân hàng, thuế");
+  // trục LATTICE
+  s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--c1)" stroke="var(--ct)" stroke-width="3"/>
+    <path d="M${cx} ${cy-R*.55} L${cx+R*.55} ${cy} L${cx} ${cy+R*.55} L${cx-R*.55} ${cy} Z" fill="none" stroke="var(--cl)" stroke-width="1.2"/>
+    <line x1="${cx-R}" y1="${cy}" x2="${cx+R}" y2="${cy}" stroke="var(--cl)"/><line x1="${cx}" y1="${cy-R}" x2="${cx}" y2="${cy+R}" stroke="var(--cl)"/>
+    <circle cx="${cx}" cy="${cy}" r="19" fill="#EC3013"/>
+    <text x="${cx}" y="${cy+42}" text-anchor="middle" font-size="12" font-weight="800" letter-spacing=".2em" fill="var(--ct)">LATTICE</text>`;
+  s+=sNode(cx,cy-R,'data-simex="1"',["Ngoại lệ → đúng người"],"start",20,5,true);
+  s+=sNode(cx-R,cy,`data-pf="${pfIdx("database")}"`,["Dữ liệu","một nguồn"],"start",20,-3);
+  s+=sNode(cx+R,cy,`data-pf="${pfIdx("fingerprint")}"`,["Luật &","ngưỡng"],"end",-20,-3);
+  s+=sNode(cx,cy+R,`data-pf="${pfIdx("workflow")}"`,["Team AI"],"start",20,5);
+  // các khối
+  cfg.L.forEach(k=>s+=sBox(k,pos[k].x,pos[k].y,bw,bh,true));
+  cfg.R.forEach(k=>s+=sBox(k,pos[k].x,pos[k].y,bw,bh,false));
+  box.innerHTML=s+`</svg>`+simpleLegend();}
+/* Màn hẹp: xếp dọc, trục chạy dọc mép trái nối mọi khối. */
+function simpleNarrow(box,cfg,K1,K3){
+  const W=600, bx=34, bw=W-bx-8, bh=66, gap=10, R=74; let y=10, s="", rows=[];
+  const sec=(t,sub)=>{s+=`<text x="${bx}" y="${y+16}" font-size="16" font-weight="800" fill="var(--ct)">${esc(t)}</text>${sub?`<text x="${bx}" y="${y+32}" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--cm)">${esc(sub.toUpperCase())}</text>`:""}`; y+=sub?42:26;};
+  const put=(k,dark)=>{s+=sBox(k,bx,y,bw,bh,dark); rows.push(y+bh/2); y+=bh+gap;};
+  put("cl",false); y+=6; sec(cfg.lt[0],cfg.lt[1]); cfg.L.forEach(k=>put(k,true));
+  const cy=y+R+14, cx=W/2;
+  s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--c1)" stroke="var(--ct)" stroke-width="3"/><circle cx="${cx}" cy="${cy}" r="15" fill="#EC3013"/><text x="${cx}" y="${cy+34}" text-anchor="middle" font-size="11" font-weight="800" letter-spacing=".2em" fill="var(--ct)">LATTICE</text>`;
+  s+=sNode(cx,cy-R,'data-simex="1"',["Ngoại lệ → đúng người"],"start",20,5,true)+sNode(cx-R,cy,`data-pf="${pfIdx("database")}"`,["Dữ liệu"],"end",-20,5)+sNode(cx+R,cy,`data-pf="${pfIdx("fingerprint")}"`,["Luật, ngưỡng"],"start",20,5)+sNode(cx,cy+R,`data-pf="${pfIdx("workflow")}"`,["Team AI"],"start",20,5);
+  rows.push(cy); y=cy+R+24; sec(cfg.rt[0],cfg.rt[1]); cfg.R.forEach(k=>put(k,false)); y+=6; put("ht",false);
+  const d=`M16 ${rows[0]} L16 ${rows[rows.length-1]}`; let w=`<path class="wr" d="${d}"/>`+sPulse(d,{dur:6,n:3})+sPulse(d,{red:true,rev:true,dur:9});
+  rows.forEach(r=>w+=`<path class="wr" d="M16 ${r} L${r===cy?cx-R:bx} ${r}"/>`);
+  box.innerHTML=`<svg class="ss" viewBox="0 0 ${W} ${y}" role="group" aria-label="Sơ đồ kiến trúc đơn giản">${w}${s}</svg>`+simpleLegend();}
+const simpleLegend=()=>`<div class="cvleg"><span><i class="pdot"></i>Dữ liệu, việc</span><span><i class="pdot red"></i>Ngoại lệ về đúng trưởng khối</span><span><i class="hdot"></i>Người chịu trách nhiệm</span><span>${ic("bot",14)}Vai giao được cho AI</span><span><b style="font-weight:800">6</b>&nbsp;Số nghiệp vụ trong khối</span><span>AI làm theo từng tác vụ, tối đa L3</span></div>`;
+function simExHTML(){
+  return `<div class="dhd"><span class="dic">${ic("triangle-alert",26)}</span><div><span class="lbl">Trục LATTICE</span><h2 id="d-title">Ngoại lệ đến đúng người</h2><p class="en">Exception routing</p></div></div>
+   <div class="latx">AI làm trong luật và ngưỡng của từng tác vụ. Việc vượt ngưỡng bị chặn và chuyển cho vai có thẩm quyền của khối đó, không dồn về một người. Chiến lược và việc vượt quyền vai mới lên Ban điều hành.</div>
+   <h3>Ngoại lệ điển hình</h3><div class="exl">${EXQ.map(([id,t,r])=>`<button class="exi" data-id="${id}">${ic("triangle-alert",15)}<span>${esc(t)}</span><b>${esc(ROLE_S[r])}</b></button>`).join("")}</div>`;}
+function setAv(v){archView=v==="full"?"full":"simple";
+  $("arch-s").hidden=archView!=="simple"; $("arch").hidden=archView==="simple";
+  document.querySelectorAll("[data-av]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.av===archView?"true":"false"));
+  $("arch-note").textContent=archView==="simple"?"Bấm từng khối hoặc góc hình thoi để xem chi tiết.":"Bấm tên khối hoặc từng icon để xem chi tiết.";
+  try{localStorage.setItem("lattice-mophong-av",archView);}catch(e){}
+  if(archView==="simple") simpleArch(); else archWires();}
 function arch(){
-  const K3=KH("ht"), DD=DS[model]; $("arch-line").textContent=DD.line;
+  const K3=KH("ht"), DD=DS[model]; $("arch-line").textContent=DD.line||"";
+  const SO=["","Một","Hai","Ba","Bốn","Năm","Sáu","Bảy","Tám","Chín","Mười"]; $("arch-h1").textContent=`${SO[KHOI.length]||KHOI.length} khối nghiệp vụ, một nền tảng chung`;
+  try{if(!simpMode) archView=localStorage.getItem("lattice-mophong-av")==="full"?"full":"simple";}catch(e){}
+  simpleArch(); setAv(archView);
   $("arch").innerHTML=`<svg class="wires" id="arch-w" aria-hidden="true"></svg>
    <div class="cvl">Điều hành</div>${card("cl","wide")}
    ${DD.rows.map((r,i)=>`<div class="cvl"${i?"":' id="cvl-cung"'}>${esc(DD.rowLab[i][0])} <em>${esc(DD.rowLab[i][1])}</em></div><div class="g3" style="grid-template-columns:repeat(${r.length},minmax(0,1fr));${r.length>3?"gap:34px":""}">${r.map(k=>{const t=DD.core&&DD.core[k];return card(k,t?"core"+(r.length===1?" wide":""):(r.length===1?"wide":""),t);}).join("")}</div>`).join("")}
@@ -2002,7 +2116,7 @@ function archWires(){
 let pulseI=0; setInterval(()=>{ if(!isPP()||$("p-arch").hidden||!motionOK()) return;
   const ids=["nh","hd","kv","mk","kd","dv","ht","pf"]; document.querySelectorAll("#arch .ck.hot").forEach(x=>x.classList.remove("hot"));
   const el=$("ck-"+ids[pulseI++%ids.length]); if(el) el.classList.add("hot"); },1300);
-if(window.ResizeObserver) new ResizeObserver(()=>{ if(isPP()) archWires(); }).observe(document.getElementById("stage"));
+if(window.ResizeObserver) new ResizeObserver(()=>{ if(!isPP()) return; archWires(); const b=$("arch-s"); if(b&&!b.hidden&&simpMode!==model+(b.clientWidth<760?"n":"w")) simpleArch(); }).observe(document.getElementById("stage"));
 
 /* ---------- Trang 2 · Luồng vận hành ---------- */
 function swim(c){
@@ -2658,6 +2772,8 @@ document.addEventListener("click",e=>{
   const pf=t.closest("[data-pf]"); if(pf){openDrawer(platHTML(+pf.dataset.pf), sideOf(pf)); return;}
   const ch=t.closest("[data-chain]"); if(ch){chain=ch.dataset.chain; flows(); if($("p-flow").hidden){selectTab("t-flow"); window.scrollTo({top:0});} return;}
   const cvb=t.closest("[data-cvm]"); if(cvb){setCv(cvb.dataset.cvm); return;}
+  const avb=t.closest("[data-av]"); if(avb){setAv(avb.dataset.av); return;}
+  const sxe=t.closest("[data-simex]"); if(sxe){openDrawer(simExHTML(), sideOf(sxe)); return;}
   const sy=t.closest("[data-sys]"); if(sy){openDrawer(sysHTML(+sy.dataset.sys), sideOf(sy)); return;}
   const dmb=t.closest("[data-dm]"); if(dmb){chSX.dm=dmb.dataset.dm; sxCfgView(); return;}
   const tcb=t.closest("[data-tech]"); if(tcb){chSX.tech=tcb.dataset.tech; sxCfgView(); return;}
@@ -2680,7 +2796,7 @@ document.addEventListener("change",e=>{
 });
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"&&!$("drawer").hidden){closeDrawer();return;}
-  if((e.key==="Enter"||e.key===" ")&&e.target.matches('[role="button"][data-id],[role="button"][data-khoi],[role="button"][data-pf],[role="button"][data-role],[role="button"][data-step],[role="button"][data-lv],[role="button"][data-exinfo],tr.row')){e.preventDefault();e.target.click();}
+  if((e.key==="Enter"||e.key===" ")&&e.target.matches('[role="button"][data-id],[role="button"][data-khoi],[role="button"][data-pf],[role="button"][data-role],[role="button"][data-step],[role="button"][data-lv],[role="button"][data-exinfo],[role="button"][data-simex],tr.row')){e.preventDefault();e.target.click();}
 });
 $("d-close").addEventListener("click",closeDrawer);
 $("scrim").addEventListener("click",closeDrawer);

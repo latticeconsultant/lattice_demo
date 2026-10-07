@@ -688,6 +688,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .simp .sb:hover rect.bx,.simp .sb:focus-visible rect.bx{stroke:#EC3013}
 .simp .sn:hover circle.nd,.simp .sn:focus-visible circle.nd{stroke:#EC3013}
 .simp .sb:focus,.simp .sn:focus{outline:none}
+.simp .cvleg{justify-content:center;text-align:center}
 .simp .xl{fill:none;stroke:var(--cwire);stroke-width:1.2;stroke-dasharray:3 4}
 /* thẻ trọng tâm, loại việc, trang cấu hình ngành */
 .ck.core{border:2px solid #EC3013}
@@ -2228,7 +2229,9 @@ function cBox(k,x,y,w,h){const K=KH(k), [t,r,sub]=SIMPLE_TB[k], c=x+w/2;
     <text x="${c}" y="${y+56}" text-anchor="middle" font-size="17" font-weight="800" fill="var(--ct)">${esc(t)}</text>
     <circle cx="${c-r.length*3.15-9}" cy="${y+71}" r="3.5" fill="#EC3013"/><text x="${c}" y="${y+75}" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--ct)" opacity=".8">${esc(r)}</text>
     <text x="${c}" y="${y+94}" text-anchor="middle" font-size="11" font-weight="700" letter-spacing=".02em" fill="var(--cm)">${esc(sub)}</text></g>`;}
-const sOwn=(x,y,w,h)=>`<g class="sb" role="button" tabindex="0" data-bmtop="1" aria-label="Chủ sở hữu / Hội đồng quản trị"><title>Chủ sở hữu / Hội đồng quản trị</title><rect class="bx" x="${x}" y="${y}" width="${w}" height="${h}" fill="var(--c1)" stroke="var(--ct)" stroke-width="1.5" stroke-dasharray="5 3"/>${icS("scale",x+14,y+h/2-9,18,"var(--ct)")}<text x="${x+w/2+10}" y="${y+h/2+5}" text-anchor="middle" font-size="13.5" font-weight="800" fill="var(--ct)">Chủ sở hữu / Hội đồng quản trị</text></g>`;
+const sOwn=(x,y,w,h)=>`<g class="sb" role="button" tabindex="0" data-bmtop="1" aria-label="Chủ sở hữu / Hội đồng quản trị"><title>Chủ sở hữu / Hội đồng quản trị</title><rect class="bx" x="${x}" y="${y}" width="${w}" height="${h}" fill="var(--c1)" stroke="var(--ct)" stroke-width="1.5" stroke-dasharray="5 3"/>${icS("scale",x+w/2-10,y+9,20,"var(--ct)")}<text x="${x+w/2}" y="${y+h-11}" text-anchor="middle" font-size="13.5" font-weight="800" fill="var(--ct)">Chủ sở hữu / Hội đồng quản trị</text></g>`;
+/* Nút Team AI: tròn to, biểu tượng AI bên trong, không chữ. */
+const sAI=(x,y,r,attr,dark)=>`<g class="sn" role="button" tabindex="0" ${attr} aria-label="Team AI"><title>Team AI</title><circle class="nd" cx="${x}" cy="${y}" r="${r}" fill="var(--c0)" stroke="var(--ct)" stroke-width="3.2"/>${icS("bot",x-r*0.6,y-r*0.6,r*1.2,"var(--ct)")}</g>`;
 /* Nền móng: năm nguồn lực cốt lõi; ô đậm là nguồn lực quyết định với loại hình. */
 function sRes(x0,y,W,h,cols){const gap=14, n=NL.length, per=cols||n, w=(W-(per-1)*gap)/per; let s="";
   NL.forEach((x,i)=>{const cx=x0+(i%per)*(w+gap), cy=y+Math.floor(i/per)*(h+gap), key=NLX[model][x.id].key, fg=key?"var(--c0)":"var(--ct)", g=GD_BY[x.gd];
@@ -2242,13 +2245,12 @@ function simpleArch(){
   return narrow?simpleNarrow(box,cfg,K1,K3):simpleWide(box,cfg,K1,K3);}
 function simpleWide(box,cfg,K1,K3){
   const W=1320, cx=W/2, bw=300, bh=70, gap=14, n=Math.max(cfg.L.length,cfg.R.length), colH=n*bh+(n-1)*gap;
-  const T0=66, colTop=196+T0, cy=colTop+colH/2, R=Math.min(128,colH/2-6), lx=196, rx=W-196-bw, htY=colTop+colH+52, nlY=htY+106+74, nlH=64, H=nlY+nlH+16;
+  const T0=84, colTop=196+T0, cy=colTop+colH/2, R=Math.min(128,colH/2-6), lx=196, rx=W-196-bw, htY=colTop+colH+52, nlY=htY+106+74, nlH=64, H=nlY+nlH+44;
   const yOf=(arr,i)=>colTop+(colH-(arr.length*bh+(arr.length-1)*gap))/2+i*(bh+gap);
   const pos={}; cfg.L.forEach((k,i)=>pos[k]={x:lx,y:yOf(cfg.L,i)}); cfg.R.forEach((k,i)=>pos[k]={x:rx,y:yOf(cfg.R,i)});
   let s=`<svg class="ss" viewBox="0 0 ${W} ${H}" role="group" aria-label="Sơ đồ kiến trúc đơn giản">`;
   // tiêu đề hai cột và bên ngoài
   [[lx,cfg.lt],[rx,cfg.rt]].forEach(([x,t])=>s+=`<text x="${x}" y="${colTop-30}" font-size="19" font-weight="800" fill="var(--ct)">${esc(t[0])}</text><text x="${x}" y="${colTop-12}" font-size="10.5" font-weight="700" letter-spacing=".12em" fill="var(--cm)">${esc(t[1].toUpperCase())}</text>`);
-  s+=`<text x="${cx}" y="${colTop-30}" text-anchor="middle" font-size="10.5" font-weight="800" letter-spacing=".18em" fill="var(--cm)">CHUỖI TẠO GIÁ TRỊ</text>`;
   s+=`<text x="16" y="${colTop-12}" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">BÊN NGOÀI</text><text x="${W-16}" y="${colTop-12}" text-anchor="end" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">BÊN NGOÀI</text>`;
   const ext=(list,x,w,side)=>list.forEach(([t,ks],i)=>{const y=colTop+colH*(i+1)/(list.length+1);
     ks.forEach(k=>{const p=pos[k], by=p.y+bh/2; s+=side<0?`<path class="xl" d="M${x+w} ${y} C ${x+w+18} ${y}, ${lx-18} ${by}, ${lx} ${by}"/>`:`<path class="xl" d="M${rx+bw} ${by} C ${rx+bw+18} ${by}, ${x-18} ${y}, ${x} ${y}"/>`;});
@@ -2262,13 +2264,13 @@ function simpleWide(box,cfg,K1,K3){
   // Điều hành ở trên, Tài chính & hỗ trợ ở dưới
   const tw=380, th=106, d1=`M${cx} ${T0+20+th} L${cx} ${cy-R}`, d2=`M${cx} ${cy+R} L${cx} ${htY}`;
   s+=`<path class="wr" d="${d1}"/>`+sPulse(d1,{dur:2.4})+`<path class="wr" d="${d2}"/>`+sPulse(d2,{dur:2.4,rev:true});
-  s+=`<path class="wr" d="M${cx} 58 L${cx} ${T0+20}"/>`+sOwn(cx-190,14,380,44);
+  s+=`<path class="wr" d="M${cx} 76 L${cx} ${T0+20}"/>`+sOwn(cx-190,14,380,62);
   s+=cBox("cl",cx-tw/2,T0+20,tw,th)+cBox("ht",cx-tw/2,htY,tw,th);
   // năng lực hỗ trợ và chuỗi tạo giá trị dùng nguồn lực (lên), kết quả bồi đắp lại (xuống)
   const u=`M${cx-26} ${nlY} L${cx-26} ${htY+th}`, dn=`M${cx+26} ${htY+th} L${cx+26} ${nlY}`;
   s+=`<path class="wr" d="${u}"/><path class="wr" d="${dn}"/>`+sPulse(u,{dur:2.2})+sPulse(dn,{dur:2.2,off:1.1});
   s+=`<text x="${cx-38}" y="${htY+th+40}" text-anchor="end" font-size="11" font-weight="700" fill="var(--cm)">huy động ↑</text><text x="${cx+38}" y="${htY+th+40}" font-size="11" font-weight="700" fill="var(--cm)">↓ bồi đắp</text>`;
-  s+=`<text x="16" y="${nlY-12}" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">NGUỒN LỰC CỐT LÕI · Ô ĐẬM: QUYẾT ĐỊNH VỚI LOẠI HÌNH NÀY</text>`+sRes(16,nlY,W-32,nlH);
+  s+=sRes(16,nlY,W-32,nlH)+`<text x="${cx}" y="${nlY+nlH+28}" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">NGUỒN LỰC CỐT LÕI · Ô ĐẬM: QUYẾT ĐỊNH VỚI LOẠI HÌNH NÀY</text>`;
   s+=`<path class="xl" d="M${cx+tw/2} ${htY+th/2} L${W-166} ${htY+th/2}"/>`+sExt(W-166,htY+th/2,150,"Ngân hàng, thuế");
   // trục LATTICE
   s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--c1)" stroke="var(--ct)" stroke-width="3"/>
@@ -2278,7 +2280,7 @@ function simpleWide(box,cfg,K1,K3){
   s+=sNode(cx,cy-R,'data-simex="1"',"Ngoại lệ đến đúng người",[],"start",20,5,true);
   s+=sNode(cx-R,cy,`data-pf="${pfIdx("database")}"`,"Dữ liệu một nguồn",[],"start",20,-3);
   s+=sNode(cx+R,cy,`data-pf="${pfIdx("fingerprint")}"`,"Luật và ngưỡng",[],"end",-20,-3);
-  s+=sNode(cx,cy+R,`data-pf="${pfIdx("workflow")}"`,"Team AI",["Team AI"],"start",20,5);
+  s+=sAI(cx,cy+R,22,`data-pf="${pfIdx("workflow")}"`);
   // các khối
   cfg.L.forEach(k=>s+=sBox(k,pos[k].x,pos[k].y,bw,bh,true));
   cfg.R.forEach(k=>s+=sBox(k,pos[k].x,pos[k].y,bw,bh,false));
@@ -2288,10 +2290,10 @@ function simpleNarrow(box,cfg,K1,K3){
   const W=600, bx=34, bw=W-bx-8, bh=66, gap=10, R=74; let y=10, s="", rows=[];
   const sec=(t,sub)=>{s+=`<text x="${bx}" y="${y+16}" font-size="16" font-weight="800" fill="var(--ct)">${esc(t)}</text>${sub?`<text x="${bx}" y="${y+32}" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--cm)">${esc(sub.toUpperCase())}</text>`:""}`; y+=sub?42:26;};
   const put=(k,dark)=>{if(SIMPLE_TB[k]){s+=cBox(k,bx,y,bw,106); rows.push(y+53); y+=106+gap; return;} s+=sBox(k,bx,y,bw,bh,dark); rows.push(y+bh/2); y+=bh+gap;};
-  s+=sOwn(bx,y,bw,40); y+=52; put("cl",false); y+=6; sec(cfg.lt[0],cfg.lt[1]); cfg.L.forEach(k=>put(k,true));
+  s+=sOwn(bx,y,bw,60); y+=72; put("cl",false); y+=6; sec(cfg.lt[0],cfg.lt[1]); cfg.L.forEach(k=>put(k,true));
   const cy=y+R+14, cx=W/2;
   s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--c1)" stroke="var(--ct)" stroke-width="3"/><circle cx="${cx}" cy="${cy}" r="15" fill="#EC3013"/>`;
-  s+=sNode(cx,cy-R,'data-simex="1"',"Ngoại lệ đến đúng người",[],"start",20,5,true)+sNode(cx-R,cy,`data-pf="${pfIdx("database")}"`,"Dữ liệu một nguồn",[],"end",-20,5)+sNode(cx+R,cy,`data-pf="${pfIdx("fingerprint")}"`,"Luật và ngưỡng",[],"start",20,5)+sNode(cx,cy+R,`data-pf="${pfIdx("workflow")}"`,"Team AI",["Team AI"],"start",20,5);
+  s+=sNode(cx,cy-R,'data-simex="1"',"Ngoại lệ đến đúng người",[],"start",20,5,true)+sNode(cx-R,cy,`data-pf="${pfIdx("database")}"`,"Dữ liệu một nguồn",[],"end",-20,5)+sNode(cx+R,cy,`data-pf="${pfIdx("fingerprint")}"`,"Luật và ngưỡng",[],"start",20,5)+sAI(cx,cy+R,20,`data-pf="${pfIdx("workflow")}"`);
   rows.push(cy); y=cy+R+24; sec(cfg.rt[0],cfg.rt[1]); cfg.R.forEach(k=>put(k,false)); y+=6; put("ht",false);
   const rowsEnd=rows[rows.length-1]; y+=8; sec("Nguồn lực cốt lõi","ô đậm: quyết định với loại hình này"); s+=sRes(bx,y,bw,52,1); y+=NL.length*(52+14);
   const d=`M16 ${rows[0]} L16 ${rowsEnd}`; let w=`<path class="wr" d="${d}"/>`+sPulse(d,{dur:6,n:3})+sPulse(d,{red:true,rev:true,dur:9});

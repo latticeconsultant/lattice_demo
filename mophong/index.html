@@ -597,6 +597,80 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .sh .cvsw{margin-left:auto}
 .sh .note+.cvsw{margin-left:12px}
 .sh .cvsw+.cvsw{margin-left:8px}
+/* ---------- bộ máy & nguồn lực ---------- */
+.bm-cv{padding:22px 22px 16px}
+.bm-top,.bm-mid{display:flex;justify-content:center;position:relative;z-index:1}
+.bm-top::after,.bm-mid::after{content:"";position:absolute;left:50%;bottom:-18px;height:18px;border-left:2px solid var(--cwire)}
+.bm-mid{margin-top:18px}
+.bm-own,.bm-gd{display:grid;gap:5px;align-content:start;text-align:left;background:var(--c1);border:1.5px solid var(--ckb);color:var(--ct);padding:12px 14px;min-width:0}
+.bm-own{grid-template-columns:auto 1fr;align-items:center;max-width:620px;width:100%;border-width:2px}
+.bm-own span:last-child{grid-column:2;font-size:12px;color:var(--cm)}
+.bm-mid .bm-gd{max-width:420px;width:100%;border-width:2px}
+.bm-gd:hover,.bm-own:hover,.bm-nlc:hover{border-color:#EC3013}
+.bm-gd.warn{border-color:#EC3013;box-shadow:0 0 0 2px rgba(236,48,19,.35)}
+.bm-gi{width:36px;height:36px;display:grid;place-items:center;background:var(--ctile);color:var(--ctf)}
+.bm-gd b,.bm-own b{font-size:15px;line-height:1.2}
+.bm-en{font-size:11px;color:var(--cm);margin-top:-3px}
+.bm-nl{display:inline-flex;align-items:center;gap:6px;justify-self:start;font-size:11.5px;font-weight:700;border:1.5px solid var(--ct);padding:3px 8px;margin:2px 0}
+.bm-nl.kk{background:var(--ct);color:var(--c0)}
+.bm-ks{display:grid;gap:3px;font-size:12px;font-weight:600}
+.bm-ks>span{display:flex;align-items:center;gap:6px}
+.bm-ks em{font-style:normal;font-weight:500;color:var(--cm)}
+.bm-ks .hdot{margin:0}
+.bm-cnt{font-size:11px;font-weight:700;color:var(--cm)}
+.bm-ai{display:grid;gap:3px;font-size:11.5px;color:var(--cm);border-top:1px solid var(--cl);padding-top:6px;margin-top:2px}
+.bm-ai span,.bm-who{display:flex;align-items:center;gap:6px}
+.bm-who{font-size:11.5px;font-weight:700;color:var(--ct)}
+.bm-row-l{margin:22px 0 10px;text-align:center}
+.bm-row{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-top:2px solid var(--cwire);padding-top:16px}
+.bm-nlg{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.bm-nlc{display:grid;gap:6px;align-content:start;text-align:left;background:var(--card);border:1px solid var(--line);padding:14px;color:var(--ink)}
+.bm-nlc .bm-gi{background:var(--bg2);color:var(--ink)}
+.bm-nlc.kk{background:var(--ink);color:var(--inv);border-color:var(--ink)}
+.bm-nlc.kk .bm-gi{background:var(--inv);color:var(--ink)}
+.bm-nlc.kk .pill.ink{background:var(--inv);color:var(--ink);border-color:var(--inv)}
+.bm-nlc b{font-size:15px}
+.bm-st{font-size:12px;opacity:.8}
+.bm-nlc ul{margin:4px 0 0;padding-left:16px;font-size:12px;opacity:.85}
+.bm-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.bm-bar .btn{display:inline-flex;align-items:center;gap:6px;margin-left:auto;flex:none}
+.bm-tb{min-width:760px}
+.bm-tb th{font-size:11px;text-align:center;white-space:nowrap}
+.bm-tb th:first-child{text-align:left}
+.bm-tb td{text-align:center;vertical-align:middle}
+.bm-tb td:first-child{text-align:left;display:grid;gap:2px;min-width:170px}
+.bm-tb input[type=checkbox]{width:18px;height:18px;accent-color:#201E1D}
+.bm-in{font:inherit;font-size:13.5px;font-weight:700;border:1px solid transparent;background:transparent;color:var(--ink);padding:3px 5px;width:100%}
+.bm-in:hover,.bm-in:focus{border-color:var(--line);background:var(--card)}
+.bm-in.wide{border-color:var(--line);background:var(--card);padding:7px 9px}
+.bm-lnk{background:transparent;border:0;padding:0 5px;font-size:12px;font-weight:700;color:var(--redtx);text-align:left}
+.bm-lnk:hover{text-decoration:underline}
+.bm-del{background:transparent;border:1px solid var(--line);width:28px;height:28px;font-size:16px;line-height:1;color:var(--mute)}
+.bm-iss{display:grid;gap:6px;margin-top:10px}
+.bm-iss p{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;padding:8px 12px;border:1px solid var(--line);background:var(--card)}
+.bm-iss p.red{border-color:var(--red);background:var(--redbg);color:var(--redtx)}
+.bm-iss p.warn{background:var(--warnbg);color:var(--warn);border-color:transparent}
+.bm-iss p.ok{background:var(--okbg);color:var(--ok);border-color:transparent}
+.bm-iss svg{flex:none;margin-top:2px}
+.bm-nhip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.bm-nhip>div{display:grid;gap:6px;background:var(--card);border:1px solid var(--line);border-top:3px solid var(--ink);padding:14px}
+.bm-nhip b{font-size:15px}
+.bm-nhip p{font-size:13.5px;color:var(--mute)}
+.bm-roles{margin-top:12px}
+.bm-roles button{font-size:12.5px}
+.g5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;position:relative;z-index:1}
+.g5 .ck-o{padding:4px 14px 10px}
+.nlk{font-size:12px;color:var(--cm);padding:10px 14px 0;display:grid;gap:3px}
+.ck.nlkey{border-width:2.5px;border-color:var(--ct)}
+.ck-own{display:block;width:100%;padding:0;text-align:left;color:inherit}
+.ck-own .ck-h{background:transparent;color:var(--ct);border:0}
+.ck-own .ck-h .ki{border-color:var(--ct);color:var(--ct)}
+.ck-own .tag{font-size:11.5px;font-weight:600;color:var(--cm)}
+@container page (max-width:1100px){.bm-nlg,.g5{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@container page (max-width:1100px){.bm-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@container page (max-width:880px){.bm-row{grid-template-columns:1fr 1fr}.bm-nlg,.g5{grid-template-columns:1fr 1fr}.bm-nhip{grid-template-columns:1fr}}
+@container page (max-width:560px){.bm-nlg,.g5,.bm-row{grid-template-columns:1fr}}
+
 .sh .cvbar{display:flex;gap:8px;margin-left:auto;align-items:center}
 .simp .sn text{paint-order:stroke;stroke:var(--c1);stroke-width:5px;stroke-linejoin:round}
 .cvsw button svg{display:block}
@@ -715,6 +789,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
     </button>
     <div class="tabs" role="tablist">
     <button role="tab" aria-selected="true" aria-controls="p-arch" id="t-arch">Kiến trúc</button>
+    <button role="tab" aria-selected="false" aria-controls="p-bm" id="t-bm">Bộ máy</button>
     <button role="tab" aria-selected="false" aria-controls="p-flow" id="t-flow">Luồng vận hành</button>
     <button role="tab" aria-selected="false" aria-controls="p-hai" id="t-hai">Người + AI</button>
     <button role="tab" aria-selected="false" aria-controls="p-nganh" id="t-nganh" hidden>Cấu hình ngành</button>
@@ -746,6 +821,26 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
   <div class="cv" id="arch" hidden></div>
   <div class="sh"><h2>Các chuỗi nghiệp vụ</h2><span class="note">Bấm một chuỗi để xem công việc đi qua các khối.</span></div>
   <div class="chains" id="chains"></div>
+</section>
+
+<!-- ================= BỘ MÁY & NGUỒN LỰC ================= -->
+<section id="p-bm" role="tabpanel" aria-labelledby="t-bm" hidden>
+  <div class="phead">
+    <h1>Người giữ quyền, AI làm việc</h1>
+    <p class="lead">Bốn tầng: chủ sở hữu, ban điều hành, trưởng khối, Team AI. Mỗi giám đốc trông giữ một nguồn lực cốt lõi. Chức danh mang tính tương đối: một người kiêm nhiều vai, đăng nhập theo từng vai, việc giao cho vai nào cũng tùy biến được.</p>
+  </div>
+  <div class="sh"><h2>Sơ đồ bộ máy</h2><span class="note">Bấm từng ô để xem phụ trách, quyền giữ, AI hỗ trợ.</span></div>
+  <div class="cv bm-cv" id="bm-org"></div>
+  <div class="sh"><h2>Năm nguồn lực cốt lõi</h2><span class="note">Thứ doanh nghiệp sở hữu: mất nhanh, xây chậm. Ô đậm là nguồn lực quyết định với loại hình đang chọn.</span></div>
+  <div class="bm-nlg" id="bm-nlc"></div>
+  <div class="sh"><h2>Bổ nhiệm và kiêm nhiệm</h2><span class="note">Đánh dấu vai cho từng người; trang tự cảnh báo cặp vai không nên kiêm. Lưu trên trình duyệt.</span></div>
+  <div id="bm-kn"></div>
+  <div class="sh"><h2>Ba nhịp quản trị</h2></div>
+  <div class="bm-nhip">
+    <div><span class="lbl">Chiến lược · quý, năm</span><b>Chủ sở hữu, Ban điều hành</b><p>Đầu tư vào nguồn lực nào, rút khỏi đâu; duyệt ngân sách; đặt luật, ngưỡng và Hiến chương AI.</p></div>
+    <div><span class="lbl">Điều hành · tuần, tháng</span><b>Giám đốc, trưởng khối</b><p>Chỉ số từng chuỗi và từng nguồn lực, cân đối cung–cầu, xử lý ngoại lệ vượt quyền vai.</p></div>
+    <div><span class="lbl">Vận hành · hằng ngày</span><b>Team AI và người</b><p>AI làm trong luật đến L3; việc vượt ngưỡng chuyển đúng vai có thẩm quyền, không dồn về một người.</p></div>
+  </div>
 </section>
 
 <!-- ================= THƯƠNG MẠI PHÂN PHỐI · LUỒNG VẬN HÀNH ================= -->
@@ -1919,6 +2014,177 @@ function card(k,extra,tag){const K=KH(k);
   const body=K.sub?`<div class="subs">${K.sub.map(([c,lab,ids,o])=>`<div class="sub"><div class="gh"><b>${c}</b><span>${esc(lab)}</span></div><div class="tis">${ids.map(id=>tile(NV_BY[id])).join("")}</div><div class="ck-o">${rmk(o)}</div></div>`).join("")}</div>`
     :`<div class="tis">${nvOf(k).map(tile).join("")}</div><div class="ck-o">${rmk(K.o)}</div>`;
   return `<div class="ck${extra?" "+extra:""}" id="ck-${k}"><button class="ck-h" data-khoi="${k}" aria-label="Chi tiết khối ${esc(K.n)}"><span class="no">${KNO[k]}</span><span class="nm">${esc(K.n)}</span>${tag?`<span class="tag">${esc(tag)}</span>`:""}<span class="ki">${ic(KHI[k],18)}</span></button>${body}</div>`;}
+/* =================== NGUỒN LỰC CỐT LÕI & BỘ MÁY ===================
+   Ba lớp khác bản chất: chuỗi tạo giá trị (việc tạo ra tiền), năng lực hỗ trợ (bộ phận phục vụ)
+   và nguồn lực cốt lõi (thứ doanh nghiệp sở hữu, tích lũy nhiều năm). Mỗi nguồn lực có một giám đốc trông giữ.
+   Bộ máy bốn tầng: Chủ sở hữu / HĐQT → Ban điều hành (luôn là người) → Trưởng khối (người hoặc AI) → Team AI.
+   Chức danh là tương đối: một người kiêm nhiều vai, đăng nhập theo từng vai; chỉ tránh các cặp vai xung đột. */
+const NL=[
+ {id:"von",n:"Vốn & Tài sản",ic:"wallet",gd:"tc",gom:"Tiền, vốn lưu động, máy móc, kho, mặt bằng và khả năng vay."},
+ {id:"tt",n:"Tri thức & Công nghệ",ic:"book-open",gd:"cn",gom:"Bí quyết, quy trình chuẩn, công thức, dữ liệu, phần mềm và sở hữu trí tuệ."},
+ {id:"ng",n:"Con người & Văn hóa",ic:"users",gd:"tchc",gom:"Năng lực, chứng chỉ, sự gắn bó, giá trị cốt lõi và cách ra quyết định."},
+ {id:"th",n:"Thương hiệu & Uy tín",ic:"gem",gd:"mkt",gom:"Mức nhận biết, niềm tin, đánh giá của khách và chất lượng đã được chứng minh."},
+ {id:"qh",n:"Thị trường & Quan hệ",ic:"handshake",gd:"kd",gom:"Tệp khách hàng của mình, kênh bán, đại lý, đối tác bán. Quan hệ nhà cung cấp do Giám đốc Vận hành & Cung ứng giữ."}
+];
+const NL_BY=Object.fromEntries(NL.map(x=>[x.id,x]));
+/* Theo loại hình: nguồn lực quyết định (key), chỉ số "tồn kho" và nghiệp vụ bồi đắp. */
+const NLX={
+ tmhh:{von:{key:1,chi:["Số tuần đủ chi","Vốn kẹt trong tồn kho","Vòng quay hàng tồn","Số ngày thu tiền"],boi:["tc_cash","tc_ar","tc_ap","hd_pol","hd_slow","tc_pa"]},
+   tt:{chi:["Thông tin sản phẩm đầy đủ","Độ chính xác dự báo","Quy trình đã chuẩn hóa"],boi:["nh_pim","hd_fc","cl_change","dv_voc"]},
+   ng:{chi:["Tỷ lệ giữ người","Năng lực làm việc cùng AI","Vai có người dự phòng"],boi:["ns_plan","ns_skill","ns_pay"]},
+   th:{chi:["Khách sẵn lòng giới thiệu","Điểm đánh giá","Khiếu nại trên 1.000 đơn"],boi:["mk_brand","mk_content","dv_case","dv_ret"]},
+   qh:{key:1,chi:["Khách quay lại","Giá trị vòng đời khách","Độ phủ kênh","Phụ thuộc nhà cung cấp lớn nhất"],boi:["kd_kam","kd_chan","dv_keep","nh_srm","mk_lead"]}},
+ dv:{von:{chi:["Số tuần đủ chi","Tiền cọc đang giữ","Giờ trống bị mất"],boi:["tc_dep","tc_inv","tc_pay","tk_cost","nl_cap"]},
+   tt:{chi:["Quy trình đã chuẩn hóa","Tri thức đã duyệt cho AI","Hồ sơ đủ bằng chứng"],boi:["tk_know","tk_proc","tk_std","th_rec"]},
+   ng:{key:1,chi:["Người có chứng chỉ còn hạn","Tỷ lệ giữ người","Năng lực làm việc cùng AI"],boi:["ns_cert","ns_skill","ns_plan","nl_assign"]},
+   th:{key:1,chi:["Khách sẵn lòng giới thiệu","Điểm đánh giá","Khiếu nại đã khắc phục"],boi:["mk_brand","tn_case","tn_voc","th_qc"]},
+   qh:{chi:["Khách gia hạn","Khách đến từ giới thiệu","Đối tác thực hiện tin cậy"],boi:["kd_opp","tn_keep","mk_ref","nl_part"]}},
+ sx:{von:{key:1,chi:["Số tuần đủ chi","Vốn trong vật tư, dở dang, thành phẩm","Giá thành đơn vị","Hiệu suất thiết bị"],boi:["tc_cost","tc_pa","tb_rel","tb_pm","hd_inv"]},
+   tt:{key:1,chi:["BOM, công thức đã phát hành","Hướng dẫn công việc cập nhật","Thay đổi kỹ thuật đúng hạn"],boi:["kt_rd","kt_bom","kt_rout","kt_wi","qa_capa"]},
+   ng:{chi:["Thợ có chứng chỉ vận hành","Số ngày không tai nạn","Tỷ lệ giữ người"],boi:["ns_cert","ns_hire","tb_haz"]},
+   th:{key:1,chi:["Lỗi lọt tới khách","Khiếu nại và thu hồi","Giao đúng hẹn"],boi:["qa_sys","qa_capa","qa_cmp","kv_as"]},
+   qh:{chi:["Khách, đại lý đặt lại","Nhà cung cấp đạt chuẩn","Phụ thuộc nhà cung cấp lớn nhất"],boi:["kd_acc","mh_perf","mh_alt","mh_src"]}}
+};
+/* Ngưỡng bảo vệ: mỗi ngoại lệ điển hình canh giữ một nguồn lực. */
+const EXR={tmhh:{kd_price:"von",hd_pol:"von",dv_ret:"th",nh_src:"qh",kv_om:"th"},
+ dv:{kd_prop:"von",nl_part:"qh",th_qc:"th",th_inc:"th",tc_pay:"von",pc_data:"tt"},
+ sx:{kt_ecm:"tt",hd_crp:"qh",qa_rel:"th",tb_cm:"von",tb_inc:"ng",kd_atp:"th",tc_ap:"von"}};
+const GD=[
+ {id:"ceo",n:"Tổng giám đốc",s:"CEO",en:"Chief Executive Officer",ic:"crown",
+  viec:["Chịu trách nhiệm kết quả chung của doanh nghiệp","Phân bổ nguồn lực giữa các giám đốc","Giữ nhịp điều hành tuần, tháng","Quyết các ngoại lệ vượt quyền giám đốc","Giữ văn hóa cùng Giám đốc Tổ chức Hành chính","Làm việc với chủ sở hữu, nhà đầu tư"],
+  giu:["Bổ nhiệm, miễn nhiệm giám đốc","Trình kế hoạch, ngân sách năm lên HĐQT"],
+  ai:[["Trợ lý điều hành AI","Tổng hợp báo cáo, chuẩn bị họp, theo dõi ngoại lệ và lời hứa của các giám đốc, nhắc việc trễ. Không ra quyết định.",2]],
+  data:"Xem toàn bộ, kể cả số liệu tổng hợp về lương và sổ sách."},
+ {id:"tc",n:"Giám đốc Tài chính",s:"Tài chính",en:"Chief Financial Officer",ic:"landmark",nl:"von",
+  viec:["Kế hoạch tài chính và ngân sách","Thu xếp vốn: vay, góp vốn, quan hệ ngân hàng, nhà đầu tư","Dòng tiền và ngân quỹ, dự báo 13 tuần","Vốn lưu động: tồn kho, phải thu, phải trả (cùng Kinh doanh, Vận hành)","Chính sách tín dụng khách hàng","Giá thành, lợi nhuận theo sản phẩm, khách, kênh","Kế toán, thuế (Kế toán trưởng ký), tài sản cố định, bảo hiểm","Kiểm soát nội bộ"],
+  giu:["Vay, bảo lãnh, cầm cố","Chi vượt ngưỡng","Báo cáo thuế, tài chính (Kế toán trưởng ký)"],
+  ai:[["Trợ lý AI tài chính","Đối soát, hạch toán nháp, dự báo dòng tiền, cảnh báo chỉ số tài chính.",3]],
+  data:"Sổ sách, ngân quỹ, công nợ, giá thành; bảng lương ở mức tổng hợp."},
+ {id:"cn",n:"Giám đốc Công nghệ",s:"Công nghệ",en:"Chief Technology Officer",ic:"cpu",nl:"tt",pf:1,
+  viec:["Quản trị dữ liệu: mỗi loại dữ liệu một nguồn chuẩn","Vận hành Team AI: cấu hình, đánh giá, mức tự chủ, nhật ký","Quản trị hệ thống (admin): tài khoản, phân quyền theo vai, thiết bị","An toàn thông tin, bảo vệ dữ liệu cá nhân","Kho tri thức và quy trình chuẩn mà AI được dùng","Bảo hộ bí quyết, sở hữu trí tuệ (cùng pháp chế)"],
+  giu:["Cấp, thu hồi quyền truy cập","Nâng mức tự chủ của agent trong khung Hiến chương AI"],
+  ai:[["Trợ lý AI công nghệ","Hỗ trợ chuyên sâu: giám sát hệ thống, đánh giá agent, rà nhật ký.",3],["Team AI vận hành hệ thống","Đồng bộ dữ liệu, sao lưu, báo lỗi.",3]],
+  data:"Cấu hình hệ thống, nhật ký, quyền truy cập; không xem nội dung bảng lương."},
+ {id:"tchc",n:"Giám đốc Tổ chức Hành chính",s:"TC-HC",en:"People, Culture & Administration",ic:"users",nl:"ng",
+  viec:["Hoạch định nhân lực người + AI: vai nào giữ người, vai nào giao AI","Tuyển dụng, đào tạo làm việc cùng AI, chứng chỉ","Lương thưởng, đánh giá (cùng Tài chính), bảo hiểm xã hội","Nội quy, giá trị cốt lõi, truyền thông nội bộ","Quy chế và ma trận phân quyền (CEO ký ban hành)","Pháp chế, tuân thủ (công ty nhỏ), hành chính văn phòng"],
+  giu:["Tuyển dụng, cho thôi việc","Kỷ luật lao động"],
+  ai:[["Trợ lý AI nhân sự","Sàng lọc hồ sơ, nhắc chứng chỉ sắp hết hạn, soạn văn bản.",2]],
+  data:"Hồ sơ nhân sự, bảng lương chi tiết, hợp đồng lao động."},
+ {id:"mkt",n:"Giám đốc Truyền thông – Marketing",s:"TT-MKT",en:"Chief Marketing Officer",ic:"megaphone",nl:"th",
+  viec:["Định vị, nhận diện thương hiệu","Nghiên cứu thị trường, thấu hiểu khách","Nội dung, kênh truyền thông, website, tìm kiếm","Quảng cáo và đo hiệu quả","Quan hệ báo chí, theo dõi uy tín, xử lý khủng hoảng","Tạo khách tiềm năng, bàn giao rõ cho Kinh doanh","Tuân thủ Luật Quảng cáo; hình người thật phải có đồng ý"],
+  giu:["Duyệt nội dung trước khi đăng","Phát ngôn khi có khủng hoảng"],
+  ai:[["Team thiết kế AI","Hình ảnh, video, nội dung; người duyệt trước khi đăng.",2],["Team AI quản trị kênh","Đăng theo lịch, trả lời bình luận thường; bình luận tiêu cực chuyển người.",3]],
+  data:"Kênh truyền thông, nội dung, số liệu chiến dịch, phản hồi công khai."},
+ {id:"kd",n:"Giám đốc Kinh doanh",s:"Kinh doanh",en:"Chief Sales Officer",ic:"handshake",nl:"qh",
+  viec:["Kênh phân phối, đại lý, đối tác bán","Khách hàng trọng điểm, cơ hội bán","Giá và chính sách thương mại (sàn biên do Tài chính đặt)","Báo giá, hợp đồng, đơn hàng","Khiếu nại và giữ chân khách","Dự báo bán đưa vào cân đối cung–cầu"],
+  giu:["Giá ngoài khung","Hợp đồng lớn","Chính sách với khách trọng điểm"],
+  ai:[["Team AI chăm sóc khách hàng","Trả lời, theo dõi đơn, nhắc mua lại trong luật.",3],["Team AI bán hàng","Chấm điểm khách tiềm năng, soạn báo giá để người duyệt.",2]],
+  data:"Khách hàng, cơ hội, báo giá, đơn hàng; công nợ khách ở mức xem."},
+ {id:"sp",n:"Giám đốc Sản phẩm & Chuyên môn",s:"Sản phẩm",en:"Product & Professional Director",ic:"award",
+  viec:["Quyết định bán cái gì: danh mục, tiêu chuẩn, chuyên môn"],
+  vm:{tmhh:["Ngành hàng, cơ cấu danh mục, nhãn riêng","Thông tin sản phẩm"],dv:["Thiết kế dịch vụ, gói, hành trình khách","Tiêu chuẩn và quyết định chuyên môn: người có chứng chỉ quyết","Tri thức, phương pháp"],sx:["Nghiên cứu, phát triển sản phẩm (R&D)","Thiết kế, BOM, công thức, routing","Sản xuất thử, chuyển giao, thay đổi kỹ thuật"]},
+  kiem:{dv:"Công ty nhỏ: CEO thường kiêm.",sx:"Công ty nhỏ: Giám đốc Công nghệ có thể kiêm R&D."},
+  giu:["Đưa sản phẩm, dịch vụ mới ra bán","Quyết định chuyên môn, kỹ thuật"],
+  ai:[["Trợ lý AI sản phẩm","Tổng hợp phản hồi, so sánh danh mục, soạn tài liệu kỹ thuật.",2]],
+  data:"Danh mục, tiêu chuẩn, hồ sơ kỹ thuật, phản hồi về sản phẩm."},
+ {id:"vh",n:"Giám đốc Vận hành & Cung ứng",s:"Vận hành",en:"Chief Operating Officer",ic:"truck",
+  viec:["Giao hàng thế nào: nguồn cung, kế hoạch, thực hiện"],
+  vm:{tmhh:["Nhà cung cấp, đàm phán, mua hàng","Hoạch định tồn kho, bổ sung, phân bổ","Đơn hàng, kho vận, giao nhận"],dv:["Dự báo công suất, lịch, phân công","Đối tác, thuê ngoài","Vật tư, thiết bị, địa điểm"],sx:["Hoạch định sản xuất, vật tư, công suất","Mua hàng, nhà cung cấp","Vận hành nhà máy, bảo trì thiết bị","Kho vận, giao hàng"]},
+  giu:["Nhà cung cấp mới","Cam kết giao hàng ngoài kế hoạch"],
+  ai:[["Team AI điều phối","Theo dõi đơn, tồn kho, lịch; đề xuất bổ sung, cảnh báo trễ.",3]],
+  data:"Kế hoạch, tồn kho, đơn mua, lịch, tiến độ; không duyệt chi."},
+ {id:"qa",n:"Giám đốc Chất lượng & An toàn",s:"Chất lượng",en:"Quality, Health, Safety & Environment",ic:"badge-check",only:"sx",
+  viec:["Hệ thống chất lượng, kiểm tra, xuất xưởng","Không phù hợp, khắc phục, truy xuất, thu hồi","An toàn, vệ sinh lao động, môi trường","Báo cáo thẳng CEO, không nằm dưới người chạy sản lượng"],
+  giu:["Chặn lô, cho xuất xưởng","Dừng chuyền vì an toàn"],
+  ai:[["Trợ lý AI chất lượng","Tổng hợp kết quả kiểm tra, phát hiện xu hướng lỗi, soạn báo cáo.",2]],
+  data:"Kết quả kiểm tra, hồ sơ lô, sự cố an toàn."}
+];
+const GD_BY=Object.fromEntries(GD.map(g=>[g.id,g]));
+/* Giám đốc phụ trách từng khối; ngoại lệ theo nghiệp vụ (nguồn cung ở Thương mại về Vận hành…). */
+const GD_KHOI={tmhh:{cl:"ceo",kd:"kd",dv:"kd",mk:"mkt",nh:"sp",hd:"vh",kv:"vh"},
+ dv:{cl:"ceo",kd:"kd",tn:"kd",mk:"mkt",tk:"sp",th:"sp",nl:"vh"},
+ sx:{cl:"ceo",kd:"kd",kt:"sp",hd:"vh",mh:"vh",sx:"vh",tb:"vh",kv:"vh",qa:"qa"}};
+const GD_NV={tmhh:{nh_src:"vh",nh_neg:"vh",nh_srm:"vh"},dv:{},sx:{kd_mkt:"mkt",tb_haz:"qa",tb_inc:"qa"}};
+const GD_HT={tc:"tc",ns:"tchc",pc:"tchc",hc:"tchc"};
+const gdList=()=>GD.filter(g=>!g.only||g.only===model);
+const gdOfNV=n=>GD_NV[model][n.id]||(n.k==="ht"?GD_HT[n.g]:GD_KHOI[model][n.k]);
+const nvOfGD=g=>NV.filter(n=>gdOfNV(n)===g);
+const khoiOfGD=g=>Object.keys(GD_KHOI[model]).filter(k=>GD_KHOI[model][k]===g);
+const SOD=[[["kd","tc"],"Người bán hàng không tự duyệt công nợ, không tự chi tiền."],[["vh","tc"],"Người mua hàng không tự thanh toán cho nhà cung cấp."],[["vh","qa"],"Người chạy sản lượng không tự nghiệm thu chất lượng."]];
+const BM_SZ=[["s","1–3 người"],["m","4–10 người"],["l","10–30 người"]];
+function bmPreset(sz){const sx=model==="sx";
+  if(sz==="s") return [{n:"Người sáng lập",r:["ceo","kd","sp"]},{n:"Đồng sáng lập",r:sx?["tc","tchc","qa"]:["tc","tchc"]},{n:"Nhân sự 3",r:["vh","mkt"]},{n:"Chuyên gia thuê ngoài",r:["cn"]}];
+  if(sz==="m") return [{n:"Người 1",r:["ceo","sp"]},{n:"Người 2",r:["kd","mkt"]},{n:"Người 3",r:["tc","tchc"]},{n:"Người 4",r:["vh"]},{n:"Người 5",r:["cn"]}].concat(sx?[{n:"Người 6",r:["qa"]}]:[]);
+  return gdList().map((g,i)=>({n:"Người "+(i+1),r:[g.id]}));}
+let BM=null;
+function bmLoad(){let all={}; try{all=JSON.parse(localStorage.getItem("lattice-mophong-bm")||"{}");}catch(e){}
+  BM=all[model]||{sz:"s",people:bmPreset("s"),titles:{}};}
+function bmSave(){try{const all=JSON.parse(localStorage.getItem("lattice-mophong-bm")||"{}"); all[model]=BM; localStorage.setItem("lattice-mophong-bm",JSON.stringify(all));}catch(e){}}
+const gdName=id=>(BM&&BM.titles[id])||GD_BY[id].n;
+const holders=id=>BM?BM.people.filter(p=>p.r.includes(id)):[];
+function bmIssues(){const out=[];
+  BM.people.forEach(p=>SOD.forEach(([pair,why])=>{if(pair.every(r=>p.r.includes(r))&&pair.every(r=>gdList().some(g=>g.id===r))) out.push(["red",`${p.n} đang kiêm ${pair.map(gdName).join(" và ")}. ${why}`]);}));
+  gdList().forEach(g=>{if(!holders(g.id).length) out.push(["warn",`Chưa có người giữ vai ${gdName(g.id)}.`]);});
+  return out;}
+/* ---------- tab Bộ máy ---------- */
+const nlChip=id=>{const x=NL_BY[id], key=NLX[model][id].key; return `<span class="bm-nl${key?" kk":""}">${ic(x.ic,13)}${esc(x.n)}</span>`;};
+function bmView(){ if(!$("p-bm")) return; bmLoad();
+  const isu=bmIssues(), red=new Set(); BM.people.forEach(p=>SOD.forEach(([pair])=>{if(pair.every(r=>p.r.includes(r))) pair.forEach(r=>red.add(r));}));
+  const gcard=g=>{const ks=khoiOfGD(g.id), hs=holders(g.id), ht=Object.keys(GD_HT).filter(x=>GD_HT[x]===g.id), nv=nvOfGD(g.id).length;
+    return `<button class="bm-gd${red.has(g.id)?" warn":""}" data-gd="${g.id}"><span class="bm-gi">${ic(g.ic,20)}</span><b>${esc(gdName(g.id))}</b><span class="bm-en">${esc(g.en)}</span>
+      ${g.nl?nlChip(g.nl):""}
+      <span class="bm-ks">${ks.filter(k=>k!=="cl").map(k=>`<span><i class="hdot"></i><span>${esc(KH(k).s||KH(k).n)}<em> · ${esc(ROLE[KH(k).o]||"")}</em></span>${ROLE_AI[KH(k).o]?ic("bot",12):""}</span>`).join("")}${ht.map(x=>`<span><i class="hdot"></i>${esc(NHOM_HT.find(h=>h.id===x).n)}</span>`).join("")}${g.pf?`<span>${ic("layers",12)} Trục LATTICE: dữ liệu, hệ thống, AI</span>`:""}</span>
+      ${nv?`<span class="bm-cnt">${nv} nghiệp vụ</span>`:""}
+      <span class="bm-ai">${g.ai.map(a=>`<span>${ic("bot",12)}${esc(a[0])} · L${a[2]}</span>`).join("")}</span>
+      <span class="bm-who">${hs.length?ic("user",12)+esc(hs.map(p=>p.n).join(", ")):"Chưa có người giữ"}</span></button>`;};
+  const ceo=GD_BY.ceo;
+  $("bm-org").innerHTML=`<div class="bm-top"><button class="bm-own" data-bmtop="1"><span class="bm-gi">${ic("scale",20)}</span><b>Chủ sở hữu / Hội đồng quản trị</b><span>Chiến lược · ngân sách năm · đầu tư lớn · bổ nhiệm CEO · Hiến chương AI</span></button></div>
+    <div class="bm-mid">${gcard(ceo)}</div>
+    <div class="cvl bm-row-l">Ban điều hành · mỗi giám đốc trông giữ một nguồn lực</div>
+    <div class="bm-row">${gdList().filter(g=>g.id!=="ceo").map(gcard).join("")}</div>
+    <div class="cvleg"><span><i class="hdot"></i>Trưởng khối: người hoặc AI</span><span>${ic("bot",14)}Vai Trưởng giao được cho AI; giám đốc luôn là người</span><span><span class="bm-nl kk" style="margin:0">${ic("star",12)}Nguồn lực</span>&nbsp;đậm: quyết định với loại hình này</span><span class="rd">Viền đỏ: một người đang kiêm hai vai xung đột</span></div>`;
+  $("bm-nlc").innerHTML=NL.map(x=>{const v=NLX[model][x.id]; return `<button class="bm-nlc${v.key?" kk":""}" data-nl="${x.id}"><span class="bm-gi">${ic(x.ic,22)}</span><b>${esc(x.n)}</b><span class="bm-st">Trông giữ: ${esc(gdName(x.gd))}</span>${v.key?`<span class="pill ink">Quyết định với loại hình này</span>`:""}<ul>${v.chi.slice(0,3).map(c=>`<li>${esc(c)}</li>`).join("")}</ul></button>`;}).join("");
+  const G=gdList();
+  $("bm-kn").innerHTML=`<div class="bm-bar"><span class="lbl">Quy mô</span><div class="seg">${BM_SZ.map(([k,t])=>`<button data-bmsz="${k}" aria-pressed="${BM.sz===k}">${t}</button>`).join("")}</div><button class="btn" data-bmadd="1">${ic("user-plus",15)} Thêm người</button></div>
+   <div class="tbl"><table class="bm-tb"><thead><tr><th>Người</th>${G.map(g=>`<th title="${esc(gdName(g.id))}">${esc(g.s)}</th>`).join("")}<th></th></tr></thead><tbody>
+   ${BM.people.map((p,i)=>`<tr><td><input class="bm-in" data-bmn="${i}" value="${esc(p.n)}" aria-label="Tên người"><button class="bm-lnk" data-bmp="${i}">Đăng nhập theo vai ›</button></td>${G.map(g=>`<td><input type="checkbox" data-bmc="${i}:${g.id}" ${p.r.includes(g.id)?"checked":""} aria-label="${esc(p.n)} giữ vai ${esc(gdName(g.id))}"></td>`).join("")}<td><button class="bm-del" data-bmdel="${i}" aria-label="Bỏ ${esc(p.n)}">×</button></td></tr>`).join("")}
+   </tbody></table></div>
+   <div class="bm-iss">${isu.length?isu.map(([c,t])=>`<p class="${c}">${ic(c==="red"?"triangle-alert":"info",15)}<span>${esc(t)}</span></p>`).join(""):`<p class="ok">${ic("circle-check",15)}<span>Mọi vai đã có người, không có cặp vai xung đột.</span></p>`}</div>`;
+}
+function gdHTML(id){const g=GD_BY[id], ks=khoiOfGD(id).filter(k=>k!=="cl"||id==="ceo"), hs=holders(id), nv=nvOfGD(id);
+  const viec=g.viec.concat((g.vm&&g.vm[model])||[]);
+  return `<div class="dhd"><span class="dic">${ic(g.ic,26)}</span><div><span class="lbl">Ban điều hành</span><h2 id="d-title">${esc(gdName(id))}</h2><p class="en">${esc(g.en)}</p></div></div>
+   ${g.nl?`<div class="latx"><b>Trông giữ nguồn lực:</b> <button class="bm-lnk" data-nl="${g.nl}">${esc(NL_BY[g.nl].n)} ›</button></div>`:`<div class="latx">Điều phối chung: phân bổ năm nguồn lực giữa các giám đốc.</div>`}
+   <h3>Phụ trách</h3><ul>${viec.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+   ${g.kiem&&g.kiem[model]?`<p class="note">${esc(g.kiem[model])}</p>`:""}
+   ${ks.length?`<h3>Khối nghiệp vụ</h3><div class="nvl">${ks.map(k=>`<button data-khoi="${k}"><span>${ic(KHI[k],16)} ${esc(KH(k).n)}</span><span>${nvOf(k).length} ›</span></button>`).join("")}</div>`:""}
+   ${nv.length?`<h3>Nghiệp vụ phụ trách (${nv.length})</h3><div class="nvl">${nv.map(n=>`<button data-id="${n.id}"><span>${ic(NVI[n.id][0],16)} ${esc(n.n)}</span><span>›</span></button>`).join("")}</div>`:""}
+   <h3>Người luôn giữ quyền</h3><ul>${g.giu.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+   <h3>AI hỗ trợ trong phạm vi</h3><ul>${g.ai.map(a=>`<li><b>${esc(a[0])}</b> <span class="pill ink">L${a[2]}</span> ${esc(a[1])}</li>`).join("")}</ul>
+   <h3>Dữ liệu được xem khi đăng nhập vai này</h3><p>${esc(g.data)}</p>
+   <h3>Tên chức danh tại doanh nghiệp</h3><p class="note" style="margin:0 0 6px">Chức danh mang tính tương đối, đổi cho hợp cách gọi của doanh nghiệp.</p><input class="bm-in wide" data-bmt="${id}" value="${esc(gdName(id))}" aria-label="Tên chức danh">
+   <h3>Người đang giữ</h3><p>${hs.length?esc(hs.map(p=>p.n).join(", ")):"Chưa có người giữ."}</p>`;}
+function nlHTML(id){const x=NL_BY[id], v=NLX[model][id], ex=EXQ.filter(e=>EXR[model][e[0]]===id);
+  return `<div class="dhd"><span class="dic">${ic(x.ic,26)}</span><div><span class="lbl">Nguồn lực cốt lõi</span><h2 id="d-title">${esc(x.n)}</h2><p class="en">${v.key?"Nguồn lực quyết định với loại hình này":"Nguồn lực nền"}</p></div></div>
+   <div class="latx">${esc(x.gom)}</div>
+   <h3>Ai trông giữ</h3><div class="nvl"><button data-gd="${x.gd}"><span>${ic(GD_BY[x.gd].ic,16)} ${esc(gdName(x.gd))}</span><span>›</span></button></div>
+   <h3>Chỉ số theo dõi</h3><div class="kpil">${v.chi.map(t=>`<span>${esc(t)}</span>`).join("")}</div>
+   <h3>Ngưỡng bảo vệ</h3>${ex.length?`<p class="note" style="margin:0 0 6px">AI dừng lại hỏi người ở những việc này vì chúng chạm vào ${esc(x.n.toLowerCase())}.</p><div class="nvl">${ex.map(([nid,t,r])=>`<button data-id="${nid}"><span>${ic("triangle-alert",16)} ${esc(t)}</span><span>${esc(ROLE_S[r])} ›</span></button>`).join("")}</div>`:`<p>Bảo vệ bằng luật chung trong Hiến chương AI; chưa có ngoại lệ điển hình riêng.</p>`}
+   <h3>Nghiệp vụ bồi đắp</h3><div class="nvl">${v.boi.filter(i=>NV_BY[i]).map(i=>`<button data-id="${i}"><span>${ic(NVI[i][0],16)} ${esc(NV_BY[i].n)}</span><span>›</span></button>`).join("")}</div>
+   <p class="note" style="margin-top:12px">Chuỗi tạo giá trị lấy nguồn lực ra dùng; kết quả (tiền, khách quen, tri thức, uy tín) phải quay về bồi đắp. Chỉ lấy ra mà không bồi đắp thì doanh nghiệp tăng trưởng mà vẫn nghèo đi.</p>`;}
+function bmTopHTML(){return `<div class="dhd"><span class="dic">${ic("scale",26)}</span><div><span class="lbl">Tầng sở hữu</span><h2 id="d-title">Chủ sở hữu / Hội đồng quản trị</h2><p class="en">Công ty cổ phần: HĐQT · TNHH hai thành viên trở lên: Hội đồng thành viên · Một chủ: chủ sở hữu, Chủ tịch công ty</p></div></div>
+   <div class="latx">Quyết định những việc định hình doanh nghiệp, không điều hành hằng ngày.</div>
+   <h3>Quyết định</h3><ul><li>Chiến lược, kế hoạch và ngân sách năm</li><li>Đầu tư lớn, khoản vay lớn</li><li>Bổ nhiệm, miễn nhiệm CEO</li><li>Khẩu vị rủi ro, giám sát kiểm soát nội bộ</li></ul>
+   <h3>Hiến chương AI</h3><ul><li>Mức tự chủ tối đa cho từng loại việc (khuyến nghị đến L3)</li><li>Những quyết định không bao giờ giao cho AI</li><li>Cách kiểm toán nhật ký AI và ai được nâng mức tự chủ</li></ul>`;}
+function bmPersonHTML(i,role){const p=BM.people[i]; if(!p) return ""; const r=role&&p.r.includes(role)?role:p.r[0], g=r?GD_BY[r]:null;
+  return `<div class="dhd"><span class="dic">${ic("user",26)}</span><div><span class="lbl">Đăng nhập theo vai</span><h2 id="d-title">${esc(p.n)}</h2><p class="en">${p.r.length} vai · mỗi vai một phạm vi dữ liệu, một bộ quyền, một trợ lý AI</p></div></div>
+   ${p.r.length?`<div class="seg bm-roles">${p.r.filter(x=>GD_BY[x]).map(x=>`<button data-bmr="${i}:${x}" aria-pressed="${x===r}">${esc(gdName(x))}</button>`).join("")}</div>`:"<p>Chưa giữ vai nào.</p>"}
+   ${g?`<div class="latx" style="margin-top:12px"><b>Đang làm việc với vai ${esc(gdName(r))}.</b> Thao tác ghi nhật ký theo vai này; đổi vai thì đổi phạm vi.</div>
+   ${g.nl?`<h3>Nguồn lực trông giữ</h3><p>${nlChip(g.nl)}</p>`:""}
+   <h3>Thấy được</h3><p>${esc(g.data)}</p>
+   <h3>Nghiệp vụ trong phạm vi</h3><p>${nvOfGD(r).length} nghiệp vụ${khoiOfGD(r).length?" · khối "+khoiOfGD(r).map(k=>esc(KH(k).s||KH(k).n)).join(", "):""}</p>
+   <h3>Trợ lý AI dùng được</h3><ul>${g.ai.map(a=>`<li>${esc(a[0])} · L${a[2]}</li>`).join("")}</ul>
+   <h3>Quyền giữ</h3><ul>${g.giu.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:""}`;}
 /* ---------- Kiến trúc · chế độ Đơn giản ----------
    Hai cột khối nghiệp vụ hai bên, trục LATTICE ở giữa: dữ liệu một nguồn, luật và ngưỡng, Team AI,
    ngoại lệ chuyển đúng người. Khối Điều hành ở trên, Tài chính & hỗ trợ ở dưới.
@@ -1950,25 +2216,34 @@ function sNode(x,y,attr,name,lines,anc,dx,dy,red){
   return `<g class="sn" role="button" tabindex="0" ${attr} aria-label="${esc(name)}"><title>${esc(name)}</title><circle class="nd" cx="${x}" cy="${y}" r="13" fill="var(--c0)" stroke="${red?"#EC3013":"var(--ct)"}" stroke-width="3.2"/>${red?`<circle cx="${x}" cy="${y}" r="5" fill="#EC3013"/>`:""}
     ${lines.map((t,i)=>`<text x="${x+dx}" y="${y+dy+i*16}" text-anchor="${anc}" font-size="13" font-weight="800" fill="${red?"var(--cr)":"var(--ct)"}">${esc(t)}</text>`).join("")}</g>`;}
 function sExt(x,y,w,t){return `<rect x="${x}" y="${y-17}" width="${w}" height="34" fill="none" stroke="var(--cm)" stroke-dasharray="4 3"/><text x="${x+w/2}" y="${y+4}" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--cm)">${esc(t)}</text>`;}
-const SIMPLE_TB={cl:["Quản trị & Điều hành","Ban điều hành","Mục tiêu – Ngân sách – Chính sách"],ht:["Nguồn lực Doanh nghiệp","Bộ phận Chuyên môn","Tài chính – Công nghệ – Con người"]};
+const SIMPLE_TB={cl:["Quản trị & Điều hành","Ban điều hành","Mục tiêu – Ngân sách – Chính sách"],ht:["Năng lực hỗ trợ","Bộ phận chuyên môn","Kế toán – Nhân sự – Pháp chế – Hành chính"]};
 function cBox(k,x,y,w,h){const K=KH(k), [t,r,sub]=SIMPLE_TB[k], c=x+w/2;
   return `<g class="sb" role="button" tabindex="0" data-khoi="${k}" aria-label="Khối ${esc(K.n)}"><title>${esc(K.n)}</title><rect class="bx" x="${x}" y="${y}" width="${w}" height="${h}" fill="var(--c1)" stroke="var(--ct)" stroke-width="2.5"/>
     ${icS(KHI[k],c-12,y+12,24,"var(--ct)")}
     <text x="${c}" y="${y+56}" text-anchor="middle" font-size="17" font-weight="800" fill="var(--ct)">${esc(t)}</text>
     <circle cx="${c-r.length*3.15-9}" cy="${y+71}" r="3.5" fill="#EC3013"/><text x="${c}" y="${y+75}" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--ct)" opacity=".8">${esc(r)}</text>
     <text x="${c}" y="${y+94}" text-anchor="middle" font-size="11" font-weight="700" letter-spacing=".02em" fill="var(--cm)">${esc(sub)}</text></g>`;}
+const sOwn=(x,y,w,h)=>`<g class="sb" role="button" tabindex="0" data-bmtop="1" aria-label="Chủ sở hữu / Hội đồng quản trị"><title>Chủ sở hữu / Hội đồng quản trị</title><rect class="bx" x="${x}" y="${y}" width="${w}" height="${h}" fill="var(--c1)" stroke="var(--ct)" stroke-width="1.5" stroke-dasharray="5 3"/>${icS("scale",x+14,y+h/2-9,18,"var(--ct)")}<text x="${x+w/2+10}" y="${y+h/2+5}" text-anchor="middle" font-size="13.5" font-weight="800" fill="var(--ct)">Chủ sở hữu / Hội đồng quản trị</text></g>`;
+/* Nền móng: năm nguồn lực cốt lõi; ô đậm là nguồn lực quyết định với loại hình. */
+function sRes(x0,y,W,h,cols){const gap=14, n=NL.length, per=cols||n, w=(W-(per-1)*gap)/per; let s="";
+  NL.forEach((x,i)=>{const cx=x0+(i%per)*(w+gap), cy=y+Math.floor(i/per)*(h+gap), key=NLX[model][x.id].key, fg=key?"var(--c0)":"var(--ct)", g=GD_BY[x.gd];
+    s+=`<g class="sb" role="button" tabindex="0" data-nl="${x.id}" aria-label="Nguồn lực ${esc(x.n)}"><title>${esc(x.n)}: ${esc(x.gom)}</title><rect class="bx" x="${cx}" y="${cy}" width="${w}" height="${h}" fill="${key?"var(--ct)":"var(--c1)"}" stroke="var(--ct)" stroke-width="2"/>
+      ${icS(x.ic,cx+14,cy+h/2-11,22,fg)}<text x="${cx+46}" y="${cy+h/2-2}" font-size="14.5" font-weight="800" fill="${fg}">${esc(x.n)}</text>
+      <text x="${cx+46}" y="${cy+h/2+15}" font-size="11" font-weight="600" fill="${fg}" opacity=".75">${esc(gdName(x.gd))}</text></g>`;});
+  return s;}
 function simpleArch(){
   const box=$("arch-s"); if(!box) return; const cfg=SIMPLE[model], K1=KH("cl"), K3=KH("ht");
   const narrow=(box.clientWidth||1200)<760; simpMode=model+(narrow?"n":"w");
   return narrow?simpleNarrow(box,cfg,K1,K3):simpleWide(box,cfg,K1,K3);}
 function simpleWide(box,cfg,K1,K3){
   const W=1320, cx=W/2, bw=300, bh=70, gap=14, n=Math.max(cfg.L.length,cfg.R.length), colH=n*bh+(n-1)*gap;
-  const colTop=196, cy=colTop+colH/2, R=Math.min(128,colH/2-6), lx=196, rx=W-196-bw, htY=colTop+colH+52, H=htY+124;
+  const T0=66, colTop=196+T0, cy=colTop+colH/2, R=Math.min(128,colH/2-6), lx=196, rx=W-196-bw, htY=colTop+colH+52, nlY=htY+106+74, nlH=64, H=nlY+nlH+16;
   const yOf=(arr,i)=>colTop+(colH-(arr.length*bh+(arr.length-1)*gap))/2+i*(bh+gap);
   const pos={}; cfg.L.forEach((k,i)=>pos[k]={x:lx,y:yOf(cfg.L,i)}); cfg.R.forEach((k,i)=>pos[k]={x:rx,y:yOf(cfg.R,i)});
   let s=`<svg class="ss" viewBox="0 0 ${W} ${H}" role="group" aria-label="Sơ đồ kiến trúc đơn giản">`;
   // tiêu đề hai cột và bên ngoài
   [[lx,cfg.lt],[rx,cfg.rt]].forEach(([x,t])=>s+=`<text x="${x}" y="${colTop-30}" font-size="19" font-weight="800" fill="var(--ct)">${esc(t[0])}</text><text x="${x}" y="${colTop-12}" font-size="10.5" font-weight="700" letter-spacing=".12em" fill="var(--cm)">${esc(t[1].toUpperCase())}</text>`);
+  s+=`<text x="${cx}" y="${colTop-30}" text-anchor="middle" font-size="10.5" font-weight="800" letter-spacing=".18em" fill="var(--cm)">CHUỖI TẠO GIÁ TRỊ</text>`;
   s+=`<text x="16" y="${colTop-12}" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">BÊN NGOÀI</text><text x="${W-16}" y="${colTop-12}" text-anchor="end" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">BÊN NGOÀI</text>`;
   const ext=(list,x,w,side)=>list.forEach(([t,ks],i)=>{const y=colTop+colH*(i+1)/(list.length+1);
     ks.forEach(k=>{const p=pos[k], by=p.y+bh/2; s+=side<0?`<path class="xl" d="M${x+w} ${y} C ${x+w+18} ${y}, ${lx-18} ${by}, ${lx} ${by}"/>`:`<path class="xl" d="M${rx+bw} ${by} C ${rx+bw+18} ${by}, ${x-18} ${y}, ${x} ${y}"/>`;});
@@ -1980,9 +2255,15 @@ function simpleWide(box,cfg,K1,K3){
   cfg.R.forEach((k,i)=>{const y=pos[k].y+bh/2, d=`M${rx} ${y} C ${rx-60} ${y}, ${cx+R+70} ${cy}, ${cx+R} ${cy}`;
     s+=`<path class="wr" d="${d}"/>`+sPulse(d,{off:i*.6})+sPulse(d,{red:true,rev:true,dur:5.5,off:2+i*1.4});});
   // Điều hành ở trên, Tài chính & hỗ trợ ở dưới
-  const tw=380, th=106, d1=`M${cx} ${20+th} L${cx} ${cy-R}`, d2=`M${cx} ${cy+R} L${cx} ${htY}`;
+  const tw=380, th=106, d1=`M${cx} ${T0+20+th} L${cx} ${cy-R}`, d2=`M${cx} ${cy+R} L${cx} ${htY}`;
   s+=`<path class="wr" d="${d1}"/>`+sPulse(d1,{dur:2.4})+`<path class="wr" d="${d2}"/>`+sPulse(d2,{dur:2.4,rev:true});
-  s+=cBox("cl",cx-tw/2,20,tw,th)+cBox("ht",cx-tw/2,htY,tw,th);
+  s+=`<path class="wr" d="M${cx} 58 L${cx} ${T0+20}"/>`+sOwn(cx-190,14,380,44);
+  s+=cBox("cl",cx-tw/2,T0+20,tw,th)+cBox("ht",cx-tw/2,htY,tw,th);
+  // năng lực hỗ trợ và chuỗi tạo giá trị dùng nguồn lực (lên), kết quả bồi đắp lại (xuống)
+  const u=`M${cx-26} ${nlY} L${cx-26} ${htY+th}`, dn=`M${cx+26} ${htY+th} L${cx+26} ${nlY}`;
+  s+=`<path class="wr" d="${u}"/><path class="wr" d="${dn}"/>`+sPulse(u,{dur:2.2})+sPulse(dn,{dur:2.2,off:1.1});
+  s+=`<text x="${cx-38}" y="${htY+th+40}" text-anchor="end" font-size="11" font-weight="700" fill="var(--cm)">huy động ↑</text><text x="${cx+38}" y="${htY+th+40}" font-size="11" font-weight="700" fill="var(--cm)">↓ bồi đắp</text>`;
+  s+=`<text x="16" y="${nlY-12}" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">NGUỒN LỰC CỐT LÕI · Ô ĐẬM: QUYẾT ĐỊNH VỚI LOẠI HÌNH NÀY</text>`+sRes(16,nlY,W-32,nlH);
   s+=`<path class="xl" d="M${cx+tw/2} ${htY+th/2} L${W-166} ${htY+th/2}"/>`+sExt(W-166,htY+th/2,150,"Ngân hàng, thuế");
   // trục LATTICE
   s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--c1)" stroke="var(--ct)" stroke-width="3"/>
@@ -2002,15 +2283,16 @@ function simpleNarrow(box,cfg,K1,K3){
   const W=600, bx=34, bw=W-bx-8, bh=66, gap=10, R=74; let y=10, s="", rows=[];
   const sec=(t,sub)=>{s+=`<text x="${bx}" y="${y+16}" font-size="16" font-weight="800" fill="var(--ct)">${esc(t)}</text>${sub?`<text x="${bx}" y="${y+32}" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--cm)">${esc(sub.toUpperCase())}</text>`:""}`; y+=sub?42:26;};
   const put=(k,dark)=>{if(SIMPLE_TB[k]){s+=cBox(k,bx,y,bw,106); rows.push(y+53); y+=106+gap; return;} s+=sBox(k,bx,y,bw,bh,dark); rows.push(y+bh/2); y+=bh+gap;};
-  put("cl",false); y+=6; sec(cfg.lt[0],cfg.lt[1]); cfg.L.forEach(k=>put(k,true));
+  s+=sOwn(bx,y,bw,40); y+=52; put("cl",false); y+=6; sec(cfg.lt[0],cfg.lt[1]); cfg.L.forEach(k=>put(k,true));
   const cy=y+R+14, cx=W/2;
   s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--c1)" stroke="var(--ct)" stroke-width="3"/><circle cx="${cx}" cy="${cy}" r="15" fill="#EC3013"/>`;
   s+=sNode(cx,cy-R,'data-simex="1"',"Ngoại lệ đến đúng người",[],"start",20,5,true)+sNode(cx-R,cy,`data-pf="${pfIdx("database")}"`,"Dữ liệu một nguồn",[],"end",-20,5)+sNode(cx+R,cy,`data-pf="${pfIdx("fingerprint")}"`,"Luật và ngưỡng",[],"start",20,5)+sNode(cx,cy+R,`data-pf="${pfIdx("workflow")}"`,"Team AI",["Team AI"],"start",20,5);
   rows.push(cy); y=cy+R+24; sec(cfg.rt[0],cfg.rt[1]); cfg.R.forEach(k=>put(k,false)); y+=6; put("ht",false);
-  const d=`M16 ${rows[0]} L16 ${rows[rows.length-1]}`; let w=`<path class="wr" d="${d}"/>`+sPulse(d,{dur:6,n:3})+sPulse(d,{red:true,rev:true,dur:9});
+  const rowsEnd=rows[rows.length-1]; y+=8; sec("Nguồn lực cốt lõi","ô đậm: quyết định với loại hình này"); s+=sRes(bx,y,bw,52,1); y+=NL.length*(52+14);
+  const d=`M16 ${rows[0]} L16 ${rowsEnd}`; let w=`<path class="wr" d="${d}"/>`+sPulse(d,{dur:6,n:3})+sPulse(d,{red:true,rev:true,dur:9});
   rows.forEach(r=>w+=`<path class="wr" d="M16 ${r} L${r===cy?cx-R:bx} ${r}"/>`);
   box.innerHTML=`<svg class="ss" viewBox="0 0 ${W} ${y}" role="group" aria-label="Sơ đồ kiến trúc đơn giản">${w}${s}</svg>`+simpleLegend();}
-const simpleLegend=()=>`<div class="cvleg"><span><i class="pdot"></i>Dữ liệu, việc</span><span><i class="pdot red"></i>Ngoại lệ về đúng trưởng khối</span><span><i class="hdot"></i>Người chịu trách nhiệm</span><span>${ic("bot",14)}Vai giao được cho AI</span><span><b style="font-weight:800">6</b>&nbsp;Số nghiệp vụ trong khối</span><span>AI làm theo từng tác vụ, tối đa L3</span></div>`;
+const simpleLegend=()=>`<div class="cvleg"><span><i class="pdot"></i>Dữ liệu, việc</span><span><i class="pdot red"></i>Ngoại lệ về đúng trưởng khối</span><span><i class="hdot"></i>Người chịu trách nhiệm</span><span>${ic("bot",14)}Vai giao được cho AI</span><span><b style="font-weight:800">6</b>&nbsp;Số nghiệp vụ trong khối</span><span>AI làm theo từng tác vụ, tối đa L3</span><span><b style="font-weight:800">■</b>&nbsp;Nguồn lực quyết định với loại hình</span></div>`;
 function simExHTML(){
   return `<div class="dhd"><span class="dic">${ic("triangle-alert",26)}</span><div><span class="lbl">Trục LATTICE</span><h2 id="d-title">Ngoại lệ đến đúng người</h2><p class="en">Exception routing</p></div></div>
    <div class="latx">AI làm trong luật và ngưỡng của từng tác vụ. Việc vượt ngưỡng bị chặn và chuyển cho vai có thẩm quyền của khối đó, không dồn về một người. Chiến lược và việc vượt quyền vai mới lên Ban điều hành.</div>
@@ -2026,6 +2308,7 @@ function arch(){
   const SO=["","Một","Hai","Ba","Bốn","Năm","Sáu","Bảy","Tám","Chín","Mười"]; $("arch-h1").textContent=`${SO[KHOI.length]||KHOI.length} khối nghiệp vụ, một nền tảng chung`;
   try{if(!simpMode) archView=localStorage.getItem("lattice-mophong-av")==="full"?"full":"simple";}catch(e){}
   $("arch").innerHTML=`<svg class="wires" id="arch-w" aria-hidden="true"></svg>
+   <div class="cvl">Chủ sở hữu</div><button class="ck wide ck-own" data-bmtop="1"><span class="ck-h st"><span class="nm">Chủ sở hữu / Hội đồng quản trị</span><span class="tag">Chiến lược · ngân sách · bổ nhiệm CEO · Hiến chương AI</span><span class="ki">${ic("scale",18)}</span></span></button>
    <div class="cvl">Điều hành</div>${card("cl","wide")}
    ${DD.rows.map((r,i)=>`<div class="cvl"${i?"":' id="cvl-cung"'}>${esc(DD.rowLab[i][0])} <em>${esc(DD.rowLab[i][1])}</em></div><div class="g3" style="grid-template-columns:repeat(${r.length},minmax(0,1fr));${r.length>3?"gap:34px":""}">${r.map(k=>{const t=DD.core&&DD.core[k];return card(k,t?"core"+(r.length===1?" wide":""):(r.length===1?"wide":""),t);}).join("")}</div>`).join("")}
    <div class="cvl">Năng lực hỗ trợ</div>
@@ -2039,6 +2322,8 @@ function arch(){
      <div class="ck" id="ck-ex"><div class="ck-h st"><span class="no">10</span><span class="nm">Điều gì chuyển cho người</span><span class="ki">${ic("triangle-alert",18)}</span></div>
        <div class="exl">${EXQ.map(([id,t,r])=>`<button class="exi" data-id="${id}">${ic("triangle-alert",15)}<span>${esc(t)}</span><b>${esc(ROLE_S[r])}</b></button>`).join("")}</div></div>
    </div>
+   <div class="cvl">Nguồn lực cốt lõi <em>— mỗi nguồn lực một giám đốc trông giữ; viền đậm là nguồn lực quyết định</em></div>
+   <div class="g5">${NL.map((x,i)=>{const v=NLX[model][x.id]; return `<div class="ck${v.key?" nlkey":""}"><button class="ck-h" data-nl="${x.id}" aria-label="Chi tiết nguồn lực ${esc(x.n)}"><span class="no">${"ABCDE"[i]}</span><span class="nm">${esc(x.n)}</span><span class="ki">${ic(x.ic,18)}</span></button><div class="nlk">${v.chi.slice(0,3).map(c=>`<span>· ${esc(c)}</span>`).join("")}</div><div class="tis">${v.boi.filter(id=>NV_BY[id]).slice(0,4).map(id=>tile(NV_BY[id])).join("")}</div><div class="ck-o"><i class="hdot"></i>${esc(gdName(x.gd))}</div></div>`;}).join("")}</div>
    <div class="cvleg"><span><i class="pdot"></i>Dữ liệu, việc</span><span><i class="pdot red"></i>Ngoại lệ đến người</span><span><i class="ldash"></i>Phản hồi</span><span><i class="hdot"></i>Người chịu trách nhiệm</span><span>${ic("bot",14)}Vai giao được cho AI</span><span><i class="lopt"></i>Chỉ khi cần</span></div>`;
   $("chains").innerHTML=CHUOI.map(c=>`<button class="chc" data-chain="${c.id}"><span class="cic">${ic(CHI[c.id],22)}</span><b>${esc(c.n)}</b><span class="en">${esc(c.en)}</span><span class="ow"><i class="hdot"></i>${esc(c.owner)}</span></button>`).join("");
   /* Dựng xong cả hai bản rồi mới hiện bản đang chọn: vẽ đường nối trên khung cũ sẽ lỗi. */
@@ -2257,6 +2542,7 @@ function blockHTML(k){
    ${open.length?`<div class="spec"><b>${open.length} ngoại lệ đang mở:</b> ${esc(open.map(e=>e.tx).join(" / "))}</div>`:""}
    <h3>Các nghiệp vụ</h3><div class="nvl">${nvl}</div>
    <div class="io"><div><h3>Đầu vào</h3><ul>${K.in.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div><div><h3>Đầu ra</h3><ul>${K.out.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div></div>
+   ${GD_KHOI[model][k]?`<h3>Giám đốc phụ trách</h3><div class="nvl"><button data-gd="${GD_KHOI[model][k]}"><span>${ic(GD_BY[GD_KHOI[model][k]].ic,16)} ${esc(gdName(GD_KHOI[model][k]))}</span><span>›</span></button></div>`:""}
    <h3>Người phụ trách</h3><p><i class="hdot"></i><b>${esc(ROLE[K.o])}</b>${k==="ht"?" và ba vai còn lại của khối hỗ trợ":""}. ${esc(K.nguoi)}</p>
    ${ROLE_AI[K.o]?`<p class="note" style="margin-top:6px">${RAI_NOTE}</p>`:""}
    <h3>AI làm gì</h3><p>${esc(K.ai)}</p>
@@ -2704,7 +2990,7 @@ $("dgrid").addEventListener("dragend",()=>{if(dragId){dragId=null;buildGrid();}}
 /* ---------- render all ---------- */
 function renderAll(){
   $("model-note").textContent=NOTE[model];
-  if(isPP()){useDS(model);arch();flows();hai();if(model==="dv")nganhView(); if(model==="sx"){sxDataView();sxCfgView();}}
+  if(isPP()){useDS(model);bmLoad();arch();bmView();flows();hai();if(model==="dv")nganhView(); if(model==="sx"){sxDataView();sxCfgView();}}
   setTabs(); initDash(); buildGrid();
   if(!$("drawer").hidden && $("clist")) refreshCustom();
 }
@@ -2718,7 +3004,7 @@ function selectTab(id){
   if(id==="t-arch") requestAnimationFrame(archWires);
 }
 function setTabs(){
-  const set=isPP()?(model==="dv"?["t-arch","t-flow","t-hai","t-nganh","t-dash"]:model==="sx"?["t-arch","t-flow","t-hai","t-sxdata","t-sxcfg","t-dash"]:["t-arch","t-flow","t-hai","t-dash"]):[];
+  const set=isPP()?(model==="dv"?["t-arch","t-bm","t-flow","t-hai","t-nganh","t-dash"]:model==="sx"?["t-arch","t-bm","t-flow","t-hai","t-sxdata","t-sxcfg","t-dash"]:["t-arch","t-bm","t-flow","t-hai","t-dash"]):[];
   document.querySelectorAll(".tabs button").forEach(b=>b.hidden=!set.includes(b.id));
   const cur=document.querySelector('.tabs button[aria-selected="true"]');
   if(!cur||cur.hidden) selectTab(set[0]);
@@ -2774,7 +3060,15 @@ document.addEventListener("click",e=>{
   // thương mại phân phối: khối, nền tảng, chuỗi, vai trò
   const dk=t.closest("[data-khoi]"); if(dk){openDrawer(blockHTML(dk.dataset.khoi), dk.closest("#drawer")?($("drawer").classList.contains("left")?"left":"right"):sideOf(dk)); return;}
   const di=t.closest("#drawer [data-id]"); if(di&&NV_BY[di.dataset.id]){openDrawer(nvHTML(NV_BY[di.dataset.id]), $("drawer").classList.contains("left")?"left":"right"); return;}
+  const gdb=t.closest("[data-gd]"); if(gdb){openDrawer(gdHTML(gdb.dataset.gd), gdb.closest("#drawer")?($("drawer").classList.contains("left")?"left":"right"):sideOf(gdb)); return;}
+  const nlb=t.closest("[data-nl]"); if(nlb){openDrawer(nlHTML(nlb.dataset.nl), nlb.closest("#drawer")?($("drawer").classList.contains("left")?"left":"right"):sideOf(nlb)); return;}
+  const bmr=t.closest("[data-bmr]"); if(bmr){const [i,r]=bmr.dataset.bmr.split(":"); $("d-body").innerHTML=bmPersonHTML(+i,r); return;}
   if(t.closest("#drawer")) return;
+  const bmt=t.closest("[data-bmtop]"); if(bmt){openDrawer(bmTopHTML(), sideOf(bmt)); return;}
+  const bmp=t.closest("[data-bmp]"); if(bmp){openDrawer(bmPersonHTML(+bmp.dataset.bmp), sideOf(bmp)); return;}
+  const bsz=t.closest("[data-bmsz]"); if(bsz){BM={sz:bsz.dataset.bmsz,people:bmPreset(bsz.dataset.bmsz),titles:BM.titles}; bmSave(); bmView(); return;}
+  if(t.closest("[data-bmadd]")){BM.people.push({n:"Người "+(BM.people.length+1),r:[]}); bmSave(); bmView(); return;}
+  const bdl=t.closest("[data-bmdel]"); if(bdl){BM.people.splice(+bdl.dataset.bmdel,1); bmSave(); bmView(); return;}
   const pf=t.closest("[data-pf]"); if(pf){openDrawer(platHTML(+pf.dataset.pf), sideOf(pf)); return;}
   const ch=t.closest("[data-chain]"); if(ch){chain=ch.dataset.chain; flows(); if($("p-flow").hidden){selectTab("t-flow"); window.scrollTo({top:0});} return;}
   const cvb=t.closest("[data-cvm]"); if(cvb){setCv(cvb.dataset.cvm); return;}
@@ -2796,13 +3090,16 @@ document.addEventListener("click",e=>{
 });
 document.addEventListener("change",e=>{
   const t=e.target;
+  if(t.dataset.bmc){const [i,r]=t.dataset.bmc.split(":"), p=BM.people[+i]; p.r=t.checked?gdList().map(g=>g.id).filter(x=>x===r||p.r.includes(x)):p.r.filter(x=>x!==r); bmSave(); bmView(); const nb=document.querySelector(`[data-bmc="${i}:${r}"]`); if(nb) nb.focus(); return;}
+  if(t.dataset.bmn){BM.people[+t.dataset.bmn].n=t.value.trim()||"Người "+(+t.dataset.bmn+1); bmSave(); bmView(); return;}
+  if(t.dataset.bmt){const v=t.value.trim(); if(v&&v!==GD_BY[t.dataset.bmt].n) BM.titles[t.dataset.bmt]=v; else delete BM.titles[t.dataset.bmt]; bmSave(); bmView(); $("d-title").textContent=gdName(t.dataset.bmt); return;}
   if(t.dataset.tg){setHidden(t.dataset.tg,!t.checked);buildGrid();refreshCustom(`[data-tg="${t.dataset.tg}"]`);}
   else if(t.dataset.csz){L.size[t.dataset.csz]=t.value;saveL();buildGrid();}
   else if(t.dataset.kpi){const k=t.dataset.kpi;L.kpis=L.kpis.filter(x=>x!==k);if(t.checked){L.kpis=Object.keys(KPIS).filter(x=>x===k||L.kpis.includes(x));}saveL();renderDash();}
 });
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"&&!$("drawer").hidden){closeDrawer();return;}
-  if((e.key==="Enter"||e.key===" ")&&e.target.matches('[role="button"][data-id],[role="button"][data-khoi],[role="button"][data-pf],[role="button"][data-role],[role="button"][data-step],[role="button"][data-lv],[role="button"][data-exinfo],[role="button"][data-simex],tr.row')){e.preventDefault();e.target.click();}
+  if((e.key==="Enter"||e.key===" ")&&e.target.matches('[role="button"][data-id],[role="button"][data-khoi],[role="button"][data-pf],[role="button"][data-role],[role="button"][data-step],[role="button"][data-lv],[role="button"][data-exinfo],[role="button"][data-simex],[role="button"][data-nl],[role="button"][data-bmtop],tr.row')){e.preventDefault();e.target.click();}
 });
 $("d-close").addEventListener("click",closeDrawer);
 $("scrim").addEventListener("click",closeDrawer);

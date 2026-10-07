@@ -11355,8 +11355,8 @@
   "nguon": "thu-cong"
  },
  {
-  "vi": "Thương mại &amp; hàng hóa · 8 khối, 5 chuỗi, 54 nghiệp vụ",
-  "en": "Trading &amp; goods · 8 functions, 5 value chains, 54 processes",
+  "vi": "Thương mại &amp; hàng hóa · 8 khối, 7 chuỗi, 54 nghiệp vụ",
+  "en": "Trading &amp; goods · 8 functions, 7 value chains, 54 processes",
   "nguon": "thu-cong"
  },
  {
@@ -11400,8 +11400,8 @@
   "nguon": "thu-cong"
  },
  {
-  "vi": "Dịch vụ · 8 khối, 6 chuỗi, 58 nghiệp vụ",
-  "en": "Services · 8 functions, 6 value chains, 58 processes",
+  "vi": "Dịch vụ · 8 khối, 8 chuỗi, 58 nghiệp vụ",
+  "en": "Services · 8 functions, 8 value chains, 58 processes",
   "nguon": "thu-cong"
  },
  {
@@ -11445,8 +11445,8 @@
   "nguon": "thu-cong"
  },
  {
-  "vi": "Sản xuất · 10 khối, 7 chuỗi, 71 nghiệp vụ",
-  "en": "Manufacturing · 10 functions, 7 value chains, 71 processes",
+  "vi": "Sản xuất · 10 khối, 9 chuỗi, 71 nghiệp vụ",
+  "en": "Manufacturing · 10 functions, 9 value chains, 71 processes",
   "nguon": "thu-cong"
  },
  {
@@ -11605,18 +11605,18 @@
   "nguon": "thu-cong"
  },
  {
-  "vi": "Kinh doanh (Team AI chăm sóc, bán hàng) · Vận hành & Cung ứng · Tài chính; trưởng hoạch định, vận hành có thể là AI · Mô phỏng: Thương mại, 8 khối, 5 chuỗi",
-  "en": "Sales (customer-care and sales AI teams) · Operations & Supply · Finance; planning and operations leads can be AI · Simulation: Trading, 8 functions, 5 chains",
+  "vi": "Kinh doanh (Team AI chăm sóc, bán hàng) · Vận hành & Cung ứng · Tài chính; trưởng hoạch định, vận hành có thể là AI · Mô phỏng: Thương mại, 8 khối, 7 chuỗi",
+  "en": "Sales (customer-care and sales AI teams) · Operations & Supply · Finance; planning and operations leads can be AI · Simulation: Trading, 8 functions, 7 chains",
   "nguon": "thu-cong"
  },
  {
-  "vi": "Sản phẩm & Chuyên môn (người có chứng chỉ quyết) · Kinh doanh · Vận hành (lịch, đối tác) · Mô phỏng: Dịch vụ, 8 khối, 6 chuỗi",
-  "en": "Product & Professional (certified people decide) · Sales · Operations (scheduling, partners) · Simulation: Services, 8 functions, 6 chains",
+  "vi": "Sản phẩm & Chuyên môn (người có chứng chỉ quyết) · Kinh doanh · Vận hành (lịch, đối tác) · Mô phỏng: Dịch vụ, 8 khối, 8 chuỗi",
+  "en": "Product & Professional (certified people decide) · Sales · Operations (scheduling, partners) · Simulation: Services, 8 functions, 8 chains",
   "nguon": "thu-cong"
  },
  {
-  "vi": "Vận hành & Cung ứng · Sản phẩm (R&D) · Chất lượng & An toàn, độc lập, AI chuẩn bị bằng chứng, người quyết · Tài chính · Mô phỏng: Sản xuất, 10 khối, 7 chuỗi",
-  "en": "Operations & Supply · Product (R&D) · Quality & Safety, independent: AI prepares the evidence, a person decides · Finance · Simulation: Manufacturing, 10 functions, 7 chains",
+  "vi": "Vận hành & Cung ứng · Sản phẩm (R&D) · Chất lượng & An toàn, độc lập, AI chuẩn bị bằng chứng, người quyết · Tài chính · Mô phỏng: Sản xuất, 10 khối, 9 chuỗi",
+  "en": "Operations & Supply · Product (R&D) · Quality & Safety, independent: AI prepares the evidence, a person decides · Finance · Simulation: Manufacturing, 10 functions, 9 chains",
   "nguon": "thu-cong"
  },
  {
@@ -11842,6 +11842,26 @@
  {
   "vi": "Chuyển Trưởng dịch vụ khách hàng, không tự động hóa",
   "en": "Route to the customer service lead, no automation",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Thị trường → Khách tiềm năng",
+  "en": "Market → Lead",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Khách hàng → Mua lại",
+  "en": "Customer → Repurchase",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Khách hàng → Tái sử dụng",
+  "en": "Customer → Renewal",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Khách hàng → Đặt lại",
+  "en": "Customer → Reorder",
   "nguon": "thu-cong"
  }
 ]

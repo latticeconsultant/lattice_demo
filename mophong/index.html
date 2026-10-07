@@ -488,7 +488,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .hdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#EC3013;margin-right:7px;vertical-align:1px}
 .cvleg .hdot{margin-right:0}
 .rai{display:inline-flex;vertical-align:-2px;margin-left:5px;opacity:.85}
-.chains{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.chains{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
 .chc{display:grid;gap:4px;align-content:start;text-align:left;background:var(--card);border:1px solid var(--line);padding:14px;color:var(--ink)}
 .chc:hover{border-color:var(--ink)}
 .chc .cic{width:40px;height:40px;display:grid;place-items:center;background:var(--ink);color:var(--inv);margin-bottom:6px}
@@ -1297,6 +1297,19 @@ const TM_CHUOI=[
    {l:"tc",t:"Ghi sổ phải trả",w:"AI L3",nv:"tc_acc",end:"Đã thanh toán"}],
   fb:{from:8,to:2,t:"Đúng hạn, đủ hàng, chất lượng → điểm nhà cung cấp cho lần chọn sau"},
   notes:["Không trả tiền trước khi đơn mua, phiếu nhận và hóa đơn khớp nhau. Chênh lệch quay về mua hàng xử lý, không tự trả.","Người tạo đơn mua, người duyệt chi và người thực hiện chi tách riêng, kể cả khi AI làm một phần."]},
+ {id:"m2l",s:"Thị trường → Khách tiềm năng",n:"Từ thị trường đến khách tiềm năng",en:"Market-to-Lead",owner:"Trưởng marketing",
+  flow:"Thấu hiểu → định vị → chiến dịch → nội dung → kênh → khách tiềm năng → bàn giao → đo, học lại.",
+  lanes:["mk","nh","kd"],
+  steps:[{l:"mk",t:"Nghiên cứu thị trường, thấu hiểu khách",w:"AI L3 tổng hợp · người kết luận",nv:"mk_res"},
+   {l:"mk",t:"Định vị, thông điệp cho mùa bán",k:"chk",w:"AI L2 · người duyệt",nv:"mk_brand",x:"Đổi định vị, thông điệp thương hiệu",to:"mk"},
+   {l:"nh",t:"Thông tin sản phẩm, điểm bán hàng",w:"AI L3 từ dữ liệu sản phẩm",nv:"nh_pim"},
+   {l:"mk",t:"Kế hoạch chiến dịch, ngân sách",k:"chk",w:"AI L2 · người duyệt",nv:"mk_camp",x:"Chi vượt ngân sách chiến dịch",to:"mk"},
+   {l:"mk",t:"Sản xuất nội dung",k:"chk",w:"AI L2 · người duyệt trước khi đăng",nv:"mk_content",x:"Công bố công dụng, so sánh đối thủ, hình người thật",to:"pc"},
+   {l:"mk",t:"Chương trình tại kênh, đại lý, sàn",w:"AI L3 trong ngân sách",nv:"mk_trade"},
+   {l:"mk",t:"Thu hút, chấm điểm khách tiềm năng",w:"AI L3",nv:"mk_lead"},
+   {l:"kd",t:"Nhận khách đủ điều kiện, sang Cơ hội → Đơn hàng",w:"AI L3",nv:"kd_pipe",end:"Khách tiềm năng đủ điều kiện"}],
+  fb:{from:8,to:1,t:"Chuyển đổi, chi phí trên khách theo kênh → chiến dịch sau"},
+  notes:["AI làm nhanh phần nghiên cứu, nội dung, đăng bài và đo; người giữ định vị, duyệt nội dung trước khi ra ngoài và giữ ngân sách.","Bình luận tiêu cực, khủng hoảng truyền thông đi thẳng tới Trưởng marketing; nội dung có công bố về sản phẩm qua pháp chế."]},
  {id:"lto",s:"Cơ hội → Đơn hàng",n:"Từ cơ hội đến đơn hàng",en:"Lead-to-Order",owner:"Trưởng kinh doanh",
   flow:"Thu hút → đánh giá cơ hội → tư vấn → báo giá → chốt đơn.",
   lanes:["mk","kd"],
@@ -1334,7 +1347,19 @@ const TM_CHUOI=[
    {l:"dv",t:"Báo khách, đóng yêu cầu",w:"AI L3",nv:"dv_case"},
    {l:"nh",t:"Gom lỗi lặp lại để cải tiến",w:"AI L3 gom · người chọn việc",nv:"dv_voc",end:"Đã giải quyết"}],
   fb:{from:7,ext:"ngành hàng, marketing, nguồn cung",t:"Phản hồi khách hàng"},
-  notes:["Dịch vụ khách hàng giữ điều kiện và lời với khách; kho vận nhận, kiểm và xử lý hàng trả về.","Mỗi yêu cầu đã đóng thành dữ liệu cải tiến cho ngành hàng và nhà cung cấp."]}
+  notes:["Dịch vụ khách hàng giữ điều kiện và lời với khách; kho vận nhận, kiểm và xử lý hàng trả về.","Mỗi yêu cầu đã đóng thành dữ liệu cải tiến cho ngành hàng và nhà cung cấp."]},
+ {id:"c2g",s:"Khách hàng → Mua lại",n:"Từ khách hàng đến mua lại",en:"Customer-to-Repurchase (CRM)",owner:"Trưởng dịch vụ khách hàng, phối hợp kinh doanh",
+  flow:"Hồ sơ khách → phân khúc → chăm sóc theo vòng đời → nhắc mua lại → cảnh báo rời bỏ → khách trọng điểm → giới thiệu.",
+  lanes:["dv","mk","kd"],
+  steps:[{l:"dv",t:"Hợp nhất hồ sơ khách sau đơn đầu",w:"AI L3",nv:"dv_keep"},
+   {l:"mk",t:"Phân khúc, chấm sức khỏe khách",w:"AI L3",nv:"mk_res"},
+   {l:"dv",t:"Chăm sóc theo vòng đời: hướng dẫn, hỏi thăm",w:"AI L3 theo kịch bản đã duyệt",nv:"dv_sup"},
+   {l:"mk",t:"Nhắc mua lại, ưu đãi theo phân khúc",k:"chk",w:"AI L3 trong khung ưu đãi",nv:"mk_camp",x:"Ưu đãi ngoài khung",to:"kd"},
+   {l:"dv",t:"Phát hiện dấu hiệu rời bỏ",k:"chk",w:"AI L3 phát hiện · người liên hệ",nv:"dv_keep",x:"Khách giá trị cao sắp rời đi",to:"dv"},
+   {l:"kd",t:"Chăm sóc khách trọng điểm, mở rộng",w:"Người dẫn · AI chuẩn bị",nv:"kd_kam"},
+   {l:"dv",t:"Xin đánh giá, mời giới thiệu",w:"AI L3",nv:"dv_voc",end:"Khách quay lại, giới thiệu"}],
+  fb:{from:7,to:2,t:"Lý do quay lại, rời đi → phân khúc và kịch bản"},
+  notes:["CRM là vòng đời khách, không phải danh bạ: mỗi khách có một hồ sơ, một trạng thái sức khỏe và một kịch bản chăm sóc.","Khách có dấu hiệu rời đi, khách trọng điểm: người liên hệ trực tiếp; AI chuẩn bị lịch sử và đề xuất."]}
 ];
 let chain="pta", haiK="all", haiR=null;
 
@@ -1369,12 +1394,14 @@ const TM_ROLE_AI={hd:1,mk:1,vh:1,dv:1,hc:1};
 const RAI_NOTE="Vai này giao được cho AI. Khi AI giữ vai, AI chỉ quyết trong luật và ngưỡng của vai; việc vượt quyền vai chuyển lên giám đốc phụ trách, rồi Ban điều hành.";
 const rai=r=>ROLE_AI[r]?`<span class="rai" title="${RAI_NOTE}">${ic("bot",14)}</span>`:"";
 const rmk=(r,short)=>`<i class="hdot"></i>${esc((short?ROLE_S:ROLE)[r])}${rai(r)}`;
-const TM_CHI={pta:"package",stp:"credit-card",lto:"magnet",otc:"receipt",ctr:"headset"};
+const TM_CHI={pta:"package",stp:"credit-card",m2l:"megaphone",lto:"magnet",otc:"receipt",ctr:"headset",c2g:"heart-handshake"};
 const TM_STS={pta:["Số bán","Dự báo","Cân đối cung–cầu","Kế hoạch mua","Duyệt vốn","Chốt nguồn","Đặt mua, nhập kho","Phân bổ"],
  stp:["Nhu cầu mua","So sánh báo giá","Chốt hợp đồng","Phát đơn mua","Nhận, kiểm hàng","Đối chiếu 3 chiều","Duyệt chi","Ghi sổ phải trả"],
  lto:["Chiến dịch","Thu khách","Chấm điểm","Tư vấn","Báo giá","Kiểm chiết khấu","Hợp đồng sỉ","Chốt đơn"],
  otc:["Đơn vào","Kiểm tra đơn","Kiểm tín dụng","Giữ hàng","Đóng gói","Giao, xác nhận","Hóa đơn, thu tiền","Đối soát, ghi sổ"],
- ctr:["Tiếp nhận","Xác minh","Xét điều kiện","Nhận hàng trả","Hoàn tiền","Đóng yêu cầu","Cải tiến"]};
+ ctr:["Tiếp nhận","Xác minh","Xét điều kiện","Nhận hàng trả","Hoàn tiền","Đóng yêu cầu","Cải tiến"],
+ m2l:["Thấu hiểu","Định vị","Thông tin SP","Chiến dịch","Nội dung","Tại kênh","Khách tiềm năng","Bàn giao"],
+ c2g:["Hồ sơ khách","Phân khúc","Chăm sóc","Nhắc mua lại","Cảnh báo rời bỏ","Khách trọng điểm","Giới thiệu"]};
 const TM_EXQ=[["kd_price","Chiết khấu ngoài khung","kd"],["hd_pol","Vượt trần vốn tồn kho","tc"],["dv_ret","Bồi hoàn vượt hạn mức","dv"],["nh_src","Nhà cung cấp mới","mh"],["kv_om","Thiếu hàng sau khi nhận đơn","vh"],["cl_strat","Đổi chính sách lớn","ceo"]];
 const LV=[["eye","Quan sát","AI chỉ thu thập và báo cáo, không tạo đầu ra.","Người làm toàn bộ"],
  ["lightbulb","Đề xuất","AI tra cứu, tổng hợp, phân tích và soạn thảo; người chọn và làm.","≈ A1 · Hỗ trợ"],
@@ -1546,6 +1573,18 @@ DS.dv={
  pfNote:"Dữ liệu dùng chung không có nghĩa ai và AI nào cũng xem được mọi hồ sơ. Hồ sơ chuyên môn nhạy cảm chỉ mở theo nhiệm vụ. Lịch sử CRM tách khỏi hồ sơ thực hiện chuyên môn; không chép nội dung nhạy cảm vào báo cáo marketing hay công cụ AI chung.",
  LANE:{cl:"Quản trị & Điều hành",tk:"Thiết kế dịch vụ",mk:"Marketing & Kênh",kd:"Kinh doanh & Cam kết",nl:"Điều phối nguồn lực",th:"Thực hiện & Chuyên môn",tn:"Trải nghiệm khách hàng",tc:"Tài chính & Kế toán"},
  CHUOI:[
+ {id:"m2l",s:"Thị trường → Khách tiềm năng",n:"Từ thị trường đến khách tiềm năng",en:"Market-to-Lead",owner:"Trưởng marketing",flow:"Thấu hiểu → định vị → gói dịch vụ → chiến dịch → nội dung → kênh giới thiệu → khách tiềm năng → bàn giao.",
+  lanes:["mk","tk","kd"],
+  steps:[{l:"mk",t:"Nghiên cứu nhu cầu, thấu hiểu khách",w:"AI L3 tổng hợp · người kết luận",nv:"mk_res"},
+   {l:"mk",t:"Định vị, thông điệp dịch vụ",k:"chk",w:"AI L2 · người duyệt",nv:"mk_brand",x:"Đổi định vị, thông điệp thương hiệu",to:"mk"},
+   {l:"tk",t:"Gói dịch vụ, hành trình khách để truyền thông",w:"AI L2 · người duyệt",nv:"tk_pkg"},
+   {l:"mk",t:"Kế hoạch chiến dịch, ngân sách",k:"chk",w:"AI L2 · người duyệt",nv:"mk_camp",x:"Chi vượt ngân sách chiến dịch",to:"mk"},
+   {l:"mk",t:"Nội dung, chứng thực của khách",k:"chk",w:"AI L2 · người duyệt trước khi đăng",nv:"mk_content",x:"Chứng thực, kết quả chuyên môn, hình khách",to:"pc"},
+   {l:"mk",t:"Kênh, đối tác giới thiệu",w:"AI L3 trong chính sách",nv:"mk_ref"},
+   {l:"mk",t:"Thu hút, chấm điểm khách tiềm năng",w:"AI L3",nv:"mk_lead"},
+   {l:"kd",t:"Tiếp nhận nhu cầu, sang Nhu cầu → Cam kết",w:"AI L3",nv:"kd_intake",end:"Khách tiềm năng đủ điều kiện"}],
+  fb:{from:8,to:1,t:"Khách đến từ kênh nào, chuyển đổi ra sao → chiến dịch sau"},
+  notes:["Không quảng cáo kết quả chuyên môn quá mức; chứng thực của khách cần đồng ý và qua pháp chế.","AI làm nghiên cứu, nội dung, đăng và đo; người giữ định vị, duyệt nội dung và ngân sách."]},
  {id:"i2c",s:"Nhu cầu → Cam kết",n:"Từ nhu cầu đến cam kết dịch vụ",en:"Inquiry-to-Commitment",owner:"Trưởng kinh doanh, phối hợp chuyên môn",flow:"Tiếp nhận → đánh giá phù hợp → xác định phạm vi → báo giá, điều kiện → xác nhận.",
   lanes:["mk","kd","th"],
   steps:[{l:"mk",t:"Khách tiềm năng đến từ các kênh",w:"AI L3",nv:"mk_lead"},
@@ -1612,7 +1651,18 @@ DS.dv={
    {l:"tn",t:"Báo khách, đóng yêu cầu",w:"AI L3",nv:"tn_case"},
    {l:"tk",t:"Gom lỗi lặp lại, cải tiến dịch vụ",w:"AI L3 gom · người chọn việc",nv:"tn_voc",end:"Đã khắc phục"}],
   fb:{from:7,ext:"thiết kế dịch vụ",t:"Phản hồi khách hàng"},
-  notes:["Trải nghiệm tiếp nhận và giao tiếp; chuyên môn xử lý vấn đề chuyên môn; tài chính hoàn tiền theo quyết định đã duyệt.","Sự cố khẩn cấp đi thẳng tới người phụ trách chuyên môn, không chờ hàng đợi thông thường hay chờ CEO."]}
+  notes:["Trải nghiệm tiếp nhận và giao tiếp; chuyên môn xử lý vấn đề chuyên môn; tài chính hoàn tiền theo quyết định đã duyệt.","Sự cố khẩn cấp đi thẳng tới người phụ trách chuyên môn, không chờ hàng đợi thông thường hay chờ CEO."]},
+ {id:"c2g",s:"Khách hàng → Tái sử dụng",n:"Từ khách hàng đến tái sử dụng",en:"Customer-to-Renewal (CRM)",owner:"Trưởng trải nghiệm khách hàng, phối hợp kinh doanh",flow:"Theo dõi sau dịch vụ → hỗ trợ → phân khúc → nhắc gia hạn → cảnh báo rời bỏ → mở rộng → giới thiệu.",
+  lanes:["tn","mk","kd"],
+  steps:[{l:"tn",t:"Theo dõi sau dịch vụ, hỏi kết quả",w:"AI L3",nv:"tn_follow"},
+   {l:"tn",t:"Hỗ trợ khi khách đang dùng",w:"AI L3 · việc chuyên môn do người",nv:"tn_in"},
+   {l:"mk",t:"Phân khúc, chấm sức khỏe khách",w:"AI L3",nv:"mk_res"},
+   {l:"tn",t:"Nhắc gia hạn, lịch hẹn tiếp, gói tiếp theo",k:"chk",w:"AI L3 trong khung",nv:"tn_keep",x:"Ưu đãi, gia hạn ngoài khung",to:"kd"},
+   {l:"tn",t:"Phát hiện dấu hiệu rời bỏ",k:"chk",w:"AI L3 phát hiện · người liên hệ",nv:"tn_keep",x:"Khách giá trị cao chưa quay lại",to:"tn"},
+   {l:"kd",t:"Cơ hội mở rộng, quan hệ dài hạn",w:"Người dẫn · AI chuẩn bị",nv:"kd_opp"},
+   {l:"tn",t:"Xin đánh giá, mời giới thiệu",w:"AI L3",nv:"tn_voc",end:"Khách gia hạn, giới thiệu"}],
+  fb:{from:7,to:3,t:"Lý do gia hạn, rời đi → phân khúc và kịch bản"},
+  notes:["Dịch vụ sống bằng khách quay lại: mỗi khách có lịch theo dõi, trạng thái sức khỏe và kịch bản gia hạn.","Khách giá trị cao có dấu hiệu rời đi: người liên hệ trực tiếp; AI chuẩn bị lịch sử và đề xuất."]}
  ],
  NVI:{cl_strat:["compass","Chiến lược"],cl_plan:["calendar-check","Kế hoạch"],cl_perf:["gauge","Hiệu quả"],cl_risk:["shield-alert","Rủi ro"],cl_change:["rocket","Cải tiến mô hình"],
   tk_port:["layout-grid","Danh mục dịch vụ"],tk_pkg:["route","Gói & Hành trình"],tk_proc:["workflow","Quy trình"],tk_std:["award","Tiêu chuẩn"],tk_cost:["calculator","Chi phí & Giá"],tk_know:["book-open","Tri thức"],
@@ -1629,13 +1679,15 @@ DS.dv={
  KNO:{cl:"01",tk:"02",mk:"03",kd:"04",nl:"05",th:"06",tn:"07",ht:"08"},
  GRI:{tc:"receipt",ns:"users",pc:"shield-check",hc:"building-2"},
  PFI:[["database","Dữ liệu chủ"],["folder-open","Hồ sơ dịch vụ"],["book-open","Tri thức"],["app-window","Hệ thống"],["workflow","Điều phối"],["fingerprint","Quyền & lưu vết"]],
- CHI:{i2c:"signature",p2r:"calendar-clock",c2c:"badge-check",b2c:"receipt",p2p:"handshake",c2r:"headset"},
+ CHI:{m2l:"megaphone",i2c:"signature",p2r:"calendar-clock",c2c:"badge-check",b2c:"receipt",p2p:"handshake",c2r:"headset",c2g:"heart-handshake"},
  STS:{i2c:["Khách tiềm năng","Tiếp nhận","Điều kiện hành chính","Xác nhận chuyên môn","Phạm vi, đề xuất","Báo giá","Xác nhận dịch vụ"],
   p2r:["Yêu cầu nguồn lực","Dự báo","Cân đối công suất","Phân công","Đối tác xác nhận","Vật tư, địa điểm","Kiểm sẵn sàng"],
   c2c:["Bàn giao","Sẵn sàng","Hướng dẫn khách","Thực hiện","Tiến độ","Rà soát chất lượng","Hồ sơ kết quả","Xác nhận hoàn thành"],
   b2c:["Điều kiện thanh toán","Cọc, trả trước","Đạt mốc","Hóa đơn","Thu tiền","Hủy, hoàn tiền","Đối chiếu, ghi nhận"],
   p2p:["Nhu cầu đối tác","Chọn đối tác","Hợp đồng, đặt chỗ","Đối tác xác nhận","Xác nhận đã làm","Đối chiếu 3 chiều","Thanh toán"],
-  c2r:["Tiếp nhận","Phân loại","Chuyên môn xem","Phương án","Hoàn tiền","Đóng yêu cầu","Cải tiến"]},
+  c2r:["Tiếp nhận","Phân loại","Chuyên môn xem","Phương án","Hoàn tiền","Đóng yêu cầu","Cải tiến"],
+  m2l:["Thấu hiểu","Định vị","Gói dịch vụ","Chiến dịch","Nội dung","Kênh giới thiệu","Khách tiềm năng","Bàn giao"],
+  c2g:["Theo dõi","Hỗ trợ","Phân khúc","Gia hạn","Cảnh báo rời bỏ","Mở rộng","Giới thiệu"]},
  EXQ:[["kd_prop","Giá, phạm vi ngoài chuẩn","kd"],["nl_part","Đối tác chưa xác nhận","dt"],["th_qc","Sai sót chuyên môn, an toàn","cm"],["th_inc","Sự cố khẩn cấp: đi thẳng","cm"],["tc_pay","Hoàn tiền vượt hạn mức","tc"],["pc_data","Quyền dữ liệu, hợp đồng","pc"],["cl_strat","Vượt thẩm quyền","ceo"]],
  rows:[["tk","mk","kd"],["tn","th","nl"]],
  rowLab:[["Thiết kế và tạo nhu cầu","— từ dịch vụ chuẩn đến cam kết"],["Thực hiện","— nguồn lực sẵn sàng, làm đúng, khách hài lòng"]],
@@ -1820,6 +1872,16 @@ DS.sx={
  pfNote:"Phân biệt kế hoạch, giao dịch thực tế và đề xuất của AI; phân biệt tồn vật lý, trạng thái chất lượng và lượng có thể cam kết. Quyền của AI trong hệ thống quản trị tách khỏi quyền điều khiển máy; không suy diễn quyền điều khiển từ quyền đọc dữ liệu.",
  LANE:{cl:"Quản trị & Điều hành",kd:"Kinh doanh & Nhu cầu",kt:"Sản phẩm & Kỹ thuật",hd:"Hoạch định",mh:"Mua hàng",sx:"Sản xuất – Xưởng",qa:"Chất lượng",tb:"Thiết bị & An toàn",kv:"Kho vận & Giao hàng",tc:"Tài chính"},
  CHUOI:[
+ {id:"m2l",s:"Thị trường → Khách tiềm năng",n:"Từ thị trường đến khách tiềm năng",en:"Market-to-Lead",owner:"Trưởng kinh doanh, marketing do Giám đốc Truyền thông – Marketing",flow:"Thị trường → định vị, hồ sơ năng lực → tài liệu kỹ thuật → chiến dịch → kênh, đại lý → yêu cầu đủ điều kiện.",
+  lanes:["kd","kt"],
+  steps:[{l:"kd",t:"Nghiên cứu thị trường, ngành khách hàng",w:"AI L3 tổng hợp · người kết luận",nv:"kd_mkt"},
+   {l:"kd",t:"Định vị, hồ sơ năng lực, thông điệp",k:"chk",w:"AI L2 · người duyệt",nv:"kd_mkt",x:"Công bố năng lực, chứng nhận, cam kết kỹ thuật",to:"kt"},
+   {l:"kt",t:"Tài liệu kỹ thuật, thông số cho bán hàng",w:"AI L2 · người duyệt",nv:"kt_wi"},
+   {l:"kd",t:"Chiến dịch: hội chợ, catalogue, nội dung số",k:"chk",w:"AI L2 · người duyệt",nv:"kd_mkt",x:"Chi vượt ngân sách chiến dịch",to:"kd"},
+   {l:"kd",t:"Kênh, đại lý, nhà phân phối",w:"AI L3 trong chính sách",nv:"kd_acc"},
+   {l:"kd",t:"Thu nhận, chấm điểm yêu cầu, sang báo giá",w:"AI L3",nv:"kd_req",end:"Yêu cầu đủ điều kiện"}],
+  fb:{from:6,to:1,t:"Ngành, sản phẩm nào thắng → thông điệp sau"},
+  notes:["Bán cho doanh nghiệp: thông điệp dựa trên năng lực và thông số đã được kỹ thuật duyệt, không hứa vượt khả năng nhà máy.","AI tổng hợp thị trường, soạn tài liệu, đo hiệu quả kênh; người giữ định vị, cam kết kỹ thuật và ngân sách."]},
  {id:"i2i",s:"Ý tưởng → Sẵn sàng SX",n:"Từ ý tưởng đến sẵn sàng sản xuất",en:"Idea-to-Industrialization",owner:"Trưởng sản phẩm – kỹ thuật",flow:"Yêu cầu → thiết kế → thử nghiệm → sản xuất thử → phát hành kỹ thuật → chuyển giao.",
   lanes:["kd","kt","sx","qa"],
   steps:[{l:"kd",t:"Yêu cầu sản phẩm từ thị trường, khách hàng",w:"AI L2",nv:"kd_req"},
@@ -1896,7 +1958,17 @@ DS.sx={
    {l:"qa",t:"Kiểm tra, hiệu chuẩn sau sửa",k:"chk",w:"Người xác nhận",nv:"tb_cal"},
    {l:"sx",t:"Bàn giao máy cho sản xuất",w:"Người ký bàn giao",nv:"tb_cm",end:"Thiết bị sẵn sàng"}],
   fb:{from:6,to:1,t:"Lịch sử hỏng → độ tin cậy, lịch bảo trì"},
-  notes:["Dừng khẩn cấp, liên động và bảo vệ máy thuộc hệ thống an toàn được thiết kế riêng; AI hội thoại không thay thế.","Sự cố khẩn cấp xử lý trực tiếp tại nhà máy, không chờ hàng đợi CEO."]}
+  notes:["Dừng khẩn cấp, liên động và bảo vệ máy thuộc hệ thống an toàn được thiết kế riêng; AI hội thoại không thay thế.","Sự cố khẩn cấp xử lý trực tiếp tại nhà máy, không chờ hàng đợi CEO."]},
+ {id:"c2g",s:"Khách hàng → Đặt lại",n:"Từ khách hàng đến đơn đặt lại",en:"Customer-to-Reorder (CRM)",owner:"Trưởng kinh doanh, phối hợp kho vận và chất lượng",flow:"Hồ sơ khách → sau bán, bảo hành → phản hồi chất lượng → theo dõi sức mua → cảnh báo giảm đơn → đơn đặt lại.",
+  lanes:["kd","kv","qa"],
+  steps:[{l:"kd",t:"Hồ sơ khách, đại lý sau đơn đầu",w:"AI L3",nv:"kd_acc"},
+   {l:"kv",t:"Hỗ trợ sau bán, bảo hành",k:"chk",w:"AI L3 · việc kỹ thuật do người",nv:"kv_as",x:"Bảo hành ngoài chính sách",to:"kv"},
+   {l:"qa",t:"Gom phản hồi chất lượng từ khách",k:"chk",w:"AI L3 gom · người kết luận",nv:"qa_cmp",x:"Khiếu nại chất lượng, thu hồi",to:"qa"},
+   {l:"kd",t:"Theo dõi sức mua, dự báo đơn lặp lại",w:"AI L3",nv:"kd_acc"},
+   {l:"kd",t:"Phát hiện khách giảm đơn bất thường",k:"chk",w:"AI L3 phát hiện · người liên hệ",nv:"kd_acc",x:"Đại lý lớn giảm đơn bất thường",to:"kd"},
+   {l:"kd",t:"Chào đơn đặt lại, sang Đơn hàng → Thu tiền",w:"AI L3",nv:"kd_req",end:"Đơn đặt lại"}],
+  fb:{from:6,to:1,t:"Lý do đặt lại, giảm đơn → chính sách khách và kênh"},
+  notes:["Khách doanh nghiệp quay lại vì chất lượng ổn định và giao đúng hẹn: phản hồi chất lượng đi thẳng tới Trưởng chất lượng.","Đại lý lớn giảm đơn: người liên hệ trực tiếp; AI chuẩn bị lịch sử mua, khiếu nại và đề xuất."]}
  ],
  NVI:{cl_strat:["compass","Chiến lược"],cl_plan:["calendar-check","Kế hoạch"],cl_inv:["gauge","Đầu tư"],cl_risk:["shield-alert","Rủi ro"],cl_ci:["rocket","Cải tiến"],
   kd_mkt:["megaphone","Marketing"],kd_acc:["network","Khách & Kênh"],kd_req:["clipboard-list","Yêu cầu"],kd_quote:["file-check","Báo giá, đơn"],kd_chg:["git-branch","Đổi đơn"],kd_atp:["calendar-range","Ngày giao"],
@@ -1913,14 +1985,16 @@ DS.sx={
  KNO:{cl:"M01",kd:"M02",kt:"M03",hd:"M04",mh:"M05",sx:"M06",qa:"M07",tb:"M08",kv:"M09",ht:"M10"},
  GRI:{tc:"receipt",ns:"users",pc:"shield-check",hc:"building-2"},
  PFI:[["database","Dữ liệu miền"],["server","Hệ thống"],["cpu","Hiện trường"],["book-open","Tri thức"],["workflow","Điều phối AI"],["fingerprint","Quyền & lưu vết"]],
- CHI:{i2i:"flask-conical",d2p:"calendar-clock",s2p:"credit-card",p2r:"factory",o2c:"receipt",n2c:"shield-alert",m2r:"wrench"},
+ CHI:{m2l:"megaphone",c2g:"heart-handshake",i2i:"flask-conical",d2p:"calendar-clock",s2p:"credit-card",p2r:"factory",o2c:"receipt",n2c:"shield-alert",m2r:"wrench"},
  STS:{i2i:["Yêu cầu","Thiết kế","BOM & Routing","Thử nghiệm","Sản xuất thử","Đánh giá chất lượng","Phát hành kỹ thuật","Chuyển giao"],
   d2p:["Nhu cầu, đơn","Dự báo","Cân đối S&OP","Kế hoạch tổng thể","MRP","Đơn mua đề xuất","Kiểm công suất","Ưu tiên cho xưởng"],
   s2p:["Chọn nguồn","Đơn mua","Nhận hàng","Kiểm đầu vào","Đối chiếu 3 chiều","Thanh toán"],
   p2r:["Lệnh","Cổng sẵn sàng","Cấp vật tư","Công đoạn / Mẻ","Kiểm công đoạn","Ghi nhận","Cổng xuất xưởng","Nhập kho TP"],
   o2c:["Nhận đơn","Xác nhận ngày giao","Phân bổ / Sản xuất","Xuất hàng","Giao hàng","Hóa đơn","Thu tiền"],
   n2c:["Phát hiện","Cách ly","Quyết định xử lý","Nguyên nhân","Khắc phục","Xác minh"],
-  m2r:["Phát hiện, tới hạn","Bố trí dừng","Kiểm soát an toàn","Bảo trì","Kiểm tra sau sửa","Bàn giao máy"]},
+  m2r:["Phát hiện, tới hạn","Bố trí dừng","Kiểm soát an toàn","Bảo trì","Kiểm tra sau sửa","Bàn giao máy"],
+  m2l:["Thị trường","Định vị","Tài liệu KT","Chiến dịch","Kênh, đại lý","Yêu cầu"],
+  c2g:["Hồ sơ khách","Sau bán","Phản hồi CL","Sức mua","Cảnh báo","Đặt lại"]},
  EXQ:[["kt_ecm","Phiên bản, vật tư thay thế","kt"],["hd_crp","Thiếu vật tư, công suất","hd"],["qa_rel","Không phù hợp, xuất xưởng","qa"],["tb_cm","Máy hỏng, bảo trì","bt"],["tb_inc","An toàn: xử lý tại hiện trường","at"],["kd_atp","Giá, cam kết giao","kd"],["tc_ap","Thanh toán, chi phí","tc"],["cl_strat","Vượt thẩm quyền","ceo"]],
  rows:[["kd","kt","hd","mh"],["tb","sx","qa"],["kv"]],
  rowLab:[["Nhu cầu, kỹ thuật & chuẩn bị","— thiết kế đúng, hoạch định khả thi"],["Trung tâm nhà máy","— thực hiện có kiểm soát, chất lượng được xác nhận"],["Kho vận & giao hàng","— giao hàng đáng tin cậy"]],
@@ -2957,8 +3031,11 @@ function buildGrid(){
       <div class="wb" id="wb-${id}"></div></section>`;}).join(""):`<div class="w w-f"><div class="wb empty">Bảng đang trống. Bấm Tùy biến bảng để bật các ô.</div></div>`;
   renderDash();
 }
+/* Thứ, ngày tháng theo lịch thật; giờ là đồng hồ mô phỏng. */
+const THU=["Chủ nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"];
+const ngayNay=()=>{const d=new Date(),p=n=>String(n).padStart(2,"0");return `${THU[d.getDay()]}, ${p(d.getDate())}/${p(d.getMonth()+1)}/${d.getFullYear()}`;};
 function renderDash(){
-  $("clock").textContent=hhmm(T0+Math.min(D.step,NSTEP-1)*STEP);
+  $("clock").textContent=ngayNay()+" | "+hhmm(T0+Math.min(D.step,NSTEP-1)*STEP);
   L.order.forEach(id=>{const b=$("wb-"+id); if(b && WIDGETS[id]) WIDGETS[id].r(b);});
 }
 function move(id,dir){const vis=L.order.filter(x=>!L.hidden.includes(x)),i=vis.indexOf(id),j=i+dir; if(j<0||j>=vis.length)return;

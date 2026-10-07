@@ -506,14 +506,16 @@ See the full architecture and operating structure for each business type: lattic
 
 ### 14.1 Trade & goods (e-commerce, distribution)
 
-**8 units, 5 chains, 54 processes.** Six value-chain units: Category Management & Strategic Sourcing; Demand, Supply & Inventory Planning; Market Development, Marketing & Growth; Sales & Channel Management; Order Management, Warehousing & Logistics; Customer Service & Relationship Development. Plus Governance & Executive Management, and Support Functions.
+**8 units, 7 chains, 54 processes.** Six value-chain units: Category Management & Strategic Sourcing; Demand, Supply & Inventory Planning; Market Development, Marketing & Growth; Sales & Channel Management; Order Management, Warehousing & Logistics; Customer Service & Relationship Development. Plus Governance & Executive Management, and Support Functions.
 
 ```
 Plan-to-Availability
 Source-to-Pay
+Market-to-Lead
 Lead-to-Order
 Order-to-Cash
 Case-to-Resolution
+Customer-to-Repurchase (CRM)
 ```
 
 Deciding resources: **working capital** (within Capital & Assets) and **Market & Relationships**.
@@ -522,15 +524,17 @@ The real bottleneck: **working capital**, not operating capacity.
 
 ### 14.2 Services
 
-**8 units, 6 chains, 58 processes.** Six value-chain units: Service Portfolio, Design & Standards; Market Development, Marketing & Channels; Needs Assessment, Sales & Service Contracting; Capacity Planning & Resource Coordination; Service Delivery & Professional Governance; Customer Experience & Relationship Development.
+**8 units, 8 chains, 58 processes.** Six value-chain units: Service Portfolio, Design & Standards; Market Development, Marketing & Channels; Needs Assessment, Sales & Service Contracting; Capacity Planning & Resource Coordination; Service Delivery & Professional Governance; Customer Experience & Relationship Development.
 
 ```
+Market-to-Lead
 Inquiry-to-Commitment
 Plan-to-Readiness
 Commitment-to-Completion
 Contract/Booking-to-Cash
 Partner-to-Pay
 Case-to-Resolution
+Customer-to-Renewal (CRM)
 ```
 
 Deciding resources: **People & expertise** and **Reputation**.
@@ -539,9 +543,10 @@ The real bottleneck: **the expert's billable hours** → the strategy must be to
 
 ### 14.3 Manufacturing (the Control Tower model)
 
-**10 units, 7 chains, 71 processes.** Eight value-chain units: Market, Sales & Demand Management; Product Development & Manufacturing Engineering; Manufacturing & Supply Chain Planning; Sourcing & Procurement; Production Operations & Shop Floor Control; Quality Management & Traceability; Asset Reliability, Maintenance & Plant Safety; Warehousing, Distribution & After-Sales Service.
+**10 units, 9 chains, 71 processes.** Eight value-chain units: Market, Sales & Demand Management; Product Development & Manufacturing Engineering; Manufacturing & Supply Chain Planning; Sourcing & Procurement; Production Operations & Shop Floor Control; Quality Management & Traceability; Asset Reliability, Maintenance & Plant Safety; Warehousing, Distribution & After-Sales Service.
 
 ```
+Market-to-Lead
 Idea-to-Industrialization
 Demand-to-Feasible-Plan
 Source-to-Pay
@@ -549,6 +554,7 @@ Production-Order-to-Released-Product
 Order-to-Cash
 Nonconformance-to-Corrective-Action
 Maintenance-to-Asset-Readiness
+Customer-to-Reorder (CRM)
 ```
 
 Deciding resources: **Knowledge & Technology**, **Capital & Assets** (equipment), **reputation for quality**.

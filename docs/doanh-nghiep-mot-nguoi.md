@@ -502,14 +502,16 @@ Xem kiến trúc đầy đủ và bộ máy theo từng loại hình: lattice.bu
 
 ### 14.1 Thương mại & hàng hóa (TMĐT, phân phối)
 
-**8 khối, 5 chuỗi, 54 nghiệp vụ.** Sáu khối tạo giá trị: Ngành hàng & Nguồn cung; Hoạch định Cung–Cầu & Tồn kho; Thị trường, Marketing & Tăng trưởng; Kinh doanh & Kênh phân phối; Đơn hàng, Kho vận & Giao nhận; Dịch vụ khách hàng & Phát triển quan hệ. Cộng Quản trị & Điều hành và Năng lực hỗ trợ.
+**8 khối, 7 chuỗi, 54 nghiệp vụ.** Sáu khối tạo giá trị: Ngành hàng & Nguồn cung; Hoạch định Cung–Cầu & Tồn kho; Thị trường, Marketing & Tăng trưởng; Kinh doanh & Kênh phân phối; Đơn hàng, Kho vận & Giao nhận; Dịch vụ khách hàng & Phát triển quan hệ. Cộng Quản trị & Điều hành và Năng lực hỗ trợ.
 
 ```
 Kế hoạch → Hàng sẵn sàng
 Nguồn cung → Thanh toán
+Thị trường → Khách tiềm năng
 Cơ hội → Đơn hàng
 Đơn hàng → Thu tiền
 Yêu cầu → Giải quyết
+Khách hàng → Mua lại (CRM)
 ```
 
 Nguồn lực quyết định: **Vốn lưu động** (thuộc Vốn & Tài sản), **Thị trường & Quan hệ**.
@@ -518,15 +520,17 @@ Con người tập trung: chọn sản phẩm, quan hệ nhà cung cấp, kiểm
 
 ### 14.2 Dịch vụ
 
-**8 khối, 6 chuỗi, 58 nghiệp vụ.** Sáu khối tạo giá trị: Danh mục, Thiết kế & Tiêu chuẩn dịch vụ; Thị trường, Marketing & Phát triển kênh; Đánh giá nhu cầu, Kinh doanh & Cam kết dịch vụ; Hoạch định & Điều phối nguồn lực; Thực hiện dịch vụ & Quản trị chuyên môn; Trải nghiệm khách hàng & Phát triển quan hệ.
+**8 khối, 8 chuỗi, 58 nghiệp vụ.** Sáu khối tạo giá trị: Danh mục, Thiết kế & Tiêu chuẩn dịch vụ; Thị trường, Marketing & Phát triển kênh; Đánh giá nhu cầu, Kinh doanh & Cam kết dịch vụ; Hoạch định & Điều phối nguồn lực; Thực hiện dịch vụ & Quản trị chuyên môn; Trải nghiệm khách hàng & Phát triển quan hệ.
 
 ```
+Thị trường → Khách tiềm năng
 Nhu cầu → Cam kết
 Kế hoạch → Nguồn lực sẵn sàng
 Cam kết → Hoàn thành
 Giao dịch → Thu tiền
 Nhu cầu đối tác → Thanh toán
 Yêu cầu → Khắc phục
+Khách hàng → Tái sử dụng (CRM)
 ```
 
 Nguồn lực quyết định: **Con người & chuyên môn**, **Uy tín**.
@@ -535,9 +539,10 @@ Con người tập trung: chuyên môn, niềm tin, trách nhiệm nghề nghi�
 
 ### 14.3 Sản xuất (mô hình Control Tower)
 
-**10 khối, 7 chuỗi, 71 nghiệp vụ.** Tám khối tạo giá trị: Thị trường, Kinh doanh & Quản trị nhu cầu; Phát triển sản phẩm & Kỹ thuật sản xuất; Hoạch định sản xuất & Chuỗi cung ứng; Nguồn cung & Mua hàng; Vận hành sản xuất & Điều độ xưởng; Quản trị chất lượng & Truy xuất; Thiết bị, Bảo trì & An toàn nhà máy; Kho vận, Giao hàng & Dịch vụ sau bán.
+**10 khối, 9 chuỗi, 71 nghiệp vụ.** Tám khối tạo giá trị: Thị trường, Kinh doanh & Quản trị nhu cầu; Phát triển sản phẩm & Kỹ thuật sản xuất; Hoạch định sản xuất & Chuỗi cung ứng; Nguồn cung & Mua hàng; Vận hành sản xuất & Điều độ xưởng; Quản trị chất lượng & Truy xuất; Thiết bị, Bảo trì & An toàn nhà máy; Kho vận, Giao hàng & Dịch vụ sau bán.
 
 ```
+Thị trường → Khách tiềm năng
 Ý tưởng → Sẵn sàng sản xuất
 Nhu cầu → Kế hoạch khả thi
 Nguồn cung → Thanh toán
@@ -545,6 +550,7 @@ Lệnh sản xuất → Thành phẩm được xuất
 Đơn hàng → Thu tiền
 Bất thường → Khắc phục
 Bảo trì → Thiết bị sẵn sàng
+Khách hàng → Đặt lại (CRM)
 ```
 
 Nguồn lực quyết định: **Tri thức & Công nghệ**, **Vốn & Tài sản** (thiết bị), **Uy tín chất lượng**.

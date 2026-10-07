@@ -17,8 +17,8 @@ Website giới thiệu 10 trang song ngữ Việt / Anh, kèm luồng đăng ký
 | --- | --- |
 | Trang chủ | Luận điểm, 4 bước Chẩn đoán → Kiến trúc → Triển khai → Vận hành, bốn động cơ |
 | Xu hướng tương lai | Số liệu thị trường, biểu đồ, mốc pháp lý |
-| Next Solutions | Bộ máy AI: quyền hạn, mức tự chủ, hạ tầng bảy lớp; bốn động cơ chi tiết (Social, Marketing, CRM, R&D) |
-| Ngành & Mô hình | Tám nhóm mô hình kinh doanh và trần tự động hóa của từng nhóm |
+| Next Solutions | Bộ máy người + AI (chủ sở hữu → ban điều hành → trưởng khối → Team AI), năm nguồn lực cốt lõi, mức tự chủ theo tác vụ, hạ tầng bảy lớp; bốn động cơ chi tiết (Social, Marketing, CRM, R&D) |
+| Ngành & Mô hình | Tám nhóm mô hình và trần tự động hóa (tỷ trọng việc AI đảm nhiệm, không phải mức tự chủ); ba kiến trúc tham chiếu theo mô phỏng: thương mại & hàng hóa, dịch vụ, sản xuất |
 | Cách chúng tôi làm | Phương pháp, cam kết, cách đo kết quả |
 | Phương pháp triển khai | Từ khung chiến lược sang đề án triển khai; quản trị ra quyết định cho nhóm 2–3–5 người |
 | Blockchain & Công nghệ tài chính | Mốc pháp lý tài sản số, vòng khép kín dòng tiền, sáu năng lực tài chính, ba tầng chuẩn bị |
@@ -46,8 +46,9 @@ en/index.html               bản tiếng Anh — SINH TỰ ĐỘNG, không sử
 dang-ky/index.html          biểu mẫu đăng ký bốn bước, bản Việt — viết tay
 register/index.html         biểu mẫu đăng ký bốn bước, bản Anh — viết tay
 quan-tri/index.html         trang quản trị: hồ sơ, thanh toán, lịch làm việc
-mophong/index.html          trang mô phỏng: kiến trúc, luồng vận hành, người + AI, dashboard cho ba loại hình — NGUỒN DỮ LIỆU NGHIỆP VỤ
+mophong/index.html          trang mô phỏng: kiến trúc (đơn giản / nâng cao), bộ máy và năm nguồn lực, luồng vận hành, người + AI, dashboard cho ba loại hình — NGUỒN DỮ LIỆU NGHIỆP VỤ
 khao-sat/                   khảo sát nhanh; nv.js và dòng đầu day-du.js SINH TỰ ĐỘNG từ mophong, không sửa tay
+tailieunoibo/                tài liệu nội bộ (kế hoạch, kịch bản video) — đang công khai theo đường dẫn, CẦN CHẶN hoặc gỡ
 work/                       bản mẫu LATTICE Work (lattice.business/work) — chép từ thư mục Lattice-Works, dữ liệu mẫu hư cấu, chạy trong trình duyệt
 docs/
   doanh-nghiep-mot-nguoi.md   tài liệu nền tảng, bản Việt
@@ -118,7 +119,9 @@ Trao đổi ban đầu qua email **miễn phí**. Khoản thu là **phí tạo l
 | Khấu trừ vào hợp đồng | — | 100% nếu ký trong 60 ngày |
 | Số suất | Không giới hạn | Tối đa 10 hồ sơ mỗi đợt |
 
-Bảng so sánh đầy đủ và chính sách hoàn phí có sẵn trên trang Liên hệ và trong popup của trang đăng ký. Giá phải khớp ở **ba** chỗ: biến `GOI` trong hai trang đăng ký và `GIA` trong `google-apps-script.gs`. Máy chủ luôn tính lại số tiền theo `GIA`, không tin con số trình duyệt gửi lên.
+Bảng so sánh đầy đủ và chính sách hoàn phí có sẵn trên trang Liên hệ và trong popup của trang đăng ký. Giá phải khớp ở **ba** chỗ: biến `GOI` trong hai trang đăng ký và `GIA` trong `google-apps-script.gs`. Máy chủ luôn tính lại số tiền theo `GIA`, không tin con số trình duyệt gửi lên. Giá còn được ghi bằng chữ ở trang chủ (Liên hệ), `khao-sat/index.html` (khối mời đăng ký Scan) và `tailieunoibo/`; đổi giá thì rà cả ba.
+
+Từ Khảo sát nhanh, nút đăng ký dẫn sang `dang-ky/?ma=<mã khảo sát>`: trang đăng ký chọn sẵn gói Scan và ghi mã vào ô mô tả, nên mã về Sheet cùng hồ sơ mà không cần đổi Apps Script.
 
 **Đợt 1** đóng đăng ký lúc 24:00 ngày 30/9/2026, hồ sơ bắt đầu xử lý từ 21/09/2026. Hạn nằm ở biến `HAN` (`2026-10-01T00:00:00+07:00`) trong `index.html`, `dang-ky/index.html`, `register/index.html`. Tới hạn, trang đăng ký **tự ẩn biểu mẫu** chứ không chỉ đổi chữ. Mở đợt mới thì đổi hạn và câu thông báo ở cả ba file, rồi chạy `build-en.py`.
 

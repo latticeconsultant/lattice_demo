@@ -559,7 +559,7 @@ Với mô hình lai — ví dụ nền tảng vật lý trị liệu kết hợp
 
 ---
 
-## 15. Mô hình quản trị: ba vòng kiểm soát
+## 15. Mô hình quản trị: bốn vòng kiểm soát
 
 | Vòng | Ai | Kiểm tra gì | Tần suất |
 |---|---|---|---|

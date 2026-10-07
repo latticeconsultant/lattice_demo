@@ -965,7 +965,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 <a class="doc-toc-item" href="#doc-13-dong-co-r-d-va-doi-moi-sang-tao">13. Động cơ R&amp;D và Đổi mới sáng tạo</a>
 <a class="doc-toc-part" href="#doc-phan-iv-van-hanh-va-trien-khai">PHẦN IV — VẬN HÀNH VÀ TRIỂN KHAI</a>
 <a class="doc-toc-item" href="#doc-14-ba-kien-truc-mau-theo-nhom-nganh">14. Ba kiến trúc mẫu theo nhóm ngành</a>
-<a class="doc-toc-item" href="#doc-15-mo-hinh-quan-tri-ba-vong-kiem-soat">15. Mô hình quản trị: ba vòng kiểm soát</a>
+<a class="doc-toc-item" href="#doc-15-mo-hinh-quan-tri-bon-vong-kiem-soat">15. Mô hình quản trị: bốn vòng kiểm soát</a>
 <a class="doc-toc-item" href="#doc-16-kinh-te-hoc-cua-mo-hinh">16. Kinh tế học của mô hình</a>
 <a class="doc-toc-item" href="#doc-17-rui-ro-va-chong-mong-manh">17. Rủi ro và chống mong manh</a>
 <a class="doc-toc-item" href="#doc-18-lo-trinh-trien-khai">18. Lộ trình triển khai</a>
@@ -1149,7 +1149,7 @@ Bảo trì → Thiết bị sẵn sàng</pre>
 <h4 class="doc-h3">14.4 Mô hình lai (bổ sung)</h4>
 <p class="doc-p">Với mô hình lai — ví dụ nền tảng vật lý trị liệu kết hợp dịch vụ tại chỗ + marketplace + thương mại + tri thức — nguyên tắc là: <strong>mỗi lớp có kiến trúc AI riêng, nhưng dùng chung một lớp dữ liệu khách hàng và một lớp tri thức.</strong> Đó là điều kiện để nội dung giáo dục nuôi được marketplace, marketplace nuôi được thương mại, và thương mại tài trợ cho giờ công trị liệu.</p>
 <hr class="doc-rule">
-<h3 class="doc-h2" id="doc-15-mo-hinh-quan-tri-ba-vong-kiem-soat">15. Mô hình quản trị: ba vòng kiểm soát</h3>
+<h3 class="doc-h2" id="doc-15-mo-hinh-quan-tri-bon-vong-kiem-soat">15. Mô hình quản trị: bốn vòng kiểm soát</h3>
 <div class="doc-tablewrap"><table class="doc-table"><thead><tr><th>Vòng</th><th>Ai</th><th>Kiểm tra gì</th><th>Tần suất</th></tr></thead><tbody><tr><td><strong>Vòng 1 — Thực thi</strong></td><td>Agent chuyên môn</td><td>Tự kiểm tra đầu ra theo tiêu chí hoàn thành</td><td>Mỗi work object</td></tr><tr><td><strong>Vòng 2 — Quản lý</strong></td><td>Trưởng khối (người hoặc AI) và giám đốc phụ trách</td><td>Chất lượng, chi phí, tiến độ của Team AI trong khối</td><td>Hàng ngày</td></tr><tr><td><strong>Vòng 3 — Kiểm soát độc lập</strong></td><td>Risk &amp; Compliance Agent</td><td>Kiểm tra <strong>cả agent thực thi lẫn vai điều phối</strong>; có quyền tạm dừng</td><td>Liên tục + kiểm toán hàng tuần</td></tr><tr><td><strong>Vòng 4 — Kiểm toán người</strong> <em>(bổ sung)</em></td><td>Con người</td><td>Mẫu ngẫu nhiên đầu ra + xem xét sự cố + duyệt thay đổi mức tự chủ</td><td>Hàng tuần + hàng quý</td></tr></tbody></table></div>
 <p class="doc-p">Ngoại lệ không dồn về CEO. Mỗi ngoại lệ đi tới đúng vai có thẩm quyền (Trưởng kinh doanh, Kế toán trưởng, Trưởng chất lượng…); vượt quyền vai thì lên giám đốc phụ trách; vượt quyền giám đốc mới tới CEO. Ở quy mô 1–3 người, người nhận nhiều khi chính là CEO kiêm nhiều vai, nhưng vẫn nhận theo từng vai. Mỗi vai chỉ nhận <strong>bốn loại thông tin</strong>:</p>
 <ol class="doc-list"><li>Quyết định cần phê duyệt</li><li>Ngoại lệ vượt quyền hạn</li><li>Rủi ro mới xuất hiện</li><li>Báo cáo hiệu quả và đề xuất chiến lược</li></ol>

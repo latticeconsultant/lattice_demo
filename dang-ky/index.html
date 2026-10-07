@@ -307,7 +307,7 @@ footer a { color: var(--n700); }
   <h1>Buổi chẩn đoán</h1>
   <p class="lead">Kết thúc buổi này anh chị nhận được ba quy trình nên tự động hóa trước, ước lượng trần tự động hóa của mô hình, và câu trả lời thẳng nếu chúng tôi cho rằng anh chị chưa nên bắt đầu.</p>
 
-  <p class="note">Điền khoảng 2 phút. Thông tin anh chị cung cấp được giữ kín, chỉ dùng để chuẩn bị và thực hiện buổi làm việc — không dùng cho mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.</p>
+  <p class="note">Chưa chắc nên bắt đầu từ đâu? Làm <a href="../khao-sat/">Khảo sát nhanh</a> miễn phí trước: 15 câu, khoảng 7 phút. Điền phiếu này khoảng 2 phút. Thông tin anh chị cung cấp được giữ kín, chỉ dùng để chuẩn bị và thực hiện buổi làm việc — không dùng cho mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.</p>
   <p class="dot1"><strong>Tạm thời chỉ áp dụng thí điểm tại Việt Nam.</strong> <strong>Đợt 1 đóng đăng ký lúc 24:00 ngày 30/9/2026.</strong> Hồ sơ nhận trong đợt này bắt đầu được xử lý từ <strong>21/09/2026</strong> — mọi mốc thời gian cam kết tính từ ngày đó hoặc từ ngày thanh toán, tuỳ ngày nào muộn hơn.
     <span class="dem" id="dem" aria-live="polite"></span></p>
 
@@ -365,7 +365,7 @@ footer a { color: var(--n700); }
         <input type="text" name="loai_hinh_khac" placeholder="Loại hình của anh chị"></label>
 
       <label class="f"><span class="lb">Lĩnh vực chính <span class="req">*</span>
-        <span class="hint">Chọn lĩnh vực tạo phần lớn doanh thu.</span></span>
+        <span class="hint">Chọn lĩnh vực tạo phần lớn doanh thu. Tám lĩnh vực quy về ba loại hình: thương mại &amp; hàng hóa, dịch vụ, sản xuất.</span></span>
         <select name="linh_vuc" required data-other="linh_vuc_khac">
           <option value="">— Chọn —</option>
           <option>Thương mại điện tử, bán hàng online</option>
@@ -861,7 +861,7 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw7EDVxuAem13qXELI1E_gtq
   document.getElementById('gui').addEventListener('click', function () {
     var nut = this;
     document.getElementById('err2').style.display = 'none';
-    if (!ENDPOINT) { baoLoi2('Form chưa được nối với nơi nhận dữ liệu. Anh chị liên hệ trực tiếp giúp chúng tôi.'); return; }
+    if (!ENDPOINT) { baoLoi2('Form chưa được nối với nơi nhận dữ liệu. Anh chị gửi email tới lattice.consultant@gmail.com giúp chúng tôi.'); return; }
     document.getElementById('thoi_gian').value = new Date().toISOString();
     nut.disabled = true; nut.textContent = 'ĐANG GỬI…';
     guiLen({}).then(function () {
@@ -904,5 +904,19 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw7EDVxuAem13qXELI1E_gtq
 })();
 </script>
 
+<script>
+/* Đi từ Khảo sát nhanh sang: ?ma=<mã khảo sát>. Chọn sẵn gói Scan và ghi mã vào phần mô tả,
+   để mã đi cùng hồ sơ về Sheet mà không phải đổi Apps Script. */
+(function () {
+  try {
+    var ma = new URLSearchParams(location.search).get('ma');
+    if (!ma || !/^[A-Za-z0-9-]{4,24}$/.test(ma)) return;
+    var r = document.querySelector('input[name=goi][value="LATTICE Scan"]');
+    if (r && !document.querySelector('input[name=goi]:checked')) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); }
+    var t = document.querySelector('textarea[name=mo_ta]');
+    if (t && t.value.indexOf(ma) < 0) t.value = 'Mã Khảo sát nhanh: ' + ma + '\n' + t.value;
+  } catch (e) {}
+})();
+</script>
 </body>
 </html>

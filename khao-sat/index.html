@@ -292,8 +292,8 @@ function oCau(c) {
 }
 
 function oLienHe() {
-  return `<fieldset class="cau"><legend class="hoi">Gửi bản đồ về đâu?</legend>
-   <p class="goi">Báo cáo hiện ngay trên màn hình, đồng thời gửi vào email để anh chị xem lại sau.</p>
+  return `<fieldset class="cau"><legend class="hoi">Anh chị là ai?</legend>
+   <p class="goi">Báo cáo hiện ngay trên màn hình, anh chị lưu hoặc in trang để xem lại sau. Email là đầu mối khi anh chị muốn trao đổi tiếp.</p>
    <div class="chon">
      <label class="o" style="display:block"><b>Họ tên</b><input type="text" name="ten" value="${esc(dl.ten || '')}" autocomplete="name" style="margin-top:6px"></label>
      <label class="o" style="display:block"><b>Email</b><input type="email" name="email" value="${esc(dl.email || '')}" autocomplete="email" inputmode="email" style="margin-top:6px"></label>
@@ -465,7 +465,7 @@ window.dungBaoCao = function (d) {
   <div class="bc">
     <p class="ma">Mã hồ sơ ${ma} · ${esc(d.ten)}${d.congty ? ' · ' + esc(d.congty) : ''}</p>
     <h2 style="margin-top:6px">Bản đồ hiện trạng bộ máy</h2>
-    <p class="lead">Dựng từ 15 câu anh chị vừa trả lời. Bản đầy đủ chấm từng nghiệp vụ theo sáu mức tự chủ và kèm lộ trình 90 ngày.</p>
+    <p class="lead">Dựng từ 15 câu anh chị vừa trả lời. Bản đầy đủ đặt mức tự chủ L0–L5 cho từng tác vụ AI trong mỗi nghiệp vụ, kèm việc người giữ và nơi ghi nhận.</p>
 
     <div class="diem">
       <div><div class="so">${kq.diem}<span style="font-size:22px;color:var(--mute)">/100</span></div>
@@ -492,7 +492,7 @@ window.dungBaoCao = function (d) {
         <p style="margin:0 0 4px;font-size:14.5px"><b>Chỗ hay vướng:</b> ${esc(x.vuong)}</p>
         <p style="margin:0;font-size:13.5px;color:var(--mute)">Vướng thì chuyển cho: ${esc(x.cho)}</p>
         <div class="kin">
-          <div class="nhan">🔒 Phần đang khoá · AI làm gì, ở mức nào · mức nên đưa về · giờ tiết kiệm</div>
+          <div class="nhan">🔒 Phần đang khoá · AI làm gì · mức cho từng tác vụ · người giữ · giờ tiết kiệm</div>
           <div class="mo" aria-hidden="true">Nội dung này chỉ có trong bản đầy đủ, không nằm trong trang đang xem.</div>
         </div>
       </div>`).join('')}
@@ -504,27 +504,27 @@ window.dungBaoCao = function (d) {
           ? '<b class="do">đang đau</b>' : '<b style="color:var(--mute)">khoá</b>'}</p>`).join('')}
       </div>`).join('')}
     </div>
-    <p class="sau">Mỗi nghiệp vụ trong bản đầy đủ có một mức từ L0 đến L5 cho biết hiện AI đang gánh tới đâu và nên nâng lên mức nào.</p>
+    <p class="sau">Trong bản đầy đủ, mỗi tác vụ AI của từng nghiệp vụ có một mức từ L0 đến L5 cho biết hiện AI đang gánh tới đâu và nên nâng lên mức nào; bảng tổng ghi mức cao nhất của các tác vụ trong nghiệp vụ.</p>
+    <p class="sau">Khuyến nghị tối đa L3; L4–L5 hiếm dùng, chỉ cho việc rủi ro thấp, đảo ngược được.</p>
 
     <div class="mokhoa">
-      <h3>Mở khoá báo cáo đầy đủ</h3>
-      <p style="margin:0 0 4px">Bản đầy đủ gồm những phần đang khoá ở trên:</p>
+      <h3>Gói LATTICE Scan</h3>
+      <p style="margin:0 0 4px">Đi sâu hơn bản đồ này cùng chuyên gia LATTICE:</p>
       <ul>
-        <li>AI làm gì ở từng việc trong năm ưu tiên, ở mức nào, người giữ quyền gì</li>
-        <li>Chấm mức L0–L5 cho toàn bộ ${nvTheoMo().length} nghiệp vụ của mô hình anh chị</li>
-        <li>Lộ trình 90 ngày chia ba chặng, mỗi chặng một cổng nghiệm thu</li>
-        <li>Quy phần giờ tiết kiệm ra tiền theo giá giờ công của anh chị</li>
-        <li>Một trang riêng theo mã hồ sơ, bấm vào từng ô xem chẩn đoán của chính mình</li>
+        <li>Bảng câu hỏi riêng cho doanh nghiệp của anh chị</li>
+        <li>Một buổi Zoom 60 phút rà từng chỗ đang đau</li>
+        <li>Bản tóm tắt 1–2 trang sau buổi làm việc</li>
+        <li>Kèm theo: báo cáo khảo sát đầy đủ — AI làm gì và ở mức L0–L5 nào cho từng tác vụ trong ${nvTheoMo().length} nghiệp vụ, việc người luôn giữ, nơi ghi nhận</li>
       </ul>
       <p class="gia">499.000đ</p>
-      <p style="margin:2px 0 14px;font-size:14px;color:var(--mute)">Giao trong ba ngày làm việc kể từ khi đủ dữ liệu. Gói LATTICE Scan.</p>
-      <a class="btn do" style="display:inline-block;text-decoration:none" href="../dang-ky/?ma=${encodeURIComponent(ma)}">MỞ KHOÁ BÁO CÁO ĐẦY ĐỦ →</a>
+      <p style="margin:2px 0 14px;font-size:14px;color:var(--mute)">Không khấu trừ vào hợp đồng sau. Cần hồ sơ 8–12 trang và lộ trình 90 ngày thì xem gói LATTICE Blueprint ở trang đăng ký.</p>
+      <a class="btn do" style="display:inline-block;text-decoration:none" href="../dang-ky/?ma=${encodeURIComponent(ma)}">ĐĂNG KÝ LATTICE SCAN →</a>
     </div>
 
     <p class="sau">${GUI_URL
       ? 'Bản tóm tắt này đã gửi vào ' + esc(d.email) + '. Anh chị cứ giữ mã hồ sơ <b>' + ma + '</b> để tiếp tục sau.'
-      : 'Anh chị giữ mã hồ sơ <b>' + ma + '</b> để tiếp tục sau. Bản tóm tắt sẽ gửi vào ' + esc(d.email) + ' khi anh chị bấm mở khoá.'}</p>
-    <p class="sau">Có chỗ nào chưa đúng với thực tế của anh chị? Viết thư cho chúng tôi, chấm lại không mất phí.</p>
+      : 'Kết quả này chỉ hiện trên trang, chưa gửi đi đâu — anh chị lưu hoặc in trang để xem lại. Giữ mã hồ sơ <b>' + ma + '</b>; muốn được tư vấn thì đăng ký Scan hoặc viết thư tới <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a> kèm mã này.'}</p>
+    <p class="sau">Có chỗ nào chưa đúng với thực tế của anh chị? Viết thư cho chúng tôi qua <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a>, chấm lại không mất phí.</p>
   </div>`;
 
   document.querySelector('h1').textContent = 'Kết quả khảo sát';

@@ -46,11 +46,11 @@ const DAY_DU = {"tmhh":{"cl_strat":{"ten":"Chiến lược thị trường & Mô
         <span class="so">ƯU TIÊN ${i + 1}</span>
         <h3>${esc(dd.ten || tenNV(x))}</h3>
         <div class="muc">
-          <div><span class="nhan">Hiện tại</span><b>L${hien} · ${MUC[hien]}</b></div>
-          <div><span class="nhan">Nên đưa về</span><b class="do">L${nen} · ${MUC[nen]}</b></div>
+          <div><span class="nhan">Hiện tại · cao nhất (ước)</span><b>L${hien} · ${MUC[hien]}</b></div>
+          <div><span class="nhan">Khuyến nghị · cao nhất</span><b class="do">L${nen} · ${MUC[nen]}</b></div>
           <div><span class="nhan">Người chịu trách nhiệm</span><b>${esc(dd.o || '')}</b></div>
         </div>
-        <p style="margin:10px 0 4px;font-size:14.5px"><b>AI làm gì:</b></p>
+        <p style="margin:10px 0 4px;font-size:14.5px"><b>AI làm gì · mức khuyến nghị cho từng tác vụ:</b></p>
         <ul style="margin:0;padding-left:20px;font-size:14.5px">${(dd.ai || []).map(([t, l]) => `<li><b>L${l}</b> · ${esc(t)}</li>`).join('')}</ul>
         <p style="margin:8px 0 0;font-size:14.5px"><b>Chuyển cho người khi:</b> ${esc(dd.x || '')} → ${esc(dd.to || '')}</p>
         <p style="margin:6px 0 0;font-size:14.5px"><b>Người luôn giữ:</b> ${esc(dd.giu || '')}</p>
@@ -65,10 +65,20 @@ const DAY_DU = {"tmhh":{"cl_strat":{"ten":"Chiến lược thị trường & Mô
         <td>${esc(dd.giu || '')}</td></tr>`;
     }).join('');
 
+    /* Mức bật ở chặng 2 và 3 không vượt mức khuyến nghị của nghiệp vụ (rec = mức
+       cao nhất của các tác vụ trong nghiệp vụ đó, lấy từ mô phỏng). */
+    const recCua = x => { const r = (DD[x.id] || {}).rec; return typeof r === 'number' ? r : 2; };
+    const giuThap = r => 'giữ ở mức ' + MUC[r].toLowerCase() + ' (L' + r + '), người làm';
+    const baViec = uu.slice(0, 3);
+    const chang2 = baViec.map(x => { const r = recCua(x);
+      return esc(tenNV(x)) + ': ' + (r <= 1 ? giuThap(r) : 'L' + Math.min(r, 2)); }).join('; ');
+    const chang3 = baViec.map(x => { const r = recCua(x);
+      return esc(tenNV(x)) + ': ' + (r <= 1 ? giuThap(r) : r >= 3 ? 'nâng lên L' + Math.min(r, 3) : 'giữ L' + Math.min(r, 3)); }).join('; ');
+
     const ba = [
       ['Chặng 1 · ngày 1–' + moc, 'Dọn nền', `Gom dữ liệu về nguồn chuẩn, viết lại hai quy trình của ${esc(tenNV(uu[0]))} và ${esc(tenNV(uu[1] || uu[0]))} thành dạng máy đọc được. Chưa bật tác tử nào.`, 'Cổng nghiệm thu: dữ liệu khách và dữ liệu đơn nằm một chỗ, hai quy trình có điểm kiểm soát.'],
-      ['Chặng 2 · ngày ' + (moc + 1) + '–' + (moc * 2), 'Bật ở mức chờ duyệt', `Bật ba việc đầu ở L2: AI làm trọn, người duyệt từng việc trước khi ra ngoài. Đo tỷ lệ duyệt không sửa.`, 'Cổng nghiệm thu: tỷ lệ duyệt không sửa đạt 60% trong hai tuần liền.'],
-      ['Chặng 3 · ngày ' + (moc * 2 + 1) + '–' + ngay, 'Giao quyền trong ngưỡng', `Nâng những việc đạt chuẩn lên L3, đặt ngưỡng và công tắc dừng khẩn, bàn giao kèm hồ sơ quản trị.`, 'Cổng nghiệm thu: chạy 100 giao dịch với độ chính xác từ 90%, có đường lùi khi sai.']
+      ['Chặng 2 · ngày ' + (moc + 1) + '–' + (moc * 2), 'Bật ở mức chờ duyệt', `Bật ba việc đầu đến mức khuyến nghị của từng tác vụ, chặng này tối đa L2 — ${chang2}. Ở L2 AI chuẩn bị trọn, người duyệt từng việc trước khi ra ngoài. Đo tỷ lệ duyệt không sửa.`, 'Cổng nghiệm thu: tỷ lệ duyệt không sửa đạt 60% trong hai tuần liền.'],
+      ['Chặng 3 · ngày ' + (moc * 2 + 1) + '–' + ngay, 'Giao quyền trong ngưỡng', `Tác vụ nào đạt chuẩn thì nâng đến mức khuyến nghị của chính tác vụ đó, tối đa L3 — ${chang3}. Đặt ngưỡng và công tắc dừng khẩn, bàn giao kèm hồ sơ quản trị. L4–L5 hiếm dùng, chỉ cho việc rủi ro thấp, đảo ngược được.`, 'Cổng nghiệm thu: chạy 100 giao dịch với độ chính xác từ 90%, có đường lùi khi sai.']
     ].map(([a, b, c, e]) => `<div class="uu"><span class="so">${a}</span><h3>${b}</h3><p style="margin:0 0 8px;font-size:14.5px">${c}</p><p style="margin:0;font-size:13.5px;color:var(--mute)">${e}</p></div>`).join('');
 
     return `
@@ -83,12 +93,12 @@ const DAY_DU = {"tmhh":{"cl_strat":{"ten":"Chiến lược thị trường & Mô
           Đây là ước lượng để so sánh, không phải con số kế toán. Trừ chi phí công cụ AI khoảng 1–3 triệu mỗi tháng cho quy mô này.</div>
       </div>
 
-      <h2>Lộ trình ${ngay} ngày</h2>
-      <p class="lead" style="margin-bottom:14px">${ngay === 90 ? 'Ba chặng, mỗi chặng một cổng nghiệm thu.' : ngay > 90 ? 'Giãn thành ' + ngay + ' ngày vì anh chị dành dưới hai giờ mỗi tuần cho việc này — đi chậm mà chắc hơn là bỏ dở.' : 'Rút còn ' + ngay + ' ngày vì anh chị có người phụ trách riêng và đủ giờ.'}</p>
+      <h2>Phác thảo lộ trình ${ngay} ngày</h2>
+      <p class="lead" style="margin-bottom:14px">${ngay === 90 ? 'Ba chặng, mỗi chặng một cổng nghiệm thu.' : ngay > 90 ? 'Giãn thành ' + ngay + ' ngày vì anh chị dành dưới hai giờ mỗi tuần cho việc này — đi chậm mà chắc hơn là bỏ dở.' : 'Rút còn ' + ngay + ' ngày vì anh chị có người phụ trách riêng và đủ giờ.'} Đây là phác thảo đi kèm buổi Scan; lộ trình 90 ngày chi tiết thuộc gói LATTICE Blueprint.</p>
       ${ba}
 
-      <h2>Chấm mức cho toàn bộ ${ds.length} nghiệp vụ</h2>
-      <div class="tbl"><table><thead><tr><th>Nghiệp vụ</th><th class="c">Hiện tại</th><th class="c">Nên đưa về</th><th>Ngoại lệ chuyển cho</th><th>Người luôn giữ</th></tr></thead><tbody>${bangMuc}</tbody></table></div>
-      <p class="sau">Dòng tô đậm là việc anh chị đã đánh dấu đang đau. Mức hiện tại là ước lượng từ bảng khảo sát; buổi làm việc sẽ chấm lại từng việc.</p>`;
+      <h2>Mức tự chủ cao nhất trong ${ds.length} nghiệp vụ</h2>
+      <div class="tbl"><table><thead><tr><th>Nghiệp vụ</th><th class="c">Hiện tại · cao nhất của các tác vụ (ước)</th><th class="c">Khuyến nghị · cao nhất của các tác vụ</th><th>Ngoại lệ chuyển cho</th><th>Người luôn giữ</th></tr></thead><tbody>${bangMuc}</tbody></table></div>
+      <p class="sau">Dòng tô đậm là việc anh chị đã đánh dấu đang đau. Mức tự chủ đặt cho từng tác vụ AI trong nghiệp vụ, không cho cả nghiệp vụ; bảng này chỉ ghi mức cao nhất của các tác vụ. Khuyến nghị tối đa L3; L4–L5 hiếm dùng. Mức hiện tại là ước lượng từ bảng khảo sát; buổi Zoom của gói Scan sẽ chấm lại từng tác vụ.</p>`;
   };
 })();

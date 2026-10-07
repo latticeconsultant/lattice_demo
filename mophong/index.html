@@ -597,9 +597,11 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .sh .cvsw{margin-left:auto}
 .sh .note+.cvsw{margin-left:12px}
 .sh .cvsw+.cvsw{margin-left:8px}
-.sh .cvsw[aria-label="Mức chi tiết sơ đồ"]{margin-left:auto}
+.sh .cvbar{display:flex;gap:8px;margin-left:auto;align-items:center}
 .simp .sn text{paint-order:stroke;stroke:var(--c1);stroke-width:5px;stroke-linejoin:round}
 .cvsw button svg{display:block}
+.cvsw button{height:34px;min-width:80px;justify-content:center;padding:0 10px}
+.sh:has(.cvsw){align-items:center}
 /* sơ đồ đơn giản: một khung SVG, co giãn theo bề ngang */
 .cv.simp{padding:18px 18px 14px}
 .simp svg.ss{display:block;width:100%;height:auto;overflow:visible}
@@ -739,7 +741,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
     <h1 id="arch-h1">Tám khối nghiệp vụ, một nền tảng chung</h1>
     <p class="oneline" id="arch-line"></p>
   </div>
-  <div class="sh"><h2>Kiến trúc nghiệp vụ</h2><span class="note" id="arch-note">Bấm tên khối hoặc từng icon để xem chi tiết.</span><div class="cvsw" role="group" aria-label="Mức chi tiết sơ đồ"><button data-av="simple" aria-pressed="true">Đơn giản</button><button data-av="full" aria-pressed="false">Nâng cao</button></div><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true" aria-label="Nền tối" title="Nền tối"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button><button data-cvm="light" aria-pressed="false" aria-label="Nền sáng" title="Nền sáng"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button></div></div>
+  <div class="sh"><h2>Kiến trúc nghiệp vụ</h2><span class="note" id="arch-note">Bấm tên khối hoặc từng icon để xem chi tiết.</span><div class="cvbar"><div class="cvsw" role="group" aria-label="Mức chi tiết sơ đồ"><button data-av="simple" aria-pressed="true">Đơn giản</button><button data-av="full" aria-pressed="false">Nâng cao</button></div><div class="cvsw" role="group" aria-label="Nền sơ đồ"><button data-cvm="dark" aria-pressed="true" aria-label="Nền tối" title="Nền tối"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button><button data-cvm="light" aria-pressed="false" aria-label="Nền sáng" title="Nền sáng"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button></div></div></div>
   <div class="cv simp" id="arch-s"></div>
   <div class="cv" id="arch" hidden></div>
   <div class="sh"><h2>Các chuỗi nghiệp vụ</h2><span class="note">Bấm một chuỗi để xem công việc đi qua các khối.</span></div>
@@ -1943,18 +1945,25 @@ function sBox(k,x,y,w,h,dark){const K=KH(k), DD=DS[model], tag=DD.core&&DD.core[
     <circle cx="${x+52}" cy="${y+h/2+15}" r="3.5" fill="#EC3013"/>${ROLE_AI[K.o]?icS("bot",x+60,y+h/2+8,14,fg):""}<text x="${x+(ROLE_AI[K.o]?78:61)}" y="${y+h/2+19}" font-size="11" font-weight="600" fill="${fg}" opacity=".78">${esc(own)}</text>
     <text x="${x+w-14}" y="${y+h/2-3}" text-anchor="end" font-size="18" font-weight="800" fill="${fg}">${n}</text>
     <text x="${x+w-14}" y="${y+h/2+13}" text-anchor="end" font-size="9.5" font-weight="700" letter-spacing=".08em" fill="${fg}" opacity=".7">VIỆC</text>
-    ${tag?`<rect x="${x+w-14-tag.length*7-14}" y="${y-10}" width="${tag.length*7+14}" height="19" fill="#EC3013"/><text x="${x+w-21}" y="${y+4}" text-anchor="end" font-size="10.5" font-weight="800" letter-spacing=".06em" fill="#fff">${esc(tag.toUpperCase())}</text>`:""}</g>`;}
-function sNode(x,y,attr,lines,anc,dx,dy,red){
-  return `<g class="sn" role="button" tabindex="0" ${attr} aria-label="${esc(lines.join(" "))}"><circle class="nd" cx="${x}" cy="${y}" r="13" fill="var(--c0)" stroke="${red?"#EC3013":"var(--ct)"}" stroke-width="3.2"/>${red?`<circle cx="${x}" cy="${y}" r="5" fill="#EC3013"/>`:""}
+</g>`;}
+function sNode(x,y,attr,name,lines,anc,dx,dy,red){
+  return `<g class="sn" role="button" tabindex="0" ${attr} aria-label="${esc(name)}"><title>${esc(name)}</title><circle class="nd" cx="${x}" cy="${y}" r="13" fill="var(--c0)" stroke="${red?"#EC3013":"var(--ct)"}" stroke-width="3.2"/>${red?`<circle cx="${x}" cy="${y}" r="5" fill="#EC3013"/>`:""}
     ${lines.map((t,i)=>`<text x="${x+dx}" y="${y+dy+i*16}" text-anchor="${anc}" font-size="13" font-weight="800" fill="${red?"var(--cr)":"var(--ct)"}">${esc(t)}</text>`).join("")}</g>`;}
 function sExt(x,y,w,t){return `<rect x="${x}" y="${y-17}" width="${w}" height="34" fill="none" stroke="var(--cm)" stroke-dasharray="4 3"/><text x="${x+w/2}" y="${y+4}" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--cm)">${esc(t)}</text>`;}
+const SIMPLE_TB={cl:["Quản trị & Điều hành","Ban điều hành","Mục tiêu – Ngân sách – Chính sách"],ht:["Nguồn lực Doanh nghiệp","Bộ phận Chuyên môn","Tài chính – Công nghệ – Con người"]};
+function cBox(k,x,y,w,h){const K=KH(k), [t,r,sub]=SIMPLE_TB[k], c=x+w/2;
+  return `<g class="sb" role="button" tabindex="0" data-khoi="${k}" aria-label="Khối ${esc(K.n)}"><title>${esc(K.n)}</title><rect class="bx" x="${x}" y="${y}" width="${w}" height="${h}" fill="var(--c1)" stroke="var(--ct)" stroke-width="2.5"/>
+    ${icS(KHI[k],c-12,y+12,24,"var(--ct)")}
+    <text x="${c}" y="${y+56}" text-anchor="middle" font-size="17" font-weight="800" fill="var(--ct)">${esc(t)}</text>
+    <circle cx="${c-r.length*3.15-9}" cy="${y+71}" r="3.5" fill="#EC3013"/><text x="${c}" y="${y+75}" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--ct)" opacity=".8">${esc(r)}</text>
+    <text x="${c}" y="${y+94}" text-anchor="middle" font-size="11" font-weight="700" letter-spacing=".02em" fill="var(--cm)">${esc(sub)}</text></g>`;}
 function simpleArch(){
   const box=$("arch-s"); if(!box) return; const cfg=SIMPLE[model], K1=KH("cl"), K3=KH("ht");
   const narrow=(box.clientWidth||1200)<760; simpMode=model+(narrow?"n":"w");
   return narrow?simpleNarrow(box,cfg,K1,K3):simpleWide(box,cfg,K1,K3);}
 function simpleWide(box,cfg,K1,K3){
   const W=1320, cx=W/2, bw=300, bh=70, gap=14, n=Math.max(cfg.L.length,cfg.R.length), colH=n*bh+(n-1)*gap;
-  const colTop=168, cy=colTop+colH/2, R=Math.min(128,colH/2-6), lx=196, rx=W-196-bw, htY=colTop+colH+52, H=htY+84;
+  const colTop=196, cy=colTop+colH/2, R=Math.min(128,colH/2-6), lx=196, rx=W-196-bw, htY=colTop+colH+52, H=htY+124;
   const yOf=(arr,i)=>colTop+(colH-(arr.length*bh+(arr.length-1)*gap))/2+i*(bh+gap);
   const pos={}; cfg.L.forEach((k,i)=>pos[k]={x:lx,y:yOf(cfg.L,i)}); cfg.R.forEach((k,i)=>pos[k]={x:rx,y:yOf(cfg.R,i)});
   let s=`<svg class="ss" viewBox="0 0 ${W} ${H}" role="group" aria-label="Sơ đồ kiến trúc đơn giản">`;
@@ -1971,22 +1980,19 @@ function simpleWide(box,cfg,K1,K3){
   cfg.R.forEach((k,i)=>{const y=pos[k].y+bh/2, d=`M${rx} ${y} C ${rx-60} ${y}, ${cx+R+70} ${cy}, ${cx+R} ${cy}`;
     s+=`<path class="wr" d="${d}"/>`+sPulse(d,{off:i*.6})+sPulse(d,{red:true,rev:true,dur:5.5,off:2+i*1.4});});
   // Điều hành ở trên, Tài chính & hỗ trợ ở dưới
-  const tw=380, th=60, d1=`M${cx} ${20+th} L${cx} ${cy-R}`, d2=`M${cx} ${cy+R} L${cx} ${htY}`;
+  const tw=380, th=106, d1=`M${cx} ${20+th} L${cx} ${cy-R}`, d2=`M${cx} ${cy+R} L${cx} ${htY}`;
   s+=`<path class="wr" d="${d1}"/>`+sPulse(d1,{dur:2.4})+`<path class="wr" d="${d2}"/>`+sPulse(d2,{dur:2.4,rev:true});
-  s+=`<text x="${cx-14}" y="${20+th+28}" text-anchor="end" font-size="11" font-weight="700" fill="var(--cm)">mục tiêu · ngân sách · chính sách</text>`;
-  const wideBox=(k,x,y,w,h)=>{const K=KH(k); return `<g class="sb" role="button" tabindex="0" data-khoi="${k}" aria-label="Khối ${esc(K.n)}"><title>${esc(K.n)}</title><rect class="bx" x="${x}" y="${y}" width="${w}" height="${h}" fill="var(--c1)" stroke="var(--ct)" stroke-width="2.5"/>${icS(KHI[k],x+16,y+h/2-11,22,"var(--ct)")}<text x="${x+50}" y="${y+h/2-2}" font-size="16" font-weight="800" fill="var(--ct)">${esc(K.n)}</text><circle cx="${x+54}" cy="${y+h/2+15}" r="3.5" fill="#EC3013"/><text x="${x+63}" y="${y+h/2+19}" font-size="11.5" font-weight="600" fill="var(--ct)" opacity=".78">${esc(ROLE[K.o]||"")}</text></g>`;};
-  s+=wideBox("cl",cx-tw/2,20,tw,th)+wideBox("ht",cx-tw/2,htY,tw,th);
+  s+=cBox("cl",cx-tw/2,20,tw,th)+cBox("ht",cx-tw/2,htY,tw,th);
   s+=`<path class="xl" d="M${cx+tw/2} ${htY+th/2} L${W-166} ${htY+th/2}"/>`+sExt(W-166,htY+th/2,150,"Ngân hàng, thuế");
   // trục LATTICE
   s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--c1)" stroke="var(--ct)" stroke-width="3"/>
     <path d="M${cx} ${cy-R*.55} L${cx+R*.55} ${cy} L${cx} ${cy+R*.55} L${cx-R*.55} ${cy} Z" fill="none" stroke="var(--cl)" stroke-width="1.2"/>
     <line x1="${cx-R}" y1="${cy}" x2="${cx+R}" y2="${cy}" stroke="var(--cl)"/><line x1="${cx}" y1="${cy-R}" x2="${cx}" y2="${cy+R}" stroke="var(--cl)"/>
-    <circle cx="${cx}" cy="${cy}" r="19" fill="#EC3013"/>
-    <text x="${cx}" y="${cy+42}" text-anchor="middle" font-size="12" font-weight="800" letter-spacing=".2em" fill="var(--ct)">LATTICE</text>`;
-  s+=sNode(cx,cy-R,'data-simex="1"',["Ngoại lệ → đúng người"],"start",20,5,true);
-  s+=sNode(cx-R,cy,`data-pf="${pfIdx("database")}"`,["Dữ liệu","một nguồn"],"start",20,-3);
-  s+=sNode(cx+R,cy,`data-pf="${pfIdx("fingerprint")}"`,["Luật &","ngưỡng"],"end",-20,-3);
-  s+=sNode(cx,cy+R,`data-pf="${pfIdx("workflow")}"`,["Team AI"],"start",20,5);
+    <circle cx="${cx}" cy="${cy}" r="19" fill="#EC3013"/>`;
+  s+=sNode(cx,cy-R,'data-simex="1"',"Ngoại lệ đến đúng người",[],"start",20,5,true);
+  s+=sNode(cx-R,cy,`data-pf="${pfIdx("database")}"`,"Dữ liệu một nguồn",[],"start",20,-3);
+  s+=sNode(cx+R,cy,`data-pf="${pfIdx("fingerprint")}"`,"Luật và ngưỡng",[],"end",-20,-3);
+  s+=sNode(cx,cy+R,`data-pf="${pfIdx("workflow")}"`,"Team AI",["Team AI"],"start",20,5);
   // các khối
   cfg.L.forEach(k=>s+=sBox(k,pos[k].x,pos[k].y,bw,bh,true));
   cfg.R.forEach(k=>s+=sBox(k,pos[k].x,pos[k].y,bw,bh,false));
@@ -1995,11 +2001,11 @@ function simpleWide(box,cfg,K1,K3){
 function simpleNarrow(box,cfg,K1,K3){
   const W=600, bx=34, bw=W-bx-8, bh=66, gap=10, R=74; let y=10, s="", rows=[];
   const sec=(t,sub)=>{s+=`<text x="${bx}" y="${y+16}" font-size="16" font-weight="800" fill="var(--ct)">${esc(t)}</text>${sub?`<text x="${bx}" y="${y+32}" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--cm)">${esc(sub.toUpperCase())}</text>`:""}`; y+=sub?42:26;};
-  const put=(k,dark)=>{s+=sBox(k,bx,y,bw,bh,dark); rows.push(y+bh/2); y+=bh+gap;};
+  const put=(k,dark)=>{if(SIMPLE_TB[k]){s+=cBox(k,bx,y,bw,106); rows.push(y+53); y+=106+gap; return;} s+=sBox(k,bx,y,bw,bh,dark); rows.push(y+bh/2); y+=bh+gap;};
   put("cl",false); y+=6; sec(cfg.lt[0],cfg.lt[1]); cfg.L.forEach(k=>put(k,true));
   const cy=y+R+14, cx=W/2;
-  s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--c1)" stroke="var(--ct)" stroke-width="3"/><circle cx="${cx}" cy="${cy}" r="15" fill="#EC3013"/><text x="${cx}" y="${cy+34}" text-anchor="middle" font-size="11" font-weight="800" letter-spacing=".2em" fill="var(--ct)">LATTICE</text>`;
-  s+=sNode(cx,cy-R,'data-simex="1"',["Ngoại lệ → đúng người"],"start",20,5,true)+sNode(cx-R,cy,`data-pf="${pfIdx("database")}"`,["Dữ liệu"],"end",-20,5)+sNode(cx+R,cy,`data-pf="${pfIdx("fingerprint")}"`,["Luật, ngưỡng"],"start",20,5)+sNode(cx,cy+R,`data-pf="${pfIdx("workflow")}"`,["Team AI"],"start",20,5);
+  s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--c1)" stroke="var(--ct)" stroke-width="3"/><circle cx="${cx}" cy="${cy}" r="15" fill="#EC3013"/>`;
+  s+=sNode(cx,cy-R,'data-simex="1"',"Ngoại lệ đến đúng người",[],"start",20,5,true)+sNode(cx-R,cy,`data-pf="${pfIdx("database")}"`,"Dữ liệu một nguồn",[],"end",-20,5)+sNode(cx+R,cy,`data-pf="${pfIdx("fingerprint")}"`,"Luật và ngưỡng",[],"start",20,5)+sNode(cx,cy+R,`data-pf="${pfIdx("workflow")}"`,"Team AI",["Team AI"],"start",20,5);
   rows.push(cy); y=cy+R+24; sec(cfg.rt[0],cfg.rt[1]); cfg.R.forEach(k=>put(k,false)); y+=6; put("ht",false);
   const d=`M16 ${rows[0]} L16 ${rows[rows.length-1]}`; let w=`<path class="wr" d="${d}"/>`+sPulse(d,{dur:6,n:3})+sPulse(d,{red:true,rev:true,dur:9});
   rows.forEach(r=>w+=`<path class="wr" d="M16 ${r} L${r===cy?cx-R:bx} ${r}"/>`);

@@ -2025,7 +2025,6 @@ function arch(){
   const K3=KH("ht"), DD=DS[model]; $("arch-line").textContent=DD.line||"";
   const SO=["","Một","Hai","Ba","Bốn","Năm","Sáu","Bảy","Tám","Chín","Mười"]; $("arch-h1").textContent=`${SO[KHOI.length]||KHOI.length} khối nghiệp vụ, một nền tảng chung`;
   try{if(!simpMode) archView=localStorage.getItem("lattice-mophong-av")==="full"?"full":"simple";}catch(e){}
-  simpleArch(); setAv(archView);
   $("arch").innerHTML=`<svg class="wires" id="arch-w" aria-hidden="true"></svg>
    <div class="cvl">Điều hành</div>${card("cl","wide")}
    ${DD.rows.map((r,i)=>`<div class="cvl"${i?"":' id="cvl-cung"'}>${esc(DD.rowLab[i][0])} <em>${esc(DD.rowLab[i][1])}</em></div><div class="g3" style="grid-template-columns:repeat(${r.length},minmax(0,1fr));${r.length>3?"gap:34px":""}">${r.map(k=>{const t=DD.core&&DD.core[k];return card(k,t?"core"+(r.length===1?" wide":""):(r.length===1?"wide":""),t);}).join("")}</div>`).join("")}
@@ -2042,7 +2041,8 @@ function arch(){
    </div>
    <div class="cvleg"><span><i class="pdot"></i>Dữ liệu, việc</span><span><i class="pdot red"></i>Ngoại lệ đến người</span><span><i class="ldash"></i>Phản hồi</span><span><i class="hdot"></i>Người chịu trách nhiệm</span><span>${ic("bot",14)}Vai giao được cho AI</span><span><i class="lopt"></i>Chỉ khi cần</span></div>`;
   $("chains").innerHTML=CHUOI.map(c=>`<button class="chc" data-chain="${c.id}"><span class="cic">${ic(CHI[c.id],22)}</span><b>${esc(c.n)}</b><span class="en">${esc(c.en)}</span><span class="ow"><i class="hdot"></i>${esc(c.owner)}</span></button>`).join("");
-  requestAnimationFrame(archWires);
+  /* Dựng xong cả hai bản rồi mới hiện bản đang chọn: vẽ đường nối trên khung cũ sẽ lỗi. */
+  setAv(archView);
 }
 const s0=()=>`<defs><marker id="wa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--cw)"/></marker></defs>`;
 /* Dịch vụ: vòng chữ U — thiết kế → marketing → cam kết, rồi xuống nguồn lực → thực hiện → trải nghiệm,

@@ -603,8 +603,8 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .bm-top::after,.bm-mid::after{content:"";position:absolute;left:50%;bottom:-18px;height:18px;border-left:2px solid var(--cwire)}
 .bm-mid{margin-top:18px}
 .bm-own,.bm-gd{display:grid;gap:5px;align-content:start;text-align:left;background:var(--c1);border:1.5px solid var(--ckb);color:var(--ct);padding:12px 14px;min-width:0}
-.bm-own{grid-template-columns:auto 1fr;align-items:center;max-width:620px;width:100%;border-width:2px}
-.bm-own span:last-child{grid-column:2;font-size:12px;color:var(--cm)}
+.bm-own{justify-items:center;text-align:center;max-width:620px;width:100%;border-width:2px}
+.bm-own span:last-child{font-size:12px;color:var(--cm)}
 .bm-mid .bm-gd{max-width:420px;width:100%;border-width:2px}
 .bm-gd:hover,.bm-own:hover,.bm-nlc:hover{border-color:#EC3013}
 .bm-gd.warn{border-color:#EC3013;box-shadow:0 0 0 2px rgba(236,48,19,.35)}
@@ -671,6 +671,10 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .ck-own .ck-h{background:transparent;color:var(--ct);border:0}
 .ck-own .ck-h .ki{border-color:var(--ct);color:var(--ct)}
 .ck-own .tag{font-size:11.5px;font-weight:600;color:var(--cm)}
+.own-c{display:grid;justify-items:center;gap:5px;padding:12px 14px;text-align:center;color:var(--ct)}
+.own-c b{font-size:15.5px;font-weight:800}
+.cvl.cvl-c{text-align:center;margin:14px 0 0}
+.cv .cvleg{justify-content:center;text-align:center}
 @container page (max-width:1100px){.bm-nlg,.g5{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @container page (max-width:1100px){.bm-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @container page (max-width:880px){.bm-row{grid-template-columns:1fr 1fr}.bm-nlg,.g5{grid-template-columns:1fr 1fr}.bm-nhip{grid-template-columns:1fr}}
@@ -2295,7 +2299,7 @@ function simpleNarrow(box,cfg,K1,K3){
   s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--c1)" stroke="var(--ct)" stroke-width="3"/><circle cx="${cx}" cy="${cy}" r="15" fill="#EC3013"/>`;
   s+=sNode(cx,cy-R,'data-simex="1"',"Ngoại lệ đến đúng người",[],"start",20,5,true)+sNode(cx-R,cy,`data-pf="${pfIdx("database")}"`,"Dữ liệu một nguồn",[],"end",-20,5)+sNode(cx+R,cy,`data-pf="${pfIdx("fingerprint")}"`,"Luật và ngưỡng",[],"start",20,5)+sAI(cx,cy+R,20,`data-pf="${pfIdx("workflow")}"`);
   rows.push(cy); y=cy+R+24; sec(cfg.rt[0],cfg.rt[1]); cfg.R.forEach(k=>put(k,false)); y+=6; put("ht",false);
-  const rowsEnd=rows[rows.length-1]; y+=8; sec("Nguồn lực cốt lõi","ô đậm: quyết định với loại hình này"); s+=sRes(bx,y,bw,52,1); y+=NL.length*(52+14);
+  const rowsEnd=rows[rows.length-1]; y+=14; s+=sRes(bx,y,bw,52,1); y+=NL.length*(52+14)+6; s+=`<text x="${bx+bw/2}" y="${y+4}" text-anchor="middle" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--cm)">NGUỒN LỰC CỐT LÕI · Ô ĐẬM: QUYẾT ĐỊNH VỚI LOẠI HÌNH NÀY</text>`; y+=16;
   const d=`M16 ${rows[0]} L16 ${rowsEnd}`; let w=`<path class="wr" d="${d}"/>`+sPulse(d,{dur:6,n:3})+sPulse(d,{red:true,rev:true,dur:9});
   rows.forEach(r=>w+=`<path class="wr" d="M16 ${r} L${r===cy?cx-R:bx} ${r}"/>`);
   box.innerHTML=`<svg class="ss" viewBox="0 0 ${W} ${y}" role="group" aria-label="Sơ đồ kiến trúc đơn giản">${w}${s}</svg>`+simpleLegend();}
@@ -2315,9 +2319,9 @@ function arch(){
   const SO=["","Một","Hai","Ba","Bốn","Năm","Sáu","Bảy","Tám","Chín","Mười"]; $("arch-h1").textContent=`${SO[KHOI.length]||KHOI.length} khối nghiệp vụ trên năm nguồn lực cốt lõi`;
   try{if(!simpMode) archView=localStorage.getItem("lattice-mophong-av")==="full"?"full":"simple";}catch(e){}
   $("arch").innerHTML=`<svg class="wires" id="arch-w" aria-hidden="true"></svg>
-   <div class="cvl">Chủ sở hữu</div><button class="ck wide ck-own" data-bmtop="1"><span class="ck-h st"><span class="nm">Chủ sở hữu / Hội đồng quản trị</span><span class="tag">Chiến lược · ngân sách · bổ nhiệm CEO · Hiến chương AI</span><span class="ki">${ic("scale",18)}</span></span></button>
+   <div class="cvl">Chủ sở hữu</div><button class="ck wide ck-own" data-bmtop="1"><span class="own-c">${ic("scale",22)}<b>Chủ sở hữu / Hội đồng quản trị</b><span class="tag">Chiến lược · ngân sách · bổ nhiệm CEO · Hiến chương AI</span></span></button>
    <div class="cvl">Ban điều hành</div>${card("cl","wide")}
-   ${DD.rows.map((r,i)=>`<div class="cvl"${i?"":' id="cvl-cung"'}>Chuỗi tạo giá trị · ${esc(DD.rowLab[i][0])} <em>${esc(DD.rowLab[i][1])}</em></div><div class="g3" style="grid-template-columns:repeat(${r.length},minmax(0,1fr));${r.length>3?"gap:34px":""}">${r.map(k=>{const t=DD.core&&DD.core[k];return card(k,t?"core"+(r.length===1?" wide":""):(r.length===1?"wide":""),t);}).join("")}</div>`).join("")}
+   ${DD.rows.map((r,i)=>`<div class="cvl"${i?"":' id="cvl-cung"'}>${esc(DD.rowLab[i][0])} <em>${esc(DD.rowLab[i][1])}</em></div><div class="g3" style="grid-template-columns:repeat(${r.length},minmax(0,1fr));${r.length>3?"gap:34px":""}">${r.map(k=>{const t=DD.core&&DD.core[k];return card(k,t?"core"+(r.length===1?" wide":""):(r.length===1?"wide":""));}).join("")}</div>`).join("")}
    <div class="cvl">Năng lực hỗ trợ</div>
    <div class="ck wide" id="ck-ht"><button class="ck-h" data-khoi="ht" aria-label="Chi tiết khối ${esc(K3.n)}"><span class="no">${KNO.ht}</span><span class="nm">${esc(K3.n)}</span><span class="ki">${ic(KHI.ht,18)}</span></button>
      <div class="g4">${NHOM_HT.map(g=>`<div class="grp"><div class="gh">${ic(GRI[g.id],15)}<span>${esc(g.n)}</span></div><div class="tis">${NV.filter(n=>n.g===g.id).map(tile).join("")}</div><div class="ck-o">${rmk(g.id)}<button class="ck-gd" data-gd="${GD_HT[g.id]}">${esc(gdName(GD_HT[g.id]))} ›</button></div></div>`).join("")}</div></div>
@@ -2329,8 +2333,8 @@ function arch(){
      <div class="ck" id="ck-ex"><div class="ck-h st"><span class="no">10</span><span class="nm">Ngoại lệ đến đúng người</span><span class="ki">${ic("triangle-alert",18)}</span></div>
        <div class="exl">${EXQ.map(([id,t,r])=>`<button class="exi" data-id="${id}">${ic("triangle-alert",15)}<span>${esc(t)}</span><b>${esc(ROLE_S[r])}</b></button>`).join("")}</div></div>
    </div>
-   <div class="cvl">Nguồn lực cốt lõi <em>— mỗi nguồn lực một giám đốc trông giữ; viền đậm là nguồn lực quyết định</em></div>
    <div class="g5">${NL.map((x,i)=>{const v=NLX[model][x.id]; return `<div class="ck${v.key?" nlkey":""}"><button class="ck-h" data-nl="${x.id}" aria-label="Chi tiết nguồn lực ${esc(x.n)}"><span class="no">${"ABCDE"[i]}</span><span class="nm">${esc(x.n)}</span><span class="ki">${ic(x.ic,18)}</span></button><div class="nlk">${v.chi.slice(0,3).map(c=>`<span>· ${esc(c)}</span>`).join("")}</div><div class="tis">${v.boi.filter(id=>NV_BY[id]).slice(0,4).map(id=>tile(NV_BY[id])).join("")}</div><div class="ck-o"><i class="hdot"></i>${esc(gdName(x.gd))}</div></div>`;}).join("")}</div>
+   <div class="cvl cvl-c">Nguồn lực cốt lõi <em>— mỗi nguồn lực một giám đốc trông giữ; viền đậm là nguồn lực quyết định</em></div>
    <div class="cvleg"><span><i class="pdot"></i>Dữ liệu, việc</span><span><i class="pdot red"></i>Ngoại lệ đến người</span><span><i class="ldash"></i>Phản hồi</span><span><i class="hdot"></i>Người chịu trách nhiệm</span><span>${ic("bot",14)}Vai giao được cho AI</span><span><i class="lopt"></i>Chỉ khi cần</span></div>`;
   $("chains").innerHTML=CHUOI.map(c=>`<button class="chc" data-chain="${c.id}"><span class="cic">${ic(CHI[c.id],22)}</span><b>${esc(c.n)}</b><span class="en">${esc(c.en)}</span><span class="ow"><i class="hdot"></i>${esc(c.owner)}</span></button>`).join("");
   /* Dựng xong cả hai bản rồi mới hiện bản đang chọn: vẽ đường nối trên khung cũ sẽ lỗi. */

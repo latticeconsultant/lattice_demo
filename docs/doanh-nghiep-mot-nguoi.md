@@ -72,7 +72,7 @@ Hệ quả thiết kế: mô hình 1–3 người phải chủ động xây **"h
 | **Nghị quyết 68-NQ/TW (2025)** về kinh tế tư nhân | Mục tiêu 2 triệu doanh nghiệp đến 2030; xóa bỏ thuế khoán với hộ kinh doanh chậm nhất 2026; Nhà nước cấp miễn phí nền tảng số và phần mềm kế toán dùng chung | Hạ mạnh chi phí "lên đời" từ hộ kinh doanh sang doanh nghiệp |
 | **Nghị định 68/2026/NĐ-CP** (sửa đổi bởi **NĐ 141/2026/NĐ-CP**) | Từ 01/01/2026 hộ và cá nhân kinh doanh chuyển sang tự kê khai – tự tính – tự nộp theo doanh thu thực tế; ngưỡng miễn thuế nâng lên 1 tỷ đồng/năm, hồi tố từ 01/01/2026 | Chi phí tuân thủ tăng, nhưng đây chính là **lý do kinh tế để tự động hóa kế toán bằng AI** |
 | **Nghị định 70/2025/NĐ-CP** | Hộ kinh doanh doanh thu ≥1 tỷ đồng/năm phải dùng hóa đơn điện tử khởi tạo từ máy tính tiền | Dữ liệu giao dịch được số hóa mặc định → nguyên liệu sạch cho agent tài chính |
-| **Luật Thương mại điện tử** (hiệu lực 01/7/2026) | Bắt buộc xác minh danh tính người bán và người livestream; siết trách nhiệm với hàng giả, hàng không rõ nguồn gốc | Nội dung do AI tạo và bán hàng livestream cần **quy trình kiểm duyệt bắt buộc** — không thể để agent tự chạy L4 |
+| **Luật Thương mại điện tử** (hiệu lực 01/7/2026) | Bắt buộc xác minh danh tính người bán và người livestream; siết trách nhiệm với hàng giả, hàng không rõ nguồn gốc | Nội dung do AI tạo và bán hàng livestream cần **quy trình kiểm duyệt bắt buộc**: tác vụ đăng nội dung ở L2, người có danh tính duyệt trước khi ra ngoài |
 | **Nghị định 117/2025/NĐ-CP** | Sàn TMĐT khấu trừ và nộp thuế thay người bán | Đơn giản hóa nghĩa vụ thuế cho người bán nhỏ |
 
 **Đọc chính sách như một cơ hội thiết kế:** Việt Nam đang *ép* toàn bộ khu vực hộ kinh doanh — vốn là hàng triệu "doanh nghiệp một người" phi chính thức — phải minh bạch dữ liệu. Ai chuyển đổi sang mô hình có sổ sách, hóa đơn, dữ liệu sạch thì đồng thời có luôn nền tảng dữ liệu để AI vận hành. Ai chống lại thì vừa chịu rủi ro thuế vừa mất cơ hội tự động hóa. **Đây là thời điểm mà chi phí tuân thủ và chi phí AI-hóa hội tụ vào cùng một khoản đầu tư.**
@@ -118,6 +118,11 @@ Bảng dưới bổ sung hai cột mà phiên bản trước thiếu: **trần t
 | **Dịch vụ tại chỗ** | Y tế, vật lý trị liệu, spa, sửa chữa, F&B, logistics | Đặt lịch, điều phối, CSKH, marketing, kiểm soát chất lượng | Thực hiện dịch vụ vật lý, xử lý tại chỗ | 40–55% | **2–3+** | Năng lực giờ công của người hành nghề |
 | **Sản xuất** | Thiết kế, nguyên vật liệu, sản xuất, QC, kho vận | Dự báo, kế hoạch, mua hàng, QC thị giác máy, bảo trì dự báo | Vận hành thiết bị, sự cố vật lý, quan hệ nhà cung cấp | 30–50% | **3+** (trừ khi OEM/ODM hóa) | Tài sản vật lý và lao động trực tiếp |
 
+**Hai chú thích để đọc bảng đúng:**
+
+- **Trần là tỷ trọng việc AI đảm nhiệm, không phải mức tự chủ.** Mức tự chủ đặt theo từng tác vụ (mục 7), khuyến nghị tối đa L3. Một mô hình có trần 85% vẫn có thể chạy hầu hết tác vụ ở L2–L3.
+- **Tám nhóm quy về ba kiến trúc tham chiếu** (mục 14): Thương mại điện tử và Thương mại (phân phối) → *Thương mại & hàng hóa*; Dịch vụ chuyên môn, Dịch vụ tại chỗ, Môi giới / Marketplace, cùng Kinh doanh tri thức và Nền tảng số / SaaS → *Dịch vụ*; Sản xuất → *Sản xuất*.
+
 **Quy tắc rút ra:** trần tự động hóa tỷ lệ nghịch với **hàm lượng nguyên tử** trong chuỗi giá trị. Mô hình 1–3 người chỉ khả thi khi phần vật lý được (a) thuê ngoài theo hợp đồng, (b) đẩy sang OEM/ODM, hoặc (c) đóng gói thành năng lực của đối tác. Khi đó doanh nghiệp lõi trở thành một **AI Control Tower**, còn nhà máy và logistics là mạng lưới thực thi.
 
 Trường hợp mô hình lai — ví dụ một nền tảng vật lý trị liệu — cần được **tách lớp** chứ không đánh giá gộp:
@@ -141,11 +146,11 @@ Trường hợp mô hình lai — ví dụ một nền tảng vật lý trị li
 | **Người 2 — Operations & Relationship Lead** | Công việc vật lý hoặc chưa số hóa; xử lý ngoại lệ AI không giải được; kiểm tra chất lượng thực tế | Xác minh vật lý, xử lý khủng hoảng tại chỗ | Tỷ lệ ngoại lệ >15% khối lượng |
 | **Người 3 — Product/Tech/Growth Lead** | Quản trị hệ thống AI, dữ liệu, tự động hóa; phát triển sản phẩm; theo dõi hiệu quả Team AI | Thiết kế quyền hạn, bảo mật, kiến trúc dữ liệu | Không kịp review eval hàng tuần |
 
-Trong doanh nghiệp một người, ba vai trò hợp nhất. Rủi ro lớn nhất khi đó là **CEO trở thành nút thắt cổ chai** — và đây là cách nhận diện sớm:
+Ba người này kiêm các vai giám đốc ở mục 5. Trong doanh nghiệp một người, ba vai trò hợp nhất. Rủi ro lớn nhất khi đó là **CEO trở thành nút thắt cổ chai** — và đây là cách nhận diện sớm:
 
 | Triệu chứng | Ngưỡng cảnh báo | Biện pháp |
 |---|---|---|
-| Hàng chờ phê duyệt | >10 mục hoặc >48h | Nâng mức tự chủ cho nhóm rủi ro thấp |
+| Hàng chờ phê duyệt | >10 mục hoặc >48h | Nâng mức tự chủ cho từng tác vụ rủi ro thấp (tối đa L3) |
 | Tỷ lệ việc bị AI leo thang | >20% | Bổ sung chính sách, không bổ sung agent |
 | Thời gian CEO dành cho việc L0–L2 | >30% quỹ thời gian | Sai phân bổ vai trò |
 | Số quyết định/ngày | >20 quyết định thực chất | Gộp thành lô, đặt lịch cố định |
@@ -162,27 +167,42 @@ Trong doanh nghiệp một người, ba vai trò hợp nhất. Rủi ro lớn nh
 
 ---
 
-## 5. Tầng điều hành AI — "Ban điều hành ảo"
+## 5. Bộ máy điều hành: người giữ quyền, Team AI thực hiện
 
-Phiên bản này bổ sung ba vai trò còn thiếu: **AI CMO (Social & Brand)**, **AI CRM & Lifecycle Manager**, và **AI R&D Manager**.
+Phiên bản trước gọi các vai AI là "ban điều hành ảo" và gán mức tự chủ cho cả vai. Bản này sửa hai điểm. Thứ nhất, **ban điều hành luôn là người**; AI làm việc trong Team AI dưới từng giám đốc. Thứ hai, **mức tự chủ gắn cho từng tác vụ** (mục 7), không cho cả vai hay cả agent.
 
-| Vai trò AI | Nhiệm vụ | Đầu ra chuẩn | KPI theo dõi | Mức tự chủ khuyến nghị |
+| Tầng | Ai | Quyết định gì | AI có thể đảm nhiệm? |
+|---|---|---|---|
+| **1. Chủ sở hữu / HĐQT** | Chủ sở hữu, hội đồng quản trị | Chiến lược, ngân sách năm, đầu tư lớn, bổ nhiệm CEO; ban hành **Hiến chương AI** | Không |
+| **2. Ban điều hành** | CEO và các giám đốc | Điều hành theo phạm vi; mỗi giám đốc giữ một nguồn lực cốt lõi (mục 14) | Không. Luôn là người |
+| **3. Trưởng khối** | Người điều phối một khối nghiệp vụ | Phân việc, theo dõi SLA, xử lý ngoại lệ trong quyền của vai | Người hoặc AI, khi việc chủ yếu là điều phối theo luật |
+| **4. Team AI** | Trợ lý AI của từng giám đốc | Thực hiện tác vụ trong phạm vi được giao | Có; mức tự chủ theo từng tác vụ, phần lớn L1–L3 |
+
+**Hiến chương AI** do HĐQT duyệt, ghi ba điều: mức tự chủ tối đa toàn doanh nghiệp; những quyết định không bao giờ giao AI; cách kiểm toán nhật ký AI.
+
+Các vai AI của phiên bản trước được giữ lại, nhưng nay là Team AI dưới giám đốc tương ứng:
+
+| Giám đốc (người) | Phạm vi, nguồn lực giữ | Team AI | Tác vụ tiêu biểu và mức tự chủ | KPI theo dõi |
 |---|---|---|---|---|
-| **AI Chief of Staff** | Nhận mục tiêu từ CEO → kế hoạch + KPI; điều phối các AI Manager; tổng hợp báo cáo; đẩy ngoại lệ lên CEO | Kế hoạch tuần, báo cáo ngoại lệ | % mục tiêu đúng hạn; số ngoại lệ tồn | L3 |
-| **AI Operations Manager** | Quy trình, đơn hàng, lịch, SLA; kiểm tra tiến độ; tự xử lý sai lệch trong quyền | Bảng SLA, log xử lý | Tỷ lệ đúng SLA; tỷ lệ tự xử lý | L3–L4 |
-| **AI Finance Controller** | Dòng tiền, ngân sách, công nợ, dự báo; đối soát; phát hiện bất thường; hồ sơ thuế | Báo cáo dòng tiền, cảnh báo | Sai lệch đối soát; số ngày tiền mặt | L2–L3 |
-| **AI Growth/Marketing Manager** | Nghiên cứu thị trường, kế hoạch marketing, nội dung, quảng cáo, phễu, thử nghiệm | Lịch chiến dịch, báo cáo kênh | CAC, ROAS, tỷ lệ chuyển đổi | L3–L4 (trong ngân sách) |
-| **AI Social & Brand Manager** *(mới)* | Sản xuất và phân phối nội dung đa nền tảng; lắng nghe mạng xã hội; quản lý cộng đồng; bảo vệ tông giọng thương hiệu | Lịch đăng, báo cáo sentiment | Reach, engagement rate, share of voice | L2–L3 |
-| **AI Sales Manager** | Tìm và đánh giá lead; cá nhân hóa tiếp cận; CRM; báo giá, đề xuất, hợp đồng | Pipeline, báo giá | Tỷ lệ qualify, tốc độ chu kỳ bán | L2–L3 |
-| **AI CRM & Lifecycle Manager** *(mới)* | Hợp nhất dữ liệu khách hàng; phân khúc; kịch bản vòng đời; chống rời bỏ; tái mua | Hồ sơ 360°, kịch bản automation | LTV, tỷ lệ giữ chân, tỷ lệ tái mua | L3 |
-| **AI Customer Success Manager** | Onboarding, hỗ trợ đa kênh, đo hài lòng, cảnh báo rời bỏ, upsell | Ticket, NPS, cảnh báo churn | CSAT, thời gian phản hồi đầu | L3–L4 |
-| **AI Product/Service Manager** | Phân tích nhu cầu, backlog, thiết kế và cải tiến, theo dõi chất lượng | Backlog có ưu tiên, spec | Tỷ lệ tính năng được dùng | L2 |
-| **AI R&D Manager** *(mới)* | Quét công nghệ và đối thủ; thử nghiệm có kiểm soát; nguyên mẫu; quản lý tri thức và IP | Báo cáo scouting, kết quả thí nghiệm | Số thí nghiệm/quý; tỷ lệ thí nghiệm chuyển thành sản phẩm | L1–L2 |
-| **AI Risk & Compliance Officer** | Rà soát chính sách, hợp đồng, quyền truy cập; phát hiện rủi ro pháp lý/tài chính/dữ liệu/thương hiệu; **có quyền tạm dừng quy trình** | Cảnh báo, nhật ký chặn | Số vi phạm phát hiện; false positive | L3 nhưng có quyền phủ quyết |
+| **CEO** | Điều phối chung; nhận ngoại lệ vượt quyền giám đốc | **AI Chief of Staff**: kế hoạch tuần, KPI, tổng hợp báo cáo ngoại lệ | Tổng hợp báo cáo tuần L3; đề xuất ưu tiên L1 | % mục tiêu đúng hạn; số ngoại lệ tồn |
+| **GĐ Tài chính** | Vốn & Tài sản | **AI Finance Controller** | Đối soát L3; dự báo dòng tiền L1; soạn hồ sơ thuế L2 | Sai lệch đối soát; số ngày tiền mặt |
+| **GĐ Công nghệ** | Tri thức & Công nghệ; dữ liệu; vận hành Team AI; quản trị hệ thống | **AI R&D Manager**, Team AI dữ liệu | Quét công nghệ L1; thiết kế thí nghiệm L2; báo cáo dữ liệu L3 | Số thí nghiệm/quý; tỷ lệ chuyển thành sản phẩm |
+| **GĐ Tổ chức Hành chính** | Con người & Văn hóa | Trợ lý AI nhân sự – hành chính | Soạn hồ sơ, lịch đào tạo L2; nhắc hạn hợp đồng L3 | Hồ sơ đúng hạn |
+| **GĐ Truyền thông – Marketing** | Thương hiệu & Uy tín | **AI Growth/Marketing Manager**, **AI Social & Brand Manager** | Soạn nội dung L2; đăng theo lịch đã duyệt L3; chỉnh ngân sách quảng cáo trong biên độ L3 | CAC, ROAS; reach, share of voice |
+| **GĐ Kinh doanh** | Thị trường & Quan hệ khách hàng | **AI Sales Manager**, **AI CRM & Lifecycle Manager**, **AI Customer Success Manager** (vd. Team AI chăm sóc khách hàng) | Qualify lead L3; báo giá L2; trả lời ticket theo chính sách L3 | Tỷ lệ qualify; LTV; CSAT |
+| **GĐ Sản phẩm & Chuyên môn** | Bán cái gì | **AI Product/Service Manager** (vd. Team thiết kế AI) | Phân tích nhu cầu L1; soạn spec, bản thiết kế L2 | Tỷ lệ tính năng được dùng |
+| **GĐ Vận hành & Cung ứng** | Giao thế nào; quan hệ nhà cung cấp | **AI Operations Manager** | Đổi lịch L3; đề nghị đặt hàng khi chạm ngưỡng L2 | Tỷ lệ đúng SLA; tỷ lệ tự xử lý |
+| **Kiểm soát độc lập** (báo cáo thẳng CEO) | Tuân thủ; bảo vệ cả năm nguồn lực | **AI Risk & Compliance Officer**, **có quyền tạm dừng quy trình** | Rà soát hợp đồng, quyền truy cập L1–L2; chặn giao dịch vượt ngưỡng L3 | Số vi phạm phát hiện; false positive |
+
+Ở doanh nghiệp sản xuất có thêm **GĐ Chất lượng & An toàn**, báo cáo thẳng CEO, không nằm trong luồng đẩy sản lượng.
+
+**Chức danh mang tính tương đối.** Công ty nhỏ, một người kiêm nhiều vai và đăng nhập theo từng vai. Chỉ tránh ba cặp xung đột: bán hàng + duyệt chi, công nợ; mua hàng + thanh toán; sản xuất + nghiệm thu chất lượng.
+
+**Ngoại lệ đi tới đúng vai, không dồn về CEO.** Tác vụ vượt ngưỡng chuyển cho vai có thẩm quyền (Trưởng kinh doanh, Kế toán trưởng, Trưởng chất lượng…). Vượt quyền vai thì lên giám đốc phụ trách, rồi mới tới CEO. Ở quy mô 1–3 người, người nhận nhiều khi chính là CEO kiêm nhiều vai; hệ thống vẫn ghi ngoại lệ theo vai, để khi có thêm người chỉ cần chuyển vai.
 
 ### 5.1 Tầng agent chuyên môn
 
-Dưới mỗi AI Manager là các agent thực thi. Danh sách tham chiếu (không phải danh sách phải xây hết):
+Mỗi Team AI gồm các agent thực thi. Danh sách tham chiếu (không phải danh sách phải xây hết):
 
 | Cụm | Agent |
 |---|---|
@@ -240,14 +260,16 @@ Nhờ vậy doanh nghiệp không biến thành một chuỗi chatbot khó kiể
 |---|---|---|---|
 | **L0 — Quan sát** | Chỉ thu thập và báo cáo | Báo cáo doanh thu, cảnh báo tồn kho | Có nguồn dữ liệu ổn định |
 | **L1 — Đề xuất** | Phân tích và đưa phương án | Đề xuất điều chỉnh giá | ≥30 mẫu, độ chính xác đề xuất ≥70% |
-| **L2 — Chuẩn bị** | Tạo đầu ra, chờ phê duyệt | Soạn hợp đồng, nội dung, báo giá | Tỷ lệ đầu ra được duyệt không sửa ≥60% |
-| **L3 — Thực hiện có giới hạn** | Tự thực hiện trong chính sách | Email chăm sóc, hoàn tiền nhỏ, đổi lịch | ≥90% chính xác trên 100 giao dịch; có rollback |
-| **L4 — Tự vận hành** | Tự lập kế hoạch và tối ưu | Vận hành chiến dịch trong ngân sách | ≥95% chính xác; có ngân sách trần và kill switch |
-| **L5 — Tự chủ có giám sát** | Điều hành cả chức năng, người kiểm toán | Bộ phận CSKH hoặc content tự vận hành | Kiểm toán định kỳ đạt; sự cố nghiêm trọng = 0 trong 90 ngày |
+| **L2 — Chuẩn bị** | Tạo đầu ra, người duyệt; không gì ra ngoài khi chưa duyệt | Soạn hợp đồng, nội dung, báo giá | Tỷ lệ đầu ra được duyệt không sửa ≥60% |
+| **L3 — Thực hiện có giới hạn** | Tự thực hiện trong luật và ngưỡng; vượt ngưỡng bị chặn, chuyển vai có thẩm quyền | Email chăm sóc, hoàn tiền nhỏ, đổi lịch | ≥90% chính xác trên 100 giao dịch; có rollback |
+| **L4 — Tự vận hành** *(hiếm dùng)* | Tự lập kế hoạch và tối ưu | Vận hành chiến dịch trong ngân sách | ≥95% chính xác; có ngân sách trần và kill switch |
+| **L5 — Tự chủ có giám sát** *(hiếm dùng)* | Tự chạy tác vụ, người kiểm toán định kỳ; chỉ cho việc rủi ro thấp, đảo ngược được | Gắn nhãn, phân loại ticket | Kiểm toán định kỳ đạt; sự cố nghiêm trọng = 0 trong 90 ngày |
+
+**Mức tự chủ gắn cho từng tác vụ, không cho cả bộ phận.** Cùng một Team AI có tác vụ ở L1 và tác vụ ở L3. Khuyến nghị tối đa L3; việc chiến lược ở L1. Ngưỡng và ngoại lệ tồn tại để bảo vệ nguồn lực cốt lõi (mục 14).
 
 **Nguyên tắc thăng cấp:** mức tự chủ là hàm của bốn biến — *tỷ lệ chính xác × giá trị giao dịch × khả năng phục hồi khi sai × mức độ rủi ro danh tiếng/pháp lý*. Không bao giờ nâng mức vì "thấy nó làm tốt".
 
-**Nguyên tắc hạ cấp (bổ sung, thường bị bỏ quên):** phải có cơ chế **tự động hạ mức** khi chất lượng tụt — ví dụ hai sự cố trong 30 ngày thì agent tự rơi từ L4 về L2 và chờ người xem xét. Tự chủ là quyền có thể bị thu hồi, không phải trạng thái vĩnh viễn.
+**Nguyên tắc hạ cấp (bổ sung, thường bị bỏ quên):** phải có cơ chế **tự động hạ mức** khi chất lượng tụt — ví dụ hai sự cố trong 30 ngày thì tác vụ tự rơi từ L3 về L2 và chờ người xem xét. Tự chủ là quyền có thể bị thu hồi, không phải trạng thái vĩnh viễn.
 
 ---
 
@@ -275,7 +297,7 @@ Phiên bản trước có sáu lớp. Bổ sung lớp **Identity & Memory** — 
 
 | Lớp | Chức năng | Thành phần điển hình | Câu hỏi kiểm tra |
 |---|---|---|---|
-| **1. Business Interface** | Một dashboard duy nhất để CEO giao mục tiêu, phê duyệt, xem ngoại lệ | Dashboard + kênh phê duyệt trên di động | CEO có thể điều hành từ điện thoại trong 15 phút/ngày không? |
+| **1. Business Interface** | Một dashboard duy nhất để CEO giao mục tiêu; mỗi vai phê duyệt và xem ngoại lệ của mình | Dashboard + kênh phê duyệt trên di động | CEO có thể điều hành từ điện thoại trong 15 phút/ngày không? |
 | **2. Agent Orchestration** | Điều phối agent, lập kế hoạch, kiểm tra trạng thái, phục hồi khi lỗi | Framework orchestration, hàng đợi, retry | Khi một agent lỗi, hệ thống tự phục hồi hay đứng im? |
 | **3. MCP / Integration Layer** | Kết nối email, lịch, CRM, kế toán, ERP, ngân hàng, website, mạng xã hội, kho dữ liệu | MCP servers, API, webhook | Thêm một hệ thống mới mất bao lâu? |
 | **4. Business Process Layer** | Workflow xác định thứ tự, điều kiện, SLA, người phê duyệt | Định nghĩa quy trình dạng mã | Quy trình có phiên bản và có thể quay lui không? |
@@ -466,35 +488,70 @@ Bước 6 là bước hầu hết doanh nghiệp nhỏ bỏ qua và là bước 
 
 ## 14. Ba kiến trúc mẫu theo nhóm ngành
 
-### 14.1 Doanh nghiệp thương mại / TMĐT
+Cả ba kiến trúc dưới đây dùng chung một khung, gồm ba lớp khác bản chất:
+
+| Lớp | Là gì | Ví dụ |
+|---|---|---|
+| **Chuỗi tạo giá trị** | Các khối nghiệp vụ tạo ra doanh thu | Kinh doanh, vận hành, sản xuất, dịch vụ khách hàng |
+| **Năng lực hỗ trợ** | Bộ phận phục vụ chuỗi tạo giá trị | Kế toán, nhân sự, pháp chế, hành chính |
+| **Nguồn lực cốt lõi** | Thứ doanh nghiệp sở hữu, mất nhanh, xây chậm | Vốn & Tài sản; Tri thức & Công nghệ; Con người & Văn hóa; Thương hiệu & Uy tín; Thị trường & Quan hệ |
+
+Chuỗi tạo giá trị huy động nguồn lực, và kết quả của nó phải bồi đắp lại nguồn lực. Ở giữa là trục LATTICE: dữ liệu một nguồn, luật và ngưỡng, Team AI, ngoại lệ đến đúng người. Ngưỡng và ngoại lệ tồn tại để bảo vệ nguồn lực cốt lõi. Bộ máy đi kèm có bốn tầng (mục 5): Chủ sở hữu / HĐQT → Ban điều hành (luôn là người, mỗi giám đốc giữ một nguồn lực) → Trưởng khối (người hoặc AI) → Team AI.
+
+Xem kiến trúc đầy đủ và bộ máy theo từng loại hình: lattice.business/mophong/
+
+### 14.1 Thương mại & hàng hóa (TMĐT, phân phối)
+
+**8 khối, 5 chuỗi, 54 nghiệp vụ.** Sáu khối tạo giá trị: Ngành hàng & Nguồn cung; Hoạch định Cung–Cầu & Tồn kho; Thị trường, Marketing & Tăng trưởng; Kinh doanh & Kênh phân phối; Đơn hàng, Kho vận & Giao nhận; Dịch vụ khách hàng & Phát triển quan hệ. Cộng Quản trị & Điều hành và Năng lực hỗ trợ.
 
 ```
-Nghiên cứu thị trường → Tìm nguồn hàng → Dự báo nhu cầu → Tạo nội dung
-→ Bán hàng đa kênh → Xử lý đơn → Hậu mãi → Tái mua
+Kế hoạch → Hàng sẵn sàng
+Nguồn cung → Thanh toán
+Cơ hội → Đơn hàng
+Đơn hàng → Thu tiền
+Yêu cầu → Giải quyết
 ```
 
+Nguồn lực quyết định: **Vốn lưu động** (thuộc Vốn & Tài sản), **Thị trường & Quan hệ**.
 Con người tập trung: chọn sản phẩm, quan hệ nhà cung cấp, kiểm hàng, quyết định vốn tồn kho.
 Điểm nghẽn thật: **vốn lưu động**, không phải năng lực vận hành.
 
-### 14.2 Doanh nghiệp dịch vụ
+### 14.2 Dịch vụ
+
+**8 khối, 6 chuỗi, 58 nghiệp vụ.** Sáu khối tạo giá trị: Danh mục, Thiết kế & Tiêu chuẩn dịch vụ; Thị trường, Marketing & Phát triển kênh; Đánh giá nhu cầu, Kinh doanh & Cam kết dịch vụ; Hoạch định & Điều phối nguồn lực; Thực hiện dịch vụ & Quản trị chuyên môn; Trải nghiệm khách hàng & Phát triển quan hệ.
 
 ```
-Thu hút khách → Xác định nhu cầu → Báo giá → Đặt lịch → Chuẩn bị dịch vụ
-→ Thực hiện → Kiểm tra chất lượng → Chăm sóc sau dịch vụ
+Nhu cầu → Cam kết
+Kế hoạch → Nguồn lực sẵn sàng
+Cam kết → Hoàn thành
+Giao dịch → Thu tiền
+Nhu cầu đối tác → Thanh toán
+Yêu cầu → Khắc phục
 ```
 
-Con người tập trung: chuyên môn, niềm tin, trách nhiệm nghề nghiệp.
+Nguồn lực quyết định: **Con người & chuyên môn**, **Uy tín**.
+Con người tập trung: chuyên môn, niềm tin, trách nhiệm nghề nghiệp. Quyết định chuyên môn do người có chứng chỉ; AI chuẩn bị tài liệu, checklist, hồ sơ.
 Điểm nghẽn thật: **giờ công của người có chuyên môn** → chiến lược phải là đóng gói tri thức thành sản phẩm số để bán được ngoài giờ công.
 
-### 14.3 Doanh nghiệp sản xuất (mô hình Control Tower)
+### 14.3 Sản xuất (mô hình Control Tower)
+
+**10 khối, 7 chuỗi, 71 nghiệp vụ.** Tám khối tạo giá trị: Thị trường, Kinh doanh & Quản trị nhu cầu; Phát triển sản phẩm & Kỹ thuật sản xuất; Hoạch định sản xuất & Chuỗi cung ứng; Nguồn cung & Mua hàng; Vận hành sản xuất & Điều độ xưởng; Quản trị chất lượng & Truy xuất; Thiết bị, Bảo trì & An toàn nhà máy; Kho vận, Giao hàng & Dịch vụ sau bán.
 
 ```
-Dự báo nhu cầu → Kế hoạch sản xuất → Mua nguyên liệu → Điều phối máy/người
-→ QC → Kho → Giao hàng → Bảo trì
+Ý tưởng → Sẵn sàng sản xuất
+Nhu cầu → Kế hoạch khả thi
+Nguồn cung → Thanh toán
+Lệnh sản xuất → Thành phẩm được xuất
+Đơn hàng → Thu tiền
+Bất thường → Khắc phục
+Bảo trì → Thiết bị sẵn sàng
 ```
+
+Nguồn lực quyết định: **Tri thức & Công nghệ**, **Vốn & Tài sản** (thiết bị), **Uy tín chất lượng**.
+**AI không điều khiển máy.** Phần điều khiển do hệ thống tự động hóa công nghiệp đảm nhiệm; AI dự báo, lập kế hoạch, đề xuất. **Chất lượng và an toàn là thẩm quyền độc lập**: GĐ Chất lượng & An toàn báo cáo thẳng CEO, không nằm trong luồng đẩy sản lượng.
 
 Mô hình 1–3 người chỉ khả thi khi phần vật lý được thuê ngoài, dùng OEM/ODM, hoặc tự động hóa cao. Khi đó doanh nghiệp lõi là **AI Control Tower**, nhà máy và logistics là mạng lưới đối tác thực thi.
-Điểm nghẽn thật: **kiểm soát chất lượng từ xa** → cần agent QC bằng hình ảnh + kiểm tra thực địa định kỳ bởi người.
+Điểm nghẽn thật: **kiểm soát chất lượng từ xa** → Team AI QC bằng hình ảnh phát hiện và đề xuất, người có thẩm quyền chất lượng kết luận, kèm kiểm tra thực địa định kỳ.
 
 ### 14.4 Mô hình lai (bổ sung)
 
@@ -507,11 +564,11 @@ Với mô hình lai — ví dụ nền tảng vật lý trị liệu kết hợp
 | Vòng | Ai | Kiểm tra gì | Tần suất |
 |---|---|---|---|
 | **Vòng 1 — Thực thi** | Agent chuyên môn | Tự kiểm tra đầu ra theo tiêu chí hoàn thành | Mỗi work object |
-| **Vòng 2 — Quản lý** | AI Manager | Chất lượng, chi phí, tiến độ của agent dưới quyền | Hàng ngày |
-| **Vòng 3 — Kiểm soát độc lập** | Risk & Compliance Agent | Kiểm tra **cả agent thực thi lẫn AI Manager**; có quyền tạm dừng | Liên tục + kiểm toán hàng tuần |
+| **Vòng 2 — Quản lý** | Trưởng khối (người hoặc AI) và giám đốc phụ trách | Chất lượng, chi phí, tiến độ của Team AI trong khối | Hàng ngày |
+| **Vòng 3 — Kiểm soát độc lập** | Risk & Compliance Agent | Kiểm tra **cả agent thực thi lẫn vai điều phối**; có quyền tạm dừng | Liên tục + kiểm toán hàng tuần |
 | **Vòng 4 — Kiểm toán người** *(bổ sung)* | Con người | Mẫu ngẫu nhiên đầu ra + xem xét sự cố + duyệt thay đổi mức tự chủ | Hàng tuần + hàng quý |
 
-CEO không duyệt mọi việc. CEO chỉ nhận **bốn loại thông tin**:
+Ngoại lệ không dồn về CEO. Mỗi ngoại lệ đi tới đúng vai có thẩm quyền (Trưởng kinh doanh, Kế toán trưởng, Trưởng chất lượng…); vượt quyền vai thì lên giám đốc phụ trách; vượt quyền giám đốc mới tới CEO. Ở quy mô 1–3 người, người nhận nhiều khi chính là CEO kiêm nhiều vai, nhưng vẫn nhận theo từng vai. Mỗi vai chỉ nhận **bốn loại thông tin**:
 
 1. Quyết định cần phê duyệt
 2. Ngoại lệ vượt quyền hạn
@@ -587,8 +644,8 @@ CEO không duyệt mọi việc. CEO chỉ nhận **bốn loại thông tin**:
 |---|---|---|---|---|
 | **1** | **AI hỗ trợ** | Chuẩn hóa dữ liệu và quy trình; xây knowledge base; AI nghiên cứu, soạn thảo, báo cáo; mọi hành động ra ngoài đều cần duyệt | 1–3 tháng | Knowledge base phủ ≥80% câu hỏi lặp lại |
 | **2** | **AI workflow** | Kết nối email, CRM, website, kế toán, mạng xã hội; tự động hóa quy trình lặp; đưa tác vụ rủi ro thấp lên L2–L3 | 2–4 tháng | ≥5 quy trình chạy ổn định ở L3 |
-| **3** | **Team AI** | Thành lập AI Chief of Staff và các AI Manager; agent phối hợp theo KPI chung; người quản trị ngoại lệ qua một dashboard | 3–6 tháng | Tỷ lệ tự xử lý >60%; hàng chờ phê duyệt <24h |
-| **4** | **Autonomous Business** | AI tự lập kế hoạch tuần/ngày, tự phân bổ nguồn lực trong ngân sách, tự đánh giá và cải tiến; người giữ chiến lược, vốn, pháp lý, quan hệ | Liên tục | — |
+| **3** | **Team AI** | Mỗi giám đốc (người) có Team AI trong phạm vi; giao vai điều phối cho AI ở khối mà việc chủ yếu là điều phối theo luật; ngoại lệ đến đúng vai qua một dashboard | 3–6 tháng | Tỷ lệ tự xử lý >60%; hàng chờ phê duyệt <24h |
+| **4** | **Tối ưu có kiểm soát** | Mở rộng số tác vụ ở L3; chỉ xét L4 cho từng tác vụ rủi ro thấp, đảo ngược được, đã qua kiểm toán; người giữ chiến lược, vốn, pháp lý, quan hệ | Liên tục | — |
 
 ### 18.1 Kế hoạch 12 tháng cụ thể
 
@@ -602,7 +659,7 @@ CEO không duyệt mọi việc. CEO chỉ nhận **bốn loại thông tin**:
 | 6 | Nâng 2 quy trình lên L3 | 100 giao dịch, chính xác ≥90% |
 | 7 | Động cơ Social Media: quy trình "một gốc — nhiều nhánh" | 1 nội dung gốc/tuần → ≥10 mảnh phân phối |
 | 8 | Động cơ CRM: kịch bản vòng đời | Tỷ lệ phản hồi lead <5 phút |
-| 9 | Thành lập AI Chief of Staff | Báo cáo tuần tự động, ngoại lệ được lọc |
+| 9 | Giao AI Chief of Staff vào Team AI của CEO | Báo cáo tuần tự động, ngoại lệ được lọc |
 | 10 | GEO/AEO + dữ liệu cấu trúc | Bắt đầu đo tỷ lệ được AI trích dẫn |
 | 11 | Khởi động nhịp R&D 2 tuần/chu kỳ | ≥2 thí nghiệm có kết luận |
 | 12 | Kiểm toán toàn hệ thống; quyết định nâng/hạ mức tự chủ | Báo cáo kiểm toán + kế hoạch năm 2 |
@@ -650,7 +707,7 @@ CEO không duyệt mọi việc. CEO chỉ nhận **bốn loại thông tin**:
 - Nâng ít nhất 1 quy trình lên L3 với đầy đủ rollback
 - Chạy eval suite lần đầu, ghi lại điểm gốc
 - Khởi động quy trình nội dung "một gốc — nhiều nhánh"
-- Thiết lập báo cáo ngoại lệ hàng tuần cho CEO
+- Thiết lập báo cáo ngoại lệ hàng tuần cho từng vai có thẩm quyền (ở quy mô 1–3 người thường là CEO kiêm nhiều vai)
 - Rà soát tuân thủ: hóa đơn điện tử, xác minh danh tính bán hàng, dữ liệu cá nhân
 - Đặt lịch cố định với peer group hoặc cố vấn
 
@@ -660,7 +717,7 @@ CEO không duyệt mọi việc. CEO chỉ nhận **bốn loại thông tin**:
 
 Mục tiêu cuối cùng không phải một doanh nghiệp "không có con người". Đó là:
 
-> **Một doanh nghiệp có bộ máy AI tự vận hành, trong đó con người giữ quyền sở hữu, giá trị, trách nhiệm và những quyết định không nên giao cho máy.**
+> **Một doanh nghiệp có bộ máy AI vận hành trong luật và ngưỡng, trong đó con người giữ quyền sở hữu, giá trị, trách nhiệm và những quyết định không nên giao cho máy.**
 
 Ba điều đáng nhớ nhất từ toàn bộ tài liệu này:
 
@@ -669,6 +726,8 @@ Ba điều đáng nhớ nhất từ toàn bộ tài liệu này:
 2. **Ít mà sâu thắng nhiều mà nông.** Ba quy trình chạy ở L3 với đầy đủ log, eval và rollback tạo ra nhiều giá trị hơn hai mươi agent chạy ở L1. Và quan trọng hơn: chúng tạo ra *nền móng* để mở rộng, trong khi hai mươi agent nông chỉ tạo ra nợ kỹ thuật.
 
 3. **Với Việt Nam, 2026 là cửa sổ hiếm.** Chính sách đang ép minh bạch dữ liệu và hỗ trợ chuyển đổi số; thị trường thương mại điện tử vẫn tăng trên 40%/năm; hạ tầng AI đang rẻ đi nhanh. Nhưng cửa sổ này đóng theo hai hướng: khi mọi người đều dùng AI, lợi thế chuyển từ *có AI* sang *có hệ thống và dữ liệu riêng mà AI vận hành trên đó*. Thứ không sao chép được không phải công cụ — mà là tri thức tích lũy trong knowledge base, quan hệ khách hàng thật, và uy tín của một con người cụ thể đứng phía trước.
+
+Xem kiến trúc đầy đủ cho ba loại hình: lattice.business/mophong/ · Tự đánh giá: Khảo sát nhanh 15 câu, khoảng 7 phút: lattice.business/khao-sat/
 
 ---
 

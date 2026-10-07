@@ -172,7 +172,7 @@ def main():
             tong += 1
 
     # đường dẫn tài nguyên lùi một cấp
-    for thu_muc in ('assets/', 'brand/'):
+    for thu_muc in ('assets/', 'brand/', 'mophong/', 'khao-sat/'):
         t = re.sub(r'(?<=["\'(])' + thu_muc, '../' + thu_muc, t)
     t = t.replace('"../../', '"../')
     # srcset có nhiều đường dẫn; chỉ đường đầu đứng sau dấu nháy nên regex trên

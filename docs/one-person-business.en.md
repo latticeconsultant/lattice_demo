@@ -74,7 +74,7 @@ Across most major markets, three regulatory currents are converging at once, and
 | **AI management standards** (ISO/IEC 42001, NIST AI RMF) | A management system for AI: policy, roles, evaluation, incident handling | The governance layer described in section 9 maps almost one-to-one onto a certifiable system |
 | **E-invoicing and real-time reporting mandates** | Structured invoices issued and reported at the point of sale, in a growing list of jurisdictions | Transaction data becomes digital by default — clean input for finance agents |
 | **Small-business tax simplification and formalisation drives** | Self-assessment on actual revenue, small-turnover exemptions replacing lump-sum regimes | Compliance costs rise — and that is precisely the economic case for automating accounting with AI |
-| **Platform liability and marketplace rules** (EU DSA and equivalents) | Seller identity verification, traceability, tighter liability for counterfeit goods | AI-generated content and live selling need a mandatory review step — agents cannot be left to run at L4 |
+| **Platform liability and marketplace rules** (EU DSA and equivalents) | Seller identity verification, traceability, tighter liability for counterfeit goods | AI-generated content and live selling need a mandatory review step: publishing stays at L2, approved by an identified person before anything goes out |
 | **Personal data regimes** (GDPR and its descendants) | Lawful basis, purpose limitation, export, deletion, traceability | The `Consent` entity in section 12 becomes a hard precondition, not a nice-to-have |
 
 **Read regulation as a design opportunity.** Regulators are, in effect, *forcing* the informal end of the economy — millions of undocumented one-person businesses — into data transparency. Whoever moves to clean books, structured invoicing and a single source of truth acquires, in the same motion, the data foundation an AI system runs on. Whoever resists carries both the tax exposure and the lost automation. **This is the moment where the cost of compliance and the cost of becoming AI-native converge into one investment.**
@@ -122,6 +122,11 @@ The table below adds two columns the previous version lacked: the **realistic au
 | **On-site services** | Healthcare, physiotherapy, spa, repair, F&B, logistics | Booking, dispatch, customer care, marketing, quality control | Delivering the physical service, handling it on the spot | 40–55% | **2–3+** | The practitioner's billable hours |
 | **Manufacturing** | Design, materials, production, QC, warehousing | Forecasting, planning, procurement, machine-vision QC, predictive maintenance | Operating equipment, physical incidents, supplier relations | 30–50% | **3+** (unless moved to OEM/ODM) | Physical assets and direct labour |
 
+**Two notes for reading the table correctly:**
+
+- **The ceiling is the share of work AI carries, not an autonomy level.** Autonomy is set task by task (section 7), with L3 as the recommended maximum. A model with an 85% ceiling can still run almost every task at L2–L3.
+- **The eight groups map onto three reference architectures** (section 14): E-commerce and Trading and distribution → *Trade & goods*; Professional services, On-site services, Brokerage / marketplace, together with Knowledge / content and Digital platform / SaaS → *Services*; Manufacturing → *Manufacturing*.
+
 **The rule that falls out:** the automation ceiling is inversely proportional to the **atomic content** of the value chain. A 1–3 person model is viable only when the physical part is (a) contracted out, (b) pushed to an OEM/ODM, or (c) packaged as a partner's capability. At that point the core business becomes an **AI Control Tower**, and factories and logistics are the execution network.
 
 Hybrid models — a physiotherapy platform, for instance — must be **assessed layer by layer**, not as a single average:
@@ -145,11 +150,11 @@ This is the right way to plan: **automate the top three layers as far as they wi
 | **Person 2 — Operations & Relationship Lead** | Physical or undigitised work; exceptions AI cannot resolve; real-world quality checks | Physical verification, on-site crisis handling | Exception rate >15% of volume |
 | **Person 3 — Product/Tech/Growth Lead** | Governs AI systems, data and automation; develops product; tracks the AI team's performance | Permission design, security, data architecture | Cannot keep up with the weekly eval review |
 
-In a one-person business the three roles collapse into one. The largest risk then is that **the CEO becomes the bottleneck** — and this is how to catch it early:
+These three people cover the director roles in section 5 between them. In a one-person business the three roles collapse into one. The largest risk then is that **the CEO becomes the bottleneck** — and this is how to catch it early:
 
 | Symptom | Warning threshold | Remedy |
 |---|---|---|
-| Approval queue | >10 items or >48h | Raise autonomy for the low-risk group |
+| Approval queue | >10 items or >48h | Raise autonomy for individual low-risk tasks (up to L3) |
 | Share of work escalated by AI | >20% | Add policy, not more agents |
 | CEO time spent at L0–L2 | >30% of the time budget | A role-allocation error |
 | Decisions per day | >20 substantive decisions | Batch them; put them on a fixed schedule |
@@ -166,27 +171,42 @@ In a one-person business the three roles collapse into one. The largest risk the
 
 ---
 
-## 5. The AI operating layer — the "virtual executive board"
+## 5. The operating structure: humans hold authority, AI teams execute
 
-This version adds three roles that were missing: **AI CMO (Social & Brand)**, **AI CRM & Lifecycle Manager**, and **AI R&D Manager**.
+The previous version called the AI roles a "virtual executive board" and gave each whole role an autonomy level. This version corrects two things. First, **the executive team is always human**; AI works in AI teams under each director. Second, **autonomy attaches to each task** (section 7), never to a whole role or a whole agent.
 
-| AI role | Mandate | Standard output | KPI tracked | Recommended autonomy |
+| Tier | Who | What it decides | Can AI hold it? |
+|---|---|---|---|
+| **1. Owners / Board** | Owners, board of directors | Strategy, annual budget, major investments, appointing the CEO; issues the **AI Charter** | No |
+| **2. Executive team** | The CEO and the directors | Running their remit; each director holds one core resource (section 14) | No. Always human |
+| **3. Unit leads** | Whoever coordinates one business unit | Assigning work, tracking SLAs, handling exceptions within the role's authority | Human or AI, where the work is mainly rule-based coordination |
+| **4. AI teams** | Each director's AI assistants | Executing tasks within the assigned scope | Yes; autonomy set per task, mostly L1–L3 |
+
+The **AI Charter**, approved by the board, sets three things: the maximum autonomy anywhere in the business; the decisions never handed to AI; how the AI logs are audited.
+
+The AI roles from the previous version remain, but they are now AI teams under the matching director:
+
+| Director (human) | Remit and resource held | AI team | Typical tasks and autonomy | KPI tracked |
 |---|---|---|---|---|
-| **AI Chief of Staff** | Turns CEO objectives into plans and KPIs; coordinates the AI Managers; consolidates reporting; escalates exceptions to the CEO | Weekly plan, exception report | % of objectives on time; open exceptions | L3 |
-| **AI Operations Manager** | Processes, orders, schedules, SLAs; progress checks; self-correcting deviations within authority | SLA board, handling log | SLA hit rate; self-resolution rate | L3–L4 |
-| **AI Finance Controller** | Cash flow, budgets, receivables, forecasts; reconciliation; anomaly detection; tax filings | Cash-flow report, alerts | Reconciliation variance; days of cash | L2–L3 |
-| **AI Growth/Marketing Manager** | Market research, marketing plans, content, advertising, funnels, experiments | Campaign calendar, channel report | CAC, ROAS, conversion rate | L3–L4 (within budget) |
-| **AI Social & Brand Manager** *(new)* | Multi-platform content production and distribution; social listening; community management; holding the brand's tone of voice | Posting calendar, sentiment report | Reach, engagement rate, share of voice | L2–L3 |
-| **AI Sales Manager** | Sourcing and scoring leads; personalised outreach; CRM; quotes, proposals, contracts | Pipeline, quotes | Qualification rate, sales cycle speed | L2–L3 |
-| **AI CRM & Lifecycle Manager** *(new)* | Unified customer data; segmentation; lifecycle playbooks; churn prevention; repeat purchase | 360° profiles, automation playbooks | LTV, retention, repeat-purchase rate | L3 |
-| **AI Customer Success Manager** | Onboarding, multi-channel support, satisfaction measurement, churn alerts, upsell | Tickets, NPS, churn alerts | CSAT, first response time | L3–L4 |
-| **AI Product/Service Manager** | Requirements analysis, backlog, design and improvement, quality tracking | Prioritised backlog, specs | Share of features actually used | L2 |
-| **AI R&D Manager** *(new)* | Technology and competitor scanning; controlled experiments; prototypes; knowledge and IP management | Scouting reports, experiment results | Experiments per quarter; conversion into product | L1–L2 |
-| **AI Risk & Compliance Officer** | Reviews policies, contracts and access rights; detects legal, financial, data and brand risk; **holds the power to suspend a process** | Alerts, block log | Violations detected; false positives | L3, but with a veto |
+| **CEO** | Overall coordination; receives exceptions beyond a director's authority | **AI Chief of Staff**: weekly plan, KPIs, consolidated exception report | Compiling the weekly report L3; proposing priorities L1 | % of objectives on time; open exceptions |
+| **Finance Director** | Capital & Assets | **AI Finance Controller** | Reconciliation L3; cash-flow forecast L1; preparing tax filings L2 | Reconciliation variance; days of cash |
+| **Technology Director** | Knowledge & Technology; data; running the AI teams; system administration | **AI R&D Manager**, data AI team | Technology scanning L1; experiment design L2; data reporting L3 | Experiments per quarter; conversion into product |
+| **People & Administration Director** | People & Culture | HR and administration AI assistant | Preparing personnel files and training schedules L2; contract-renewal reminders L3 | Files on time |
+| **Communications & Marketing Director** | Brand & Reputation | **AI Growth/Marketing Manager**, **AI Social & Brand Manager** | Drafting content L2; posting on an approved calendar L3; adjusting ad spend within a band L3 | CAC, ROAS; reach, share of voice |
+| **Sales Director** | Market & Customer Relationships | **AI Sales Manager**, **AI CRM & Lifecycle Manager**, **AI Customer Success Manager** (e.g. the customer-care AI team) | Qualifying leads L3; quotes L2; answering tickets within policy L3 | Qualification rate; LTV; CSAT |
+| **Product & Expertise Director** | What we sell | **AI Product/Service Manager** (e.g. the design AI team) | Requirements analysis L1; drafting specs and designs L2 | Share of features actually used |
+| **Operations & Supply Director** | How we deliver; supplier relationships | **AI Operations Manager** | Rescheduling L3; raising a reorder at the stock threshold L2 | SLA hit rate; self-resolution rate |
+| **Independent control** (reports directly to the CEO) | Compliance; protecting all five resources | **AI Risk & Compliance Officer**, **holding the power to suspend a process** | Reviewing contracts and access rights L1–L2; blocking over-threshold transactions L3 | Violations detected; false positives |
+
+Manufacturers add a **Quality & Safety Director**, reporting directly to the CEO and kept outside the push for output.
+
+**Titles are relative.** In a small company one person holds several roles and signs in as each role in turn. Only three pairings must be avoided: selling + approving spend or receivables; purchasing + paying; producing + signing off quality.
+
+**Exceptions go to the right role, not to the CEO by default.** A task over its threshold is routed to the role with authority (Head of Sales, Chief Accountant, Head of Quality…). Beyond that role's authority it goes to the responsible director, and only then to the CEO. At a scale of 1–3 people the recipient is often the CEO wearing several hats; the system still logs each exception by role, so that when a second person joins, only the role needs to move.
 
 ### 5.1 The specialist agent layer
 
-Under each AI Manager sit the executing agents. A reference list, not a list you must build in full:
+Each AI team is made up of executing agents. A reference list, not a list you must build in full:
 
 | Cluster | Agents |
 |---|---|
@@ -244,14 +264,16 @@ This is what keeps the business from becoming an uncontrollable chain of chatbot
 |---|---|---|---|
 | **L0 — Observe** | Collect and report only | Revenue reports, inventory alerts | A stable data source exists |
 | **L1 — Propose** | Analyse and offer options | Propose a pricing adjustment | ≥30 samples, proposal accuracy ≥70% |
-| **L2 — Prepare** | Produce output, await approval | Draft contracts, content, quotes | ≥60% of output approved without edits |
-| **L3 — Act within limits** | Act within policy | Care emails, small refunds, rescheduling | ≥90% accuracy over 100 transactions; rollback exists |
-| **L4 — Self-operate** | Plan and optimise itself | Run campaigns within budget | ≥95% accuracy; budget ceiling and kill switch in place |
-| **L5 — Supervised autonomy** | Run a whole function, humans audit | A self-running support or content function | Periodic audit passed; zero serious incidents in 90 days |
+| **L2 — Prepare** | Produce output for human approval; nothing goes out unapproved | Draft contracts, content, quotes | ≥60% of output approved without edits |
+| **L3 — Act within limits** | Act within rules and thresholds; anything over a threshold is blocked and routed to the role with authority | Care emails, small refunds, rescheduling | ≥90% accuracy over 100 transactions; rollback exists |
+| **L4 — Self-operate** *(rarely used)* | Plan and optimise itself | Run campaigns within budget | ≥95% accuracy; budget ceiling and kill switch in place |
+| **L5 — Supervised autonomy** *(rarely used)* | Run the task alone, humans audit periodically; only for low-risk, reversible work | Tagging and triaging support tickets | Periodic audit passed; zero serious incidents in 90 days |
+
+**Autonomy attaches to each task, never to a whole function.** One AI team will have some tasks at L1 and others at L3. L3 is the recommended maximum; strategic work stays at L1. Thresholds and exceptions exist to protect the core resources (section 14).
 
 **The promotion principle:** autonomy is a function of four variables — *accuracy × transaction value × recoverability when wrong × reputational and legal exposure*. Never raise a level because "it seems to be doing well".
 
-**The demotion principle (added, and usually forgotten):** there must be a mechanism for **automatic demotion** when quality slips — for example, two incidents in 30 days drops an agent from L4 to L2 pending human review. Autonomy is a revocable privilege, not a permanent state.
+**The demotion principle (added, and usually forgotten):** there must be a mechanism for **automatic demotion** when quality slips — for example, two incidents in 30 days drops a task from L3 to L2 pending human review. Autonomy is a revocable privilege, not a permanent state.
 
 ---
 
@@ -279,7 +301,7 @@ The previous version had six layers. The addition is **Identity & Memory** — t
 
 | Layer | Function | Typical components | Test question |
 |---|---|---|---|
-| **1. Business Interface** | A single dashboard where the CEO sets objectives, approves, and reviews exceptions | Dashboard + a mobile approval channel | Can the CEO run the business from a phone in 15 minutes a day? |
+| **1. Business Interface** | A single dashboard where the CEO sets objectives and each role approves and reviews its own exceptions | Dashboard + a mobile approval channel | Can the CEO run the business from a phone in 15 minutes a day? |
 | **2. Agent Orchestration** | Coordinating agents, planning, checking state, recovering from failure | Orchestration framework, queues, retries | When an agent fails, does the system recover or stall? |
 | **3. MCP / Integration Layer** | Connecting email, calendar, CRM, accounting, ERP, banking, website, social, data warehouse | MCP servers, APIs, webhooks | How long does adding a new system take? |
 | **4. Business Process Layer** | Workflows defining sequence, conditions, SLAs and approvers | Process definitions as code | Are processes versioned and reversible? |
@@ -470,35 +492,70 @@ Step 6 is the one most small businesses skip, and the one that compounds most: *
 
 ## 14. Three reference architectures by sector group
 
-### 14.1 Trading and e-commerce
+All three architectures below share one frame, made of three layers that differ in kind:
+
+| Layer | What it is | Examples |
+|---|---|---|
+| **Value chain** | The business units that generate revenue | Sales, operations, production, customer service |
+| **Support capabilities** | Functions that serve the value chain | Accounting, HR, legal, administration |
+| **Core resources** | What the business owns: quick to lose, slow to build | Capital & Assets; Knowledge & Technology; People & Culture; Brand & Reputation; Market & Relationships |
+
+The value chain draws on the resources, and its results must replenish them. At the centre sits the LATTICE axis: one source of data, rules and thresholds, AI teams, exceptions reaching the right person. Thresholds and exceptions exist to protect the core resources. The structure that runs it has four tiers (section 5): Owners / Board → Executive team (always human, each director holding one resource) → Unit leads (human or AI) → AI teams.
+
+See the full architecture and operating structure for each business type: lattice.business/mophong/
+
+### 14.1 Trade & goods (e-commerce, distribution)
+
+**8 units, 5 chains, 54 processes.** Six value-chain units: Category Management & Strategic Sourcing; Demand, Supply & Inventory Planning; Market Development, Marketing & Growth; Sales & Channel Management; Order Management, Warehousing & Logistics; Customer Service & Relationship Development. Plus Governance & Executive Management, and Support Functions.
 
 ```
-Market research → Sourcing → Demand forecasting → Content creation
-→ Multi-channel selling → Order handling → After-sales → Repeat purchase
+Plan-to-Availability
+Source-to-Pay
+Lead-to-Order
+Order-to-Cash
+Case-to-Resolution
 ```
 
+Deciding resources: **working capital** (within Capital & Assets) and **Market & Relationships**.
 Humans concentrate on: product selection, supplier relationships, goods inspection, inventory capital decisions.
 The real bottleneck: **working capital**, not operating capacity.
 
-### 14.2 Service businesses
+### 14.2 Services
+
+**8 units, 6 chains, 58 processes.** Six value-chain units: Service Portfolio, Design & Standards; Market Development, Marketing & Channels; Needs Assessment, Sales & Service Contracting; Capacity Planning & Resource Coordination; Service Delivery & Professional Governance; Customer Experience & Relationship Development.
 
 ```
-Attract clients → Define needs → Quote → Schedule → Prepare the service
-→ Deliver → Quality check → Post-service care
+Inquiry-to-Commitment
+Plan-to-Readiness
+Commitment-to-Completion
+Contract/Booking-to-Cash
+Partner-to-Pay
+Case-to-Resolution
 ```
 
-Humans concentrate on: expertise, trust, professional liability.
+Deciding resources: **People & expertise** and **Reputation**.
+Humans concentrate on: expertise, trust, professional liability. Professional decisions are made by a licensed practitioner; AI prepares documents, checklists and files.
 The real bottleneck: **the expert's billable hours** → the strategy must be to package knowledge into digital products that sell outside those hours.
 
 ### 14.3 Manufacturing (the Control Tower model)
 
+**10 units, 7 chains, 71 processes.** Eight value-chain units: Market, Sales & Demand Management; Product Development & Manufacturing Engineering; Manufacturing & Supply Chain Planning; Sourcing & Procurement; Production Operations & Shop Floor Control; Quality Management & Traceability; Asset Reliability, Maintenance & Plant Safety; Warehousing, Distribution & After-Sales Service.
+
 ```
-Demand forecast → Production plan → Materials purchasing → Machine and labour scheduling
-→ QC → Warehouse → Delivery → Maintenance
+Idea-to-Industrialization
+Demand-to-Feasible-Plan
+Source-to-Pay
+Production-Order-to-Released-Product
+Order-to-Cash
+Nonconformance-to-Corrective-Action
+Maintenance-to-Asset-Readiness
 ```
 
+Deciding resources: **Knowledge & Technology**, **Capital & Assets** (equipment), **reputation for quality**.
+**AI does not control machines.** Control belongs to the industrial automation systems; AI forecasts, plans and proposes. **Quality and safety are an independent authority**: the Quality & Safety Director reports directly to the CEO and sits outside the push for output.
+
 A 1–3 person model is viable only where the physical part is contracted out, moved to an OEM/ODM, or heavily automated. The core business is then an **AI Control Tower**, with factories and logistics as the partner execution network.
-The real bottleneck: **remote quality control** → you need a vision-based QC agent plus periodic human field inspection.
+The real bottleneck: **remote quality control** → a vision-based QC AI team detects and proposes, a person with quality authority decides, backed by periodic human field inspection.
 
 ### 14.4 Hybrid models (added)
 
@@ -511,11 +568,11 @@ For hybrids — a physiotherapy platform combining on-site service, a marketplac
 | Ring | Who | What it checks | Frequency |
 |---|---|---|---|
 | **Ring 1 — Execution** | Specialist agents | Agents check their own output against completion criteria | Every work object |
-| **Ring 2 — Management** | AI Managers | Quality, cost and progress of the agents beneath them | Daily |
-| **Ring 3 — Independent control** | Risk & Compliance Agent | Checks **both the executing agents and the AI Managers**; may suspend | Continuous + weekly audit |
+| **Ring 2 — Management** | Unit leads (human or AI) and the responsible director | Quality, cost and progress of the AI teams in the unit | Daily |
+| **Ring 3 — Independent control** | Risk & Compliance Agent | Checks **both the executing agents and the coordinating roles**; may suspend | Continuous + weekly audit |
 | **Ring 4 — Human audit** *(added)* | Humans | Random output sampling + incident review + approval of autonomy changes | Weekly + quarterly |
 
-The CEO does not approve everything. The CEO receives **four kinds of information only**:
+Exceptions do not pile up on the CEO. Each one goes to the role with authority (Head of Sales, Chief Accountant, Head of Quality…); beyond that role's authority it goes to the responsible director, and only beyond the director to the CEO. At a scale of 1–3 people the recipient is often the CEO wearing several hats, but still receiving each item in a specific role. Each role receives **four kinds of information only**:
 
 1. Decisions requiring approval
 2. Exceptions beyond delegated authority
@@ -591,8 +648,8 @@ This is **management by exception**. For a 1–3 person business it is not a man
 |---|---|---|---|---|
 | **1** | **AI-assisted** | Normalise data and processes; build the knowledge base; AI researches, drafts and reports; every outbound action needs approval | 1–3 months | Knowledge base covers ≥80% of recurring questions |
 | **2** | **AI workflow** | Connect email, CRM, website, accounting and social; automate repetitive processes; move low-risk tasks to L2–L3 | 2–4 months | ≥5 processes running stably at L3 |
-| **3** | **AI team** | Appoint an AI Chief of Staff and AI Managers; agents coordinate around shared KPIs; humans manage exceptions from one dashboard | 3–6 months | Self-resolution >60%; approval queue <24h |
-| **4** | **Autonomous business** | AI plans the week and the day, allocates resources within budget, and evaluates and improves itself; humans hold strategy, capital, legal and relationships | Continuous | — |
+| **3** | **AI team** | Each director (a human) gets an AI team within their remit; hand the coordinating role to AI in units where the work is mainly rule-based coordination; exceptions reach the right role through one dashboard | 3–6 months | Self-resolution >60%; approval queue <24h |
+| **4** | **Controlled optimisation** | Extend the number of tasks running at L3; consider L4 only for individual low-risk, reversible tasks that have passed audit; humans hold strategy, capital, legal and relationships | Continuous | — |
 
 ### 18.1 A concrete 12-month plan
 
@@ -606,7 +663,7 @@ This is **management by exception**. For a 1–3 person business it is not a man
 | 6 | Promote two processes to L3 | 100 transactions, accuracy ≥90% |
 | 7 | Social engine: the "one source, many derivatives" process | One source piece a week → ≥10 distributed derivatives |
 | 8 | CRM engine: lifecycle playbooks | Lead response under 5 minutes |
-| 9 | Appoint an AI Chief of Staff | Automated weekly reporting, exceptions filtered |
+| 9 | Add an AI Chief of Staff to the CEO's AI team | Automated weekly reporting, exceptions filtered |
 | 10 | GEO/AEO and structured data | Begin measuring the AI citation rate |
 | 11 | Start a two-week R&D cadence each cycle | ≥2 experiments with conclusions |
 | 12 | Full system audit; decisions to raise or lower autonomy | Audit report and year-two plan |
@@ -654,7 +711,7 @@ This is **management by exception**. For a 1–3 person business it is not a man
 - Promote at least one process to L3 with full rollback
 - Run the eval suite for the first time and record the baseline
 - Start the "one source, many derivatives" content process
-- Set up weekly exception reporting for the CEO
+- Set up weekly exception reporting for each role with authority (at 1–3 people, usually the CEO wearing several hats)
 - Review compliance: e-invoicing, seller identity verification, personal data
 - Put a standing date in the calendar with a peer group or adviser
 
@@ -664,7 +721,7 @@ This is **management by exception**. For a 1–3 person business it is not a man
 
 The end goal is not a business "without people". It is:
 
-> **A business with a self-running AI machine, in which humans keep ownership, value, accountability, and the decisions that should not be given to a machine.**
+> **A business with an AI machine running within rules and thresholds, in which humans keep ownership, value, accountability, and the decisions that should not be given to a machine.**
 
 The three things most worth remembering from this paper:
 
@@ -673,6 +730,8 @@ The three things most worth remembering from this paper:
 2. **Few and deep beats many and shallow.** Three processes running at L3 with full logging, evals and rollback create more value than twenty agents running at L1. And more importantly: they create the *foundation* to expand, while twenty shallow agents create only technical debt.
 
 3. **2026 is a narrow window.** Regulation is forcing data transparency and subsidising digital transition; digital commerce is still growing at double digits; AI infrastructure is getting cheaper fast. But the window closes from two directions: once everyone uses AI, the advantage moves from *having AI* to *having your own system and data for AI to run on*. What cannot be copied is not the tool — it is the knowledge accumulated in the knowledge base, real customer relationships, and the credibility of a specific human standing in front.
+
+See the full architecture for all three business types: lattice.business/mophong/ · Self-assessment: a 15-question quick survey, about 7 minutes: lattice.business/khao-sat/ (both currently in Vietnamese)
 
 ---
 

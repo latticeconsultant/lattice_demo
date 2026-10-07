@@ -81,6 +81,18 @@ def main():
             them(m.group(1).replace("\\'", "'"), 'du-lieu')
 
     os.makedirs(OUT_DIR, exist_ok=True)
+    # Gộp với từ điển đang có: giữ bản dịch cũ, giữ cả mục thêm tay mà bộ trích
+    # không bắt được. Bản đầu ghi đè thẳng nên một lần chạy là mất sạch phần "en".
+    cu = []
+    if os.path.exists(OUT):
+        with io.open(OUT, encoding='utf-8') as f:
+            cu = json.load(f)
+    da_dich = {x['vi']: x for x in cu}
+    for x in muc:
+        if x['vi'] in da_dich and da_dich[x['vi']].get('en'):
+            x['en'] = da_dich[x['vi']]['en']
+    trong_muc = {x['vi'] for x in muc}
+    muc += [x for x in cu if x['vi'] not in trong_muc]
     with io.open(OUT, 'w', encoding='utf-8') as f:
         json.dump(muc, f, ensure_ascii=False, indent=1)
 

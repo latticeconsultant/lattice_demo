@@ -11188,5 +11188,660 @@
   "vi": "Đợt 1 đã đóng đăng ký. Chúng tôi sẽ thông báo thời gian đợt tiếp theo. Trong lúc chờ, anh chị cứ hỏi qua email — phần trao đổi ban đầu không mất phí.",
   "en": "Round 1 is closed. We will announce the next round. In the meantime, ask us anything by email — the first exchange is free.",
   "nguon": "trang"
+ },
+ {
+  "vi": "Bộ máy người + AI, năm nguồn lực cốt lõi, work object, mức tự chủ theo tác vụ, ma trận quyền, hạ tầng bảy lớp.",
+  "en": "A human + AI organisation, five core resources, work objects, autonomy set per task, decision rights, seven-layer infrastructure.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "AI thực hiện — hệ thống kiểm soát — người có thẩm quyền quyết định ngoại lệ.",
+  "en": "AI executes — the system controls — the person with authority decides the exceptions.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Mỗi động cơ có agent riêng và KPI riêng, mức tự chủ đặt cho từng tác vụ — nhưng dùng chung một lớp dữ liệu khách hàng và một lớp tri thức.",
+  "en": "Each engine has its own agents and KPIs, with autonomy set per task — but they share one customer data layer and one knowledge layer.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "TẦNG CON NGƯỜI · CHỦ SỞ HỮU, BAN ĐIỀU HÀNH",
+  "en": "HUMAN TIER · OWNERS, EXECUTIVE TEAM",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Chiến lược · khẩu vị rủi ro · cam kết pháp lý · quan hệ · ngoại lệ vượt quyền vai",
+  "en": "Strategy · risk appetite · legal commitments · relationships · exceptions beyond a role's authority",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "TẦNG THỰC HIỆN · TRƯỞNG KHỐI VÀ TEAM AI",
+  "en": "EXECUTION TIER · FUNCTION LEADS AND AI TEAMS",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Trưởng khối là người hoặc AI · mỗi giám đốc một Team AI · hàng chục agent chuyên môn",
+  "en": "Function leads are human or AI · each director has an AI team · dozens of specialist agents",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Tài chính · Công nghệ · Tổ chức Hành chính · Marketing · Kinh doanh · Sản phẩm · Vận hành",
+  "en": "Finance · Technology · People & Admin · Marketing · Sales · Product · Operations",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Tầng trên hẹp là điểm mạnh, không phải hạn chế: càng ít người phải quyết định thì càng ít điểm nghẽn, với điều kiện tầng giữa đủ chặt. Doanh nghiệp nhỏ thì một người kiêm nhiều vai và đăng nhập theo từng vai.",
+  "en": "A narrow top is a strength, not a limit: the fewer people who must decide, the fewer bottlenecks — provided the middle tier is tight. In a small business one person holds several roles and signs in as each role in turn.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Sáu mức tự chủ, đặt cho từng tác vụ chứ không cho cả vai trò hay bộ phận; khuyến nghị tối đa L3. Vạch đỏ là ranh giới quan trọng nhất trong toàn bộ mô hình: từ L3 trở đi agent được hành động ra bên ngoài. Nhấn từng mức để xem điều kiện thăng cấp.",
+  "en": "Six levels of autonomy, set for each task rather than for a whole role or department; we recommend L3 at most. The red line is the most important boundary in the whole model: from L3 upward an agent may act externally. Tap each level to see the promotion conditions.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Phải có cơ chế tự động hạ mức khi chất lượng tụt — ví dụ hai sự cố trong 30 ngày thì tác vụ đó tự rơi từ L3 về L2 và chờ vai phụ trách xem xét.",
+  "en": "There must be an automatic demotion mechanism when quality slips — for example, two incidents in 30 days and that task drops from L3 to L2 and waits for the responsible role to review.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Bộ máy người + AI và năm nguồn lực",
+  "en": "The human + AI organisation and five resources",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Bốn tầng: chủ sở hữu, ban điều hành, trưởng khối, Team AI. Giám đốc luôn là người và trông giữ một nguồn lực cốt lõi; vai trưởng khối có thể là người hoặc AI; mức tự chủ đặt cho từng tác vụ, phần lớn L1–L3. Chức danh mang tính tương đối: doanh nghiệp nhỏ thì một người kiêm nhiều vai, chỉ tránh các cặp vai xung đột.",
+  "en": "Four tiers: owners, executive team, function leads, AI teams. Directors are always human and each stewards one core resource; a function lead can be human or AI; autonomy is set per task, mostly L1–L3. Titles are relative: in a small business one person holds several roles, avoiding only conflicting pairs.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "TEAM AI TRONG PHẠM VI",
+  "en": "AI TEAM IN SCOPE",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Năm nguồn lực cốt lõi",
+  "en": "Five core resources",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Thứ doanh nghiệp sở hữu: mất nhanh, xây chậm. Chuỗi tạo giá trị huy động nguồn lực, kết quả phải bồi đắp lại. Ngưỡng và ngoại lệ tồn tại để bảo vệ chúng: chiết khấu ngoài khung chạm vào vốn, phản hồi công khai chạm vào uy tín, đổi công thức chạm vào bí quyết.",
+  "en": "What the business owns: quick to lose, slow to build. The value chains draw on these resources, and the results must build them back up. Thresholds and exceptions exist to protect them: an off-policy discount touches capital, a public reply touches reputation, a formula change touches know-how.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Vốn &amp; Tài sản",
+  "en": "Capital &amp; Assets",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Tiền, vốn lưu động, máy móc, kho, khả năng vay",
+  "en": "Cash, working capital, equipment, warehouses, borrowing capacity",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Tri thức &amp; Công nghệ",
+  "en": "Knowledge &amp; Technology",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Bí quyết, quy trình chuẩn, công thức, dữ liệu, sở hữu trí tuệ",
+  "en": "Know-how, standard processes, formulas, data, intellectual property",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Con người &amp; Văn hóa",
+  "en": "People &amp; Culture",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Năng lực, chứng chỉ, sự gắn bó, cách ra quyết định",
+  "en": "Skills, certifications, commitment, how decisions are made",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Thương hiệu &amp; Uy tín",
+  "en": "Brand &amp; Reputation",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Uy tín",
+  "en": "Reputation",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Nhận biết, niềm tin, đánh giá, chất lượng đã chứng minh",
+  "en": "Awareness, trust, reviews, proven quality",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Thị trường &amp; Quan hệ",
+  "en": "Market &amp; Relationships",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Tệp khách hàng của mình, kênh bán, đại lý, đối tác",
+  "en": "Your own customer base, sales channels, resellers, partners",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Xem bộ máy và nguồn lực theo từng loại hình trong mô phỏng →",
+  "en": "See the organisation and resources for each business type in the simulation (Vietnamese) →",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "mô phỏng",
+  "en": "simulation (Vietnamese)",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Mỗi tầng có agent riêng và KPI riêng, mức tự chủ đặt cho từng tác vụ trong tầng — không có một “agent marketing” chung chung.",
+  "en": "Each stage has its own agents and KPIs, with autonomy set per task within the stage — there is no generic “marketing agent”.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Xem trần tự động hóa của tám nhóm doanh nghiệp, hoặc mở mô phỏng kiến trúc và bộ máy của ba loại hình: thương mại, dịch vụ, sản xuất.",
+  "en": "See the automation ceilings for eight business groups, or open the simulation of the architecture and organisation for three business types: trading, services, manufacturing.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "XEM MÔ PHỎNG →",
+  "en": "SEE THE SIMULATION →",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Thanh đậm là mức thận trọng, phần nhạt là biên trên ở trạng thái trưởng thành. Con số bên phải là số người tối thiểu thực tế. Nhấn từng nhóm để đọc chi tiết. Trần là tỷ trọng việc AI đảm nhiệm, không phải mức tự chủ: mức tự chủ đặt cho từng tác vụ, khuyến nghị tối đa L3. Tám nhóm quy về ba kiến trúc tham chiếu: thương mại & hàng hóa, dịch vụ, sản xuất.",
+  "en": "The solid bar is the conservative level; the light part is the upper bound at maturity. The number on the right is the realistic minimum headcount. Tap a group for details. The ceiling is the share of work AI takes on, not a level of autonomy: autonomy is set per task, L3 at most. The eight groups map onto three reference architectures: trading & goods, services, manufacturing.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Thương mại &amp; hàng hóa · 8 khối, 5 chuỗi, 54 nghiệp vụ",
+  "en": "Trading &amp; goods · 8 functions, 5 value chains, 54 processes",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Kế hoạch → Hàng sẵn sàng",
+  "en": "Plan → Stock available",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Nguồn cung → Thanh toán",
+  "en": "Source → Pay",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Cơ hội → Đơn hàng",
+  "en": "Lead → Order",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Đơn hàng → Thu tiền",
+  "en": "Order → Cash",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Yêu cầu → Giải quyết",
+  "en": "Case → Resolution",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Nguồn lực quyết định:",
+  "en": "Decisive resources:",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "(vốn lưu động) và",
+  "en": "(working capital) and",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": ". Người giữ: chọn danh mục, quan hệ nhà cung cấp, chiết khấu ngoài khung, vốn tồn kho. Điểm nghẽn thật là vốn lưu động, không phải năng lực vận hành.",
+  "en": ". Humans keep: range selection, supplier relationships, off-policy discounts, inventory capital. The real bottleneck is working capital, not operating capacity.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Dịch vụ · 8 khối, 6 chuỗi, 58 nghiệp vụ",
+  "en": "Services · 8 functions, 6 value chains, 58 processes",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Nhu cầu → Cam kết",
+  "en": "Inquiry → Commitment",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Kế hoạch → Sẵn sàng",
+  "en": "Plan → Ready",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Cam kết → Hoàn thành",
+  "en": "Commitment → Completion",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Giao dịch → Thu tiền",
+  "en": "Booking → Cash",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Đối tác → Thanh toán",
+  "en": "Partner → Pay",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Yêu cầu → Khắc phục",
+  "en": "Case → Remedy",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Con người &amp; chuyên môn",
+  "en": "People &amp; expertise",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": ". Quyết định chuyên môn do người có chứng chỉ; AI chỉ hỗ trợ. Điểm nghẽn thật là giờ công của người có chuyên môn — chiến lược phải là đóng gói tri thức thành sản phẩm số để bán được ngoài giờ công.",
+  "en": ". Professional decisions rest with certified people; AI only assists. The real bottleneck is the expert's billable hours — the strategy must be to package knowledge into digital products that sell beyond those hours.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Sản xuất · 10 khối, 7 chuỗi, 71 nghiệp vụ",
+  "en": "Manufacturing · 10 functions, 7 value chains, 71 processes",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Ý tưởng → Sẵn sàng sản xuất",
+  "en": "Idea → Ready for production",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Nhu cầu → Kế hoạch khả thi",
+  "en": "Demand → Feasible plan",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Lệnh sản xuất → Xuất xưởng",
+  "en": "Production order → Released product",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Bất thường → Khắc phục",
+  "en": "Nonconformance → Corrective action",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Bảo trì → Sẵn sàng máy",
+  "en": "Maintenance → Asset readiness",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "(thiết bị) và",
+  "en": "(equipment) and",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "uy tín chất lượng",
+  "en": "a reputation for quality",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": ". AI không điều khiển máy: phần điều khiển do hệ thống tự động hóa công nghiệp. Chất lượng và an toàn có thẩm quyền độc lập, không nằm trong luồng đẩy sản lượng; agent QC bằng hình ảnh chuẩn bị bằng chứng, người quyết.",
+  "en": ". AI does not control machines: control stays with industrial automation systems. Quality and safety hold independent authority, outside the push for output; a vision QC agent prepares the evidence, a person decides.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Xem đủ ba kiến trúc trong mô phỏng →",
+  "en": "See all three architectures in the simulation (Vietnamese) →",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Bộ máy người + AI, năm nguồn lực cốt lõi, work object, ma trận quyền quyết định, bảy lớp hạ tầng, và mức tự chủ mục tiêu cho từng tác vụ. Kèm dự toán chi phí vận hành hằng tháng.",
+  "en": "A human + AI organisation, five core resources, work objects, a decision-rights matrix, seven infrastructure layers, and target autonomy for each task. Includes a monthly running-cost estimate.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Chúng tôi báo giá theo phạm vi công việc sau buổi chẩn đoán, không theo bảng giá cố định — vì trần tự động hóa của mỗi mô hình khác nhau quá xa để định giá trước. Riêng hai điểm vào có giá cố định: LATTICE Scan và Blueprint, xem ở trang Liên hệ.",
+  "en": "We quote by scope after the diagnostic, not from a fixed price list — automation ceilings differ too much between models to price in advance. The two entry points are the exception, with fixed prices: LATTICE Scan and Blueprint, on the Contact page.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "GĐ4 · Tối ưu có kiểm soát",
+  "en": "PH4 · Controlled optimisation",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Báo cáo ngoại lệ hàng tuần theo vai, CEO xem tổng hợp",
+  "en": "Weekly exception report by role, with a CEO summary",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Ba bộ cấu hình ban đầu theo loại hình — dùng làm điểm xuất phát, không phải khuôn cố định. Bản đầy đủ của từng loại hình nằm trong",
+  "en": "Three starting configurations by business type — a point of departure, not a fixed mould. The full version for each type is in the",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "GIÁM ĐỐC VÀ TEAM AI",
+  "en": "DIRECTORS AND AI TEAMS",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Buổi chẩn đoán đầu tiên chính là để thu đủ tám đầu vào này và trả lại cho anh chị một baseline có số. Muốn tự định vị trước: Khảo sát nhanh 15 câu, khoảng 7 phút, miễn phí.",
+  "en": "The first diagnostic session exists to collect these eight inputs and hand you back a baseline with numbers. Want to place yourself first? The Quick Survey: 15 questions, about 7 minutes, free (Vietnamese).",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "KHẢO SÁT NHANH →",
+  "en": "QUICK SURVEY →",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Làm Khảo sát nhanh 15 câu, khoảng 7 phút để biết việc nào nên giao AI trước; hoặc xem mô phỏng bộ máy của doanh nghiệp cùng loại hình. Khảo sát nhanh là bản tự làm, công khai; bảng câu hỏi chẩn đoán chi tiết chỉ gửi sau khi đăng ký.",
+  "en": "Take the Quick Survey — 15 questions, about 7 minutes — to see which work to hand to AI first; or explore the simulated organisation of a business like yours. Both are in Vietnamese. The Quick Survey is public and self-serve; the detailed diagnostic questionnaire is sent only after you register.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Tự làm trong luật và ngưỡng; việc vượt ngưỡng bị chặn và chuyển vai có thẩm quyền",
+  "en": "Acts within rules and thresholds; anything beyond a threshold is blocked and routed to the role with authority",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "hiếm dùng",
+  "en": "rarely used",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Tự lập kế hoạch và tối ưu trong trần ngân sách. Hiếm dùng, xét riêng từng tác vụ",
+  "en": "Plans and optimises within a budget ceiling. Rarely used, decided task by task",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Tối ưu giá thầu một chiến dịch đã kiểm toán, trong trần ngân sách",
+  "en": "Optimising bids on one audited campaign, within a budget ceiling",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Tự điều hành một nhóm tác vụ, người kiểm toán định kỳ. Chỉ cho việc rủi ro thấp, đảo ngược được",
+  "en": "Runs a group of tasks on its own, with periodic human audit. Only for low-risk, reversible work",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Gắn nhãn, phân loại yêu cầu hỗ trợ theo mẫu",
+  "en": "Tagging and triaging support requests to a template",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Trợ lý điều hành AI",
+  "en": "AI chief-of-staff assistant",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "CEO và giám đốc phụ trách",
+  "en": "CEO and the responsible director",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Trưởng khối (người hoặc AI) và Team AI",
+  "en": "Function lead (human or AI) and AI team",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Xử lý việc vật lý và ngoại lệ đúng vai",
+  "en": "Physical work, and exceptions handled by the right role",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Agent rủi ro, tuân thủ (chỉ cảnh báo, tạm dừng)",
+  "en": "Risk and compliance agent (alerts and pauses only)",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Agent R&D, quản lý tri thức",
+  "en": "R&D and knowledge-curation agents",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "L3 + chặn cứng",
+  "en": "L3 + hard limits",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Kinh doanh (Team AI chăm sóc, bán hàng) · Vận hành & Cung ứng · Tài chính; trưởng hoạch định, vận hành có thể là AI · Mô phỏng: Thương mại, 8 khối, 5 chuỗi",
+  "en": "Sales (customer-care and sales AI teams) · Operations & Supply · Finance; planning and operations leads can be AI · Simulation: Trading, 8 functions, 5 chains",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Sản phẩm & Chuyên môn (người có chứng chỉ quyết) · Kinh doanh · Vận hành (lịch, đối tác) · Mô phỏng: Dịch vụ, 8 khối, 6 chuỗi",
+  "en": "Product & Professional (certified people decide) · Sales · Operations (scheduling, partners) · Simulation: Services, 8 functions, 6 chains",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Vận hành & Cung ứng · Sản phẩm (R&D) · Chất lượng & An toàn, độc lập, AI chuẩn bị bằng chứng, người quyết · Tài chính · Mô phỏng: Sản xuất, 10 khối, 7 chuỗi",
+  "en": "Operations & Supply · Product (R&D) · Quality & Safety, independent: AI prepares the evidence, a person decides · Finance · Simulation: Manufacturing, 10 functions, 7 chains",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Hộp ngoại lệ theo vai",
+  "en": "Exception inbox by role",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Bộ máy & nguồn lực",
+  "en": "Organisation & resources",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Chủ sở hữu / Hội đồng quản trị",
+  "en": "Owners / Board",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Chiến lược, ngân sách năm, đầu tư lớn, bổ nhiệm CEO, khẩu vị rủi ro. Duyệt Hiến chương AI: mức tự chủ tối đa, những quyết định không bao giờ giao AI, cách kiểm toán nhật ký AI",
+  "en": "Strategy, annual budget, major investments, appointing the CEO, risk appetite. Approves the AI Charter: maximum autonomy, the decisions never delegated to AI, and how AI logs are audited",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Không điều hành hằng ngày",
+  "en": "Not involved in day-to-day running",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "TẦNG SỞ HỮU",
+  "en": "OWNERSHIP TIER",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Tổng giám đốc (CEO)",
+  "en": "Chief Executive (CEO)",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Chịu trách nhiệm kết quả chung; phân bổ nguồn lực giữa các giám đốc; giữ nhịp điều hành; quyết ngoại lệ vượt quyền giám đốc",
+  "en": "Accountable for overall results; allocates resources across directors; keeps the operating rhythm; decides exceptions beyond a director's authority",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Trợ lý điều hành AI (L2): tổng hợp báo cáo, chuẩn bị họp, theo dõi ngoại lệ và việc trễ; không ra quyết định",
+  "en": "AI chief-of-staff assistant (L2): compiles reports, prepares meetings, tracks exceptions and overdue work; makes no decisions",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "ĐIỀU PHỐI CHUNG",
+  "en": "OVERALL COORDINATION",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Giám đốc Tài chính",
+  "en": "Finance Director",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Thu xếp vốn, dòng tiền 13 tuần, vốn lưu động, giá thành, ngân sách; kế toán, thuế (Kế toán trưởng ký); kiểm soát nội bộ",
+  "en": "Funding, 13-week cash flow, working capital, unit costs, budgets; accounting and tax (signed off by the chief accountant); internal control",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Trợ lý AI tài chính (L3): đối soát, hạch toán nháp, dự báo dòng tiền, cảnh báo chỉ số",
+  "en": "Finance AI assistant (L3): reconciliation, draft bookkeeping, cash-flow forecasts, metric alerts",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "NGUỒN LỰC · VỐN & TÀI SẢN",
+  "en": "RESOURCE · CAPITAL & ASSETS",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Giám đốc Công nghệ",
+  "en": "Technology Director",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Dữ liệu một nguồn, vận hành Team AI, quản trị hệ thống và phân quyền theo vai, an toàn thông tin, bảo vệ dữ liệu cá nhân, kho tri thức, bí quyết và sở hữu trí tuệ",
+  "en": "Single source of data, running the AI teams, system administration and role-based access, information security, personal data protection, the knowledge base, know-how and intellectual property",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Trợ lý AI công nghệ (L3): giám sát hệ thống, đánh giá agent, rà nhật ký",
+  "en": "Technology AI assistant (L3): system monitoring, agent evaluation, log review",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "NGUỒN LỰC · TRI THỨC & CÔNG NGHỆ",
+  "en": "RESOURCE · KNOWLEDGE & TECHNOLOGY",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Giám đốc Tổ chức Hành chính",
+  "en": "People & Administration Director",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Hoạch định nhân lực người + AI, tuyển dụng, đào tạo làm việc cùng AI, lương thưởng, giá trị cốt lõi, quy chế và ma trận phân quyền, pháp chế, hành chính",
+  "en": "Human + AI workforce planning, hiring, training to work with AI, pay and rewards, core values, policies and the authority matrix, legal, administration",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Trợ lý AI nhân sự (L2): sàng lọc hồ sơ, nhắc chứng chỉ hết hạn, soạn văn bản",
+  "en": "HR AI assistant (L2): screens applications, flags expiring certifications, drafts documents",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "NGUỒN LỰC · CON NGƯỜI & VĂN HÓA",
+  "en": "RESOURCE · PEOPLE & CULTURE",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Giám đốc Truyền thông – Marketing",
+  "en": "Marketing & Communications Director",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Định vị, nội dung, kênh truyền thông, tìm kiếm (SEO, GEO), quảng cáo, theo dõi uy tín và xử lý khủng hoảng; bàn giao khách tiềm năng cho Kinh doanh",
+  "en": "Positioning, content, media channels, search (SEO, GEO), advertising, reputation monitoring and crisis handling; hands qualified leads to Sales",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Team thiết kế AI (L2, người duyệt trước khi đăng) · Team AI quản trị kênh (L3, bình luận tiêu cực chuyển người)",
+  "en": "AI design team (L2, a person approves before publishing) · AI channel team (L3, negative comments go to a person)",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "NGUỒN LỰC · THƯƠNG HIỆU & UY TÍN",
+  "en": "RESOURCE · BRAND & REPUTATION",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Giám đốc Kinh doanh",
+  "en": "Sales Director",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Kênh, đại lý, khách trọng điểm, giá và chính sách thương mại, báo giá, hợp đồng, đơn hàng, khiếu nại và giữ chân khách",
+  "en": "Channels, resellers, key accounts, pricing and trade terms, quotes, contracts, orders, complaints and retention",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Team AI chăm sóc khách hàng (L3) · Team AI bán hàng (L2: chấm điểm khách tiềm năng, soạn báo giá)",
+  "en": "Customer-care AI team (L3) · Sales AI team (L2: lead scoring, drafting quotes)",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "NGUỒN LỰC · THỊ TRƯỜNG & QUAN HỆ",
+  "en": "RESOURCE · MARKET & RELATIONSHIPS",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Giám đốc Sản phẩm & Chuyên môn",
+  "en": "Product & Professional Director",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Bán cái gì: danh mục, thiết kế dịch vụ, R&D, tiêu chuẩn; quyết định chuyên môn, kỹ thuật do người có thẩm quyền",
+  "en": "What we sell: range, service design, R&D, standards; professional and technical decisions rest with the person who holds authority",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Trợ lý AI sản phẩm (L2): tổng hợp phản hồi, so sánh danh mục, soạn tài liệu kỹ thuật",
+  "en": "Product AI assistant (L2): compiles feedback, compares ranges, drafts technical documents",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "BÁN CÁI GÌ",
+  "en": "WHAT WE SELL",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Giám đốc Vận hành & Cung ứng",
+  "en": "Operations & Supply Director",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Giao thế nào: nhà cung cấp, mua hàng, hoạch định, kho vận, lịch, nhà máy. Ở sản xuất, chất lượng và an toàn có giám đốc riêng báo cáo thẳng CEO",
+  "en": "How we deliver: suppliers, purchasing, planning, warehousing and logistics, scheduling, the plant. In manufacturing, quality and safety have their own director reporting straight to the CEO",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Team AI điều phối (L3): theo dõi đơn, tồn kho, lịch; đề xuất bổ sung, cảnh báo trễ",
+  "en": "Coordination AI team (L3): tracks orders, stock and schedules; proposes replenishment, flags delays",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "GIAO THẾ NÀO",
+  "en": "HOW WE DELIVER",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Ba lớp phòng vệ: rollback bắt buộc trước khi bất kỳ quy trình nào lên L3; eval suite chạy hàng tuần để phát hiện chất lượng tụt; và cơ chế tự động hạ mức — hai sự cố trong 30 ngày thì tác vụ rơi từ L3 về L2 chờ vai phụ trách xem xét. Ngoài ra luôn có kill switch dừng toàn bộ hành động ra bên ngoài trong một thao tác.",
+  "en": "Three lines of defence: mandatory rollback before any process reaches L3; an eval suite that runs weekly to catch quality drift; and automatic demotion — two incidents in 30 days and the task drops from L3 to L2 until the responsible role reviews it. On top of that, a kill switch always stops every external action in one move.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Bổ nhiệm trưởng khối (người hoặc AI) và Team AI theo từng giám đốc; trợ lý điều hành AI tổng hợp; ngoại lệ đến đúng vai qua một dashboard",
+  "en": "Appoint function leads (human or AI) and an AI team under each director; the AI chief-of-staff assistant consolidates; exceptions reach the right role through one dashboard",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Tối ưu có kiểm soát: mở rộng số tác vụ ở L3; chỉ xét L4 cho từng tác vụ rủi ro thấp, đảo ngược được, đã qua kiểm toán; người giữ chiến lược, vốn, pháp lý, quan hệ",
+  "en": "Controlled optimisation: widen the set of tasks at L3; consider L4 only for individual low-risk, reversible, audited tasks; humans keep strategy, capital, legal and relationships",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Kiểm toán đạt; nguồn lực cốt lõi tăng",
+  "en": "Audit passed; core resources growing",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Bật trợ lý điều hành AI cho CEO",
+  "en": "Switch on the AI chief-of-staff assistant for the CEO",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Báo cáo tuần tự động, ngoại lệ được lọc theo vai",
+  "en": "Automatic weekly report, exceptions filtered by role",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Chuyển Trưởng dịch vụ khách hàng, không tự động hóa",
+  "en": "Route to the customer service lead, no automation",
+  "nguon": "thu-cong"
  }
 ]

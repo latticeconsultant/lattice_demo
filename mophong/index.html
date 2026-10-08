@@ -697,6 +697,16 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .simp .sb:focus,.simp .sn:focus{outline:none}
 .simp .cvleg{justify-content:center;text-align:center}
 .simp .xl{fill:none;stroke:var(--cwire);stroke-width:1.2;stroke-dasharray:3 4}
+/* trục LATTICE: chữ chỉ hiện khi rê chuột, chọn bằng phím, hoặc chạm lần đầu */
+.simp .hv .hl{opacity:0;transition:opacity .15s;pointer-events:none}
+.simp .hv:hover .hl,.simp .hv:focus-visible .hl,.simp .hv.on .hl{opacity:1}
+.simp .hv{cursor:pointer}.simp .hv:focus{outline:none}
+.simp .hv .hz{fill:transparent}
+.simp .hv:hover .rl,.simp .hv:focus-visible .rl,.simp .hv.on .rl{stroke:#EC3013}
+.simp .hl{paint-order:stroke;stroke:var(--c0);stroke-width:6px;stroke-linejoin:round}
+.simp .slang{position:absolute;top:14px;right:14px;z-index:2;display:flex;border:1.5px solid var(--ct)}
+.simp .slang button{height:28px;min-width:40px;padding:0 8px;background:transparent;color:var(--ct);border:0;font:800 11.5px/1 inherit;letter-spacing:.06em;cursor:pointer}
+.simp .slang button[aria-pressed="true"]{background:var(--ct);color:var(--c0)}
 /* thẻ trọng tâm, loại việc, trang cấu hình ngành */
 .ck.core{border:2px solid #EC3013}
 .ck.core .ck-h{background:#EC3013;color:#fff}
@@ -2284,7 +2294,32 @@ const SIMPLE={
  sx:{L:["kd","kt","hd","mh"],R:["sx","qa","tb","kv"],lt:["Nhu cầu & chuẩn bị","thiết kế đúng, hoạch định khả thi"],rt:["Nhà máy & giao hàng","làm có kiểm soát, giao đáng tin"],
    xL:[["Khách hàng, đại lý",["kd"]],["Nhà cung cấp vật tư",["mh"]]],xR:[["Đơn vị vận chuyển",["kv"]],["Cơ quan quản lý",["qa","tb"]]]}
 };
-let archView="simple", simpMode="";
+let archView="simple", simpMode="", simLang="vi";
+/* Từ điển Anh cho riêng sơ đồ đơn giản; mặc định tiếng Việt, không lưu lựa chọn. */
+const SIM_EN={"Marketing":"Marketing","Kinh doanh":"Sales","Dịch vụ khách hàng":"Customer Service","Ngành hàng":"Category","Hoạch định":"Planning","Kho vận":"Logistics",
+ "Thiết kế dịch vụ":"Service Design","Nguồn lực":"Resourcing","Thực hiện":"Delivery","Trải nghiệm":"Experience","Kỹ thuật":"Engineering","Mua hàng":"Procurement",
+ "Sản xuất":"Production","Chất lượng":"Quality","Thiết bị & An toàn":"Equipment & Safety",
+ "Trưởng marketing":"Head of Marketing","Trưởng kinh doanh":"Head of Sales","Trưởng dịch vụ khách hàng":"Head of Customer Service","Trưởng ngành hàng":"Head of Category",
+ "Trưởng hoạch định":"Head of Planning","Trưởng vận hành":"Head of Operations","Trưởng thiết kế dịch vụ":"Head of Service Design","Trưởng vận hành – điều phối":"Head of Operations & Scheduling",
+ "Trưởng chuyên môn":"Head of Practice","Trưởng trải nghiệm khách hàng":"Head of Customer Experience","Trưởng sản phẩm – kỹ thuật":"Head of Product & Engineering",
+ "Trưởng mua hàng":"Head of Procurement","Quản đốc sản xuất":"Production Manager","Trưởng chất lượng":"Head of Quality","Trưởng bảo trì":"Head of Maintenance","Trưởng kho vận":"Head of Logistics",
+ "Phía cầu":"Demand side","có khách, thu được tiền":"win customers, collect cash","Phía cung":"Supply side","đúng hàng, đúng lúc":"right goods, right time",
+ "Thiết kế & tạo nhu cầu":"Design & demand","từ dịch vụ chuẩn đến cam kết":"from standard service to commitment","nguồn lực sẵn sàng, làm đúng":"resources ready, work done right",
+ "Nhu cầu & chuẩn bị":"Demand & preparation","thiết kế đúng, hoạch định khả thi":"right design, feasible plan","Nhà máy & giao hàng":"Plant & delivery","làm có kiểm soát, giao đáng tin":"controlled output, reliable delivery",
+ "Khách hàng":"Customers","Đại lý, sàn, cửa hàng":"Dealers & marketplaces","Nhà cung cấp":"Suppliers","Đơn vị vận chuyển":"Carriers","Kênh giới thiệu":"Referral channels",
+ "Đối tác, chuyên gia":"Partners, experts","Khách dùng dịch vụ":"Service users","Khách hàng, đại lý":"Customers, dealers","Nhà cung cấp vật tư":"Material suppliers","Cơ quan quản lý":"Regulators","Ngân hàng, thuế":"Banks, tax",
+ "Quản trị & Điều hành":"Governance & Management","Ban điều hành":"Executive board","Mục tiêu – Ngân sách – Chính sách":"Goals – Budget – Policy",
+ "Năng lực hỗ trợ":"Support functions","Bộ phận chuyên môn":"Specialist teams","Kế toán – Nhân sự – Pháp chế – Hành chính":"Accounting – HR – Legal – Admin",
+ "Chủ sở hữu / Hội đồng quản trị":"Owners / Board of Directors",
+ "Vốn & Tài sản":"Capital & Assets","Tri thức & Công nghệ":"Knowledge & Technology","Con người & Văn hóa":"People & Culture","Thương hiệu & Uy tín":"Brand & Reputation","Thị trường & Quan hệ":"Market & Relationships",
+ "VIỆC":"TASKS","BÊN NGOÀI":"EXTERNAL","huy động ↑":"draw on ↑","↓ bồi đắp":"↓ replenish",
+ "NGUỒN LỰC CỐT LÕI · Ô ĐẬM: QUYẾT ĐỊNH VỚI LOẠI HÌNH NÀY":"CORE RESOURCES · DARK: DECISIVE FOR THIS BUSINESS TYPE",
+ "Trung tâm Dữ liệu (gốc)":"Data Hub (source of truth)","Cổng kết nối":"Connection gateway","Luật & Ngưỡng":"Rules & Thresholds","Ngoại lệ đến đúng người":"Exceptions to the right person","Team AI":"Team AI",
+ "Dữ liệu, việc":"Data, tasks","Ngoại lệ về đúng trưởng khối":"Exceptions back to the block head","Người chịu trách nhiệm":"Accountable person","Vai giao được cho AI":"Role assignable to AI",
+ "Số nghiệp vụ trong khối":"Tasks in the block","AI làm theo từng tác vụ, tối đa L3":"AI works task by task, up to L3","Nguồn lực quyết định với loại hình":"Decisive resource for this business type"};
+const sT=t=>simLang==="en"?(SIM_EN[t]||t):t;
+const sGd=id=>simLang==="en"?GD_BY[id].en:gdName(id);
+const sLangBar=()=>`<div class="slang" role="group" aria-label="${simLang==="en"?"Diagram language":"Ngôn ngữ sơ đồ"}"><button type="button" data-sl="vi" aria-pressed="${simLang==="vi"}">VN</button><button type="button" data-sl="en" aria-pressed="${simLang==="en"}">EN</button></div>`;
 const pfIdx=icn=>Math.max(0,PFI.findIndex(p=>p[0]===icn));
 /* Hạt chạy dọc một đường cong d; rev: chạy ngược (ngoại lệ đi từ trục về khối). */
 function sPulse(d,o){o=o||{}; if(!motionOK()) return ""; const dur=o.dur||3.2, n=o.n||1; let s="";
@@ -2294,31 +2329,45 @@ function sBox(k,x,y,w,h,dark){const K=KH(k), DD=DS[model], tag=DD.core&&DD.core[
   return `<g class="sb" role="button" tabindex="0" data-khoi="${k}" aria-label="Khối ${esc(K.n)}, ${n} nghiệp vụ"><title>${esc(K.n)}</title>
     <rect class="bx" x="${x}" y="${y}" width="${w}" height="${h}" fill="${dark?"var(--ct)":"var(--c1)"}" stroke="${tag?"#EC3013":"var(--ct)"}" stroke-width="${tag?3:2}"/>
     ${icS(KHI[k],x+14,y+h/2-19,22,fg)}
-    <text x="${x+48}" y="${y+h/2-3}" font-size="16" font-weight="800" fill="${fg}">${esc(K.s||K.n)}</text>
-    <circle cx="${x+52}" cy="${y+h/2+15}" r="3.5" fill="#EC3013"/>${ROLE_AI[K.o]?icS("bot",x+60,y+h/2+8,14,fg):""}<text x="${x+(ROLE_AI[K.o]?78:61)}" y="${y+h/2+19}" font-size="11" font-weight="600" fill="${fg}" opacity=".78">${esc(own)}</text>
+    <text x="${x+48}" y="${y+h/2-3}" font-size="16" font-weight="800" fill="${fg}">${esc(sT(K.s||K.n))}</text>
+    <circle cx="${x+52}" cy="${y+h/2+15}" r="3.5" fill="#EC3013"/>${ROLE_AI[K.o]?icS("bot",x+60,y+h/2+8,14,fg):""}<text x="${x+(ROLE_AI[K.o]?78:61)}" y="${y+h/2+19}" font-size="11" font-weight="600" fill="${fg}" opacity=".78">${esc(sT(own))}</text>
     <text x="${x+w-14}" y="${y+h/2-3}" text-anchor="end" font-size="18" font-weight="800" fill="${fg}">${n}</text>
-    <text x="${x+w-14}" y="${y+h/2+13}" text-anchor="end" font-size="9.5" font-weight="700" letter-spacing=".08em" fill="${fg}" opacity=".7">VIỆC</text>
+    <text x="${x+w-14}" y="${y+h/2+13}" text-anchor="end" font-size="9.5" font-weight="700" letter-spacing=".08em" fill="${fg}" opacity=".7">${sT("VIỆC")}</text>
 </g>`;}
 function sNode(x,y,attr,name,lines,anc,dx,dy,red){
   return `<g class="sn" role="button" tabindex="0" ${attr} aria-label="${esc(name)}"><title>${esc(name)}</title><circle class="nd" cx="${x}" cy="${y}" r="13" fill="var(--c0)" stroke="${red?"#EC3013":"var(--ct)"}" stroke-width="3.2"/>${red?`<circle cx="${x}" cy="${y}" r="5" fill="#EC3013"/>`:""}
     ${lines.map((t,i)=>`<text x="${x+dx}" y="${y+dy+i*16}" text-anchor="${anc}" font-size="13" font-weight="800" fill="${red?"var(--cr)":"var(--ct)"}">${esc(t)}</text>`).join("")}</g>`;}
-function sExt(x,y,w,t){return `<rect x="${x}" y="${y-17}" width="${w}" height="34" fill="none" stroke="var(--cm)" stroke-dasharray="4 3"/><text x="${x+w/2}" y="${y+4}" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--cm)">${esc(t)}</text>`;}
+function sExt(x,y,w,t){return `<rect x="${x}" y="${y-17}" width="${w}" height="34" fill="none" stroke="var(--cm)" stroke-dasharray="4 3"/><text x="${x+w/2}" y="${y+4}" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--cm)">${esc(sT(t))}</text>`;}
 const SIMPLE_TB={cl:["Quản trị & Điều hành","Ban điều hành","Mục tiêu – Ngân sách – Chính sách"],ht:["Năng lực hỗ trợ","Bộ phận chuyên môn","Kế toán – Nhân sự – Pháp chế – Hành chính"]};
-function cBox(k,x,y,w,h){const K=KH(k), [t,r,sub]=SIMPLE_TB[k], c=x+w/2;
+function cBox(k,x,y,w,h){const K=KH(k), [t,r,sub]=SIMPLE_TB[k].map(sT), c=x+w/2;
   return `<g class="sb" role="button" tabindex="0" data-khoi="${k}" aria-label="Khối ${esc(K.n)}"><title>${esc(K.n)}</title><rect class="bx" x="${x}" y="${y}" width="${w}" height="${h}" fill="var(--c1)" stroke="var(--ct)" stroke-width="2.5"/>
     ${icS(KHI[k],c-12,y+12,24,"var(--ct)")}
     <text x="${c}" y="${y+56}" text-anchor="middle" font-size="17" font-weight="800" fill="var(--ct)">${esc(t)}</text>
     <circle cx="${c-r.length*3.15-9}" cy="${y+71}" r="3.5" fill="#EC3013"/><text x="${c}" y="${y+75}" text-anchor="middle" font-size="11.5" font-weight="600" fill="var(--ct)" opacity=".8">${esc(r)}</text>
     <text x="${c}" y="${y+94}" text-anchor="middle" font-size="11" font-weight="700" letter-spacing=".02em" fill="var(--cm)">${esc(sub)}</text></g>`;}
-const sOwn=(x,y,w,h)=>`<g class="sb" role="button" tabindex="0" data-bmtop="1" aria-label="Chủ sở hữu / Hội đồng quản trị"><title>Chủ sở hữu / Hội đồng quản trị</title><rect class="bx" x="${x}" y="${y}" width="${w}" height="${h}" fill="var(--c1)" stroke="var(--ct)" stroke-width="1.5" stroke-dasharray="5 3"/>${icS("scale",x+w/2-10,y+9,20,"var(--ct)")}<text x="${x+w/2}" y="${y+h-11}" text-anchor="middle" font-size="13.5" font-weight="800" fill="var(--ct)">Chủ sở hữu / Hội đồng quản trị</text></g>`;
+const sOwn=(x,y,w,h)=>`<g class="sb" role="button" tabindex="0" data-bmtop="1" aria-label="Chủ sở hữu / Hội đồng quản trị"><title>Chủ sở hữu / Hội đồng quản trị</title><rect class="bx" x="${x}" y="${y}" width="${w}" height="${h}" fill="var(--c1)" stroke="var(--ct)" stroke-width="1.5" stroke-dasharray="5 3"/>${icS("scale",x+w/2-10,y+9,20,"var(--ct)")}<text x="${x+w/2}" y="${y+h-11}" text-anchor="middle" font-size="13.5" font-weight="800" fill="var(--ct)">${sT("Chủ sở hữu / Hội đồng quản trị")}</text></g>`;
+/* Một điểm trên trục LATTICE: chữ (hl) chỉ hiện khi rê chuột / chọn / chạm lần đầu. */
+function sHub(attr,name,body,lx,ly,anc){return `<g class="hv" role="button" tabindex="0" ${attr} aria-label="${esc(sT(name))}"><title>${esc(sT(name))}</title>${body}<text class="hl" x="${lx}" y="${ly}" text-anchor="${anc||"middle"}" font-size="13" font-weight="800" fill="var(--ct)">${esc(sT(name))}</text></g>`;}
+/* Trục giữa: khung luật (ô vuông trong), hai cổng kết nối, trung tâm dữ liệu, ngoại lệ ở đỉnh, Team AI ở đáy nối hai chiều vào trung tâm. */
+function sAxis(cx,cy,R,rc,ra,narrow){const ri=R*.55; let s=`<defs><marker id="sarw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="var(--ct)"/></marker></defs>`;
+  s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--c1)" stroke="var(--ct)" stroke-width="3"/>
+    <line x1="${cx-R}" y1="${cy}" x2="${cx+R}" y2="${cy}" stroke="var(--cl)"/><line x1="${cx}" y1="${cy-R}" x2="${cx}" y2="${cy+R}" stroke="var(--cl)"/>`;
+  s+=sHub(`data-pf="${pfIdx("fingerprint")}"`,"Luật & Ngưỡng",`<path class="hz rl" d="M${cx} ${cy-ri} L${cx+ri} ${cy} L${cx} ${cy+ri} L${cx-ri} ${cy} Z" stroke="var(--ct)" stroke-width="2.6"/>`,cx,cy-ri-10);
+  const a=cy+R-ra-3, b=cy+rc+3, d=`M${cx} ${a} L${cx} ${b}`;
+  s+=`<path d="${d}" stroke="var(--ct)" stroke-width="2.4" marker-start="url(#sarw)" marker-end="url(#sarw)"/>`+sPulse(d,{dur:1.8})+sPulse(d,{dur:1.8,rev:true,off:.9});
+  s+=sHub(`data-pf="${pfIdx("database")}"`,"Trung tâm Dữ liệu (gốc)",`<circle cx="${cx}" cy="${cy}" r="${rc}" fill="#EC3013"/>`,cx,cy-rc-12);
+  s+=sNode(cx,cy-R,'data-simex="1"',sT("Ngoại lệ đến đúng người"),[],"start",20,5,true);
+  [cx-R,cx+R].forEach(x=>s+=sHub(`data-pf="${pfIdx("app-window")}"`,"Cổng kết nối",`<circle class="rl" cx="${x}" cy="${cy}" r="13" fill="var(--c0)" stroke="var(--ct)" stroke-width="3.2"/>`,x,cy-24));
+  s+=sAI(cx,cy+R,ra,`data-pf="${pfIdx("workflow")}"`);
+  return s;}
 /* Nút Team AI: tròn to, biểu tượng AI bên trong, không chữ. */
 const sAI=(x,y,r,attr,dark)=>`<g class="sn" role="button" tabindex="0" ${attr} aria-label="Team AI"><title>Team AI</title><circle class="nd" cx="${x}" cy="${y}" r="${r}" fill="var(--c0)" stroke="var(--ct)" stroke-width="3.2"/>${icS("bot",x-r*0.6,y-r*0.6,r*1.2,"var(--ct)")}</g>`;
 /* Nền móng: năm nguồn lực cốt lõi; ô đậm là nguồn lực quyết định với loại hình. */
 function sRes(x0,y,W,h,cols){const gap=14, n=NL.length, per=cols||n, w=(W-(per-1)*gap)/per; let s="";
   NL.forEach((x,i)=>{const cx=x0+(i%per)*(w+gap), cy=y+Math.floor(i/per)*(h+gap), key=NLX[model][x.id].key, fg=key?"var(--c0)":"var(--ct)", g=GD_BY[x.gd];
     s+=`<g class="sb" role="button" tabindex="0" data-nl="${x.id}" aria-label="Nguồn lực ${esc(x.n)}"><title>${esc(x.n)}: ${esc(x.gom)}</title><rect class="bx" x="${cx}" y="${cy}" width="${w}" height="${h}" fill="${key?"var(--ct)":"var(--c1)"}" stroke="var(--ct)" stroke-width="2"/>
-      ${icS(x.ic,cx+14,cy+h/2-11,22,fg)}<text x="${cx+46}" y="${cy+h/2-2}" font-size="14.5" font-weight="800" fill="${fg}">${esc(x.n)}</text>
-      <text x="${cx+46}" y="${cy+h/2+15}" font-size="11" font-weight="600" fill="${fg}" opacity=".75">${esc(gdName(x.gd))}</text></g>`;});
+      ${icS(x.ic,cx+14,cy+h/2-11,22,fg)}<text x="${cx+46}" y="${cy+h/2-2}" font-size="14.5" font-weight="800" fill="${fg}">${esc(sT(x.n))}</text>
+      <text x="${cx+46}" y="${cy+h/2+15}" font-size="11" font-weight="600" fill="${fg}" opacity=".75">${esc(sGd(x.gd))}</text></g>`;});
   return s;}
 function simpleArch(){
   const box=$("arch-s"); if(!box) return; const cfg=SIMPLE[model], K1=KH("cl"), K3=KH("ht");
@@ -2326,13 +2375,13 @@ function simpleArch(){
   return narrow?simpleNarrow(box,cfg,K1,K3):simpleWide(box,cfg,K1,K3);}
 function simpleWide(box,cfg,K1,K3){
   const W=1320, cx=W/2, bw=300, bh=70, gap=14, n=Math.max(cfg.L.length,cfg.R.length), colH=n*bh+(n-1)*gap;
-  const T0=84, colTop=196+T0, cy=colTop+colH/2, R=Math.min(128,colH/2-6), lx=196, rx=W-196-bw, htY=colTop+colH+52, nlY=htY+106+74, nlH=64, H=nlY+nlH+44;
+  const T0=84, colTop=196+T0, cy=colTop+colH/2, R=Math.min(128,colH/2-6), lx=196, rx=W-196-bw, htY=colTop+colH+52, fY=htY+106+58, nlY=fY+16, nlH=64, fB=nlY+nlH+40, H=fB+14;
   const yOf=(arr,i)=>colTop+(colH-(arr.length*bh+(arr.length-1)*gap))/2+i*(bh+gap);
   const pos={}; cfg.L.forEach((k,i)=>pos[k]={x:lx,y:yOf(cfg.L,i)}); cfg.R.forEach((k,i)=>pos[k]={x:rx,y:yOf(cfg.R,i)});
-  let s=`<svg class="ss" viewBox="0 0 ${W} ${H}" role="group" aria-label="Sơ đồ kiến trúc đơn giản">`;
+  let s=`<svg class="ss" viewBox="0 0 ${W} ${H}" role="group" aria-label="${simLang==="en"?"Simple architecture diagram":"Sơ đồ kiến trúc đơn giản"}">`;
   // tiêu đề hai cột và bên ngoài
-  [[lx,cfg.lt],[rx,cfg.rt]].forEach(([x,t])=>s+=`<text x="${x}" y="${colTop-30}" font-size="19" font-weight="800" fill="var(--ct)">${esc(t[0])}</text><text x="${x}" y="${colTop-12}" font-size="10.5" font-weight="700" letter-spacing=".12em" fill="var(--cm)">${esc(t[1].toUpperCase())}</text>`);
-  s+=`<text x="16" y="${colTop-12}" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">BÊN NGOÀI</text><text x="${W-16}" y="${colTop-12}" text-anchor="end" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">BÊN NGOÀI</text>`;
+  [[lx,cfg.lt],[rx,cfg.rt]].forEach(([x,t])=>s+=`<text x="${x}" y="${colTop-30}" font-size="19" font-weight="800" fill="var(--ct)">${esc(sT(t[0]))}</text><text x="${x}" y="${colTop-12}" font-size="10.5" font-weight="700" letter-spacing=".12em" fill="var(--cm)">${esc(sT(t[1]).toUpperCase())}</text>`);
+  s+=`<text x="16" y="${colTop-12}" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">${sT("BÊN NGOÀI")}</text><text x="${W-16}" y="${colTop-12}" text-anchor="end" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">${sT("BÊN NGOÀI")}</text>`;
   const ext=(list,x,w,side)=>list.forEach(([t,ks],i)=>{const y=colTop+colH*(i+1)/(list.length+1);
     ks.forEach(k=>{const p=pos[k], by=p.y+bh/2; s+=side<0?`<path class="xl" d="M${x+w} ${y} C ${x+w+18} ${y}, ${lx-18} ${by}, ${lx} ${by}"/>`:`<path class="xl" d="M${rx+bw} ${by} C ${rx+bw+18} ${by}, ${x-18} ${y}, ${x} ${y}"/>`;});
     s+=sExt(x,y,w,t);});
@@ -2348,39 +2397,35 @@ function simpleWide(box,cfg,K1,K3){
   s+=`<path class="wr" d="M${cx} 76 L${cx} ${T0+20}"/>`+sOwn(cx-190,14,380,62);
   s+=cBox("cl",cx-tw/2,T0+20,tw,th)+cBox("ht",cx-tw/2,htY,tw,th);
   // năng lực hỗ trợ và chuỗi tạo giá trị dùng nguồn lực (lên), kết quả bồi đắp lại (xuống)
-  const u=`M${cx-26} ${nlY} L${cx-26} ${htY+th}`, dn=`M${cx+26} ${htY+th} L${cx+26} ${nlY}`;
+  // cả khối nguồn lực cốt lõi trong một khung; huy động (lên) và bồi đắp (xuống) nối với cả khung
+  const u=`M${cx-26} ${fY} L${cx-26} ${htY+th}`, dn=`M${cx+26} ${htY+th} L${cx+26} ${fY}`;
   s+=`<path class="wr" d="${u}"/><path class="wr" d="${dn}"/>`+sPulse(u,{dur:2.2})+sPulse(dn,{dur:2.2,off:1.1});
-  s+=`<text x="${cx-38}" y="${htY+th+40}" text-anchor="end" font-size="11" font-weight="700" fill="var(--cm)">huy động ↑</text><text x="${cx+38}" y="${htY+th+40}" font-size="11" font-weight="700" fill="var(--cm)">↓ bồi đắp</text>`;
-  s+=sRes(16,nlY,W-32,nlH)+`<text x="${cx}" y="${nlY+nlH+28}" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">NGUỒN LỰC CỐT LÕI · Ô ĐẬM: QUYẾT ĐỊNH VỚI LOẠI HÌNH NÀY</text>`;
+  s+=`<text x="${cx-38}" y="${htY+th+34}" text-anchor="end" font-size="11" font-weight="700" fill="var(--cm)">${sT("huy động ↑")}</text><text x="${cx+38}" y="${htY+th+34}" font-size="11" font-weight="700" fill="var(--cm)">${sT("↓ bồi đắp")}</text>`;
+  s+=`<rect x="16" y="${fY}" width="${W-32}" height="${fB-fY}" fill="none" stroke="var(--ct)" stroke-width="2"/>`;
+  s+=sRes(32,nlY,W-64,nlH)+`<text x="${cx}" y="${nlY+nlH+26}" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing=".14em" fill="var(--cm)">${sT("NGUỒN LỰC CỐT LÕI · Ô ĐẬM: QUYẾT ĐỊNH VỚI LOẠI HÌNH NÀY")}</text>`;
   s+=`<path class="xl" d="M${cx+tw/2} ${htY+th/2} L${W-166} ${htY+th/2}"/>`+sExt(W-166,htY+th/2,150,"Ngân hàng, thuế");
   // trục LATTICE
-  s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--c1)" stroke="var(--ct)" stroke-width="3"/>
-    <path d="M${cx} ${cy-R*.55} L${cx+R*.55} ${cy} L${cx} ${cy+R*.55} L${cx-R*.55} ${cy} Z" fill="none" stroke="var(--cl)" stroke-width="1.2"/>
-    <line x1="${cx-R}" y1="${cy}" x2="${cx+R}" y2="${cy}" stroke="var(--cl)"/><line x1="${cx}" y1="${cy-R}" x2="${cx}" y2="${cy+R}" stroke="var(--cl)"/>
-    <circle cx="${cx}" cy="${cy}" r="19" fill="#EC3013"/>`;
-  s+=sNode(cx,cy-R,'data-simex="1"',"Ngoại lệ đến đúng người",[],"start",20,5,true);
-  s+=sNode(cx-R,cy,`data-pf="${pfIdx("database")}"`,"Dữ liệu một nguồn",[],"start",20,-3);
-  s+=sNode(cx+R,cy,`data-pf="${pfIdx("fingerprint")}"`,"Luật và ngưỡng",[],"end",-20,-3);
-  s+=sAI(cx,cy+R,22,`data-pf="${pfIdx("workflow")}"`);
-  // các khối
+  // các khối, rồi trục LATTICE vẽ sau cùng để chữ hiện lên trên
   cfg.L.forEach(k=>s+=sBox(k,pos[k].x,pos[k].y,bw,bh,true));
   cfg.R.forEach(k=>s+=sBox(k,pos[k].x,pos[k].y,bw,bh,false));
-  box.innerHTML=s+`</svg>`+simpleLegend();}
+  s+=sAxis(cx,cy,R,19,22);
+  box.innerHTML=sLangBar()+s+`</svg>`+simpleLegend();}
 /* Màn hẹp: xếp dọc, trục chạy dọc mép trái nối mọi khối. */
 function simpleNarrow(box,cfg,K1,K3){
-  const W=600, bx=34, bw=W-bx-8, bh=66, gap=10, R=74; let y=10, s="", rows=[];
+  const W=600, bx=34, bw=W-bx-8, bh=66, gap=10, R=74; let y=58, s="", rows=[];  // chừa chỗ cho nút VN/EN ở góc trên
   const sec=(t,sub)=>{s+=`<text x="${bx}" y="${y+16}" font-size="16" font-weight="800" fill="var(--ct)">${esc(t)}</text>${sub?`<text x="${bx}" y="${y+32}" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--cm)">${esc(sub.toUpperCase())}</text>`:""}`; y+=sub?42:26;};
   const put=(k,dark)=>{if(SIMPLE_TB[k]){s+=cBox(k,bx,y,bw,106); rows.push(y+53); y+=106+gap; return;} s+=sBox(k,bx,y,bw,bh,dark); rows.push(y+bh/2); y+=bh+gap;};
   s+=sOwn(bx,y,bw,60); y+=72; put("cl",false); y+=6; sec(cfg.lt[0],cfg.lt[1]); cfg.L.forEach(k=>put(k,true));
   const cy=y+R+14, cx=W/2;
-  s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--c1)" stroke="var(--ct)" stroke-width="3"/><circle cx="${cx}" cy="${cy}" r="15" fill="#EC3013"/>`;
-  s+=sNode(cx,cy-R,'data-simex="1"',"Ngoại lệ đến đúng người",[],"start",20,5,true)+sNode(cx-R,cy,`data-pf="${pfIdx("database")}"`,"Dữ liệu một nguồn",[],"end",-20,5)+sNode(cx+R,cy,`data-pf="${pfIdx("fingerprint")}"`,"Luật và ngưỡng",[],"start",20,5)+sAI(cx,cy+R,20,`data-pf="${pfIdx("workflow")}"`);
+  s+=sAxis(cx,cy,R,15,20,true);
   rows.push(cy); y=cy+R+24; sec(cfg.rt[0],cfg.rt[1]); cfg.R.forEach(k=>put(k,false)); y+=6; put("ht",false);
-  const rowsEnd=rows[rows.length-1]; y+=14; s+=sRes(bx,y,bw,52,1); y+=NL.length*(52+14)+6; s+=`<text x="${bx+bw/2}" y="${y+4}" text-anchor="middle" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--cm)">NGUỒN LỰC CỐT LÕI · Ô ĐẬM: QUYẾT ĐỊNH VỚI LOẠI HÌNH NÀY</text>`; y+=16;
+  const rowsEnd=rows[rows.length-1]; y+=34; const fy=y; s+=`<text x="${bx+bw/2-22}" y="${fy-10}" text-anchor="end" font-size="10.5" font-weight="700" fill="var(--cm)">${sT("huy động ↑")}</text><text x="${bx+bw/2+22}" y="${fy-10}" font-size="10.5" font-weight="700" fill="var(--cm)">${sT("↓ bồi đắp")}</text>`;
+  y+=12; s+=sRes(bx+12,y,bw-24,52,1); y+=NL.length*(52+14)+6; s+=`<text x="${bx+bw/2}" y="${y+4}" text-anchor="middle" font-size="10" font-weight="700" letter-spacing=".1em" fill="var(--cm)">${sT("NGUỒN LỰC CỐT LÕI · Ô ĐẬM: QUYẾT ĐỊNH VỚI LOẠI HÌNH NÀY")}</text>`; y+=14;
+  s+=`<rect x="${bx}" y="${fy}" width="${bw}" height="${y-fy}" fill="none" stroke="var(--ct)" stroke-width="2"/><path class="wr" d="M${bx+bw/2-12} ${fy} L${bx+bw/2-12} ${fy-22}"/><path class="wr" d="M${bx+bw/2+12} ${fy-22} L${bx+bw/2+12} ${fy}"/>`; y+=8;
   const d=`M16 ${rows[0]} L16 ${rowsEnd}`; let w=`<path class="wr" d="${d}"/>`+sPulse(d,{dur:6,n:3})+sPulse(d,{red:true,rev:true,dur:9});
   rows.forEach(r=>w+=`<path class="wr" d="M16 ${r} L${r===cy?cx-R:bx} ${r}"/>`);
-  box.innerHTML=`<svg class="ss" viewBox="0 0 ${W} ${y}" role="group" aria-label="Sơ đồ kiến trúc đơn giản">${w}${s}</svg>`+simpleLegend();}
-const simpleLegend=()=>`<div class="cvleg"><span><i class="pdot"></i>Dữ liệu, việc</span><span><i class="pdot red"></i>Ngoại lệ về đúng trưởng khối</span><span><i class="hdot"></i>Người chịu trách nhiệm</span><span>${ic("bot",14)}Vai giao được cho AI</span><span><b style="font-weight:800">6</b>&nbsp;Số nghiệp vụ trong khối</span><span>AI làm theo từng tác vụ, tối đa L3</span><span><b style="font-weight:800">■</b>&nbsp;Nguồn lực quyết định với loại hình</span></div>`;
+  box.innerHTML=sLangBar()+`<svg class="ss" viewBox="0 0 ${W} ${y}" role="group" aria-label="${simLang==="en"?"Simple architecture diagram":"Sơ đồ kiến trúc đơn giản"}">${w}${s}</svg>`+simpleLegend();}
+const simpleLegend=()=>`<div class="cvleg"><span><i class="pdot"></i>${sT("Dữ liệu, việc")}</span><span><i class="pdot red"></i>${sT("Ngoại lệ về đúng trưởng khối")}</span><span><i class="hdot"></i>${sT("Người chịu trách nhiệm")}</span><span>${ic("bot",14)}${sT("Vai giao được cho AI")}</span><span><b style="font-weight:800">6</b>&nbsp;${sT("Số nghiệp vụ trong khối")}</span><span>${sT("AI làm theo từng tác vụ, tối đa L3")}</span><span><b style="font-weight:800">■</b>&nbsp;${sT("Nguồn lực quyết định với loại hình")}</span></div>`;
 function simExHTML(){
   return `<div class="dhd"><span class="dic">${ic("triangle-alert",26)}</span><div><span class="lbl">Trục LATTICE</span><h2 id="d-title">Ngoại lệ đến đúng người</h2><p class="en">Exception routing</p></div></div>
    <div class="latx">AI làm trong luật và ngưỡng của từng tác vụ. Việc vượt ngưỡng bị chặn và chuyển cho vai có thẩm quyền của khối đó, không dồn về một người. Chiến lược và việc vượt quyền vai mới lên Ban điều hành.</div>
@@ -3135,6 +3180,17 @@ $("custom").addEventListener("click",()=>openDrawer(customHTML()));
 
 function moveAll(id,d){const i=L.order.indexOf(id),j=i+d;if(j<0||j>=L.order.length)return;[L.order[i],L.order[j]]=[L.order[j],L.order[i]];saveL();}
 
+/* Sơ đồ đơn giản: nút VN/EN; trên màn cảm ứng, chạm lần đầu vào điểm trên trục chỉ hiện chữ, chạm lần nữa mới mở chi tiết. */
+let sPtr="mouse";
+document.addEventListener("pointerdown",e=>{sPtr=e.pointerType||"mouse";},true);
+document.addEventListener("keydown",()=>{sPtr="mouse";},true);
+document.addEventListener("click",e=>{
+  const sl=e.target.closest("[data-sl]"); if(sl){simLang=sl.dataset.sl==="en"?"en":"vi"; simpMode=""; simpleArch(); e.stopPropagation(); return;}
+  const hv=e.target.closest("#arch-s .hv");
+  document.querySelectorAll("#arch-s .hv.on").forEach(g=>{if(g!==hv) g.classList.remove("on");});
+  if(hv&&sPtr!=="mouse"&&!hv.classList.contains("on")){hv.classList.add("on"); e.stopPropagation(); return;}
+  if(hv) hv.classList.remove("on");
+},true);
 document.addEventListener("click",e=>{
   const t=e.target;
   // exceptions

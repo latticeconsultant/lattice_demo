@@ -2347,21 +2347,19 @@ function cBox(k,x,y,w,h){const K=KH(k), [t,r,sub]=SIMPLE_TB[k].map(sT), c=x+w/2;
     <text x="${c}" y="${y+94}" text-anchor="middle" font-size="11" font-weight="700" letter-spacing=".02em" fill="var(--cm)">${esc(sub)}</text></g>`;}
 const sOwn=(x,y,w,h)=>`<g class="sb" role="button" tabindex="0" data-bmtop="1" aria-label="Chủ sở hữu / Hội đồng quản trị"><title>Chủ sở hữu / Hội đồng quản trị</title><rect class="bx" x="${x}" y="${y}" width="${w}" height="${h}" fill="var(--c1)" stroke="var(--ct)" stroke-width="1.5" stroke-dasharray="5 3"/>${icS("scale",x+w/2-10,y+9,20,"var(--ct)")}<text x="${x+w/2}" y="${y+h-11}" text-anchor="middle" font-size="13.5" font-weight="800" fill="var(--ct)">${sT("Chủ sở hữu / Hội đồng quản trị")}</text></g>`;
 /* Một điểm trên trục LATTICE: chữ (hl) chỉ hiện khi rê chuột / chọn / chạm lần đầu. */
-function sHub(attr,name,body,lx,ly,anc){return `<g class="hv" role="button" tabindex="0" ${attr} aria-label="${esc(sT(name))}"><title>${esc(sT(name))}</title>${body}<text class="hl" x="${lx}" y="${ly}" text-anchor="${anc||"middle"}" font-size="13" font-weight="800" fill="var(--ct)">${esc(sT(name))}</text></g>`;}
+function sHub(attr,name,body,lx,ly,anc){return `<g class="hv" role="button" tabindex="0" ${attr} aria-label="${esc(sT(name))}">${body}<text class="hl" x="${lx}" y="${ly}" text-anchor="${anc||"middle"}" font-size="13" font-weight="800" fill="var(--ct)">${esc(sT(name))}</text></g>`;}
 /* Trục giữa: khung luật (ô vuông trong), hai cổng kết nối, trung tâm dữ liệu, ngoại lệ ở đỉnh, Team AI ở đáy nối hai chiều vào trung tâm. */
-function sAxis(cx,cy,R,rc,ra,narrow){const ri=R*.55; let s=`<defs><marker id="sarw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="var(--ct)"/></marker></defs>`;
+function sAxis(cx,cy,R,rc,ra,narrow){const ri=R*.55; let s=`<defs><marker id="sarw" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="var(--ct)"/></marker></defs>`;
   s+=`<path d="M${cx} ${cy-R} L${cx+R} ${cy} L${cx} ${cy+R} L${cx-R} ${cy} Z" fill="var(--c1)" stroke="var(--ct)" stroke-width="3"/>
     <line x1="${cx-R}" y1="${cy}" x2="${cx+R}" y2="${cy}" stroke="var(--cl)"/><line x1="${cx}" y1="${cy-R}" x2="${cx}" y2="${cy+R}" stroke="var(--cl)"/>`;
   s+=sHub(`data-pf="${pfIdx("fingerprint")}"`,"Luật & Ngưỡng",`<path class="hz rl" d="M${cx} ${cy-ri} L${cx+ri} ${cy} L${cx} ${cy+ri} L${cx-ri} ${cy} Z" stroke="var(--ct)" stroke-width="2.6"/>`,cx,cy-ri-10);
   const a=cy+R-ra-3, b=cy+rc+3, d=`M${cx} ${a} L${cx} ${b}`;
-  s+=`<path d="${d}" stroke="var(--ct)" stroke-width="2.4" marker-start="url(#sarw)" marker-end="url(#sarw)"/>`+sPulse(d,{dur:1.8})+sPulse(d,{dur:1.8,rev:true,off:.9});
+  s+=`<path d="${d}" stroke="var(--ct)" stroke-width="1.6" marker-start="url(#sarw)" marker-end="url(#sarw)"/>`+sPulse(d,{dur:1.8})+sPulse(d,{dur:1.8,rev:true,off:.9});
   s+=sHub(`data-pf="${pfIdx("database")}"`,"Trung tâm Dữ liệu (gốc)",`<circle cx="${cx}" cy="${cy}" r="${rc}" fill="#EC3013"/>`,cx,cy-rc-12);
-  s+=sNode(cx,cy-R,'data-simex="1"',sT("Ngoại lệ đến đúng người"),[],"start",20,5,true);
+  s+=sHub('data-simex="1"',"Ngoại lệ đến đúng người",`<circle class="nd" cx="${cx}" cy="${cy-R}" r="13" fill="var(--c0)" stroke="#EC3013" stroke-width="3.2"/><circle cx="${cx}" cy="${cy-R}" r="5" fill="#EC3013"/>`,cx,cy-R-22);
   [cx-R,cx+R].forEach(x=>s+=sHub(`data-pf="${pfIdx("app-window")}"`,"Cổng kết nối",`<circle class="rl" cx="${x}" cy="${cy}" r="13" fill="var(--c0)" stroke="var(--ct)" stroke-width="3.2"/>`,x,cy-24));
-  s+=sAI(cx,cy+R,ra,`data-pf="${pfIdx("workflow")}"`);
+  s+=sHub(`data-pf="${pfIdx("workflow")}"`,"Team AI",`<circle class="rl" cx="${cx}" cy="${cy+R}" r="${ra}" fill="var(--c0)" stroke="var(--ct)" stroke-width="3.2"/>${icS("bot",cx-ra*0.6,cy+R-ra*0.6,ra*1.2,"var(--ct)")}`,cx,cy+R+ra+18);
   return s;}
-/* Nút Team AI: tròn to, biểu tượng AI bên trong, không chữ. */
-const sAI=(x,y,r,attr,dark)=>`<g class="sn" role="button" tabindex="0" ${attr} aria-label="Team AI"><title>Team AI</title><circle class="nd" cx="${x}" cy="${y}" r="${r}" fill="var(--c0)" stroke="var(--ct)" stroke-width="3.2"/>${icS("bot",x-r*0.6,y-r*0.6,r*1.2,"var(--ct)")}</g>`;
 /* Nền móng: năm nguồn lực cốt lõi; ô đậm là nguồn lực quyết định với loại hình. */
 function sRes(x0,y,W,h,cols){const gap=14, n=NL.length, per=cols||n, w=(W-(per-1)*gap)/per; let s="";
   NL.forEach((x,i)=>{const cx=x0+(i%per)*(w+gap), cy=y+Math.floor(i/per)*(h+gap), key=NLX[model][x.id].key, fg=key?"var(--c0)":"var(--ct)", g=GD_BY[x.gd];

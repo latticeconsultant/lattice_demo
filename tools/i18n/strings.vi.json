@@ -3990,7 +3990,7 @@
   "nguon": "markup"
  },
  {
-  "vi": "Xem mẫu hồ sơ khách nhận →",
+  "vi": "Xem mẫu báo cáo nhận được →",
   "en": "See a sample deliverable (Vietnamese) →",
   "nguon": "markup"
  },
@@ -4175,23 +4175,23 @@
   "nguon": "markup"
  },
  {
-  "vi": "Xem trước những gì anh chị nhận:",
-  "en": "Preview what you receive:",
+  "vi": "Bảng gói chi tiết và giá:",
+  "en": "Full package table and prices:",
   "nguon": "markup"
  },
  {
-  "vi": "bộ mẫu hồ sơ đầy đủ",
-  "en": "a full set of sample deliverables",
+  "vi": "so sánh tất cả các gói",
+  "en": "compare every package",
   "nguon": "markup"
  },
  {
-  "vi": "của từng gói, dựng cho một doanh nghiệp thương mại hư cấu (Công ty ABZ). Mọi gói kèm",
-  "en": "for every package, built for a fictional trading company (ABZ Co.; in Vietnamese). Every package comes with a",
+  "vi": ", mỗi gói có mẫu báo cáo nhận được, dựng cho một doanh nghiệp thương mại hư cấu (Công ty ABZ). Khi bắt đầu thực hiện chính thức, hai bên xác nhận",
+  "en": ", each with a sample deliverable built for a fictional trading company (ABZ Co.; in Vietnamese). When the work formally starts, both sides confirm a",
   "nguon": "markup"
  },
  {
-  "vi": "Cam kết bảo mật thông tin",
-  "en": "Confidentiality Commitment",
+  "vi": "Thỏa thuận bảo mật thông tin",
+  "en": "Confidentiality Agreement",
   "nguon": "markup"
  },
  {
@@ -4207,6 +4207,11 @@
  {
   "vi": "CHỌN GÓI VÀ ĐĂNG KÝ →",
   "en": "CHOOSE A PACKAGE AND REGISTER →",
+  "nguon": "markup"
+ },
+ {
+  "vi": "BẢNG GÓI VÀ GIÁ →",
+  "en": "PACKAGES AND PRICES →",
   "nguon": "markup"
  },
  {
@@ -5943,6 +5948,31 @@
   "vi": "(prefers-reduced-motion: reduce)",
   "en": "",
   "nguon": "du-lieu"
+ },
+ {
+  "vi": "Xem mẫu hồ sơ khách nhận →",
+  "en": "See a sample deliverable (Vietnamese) →",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Xem trước những gì anh chị nhận:",
+  "en": "Preview what you receive:",
+  "nguon": "markup"
+ },
+ {
+  "vi": "bộ mẫu hồ sơ đầy đủ",
+  "en": "a full set of sample deliverables",
+  "nguon": "markup"
+ },
+ {
+  "vi": "của từng gói, dựng cho một doanh nghiệp thương mại hư cấu (Công ty ABZ). Mọi gói kèm",
+  "en": "for every package, built for a fictional trading company (ABZ Co.; in Vietnamese). Every package comes with a",
+  "nguon": "markup"
+ },
+ {
+  "vi": "Cam kết bảo mật thông tin",
+  "en": "Confidentiality Commitment",
+  "nguon": "markup"
  },
  {
   "vi": "ĐẶT LỊCH CHẨN ĐOÁN 60 PHÚT",

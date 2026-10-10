@@ -47,7 +47,8 @@ dang-ky/index.html          biểu mẫu đăng ký bốn bước, bản Việt 
 register/index.html         biểu mẫu đăng ký bốn bước, bản Anh — viết tay
 quan-tri/index.html         trang quản trị: hồ sơ, thanh toán, lịch làm việc
 mophong/index.html          trang mô phỏng: kiến trúc (đơn giản / nâng cao), bộ máy và năm nguồn lực, luồng vận hành, người + AI, dashboard cho ba loại hình — NGUỒN DỮ LIỆU NGHIỆP VỤ
-mau-ho-so/                  mẫu hồ sơ khách nhận của từng gói (Công ty ABZ hư cấu) + cam kết bảo mật
+bang-goi/                   bảng gói và giá, mỗi gói có link mẫu báo cáo
+mau-ho-so/                  mẫu hồ sơ khách nhận của từng gói (Công ty ABZ hư cấu) + thỏa thuận bảo mật
 khao-sat/                   khảo sát nhanh; nv.js và dòng đầu day-du.js SINH TỰ ĐỘNG từ mophong, không sửa tay
 tailieunoibo/                tài liệu nội bộ (kế hoạch, kịch bản video) — đang công khai theo đường dẫn, CẦN CHẶN hoặc gỡ
 work/                       bản mẫu LATTICE Work (lattice.business/work) — chép từ thư mục Lattice-Works, dữ liệu mẫu hư cấu, chạy trong trình duyệt
@@ -124,7 +125,7 @@ Trao đổi ban đầu qua email **miễn phí**. Khoản thu là **phí tạo l
 
 Bậc miễn phí đứng trước là **Khảo sát nhanh** (20 câu, báo cáo ban đầu). Sắp mở: **LATTICE Kit** 8.950.000đ. Sản phẩm kèm: Academy 2,5 triệu/học viên · LATTICE Work gói cơ bản 2,5 triệu/tháng · media trọn gói 25–45 triệu/tháng. Quy định đầy đủ chốt ngày 10/10/2026.
 
-**Mẫu hồ sơ khách nhận** nằm ở `mau-ho-so/` (trang tĩnh, `noindex`): bộ đầy đủ cho một doanh nghiệp thương mại hư cấu, Công ty ABZ — Khảo sát nhanh, Scan, Compass, Blueprint, Foundry, Kit (xem trước) và **Cam kết bảo mật thông tin** gửi kèm email xác nhận thanh toán của gói đầu tiên. Trang chủ (vi/en), hai trang đăng ký và báo cáo Khảo sát nhanh có link tới đây. Đổi nội dung gói thì sửa cả mẫu. Ở mọi chỗ có chữ SOP trong khu vực gói có một dòng giải thích SOP.
+**Bảng gói và giá** ở `bang-goi/`: so sánh mọi gói, mỗi gói có link "Xem mẫu báo cáo nhận được". **Mẫu hồ sơ** ở `mau-ho-so/` (trang tĩnh, `noindex`): bộ đầy đủ cho một doanh nghiệp thương mại hư cấu, Công ty ABZ — Khảo sát nhanh, Scan, Compass, Blueprint, Foundry, Kit (xem trước) và mẫu **Thỏa thuận bảo mật thông tin**. Khi bắt đầu thực hiện chính thức, LATTICE gửi thỏa thuận (đã ký số) kèm email xác nhận thanh toán; khách trả lời "Đồng ý" thì mới gửi câu hỏi, nhận tài liệu. Trang chủ (vi/en), hai trang đăng ký và báo cáo Khảo sát nhanh có link tới bảng gói và mẫu. Đổi nội dung gói thì sửa cả mẫu. Ở mọi chỗ có chữ SOP trong khu vực gói có một dòng giải thích SOP.
 
 Bảng so sánh đầy đủ và chính sách hoàn phí có sẵn trên trang Liên hệ và trong popup của trang đăng ký. Giá phải khớp ở **ba** chỗ: biến `GOI` trong hai trang đăng ký và `GIA` trong `google-apps-script.gs`. Máy chủ luôn tính lại số tiền theo `GIA`, không tin con số trình duyệt gửi lên. Giá còn được ghi bằng chữ ở trang chủ (Liên hệ), `khao-sat/index.html` (khối mời đăng ký Scan) và `tailieunoibo/`; đổi giá thì rà cả ba.
 

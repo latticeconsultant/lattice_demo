@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bảng gói LATTICE</title>
+<meta name="description" content="Các gói LATTICE Next Solutions: giá, nội dung nhận được, thời hạn, khấu trừ và mẫu hồ sơ đầy đủ của từng gói.">
+<link rel="icon" type="image/png" sizes="32x32" href="../brand/logo/favicon/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&display=swap">
+<style>
+/* Bố cục: bảng so sánh ngang (cuộn trong khung) rồi thẻ chi tiết từng gói xếp lưới; đỏ LATTICE chỉ cho giá. */
+:root{
+  --bg:#F3F2F2; --card:#FBFAFA; --ink:#201E1D; --mute:#605D5D; --line:#CFCBCA; --soft:#E8E6E5; --head:#201E1D; --headfg:#F3F2F2;
+  --red:#C9260E; --redbg:#FBE3DE; --ok:#2E6B4F; --warn:#8A5A00; --warnbg:#F6E9CC;
+  --f:'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#161514; --card:#1E1C1B; --ink:#EDEBEA; --mute:#A8A4A2; --line:#3C3937; --soft:#262422; --head:#EDEBEA; --headfg:#161514;
+  --red:#FF7A63; --redbg:#3A1A14; --ok:#7CC6A0; --warn:#E3AE4F; --warnbg:#2E2410; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#161514; --card:#1E1C1B; --ink:#EDEBEA; --mute:#A8A4A2; --line:#3C3937; --soft:#262422; --head:#EDEBEA; --headfg:#161514;
+  --red:#FF7A63; --redbg:#3A1A14; --ok:#7CC6A0; --warn:#E3AE4F; --warnbg:#2E2410; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:20px;padding-block:40px 80px}
+h1,h2,h3{margin:0;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:clamp(30px,5vw,46px);font-weight:800;font-stretch:88%;line-height:1.05}
+h2{font-size:clamp(21px,3vw,27px);font-weight:800;margin:48px 0 10px;padding-top:16px;border-top:2px solid var(--ink)}
+.kick{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.lead{font-size:17px;color:var(--mute);margin:14px 0 0;max-width:72ch}
+.note{font-size:13px;color:var(--mute)}
+.num{font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto;border:1px solid var(--line);background:var(--card);margin:14px 0}
+table{border-collapse:collapse;width:100%;min-width:1080px;font-size:13.5px}
+th,td{text-align:left;vertical-align:top;padding:10px 11px;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+th:last-child,td:last-child{border-right:0}
+thead th{background:var(--head);color:var(--headfg);font-size:13px;font-weight:800;position:sticky;top:0}
+thead th small{display:block;font-weight:500;font-size:11px;letter-spacing:.06em;opacity:.75}
+tbody th{background:var(--soft);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:700;width:130px;position:sticky;left:0}
+tr.price td{font-size:16px;font-weight:800;color:var(--red);white-space:nowrap}
+td.no{color:var(--mute)}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;padding:1px 7px;border:1px solid currentColor;white-space:nowrap}
+.pill.warn{color:var(--warn);background:var(--warnbg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:14px}
+.pk{background:var(--card);border:1px solid var(--line);padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.pk.hl{border:2px solid var(--ink)}
+.pk .tier{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.pk h3{font-size:20px;font-weight:800}
+.pk .gia{font-size:24px;font-weight:800;color:var(--red);font-stretch:85%;line-height:1.1}
+.pk .gia small{display:block;font-size:12px;font-weight:500;color:var(--mute);font-stretch:100%;margin-top:3px}
+.pk .who{font-size:13.5px;color:var(--mute)}
+.pk ul{margin:4px 0 0;padding-left:18px;font-size:14px}
+.pk li{margin:3px 0}
+.pk .foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);font-size:12.5px;color:var(--mute)}
+.extra{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:12px}
+.extra div{background:var(--card);border:1px solid var(--line);padding:14px 16px;min-width:0}
+.extra b{display:block;font-size:15px}
+.extra .gia{color:var(--red);font-weight:800;font-size:17px}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13.5px;margin-top:10px}
+.flow span{background:var(--card);border:1px solid var(--line);padding:6px 10px}
+.flow i{font-style:normal;color:var(--mute)}
+.ve{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--head);color:var(--headfg);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:11px 20px}
+.ve a{color:var(--headfg);text-decoration:none}.ve a:hover{text-decoration:underline}
+a.xem{display:inline-block;margin-top:12px;font-weight:700;font-size:14px;color:var(--red);text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:1px}
+a.xem:hover{opacity:.8}
+td a.xem{margin-top:0;font-size:13px}
+.hop{border:2px solid var(--ink);background:var(--card);padding:18px 20px;margin-top:14px}
+.hop p{margin:0 0 8px}.hop p:last-child{margin:0}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.cta a{display:inline-block;padding:12px 18px;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border:2px solid var(--ink);color:var(--ink)}
+.cta a.chinh{background:var(--ink);color:var(--bg)}
+@media print{.ve,.cta{display:none}}
+</style>
+</head>
+<body>
+<nav class="ve"><a href="../">← lattice.business</a><span><a href="../khao-sat/">Khảo sát nhanh</a> · <a href="../dang-ky/">Đăng ký gói</a></span></nav>
+
+<div class="wrap">
+  <div class="kick">LATTICE Next Solutions · giá áp dụng từ 10/10/2026</div>
+  <h1>Bảng gói LATTICE</h1>
+  <p class="lead">Giá đã gồm VAT 10%. Khoản thu là phí tạo lập hồ sơ và quản lý, không phải phí tư vấn. Trao đổi ban đầu qua email luôn miễn phí. Mỗi gói có <a href="../mau-ho-so/" style="color:inherit;font-weight:700">mẫu hồ sơ đầy đủ</a> để xem trước, dựng cho một doanh nghiệp thương mại hư cấu (Công ty ABZ).</p>
+
+  <div class="flow" aria-label="Hai đường đi">
+    <span>Khảo sát nhanh</span><i>→</i><span>Scan</span><i>→</i><span>Blueprint</span><i>→</i><span>Build</span><i>→</i><span>Operate</span>
+    <i style="margin-inline:10px">·</i>
+    <span>Khảo sát nhanh</span><i>→</i><span>Compass</span><i>→</i><span>Foundry</span><i>→</i><span>Kit hoặc Build</span>
+  </div>
+  <p class="note" style="margin-top:8px">Hàng trên: doanh nghiệp đang vận hành. Hàng dưới: người đang khởi sự. Mỗi bước lên được trừ phí bước trước theo bảng.</p>
+
+  <h2>So sánh các gói</h2>
+  <div class="tbl"><table>
+    <thead><tr>
+      <th></th>
+      <th>Khảo sát nhanh<small>T0</small></th>
+      <th>LATTICE Scan<small>T1 · đang vận hành</small></th>
+      <th>LATTICE Compass<small>T1 · khởi sự</small></th>
+      <th>LATTICE Blueprint<small>T2 · đang vận hành</small></th>
+      <th>LATTICE Foundry<small>T2 · khởi sự</small></th>
+      <th>LATTICE Kit<small>T3 · tự triển khai</small></th>
+      <th>Build<small>T4 · thuê làm</small></th>
+      <th>Operate<small>T5 · đồng hành</small></th>
+    </tr></thead>
+    <tbody>
+      <tr class="price"><th>Giá</th><td>Miễn phí</td><td class="num">895.000đ</td><td class="num">1.950.000đ</td><td class="num">2.950.000đ</td><td class="num">4.950.000đ</td><td class="num">8.950.000đ</td><td>Theo phạm vi</td><td>Thuê bao tháng</td></tr>
+      <tr><th>Mẫu nhận được</th><td><a class="xem" href="../mau-ho-so/khao-sat-nhanh.html">Xem mẫu báo cáo →</a></td><td><a class="xem" href="../mau-ho-so/scan.html">Xem mẫu báo cáo →</a></td><td><a class="xem" href="../mau-ho-so/compass.html">Xem mẫu báo cáo →</a></td><td><a class="xem" href="../mau-ho-so/blueprint.html">Xem mẫu báo cáo →</a></td><td><a class="xem" href="../mau-ho-so/foundry.html">Xem mẫu báo cáo →</a></td><td><a class="xem" href="../mau-ho-so/kit.html">Xem trước mẫu →</a></td><td class="no">Theo hợp đồng</td><td class="no">Theo hợp đồng</td></tr>
+      <tr><th>Cho ai</th><td>Mọi người muốn tự định vị</td><td>Doanh nghiệp đang vận hành, muốn biết bắt đầu từ đâu</td><td>Người có ý tưởng, chưa có doanh thu đều</td><td>Đang vận hành, đã chắc muốn làm</td><td>Khởi sự, đã chắc muốn làm</td><td>Muốn tự triển khai theo mẫu ngành</td><td>Muốn LATTICE làm cùng</td><td>Hệ thống đã chạy, cần giữ và mở rộng</td></tr>
+      <tr><th>Cách làm việc</th><td>Tự làm trên web</td><td>Qua email</td><td>Qua email</td><td>Email + Zoom</td><td>Email + Zoom</td><td>Tự làm + hỏi đáp nhóm</td><td>Dự án theo cột mốc</td><td>Theo tháng</td></tr>
+      <tr><th>Câu hỏi</th><td>20 câu, khoảng 8–10 phút (khởi sự: 19 câu)</td><td>5–10 câu bổ sung, chọn theo câu trả lời Khảo sát nhanh</td><td>Bộ câu hỏi khởi sự + câu bổ sung</td><td>Câu bổ sung + bộ chuyên sâu theo mảng cần làm</td><td>Bộ khởi sự + câu chuyên sâu</td><td>Danh sách kiểm triển khai</td><td>Theo hợp đồng</td><td>Theo tháng</td></tr>
+      <tr><th>Tài liệu cần gửi</th><td class="no">Không</td><td>Danh sách người và việc, sản phẩm và giá, doanh thu 3 tháng, phần mềm đang dùng, cách làm ba việc ưu tiên, chính sách đổi trả; thêm theo loại hình</td><td>Mô tả ý tưởng, khách nhắm tới, giá dự kiến, nguồn cung, vốn</td><td>Như Scan</td><td>Như Compass</td><td class="no">Không</td><td>Theo hợp đồng</td><td class="no">—</td></tr>
+      <tr><th>Gặp người</th><td class="no">Không</td><td class="no">Không</td><td class="no">Không</td><td>1 buổi Zoom 60 phút + rà lại 30 phút sau 3 tuần</td><td>2 buổi Zoom: 60 + 45 phút</td><td>2 buổi hỏi đáp nhóm</td><td>Tư vấn riêng</td><td>Tư vấn riêng</td></tr>
+      <tr><th>Nhận được</th><td>Báo cáo ban đầu ngay trên màn hình: điểm sẵn sàng, bản đồ khối, năm nguồn lực, ba việc nên làm trước, gói nên đi tiếp</td><td><b>Báo cáo Scan 5–7 trang</b>: bản đồ khối có số thật, ba quy trình ưu tiên (hiện tại → đề xuất người + AI), mức AI cho từng tác vụ, ai giữ quyền, giờ tiết kiệm, năm nguồn lực, rủi ro hóa đơn, thuế, dữ liệu</td><td><b>Báo cáo kiểm chứng 6–8 trang</b>: năm giả định rủi ro nhất, cách kiểm chứng rẻ trong 30 ngày, kiến trúc tối thiểu, bộ máy 1–3 người, chi phí AI; kết luận nên làm / làm nhỏ thử / chưa nên làm</td><td><b>Hồ sơ thiết kế 12–16 trang</b>: kiến trúc ba lớp, bộ máy và phân vai, ma trận quyền và ngưỡng ngoại lệ, ba chuỗi ưu tiên vẽ lại, lộ trình 90 ngày, chi phí AI và giờ tiết kiệm</td><td><b>Bản thiết kế doanh nghiệp 15–20 trang</b>: mô hình kinh doanh, kiến trúc tối thiểu, bộ máy 12 tháng đầu, công cụ và chi phí, kế hoạch 90 ngày ra mắt có cột mốc</td><td>SOP 3–5 quy trình, cấu hình agent và câu lệnh mẫu, bộ kiểm tra chất lượng, mẫu ma trận quyền, video từng bước</td><td>Bộ máy và ma trận quyền, knowledge base, 3–5 tích hợp, 3 quy trình chạy ổn định (ít nhất 1 lên L3), kiểm tra chất lượng, nhật ký, nút dừng khẩn, đào tạo, bàn giao đứng tên khách</td><td>Kiểm tra chất lượng hằng tuần, nâng hạ mức tự chủ, báo cáo tháng, theo dõi chi phí AI, mở rộng quy trình theo quý</td></tr>
+      <tr><th>Bảo mật thông tin</th><td>Câu trả lời chỉ dùng để lập báo cáo</td><td>Hai bên xác nhận <a href="../mau-ho-so/thoa-thuan-bao-mat.html" style="color:inherit">Thỏa thuận bảo mật</a> khi bắt đầu thực hiện</td><td>Hai bên xác nhận <a href="../mau-ho-so/thoa-thuan-bao-mat.html" style="color:inherit">Thỏa thuận bảo mật</a> khi bắt đầu thực hiện</td><td>Hai bên xác nhận <a href="../mau-ho-so/thoa-thuan-bao-mat.html" style="color:inherit">Thỏa thuận bảo mật</a> khi bắt đầu thực hiện</td><td>Hai bên xác nhận <a href="../mau-ho-so/thoa-thuan-bao-mat.html" style="color:inherit">Thỏa thuận bảo mật</a> khi bắt đầu thực hiện</td><td>Hai bên xác nhận <a href="../mau-ho-so/thoa-thuan-bao-mat.html" style="color:inherit">Thỏa thuận bảo mật</a> khi bắt đầu thực hiện</td><td>Thỏa thuận bảo mật trong hợp đồng</td><td>Thỏa thuận bảo mật trong hợp đồng</td></tr>
+      <tr><th>SOP mẫu</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td>2 SOP</td><td>3 SOP</td><td>3–5 SOP</td><td>Bộ SOP đầy đủ</td><td>Cập nhật</td></tr>
+      <tr><th>Trang mô phỏng riêng</th><td class="no">—</td><td>Có</td><td class="no">—</td><td>Có</td><td class="no">—</td><td class="no">—</td><td>Có, dữ liệu thật</td><td>Có, dữ liệu thật</td></tr>
+      <tr><th>Trợ lý AI riêng</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td>30 ngày</td><td>Theo hợp đồng</td><td>Theo tháng</td></tr>
+      <tr><th>Hỏi đáp sau</th><td class="no">—</td><td>Email 1 lần, tối đa 3 câu, 14 ngày</td><td>Email 1 lần, tối đa 3 câu, 14 ngày</td><td>Email 30 ngày, tối đa 5 câu</td><td>Email 30 ngày</td><td>2 buổi nhóm</td><td>Trong dự án</td><td>Liên tục</td></tr>
+      <tr><th>Thời hạn</th><td>Ngay</td><td>Câu hỏi: 2 ngày làm việc · báo cáo: 5 ngày làm việc sau khi đủ tài liệu</td><td>Câu hỏi: 2 ngày · báo cáo: 7 ngày làm việc sau khi đủ tài liệu</td><td>Câu hỏi: 2 ngày · xếp Zoom: 3 ngày · hồ sơ: 7 ngày làm việc sau Zoom</td><td>Câu hỏi: 2 ngày · Zoom 1: 3 ngày · bản thiết kế: 10 ngày làm việc sau Zoom 1</td><td>Mở ngay khi thanh toán</td><td>3–5 tháng, chia đợt</td><td>Theo tháng</td></tr>
+      <tr><th>Khấu trừ</th><td class="no">—</td><td>100% vào Blueprint nếu nâng trong 30 ngày</td><td>100% vào Foundry nếu nâng trong 30 ngày</td><td>100% vào Build nếu ký trong 60 ngày</td><td>100% vào Kit hoặc Build trong 60 ngày</td><td>50% vào Build trong 60 ngày</td><td class="no">—</td><td class="no">—</td></tr>
+      <tr><th>Số suất</th><td>Không giới hạn</td><td>Không giới hạn</td><td>Không giới hạn</td><td>10 hồ sơ mỗi đợt</td><td>5 hồ sơ mỗi đợt</td><td>Theo ngành mở bán</td><td>Theo năng lực</td><td>Theo năng lực</td></tr>
+      <tr><th>Tình trạng</th><td>Đang chạy</td><td>Mở đăng ký</td><td>Mở đăng ký</td><td>Mở đăng ký</td><td>Mở đăng ký</td><td><span class="pill warn">Sắp mở</span></td><td>Báo giá sau Blueprint</td><td>Chưa định giá</td></tr>
+    </tbody></table></div>
+  <p class="note">"Mở đăng ký" là trên trang đăng ký; đợt 1 đã đóng, đợt 2 chưa công bố ngày mở.</p>
+
+  <h2>Chi tiết từng gói</h2>
+  <div class="grid">
+    <div class="pk"><div class="tier">T0 · Mọi khách</div><h3>Khảo sát nhanh</h3><div class="gia">Miễn phí<small>Không cần tạo tài khoản</small></div>
+      <ul><li>20 câu, khoảng 8–10 phút; người khởi sự 19 câu</li><li>Báo cáo ban đầu hiện ngay: điểm sẵn sàng 0–100, bản đồ khối đang vướng, năm nguồn lực, ba việc nên làm trước, hai điều cần sửa</li><li>Gợi ý gói nên đi tiếp</li></ul>
+      <a class="xem" href="../mau-ho-so/khao-sat-nhanh.html">Xem mẫu báo cáo nhận được →</a>
+      <div class="foot">lattice.business/khao-sat</div></div>
+
+    <div class="pk"><div class="tier">T1 · Đang vận hành</div><h3>LATTICE Scan</h3><div class="gia num">895.000đ<small>Qua email, không họp</small></div>
+      <ul><li>5–10 câu hỏi bổ sung nhắm đúng chỗ còn thiếu</li><li>Danh sách tài liệu cần gửi, đã che thông tin khách</li><li>Người LATTICE đọc và duyệt</li><li><b>Báo cáo 5–7 trang</b> có số thật của doanh nghiệp, kèm trang mô phỏng riêng</li><li>Hỏi đáp email 1 lần, tối đa 3 câu, trong 14 ngày</li></ul>
+      <a class="xem" href="../mau-ho-so/scan.html">Xem mẫu báo cáo nhận được →</a>
+      <div class="foot">Báo cáo trong 5 ngày làm việc sau khi đủ tài liệu · trừ 100% vào Blueprint nếu nâng trong 30 ngày</div></div>
+
+    <div class="pk"><div class="tier">T1 · Khởi sự</div><h3>LATTICE Compass</h3><div class="gia num">1.950.000đ<small>Qua email, không họp</small></div>
+      <ul><li>Bộ câu hỏi khởi sự, câu bổ sung, tài liệu về ý tưởng</li><li><b>Báo cáo kiểm chứng 6–8 trang</b>: năm giả định rủi ro nhất, cách kiểm chứng rẻ trong 30 ngày</li><li>Kiến trúc tối thiểu, bộ máy 1–3 người kiêm vai, chi phí AI ước tính</li><li>Kết luận thẳng: nên làm, làm nhỏ để thử, hay chưa nên làm</li></ul>
+      <a class="xem" href="../mau-ho-so/compass.html">Xem mẫu báo cáo nhận được →</a>
+      <div class="foot">Báo cáo trong 7 ngày làm việc sau khi đủ tài liệu · trừ 100% vào Foundry nếu nâng trong 30 ngày</div></div>
+
+    <div class="pk hl"><div class="tier">T2 · Đang vận hành</div><h3>LATTICE Blueprint</h3><div class="gia num">2.950.000đ<small>Gặp người lần đầu</small></div>
+      <ul><li>Toàn bộ Scan</li><li>Zoom 60 phút + bộ câu hỏi chuyên sâu theo mảng cần làm</li><li><b>Hồ sơ thiết kế 12–16 trang</b>: kiến trúc, bộ máy và phân vai, ma trận quyền, ba chuỗi ưu tiên vẽ lại, lộ trình 90 ngày</li><li>2 SOP mẫu, rà lại 30 phút sau 3 tuần</li><li>Hỏi đáp email 30 ngày, tối đa 5 câu</li></ul>
+      <a class="xem" href="../mau-ho-so/blueprint.html">Xem mẫu báo cáo nhận được →</a>
+      <div class="foot">Hồ sơ trong 7 ngày làm việc sau Zoom · trừ 100% vào Build nếu ký trong 60 ngày · 10 hồ sơ mỗi đợt</div></div>
+
+    <div class="pk hl"><div class="tier">T2 · Khởi sự</div><h3>LATTICE Foundry</h3><div class="gia num">4.950.000đ<small>Hai buổi Zoom</small></div>
+      <ul><li>Toàn bộ Compass</li><li>Zoom 60 phút đầu, 45 phút cuối</li><li><b>Bản thiết kế doanh nghiệp 15–20 trang</b>: mô hình kinh doanh, kiến trúc tối thiểu, bộ máy 12 tháng, công cụ và chi phí, kế hoạch 90 ngày ra mắt</li><li>3 SOP cho những việc đầu tiên, hỏi đáp email 30 ngày</li></ul>
+      <a class="xem" href="../mau-ho-so/foundry.html">Xem mẫu báo cáo nhận được →</a>
+      <div class="foot">Bản thiết kế 10 ngày làm việc sau Zoom 1 · trừ 100% vào Kit hoặc Build trong 60 ngày · 5 hồ sơ mỗi đợt</div></div>
+
+    <div class="pk"><div class="tier">T3 · Tự triển khai · sắp mở</div><h3>LATTICE Kit</h3><div class="gia num">8.950.000đ<small>Theo loại hình, ngành</small></div>
+      <ul><li>SOP 3–5 quy trình, cấu hình agent, câu lệnh mẫu</li><li>Bộ kiểm tra chất lượng, mẫu ma trận quyền</li><li>Video từng bước, trợ lý AI riêng 30 ngày</li><li>2 buổi hỏi đáp nhóm</li></ul>
+      <a class="xem" href="../mau-ho-so/kit.html">Xem trước mẫu →</a>
+      <div class="foot">Trừ 50% vào Build nếu ký trong 60 ngày · chờ chọn ngành mở đầu tiên</div></div>
+
+    <div class="pk"><div class="tier">T4 · Thuê làm</div><h3>Build</h3><div class="gia">Theo phạm vi<small>Bình quân giả định khoảng 120 triệu/hợp đồng</small></div>
+      <ul><li>3–5 tháng, chia đợt theo cột mốc</li><li>Bộ máy, ma trận quyền, knowledge base, 3–5 tích hợp</li><li>3 quy trình chạy ổn định, ít nhất 1 lên L3</li><li>Kiểm tra chất lượng, nhật ký, nút dừng khẩn, đào tạo, bàn giao đứng tên khách</li></ul>
+      <div class="foot">Báo giá sau Blueprint hoặc Foundry</div></div>
+
+    <div class="pk"><div class="tier">T5 · Đồng hành</div><h3>Operate</h3><div class="gia">Thuê bao tháng<small>Tính theo số agent, chưa định giá</small></div>
+      <ul><li>Kiểm tra chất lượng hằng tuần</li><li>Nâng hạ mức tự chủ theo số đo</li><li>Báo cáo tháng, theo dõi chi phí AI</li><li>Mở rộng quy trình theo quý</li></ul>
+      <div class="foot">Hủy bất cứ lúc nào</div></div>
+  </div>
+
+  <h2>Sản phẩm đi kèm</h2>
+  <div class="extra">
+    <div><b>Academy · lớp mở</b><span class="gia num">2.500.000đ</span><div class="note">mỗi học viên · ba lộ trình Nền tảng, Vận hành, Kiến trúc</div></div>
+    <div><b>LATTICE Work · gói cơ bản</b><span class="gia num">2.500.000đ</span><div class="note">mỗi tháng, mỗi doanh nghiệp · gói cao hơn định giá sau</div></div>
+    <div><b>Dịch vụ media trọn gói</b><span class="gia num">25–45 triệu</span><div class="note">mỗi tháng · tùy quy mô và yêu cầu</div></div>
+  </div>
+
+  <h2>Chính sách phí</h2>
+  <div class="tbl"><table style="min-width:640px">
+    <tbody>
+      <tr><th style="width:260px">Đã thanh toán, LATTICE chưa gửi câu hỏi</th><td>Hoàn 100%</td></tr>
+      <tr><th>LATTICE đã gửi câu hỏi bổ sung hoặc chuyên sâu</th><td>Không hoàn; phần tạo lập hồ sơ đã làm</td></tr>
+      <tr><th>Khách chưa trả lời hoặc chưa gửi tài liệu</th><td>Bảo lưu 90 ngày</td></tr>
+      <tr><th>Dời lịch Zoom (Blueprint, Foundry)</th><td>Miễn phí tối đa 2 lần, báo trước 24 giờ; vắng không báo quá 15 phút tính là đã dùng, được dời một lần</td></tr>
+      <tr><th>Bắt đầu thực hiện chính thức</th><td>LATTICE gửi Thỏa thuận bảo mật thông tin (đã ký số) kèm email xác nhận thanh toán; công việc bắt đầu sau khi anh chị xác nhận bằng email</td></tr>
+      <tr><th>LATTICE lỡ hẹn</th><td>Hoàn 100%, hoặc nâng bậc kế tiếp (Scan lên Blueprint, Compass lên Foundry) không thu thêm, khách chọn</td></tr>
+    </tbody></table></div>
+  <h2>Bảo mật thông tin</h2>
+  <div class="hop">
+    <p>Khi bắt đầu thực hiện chính thức, hai bên xác nhận <b>Thỏa thuận bảo mật thông tin</b>: LATTICE ký số và gửi kèm email xác nhận thanh toán, anh chị trả lời "Đồng ý" bằng email đã đăng ký. LATTICE chỉ gửi câu hỏi và nhận tài liệu sau bước này.</p>
+    <p>Thông tin chỉ dùng để làm hồ sơ của anh chị · chỉ người có tên trong thỏa thuận được đọc · không đưa dữ liệu cá nhân vào AI, không dùng để huấn luyện AI · xóa tài liệu gốc 30 ngày sau khi xong · có sự cố thì báo trong 72 giờ.</p>
+    <p><a class="xem" href="../mau-ho-so/thoa-thuan-bao-mat.html">Xem mẫu Thỏa thuận bảo mật →</a></p>
+  </div>
+  <p class="note" style="margin-top:14px"><b>SOP</b> (Standard Operating Procedure) — quy trình thao tác chuẩn: văn bản ghi một việc lặp lại được làm thế nào, từng bước, ai làm (người hay AI, mức L0–L3), ngưỡng nào thì AI dừng và chuyển người, ghi nhật ký gì, đo bằng chỉ số nào.</p>
+  <div class="cta"><a class="chinh" href="../khao-sat/">Bắt đầu bằng Khảo sát nhanh →</a><a href="../dang-ky/">Đăng ký gói →</a><a href="../mau-ho-so/">Tất cả mẫu hồ sơ</a></div>
+  <p class="note" style="margin-top:22px">Liên hệ chỉ qua email: lattice.consultant@gmail.com</p>
+</div>
+</body>
+</html>

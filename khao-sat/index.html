@@ -102,7 +102,7 @@ footer a{color:inherit}
 .tbl tr.dau td{font-weight:700}
 /* câu nhiều phần: số câu, nhãn phần con, lưới bốn mức gọn cho điện thoại */
 .cau legend{float:left;width:100%;padding:0;margin-bottom:10px}
-.cau legend+*{clear:both}
+.cau>*:not(legend){clear:both}
 .cau .stt{display:block;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:5px}
 .con+.con{margin-top:16px;padding-top:14px;border-top:1px solid var(--line2)}
 .nhan-con{font-size:14px;font-weight:700;margin:0 0 7px}

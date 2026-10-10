@@ -657,23 +657,70 @@ const KHOI_MUCTIEU = {
   kiemsoat: { tmhh: ['cl','ht','kv'], dv: ['cl','ht','th'], sx: ['cl','qa','ht','sx'] },
   morong:   { tmhh: ['cl','mk','kd','nh'], dv: ['cl','mk','tk','kd'], sx: ['cl','kd','hd','mh'] }
 };
+/* ---------- ba việc nên làm trước ----------
+   Chỉ xét các việc anh chị chọn ở câu 9. Mỗi việc cộng điểm:
+     việc ngốn thời gian nhất (câu 10)                       luôn đứng đầu
+     gắn trực tiếp với sự cố anh chị chọn (câu 12, SUCO_NV)  +3
+       (chỉ cùng khối với sự cố, SUCO_KHOI)                  +1
+     giữ tiền khi tiền đủ chi dưới 3 tháng (câu 13, TIEN_NV) +2
+     việc lặp lại theo từng đơn (câu 6, LUONG_NV)            +3 nếu trên 200/ngày, +2 nếu 50–200
+     khối hợp mục tiêu 90 ngày (câu 20)                       +1; mục tiêu "lấy lại thời gian" cộng cho việc theo đơn
+     mức AI khuyến nghị                                       L3 +1 · L2 0 · L1 −1 · L0 −2
+   Bằng điểm thì giữ thứ tự anh chị chọn. Lý do cộng điểm hiện trong báo cáo. */
+const SUCO_NV = {
+  tmhh: { sotdon:['kv_om','kd_omni','kd_quote'], giaotre:['kv_tms','kv_pick','kv_om'], nhamgia:['kd_price','kd_quote','nh_pim'],
+          congno:['tc_ar','tc_cash'], chekhach:['dv_case','dv_sup','dv_ret','dv_voc'], thieuhang:['hd_rep','hd_fc','hd_alloc','hd_pol','kv_po'],
+          saichuyenmon:['nh_pim','kv_rcv','dv_ret','nh_srm'], nghidotxuat:['ns_plan'] },
+  dv:   { sotdon:['nl_book','kd_intake'], giaotre:['nl_resch','th_prog','nl_assign'], nhamgia:['kd_prop','tk_cost'],
+          congno:['tc_inv','tc_dep'], chekhach:['tn_case','tn_in','tn_voc'], thieuhang:['nl_cap','nl_book','nl_assign'],
+          saichuyenmon:['th_qc','tk_std','th_exec'], nghidotxuat:['nl_assign','ns_plan'] },
+  sx:   { sotdon:['kd_quote','kd_chg'], giaotre:['kv_ship','sx_sch','kd_atp'], nhamgia:['kd_quote','tc_cost'],
+          congno:['tc_ap','tc_acc'], chekhach:['qa_cmp','kv_as'], thieuhang:['hd_mrp','hd_inv','mh_po'],
+          saichuyenmon:['qa_qc','qa_ncr','qa_capa'], nghidotxuat:['sx_sch','ns_hire'] }
+};
+const TIEN_NV = {
+  tmhh: ['tc_ar','tc_cash','tc_ap','hd_rep','hd_slow','hd_pol'],
+  dv:   ['tc_inv','tc_dep','tc_pay','tk_cost'],
+  sx:   ['tc_ap','tc_acc','tc_cost','hd_inv','hd_mrp']
+};
+const LUONG_NV = {
+  tmhh: ['dv_sup','dv_case','dv_ret','kv_om','kd_omni','kd_quote'],
+  dv:   ['kd_intake','nl_book','nl_resch','tn_pre','tn_in'],
+  sx:   ['kd_quote','sx_rep','kv_pod','qa_qc']
+};
+const LUONG_DIEM = { '200+': 3, '50-200': 2 };
+const NHAN_SUCO = { sotdon:'sót đơn', giaotre:'giao trễ', nhamgia:'nhầm giá', congno:'công nợ quá hạn', chekhach:'khách chê công khai',
+  thieuhang:'thiếu hàng', saichuyenmon:'sai sót chuyên môn', nghidotxuat:'người nghỉ đột xuất' };
 function xepUuTien(d) {
-  const thu = k => khoiTheoMo().findIndex(x => x[0] === k);
-  const hop = ((KHOI_MUCTIEU[d.muon] || {})[d.mo || 'tmhh']) || [];
-  const r = x => { const v = recCua(x.id); return v == null ? 2 : v; };
-  return (d.dau || []).map(timNV).filter(Boolean).sort((a, b) =>
-    (a.id === d.ngonnhat ? -1 : b.id === d.ngonnhat ? 1 : 0)
-    || ((hop.indexOf(a.khoi) < 0) - (hop.indexOf(b.khoi) < 0))
-    || (r(b) - r(a))
-    || (thu(a.khoi) - thu(b.khoi)));
+  const mo = d.mo || 'tmhh';
+  const hop = ((KHOI_MUCTIEU[d.muon] || {})[mo]) || [];
+  const suco = (d.suco || []).filter(x => x !== 'it');
+  const tienYeu = d.tien === '<1' || d.tien === '1-3';
+  const luong = LUONG_DIEM[d.luong] || 0;
+  return (d.dau || []).map(timNV).filter(Boolean).map((x, thu) => {
+    let diem = 0; const lydo = [];
+    if (x.id === d.ngonnhat) { diem += 100; lydo.push('ngốn thời gian nhất'); }
+    const truc = suco.filter(k => ((SUCO_NV[mo] || {})[k] || []).indexOf(x.id) >= 0);
+    const cungKhoi = suco.filter(k => ((SUCO_KHOI[mo] || {})[k]) === x.khoi);
+    if (truc.length) { diem += 3; lydo.push('gốc của sự cố ' + truc.map(k => NHAN_SUCO[k]).join(', ')); }
+    else if (cungKhoi.length) diem += 1;
+    if (tienYeu && (TIEN_NV[mo] || []).indexOf(x.id) >= 0) { diem += 2; lydo.push('giữ tiền khi tiền chỉ đủ chi dưới 3 tháng'); }
+    const theoDon = (LUONG_NV[mo] || []).indexOf(x.id) >= 0;
+    if (luong && theoDon) { diem += luong; lydo.push('lặp lại theo từng đơn, khối lượng lớn'); }
+    if (hop.indexOf(x.khoi) >= 0 || (d.muon === 'giogio' && theoDon)) { diem += 1; lydo.push('hợp mục tiêu 90 ngày'); }
+    const r = recCua(x.id); diem += (r == null ? 2 : r) - 2;
+    return Object.assign({}, x, { diem, lydo, thu, theoDon });
+  }).sort((a, b) => b.diem - a.diem || a.thu - b.thu);
 }
 
 /* Ước giờ tiết kiệm cho từng việc trong ba việc đầu (ước lượng):
    giờ lấy lại được (chamDiem.gioLay) × tỷ trọng (việc 1: 50%, việc 2: 30%, việc 3: 20%;
-   ít việc hơn thì chia lại cho đủ 100%) × hệ số mức AI (L0 0 · L1 0,3 · L2 0,6 · L3 1).
+   việc lặp lại theo từng đơn nhân 1,5 nếu trên 200 đơn/ngày, 1,33 nếu 50–200;
+   chia lại cho đủ 100%) × hệ số mức AI (L0 0 · L1 0,3 · L2 0,6 · L3 1).
    Hiện thành khoảng ±25%, thấp nhất 1 giờ. */
-function gioViec(kq, i, n, rec) {
-  const tt = [0.5, 0.3, 0.2].slice(0, n), tong = tt.reduce((s, x) => s + x, 0);
+function gioViec(kq, i, ba, rec, d) {
+  const n = ba.length, he = x => (x.theoDon && LUONG_DIEM[d.luong]) ? 1 + LUONG_DIEM[d.luong] / 6 : 1;
+  const tt = [0.5, 0.3, 0.2].slice(0, n).map((t, k) => t * he(ba[k])), tong = tt.reduce((s, x) => s + x, 0);
   const h = kq.gioLay * (tt[i] / tong) * [0, 0.3, 0.6, 1][rec];
   if (h < 0.5) return 'dưới 1 giờ/tuần';
   const lo = Math.max(1, Math.floor(h * 0.75)), hi = Math.max(lo + 1, Math.ceil(h * 1.25));
@@ -702,23 +749,42 @@ function nguonLuc(d) {
 }
 
 /* ---------- hai điều cần sửa trước ----------
-   Năm luật, mỗi luật cho một mức nặng 0–5; lấy hai điều nặng nhất (từ mức 3).
-   Bằng điểm thì giữ thứ tự luật dưới đây. */
+   Đây là điều kiện để giao việc cho AI, không phải danh sách mọi rủi ro.
+   Ưu tiên ba nền: quyền quyết định (câu 11), dữ liệu nguồn chuẩn (câu 8),
+   quy trình (câu 15). Tiền và người chủ chốt đã hiện ở phần năm nguồn lực,
+   chỉ vào đây khi nặng hẳn. Mỗi luật một mức 0–5, lấy hai điều nặng nhất từ
+   mức 3; bằng điểm thì giữ thứ tự luật dưới đây.
+     Quyền:     về chủ 5 · hay hỏi lại 3; +1 nếu chủ nghỉ thì việc duyệt chi dừng (câu 16)
+     Dữ liệu:   ≥ 2 loại trong điện thoại/không lưu 5 · 1 loại 4 · ≥ 2 loại "vài nơi" 3;
+                +1 nếu có sự cố do số không khớp (sót đơn, nhầm giá, công nợ, thiếu hàng)
+     Tiền:      dưới 1 tháng 5 · 1–3 tháng 2 · chưa biết 2
+     Quy trình: chưa viết 4 · vài ghi chú 3
+     Người:     ≥ 2 việc dừng khi chủ chốt nghỉ 3 · 1 việc 2 (không tính duyệt chi đã gộp vào Quyền) */
 function haiDieuSua(d) {
   const ds = [];
-  if (d.quyet === 'toi') ds.push([5, 'Mọi việc vượt quy định đang dồn về chủ. Đưa AI vào lúc này chỉ dời nút cổ chai sang chỗ duyệt. Cần viết ra ai được duyệt việc gì, tới ngưỡng tiền nào.']);
-  else if (d.quyet === 'hoilai') ds.push([3, 'Người phụ trách vẫn hay hỏi lại chủ. Cần ghi rõ ngưỡng họ được tự quyết, nếu không AI cũng sẽ phải chờ chủ duyệt.']);
+  const dung = (d.dung || []).filter(x => x !== 'khong');
+  const chiDung = dung.indexOf('duyetchi') >= 0;
+  const quyen = { toi: 5, hoilai: 3 }[d.quyet] || 0;
+  if (quyen) ds.push([quyen + (chiDung ? 1 : 0), (d.quyet === 'toi'
+      ? 'Mọi việc vượt quy định đang dồn về chủ. Đưa AI vào lúc này chỉ dời nút cổ chai sang chỗ duyệt.'
+      : 'Người phụ trách vẫn hay hỏi lại chủ, nên AI cũng sẽ phải chờ chủ duyệt.')
+    + (chiDung ? ' Chủ nghỉ hai tuần thì việc duyệt chi dừng: quyền chưa được giao.' : '')
+    + ' Cần viết ra ai được duyệt việc gì, tới ngưỡng tiền nào, ngoài ngưỡng chuyển ai.']);
   const yeu = [['dl_kh', 'khách hàng'], ['dl_hang', 'hàng, lịch, tồn kho'], ['dl_tien', 'tiền, công nợ']]
     .filter(([k]) => d[k] === 'dienthoai' || d[k] === 'khong').map(x => x[1]);
   const vai = [['dl_kh'], ['dl_hang'], ['dl_tien']].filter(([k]) => d[k] === 'vainoi').length;
-  if (yeu.length) ds.push([yeu.length >= 2 ? 5 : 4, 'Dữ liệu ' + yeu.join(' và ') + ' đang nằm trong điện thoại, trong đầu hoặc không lưu. AI chưa có nguồn chuẩn để làm việc; cần gom về một nơi trước.']);
-  else if (vai >= 2) ds.push([3, 'Dữ liệu nằm rải ở vài nơi, phải ghép lại khi cần. Cần chọn một nguồn chuẩn cho từng loại trước khi nối AI.']);
-  if (d.tien === '<1' || d.tien === '1-3') ds.push([d.tien === '<1' ? 5 : 4, 'Tiền chỉ đủ chi dưới 3 tháng. Nên đưa việc thu tiền, công nợ, tồn kho lên trước mọi việc mở rộng.']);
-  else if (d.tien === 'chuabiet') ds.push([3, 'Chưa biết tiền đủ chi bao lâu. Cần một bảng dòng tiền theo tuần trước khi chi cho công cụ mới.']);
+  const lech = (d.suco || []).filter(k => ['sotdon', 'nhamgia', 'congno', 'thieuhang'].indexOf(k) >= 0);
+  const goiLech = lech.length ? ' Các sự cố ' + lech.map(k => NHAN_SUCO[k]).join(', ') + ' thường bắt đầu từ chỗ số ở các nơi không khớp nhau.' : '';
+  if (yeu.length) ds.push([(yeu.length >= 2 ? 5 : 4) + (lech.length ? 1 : 0), 'Dữ liệu ' + yeu.join(' và ') + ' đang nằm trong điện thoại, trong đầu hoặc không lưu. AI chưa có nguồn chuẩn để làm việc; cần gom về một nơi trước.' + goiLech]);
+  else if (vai >= 2) ds.push([3 + (lech.length ? 1 : 0), 'Dữ liệu nằm rải ở vài nơi, phải ghép lại khi cần. Cần chọn một nguồn chuẩn cho từng loại (khách hàng, hàng, tiền) trước khi nối AI.' + goiLech]);
+  if (d.tien === '<1') ds.push([5, 'Tiền chỉ đủ chi dưới 1 tháng. Việc đầu tiên là thu tiền, công nợ và tồn kho; mọi khoản chi cho công cụ mới để sau.']);
+  else if (d.tien === '1-3' || d.tien === 'chuabiet') ds.push([2, d.tien === 'chuabiet'
+    ? 'Chưa biết tiền đủ chi bao lâu. Cần một bảng dòng tiền theo tuần trước khi chi cho công cụ mới.'
+    : 'Tiền chỉ đủ chi 1–3 tháng. Nên đưa việc thu tiền, công nợ, tồn kho lên trước mọi việc mở rộng.']);
   if (d.quytrinh === 'chua') ds.push([4, 'Cách làm việc chưa viết thành quy trình. AI không học được cách làm chỉ nằm trong đầu người; cần viết ba việc ưu tiên thành các bước.']);
   else if (d.quytrinh === 'ghichu') ds.push([3, 'Mới vài việc có ghi chú. Ba việc ưu tiên cần thành quy trình có điểm kiểm soát trước khi giao cho AI.']);
-  const dung = (d.dung || []).filter(x => x !== 'khong');
-  if (dung.length) ds.push([dung.length >= 2 ? 4 : 3, 'Người chủ chốt là điểm gãy: nghỉ hai tuần thì ' + nhanNhieu('dung', dung).toLowerCase() + ' dừng. Cần người dự phòng hoặc giấy tờ hướng dẫn cho những việc này.']);
+  const dungKhac = dung.filter(x => x !== 'duyetchi');
+  if (dungKhac.length) ds.push([dungKhac.length >= 2 ? 3 : 2, 'Người chủ chốt là điểm gãy: nghỉ hai tuần thì ' + nhanNhieu('dung', dungKhac).toLowerCase() + ' dừng. Cần người dự phòng hoặc giấy tờ hướng dẫn cho những việc này.']);
   return ds.map((x, i) => [x[0], i, x[1]]).filter(x => x[0] >= 3).sort((a, b) => b[0] - a[0] || a[1] - b[1]).slice(0, 2).map(x => x[2]);
 }
 
@@ -799,7 +865,7 @@ function baoCaoVH(d, kq, uu, ma) {
       <p><b>AI làm:</b> L${rec} · ${MUC_AI[rec]}${vd ? `. Ví dụ: ${esc(vd[0].toLowerCase())}` : ''}.</p>
       <p><b>Vướng thì chuyển cho:</b> ${esc(x.vuong)} → ${esc(x.cho)}</p>
       ${dd.giu ? `<p class="nho">Người luôn giữ: ${esc(dd.giu)}</p>` : ''}
-      <p><b>Ước tiết kiệm:</b> ${gioViec(kq, i, ba.length, rec)}</p></div>`;
+      <p><b>Ước tiết kiệm:</b> ${gioViec(kq, i, ba, rec, d)}</p>${x.lydo.length ? `<p class="sau" style="margin-top:4px">Vì sao đứng đây: ${esc(x.lydo.join('; '))}.</p>` : ''}</div>`;
   }).join('');
   const sua = haiDieuSua(d);
   const nl = nguonLuc(d);

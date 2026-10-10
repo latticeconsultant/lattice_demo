@@ -70,7 +70,10 @@ th{background:var(--soft);font-size:8pt;letter-spacing:.06em;text-transform:uppe
 </style>
 </head>
 <body>
-<style>.ve-mau{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#201E1D;color:#fff;font:600 12px/1.4 'Archivo',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:10px 16px}.ve-mau a{color:#fff;text-decoration:none}.ve-mau a:hover{text-decoration:underline}@media print{.ve-mau{display:none}}</style>
+<style>.ve-mau{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#201E1D;color:#fff;font:600 12px/1.4 'Archivo',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:10px 16px}.ve-mau a{color:#fff;text-decoration:none}.ve-mau a:hover{text-decoration:underline}@media print{.ve-mau{display:none}}
+/* Trên màn hình: rộng bằng khung chung của site (1200px); khi in vẫn là A4. */
+@media screen and (min-width:821px){.trang{width:calc(100% - 48px);max-width:1200px;min-height:0}}
+</style>
 <nav class="ve-mau"><a href="./">← Tất cả mẫu hồ sơ</a><span><a href="../dang-ky/">Đăng ký gói</a> · <a href="../">lattice.business</a></span></nav>
 <section class="trang">
   <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 17.5 10 10 17.5 2.5 10Z" fill="none" stroke="#201E1D" stroke-width="1.2"/><g fill="#fff" stroke="#201E1D" stroke-width="1.2"><circle cx="10" cy="2.5" r="1.9"/><circle cx="17.5" cy="10" r="1.9"/><circle cx="10" cy="17.5" r="1.9"/><circle cx="2.5" cy="10" r="1.9"/></g><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Thỏa thuận bảo mật · TTBM-ABZ-261013</span></div>

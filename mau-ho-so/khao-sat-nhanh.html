@@ -124,7 +124,10 @@ table.gon th,table.gon td{padding:3px 6px}
 </style>
 </head>
 <body>
-<style>.ve-mau{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#201E1D;color:#fff;font:600 12px/1.4 'Archivo',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:10px 16px}.ve-mau a{color:#fff;text-decoration:none}.ve-mau a:hover{text-decoration:underline}@media print{.ve-mau{display:none}}</style>
+<style>.ve-mau{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#201E1D;color:#fff;font:600 12px/1.4 'Archivo',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:10px 16px}.ve-mau a{color:#fff;text-decoration:none}.ve-mau a:hover{text-decoration:underline}@media print{.ve-mau{display:none}}
+/* Trên màn hình: rộng bằng khung chung của site (1200px); khi in vẫn là A4. */
+@media screen and (min-width:821px){.trang{width:calc(100% - 48px);max-width:1200px;min-height:0}}
+</style>
 <nav class="ve-mau"><a href="./">← Tất cả mẫu hồ sơ</a><span><a href="../dang-ky/">Đăng ký gói</a> · <a href="../">lattice.business</a></span></nav>
 
 <section class="trang">

@@ -112,16 +112,20 @@ Khảo sát không giữ bản chép tay danh sách nghiệp vụ; bỏ bước 
 
 Trao đổi ban đầu qua email **miễn phí**. Khoản thu là **phí tạo lập hồ sơ và quản lý**, không phải phí tư vấn — nhờ vậy chữ "miễn phí" vẫn đúng, và mốc không hoàn phí gắn được vào một việc bàn giao cụ thể.
 
-| | LATTICE Scan | LATTICE Blueprint |
-| --- | --- | --- |
-| Phí (đã gồm VAT 10%) | 499.000đ | 1.499.000đ |
-| Nội dung | Bảng câu hỏi riêng · Zoom 60 phút · tóm tắt 1–2 trang | Toàn bộ Scan, thay tóm tắt bằng hồ sơ 8–12 trang · rà lại 30 phút sau 3 tuần · bộ SOP mẫu · hỏi đáp email 30 ngày |
-| Khấu trừ vào hợp đồng | — | 100% nếu ký trong 60 ngày |
-| Số suất | Không giới hạn | Tối đa 10 hồ sơ mỗi đợt |
+| | LATTICE Scan | LATTICE Compass | LATTICE Blueprint | LATTICE Foundry |
+| --- | --- | --- | --- | --- |
+| Cho ai | Đang vận hành | Đang khởi sự | Đang vận hành, đã chắc | Khởi sự, đã chắc |
+| Phí (đã gồm VAT 10%) | 895.000đ | 1.950.000đ | 2.950.000đ | 4.950.000đ |
+| Gặp người | Không, qua email | Không, qua email | Zoom 60 phút | 2 buổi Zoom |
+| Nhận được | 5–10 câu bổ sung + tài liệu · báo cáo 5–7 trang · trang mô phỏng riêng | Báo cáo kiểm chứng 6–8 trang | Toàn bộ Scan · hồ sơ thiết kế 12–16 trang · 2 SOP · rà lại sau 3 tuần | Toàn bộ Compass · bản thiết kế 15–20 trang · 3 SOP |
+| Khấu trừ | 100% vào Blueprint trong 30 ngày | 100% vào Foundry trong 30 ngày | 100% vào hợp đồng trong 60 ngày | 100% vào Kit hoặc hợp đồng trong 60 ngày |
+| Số suất | Không giới hạn | Không giới hạn | 10 hồ sơ mỗi đợt | 5 hồ sơ mỗi đợt |
+
+Bậc miễn phí đứng trước là **Khảo sát nhanh** (20 câu, báo cáo ban đầu). Sắp mở: **LATTICE Kit** 8.950.000đ. Sản phẩm kèm: Academy 2,5 triệu/học viên · LATTICE Work gói cơ bản 2,5 triệu/tháng · media trọn gói 25–45 triệu/tháng. Quy định đầy đủ chốt ngày 10/10/2026.
 
 Bảng so sánh đầy đủ và chính sách hoàn phí có sẵn trên trang Liên hệ và trong popup của trang đăng ký. Giá phải khớp ở **ba** chỗ: biến `GOI` trong hai trang đăng ký và `GIA` trong `google-apps-script.gs`. Máy chủ luôn tính lại số tiền theo `GIA`, không tin con số trình duyệt gửi lên. Giá còn được ghi bằng chữ ở trang chủ (Liên hệ), `khao-sat/index.html` (khối mời đăng ký Scan) và `tailieunoibo/`; đổi giá thì rà cả ba.
 
-Từ Khảo sát nhanh, nút đăng ký dẫn sang `dang-ky/?ma=<mã khảo sát>`: trang đăng ký chọn sẵn gói Scan và ghi mã vào ô mô tả, nên mã về Sheet cùng hồ sơ mà không cần đổi Apps Script.
+Từ Khảo sát nhanh, nút đăng ký dẫn sang `dang-ky/?ma=<mã khảo sát>&goi=scan|compass|blueprint|foundry`: trang đăng ký chọn sẵn đúng gói và ghi mã vào ô mô tả, nên mã về Sheet cùng hồ sơ mà không cần đổi Apps Script.
 
 **Đợt 1** đóng đăng ký lúc 24:00 ngày 30/9/2026, hồ sơ bắt đầu xử lý từ 21/09/2026. Hạn nằm ở biến `HAN` (`2026-10-01T00:00:00+07:00`) trong `index.html`, `dang-ky/index.html`, `register/index.html`. Tới hạn, trang đăng ký **tự ẩn biểu mẫu** chứ không chỉ đổi chữ. Mở đợt mới thì đổi hạn và câu thông báo ở cả ba file, rồi chạy `build-en.py`.
 

@@ -33,7 +33,7 @@
 // Dấu phiên bản: đổi mỗi lần sửa file này. Gọi ?token=...&viec=phienBan để biết
 // chắc bản nào đang chạy — Apps Script phục vụ bản ĐÃ TRIỂN KHAI, không phải mã
 // vừa lưu, nên dán xong mà quên chọn "Phiên bản: Mới" là vẫn chạy mã cũ.
-var PHIEN_BAN = '2026-09-13 · 9';
+var PHIEN_BAN = '2026-10-10 · 10';
 
 var CH = {
   emailBao: 'lattice.consultant@gmail.com',     // nhận thông báo mỗi đăng ký mới
@@ -45,7 +45,13 @@ var CH = {
 var TEN_DANG_KY = 'Đăng ký';
 var TEN_NHAT_KY = 'Nhật ký';
 
-var GIA = { 'LATTICE Scan': 499000, 'LATTICE Blueprint': 1499000 };
+// Bảng giá (đã gồm VAT) — nguồn duy nhất cho số tiền. Phải khớp biến GOI ở
+// dang-ky/index.html và register/index.html. Đổi giá thì đổi ở cả ba nơi.
+var GIA = { 'LATTICE Scan': 895000, 'LATTICE Compass': 1950000,
+            'LATTICE Blueprint': 2950000, 'LATTICE Foundry': 4950000 };
+
+// Gói có buổi Zoom. Scan và Compass làm hoàn toàn qua email.
+var GOI_CO_ZOOM = { 'LATTICE Blueprint': true, 'LATTICE Foundry': true };
 
 // Thứ tự cột trong sheet. Khoá phải khớp thuộc tính name= của ô trên biểu mẫu.
 var COT = [
@@ -112,8 +118,11 @@ function doPost(e) {
     }
 
     // Gửi hai lần thì đừng ghi hai dòng, nhưng phải gửi bù thư nếu lần đầu hụt.
-    if (p.ma_ho_so && timDong_(p.ma_ho_so)) {
-      if (!daGhiNhatKy_(p.ma_ho_so, 'thu_dang_ky')) thuXacNhan_(p);
+    // Gửi bù bằng dòng đã lưu, không bằng dữ liệu trình duyệt: số tiền trên dòng
+    // là số máy chủ đã tính theo GIA.
+    var daCo = p.ma_ho_so ? timDong_(p.ma_ho_so) : null;
+    if (daCo) {
+      if (!daGhiNhatKy_(p.ma_ho_so, 'thu_dang_ky')) thuXacNhan_(daCo);
       return ket_('OK');
     }
 
@@ -125,8 +134,13 @@ function doPost(e) {
     });
     if (!dong[0]) dong[0] = new Date().toISOString();
     dong[iCot_('trang_thai')] = 'cho_thanh_toan';
-    // Không tin số tiền trình duyệt gửi lên — tính lại từ tên gói.
-    dong[iCot_('so_tien')] = String(GIA[p.goi] || 0);
+    // Không tin số tiền trình duyệt gửi lên — tính lại từ tên gói. Ghi đè luôn vào
+    // p để thư xác nhận và mã QR trong thư dùng đúng số máy chủ tính.
+    p.so_tien = String(GIA[p.goi] || 0);
+    dong[iCot_('so_tien')] = p.so_tien;
+    // Tên gói lạ (trang cũ còn trong bộ nhớ đệm, hoặc ai đó gửi tay) thì số tiền
+    // ra 0 — vẫn ghi hồ sơ, nhưng đánh dấu để người trực xử lý tay.
+    if (!GIA[p.goi]) dong[iCot_('ghi_chu_noi_bo')] = 'Gói không có trong bảng giá: ' + (p.goi || '(trống)');
 
     // Đặt định dạng văn bản TRƯỚC khi ghi. appendRow rồi mới định dạng thì Sheet
     // đã kịp đổi 0769186139 thành số 769186139 — dính ở hồ sơ thật đầu tiên.
@@ -206,7 +220,9 @@ function nhanTienVe_(e) {
       MailApp.sendEmail({ to: CH.emailBao,
         subject: 'Da nhan ' + tienChu_(vao) + ' — ' + (don.ten_doanh_nghiep || don.ma_ho_so),
         body: 'Mã hồ sơ: ' + don.ma_ho_so + '\nGói: ' + don.goi + '\nSố tiền: ' + tienChu_(vao) +
-              '\n\nĐã gửi phiếu thu cho khách. Bước tiếp theo: soạn và gửi bảng câu hỏi.' });
+              '\n\nĐã gửi phiếu thu cho khách. Bước tiếp theo: gửi câu hỏi ' +
+              (GOI_CO_ZOOM[don.goi] ? 'chuyên sâu' : 'bổ sung') + ' và danh sách tài liệu trong 2 ngày làm việc' +
+              (GOI_CO_ZOOM[don.goi] ? ', rồi xếp lịch Zoom trong 3 ngày làm việc.' : '.') });
     }
     return ket_('OK');
   } catch (err) {
@@ -329,6 +345,7 @@ function thuXacNhan_(p) {
     var en = (p.ngon_ngu === 'en');
     var ten = String(p.nguoi_dai_dien || '').trim();
     var tt = thongTinCK_(p, en);
+    var zoom = !!GOI_CO_ZOOM[p.goi];
     var tieude, than;
 
     if (en) {
@@ -339,9 +356,10 @@ function thuXacNhan_(p) {
         '. To complete it, please transfer using the details below.\n\n' + tt +
         'What happens next\n' +
         '  1. Once your payment arrives we send a receipt straight away.\n' +
-        '  2. We create your file and send the preparation questionnaire.\n' +
-        '  3. When you return it, we agree a time for the session.\n\n' +
-        'Your information is kept confidential, used only to prepare and run the session, ' +
+        '  2. Within 2 working days we send our follow-up questions and the list of documents we need.\n' +
+        (zoom ? '  3. We agree a time for the Zoom session; the design file follows after it.\n\n'
+              : '  3. Once your answers and documents are in, we deliver the report by email. There is no Zoom session in this package.\n\n') +
+        'Your information is kept confidential, used only to create and work on your file, ' +
         'never for any other purpose, and never passed to a third party.\n\n' +
         'Questions: ' + CH.emailBao + '\n\n' +
         'LATTICE Next Solutions Joint Stock Company\nhttps://lattice.business/en/';
@@ -353,9 +371,10 @@ function thuXacNhan_(p) {
         '. Để hoàn tất, anh chị chuyển khoản theo thông tin dưới đây.\n\n' + tt +
         'Các bước tiếp theo\n' +
         '  1. Tiền về là chúng tôi gửi phiếu thu ngay.\n' +
-        '  2. Chúng tôi tạo lập hồ sơ và gửi bảng câu hỏi chuẩn bị.\n' +
-        '  3. Anh chị gửi lại, hai bên thống nhất lịch làm việc.\n\n' +
-        'Thông tin anh chị cung cấp được giữ kín, chỉ dùng để chuẩn bị và thực hiện buổi làm việc, ' +
+        '  2. Trong 2 ngày làm việc, chúng tôi gửi câu hỏi bổ sung và danh sách tài liệu cần gửi.\n' +
+        (zoom ? '  3. Hai bên thống nhất lịch Zoom; hồ sơ thiết kế giao sau buổi Zoom.\n\n'
+              : '  3. Đủ câu trả lời và tài liệu, chúng tôi gửi báo cáo qua email. Gói này không có buổi Zoom.\n\n') +
+        'Thông tin anh chị cung cấp được giữ kín, chỉ dùng để tạo lập và thực hiện hồ sơ của anh chị, ' +
         'không dùng cho mục đích nào khác và không cung cấp cho bất kỳ bên thứ ba nào.\n\n' +
         'Cần trao đổi: ' + CH.emailBao + '\n\n' +
         'Công ty Cổ phần Giải pháp LATTICE Next\nhttps://lattice.business/';
@@ -378,7 +397,9 @@ function thuXacNhan_(p) {
  */
 function thanHtml_(p, en, banChu) {
   var t = CH.taiKhoan;
-  var tien = GIA[p.goi] || Number(p.so_tien) || 0;
+  // Ưu tiên số tiền đã ghi trên hồ sơ: gửi lại thư cho hồ sơ đăng ký theo giá cũ
+  // thì vẫn ra đúng số khách phải trả. Hồ sơ mới thì doPost đã ghi đè p.so_tien.
+  var tien = Number(p.so_tien) || GIA[p.goi] || 0;
   var noiDung = p.noi_dung_ck || p.ma_ho_so || '';
   var ten = String(p.nguoi_dai_dien || '').trim();
   var qr = 'https://img.vietqr.io/image/' + t.bin + '-' + t.so + '-compact2.png'
@@ -395,7 +416,7 @@ function thanHtml_(p, en, banChu) {
         tien: 'Amount', nd: 'Reference',
         quet: 'Scan the QR with your banking app — the amount and reference are already filled in.',
         alt: 'Open the payment QR code',
-        d3: 'As soon as the money arrives, the system sends you a receipt automatically and we send the preparation questionnaire.',
+        d3: 'As soon as the money arrives, the system sends you a receipt automatically. Within 2 working days we send our follow-up questions and the list of documents we need.',
         tt: 'Kind regards,' }
     : { chao: 'Kính gửi anh/chị ', tag: 'Kiến trúc mô hình kinh doanh mới',
         d1: 'LATTICE Next Solutions đã nhận phiếu đăng ký <b>' + esc_(p.ma_ho_so) + '</b> cho gói <b>' +
@@ -405,7 +426,7 @@ function thanHtml_(p, en, banChu) {
         tien: 'Số tiền', nd: 'Nội dung',
         quet: 'Quét mã QR bằng ứng dụng ngân hàng — số tiền và nội dung đã điền sẵn.',
         alt: 'Bấm để mở mã QR chuyển khoản',
-        d3: 'Ngay khi tiền về, hệ thống tự gửi phiếu thu cho anh chị, và chúng tôi gửi bảng câu hỏi chuẩn bị.',
+        d3: 'Ngay khi tiền về, hệ thống tự gửi phiếu thu cho anh chị. Trong 2 ngày làm việc, chúng tôi gửi câu hỏi bổ sung và danh sách tài liệu cần gửi.',
         tt: 'Trân trọng,' };
 
   var dong = function (nhan, giaTri, do_) {
@@ -474,7 +495,7 @@ function thuDaThu_(d) {
       ? { tieude: 'LATTICE Next — payment received, ' + goi + ' (' + d.ma_ho_so + ')',
           tag: 'Structure for what comes next', chao: 'Dear ', chaoTrong: 'Hello',
           d1: function (b) { return 'LATTICE Next Solutions has received payment for file ' + b(d.ma_ho_so) + ', package ' + b(goi) + '.'; },
-          d2: 'Your file is now open and we will start work according to schedule, beginning with the preparation questionnaire. ' +
+          d2: 'Your file is now open and we will start work according to schedule, beginning with our follow-up questions and the list of documents we need, within 2 working days. ' +
               'Please keep an eye on your email — including the Spam and Promotions folders — for further information from LATTICE Next Solutions.',
           tieu: 'RECEIPT', so: 'Receipt no.', ngay: 'Date', nop: 'Payer', nd: 'For',
           phi: 'File-creation and administration fee', truoc: 'Net', thue: 'VAT ' + pc + '%',
@@ -486,7 +507,7 @@ function thuDaThu_(d) {
       : { tieude: 'LATTICE Next — đã nhận thanh toán, ' + goi + ' (' + d.ma_ho_so + ')',
           tag: 'Kiến trúc mô hình kinh doanh mới', chao: 'Kính gửi anh/chị ', chaoTrong: 'Kính gửi anh chị',
           d1: function (b) { return 'LATTICE Next Solutions đã nhận được thanh toán cho hồ sơ ' + b(d.ma_ho_so) + ', gói ' + b(goi) + '.'; },
-          d2: 'Hồ sơ của anh chị đã được mở. Chúng tôi sẽ bắt đầu làm việc theo lịch trình, trước hết là gửi bảng câu hỏi chuẩn bị. ' +
+          d2: 'Hồ sơ của anh chị đã được mở. Chúng tôi sẽ bắt đầu làm việc theo lịch trình, trước hết là gửi câu hỏi bổ sung và danh sách tài liệu cần gửi trong 2 ngày làm việc. ' +
               'Đề nghị anh chị thường xuyên kiểm tra email — kể cả thư mục Spam và Quảng cáo — để nhận thông tin tiếp theo từ LATTICE Next Solutions.',
           tieu: 'PHIẾU THU', so: 'Số phiếu', ngay: 'Ngày', nop: 'Người nộp', nd: 'Nội dung',
           phi: 'Phí tạo lập hồ sơ và quản lý', truoc: 'Trước thuế', thue: 'Thuế GTGT ' + pc + '%',
@@ -604,7 +625,7 @@ function thongTinCK_(p, en) {
   if (en) {
     return 'Payment details\n' +
       '  Package      : ' + (p.goi || '—') + '\n' +
-      '  Amount       : ' + tienChu_(GIA[p.goi] || p.so_tien) + '\n' +
+      '  Amount       : ' + tienChu_(Number(p.so_tien) || GIA[p.goi]) + '\n' +
       '  Bank         : ' + t.nganHang + '\n' +
       '  Account      : ' + t.so + '\n' +
       '  Account name : ' + t.chu + '\n' +
@@ -612,7 +633,7 @@ function thongTinCK_(p, en) {
   }
   return 'Thông tin thanh toán\n' +
     '  Gói           : ' + (p.goi || '—') + '\n' +
-    '  Số tiền       : ' + tienChu_(GIA[p.goi] || p.so_tien) + '\n' +
+    '  Số tiền       : ' + tienChu_(Number(p.so_tien) || GIA[p.goi]) + '\n' +
     '  Ngân hàng     : ' + t.nganHang + '\n' +
     '  Số tài khoản  : ' + t.so + '\n' +
     '  Chủ tài khoản : ' + t.chu + '\n' +

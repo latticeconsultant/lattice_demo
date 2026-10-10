@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Book a diagnostic — LATTICE Next Solutions</title>
-<meta name="description" content="Register for LATTICE Scan or LATTICE Blueprint. The first exchange is free; the fee covers creating and administering your file.">
+<title>Register for LATTICE — LATTICE Next Solutions</title>
+<meta name="description" content="Register for LATTICE Scan or Blueprint (businesses already trading), or LATTICE Compass or Foundry (starting a business). The first exchange is free; the fee covers creating and administering your file.">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" sizes="16x16" href="../brand/logo/favicon/favicon-16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../brand/logo/favicon/favicon-32.png">
@@ -78,7 +78,7 @@
   background:var(--bg); color:var(--n700); white-space:nowrap; }
 .chep:hover { border-color:var(--ink); color:var(--ink); }
 
-/* ── Bảng so sánh hai gói ───────────────────────────────────────────────── */
+/* ── Bảng so sánh các gói ───────────────────────────────────────────────── */
 .ss-nut { appearance:none; cursor:pointer; font:inherit; font-size:12.5px; letter-spacing:.12em;
   font-weight:600; padding:9px 14px; margin-top:10px; background:var(--bg); color:var(--ink);
   border:2px solid var(--n400); }
@@ -142,6 +142,16 @@
 .goi .gia { margin-left: auto; font-weight: 800; font-size: 17.5px; color: var(--red-dark); }
 .goi .mo-ta { display: block; font-size: 14px; line-height: 1.55; color: var(--n700); margin-top: 7px; }
 .goi .them { display: block; font-size: 13px; line-height: 1.5; color: var(--n600); margin-top: 6px; }
+/* Hai nhóm khách: đang vận hành (Scan, Blueprint) và đang khởi sự (Compass, Foundry). */
+.goi .nhom { display: block; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600;
+  color: var(--ink); padding: 18px 2px 6px; }
+.goi .nhom:first-child { padding-top: 2px; }
+.goi .nhom small { display: block; text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 13px;
+  color: var(--n600); margin-top: 2px; }
+.goi .sap { display: block; border: 2px dashed var(--n300); padding: 12px 17px; margin-top: 12px;
+  font-size: 13.5px; line-height: 1.5; color: var(--n600); }
+.pop-hop h3 { margin: 24px 0 8px; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase;
+  font-weight: 600; color: var(--red-dark); }
 
 .tt { display: none; border: 2px solid var(--ink); background: var(--card); padding: clamp(16px,4vw,24px); margin-top: 22px; }
 .tt.hien { display: block; }
@@ -302,10 +312,10 @@ footer a { color: var(--n700); }
 <div class="wrap">
 
   <p class="kicker">Registration</p>
-  <h1>The diagnostic</h1>
-  <p class="lead">You leave with the three processes worth automating first, an estimate of your model’s automation ceiling, and a straight answer if we think you should not start yet.</p>
+  <h1>Open your LATTICE file</h1>
+  <p class="lead">If you are already trading, you get a map of your business with your own numbers and the three processes to move to people + AI first. If you are starting out, you get the five riskiest assumptions behind your idea, cheap ways to test them and a minimum architecture. Either way, you get a straight answer if we think you should not start yet.</p>
 
-  <p class="note">Not sure where to start? Take the free <a href="../khao-sat/">Quick Survey</a> first (in Vietnamese): 15 questions, about 7 minutes. This form takes about two minutes. What you tell us is kept confidential and used only to prepare and run the session — never for any other purpose, and never passed to a third party.</p>
+  <p class="note">Not sure where to start? Take the free <a href="../khao-sat/">Quick Survey</a> first (in Vietnamese): 20 questions, about 8–10 minutes, with a first report shown straight away on the page. This form takes about three minutes. What you tell us is kept confidential and used only to create and work on your file — never for any other purpose, and never passed to a third party.</p>
   <p class="dot1"><strong>Currently available only as a pilot in Vietnam.</strong> <strong>Round 1 closes at midnight on 30 September 2026.</strong> Files received in this round start processing on <strong>21 September 2026</strong> — every committed deadline runs from that date or from the date of payment, whichever is later.
     <span class="dem" id="dem" aria-live="polite"></span></p>
 
@@ -323,17 +333,17 @@ footer a { color: var(--n700); }
       <legend>Contact details</legend>
 
       <label class="f"><span class="lb">Company or trading name <span class="req">*</span></span>
-        <input type="text" name="ten_doanh_nghiep" required autocomplete="organization" placeholder="Your organisation"></label>
+        <input type="text" name="ten_doanh_nghiep" required autocomplete="organization" placeholder="Your organisation, or project name if not yet registered"></label>
 
       <label class="f"><span class="lb">Contact person <span class="req">*</span></span>
         <input type="text" name="nguoi_dai_dien" required autocomplete="name" placeholder="Jane Doe"></label>
 
       <label class="f"><span class="lb">Job title <span class="req">*</span>
-        <span class="hint">A diagnostic only produces decisions if the person attending can decide on budget.</span></span>
+        <span class="hint">The file only leads to decisions if the person registering can decide on budget.</span></span>
         <input type="text" name="chuc_danh" required autocomplete="organization-title" placeholder="Owner / Director / Manager"></label>
 
       <label class="f"><span class="lb">Email <span class="req">*</span>
-        <span class="hint">We send the invitation and the questionnaire to this address.</span></span>
+        <span class="hint">We send our questions, the document list and the report to this address.</span></span>
         <input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@company.com"></label>
 
       <label class="f"><span class="lb">Phone number <span class="req">*</span></span>
@@ -392,6 +402,7 @@ footer a { color: var(--n700); }
       <label class="f"><span class="lb">Years in operation <span class="req">*</span></span>
         <select name="so_nam" required>
           <option value="">— Select —</option>
+          <option>Not trading yet (starting up)</option>
           <option>Under 1 year</option>
           <option>1–3 years</option>
           <option>3–5 years</option>
@@ -400,22 +411,22 @@ footer a { color: var(--n700); }
         </select></label>
 
       <div class="f"><span class="lb">Revenue, last three years
-        <span class="hint">A range is enough. A sensible AI budget is 2–8% of revenue, so without this we cannot estimate a budget for you.</span></span>
+        <span class="hint">A range is enough. A sensible AI budget is 2–8% of revenue, so without this we cannot estimate a budget for you. If you are starting up, choose “No revenue yet”.</span></span>
         <div class="rev">
           <label><span>2024</span>
             <select name="doanh_so_2024" required>
               <option value="">—</option>
-              <option>Under USD 40k</option><option>USD 40k–120k</option><option>USD 120k–400k</option><option>USD 400k–1.2m</option><option>USD 1.2m–4m</option><option>Over USD 4m</option><option>Prefer not to say</option>
+              <option>Under USD 40k</option><option>USD 40k–120k</option><option>USD 120k–400k</option><option>USD 400k–1.2m</option><option>USD 1.2m–4m</option><option>Over USD 4m</option><option>No revenue yet</option><option>Prefer not to say</option>
             </select></label>
           <label><span>2025</span>
             <select name="doanh_so_2025" required>
               <option value="">—</option>
-              <option>Under USD 40k</option><option>USD 40k–120k</option><option>USD 120k–400k</option><option>USD 400k–1.2m</option><option>USD 1.2m–4m</option><option>Over USD 4m</option><option>Prefer not to say</option>
+              <option>Under USD 40k</option><option>USD 40k–120k</option><option>USD 120k–400k</option><option>USD 400k–1.2m</option><option>USD 1.2m–4m</option><option>Over USD 4m</option><option>No revenue yet</option><option>Prefer not to say</option>
             </select></label>
           <label><span>2026</span>
             <select name="doanh_so_2026" required>
               <option value="">—</option>
-              <option>Under USD 40k</option><option>USD 40k–120k</option><option>USD 120k–400k</option><option>USD 400k–1.2m</option><option>USD 1.2m–4m</option><option>Over USD 4m</option><option>Prefer not to say</option>
+              <option>Under USD 40k</option><option>USD 40k–120k</option><option>USD 120k–400k</option><option>USD 400k–1.2m</option><option>USD 1.2m–4m</option><option>Over USD 4m</option><option>No revenue yet</option><option>Prefer not to say</option>
             </select></label>
         </div>
       </div>
@@ -439,7 +450,7 @@ footer a { color: var(--n700); }
       </div>
 
       <label class="f"><span class="lb">What needs to improve <span class="req">*</span>
-        <span class="hint">The more specific you are, the better we can prepare.</span></span>
+        <span class="hint">The more specific you are, the better we can prepare. If you are starting up, describe your idea briefly.</span></span>
         <textarea name="mo_ta" required placeholder="What takes the most of your time? What repeats every week? If one thing could change three months from now, what would you want it to be?"></textarea></label>
     </fieldset>
     <fieldset>
@@ -447,25 +458,40 @@ footer a { color: var(--n700); }
       <div class="f"><span class="lb">Package <span class="req">*</span>
         <span class="hint">A file-creation and administration fee. The initial exchange by email is free of charge.</span></span>
         <div class="goi">
+          <span class="nhom">Businesses already trading<small>Start with Scan; choose Blueprint if you already know you want to go ahead.</small></span>
           <label>
             <input type="radio" name="goi" value="LATTICE Scan" required>
-            <span class="hang"><span class="ten">LATTICE Scan</span><span class="gia">499,000 VND</span></span>
-            <span class="mo-ta">A questionnaire written for your business model group · one prepared 60-minute Zoom session · a 1–2 page summary afterwards.</span>
-            <span class="them">Questionnaire within 3–5 working days · scheduling within 3 · documents within 3.</span>
+            <span class="hang"><span class="ten">LATTICE Scan</span><span class="gia">895,000 VND</span></span>
+            <span class="mo-ta">Done by email, no Zoom. 5–10 follow-up questions picked from your Quick Survey answers, plus a list of documents to send · a 5–7 page report: a block map with your own numbers, three priority processes redrawn for people + AI, estimated hours saved and AI running cost, invoice, tax and personal-data risks · your own simulation page · one round of email questions, up to three, within 14 days.</span>
+            <span class="them">Questions within 2 working days · report within 5 working days of receiving your documents. Fully credited against Blueprint if you upgrade within 30 days. No limit on places.</span>
           </label>
           <label>
             <input type="radio" name="goi" value="LATTICE Blueprint">
-            <span class="hang"><span class="ten">LATTICE Blueprint</span><span class="gia">1,499,000 VND</span></span>
-            <span class="mo-ta">Everything in Scan, with the summary replaced by an 8–12 page diagnostic report · plus a 30-minute review session after three weeks · one template SOP set · 30 days of email questions.</span>
-            <span class="them">Questionnaire within 2 working days · scheduling within 2 · report within 5. Fully credited against a delivery contract signed within 60 days. Limited to 10 files a round.</span>
+            <span class="hang"><span class="ten">LATTICE Blueprint</span><span class="gia">2,950,000 VND</span></span>
+            <span class="mo-ta">Everything in Scan, plus a 60-minute Zoom session and in-depth questions by module · a 12–16 page design file: three-layer architecture, organisation and roles, authority matrix, three priority chains redrawn for people + AI, 90-day roadmap · two template SOPs · a 30-minute review after three weeks · 30 days of email questions, up to five.</span>
+            <span class="them">Questions within 2 working days · Zoom scheduled within 3 · design file within 7 working days of the session. Fully credited against a Build contract signed within 60 days. Limited to 10 files a round.</span>
           </label>
+          <span class="nhom">Starting a business<small>From an idea. Start with Compass; choose Foundry if you already know you want to go ahead.</small></span>
+          <label>
+            <input type="radio" name="goi" value="LATTICE Compass">
+            <span class="hang"><span class="ten">LATTICE Compass</span><span class="gia">1,950,000 VND</span></span>
+            <span class="mo-ta">Done by email, no Zoom. A start-up questionnaire, follow-up questions and your idea documents · a 6–8 page validation report: your five riskiest assumptions ranked, cheap ways to test them within 30 days, the minimum architecture, a one-to-three-person team covering several roles, estimated AI running cost, and a verdict: go, start small, or not yet.</span>
+            <span class="them">Questions within 2 working days · report within 7 working days of receiving your documents. Fully credited against Foundry if you upgrade within 30 days. No limit on places.</span>
+          </label>
+          <label>
+            <input type="radio" name="goi" value="LATTICE Foundry">
+            <span class="hang"><span class="ten">LATTICE Foundry</span><span class="gia">4,950,000 VND</span></span>
+            <span class="mo-ta">Everything in Compass, plus two Zoom sessions (60 minutes at the start, 45 at the end) · a 15–20 page design for the business from scratch: business model, minimum architecture, organisation for months 0–12, tools and costs, a 90-day launch plan with validation milestones · three SOPs for your first tasks · 30 days of email questions.</span>
+            <span class="them">Questions within 2 working days · first Zoom within 3 · design within 10 working days of the first session. Fully credited against Kit or Build within 60 days. Limited to 5 files a round.</span>
+          </label>
+          <span class="sap"><strong>LATTICE Kit · 8,950,000 VND · coming soon</strong> — a do-it-yourself rollout kit by business type and sector. Not yet open for registration.</span>
         </div>
         <button type="button" class="ss-nut" id="ssMo">COMPARE THE PACKAGES →</button>
       </div>
 
       <div class="consent">
         <label class="chk"><input type="checkbox" name="dong_y" value="Yes" required><span>I agree that LATTICE Next Solutions may contact me by email about this request. <span class="req">*</span></span></label>
-        <label class="chk" style="margin-top:2px"><input type="checkbox" name="dong_y_chinh_sach" value="Yes" required><span>I have read and accept the <a href="#" data-pop="1">fee and refund policy</a>: once LATTICE has sent the questionnaire, the fee is not refundable. <span class="req">*</span></span></label>
+        <label class="chk" style="margin-top:2px"><input type="checkbox" name="dong_y_chinh_sach" value="Yes" required><span>I have read and accept the <a href="#" data-pop="1">fee and refund policy</a>: once LATTICE has sent its questions (follow-up or in-depth), the fee is not refundable. <span class="req">*</span></span></label>
       </div>
     </fieldset>
 
@@ -479,7 +505,7 @@ footer a { color: var(--n700); }
     <div class="dieu">
       <button type="submit" class="tien" id="btn">CONTINUE →</button>
     </div>
-    <p class="priv">We use this only to prepare the diagnostic. We do not share it with third parties.</p>
+    <p class="priv">We use this only to create and work on your file. We do not share it with third parties.</p>
   </form>
 
   <section class="man" id="m2">
@@ -525,7 +551,7 @@ footer a { color: var(--n700); }
     <div class="done" style="display:block">
       <h2>All done. Thank you.</h2>
       <p>Your registration is recorded and a <strong>confirmation email with the payment details</strong> has gone to the address you entered. If it does not arrive, please check your spam folder.</p>
-      <p>As soon as the money arrives, the system sends a <strong>receipt</strong> automatically. We then create your file, send the <strong>preparation questionnaire</strong>, and agree a time with you.</p>
+      <p>As soon as the money arrives, the system sends a <strong>receipt</strong> automatically. Within 2 working days we send <strong>our follow-up questions and the list of documents we need</strong>. For Blueprint and Foundry, we also agree a time for the Zoom session.</p>
       <p>Your information is kept confidential and is not passed to any third party. All communication with LATTICE Next Solutions is by email at <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a>. We will soon open our own messaging channel, <strong>LatticeTalk</strong>.</p>
       <a class="back" href="../en/">BACK TO THE SITE</a>
     </div>
@@ -541,29 +567,49 @@ footer a { color: var(--n700); }
 
 <div class="pop" id="popSs" role="dialog" aria-modal="true" aria-labelledby="ssTitle">
   <div class="pop-hop">
-    <h2 id="ssTitle">Compare the two packages</h2>
-    <p class="dan">Both packages include a questionnaire written for your model and one Zoom session. They differ in what you keep afterwards.</p>
+    <h2 id="ssTitle">Compare the packages</h2>
+    <p class="dan">Scan and Compass are done entirely by email, with no Zoom. Blueprint and Foundry include everything in the smaller package of their group, plus Zoom sessions and a fuller design document. Prices include 10% VAT.</p>
+    <h3>Businesses already trading</h3>
     <div class="ss-cuon">
       <table class="ss">
         <thead><tr><th></th><th>SCAN</th><th>BLUEPRINT</th></tr></thead>
         <tbody>
-          <tr class="ss-gia"><td>Fee</td><td>499,000 VND</td><td>1,499,000 VND</td></tr>
-          <tr><td>A questionnaire written for your business model group</td><td class="co">Yes</td><td class="co">Yes</td></tr>
-          <tr><td>A prepared 60-minute Zoom session</td><td class="co">Yes</td><td class="co">Yes</td></tr>
-          <tr><td>Written summary afterwards</td><td class="co">1–2 pages</td><td class="khong">replaced by the report</td></tr>
-          <tr><td><strong>Diagnostic report</strong>: process map, your own automation-ceiling chart, 90-day roadmap</td><td class="khong">No</td><td class="co">8–12 pages</td></tr>
-          <tr><td>Review session after three weeks</td><td class="khong">No</td><td class="co">30 minutes</td></tr>
-          <tr><td>Template SOP set for the process you pick</td><td class="khong">No</td><td class="co">Yes</td></tr>
-          <tr><td>Email questions afterwards</td><td class="khong">No</td><td class="co">30 days, up to five</td></tr>
-          <tr><td>Questionnaire sent after payment</td><td>3–5 working days</td><td class="co">2 working days</td></tr>
-          <tr><td>Scheduling after the questionnaire comes back</td><td>3 working days</td><td class="co">2 working days</td></tr>
-          <tr><td>Documents after the session</td><td>3 working days</td><td>5 working days</td></tr>
-          <tr><td><strong>Credited against a delivery contract</strong></td><td class="khong">No</td><td class="co">100% if signed within 60 days</td></tr>
+          <tr class="ss-gia"><td>Fee</td><td>895,000 VND</td><td>2,950,000 VND</td></tr>
+          <tr><td>How we work</td><td>By email</td><td class="co">Email + 60-minute Zoom</td></tr>
+          <tr><td>Follow-up questions and document list</td><td class="co">5–10 questions</td><td class="co">Yes, plus in-depth questions by module</td></tr>
+          <tr><td>What you receive</td><td class="co">5–7 page report</td><td class="co">12–16 page design file</td></tr>
+          <tr><td>Three priority processes for people + AI, hours saved, AI cost, invoice/tax/data risks, your own simulation page</td><td class="co">Yes</td><td class="co">Yes</td></tr>
+          <tr><td>Three-layer architecture, organisation and roles, authority matrix, 90-day roadmap</td><td class="khong">No</td><td class="co">Yes</td></tr>
+          <tr><td>Template SOPs</td><td class="khong">No</td><td class="co">Two</td></tr>
+          <tr><td>Review after three weeks</td><td class="khong">No</td><td class="co">30 minutes</td></tr>
+          <tr><td>Email questions</td><td>One round, up to three, 14 days</td><td class="co">30 days, up to five</td></tr>
+          <tr><td>Timing</td><td>Questions in 2 working days · report 5 working days after your documents</td><td>Questions in 2 days · Zoom within 3 · file 7 working days after the session</td></tr>
+          <tr><td><strong>Credit</strong></td><td class="co">100% against Blueprint within 30 days</td><td class="co">100% against a Build contract signed within 60 days</td></tr>
           <tr><td>Places per round</td><td>No limit</td><td>Up to 10 files</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="pop-ghi">Choose Scan if you want your model read and the three things to do first. Choose Blueprint if you need a document to take into meetings, or you are likely to continue with us — the fee is then credited in full.</p>
+    <h3>Starting a business</h3>
+    <div class="ss-cuon">
+      <table class="ss">
+        <thead><tr><th></th><th>COMPASS</th><th>FOUNDRY</th></tr></thead>
+        <tbody>
+          <tr class="ss-gia"><td>Fee</td><td>1,950,000 VND</td><td>4,950,000 VND</td></tr>
+          <tr><td>How we work</td><td>By email</td><td class="co">Email + two Zoom sessions (60 and 45 minutes)</td></tr>
+          <tr><td>Start-up questionnaire, follow-up questions, idea documents</td><td class="co">Yes</td><td class="co">Yes</td></tr>
+          <tr><td>What you receive</td><td class="co">6–8 page validation report</td><td class="co">15–20 page business design</td></tr>
+          <tr><td>Five riskiest assumptions, cheap 30-day tests, minimum architecture, AI cost, a go / not-yet verdict</td><td class="co">Yes</td><td class="co">Yes</td></tr>
+          <tr><td>Organisation</td><td>One to three people covering several roles</td><td class="co">Plan for months 0–12</td></tr>
+          <tr><td>Business model, tools and costs, 90-day launch plan with validation milestones</td><td class="khong">No</td><td class="co">Yes</td></tr>
+          <tr><td>SOPs for your first tasks</td><td class="khong">No</td><td class="co">Three</td></tr>
+          <tr><td>Email questions</td><td class="khong">No</td><td class="co">30 days</td></tr>
+          <tr><td>Timing</td><td>Questions in 2 working days · report 7 working days after your documents</td><td>Questions in 2 days · first Zoom within 3 · design 10 working days after it</td></tr>
+          <tr><td><strong>Credit</strong></td><td class="co">100% against Foundry within 30 days</td><td class="co">100% against Kit or Build within 60 days</td></tr>
+          <tr><td>Places per round</td><td>No limit</td><td>Up to 5 files</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="pop-ghi">Not sure? Start with the smaller package: upgrade within 30 days and what you paid is credited in full. LATTICE Kit (8,950,000 VND, a do-it-yourself rollout kit by sector) is coming soon and not yet open for registration.</p>
     <button type="button" class="pop-dong" id="ssDong">CLOSE</button>
   </div>
 </div>
@@ -571,14 +617,14 @@ footer a { color: var(--n700); }
 <div class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="popTitle">
   <div class="pop-hop">
     <h2 id="popTitle">Fee and refund policy</h2>
-    <p class="dan">What you pay is a <strong>file-creation and administration fee</strong>, not a consulting charge: studying your model, writing a questionnaire for it, analysing it before the session and producing the documents afterwards. The initial exchange by email is free.</p>
+    <p class="dan">What you pay is a <strong>file-creation and administration fee</strong>, not a consulting charge: studying your model or idea, writing follow-up questions, reading and reviewing your documents, and producing the report or design file. Prices include 10% VAT. The initial exchange by email is free.</p>
     <div class="pop-ds">
-      <div><b>Cancelled before we send the questionnaire</b><span>Full refund.</span></div>
-      <div><b>After we have sent the questionnaire</b><span>No refund. By this point the file-creation work is complete and cannot be recovered.</span></div>
-      <div><b>Questionnaire not completed</b><span>Held for 90 days. After that it counts as used.</span></div>
-      <div><b>You ask to move the session</b><span>Free up to twice, with at least 24 hours' notice.</span></div>
-      <div><b>No-show without notice, past 15 minutes</b><span>Counts as a session used. One reschedule only.</span></div>
-      <div><b>We miss a commitment</b><span>If we fail to send the questionnaire or to schedule within the stated time: a full refund, or an upgrade to Blueprint at no extra charge — your choice.</span></div>
+      <div><b>Cancelled before we send our questions (follow-up or in-depth)</b><span>Full refund.</span></div>
+      <div><b>After we have sent our questions</b><span>No refund. By this point the file-creation work has been done and cannot be recovered.</span></div>
+      <div><b>Questions not answered or documents not sent</b><span>Held for 90 days. After that it counts as used.</span></div>
+      <div><b>You ask to move a Zoom session (Blueprint, Foundry)</b><span>Free up to twice, with at least 24 hours' notice.</span></div>
+      <div><b>No-show without notice, past 15 minutes</b><span>Counts as that session used. One reschedule only.</span></div>
+      <div><b>We miss a commitment</b><span>If we fail to send the questions, deliver on time or schedule as promised: a full refund, or an upgrade to the next tier (Scan → Blueprint, Compass → Foundry) at no extra charge — your choice.</span></div>
     </div>
     <p class="pop-ghi">We commit to saying the inconvenient thing, including advising you not to start yet. That is the service working, not failing, so it is not grounds for a refund.</p>
     <button type="button" class="pop-dong" id="popDong">READ IT, CLOSE</button>
@@ -625,7 +671,10 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw7EDVxuAem13qXELI1E_gtq
   // dung gõ tay chính là chỗ hỏng đối soát: kinh nghiệm từ một hệ thống đang
   // chạy thật cho thấy giao dịch nào khách tự gõ là gần như không khớp được.
   var NGAN_HANG = { bin: '970416', soTk: '50359267', chuTk: 'DANG QUOC TUAN', ten: 'ACB' };
-  var GOI = { 'LATTICE Scan': 499000, 'LATTICE Blueprint': 1499000 };
+  // Giá đã gồm VAT 10%. Phải khớp GIA trong tools/google-apps-script.gs — máy chủ
+  // tính lại số tiền theo bảng đó, số ở đây chỉ để hiện và dựng mã QR.
+  var GOI = { 'LATTICE Scan': 895000, 'LATTICE Compass': 1950000,
+              'LATTICE Blueprint': 2950000, 'LATTICE Foundry': 4950000 };
 
   var tt = document.getElementById('tt');
   var maHoSo = '';
@@ -639,6 +688,7 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw7EDVxuAem13qXELI1E_gtq
   // Nội dung chuyển khoản: mã hồ sơ + tên gói viết tắt. Mã đã mang ngày tháng và
   // phần ngẫu nhiên nên luôn duy nhất; tên gói để nhìn sao kê là biết ngay. Giữ
   // dưới 25 ký tự — đó là giới hạn của trường này theo chuẩn EMV.
+  // Mã dài nhất: LTC + 8 số + cách + BLUEPRINT = 21 ký tự.
   function goiGon(ten) { return String(ten || '').replace('LATTICE ', '').toUpperCase(); }
 
   function tienChu(n) { return n.toLocaleString('en-US') + ' VND'; }
@@ -897,14 +947,21 @@ var ENDPOINT = 'https://script.google.com/macros/s/AKfycbw7EDVxuAem13qXELI1E_gtq
 </script>
 
 <script>
-/* Arriving from the Quick Survey: ?ma=<survey code>. Preselect Scan and put the code in the description
-   so it reaches the Sheet with the application without changing Apps Script. */
+/* Arriving from the Quick Survey: ?ma=<survey code>&goi=scan|compass|blueprint|foundry.
+   goi preselects that package; with ma but no goi, Scan is preselected. The code goes into the
+   description so it reaches the Sheet with the application without changing Apps Script. */
 (function () {
   try {
-    var ma = new URLSearchParams(location.search).get('ma');
-    if (!ma || !/^[A-Za-z0-9-]{4,24}$/.test(ma)) return;
-    var r = document.querySelector('input[name=goi][value="LATTICE Scan"]');
-    if (r && !document.querySelector('input[name=goi]:checked')) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); }
+    var q = new URLSearchParams(location.search);
+    var ma = q.get('ma');
+    if (ma && !/^[A-Za-z0-9-]{4,24}$/.test(ma)) ma = '';
+    var TEN = { scan: 'LATTICE Scan', compass: 'LATTICE Compass', blueprint: 'LATTICE Blueprint', foundry: 'LATTICE Foundry' };
+    var goi = TEN[String(q.get('goi') || '').toLowerCase()] || (ma ? 'LATTICE Scan' : '');
+    if (goi) {
+      var r = document.querySelector('input[name=goi][value="' + goi + '"]');
+      if (r && !document.querySelector('input[name=goi]:checked')) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); }
+    }
+    if (!ma) return;
     var t = document.querySelector('textarea[name=mo_ta]');
     if (t && t.value.indexOf(ma) < 0) t.value = 'Quick Survey code: ' + ma + '\n' + t.value;
   } catch (e) {}

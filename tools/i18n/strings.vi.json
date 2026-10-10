@@ -11863,5 +11863,265 @@
   "vi": "Khách hàng → Đặt lại",
   "en": "Customer → Reorder",
   "nguon": "thu-cong"
+ },
+ {
+  "vi": "Chẩn đoán · Scan, Blueprint hoặc Compass, Foundry",
+  "en": "Diagnostic · Scan, Blueprint, or Compass, Foundry",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Đọc mô hình hiện tại qua câu hỏi và tài liệu, tìm quy trình tốn thời gian nhất, ước lượng trần tự động hóa của từng lớp. Anh chị nhận được ba quy trình nên tự động hóa trước — kể cả khi không làm việc tiếp với chúng tôi. Gặp trực tiếp trên Zoom từ gói Blueprint.",
+  "en": "We read your current model through questions and documents, find the processes that take the most time, and estimate the automation ceiling of each layer. You receive the three processes worth automating first — even if you never work with us again. We meet live on Zoom from the Blueprint package up.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Chúng tôi báo giá theo phạm vi công việc sau buổi chẩn đoán, không theo bảng giá cố định — vì trần tự động hóa của mỗi mô hình khác nhau quá xa để định giá trước. Riêng bốn điểm vào có giá cố định: LATTICE Scan, Blueprint, Compass và Foundry, xem ở trang Liên hệ.",
+  "en": "We quote by scope after the diagnostic, not from a fixed price list — automation ceilings differ too much between models to price in advance. The four entry points are the exception, with fixed prices: LATTICE Scan, Blueprint, Compass and Foundry, on the Contact page.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": ": nghiên cứu mô hình của anh chị, soạn câu hỏi riêng theo hồ sơ, đọc tài liệu và làm báo cáo. Đó là công việc có thật, không phải phí tư vấn.",
+  "en": ": studying your model, writing questions specific to your file, reading your documents and producing the report. That is real work, not a consulting fee.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Bắt đầu miễn phí bằng",
+  "en": "Start free with the",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Khảo sát nhanh",
+  "en": "Quick Survey",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": ": 20 câu, khoảng 8–10 phút, có ngay báo cáo ban đầu. Khi cần đi sâu hơn, chọn gói theo giai đoạn của doanh nghiệp.",
+  "en": " (in Vietnamese): 20 questions, about 8–10 minutes, with an initial report on the spot. When you need to go deeper, pick the package for your stage.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Doanh nghiệp đang vận hành",
+  "en": "Businesses already operating",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "895.000đ",
+  "en": "895,000 VND",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Khấu trừ 100% vào Blueprint nếu nâng trong 30 ngày",
+  "en": "Credited in full against Blueprint if you upgrade within 30 days",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Làm việc qua email, không cần họp: 5–10 câu hỏi bổ sung theo đúng chỗ còn thiếu và danh sách tài liệu cần gửi",
+  "en": "Done by email, no meeting needed: 5–10 follow-up questions aimed at what is still missing, and a list of documents to send",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Báo cáo Scan 5–7 trang",
+  "en": "A 5–7 page Scan report",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": ": bản đồ khối có số của anh chị, ba quy trình nên làm trước, mức AI cho từng việc và ai giữ quyền, giờ tiết kiệm ước tính, sức khỏe năm nguồn lực",
+  "en": ": a map of your functions with your own numbers, the three processes to start with, the AI level for each task and who keeps authority, estimated hours saved, the health of your five core resources",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Trang mô phỏng riêng theo hồ sơ",
+  "en": "A simulation page built for your file",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Hỏi đáp email một lần, tối đa 3 câu, trong 14 ngày",
+  "en": "One email Q&A round, up to 3 questions, within 14 days",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Gửi câu hỏi trong 2 ngày làm việc · báo cáo trong 5 ngày làm việc sau khi đủ tài liệu",
+  "en": "Questions within 2 working days · report within 5 working days of receiving your documents",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "2.950.000đ",
+  "en": "2,950,000 VND",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Một buổi làm việc trên Zoom, 60 phút, và bộ câu hỏi chuyên sâu cho đúng mảng cần làm",
+  "en": "One 60-minute Zoom session, plus in-depth questions for the areas that matter",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Hồ sơ thiết kế 12–16 trang",
+  "en": "A 12–16 page design file",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": ": kiến trúc doanh nghiệp, bộ máy và phân vai, ma trận quyền và ngưỡng ngoại lệ, ba chuỗi ưu tiên vẽ lại theo người + AI, lộ trình 90 ngày",
+  "en": ": business architecture, organisation and roles, decision-rights matrix and exception thresholds, three priority value chains redrawn for humans + AI, a 90-day roadmap",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Hai SOP mẫu · rà lại 30 phút sau ba tuần · hỏi đáp email 30 ngày, tối đa 5 câu",
+  "en": "Two sample SOPs · a 30-minute review after three weeks · email Q&A for 30 days, up to 5 questions",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Gửi câu hỏi trong 2 ngày làm việc · xếp lịch trong 3 ngày làm việc · hồ sơ trong 7 ngày làm việc sau buổi Zoom",
+  "en": "Questions within 2 working days · scheduled within 3 working days · file within 7 working days of the Zoom session",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Đang khởi sự, từ ý tưởng",
+  "en": "Starting out, from an idea",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Kiểm chứng ý tưởng",
+  "en": "Tests the idea",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "La bàn khởi sự",
+  "en": "Start-up compass",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "1.950.000đ",
+  "en": "1,950,000 VND",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Khấu trừ 100% vào Foundry nếu nâng trong 30 ngày",
+  "en": "Credited in full against Foundry if you upgrade within 30 days",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Làm việc qua email: bộ câu hỏi khởi sự, câu hỏi bổ sung và tài liệu về ý tưởng",
+  "en": "Done by email: a start-up questionnaire, follow-up questions and documents about your idea",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Báo cáo kiểm chứng 6–8 trang",
+  "en": "A 6–8 page validation report",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": ": năm giả định rủi ro nhất, cách kiểm chứng rẻ trong 30 ngày, kiến trúc tối thiểu, bộ máy 1–3 người",
+  "en": ": the five riskiest assumptions, cheap ways to test them within 30 days, a minimum architecture, a 1–3 person organisation",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Kết luận thẳng: nên làm, làm nhỏ để thử, hay chưa nên làm",
+  "en": "A straight verdict: go, start small to test, or not yet",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Gửi câu hỏi trong 2 ngày làm việc · báo cáo trong 7 ngày làm việc sau khi đủ tài liệu",
+  "en": "Questions within 2 working days · report within 7 working days of receiving your documents",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Dựng từ đầu",
+  "en": "Built from scratch",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Xưởng dựng doanh nghiệp",
+  "en": "Business foundry",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "4.950.000đ",
+  "en": "4,950,000 VND",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Khấu trừ 100% vào Kit hoặc hợp đồng triển khai trong 60 ngày",
+  "en": "Credited in full against a Kit or a delivery contract within 60 days",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Toàn bộ nội dung của gói Compass",
+  "en": "Everything in the Compass package",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Hai buổi Zoom: 60 phút đầu và 45 phút cuối",
+  "en": "Two Zoom sessions: 60 minutes at the start, 45 at the end",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Bản thiết kế doanh nghiệp 15–20 trang",
+  "en": "A 15–20 page business design",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": ": mô hình kinh doanh, kiến trúc tối thiểu, bộ máy 12 tháng đầu, công cụ và chi phí, kế hoạch 90 ngày ra mắt có cột mốc kiểm chứng",
+  "en": ": business model, minimum architecture, organisation for the first 12 months, tools and costs, a 90-day launch plan with validation milestones",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Ba SOP cho những việc đầu tiên · hỏi đáp email 30 ngày",
+  "en": "Three SOPs for your first tasks · email Q&A for 30 days",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Nhận tối đa 5 hồ sơ Foundry mỗi đợt.",
+  "en": "We take at most 5 Foundry files per round.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Sắp mở:",
+  "en": "Coming soon:",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "LATTICE Kit · 8.950.000đ",
+  "en": "LATTICE Kit · 8,950,000 VND",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": ", bộ tự triển khai theo ngành cho doanh nghiệp muốn tự làm. Triển khai trọn gói và đồng hành vận hành báo giá theo phạm vi.",
+  "en": ", a do-it-yourself build kit by industry. Full delivery and ongoing operation are quoted by scope.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Mốc chặn hoàn phí gắn với một việc bàn giao cụ thể — thời điểm chúng tôi gửi câu hỏi bổ sung hoặc câu hỏi chuyên sâu cho anh chị — chứ không phải từ lúc nhận tiền.",
+  "en": "The refund cut-off is tied to a specific deliverable — the moment we send you the follow-up or in-depth questions — not to when we receive payment.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Sau khi thanh toán, trước khi chúng tôi gửi câu hỏi",
+  "en": "After payment, before we send the questions",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Sau khi chúng tôi đã gửi câu hỏi",
+  "en": "After we have sent the questions",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Anh chị chưa trả lời câu hỏi hoặc chưa gửi tài liệu",
+  "en": "You have not answered the questions or sent the documents",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Xin dời lịch buổi Zoom (Blueprint, Foundry)",
+  "en": "Rescheduling a Zoom session (Blueprint, Foundry)",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Không gửi câu hỏi, không giao đúng hạn hoặc không xếp được lịch: hoàn 100%, hoặc nâng lên bậc kế tiếp (Scan lên Blueprint, Compass lên Foundry) không thu thêm — anh chị chọn.",
+  "en": "If we miss sending the questions, a delivery date or a session slot: a full refund, or an upgrade to the next tier (Scan to Blueprint, Compass to Foundry) at no extra cost — your choice.",
+  "nguon": "thu-cong"
+ },
+ {
+  "vi": "Biểu mẫu đăng ký nằm ở trang riêng, điền khoảng hai phút. Bắt buộc có email — chúng tôi gửi câu hỏi bổ sung, danh sách tài liệu và lịch hẹn (nếu có) qua địa chỉ đó.",
+  "en": "The registration form is on its own page and takes about two minutes. An email address is required — we send the follow-up questions, the document list and any appointment to it.",
+  "nguon": "thu-cong"
  }
 ]

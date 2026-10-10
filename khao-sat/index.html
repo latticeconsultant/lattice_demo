@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Khảo sát nhanh — LATTICE Next Solutions</title>
-<meta name="description" content="Mười bốn câu, bảy phút. Nhận ngay bản đồ hiện trạng bộ máy của doanh nghiệp anh chị và năm việc nên làm trước.">
+<meta name="description" content="Hai mươi câu, khoảng tám đến mười phút. Nhận ngay báo cáo ban đầu miễn phí: điểm sẵn sàng, bản đồ khối, năm nguồn lực và ba việc nên làm trước.">
 <meta name="robots" content="index,follow">
 <link rel="icon" href="../brand/logo/favicon/favicon-32.png" sizes="32x32">
 <script>try{var _t=localStorage.getItem('lnx-theme'); if(_t) document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
@@ -90,6 +90,16 @@ footer a{color:inherit}
 .tbl th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);background:var(--bg)}
 .tbl td.c,.tbl th.c{text-align:center;font-variant-numeric:tabular-nums}
 .tbl tr.dau td{font-weight:700}
+/* câu nhiều phần: số câu, nhãn phần con, lưới bốn mức gọn cho điện thoại */
+.cau legend{float:left;width:100%;padding:0;margin-bottom:10px}
+.cau legend+*{clear:both}
+.cau .stt{display:block;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:5px}
+.con+.con{margin-top:16px;padding-top:14px;border-top:1px solid var(--line2)}
+.nhan-con{font-size:14px;font-weight:700;margin:0 0 7px}
+.chon.gon{grid-template-columns:repeat(4,1fr);gap:6px}
+.chon.gon label.o{padding:9px 10px;font-size:13.5px}
+@media (max-width:560px){.chon.gon{grid-template-columns:1fr 1fr}}
+.cau.thieu{border-color:var(--redtx);box-shadow:inset 3px 0 0 var(--red)}
 </style>
 </head>
 <body>
@@ -103,11 +113,11 @@ footer a{color:inherit}
 </header>
 
 <h1>Bộ máy của anh chị đang ở đâu?</h1>
-<p class="lead">Mười lăm câu, khoảng bảy phút. Xong là có ngay bản đồ hiện trạng theo từng khối và năm việc nên làm trước — không mất phí, không cần tạo tài khoản.</p>
-<p class="lead" style="font-size:14px">Bỏ dở giữa chừng cũng được, máy nhớ phần đã điền trên chính trình duyệt này.</p>
+<p class="lead">Hai mươi câu, khoảng tám đến mười phút. Xong là có ngay báo cáo ban đầu: điểm sẵn sàng, bản đồ khối, năm nguồn lực và ba việc nên làm trước. Không mất phí, không cần tạo tài khoản.</p>
+<p class="lead" style="font-size:14px">Đang khởi sự? Câu đầu tiên rẽ sang bộ câu dành cho ý tưởng. Bỏ dở giữa chừng cũng được, máy nhớ phần đã điền trên chính trình duyệt này.</p>
 
 <div class="tien" id="tien" aria-hidden="true"></div>
-<p class="tien-chu" id="tien-chu">Phần 1 / 4 · Doanh nghiệp của anh chị</p>
+<p class="tien-chu" id="tien-chu">Phần 1 / 5 · Hồ sơ</p>
 
 <form id="ks" novalidate>
 <div id="noi"></div>
@@ -139,7 +149,7 @@ document.getElementById('sangtoi').addEventListener('click', function () {
 
 /* ---------- chế độ quản trị ----------
    Ba lần bấm vào logo trong vòng 1,5 giây là bật hoặc tắt. Khách không biết cử
-   chỉ này; với khách, nút mở khoá vẫn dẫn sang trang trả phí như thường. */
+   chỉ này. Ở chế độ quản trị, báo cáo hiện thêm bản đầy đủ (day-du.js). */
 const KHOA_QT = 'lattice-qt';
 let laQT = false;
 try {
@@ -172,123 +182,218 @@ function veBangQT() {
 }
 veBangQT();
 
-/* ---------- mười lăm câu, chia bốn phần ----------
-   Mỗi câu: id, phần, loại, câu hỏi, gợi ý, các lựa chọn.
-   'nv' là câu chọn nghiệp vụ đau nhất — danh sách lấy theo mô hình đã chọn ở câu 1,
-   nên hai nơi không bao giờ lệch nhau với trang mô phỏng. */
-const PHAN = ['Doanh nghiệp của anh chị', 'Cách đang vận hành', 'Chỗ đang đau', 'Ý định 90 ngày tới'];
+/* ---------- bộ câu hỏi T0 ----------
+   Hai nhánh theo câu 1: 'vh' đang vận hành (20 câu), 'ks' đang khởi sự
+   (giữ câu 1–3, 5, 7, 18–20 và thay 11 câu còn lại, tổng 19 câu).
+   Mỗi câu có id, loại, câu hỏi, gợi ý. Loại:
+     radio · nhieu (nhiều lựa chọn, có thể có max và một lựa chọn 'rieng' loại trừ các lựa chọn khác)
+     chu (ô gõ) · co (một ô đánh dấu) · nv (chọn nghiệp vụ theo loại hình, lấy từ nv.js)
+     tudau (chọn một trong các nghiệp vụ đã chọn ở câu 9)
+     kep (một câu gồm nhiều phần con, mảng con) · luoi (như kep, các dòng bốn mức xếp gọn).
+   Danh sách nghiệp vụ lấy từ nv.js, sinh từ trang mô phỏng, nên không lệch nhau. */
+const PHAN = {
+  vh: ['Hồ sơ', 'Vận hành', 'Bộ máy và ngoại lệ', 'Năm nguồn lực', 'Mục tiêu'],
+  ks: ['Hồ sơ', 'Ý tưởng và thị trường', 'Nguồn lực khởi sự', 'Ra mắt', 'Mục tiêu']
+};
+const MUC4 = [['mot', 'Một nơi'], ['vainoi', 'Vài nơi'], ['dienthoai', 'Trong điện thoại, trong đầu'], ['khong', 'Không lưu']];
 const CAU = [
- {id:'mo', phan:0, loai:'radio', hoi:'Doanh nghiệp thuộc nhóm nào?', goi:'Chọn nhóm gần nhất. Nhóm này quyết định danh sách nghiệp vụ ở các câu sau.', chon:[
-   ['tmhh','Thương mại & Hàng hóa','Mua về bán lại, có tồn kho'],
-   ['dv','Dịch vụ','Bán giờ công và chỗ phục vụ'],
-   ['sx','Sản xuất','Làm ra hàng rồi xuất kho']]},
- {id:'nganh', phan:0, loai:'chu', hoi:'Ngành cụ thể là gì?', goi:'Viết ngắn, ví dụ: mỹ phẩm bán sàn, spa, cơ khí chính xác.', bb:true},
- {id:'nguoi', phan:0, loai:'radio', hoi:'Hiện có bao nhiêu người làm toàn thời gian?', chon:[
-   ['1','Một mình tôi'],['2-3','2–3 người'],['4-10','4–10 người'],['11-20','11–20 người'],['20+','Trên 20 người']]},
- {id:'doanhthu', phan:0, loai:'radio', hoi:'Doanh thu trung bình một tháng?', goi:'Khoảng chừng là được, không cần chính xác.', chon:[
+ /* A · Hồ sơ */
+ {id:'giaidoan', loai:'radio', hoi:'Doanh nghiệp đang ở giai đoạn nào?', goi:'Câu này chọn bộ câu hỏi phù hợp cho các câu sau.', chon:[
+   ['vh','Đang vận hành','Đã có doanh thu đều'],
+   ['ks','Đang khởi sự','Có ý tưởng hoặc mới bắt đầu, chưa có doanh thu đều']]},
+ {id:'q2', loai:'kep', hoi:'Thuộc loại hình nào, ngành cụ thể là gì?', goi:'Loại hình quyết định danh sách nghiệp vụ ở các câu sau.', con:[
+   {id:'mo', loai:'radio', nhan:'Loại hình', chon:[
+     ['tmhh','Thương mại & Hàng hóa','Mua về bán lại, có tồn kho'],
+     ['dv','Dịch vụ','Bán giờ công và chỗ phục vụ'],
+     ['sx','Sản xuất','Làm ra hàng rồi xuất kho']]},
+   {id:'nganh', loai:'chu', nhan:'Ngành cụ thể', mau:'Ví dụ: mỹ phẩm bán sàn, spa, cơ khí chính xác'}]},
+ {id:'q3', loai:'kep', hoi:'Bao nhiêu người làm toàn thời gian? Có ai làm nhiều mảng cùng lúc không?', con:[
+   {id:'nguoi', loai:'radio', chon:[['1','Một mình tôi'],['2-3','2–3 người'],['4-10','4–10 người'],['11-20','11–20 người'],['20+','Trên 20 người']]},
+   {id:'kiemvai', loai:'co', tuychon:true, chu:'Có người kiêm nhiều vai', mota:'Ví dụ: vừa bán hàng vừa làm kế toán'}]},
+ {id:'doanhthu', loai:'radio', hoi:'Doanh thu trung bình một tháng?', goi:'Khoảng chừng là được, không cần chính xác.', chon:[
    ['<100','Dưới 100 triệu'],['100-500','100–500 triệu'],['500-2000','500 triệu – 2 tỷ'],['2000-10000','2–10 tỷ'],['10000+','Trên 10 tỷ']]},
- {id:'tuoi', phan:0, loai:'radio', hoi:'Doanh nghiệp hoạt động được bao lâu?', chon:[
-   ['<1','Dưới 1 năm'],['1-3','1–3 năm'],['3-7','3–7 năm'],['7+','Trên 7 năm']]},
 
- {id:'kenh', phan:1, loai:'nhieu', hoi:'Khách đến từ đâu?', goi:'Chọn tất cả những kênh đang có.', chon:[
+ /* B · Vận hành */
+ {id:'kenh', loai:'nhieu', hoi:'Khách đến từ đâu?', hoiKS:'Khách sẽ đến từ đâu?', goi:'Chọn tất cả những kênh đang có hoặc dự định.', chon:[
    ['san','Sàn thương mại điện tử'],['fb','Facebook, Zalo, TikTok'],['web','Website của mình'],
    ['gioithieu','Khách cũ giới thiệu'],['daily','Đại lý, cộng tác viên'],['b2b','Khách doanh nghiệp, đấu thầu'],
    ['tructiep','Khách đến tận nơi']]},
- {id:'luong', phan:1, loai:'radio', hoi:'Mỗi ngày xử lý khoảng bao nhiêu đơn, lịch hẹn hoặc lệnh sản xuất?', chon:[
+ {id:'luong', loai:'radio', hoi:'Mỗi ngày xử lý khoảng bao nhiêu đơn, lịch hẹn hoặc lệnh sản xuất?', chon:[
    ['<10','Dưới 10'],['10-50','10–50'],['50-200','50–200'],['200+','Trên 200']]},
- {id:'pm', phan:1, loai:'nhieu', hoi:'Đang dùng những công cụ nào?', goi:'Chọn tất cả.', chon:[
+ {id:'pm', loai:'nhieu', hoi:'Đang dùng những công cụ nào?', goi:'Chọn tất cả.', chon:[
    ['excel','Excel hoặc Google Sheet'],['banhang','Phần mềm bán hàng, POS'],['ketoan','Phần mềm kế toán'],
    ['crm','CRM hoặc phần mềm chăm sóc khách'],['chat','Công cụ gom tin nhắn đa kênh'],
    ['ai','Đã dùng ChatGPT hoặc công cụ AI'],['giay','Chủ yếu sổ sách, giấy tờ']]},
- {id:'dulieu', phan:1, loai:'radio', hoi:'Dữ liệu khách hàng đang nằm ở đâu?', chon:[
-   ['mot','Một nơi duy nhất, ai cần cũng tra được'],
-   ['vainoi','Vài nơi, phải ghép lại khi cần'],
-   ['dienthoai','Nằm trong điện thoại, tin nhắn của từng người'],
-   ['khong','Gần như không lưu lại']]},
+ {id:'q8', loai:'luoi', hoi:'Ba loại dữ liệu đang nằm ở đâu?', goi:'Mỗi dòng chọn một mức.', con:[
+   {id:'dl_kh', loai:'radio', gon:true, nhan:'Khách hàng', chon:MUC4},
+   {id:'dl_hang', loai:'radio', gon:true, nhan:'Hàng, lịch hẹn, tồn kho', chon:MUC4},
+   {id:'dl_tien', loai:'radio', gon:true, nhan:'Tiền, công nợ', chon:MUC4}]},
+ {id:'dau', loai:'nv', max:5, hoi:'Năm việc nào đang vướng nhất?', goi:'Chọn tối đa năm. Đây là phần quyết định bản đồ khối và ba việc nên làm trước.'},
+ {id:'q10', loai:'kep', theoDau:true, hoi:'Trong số đó, việc nào ngốn thời gian nhất? Mỗi tuần mất bao nhiêu giờ cho việc lặp lại?', con:[
+   {id:'ngonnhat', loai:'tudau', nhan:'Việc ngốn thời gian nhất'},
+   {id:'gio', loai:'radio', gon:true, nhan:'Giờ mỗi tuần cho việc lặp lại', goi:'Việc ai làm cũng ra kết quả như nhau: nhập liệu, trả lời câu hỏi giống nhau, đối soát, báo cáo.', chon:[
+     ['<5','Dưới 5 giờ'],['5-15','5–15 giờ'],['15-30','15–30 giờ'],['30+','Trên 30 giờ']]}]},
 
- {id:'dau', phan:2, loai:'nv', hoi:'Năm việc nào đang đau nhất?', goi:'Chọn tối đa năm. Đây là phần quyết định thứ tự ưu tiên trong báo cáo.', max:5},
- {id:'ngonnhat', phan:2, loai:'tudau', hoi:'Trong số đó, việc nào ngốn thời gian của anh chị nhiều nhất?'},
- {id:'gio', phan:2, loai:'radio', hoi:'Mỗi tuần anh chị mất khoảng bao nhiêu giờ cho việc lặp đi lặp lại?', goi:'Việc ai làm cũng ra kết quả như nhau: nhập liệu, trả lời câu hỏi giống nhau, đối soát, báo cáo.', chon:[
-   ['<5','Dưới 5 giờ'],['5-15','5–15 giờ'],['15-30','15–30 giờ'],['30+','Trên 30 giờ']]},
+ /* C · Bộ máy và ngoại lệ */
+ {id:'quyet', loai:'radio', hoi:'Khi có việc vượt quy định, ai quyết?', goi:'Ví dụ: giảm giá ngoài khung, khiếu nại lớn, chi ngoài kế hoạch.', chon:[
+   ['toi','Mọi việc về tôi'],['hoilai','Có người phụ trách, nhưng hay hỏi lại tôi'],['quydinh','Có quy định rõ ai duyệt việc gì']]},
+ {id:'suco', loai:'nhieu', rieng:'it', hoi:'Ba tháng qua, sự cố nào hay gặp nhất?', goi:'Chọn tất cả những sự cố lặp lại.', chon:[
+   ['sotdon','Sót đơn, sót lịch'],['giaotre','Giao trễ, trễ hẹn'],['nhamgia','Nhầm giá, nhầm báo giá'],
+   ['congno','Công nợ quá hạn'],['chekhach','Khách chê công khai'],['thieuhang','Thiếu hàng hoặc kín lịch'],
+   ['saichuyenmon','Sai sót chuyên môn, lỗi sản phẩm'],['nghidotxuat','Người nghỉ đột xuất'],['it','Ít khi có sự cố']]},
 
- {id:'muon', phan:3, loai:'radio', hoi:'Trong 90 ngày tới, điều gì quan trọng nhất?', chon:[
-   ['giogio','Lấy lại thời gian của tôi'],
-   ['donhang','Tăng đơn mà không tăng người'],
-   ['kiemsoat','Kiểm soát được bộ máy, hết lo sót việc'],
-   ['morong','Chuẩn bị mở rộng, thêm chi nhánh hoặc kênh']]},
- {id:'nangluc', phan:3, loai:'radio', hoi:'Ai sẽ trực tiếp làm việc với LATTICE, và dành được bao nhiêu giờ mỗi tuần?', goi:'Câu này quyết định lộ trình đi nhanh hay chậm. Trả lời thật giúp báo cáo sát với sức của anh chị.', chon:[
-   ['toi-it','Chính tôi, dưới 2 giờ mỗi tuần'],
-   ['toi-vua','Chính tôi, 2–5 giờ mỗi tuần'],
-   ['toi-nhieu','Chính tôi, trên 5 giờ mỗi tuần'],
-   ['nguoi-it','Có người phụ trách riêng, dưới 5 giờ mỗi tuần'],
-   ['nguoi-nhieu','Có người phụ trách riêng, trên 5 giờ mỗi tuần']]},
- {id:'cantro', phan:3, loai:'radio', hoi:'Điều gì đang cản anh chị đưa AI vào vận hành?', chon:[
-   ['khongbiet','Không biết bắt đầu từ đâu'],
-   ['sosai','Sợ AI làm sai, mất khách'],
-   ['dulieuloan','Dữ liệu đang lộn xộn quá'],
-   ['thoigian','Không có thời gian làm'],
-   ['chiphi','Chưa rõ tốn bao nhiêu']]}
+ /* D · Năm nguồn lực */
+ {id:'tien', loai:'radio', hoi:'Nếu doanh thu dừng hôm nay, tiền hiện có đủ chi bao lâu?', chon:[
+   ['<1','Dưới 1 tháng'],['1-3','1–3 tháng'],['3-6','3–6 tháng'],['6+','Trên 6 tháng'],['chuabiet','Chưa biết']]},
+ {id:'khachcu', loai:'radio', hoi:'Bao nhiêu phần doanh thu đến từ khách cũ quay lại hoặc khách giới thiệu?', chon:[
+   ['<10','Dưới 10%'],['10-30','10–30%'],['30-60','30–60%'],['60+','Trên 60%'],['chuado','Chưa đo']]},
+ {id:'quytrinh', loai:'radio', hoi:'Cách làm việc đã được viết thành quy trình chưa?', chon:[
+   ['chua','Chưa, nằm trong đầu'],['ghichu','Vài việc có ghi chú'],['phanlon','Phần lớn có, ít cập nhật'],['capnhat','Có và cập nhật đều']]},
+ {id:'dung', loai:'nhieu', rieng:'khong', hoi:'Nếu người chủ chốt nghỉ hai tuần, việc gì dừng?', goi:'Chọn tất cả những việc sẽ dừng.', chon:[
+   ['banhang','Bán hàng'],['duyetchi','Duyệt chi'],['chamkhach','Chăm khách'],['thuchien','Sản xuất hoặc thực hiện dịch vụ'],['khong','Không việc gì dừng']]},
+ {id:'danhgia', loai:'radio', hoi:'Khách đang đánh giá anh chị thế nào?', goi:'Điểm trung bình trên sàn, Google hoặc fanpage.', chon:[
+   ['4.7+','Từ 4,7'],['4.3-4.6','4,3–4,6'],['<4.3','Dưới 4,3'],['chuado','Chưa đo']]},
+
+ /* E · Mục tiêu */
+ {id:'muon', loai:'radio', hoi:'Trong 90 ngày tới, điều gì quan trọng nhất?', chon:[
+   ['giogio','Lấy lại thời gian của tôi'],['donhang','Tăng đơn mà không tăng người'],
+   ['kiemsoat','Kiểm soát được bộ máy, hết lo sót việc'],['morong','Chuẩn bị mở rộng, thêm chi nhánh hoặc kênh']]},
+ {id:'muonks', loai:'radio', hoi:'Trong 90 ngày tới, điều gì quan trọng nhất?', chon:[
+   ['khachdau','Có những khách trả tiền đầu tiên'],['kiemgia','Kiểm chứng giá và kênh bán'],
+   ['bomay','Dựng bộ máy gọn, đủ việc'],['ramat','Chuẩn bị ra mắt chính thức']]},
+ {id:'cantro', loai:'radio', hoi:'Điều gì đang cản đưa AI vào vận hành?', chon:[
+   ['khongbiet','Không biết bắt đầu từ đâu'],['sosai','Sợ AI làm sai, mất khách'],
+   ['dulieuloan','Dữ liệu đang lộn xộn'],['thoigian','Không có thời gian làm'],['chiphi','Chưa rõ tốn bao nhiêu']]},
+ {id:'ngansach', loai:'radio', hoi:'Anh chị dự tính dành bao nhiêu cho giai đoạn đầu?', goi:'Gồm cả công cụ, tư vấn và thời gian người làm. Ước chừng là được.', chon:[
+   ['<3','Dưới 3 triệu'],['3-10','3–10 triệu'],['10-50','10–50 triệu'],['50-200','50–200 triệu'],['200+','Trên 200 triệu'],['chua','Chưa nghĩ tới']]},
+
+ /* Nhánh đang khởi sự: 11 câu kiểm chứng ý tưởng */
+ {id:'ks_khach', loai:'radio', hoi:'Đã có khách trả tiền chưa? Bao nhiêu người?', chon:[
+   ['0','Chưa có ai'],['1-5','1–5 người'],['6-20','6–20 người'],['20+','Trên 20 người']]},
+ {id:'ks_noichuyen', loai:'radio', hoi:'Đã nói chuyện với bao nhiêu khách tiềm năng?', goi:'Tính người anh chị đã hỏi trực tiếp về nhu cầu, không tính lượt thích hay lượt xem.', chon:[
+   ['0','Chưa ai'],['1-10','1–10 người'],['11-30','11–30 người'],['30+','Trên 30 người']]},
+ {id:'ks_gia', loai:'kep', hoi:'Giá bán dự kiến, và dựa vào đâu?', con:[
+   {id:'gia', loai:'chu', nhan:'Giá dự kiến', mau:'Ví dụ: 350.000đ một hộp, 2 triệu một gói tháng'},
+   {id:'giacs', loai:'radio', nhan:'Dựa vào đâu', chon:[
+     ['doan','Ước đoán, chưa so sánh'],['doithu','So với giá đối thủ'],['chiphi','Tính từ chi phí cộng lãi'],
+     ['hoikhach','Đã hỏi khách sẵn lòng trả bao nhiêu'],['banthu','Đã bán thử ở giá này']]}]},
+ {id:'ks_gd', loai:'radio', hoi:'Giả định nào anh chị chưa chắc nhất?', chon:[
+   ['nguoimua','Có người chịu mua'],['gia','Khách chấp nhận mức giá'],
+   ['nguoncung','Nguồn hàng, nguồn lực thực hiện ổn định'],['kenh','Kênh bán đưa được khách tới']]},
+ {id:'ks_nguon', loai:'radio', hoi:'Nguồn hàng, nguồn lực thực hiện đã chốt chưa?', chon:[
+   ['chot','Đã chốt, có cam kết hoặc hợp đồng'],['dam','Đang đàm phán, có phương án'],['chua','Chưa tìm']]},
+ {id:'ks_von', loai:'radio', hoi:'Vốn dự kiến cho 12 tháng đầu?', chon:[
+   ['<100','Dưới 100 triệu'],['100-500','100–500 triệu'],['500-2000','500 triệu – 2 tỷ'],['2000+','Trên 2 tỷ'],['chuaro','Chưa tính']]},
+ {id:'ks_nguoi6', loai:'radio', hoi:'Dự kiến bao nhiêu người trong 6 tháng đầu?', chon:[
+   ['1','Một mình tôi'],['2-3','2–3 người'],['4-6','4–6 người'],['7+','Từ 7 người']]},
+ {id:'ks_manh', loai:'nhieu', hoi:'Anh chị mạnh ở mảng nào?', goi:'Chọn tất cả mảng anh chị tự làm tốt.', chon:[
+   ['ban','Bán hàng'],['sanpham','Làm sản phẩm, chuyên môn'],['vanhanh','Vận hành'],['taichinh','Tài chính']]},
+ {id:'ks_phep', loai:'radio', hoi:'Ngành có cần giấy phép hoặc điều kiện riêng không?', chon:[
+   ['coroi','Có, đã có giấy phép'],['cochua','Có, chưa làm xong'],['khong','Không cần'],['chuabiet','Chưa tìm hiểu']]},
+ {id:'ks_lo', loai:'nhieu', max:3, hoi:'Ba việc anh chị lo nhất khi ra mắt?', goi:'Chọn tối đa ba.', chon:[
+   ['khach','Không có khách'],['dongtien','Hết tiền trước khi có lãi'],['nguoncung','Nguồn cung trục trặc'],
+   ['nhansu','Thiếu người làm'],['phaply','Giấy tờ, thuế, pháp lý'],['canhtranh','Đối thủ cạnh tranh giá'],
+   ['congnghe','Công nghệ, công cụ'],['thoigian','Không đủ thời gian']]},
+ {id:'ks_moc', loai:'radio', hoi:'Mốc nào thì anh chị coi là ý tưởng đã đúng?', chon:[
+   ['khachtra','Đủ số khách trả tiền đã đặt ra'],['hoavon','Doanh thu tháng đủ bù chi phí tháng'],
+   ['quaylai','Khách mua lại lần hai'],['chua','Chưa đặt mốc']]}
 ];
+/* Thứ tự câu theo từng nhánh, chia năm phần A–E. */
+const BO = {
+  vh: [['giaidoan','q2','q3','doanhthu'], ['kenh','luong','pm','q8','dau','q10'], ['quyet','suco'],
+       ['tien','khachcu','quytrinh','dung','danhgia'], ['muon','cantro','ngansach']],
+  ks: [['giaidoan','q2','q3'], ['ks_khach','ks_noichuyen','ks_gia','kenh','ks_gd'],
+       ['ks_nguon','ks_von','ks_nguoi6','ks_manh','pm'], ['ks_phep','ks_lo','ks_moc'], ['muonks','cantro','ngansach']]
+};
+const CAU_BY = {}; CAU.forEach(c => { CAU_BY[c.id] = c; });
+const conCua = c => c.con || [c];
+const DEF = {}; CAU.forEach(c => conCua(c).forEach(s => { DEF[s.id] = s; }));
 
-/* ---------- trạng thái ---------- */
-const KHOA = 'lattice-khao-sat-v1';
+/* ---------- trạng thái ----------
+   Khóa v2: bài làm theo bộ 15 câu cũ (khóa v1) bị bỏ qua, không đọc lại. */
+const KHOA = 'lattice-khao-sat-v2';
 let dl = {}, phan = 0;
-try { dl = JSON.parse(localStorage.getItem(KHOA) || '{}'); } catch (e) { dl = {}; }
+try { dl = JSON.parse(localStorage.getItem(KHOA) || '{}') || {}; } catch (e) { dl = {}; }
+if (typeof dl !== 'object' || Array.isArray(dl)) dl = {};
 const $ = id => document.getElementById(id);
-const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const luu = () => { try { localStorage.setItem(KHOA, JSON.stringify(dl)); } catch (e) {} };
+const nhanh = () => dl.giaidoan === 'ks' ? 'ks' : 'vh';
+const cauPhan = p => BO[nhanh()][p].map(id => CAU_BY[id]);
+const dsId = () => BO[nhanh()].reduce((a, x) => a.concat(x), []);
+const soCau = id => dsId().indexOf(id) + 1;
+const hoiCua = c => (nhanh() === 'ks' && c.hoiKS) ? c.hoiKS : c.hoi;
+function nhan(id, v) {
+  const s = DEF[id]; if (!s || !s.chon) return v == null ? '' : String(v);
+  const x = s.chon.find(o => o[0] === v); return x ? x[1] : '';
+}
+const nhanNhieu = (id, ds) => (ds || []).map(v => nhan(id, v)).filter(Boolean).join(', ');
 // Danh sách nghiệp vụ và khối lấy từ nv.js, sinh từ trang mô phỏng (tools/build-khao-sat.mjs).
 const nvTheoMo = () => NV_KS[dl.mo || 'tmhh'] || [];
 const timNV = id => nvTheoMo().find(x => x.id === id);
-const tenNV = x => x.ten;
+const tenNV = x => x ? x.ten : '';
 const khoiTheoMo = () => KHOI_KS[dl.mo || 'tmhh'] || [];
 const tenKhoi = k => (khoiTheoMo().find(x => x[0] === k) || [k, k])[1];
 
 /* ---------- vẽ ---------- */
-function ve() {
-  const ds = CAU.filter(c => c.phan === phan);
-  $('noi').innerHTML = ds.map(oCau).join('') + (phan === 3 ? oLienHe() : '');
-  $('tien').innerHTML = [0,1,2,3].map(i => `<i class="${i < phan ? 'xong' : i === phan ? 'dang' : ''}"></i>`).join('');
-  $('tien-chu').textContent = `Phần ${phan + 1} / 4 · ${PHAN[phan]}`;
+function ve(cuon) {
+  const cuoi = phan === 4;
+  $('noi').innerHTML = cauPhan(phan).map(oCau).join('') + (cuoi ? oLienHe() : '');
+  $('tien').innerHTML = [0,1,2,3,4].map(i => `<i class="${i < phan ? 'xong' : i === phan ? 'dang' : ''}"></i>`).join('');
+  $('tien-chu').textContent = `Phần ${phan + 1} / 5 · ${PHAN[nhanh()][phan]}`;
   $('lui').style.visibility = phan === 0 ? 'hidden' : 'visible';
-  $('toi').textContent = phan === 3 ? 'Xem bản đồ của tôi →' : 'Tiếp tục →';
-  $('toi').className = phan === 3 ? 'btn do' : 'btn';
-  $('ghi').textContent = phan === 3 ? '' : 'Máy tự nhớ phần đã điền';
+  $('toi').textContent = cuoi ? 'Xem báo cáo của tôi →' : 'Tiếp tục →';
+  $('toi').className = cuoi ? 'btn do' : 'btn';
+  $('ghi').textContent = cuoi ? '' : 'Máy tự nhớ phần đã điền';
   $('loi').textContent = '';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  capNhatDem();
+  if (cuon !== false) window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function oCau(c) {
+  const don = !c.con;
+  return `<fieldset class="cau" data-cau="${c.id}"><legend class="hoi"><span class="stt">Câu ${soCau(c.id)} / ${dsId().length}</span>${esc(hoiCua(c))}</legend>`
+    + (c.goi ? `<p class="goi">${esc(c.goi)}</p>` : '')
+    + conCua(c).map(s => oCon(s, don)).join('') + '</fieldset>';
+}
+
+function oLuaChon(s) {
+  const nhieu = s.loai === 'nhieu', da = nhieu ? (dl[s.id] || []) : dl[s.id];
+  const lop = s.gon ? ' gon' : s.chon.length > 4 ? ' ngang' : '';
+  return `<div class="chon${lop}" role="group"${s.nhan ? ` aria-label="${esc(s.nhan)}"` : ''}>` + s.chon.map(([v, t, m]) => {
+    const ok = nhieu ? da.indexOf(v) >= 0 : da === v;
+    return `<label class="o${ok ? ' chon-roi' : ''}"><input type="${nhieu ? 'checkbox' : 'radio'}" name="${s.id}" value="${esc(v)}"${ok ? ' checked' : ''}>
+      <span><b>${esc(t)}</b>${m ? `<span class="mo">${esc(m)}</span>` : ''}</span></label>`;
+  }).join('') + '</div>' + (s.max ? `<p class="dem-chon" data-dem="${s.id}"></p>` : '');
+}
+
+function oCon(s, don) {
+  const dau = don ? '' : (s.nhan ? `<p class="nhan-con">${esc(s.nhan)}</p>` : '') + (s.goi ? `<p class="goi">${esc(s.goi)}</p>` : '');
   let than = '';
-  if (c.loai === 'chu') {
-    than = `<input type="text" name="${c.id}" value="${esc(dl[c.id] || '')}" autocomplete="off">`;
-  } else if (c.loai === 'radio' || c.loai === 'nhieu') {
-    const nhieu = c.loai === 'nhieu', da = nhieu ? (dl[c.id] || []) : dl[c.id];
-    than = `<div class="chon${c.chon.length > 4 ? ' ngang' : ''}">` + c.chon.map(([v, t, m]) => {
-      const ok = nhieu ? da.indexOf(v) >= 0 : da === v;
-      return `<label class="o${ok ? ' chon-roi' : ''}"><input type="${nhieu ? 'checkbox' : 'radio'}" name="${c.id}" value="${v}"${ok ? ' checked' : ''}>
-        <span><b>${esc(t)}</b>${m ? `<span class="mo">${esc(m)}</span>` : ''}</span></label>`;
-    }).join('') + '</div>';
-  } else if (c.loai === 'nv') {
+  if (s.loai === 'chu') {
+    than = `<input type="text" name="${s.id}" value="${esc(dl[s.id] || '')}" autocomplete="off" aria-label="${esc(s.nhan || '')}"${s.mau ? ` placeholder="${esc(s.mau)}"` : ''}>`;
+  } else if (s.loai === 'co') {
+    than = `<div class="chon"><label class="o${dl[s.id] ? ' chon-roi' : ''}"><input type="checkbox" name="${s.id}" value="1"${dl[s.id] ? ' checked' : ''}>
+      <span><b>${esc(s.chu)}</b>${s.mota ? `<span class="mo">${esc(s.mota)}</span>` : ''}</span></label></div>`;
+  } else if (s.loai === 'radio' || s.loai === 'nhieu') {
+    than = oLuaChon(s);
+  } else if (s.loai === 'nv') {
     const da = dl.dau || [], theo = {};
     nvTheoMo().forEach(x => { (theo[x.khoi] = theo[x.khoi] || []).push(x); });
     than = '<div class="nv-luoi">' + Object.keys(theo).map(k =>
-      `<div class="nv-khoi">${tenKhoi(k)}</div>` + theo[k].map(x => {
+      `<div class="nv-khoi">${esc(tenKhoi(k))}</div>` + theo[k].map(x => {
         const ok = da.indexOf(x.id) >= 0;
         return `<label class="o${ok ? ' chon-roi' : ''}"><input type="checkbox" name="dau" value="${x.id}"${ok ? ' checked' : ''}>
           <span><b>${esc(tenNV(x))}</b></span></label>`;
-      }).join('')).join('') + '</div><p class="dem-chon" id="dem-chon"></p>';
-  } else if (c.loai === 'tudau') {
-    const da = dl.dau || [];
+      }).join('')).join('') + '</div><p class="dem-chon" data-dem="dau"></p>';
+  } else if (s.loai === 'tudau') {
+    const da = (dl.dau || []).filter(timNV);
     than = da.length
-      ? '<div class="chon">' + da.map(id => {
-          const x = timNV(id); if (!x) return '';
-          return `<label class="o${dl.ngonnhat === id ? ' chon-roi' : ''}"><input type="radio" name="ngonnhat" value="${id}"${dl.ngonnhat === id ? ' checked' : ''}>
-            <span><b>${esc(tenNV(x))}</b></span></label>`;
-        }).join('') + '</div>'
-      : '<p class="goi" style="color:var(--redtx)">Hãy chọn ở câu trên trước.</p>';
+      ? '<div class="chon">' + da.map(id => `<label class="o${dl.ngonnhat === id ? ' chon-roi' : ''}"><input type="radio" name="ngonnhat" value="${id}"${dl.ngonnhat === id ? ' checked' : ''}>
+          <span><b>${esc(tenNV(timNV(id)))}</b></span></label>`).join('') + '</div>'
+      : '<p class="goi" style="color:var(--redtx)">Hãy chọn ở câu 9 trước.</p>';
   }
-  return `<fieldset class="cau" data-cau="${c.id}"><legend class="hoi">${esc(c.hoi)}</legend>${c.goi ? `<p class="goi">${esc(c.goi)}</p>` : ''}${than}</fieldset>`;
+  return `<div class="con">${dau}${than}</div>`;
 }
 
 function oLienHe() {
@@ -299,7 +404,7 @@ function oLienHe() {
      <label class="o" style="display:block"><b>Email</b><input type="email" name="email" value="${esc(dl.email || '')}" autocomplete="email" inputmode="email" style="margin-top:6px"></label>
      <label class="o" style="display:block"><b>Tên doanh nghiệp <span style="font-weight:400;color:var(--mute)">· không bắt buộc</span></b><input type="text" name="congty" value="${esc(dl.congty || '')}" autocomplete="organization" style="margin-top:6px"></label>
    </div>
-   <p class="rieng">Thông tin dùng để dựng báo cáo cho chính anh chị. Không chia sẻ cho bên thứ ba, không gọi điện — mọi trao đổi qua email.</p>
+   <p class="rieng">Thông tin dùng để dựng báo cáo cho chính anh chị. Không chia sẻ cho bên thứ ba, không gọi điện. Mọi trao đổi qua email.</p>
   </fieldset>`;
 }
 
@@ -307,61 +412,71 @@ function oLienHe() {
 $('noi').addEventListener('input', function (e) {
   const o = e.target, ten = o.name;
   if (!ten) return;
-  if (o.type === 'checkbox') {
-    const ds = [...$('noi').querySelectorAll(`input[name="${ten}"]:checked`)].map(x => x.value);
-    const c = CAU.find(x => x.id === ten);
-    if (c && c.max && ds.length > c.max) { o.checked = false; capNhatDem(); return; }
+  const s = DEF[ten];
+  if (!s) { dl[ten] = o.value; luu(); return; }          // họ tên, email, công ty
+  if (s.loai === 'co') {
+    dl[ten] = o.checked;
+  } else if (o.type === 'checkbox') {
+    const hop = [...$('noi').querySelectorAll(`input[name="${ten}"]`)];
+    // Lựa chọn 'rieng' (ví dụ "Không việc gì dừng") loại trừ các lựa chọn còn lại.
+    if (s.rieng && o.checked) hop.forEach(x => { if (x !== o && (o.value === s.rieng || x.value === s.rieng)) x.checked = false; });
+    const ds = hop.filter(x => x.checked).map(x => x.value);
+    if (s.max && ds.length > s.max) { o.checked = false; capNhatDem(); return; }
     dl[ten] = ds;
     if (ten === 'dau' && dl.ngonnhat && ds.indexOf(dl.ngonnhat) < 0) delete dl.ngonnhat;
   } else {
     dl[ten] = o.value;
-    if (ten === 'mo') { dl.dau = []; delete dl.ngonnhat; }
   }
+  if (ten === 'mo') { dl.dau = []; delete dl.ngonnhat; }
   luu();
+  if (ten === 'giaidoan') { ve(false); return; }
   [...$('noi').querySelectorAll('label.o')].forEach(l => {
     const i = l.querySelector('input'); if (i) l.classList.toggle('chon-roi', i.checked);
   });
   capNhatDem();
-  if (ten === 'mo') { ve(); return; }
-  // Câu hỏi việc ngốn thời gian nhất lấy lựa chọn từ câu trên, nên phải vẽ lại
-  // ngay khi danh sách đổi — nếu không, khách chọn xong vẫn thấy dòng nhắc cũ.
+  // Câu 10 lấy lựa chọn từ câu 9, nên vẽ lại ngay khi danh sách đổi.
   if (ten === 'dau') {
-    const o = $('noi').querySelector('[data-cau="ngonnhat"]');
-    if (o) {
-      const c = CAU.find(x => x.id === 'ngonnhat');
-      const tam = document.createElement('div');
-      tam.innerHTML = oCau(c);
-      o.replaceWith(tam.firstElementChild);
-    }
+    CAU.filter(c => c.theoDau).forEach(c => {
+      const cu = $('noi').querySelector(`[data-cau="${c.id}"]`); if (!cu) return;
+      const tam = document.createElement('div'); tam.innerHTML = oCau(c);
+      cu.replaceWith(tam.firstElementChild);
+    });
   }
+  const f = o.closest && o.closest('fieldset'); if (f) f.classList.remove('thieu');
 });
 
 function capNhatDem() {
-  const d = $('dem-chon'); if (!d) return;
-  const n = (dl.dau || []).length;
-  d.textContent = n ? `Đã chọn ${n} / 5` : 'Chọn ít nhất một việc, tối đa năm.';
+  document.querySelectorAll('[data-dem]').forEach(p => {
+    const s = DEF[p.getAttribute('data-dem')]; if (!s) return;
+    const n = (dl[s.id] || []).length;
+    p.textContent = n ? `Đã chọn ${n} / ${s.max}` : `Chọn ít nhất một, tối đa ${s.max}.`;
+  });
 }
 
 /* ---------- kiểm tra trước khi sang phần sau ---------- */
 function thieu() {
-  for (const c of CAU.filter(x => x.phan === phan)) {
-    const v = dl[c.id];
-    if (c.loai === 'nhieu' && (!v || !v.length)) return c.hoi;
-    if (c.loai === 'nv' && (!v || !v.length)) return c.hoi;
-    if (c.loai === 'tudau' && (dl.dau || []).length && !v) return c.hoi;
-    if ((c.loai === 'radio' || c.loai === 'chu') && !v) return c.hoi;
+  for (const c of cauPhan(phan)) for (const s of conCua(c)) {
+    if (s.tuychon) continue;
+    const v = dl[s.id];
+    const rong = Array.isArray(v) ? !v.length : (v == null || v === false || (typeof v === 'string' && !v.trim()));
+    if (rong) return { id: c.id, txt: `câu ${soCau(c.id)}${c.con && s.nhan ? ' · ' + s.nhan : ''}` };
   }
-  if (phan === 3) {
-    if (!dl.ten) return 'Họ tên';
-    if (!dl.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(dl.email)) return 'Email hợp lệ';
+  if (phan === 4) {
+    if (!dl.ten) return { txt: 'Họ tên' };
+    if (!dl.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(dl.email)) return { txt: 'Email hợp lệ' };
   }
   return null;
 }
 
 $('toi').addEventListener('click', function () {
   const t = thieu();
-  if (t) { $('loi').textContent = 'Còn thiếu: ' + t; return; }
-  if (phan < 3) { phan++; ve(); return; }
+  if (t) {
+    $('loi').textContent = 'Còn thiếu: ' + t.txt;
+    const f = t.id && $('noi').querySelector(`[data-cau="${t.id}"]`);
+    if (f) { f.classList.add('thieu'); f.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    return;
+  }
+  if (phan < 4) { phan++; ve(); return; }
   gui();
 });
 $('lui').addEventListener('click', function () { if (phan > 0) { phan--; ve(); } });
@@ -369,87 +484,439 @@ $('lui').addEventListener('click', function () { if (phan > 0) { phan--; ve(); }
 /* ---------- gửi ---------- */
 function gui() {
   $('toi').disabled = true;
-  $('toi').textContent = 'Đang dựng bản đồ…';
+  $('toi').textContent = 'Đang dựng báo cáo…';
   dl.luc = new Date().toISOString();
+  dl.bo = 'v2';
   luu();
-  if (typeof window.dungBaoCao === 'function') { window.dungBaoCao(dl); return; }
-  $('loi').textContent = 'Phần báo cáo đang được dựng ở bước tiếp theo.';
-  $('toi').disabled = false;
-  $('toi').textContent = 'Xem bản đồ của tôi →';
+  taiDayDu(function () {
+    if (typeof window.dungBaoCao === 'function') { window.dungBaoCao(dl); return; }
+    $('loi').textContent = 'Chưa dựng được báo cáo. Anh chị tải lại trang thử lần nữa.';
+    $('toi').disabled = false; $('toi').textContent = 'Xem báo cáo của tôi →';
+  });
+}
+
+/* day-du.js chứa mức AI khuyến nghị (rec) cho từng nghiệp vụ, sinh từ trang mô
+   phỏng. Báo cáo ban đầu cần rec của ba việc ưu tiên nên nạp file khi dựng báo
+   cáo. Phần bản đầy đủ trong file chỉ hiện ở chế độ quản trị. Nạp lỗi hoặc quá
+   4 giây thì vẫn dựng báo cáo, dùng mức mặc định L2. */
+function taiDayDu(xong) {
+  if (typeof DAY_DU !== 'undefined') { xong(); return; }
+  let roi = false;
+  const mot = function () { if (!roi) { roi = true; xong(); } };
+  const s = document.createElement('script');
+  s.src = 'day-du.js'; s.onload = mot; s.onerror = mot;
+  document.head.appendChild(s);
+  setTimeout(mot, 4000);
 }
 
 ve();
 </script>
 <style>
-/* ---------- báo cáo hé ---------- */
+/* ---------- báo cáo ban đầu ---------- */
 .bc h2{font-size:clamp(22px,3.4vw,30px);letter-spacing:-.02em;margin:34px 0 10px}
 .bc .ma{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.rep{background:var(--card);border:2px solid var(--ink);padding:22px clamp(15px,3vw,28px);margin:16px 0}
+.rep .rh{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:6px}
+.rep .rh b{font-size:19px;font-weight:800}
+.rep .rh span{font-size:12.5px;color:var(--mute)}
+.rep h3{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;margin:26px 0 10px;padding-top:12px;border-top:1px solid var(--line2)}
+.rep h3:first-of-type{border-top:0;padding-top:0}
+.rep p{margin:0 0 8px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0 12px}
+.kv div{border:1px solid var(--line2);padding:9px 11px;min-width:0}
+.kv span{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.kv b{font-size:15px}
+.score{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin:6px 0 8px}
+.score .big{font-size:52px;font-weight:800;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.score .big small{font-size:18px;color:var(--mute);font-weight:600}
+.bars{display:grid;gap:7px;flex:1;min-width:220px}
+.bar{display:grid;grid-template-columns:96px 1fr 30px;gap:8px;align-items:center;font-size:13.5px}
+.bar i{display:block;height:8px;background:var(--line2);position:relative}
+.bar i::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--ink)}
+.bar i.lo::after{background:var(--red)}
+.bar b{text-align:right;font-variant-numeric:tabular-nums}
+.blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:6px;margin:8px 0}
+.blocks div{border:1px solid var(--line);padding:9px 11px;font-size:13.5px;min-width:0}
+.blocks div b{display:block;font-size:14px}
+.blocks div.v{border-color:var(--redtx);background:var(--redbg)}
+.blocks div.s{border-color:var(--redtx)}
+.blocks div.u{border-style:dashed;color:var(--mute)}
+.blocks small{display:block;color:var(--mute);font-size:12.5px;margin-top:2px}
+.blocks div.v small{color:var(--ink)}
+.nl{display:grid;gap:6px;margin:8px 0}
+.nl div{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr) auto;gap:10px;align-items:baseline;border-bottom:1px solid var(--line2);padding:7px 0;font-size:14px}
+.nl div:last-child{border:0}
+.nl em{font-style:normal;font-size:11.5px;color:var(--redtx);display:block}
+.tag{font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:2px 8px;border:1px solid currentColor;white-space:nowrap}
+.tag.yeu{color:var(--redtx);background:var(--redbg)} .tag.tb{color:var(--mute)} .tag.kha{color:var(--ok)}
+@media (max-width:560px){.nl div{grid-template-columns:1fr auto}.nl div span.tl{grid-column:1/-1;order:3;color:var(--mute);font-size:13px}}
+.uu{border:1px solid var(--line);background:var(--bg);padding:15px 17px;margin-bottom:8px}
+.uu .so{font-size:12px;letter-spacing:.18em;color:var(--redtx);font-weight:700}
+.uu h4{margin:4px 0 8px;font-size:17px;letter-spacing:-.01em}
+.uu p{font-size:14px;margin:0 0 4px}
+.uu .nho{font-size:13px;color:var(--mute)}
+.sua{border-left:4px solid var(--red);background:var(--redbg);padding:12px 16px;margin:8px 0;font-size:14.5px}
+.mokhoa{border:2px solid var(--red);background:var(--redbg);padding:20px 22px;margin:14px 0 6px}
+.mokhoa h4{margin:0 0 6px;font-size:20px}
+.mokhoa ul{margin:8px 0 14px;padding-left:20px;font-size:14.5px}
+.mokhoa li{margin:3px 0}
+.mokhoa .phu-goi{border-top:1px solid var(--line);margin-top:16px;padding-top:12px;font-size:14px}
+.sau{font-size:13.5px;color:var(--mute);margin-top:10px}
 .diem{display:flex;gap:22px;align-items:center;flex-wrap:wrap;background:var(--card);border:2px solid var(--ink);padding:20px 22px;margin:14px 0 10px}
 .diem .so{font-size:54px;font-weight:800;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .diem .mo{font-size:14px;color:var(--mute);max-width:46ch}
-.thanh{height:10px;background:var(--line2);position:relative;margin-top:10px}
-.thanh i{position:absolute;inset:0 auto 0 0;background:var(--red)}
-.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:16px 0}
-.map .k{border:1px solid var(--line);background:var(--card);padding:14px}
-.map .k h3{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 10px}
-.map .k p{margin:0;font-size:13.5px;display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid var(--line2)}
-.map .k p:last-child{border:0}
-.map .k b{font-weight:700;white-space:nowrap}
-.map .k .do{color:var(--redtx)}
-.uu{border:1px solid var(--line);background:var(--card);padding:18px 20px;margin-bottom:10px}
-.uu .so{font-size:12px;letter-spacing:.18em;color:var(--red);font-weight:700}
-.uu h3{margin:4px 0 8px;font-size:19px;letter-spacing:-.01em}
 .uu ul{margin:0;padding-left:20px;font-size:14.5px;color:var(--ink)}
-.uu li{margin:3px 0}
-.kin{margin-top:14px;border:1px dashed var(--line);background:var(--bg);padding:13px 15px;position:relative}
-.kin .nhan{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:7px;margin-bottom:7px}
-.kin .mo{filter:blur(4px);user-select:none;font-size:14px;line-height:1.5;color:var(--mute)}
-.mokhoa{border:2px solid var(--red);background:var(--redbg);padding:22px 24px;margin:26px 0}
-.mokhoa h3{margin:0 0 8px;font-size:21px}
-.mokhoa ul{margin:10px 0 16px;padding-left:20px;font-size:14.5px}
-.mokhoa .gia{font-size:30px;font-weight:800;letter-spacing:-.02em}
-.sau{font-size:13.5px;color:var(--mute);margin-top:10px}
+.uu h3{margin:4px 0 8px;font-size:19px;letter-spacing:-.01em}
 </style>
 <script>
-/* Máy chủ nhận bài khảo sát. Để trống thì trang vẫn chạy, chỉ không gửi đi —
-   bước sau nối Apps Script vào đây. */
+/* Máy chủ nhận bài khảo sát. Để trống thì trang vẫn chạy, chỉ không gửi đi. */
 const GUI_URL = '';
 
-/* ---------- chấm điểm ----------
-   Năm trục, cộng lại tối đa 100. Trục dữ liệu nặng nhất vì không có dữ liệu sạch
-   thì mọi mức tự chủ phía trên đều không dựng được. */
+/* ---------- số liệu kiến trúc tham chiếu ----------
+   Số khối và số nghiệp vụ đếm từ nv.js; số chuỗi lấy từ ba tài liệu kiến trúc
+   (TM 7, DV 8, SX 9). Nguồn lực quyết định theo NLX.key trong trang mô phỏng. */
+const LOAI = {
+  tmhh: { ten: 'Thương mại & Hàng hóa', chuoi: 7, key: ['von', 'qh'] },
+  dv:   { ten: 'Dịch vụ', chuoi: 8, key: ['ng', 'th'] },
+  sx:   { ten: 'Sản xuất', chuoi: 9, key: ['von', 'tt', 'th'] }
+};
+const NL_TEN = { von: 'Vốn & Tài sản', qh: 'Thị trường & Quan hệ', th: 'Thương hiệu & Uy tín', tt: 'Tri thức & Công nghệ', ng: 'Con người & Văn hóa' };
+const kienTruc = mo => ({ khoi: (KHOI_KS[mo] || []).length, chuoi: (LOAI[mo] || LOAI.tmhh).chuoi, nv: (NV_KS[mo] || []).length });
+const nlKey = mo => (LOAI[mo] || LOAI.tmhh).key;
+const noiNL = ids => ids.map(k => NL_TEN[k].toLowerCase()).join(' và ');
+
+/* Sự cố ở câu 12 rơi vào khối nào, theo loại hình. */
+const SUCO_KHOI = {
+  tmhh: { sotdon:'kv', giaotre:'kv', nhamgia:'kd', congno:'ht', chekhach:'dv', thieuhang:'hd', saichuyenmon:'nh', nghidotxuat:'ht' },
+  dv:   { sotdon:'kd', giaotre:'nl', nhamgia:'kd', congno:'ht', chekhach:'tn', thieuhang:'nl', saichuyenmon:'th', nghidotxuat:'nl' },
+  sx:   { sotdon:'kd', giaotre:'kv', nhamgia:'kd', congno:'ht', chekhach:'kv', thieuhang:'mh', saichuyenmon:'qa', nghidotxuat:'sx' }
+};
+
+/* ---------- điểm sẵn sàng (nhánh đang vận hành) ----------
+   Năm thành phần, mỗi phần 0–100:
+   Dữ liệu   = 0,4 × khách hàng + 0,3 × hàng/lịch/tồn + 0,3 × tiền/công nợ (câu 8);
+               mỗi dòng: một nơi 100 · vài nơi 60 · trong điện thoại 25 · không lưu 0.
+   Quy trình = câu 15 (chưa 10 · vài ghi chú 35 · phần lớn 65 · cập nhật đều 90),
+               trừ 5 cho mỗi loại sự cố từ loại thứ ba trở đi (câu 12).
+   Bộ máy    = câu 11 (về chủ 35 · hay hỏi lại 55 · có quy định 85),
+               trừ 8 cho mỗi việc dừng khi người chủ chốt nghỉ (câu 16, tối đa 24),
+               cộng 10 nếu không việc gì dừng, trừ 5 nếu có người kiêm nhiều vai (câu 3).
+   Công cụ   = tổng điểm câu 7: bảng tính 15 · bán hàng 20 · kế toán 15 · CRM 20 ·
+               gom tin nhắn 15 · đã dùng AI 20 · chủ yếu giấy tờ −15.
+   Thời gian = câu 19 (không có thời gian 30, rào cản khác 65), trừ 15 nếu làm một
+               mình (câu 3), trừ 10 nếu việc lặp lại trên 30 giờ/tuần (câu 10).
+   Mỗi phần chặn trong 0–100.
+   Tổng      = 0,30 Dữ liệu + 0,20 Quy trình + 0,20 Bộ máy + 0,15 Công cụ + 0,15 Thời gian.
+   Giờ: câu 10 quy ra giờ lặp lại (dưới 5 → 3 · 5–15 → 10 · 15–30 → 22 · trên 30 → 36);
+   phần lấy lại được = giờ × (0,35 + điểm/100 × 0,3), trần 62%. */
+const chan = v => Math.max(0, Math.min(100, Math.round(v)));
 function chamDiem(d) {
-  const D = { mot: 30, vainoi: 18, dienthoai: 8, khong: 2 }[d.dulieu] || 2;
-  const diemPm = { excel: 4, banhang: 6, ketoan: 5, crm: 7, chat: 5, ai: 8, giay: -4 };
-  let P = (d.pm || []).reduce((s, k) => s + (diemPm[k] || 0), 0);
-  P = Math.max(0, Math.min(25, P));
-  const N = { '<10': 4, '10-50': 9, '50-200': 13, '200+': 15 }[d.luong] || 4;
-  const C = { 'toi-it': 3, 'toi-vua': 9, 'toi-nhieu': 13, 'nguoi-it': 11, 'nguoi-nhieu': 15 }[d.nangluc] || 3;
-  const K = (d.kenh || []).length >= 3 ? 15 : (d.kenh || []).length >= 2 ? 11 : 7;
-  const diem = Math.round(D + P + N + C + K);
-  const gioBang = { '<5': 3, '5-15': 10, '15-30': 22, '30+': 36 }[d.gio] || 10;
-  // Phần lấy lại được: nền 35%, cộng theo điểm sẵn sàng, trần 62% — không hứa quá.
+  const DL = { mot: 100, vainoi: 60, dienthoai: 25, khong: 0 };
+  const du = chan(0.4 * (DL[d.dl_kh] || 0) + 0.3 * (DL[d.dl_hang] || 0) + 0.3 * (DL[d.dl_tien] || 0));
+  const soSuCo = (d.suco || []).filter(x => x !== 'it').length;
+  const qt = chan(({ chua: 10, ghichu: 35, phanlon: 65, capnhat: 90 }[d.quytrinh] || 10) - 5 * Math.max(0, soSuCo - 2));
+  const dung = (d.dung || []).filter(x => x !== 'khong');
+  const bm = chan(({ toi: 35, hoilai: 55, quydinh: 85 }[d.quyet] || 35)
+    - Math.min(24, 8 * dung.length) + ((d.dung || []).indexOf('khong') >= 0 ? 10 : 0) - (d.kiemvai ? 5 : 0));
+  const PM = { excel: 15, banhang: 20, ketoan: 15, crm: 20, chat: 15, ai: 20, giay: -15 };
+  const cc = chan((d.pm || []).reduce((s, k) => s + (PM[k] || 0), 0));
+  const tg = chan((d.cantro === 'thoigian' ? 30 : 65) - (d.nguoi === '1' ? 15 : 0) - (d.gio === '30+' ? 10 : 0));
+  const diem = chan(0.30 * du + 0.20 * qt + 0.20 * bm + 0.15 * cc + 0.15 * tg);
+  const gioMat = { '<5': 3, '5-15': 10, '15-30': 22, '30+': 36 }[d.gio] || 10;
   const tyLe = Math.min(0.62, 0.35 + diem / 100 * 0.3);
-  return { diem: diem, gioMat: gioBang, gioLay: Math.round(gioBang * tyLe), tyLe: tyLe, truc: { D: D, P: P, N: N, C: C, K: K } };
+  return { diem, gioMat, gioLay: Math.round(gioMat * tyLe), tyLe, thanh: { du, qt, bm, cc, tg } };
+}
+const TEN_THANH = { du: 'Dữ liệu', qt: 'Quy trình', bm: 'Bộ máy', cc: 'Công cụ', tg: 'Thời gian' };
+const VIEC_THANH = { du: 'dọn dữ liệu về một nguồn', qt: 'viết lại quy trình', bm: 'phân quyền duyệt ngoại lệ', cc: 'chọn công cụ nền', tg: 'dành ra thời gian cho việc chuyển đổi' };
+function mucDiem(kq) {
+  const yeu = Object.keys(kq.thanh).sort((a, b) => kq.thanh[a] - kq.thanh[b])[0];
+  if (kq.diem >= 70) return 'nền đã khá, giao việc cho AI được ngay trong quý này';
+  if (kq.diem >= 45) return 'bắt đầu được, cần ' + VIEC_THANH[yeu] + ' trước';
+  return 'còn sớm để giao quyền cho AI, việc đầu tiên là ' + VIEC_THANH[yeu];
 }
 
-/* Thứ tự ưu tiên: việc ngốn thời gian nhất lên đầu, sau đó theo thứ tự khối
-   như trên sơ đồ mô phỏng. */
+/* ---------- mức AI khuyến nghị ----------
+   rec lấy từ DAY_DU (mức cao nhất của các tác vụ AI trong nghiệp vụ), chặn ở L3.
+   Không có DAY_DU thì dùng L2 và ghi rõ là mức mặc định. */
+const MUC_AI = ['AI chưa tham gia, người làm', 'AI quan sát, tổng hợp; người làm và quyết',
+  'AI chuẩn bị trọn, người duyệt trước khi ra ngoài', 'AI làm trong ngưỡng đã duyệt, ngoài ngưỡng chuyển người'];
+function ddCua(id) {
+  const DD = (typeof DAY_DU !== 'undefined' && DAY_DU) ? DAY_DU[dl.mo || 'tmhh'] : null;
+  return DD && DD[id] ? DD[id] : null;
+}
+function recCua(id) {
+  const dd = ddCua(id);
+  return dd && typeof dd.rec === 'number' ? Math.max(0, Math.min(3, dd.rec)) : null;
+}
+
+/* Thứ tự ưu tiên: việc ngốn thời gian nhất lên đầu; sau đó việc nằm ở khối hợp
+   với mục tiêu 90 ngày (câu 18); rồi việc AI gánh được nhiều hơn (rec cao);
+   cuối cùng theo thứ tự khối trên sơ đồ mô phỏng. */
+const KHOI_MUCTIEU = {
+  donhang:  { tmhh: ['kd','kv','dv','mk'], dv: ['kd','nl','tn','mk'], sx: ['kd','hd','sx','kv'] },
+  kiemsoat: { tmhh: ['cl','ht','kv'], dv: ['cl','ht','th'], sx: ['cl','qa','ht','sx'] },
+  morong:   { tmhh: ['cl','mk','kd','nh'], dv: ['cl','mk','tk','kd'], sx: ['cl','kd','hd','mh'] }
+};
 function xepUuTien(d) {
   const thu = k => khoiTheoMo().findIndex(x => x[0] === k);
-  return (d.dau || []).map(timNV).filter(Boolean)
-    .sort((a, b) => (a.id === d.ngonnhat ? -1 : b.id === d.ngonnhat ? 1 : thu(a.khoi) - thu(b.khoi)));
+  const hop = ((KHOI_MUCTIEU[d.muon] || {})[d.mo || 'tmhh']) || [];
+  const r = x => { const v = recCua(x.id); return v == null ? 2 : v; };
+  return (d.dau || []).map(timNV).filter(Boolean).sort((a, b) =>
+    (a.id === d.ngonnhat ? -1 : b.id === d.ngonnhat ? 1 : 0)
+    || ((hop.indexOf(a.khoi) < 0) - (hop.indexOf(b.khoi) < 0))
+    || (r(b) - r(a))
+    || (thu(a.khoi) - thu(b.khoi)));
 }
+
+/* Ước giờ tiết kiệm cho từng việc trong ba việc đầu (ước lượng):
+   giờ lấy lại được (chamDiem.gioLay) × tỷ trọng (việc 1: 50%, việc 2: 30%, việc 3: 20%;
+   ít việc hơn thì chia lại cho đủ 100%) × hệ số mức AI (L0 0 · L1 0,3 · L2 0,6 · L3 1).
+   Hiện thành khoảng ±25%, thấp nhất 1 giờ. */
+function gioViec(kq, i, n, rec) {
+  const tt = [0.5, 0.3, 0.2].slice(0, n), tong = tt.reduce((s, x) => s + x, 0);
+  const h = kq.gioLay * (tt[i] / tong) * [0, 0.3, 0.6, 1][rec];
+  if (h < 0.5) return 'dưới 1 giờ/tuần';
+  const lo = Math.max(1, Math.floor(h * 0.75)), hi = Math.max(lo + 1, Math.ceil(h * 1.25));
+  return lo + '–' + hi + ' giờ/tuần';
+}
+
+/* ---------- năm nguồn lực từ câu 13–17 ---------- */
+function nguonLuc(d) {
+  const key = nlKey(d.mo);
+  const dung = (d.dung || []).filter(x => x !== 'khong');
+  const coChe = (d.suco || []).indexOf('chekhach') >= 0;
+  const ha = dg => coChe ? ({ 'Khá': 'Trung bình', 'Trung bình': 'Yếu' }[dg] || dg) : dg;
+  const rows = [
+    ['von', 'Đủ chi ' + (nhan('tien', d.tien) || '?').toLowerCase() + ' nếu doanh thu dừng',
+      { '<1': 'Yếu', '1-3': 'Yếu', '3-6': 'Trung bình', '6+': 'Khá', chuabiet: 'Chưa đo' }[d.tien]],
+    ['qh', (nhan('khachcu', d.khachcu) || '?') + ' doanh thu từ khách cũ, khách giới thiệu',
+      { '<10': 'Yếu', '10-30': 'Trung bình', '30-60': 'Khá', '60+': 'Khá', chuado: 'Chưa đo' }[d.khachcu]],
+    ['th', 'Điểm đánh giá ' + (nhan('danhgia', d.danhgia) || '?').toLowerCase() + (coChe ? ', có khách chê công khai' : ''),
+      ha({ '4.7+': 'Khá', '4.3-4.6': 'Trung bình', '<4.3': 'Yếu', chuado: 'Chưa đo' }[d.danhgia])],
+    ['tt', 'Quy trình: ' + (nhan('quytrinh', d.quytrinh) || '?').toLowerCase(),
+      { chua: 'Yếu', ghichu: 'Trung bình', phanlon: 'Khá', capnhat: 'Khá' }[d.quytrinh]],
+    ['ng', dung.length ? 'Chủ chốt nghỉ hai tuần thì ' + nhanNhieu('dung', dung).toLowerCase() + ' dừng' : 'Chủ chốt nghỉ hai tuần, không việc gì dừng',
+      dung.length >= 2 ? 'Yếu' : dung.length === 1 ? 'Trung bình' : 'Khá']
+  ];
+  return rows.map(([id, tl, dg]) => ({ id, ten: NL_TEN[id], tl, dg: dg || 'Chưa đo', key: key.indexOf(id) >= 0 }));
+}
+
+/* ---------- hai điều cần sửa trước ----------
+   Năm luật, mỗi luật cho một mức nặng 0–5; lấy hai điều nặng nhất (từ mức 3).
+   Bằng điểm thì giữ thứ tự luật dưới đây. */
+function haiDieuSua(d) {
+  const ds = [];
+  if (d.quyet === 'toi') ds.push([5, 'Mọi việc vượt quy định đang dồn về chủ. Đưa AI vào lúc này chỉ dời nút cổ chai sang chỗ duyệt. Cần viết ra ai được duyệt việc gì, tới ngưỡng tiền nào.']);
+  else if (d.quyet === 'hoilai') ds.push([3, 'Người phụ trách vẫn hay hỏi lại chủ. Cần ghi rõ ngưỡng họ được tự quyết, nếu không AI cũng sẽ phải chờ chủ duyệt.']);
+  const yeu = [['dl_kh', 'khách hàng'], ['dl_hang', 'hàng, lịch, tồn kho'], ['dl_tien', 'tiền, công nợ']]
+    .filter(([k]) => d[k] === 'dienthoai' || d[k] === 'khong').map(x => x[1]);
+  const vai = [['dl_kh'], ['dl_hang'], ['dl_tien']].filter(([k]) => d[k] === 'vainoi').length;
+  if (yeu.length) ds.push([yeu.length >= 2 ? 5 : 4, 'Dữ liệu ' + yeu.join(' và ') + ' đang nằm trong điện thoại, trong đầu hoặc không lưu. AI chưa có nguồn chuẩn để làm việc; cần gom về một nơi trước.']);
+  else if (vai >= 2) ds.push([3, 'Dữ liệu nằm rải ở vài nơi, phải ghép lại khi cần. Cần chọn một nguồn chuẩn cho từng loại trước khi nối AI.']);
+  if (d.tien === '<1' || d.tien === '1-3') ds.push([d.tien === '<1' ? 5 : 4, 'Tiền chỉ đủ chi dưới 3 tháng. Nên đưa việc thu tiền, công nợ, tồn kho lên trước mọi việc mở rộng.']);
+  else if (d.tien === 'chuabiet') ds.push([3, 'Chưa biết tiền đủ chi bao lâu. Cần một bảng dòng tiền theo tuần trước khi chi cho công cụ mới.']);
+  if (d.quytrinh === 'chua') ds.push([4, 'Cách làm việc chưa viết thành quy trình. AI không học được cách làm chỉ nằm trong đầu người; cần viết ba việc ưu tiên thành các bước.']);
+  else if (d.quytrinh === 'ghichu') ds.push([3, 'Mới vài việc có ghi chú. Ba việc ưu tiên cần thành quy trình có điểm kiểm soát trước khi giao cho AI.']);
+  const dung = (d.dung || []).filter(x => x !== 'khong');
+  if (dung.length) ds.push([dung.length >= 2 ? 4 : 3, 'Người chủ chốt là điểm gãy: nghỉ hai tuần thì ' + nhanNhieu('dung', dung).toLowerCase() + ' dừng. Cần người dự phòng hoặc giấy tờ hướng dẫn cho những việc này.']);
+  return ds.map((x, i) => [x[0], i, x[1]]).filter(x => x[0] >= 3).sort((a, b) => b[0] - a[0] || a[1] - b[1]).slice(0, 2).map(x => x[2]);
+}
+
+/* ---------- nhánh khởi sự: năm giả định cần kiểm chứng ----------
+   Mỗi giả định có điểm rủi ro cộng từ câu trả lời; giả định anh chị chọn ở câu
+   "chưa chắc nhất" cộng 2; mỗi nỗi lo liên quan ở câu "ba việc lo nhất" cộng 1.
+   Xếp từ cao xuống, lấy năm. Mức: từ 4 Cao · 2–3 Vừa · dưới 2 Thấp. */
+function giaDinhKS(d) {
+  const lo = d.ks_lo || [], manh = d.ks_manh || [];
+  const g = [
+    { id: 'nguoimua', ten: 'Có đủ người chịu trả tiền',
+      r: ({ '0': 3, '1-5': 2, '6-20': 1, '20+': 0 }[d.ks_khach] || 0) + ({ '0': 2, '1-10': 1 }[d.ks_noichuyen] || 0) + (lo.indexOf('khach') >= 0 ? 1 : 0),
+      thu: 'Bán trước cho 10 người trong 30 ngày: nhận cọc hoặc đơn đặt thật, không tính lời khen.' },
+    { id: 'gia', ten: 'Khách chấp nhận mức giá' + (d.gia ? ' ' + d.gia : ''),
+      r: ({ doan: 3, doithu: 2, chiphi: 2, hoikhach: 1, banthu: 0 }[d.giacs] || 0) + (lo.indexOf('canhtranh') >= 0 ? 1 : 0),
+      thu: 'Chào hai mức giá cho hai nhóm khách, đếm số người đồng ý trả ở mỗi mức.' },
+    { id: 'nguoncung', ten: 'Nguồn hàng, nguồn lực thực hiện ổn định',
+      r: ({ chua: 3, dam: 2, chot: 0 }[d.ks_nguon] || 0) + (lo.indexOf('nguoncung') >= 0 ? 1 : 0),
+      thu: 'Đặt thử một lô nhỏ hoặc làm thử 5 ca thật, ghi thời gian, chi phí và lỗi.' },
+    { id: 'kenh', ten: 'Kênh bán đưa được khách tới với chi phí chịu được',
+      r: ((d.kenh || []).length <= 1 ? 2 : 1) + (d.ks_noichuyen === '0' ? 1 : 0),
+      thu: 'Chạy một kênh với ngân sách nhỏ trong 2 tuần, đo chi phí cho một khách hỏi thật.' },
+    { id: 'von', ten: 'Vốn đủ chạy tới mốc anh chị đặt ra',
+      r: ({ '<100': 2, '100-500': 1, '500-2000': 1, '2000+': 0, chuaro: 3 }[d.ks_von] || 0) + (lo.indexOf('dongtien') >= 0 ? 1 : 0) + (d.ks_moc === 'chua' ? 1 : 0),
+      thu: 'Lập bảng chi 12 tháng theo từng tháng, tìm tháng tiền âm và số khách cần có trước tháng đó.' },
+    { id: 'phep', ten: 'Ngành không vướng giấy phép, điều kiện kinh doanh',
+      r: ({ cochua: 2, chuabiet: 3 }[d.ks_phep] || 0) + (lo.indexOf('phaply') >= 0 ? 1 : 0),
+      thu: 'Lấy danh sách điều kiện từ cơ quan cấp phép hoặc người trong ngành trước khi chi tiền.' },
+    { id: 'doingu', ten: 'Đội ngũ đủ người bán và giữ tiền',
+      r: (manh.indexOf('ban') < 0 ? 2 : 0) + (manh.indexOf('taichinh') < 0 ? 1 : 0) + (d.ks_nguoi6 === '1' ? 1 : 0) + (lo.indexOf('nhansu') >= 0 ? 1 : 0),
+      thu: 'Tự bán 10 đơn đầu và tự ghi sổ thu chi, ghi lại chỗ mình hụt; mảng hụt thì tìm người kiêm hoặc thuê ngoài theo giờ.' }
+  ];
+  g.forEach(x => { if (x.id === d.ks_gd) x.r += 2; });
+  return g.map((x, i) => Object.assign(x, { i })).sort((a, b) => b.r - a.r || a.i - b.i).slice(0, 5)
+    .map(x => Object.assign(x, { muc: x.r >= 4 ? 'Cao' : x.r >= 2 ? 'Vừa' : 'Thấp' }));
+}
+/* Kiến trúc tối thiểu khi khởi sự: khối cần ngay và khối để sau, theo loại hình. */
+const TOI_THIEU = {
+  tmhh: { ngay: ['nh', 'mk', 'kd', 'kv'], sau: ['cl', 'hd', 'dv', 'ht'] },
+  dv:   { ngay: ['tk', 'mk', 'kd', 'th'], sau: ['cl', 'nl', 'tn', 'ht'] },
+  sx:   { ngay: ['kd', 'kt', 'mh', 'sx', 'qa'], sau: ['cl', 'hd', 'tb', 'kv', 'ht'] }
+};
 
 function viet(n) { return n.toLocaleString('vi-VN'); }
 function maHoSo() {
   return 'KS-' + Date.now().toString(36).slice(-5).toUpperCase() + '-' +
     Math.floor(Math.random() * 1296).toString(36).toUpperCase().padStart(2, '0');
 }
+const lienKetGoi = (ma, goi) => `../dang-ky/?ma=${encodeURIComponent(ma)}&goi=${goi}`;
+const ngansachLon = d => ['10-50', '50-200', '200+'].indexOf(d.ngansach) >= 0;
+const tagDG = dg => `<span class="tag ${dg === 'Yếu' ? 'yeu' : dg === 'Khá' ? 'kha' : 'tb'}">${dg}</span>`;
+const LOI_CUOI = 'Báo cáo dựa trên câu trả lời tự khai, chưa kiểm chứng.';
+
+/* ---------- báo cáo nhánh đang vận hành ---------- */
+function baoCaoVH(d, kq, uu, ma) {
+  const mo = d.mo || 'tmhh', kt = kienTruc(mo), key = nlKey(mo);
+  // 3 · bản đồ khối
+  const sc = SUCO_KHOI[mo] || {}, dauSet = new Set(d.dau || []);
+  const khoi = khoiTheoMo().map(([k, ten]) => {
+    const vuong = nvTheoMo().filter(x => x.khoi === k && dauSet.has(x.id)).map(tenNV);
+    const suco = (d.suco || []).filter(s => sc[s] === k).map(s => nhan('suco', s).toLowerCase());
+    const dong = [];
+    if (vuong.length) dong.push('Vướng: ' + vuong.join('; '));
+    if (k === 'cl' && d.quyet === 'toi') dong.push('Mọi việc vượt quy định dồn về chủ');
+    if (suco.length) dong.push('Sự cố hay gặp: ' + suco.join(', '));
+    const lop = (vuong.length || (k === 'cl' && d.quyet === 'toi')) ? 'v' : suco.length ? 's' : 'u';
+    return `<div class="${lop}"><b>${esc(ten)}</b><small>${dong.length ? esc(dong.join(' · ')) : 'Chưa rõ, khảo sát chưa có thông tin'}</small></div>`;
+  }).join('');
+  // 5 · ba việc nên làm trước
+  const ba = uu.slice(0, 3);
+  let coMacDinh = false;
+  const viec = ba.map((x, i) => {
+    let rec = recCua(x.id); if (rec == null) { rec = 2; coMacDinh = true; }
+    const dd = ddCua(x.id) || {};
+    const vd = (dd.ai || []).filter(a => a[1] <= rec).sort((a, b) => b[1] - a[1])[0];
+    return `<div class="uu"><span class="so">VIỆC ${i + 1}${x.id === d.ngonnhat ? ' · NGỐN THỜI GIAN NHẤT' : ''}</span>
+      <h4>${esc(tenNV(x))}</h4>
+      <p><b>AI làm:</b> L${rec} · ${MUC_AI[rec]}${vd ? `. Ví dụ: ${esc(vd[0].toLowerCase())}` : ''}.</p>
+      <p><b>Vướng thì chuyển cho:</b> ${esc(x.vuong)} → ${esc(x.cho)}</p>
+      ${dd.giu ? `<p class="nho">Người luôn giữ: ${esc(dd.giu)}</p>` : ''}
+      <p><b>Ước tiết kiệm:</b> ${gioViec(kq, i, ba.length, rec)}</p></div>`;
+  }).join('');
+  const sua = haiDieuSua(d);
+  const nl = nguonLuc(d);
+  const lon = ngansachLon(d);
+  return `
+  <div class="rep">
+    <div class="rh"><b>Báo cáo ban đầu</b><span>Khảo sát nhanh · mã ${esc(ma)} · ${new Date().toLocaleDateString('vi-VN')}</span></div>
+
+    <h3>1 · Hồ sơ</h3>
+    <div class="kv">
+      <div><span>Loại hình</span><b>${esc(LOAI[mo].ten)}</b></div>
+      <div><span>Ngành</span><b>${esc(d.nganh || '')}</b></div>
+      <div><span>Quy mô</span><b>${esc(nhan('nguoi', d.nguoi))}${d.kiemvai ? ' · có người kiêm vai' : ''}</b></div>
+      <div><span>Doanh thu / tháng</span><b>${esc(nhan('doanhthu', d.doanhthu))}</b></div>
+      <div><span>Đơn, lịch, lệnh / ngày</span><b>${esc(nhan('luong', d.luong))}</b></div>
+    </div>
+    <p><b>Kiến trúc tham chiếu:</b> ${kt.khoi} khối, ${kt.chuoi} chuỗi, ${kt.nv} nghiệp vụ. Nguồn lực quyết định với loại hình này: <b>${noiNL(key)}</b>.</p>
+
+    <h3>2 · Điểm sẵn sàng</h3>
+    <div class="score">
+      <div><div class="big">${kq.diem}<small> / 100</small></div><p class="sau" style="margin:6px 0 0;max-width:30ch">Mức "${esc(mucDiem(kq))}"</p></div>
+      <div class="bars">${Object.keys(TEN_THANH).map(k => `<div class="bar"><span>${TEN_THANH[k]}</span><i class="${kq.thanh[k] < 40 ? 'lo' : ''}" style="--w:${kq.thanh[k]}%"></i><b>${kq.thanh[k]}</b></div>`).join('')}</div>
+    </div>
+
+    <h3>3 · Bản đồ khối</h3>
+    <div class="blocks">${khoi}</div>
+    <p class="sau">Tô đỏ: khối có việc anh chị chọn là đang vướng. Viền đỏ: khối có sự cố hay gặp. Viền đứt: khảo sát chưa có thông tin.</p>
+
+    <h3>4 · Năm nguồn lực</h3>
+    <div class="nl">${nl.map(r => `<div><b>${esc(r.ten)}${r.key ? '<em>Quyết định với loại hình này</em>' : ''}</b><span class="tl">${esc(r.tl)}</span>${tagDG(r.dg)}</div>`).join('')}</div>
+
+    <h3>5 · Ba việc nên làm trước</h3>
+    <p class="sau" style="margin-top:0">Anh chị khai khoảng ${kq.gioMat} giờ mỗi tuần cho việc lặp lại; phần lấy lại được ước khoảng <b>${kq.gioLay} giờ/tuần</b>. Mức AI khuyến nghị tối đa L3.</p>
+    ${viec}
+    ${coMacDinh ? '<p class="sau">Việc có mức AI L2 là mức mặc định, chưa tra được mức khuyến nghị riêng.</p>' : ''}
+
+    <h3>6 · Hai điều cần sửa trước khi đưa AI vào</h3>
+    ${sua.length ? sua.map(t => `<div class="sua">${esc(t)}</div>`).join('') : '<p>Chưa thấy điểm gãy lớn từ câu trả lời. Có thể đi thẳng vào ba việc trên.</p>'}
+
+    <h3>7 · Bước tiếp theo phù hợp</h3>
+    <div class="mokhoa">
+      <h4>LATTICE Scan · 895.000đ</h4>
+      <ul>
+        <li>Không cần gặp Zoom, làm việc qua email. Trong 2 ngày làm việc sau khi thanh toán, LATTICE gửi 5–10 câu hỏi bổ sung chọn theo câu trả lời này và danh sách tài liệu cần gửi.</li>
+        <li>Người LATTICE đọc và duyệt. Báo cáo Scan 5–7 trang giao trong 5 ngày làm việc sau khi đủ tài liệu: bản đồ khối có số của anh chị, ba quy trình ưu tiên vẽ hiện tại và đề xuất người + AI, giờ tiết kiệm và chi phí AI ước tính, sức khỏe năm nguồn lực, rủi ro hóa đơn, thuế, dữ liệu cá nhân, kèm trang mô phỏng riêng.</li>
+        <li>Trừ 100% phí Scan vào Blueprint nếu nâng trong 30 ngày.</li>
+      </ul>
+      <a class="btn do" style="display:inline-block;text-decoration:none" href="${lienKetGoi(ma, 'scan')}">ĐĂNG KÝ LATTICE SCAN →</a>
+      <div class="phu-goi">${lon
+        ? `Ngân sách anh chị dự tính đủ cho bước sâu hơn. <b>LATTICE Blueprint · 2.950.000đ</b> gồm toàn bộ Scan, một buổi Zoom 60 phút và hồ sơ thiết kế 12–16 trang có lộ trình 90 ngày.
+           <div style="margin-top:10px"><a class="btn phu" style="display:inline-block;text-decoration:none" href="${lienKetGoi(ma, 'blueprint')}">ĐĂNG KÝ BLUEPRINT →</a></div>`
+        : `Nếu đã chắc muốn làm: <a href="${lienKetGoi(ma, 'blueprint')}"><b>LATTICE Blueprint · 2.950.000đ</b></a>, có buổi Zoom 60 phút và hồ sơ thiết kế 12–16 trang.`}</div>
+    </div>
+
+    <p class="sau">${LOI_CUOI} Số giờ là ước lượng từ câu 10 và mức chuẩn của loại hình. Mọi trao đổi qua email <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a>.</p>
+  </div>`;
+}
+
+/* ---------- báo cáo nhánh khởi sự ---------- */
+function baoCaoKS(d, ma) {
+  const mo = d.mo || 'tmhh', kt = kienTruc(mo), key = nlKey(mo), tt = TOI_THIEU[mo] || TOI_THIEU.tmhh;
+  const gd = giaDinhKS(d);
+  const manh = d.ks_manh || [];
+  const thieuManh = [['ban', 'bán hàng'], ['sanpham', 'làm sản phẩm'], ['vanhanh', 'vận hành'], ['taichinh', 'tài chính']].filter(x => manh.indexOf(x[0]) < 0).map(x => x[1]);
+  const lon = ngansachLon(d);
+  return `
+  <div class="rep">
+    <div class="rh"><b>Báo cáo ban đầu · khởi sự</b><span>Khảo sát nhanh · mã ${esc(ma)} · ${new Date().toLocaleDateString('vi-VN')}</span></div>
+
+    <h3>1 · Hồ sơ</h3>
+    <div class="kv">
+      <div><span>Giai đoạn</span><b>Đang khởi sự</b></div>
+      <div><span>Loại hình</span><b>${esc(LOAI[mo].ten)}</b></div>
+      <div><span>Ngành</span><b>${esc(d.nganh || '')}</b></div>
+      <div><span>Khách đã trả tiền</span><b>${esc(nhan('ks_khach', d.ks_khach))}</b></div>
+      <div><span>Vốn 12 tháng đầu</span><b>${esc(nhan('ks_von', d.ks_von))}</b></div>
+    </div>
+
+    <h3>2 · Năm giả định cần kiểm chứng</h3>
+    <p class="sau" style="margin-top:0">Xếp từ rủi ro cao xuống. Mỗi giả định kèm một cách kiểm chứng rẻ trong 30 ngày.</p>
+    ${gd.map((x, i) => `<div class="uu"><span class="so">GIẢ ĐỊNH ${i + 1} · RỦI RO ${x.muc.toUpperCase()}</span><h4>${esc(x.ten)}</h4><p><b>Kiểm chứng:</b> ${esc(x.thu)}</p></div>`).join('')}
+
+    <h3>3 · Kiến trúc tối thiểu</h3>
+    <p>Kiến trúc đầy đủ của loại hình này có ${kt.khoi} khối, ${kt.chuoi} chuỗi, ${kt.nv} nghiệp vụ. Lúc khởi sự chỉ cần dựng phần dưới đây; nguồn lực quyết định là <b>${noiNL(key)}</b>.</p>
+    <div class="blocks">
+      ${tt.ngay.map(k => `<div class="v"><b>${esc(tenKhoi(k))}</b><small>Cần ngay</small></div>`).join('')}
+      ${tt.sau.map(k => `<div class="u"><b>${esc(tenKhoi(k))}</b><small>${k === 'ht' ? 'Để sau; lúc đầu chỉ giữ thu chi, hóa đơn, thuế' : 'Để sau'}</small></div>`).join('')}
+    </div>
+
+    <h3>4 · Bộ máy dự kiến</h3>
+    <p>${esc(nhan('ks_nguoi6', d.ks_nguoi6))} trong 6 tháng đầu${d.kiemvai ? ', có người kiêm nhiều vai' : ''}. ${thieuManh.length
+      ? 'Mảng anh chị chưa tự làm tốt: <b>' + esc(thieuManh.join(', ')) + '</b>. Mảng này cần một người kiêm vai hoặc thuê ngoài theo giờ, và là chỗ AI đỡ được phần việc lặp lại.'
+      : 'Anh chị tự làm được cả bốn mảng; rủi ro lớn nhất là quá tải một người.'}</p>
+
+    <h3>5 · Bước tiếp theo phù hợp</h3>
+    <div class="mokhoa">
+      <h4>LATTICE Compass · 1.950.000đ</h4>
+      <ul>
+        <li>Không cần gặp Zoom, làm việc qua email. LATTICE gửi bộ câu hỏi khởi sự, câu bổ sung và danh sách tài liệu ý tưởng (mô tả ý tưởng, khách nhắm tới, giá dự kiến, nguồn cung, vốn) trong 2 ngày làm việc.</li>
+        <li>Báo cáo kiểm chứng 6–8 trang trong 7 ngày làm việc sau khi đủ tài liệu: năm giả định rủi ro nhất xếp hạng, cách kiểm chứng rẻ trong 30 ngày, kiến trúc tối thiểu, bộ máy 1–3 người kiêm vai, chi phí vận hành AI ước tính, và kết luận nên làm, làm nhỏ thử hay chưa nên làm.</li>
+        <li>Trừ 100% phí Compass vào Foundry nếu nâng trong 30 ngày.</li>
+      </ul>
+      <a class="btn do" style="display:inline-block;text-decoration:none" href="${lienKetGoi(ma, 'compass')}">ĐĂNG KÝ LATTICE COMPASS →</a>
+      <div class="phu-goi">${lon
+        ? `Ngân sách anh chị dự tính đủ cho bước sâu hơn. <b>LATTICE Foundry · 4.950.000đ</b> gồm toàn bộ Compass, hai buổi Zoom và bản thiết kế doanh nghiệp từ đầu 15–20 trang có kế hoạch 90 ngày ra mắt.
+           <div style="margin-top:10px"><a class="btn phu" style="display:inline-block;text-decoration:none" href="${lienKetGoi(ma, 'foundry')}">ĐĂNG KÝ FOUNDRY →</a></div>`
+        : `Nếu đã chắc muốn làm: <a href="${lienKetGoi(ma, 'foundry')}"><b>LATTICE Foundry · 4.950.000đ</b></a>, có hai buổi Zoom và bản thiết kế doanh nghiệp từ đầu.`}</div>
+    </div>
+
+    <p class="sau">${LOI_CUOI} Mức rủi ro tính từ câu trả lời, chưa phải kết luận. Mọi trao đổi qua email <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a>.</p>
+  </div>`;
+}
 
 window.dungBaoCao = function (d) {
-  const kq = chamDiem(d), uu = xepUuTien(d), ma = d.ma || maHoSo();
-  d.ma = ma; d.diem = kq.diem; luu();
+  const ks = d.giaidoan === 'ks';
+  const kq = ks ? null : chamDiem(d), uu = ks ? [] : xepUuTien(d), ma = d.ma || maHoSo();
+  d.ma = ma; if (kq) d.diem = kq.diem; luu();
   if (GUI_URL) {
     try {
       fetch(GUI_URL, { method: 'POST', mode: 'no-cors',
@@ -457,95 +924,33 @@ window.dungBaoCao = function (d) {
         body: JSON.stringify(Object.assign({ viec: 'khaoSat' }, d)) });
     } catch (e) {}
   }
-  const theoKhoi = {};
-  nvTheoMo().forEach(x => { (theoKhoi[x.khoi] = theoKhoi[x.khoi] || []).push(x); });
-  const dauSet = new Set(d.dau || []);
-
-  const html = `
-  <div class="bc">
-    <p class="ma">Mã hồ sơ ${ma} · ${esc(d.ten)}${d.congty ? ' · ' + esc(d.congty) : ''}</p>
-    <h2 style="margin-top:6px">Bản đồ hiện trạng bộ máy</h2>
-    <p class="lead">Dựng từ 15 câu anh chị vừa trả lời. Bản đầy đủ đặt mức tự chủ L0–L5 cho từng tác vụ AI trong mỗi nghiệp vụ, kèm việc người giữ và nơi ghi nhận.</p>
-
-    <div class="diem">
-      <div><div class="so">${kq.diem}<span style="font-size:22px;color:var(--mute)">/100</span></div>
-        <div style="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:4px">Điểm sẵn sàng</div></div>
-      <div class="mo">${kq.diem >= 70 ? 'Nền tảng đã khá: dữ liệu và công cụ đủ để giao việc cho AI ngay từ quý này.'
-        : kq.diem >= 45 ? 'Ở mức làm được, nhưng phải dọn dữ liệu và chuẩn hóa vài quy trình trước khi giao quyền cho AI.'
-        : 'Còn sớm để giao quyền. Việc đầu tiên không phải mua công cụ mà là gom dữ liệu về một nơi.'}
-        <div class="thanh"><i style="width:${kq.diem}%"></i></div></div>
-    </div>
-
-    <div class="diem" style="border-width:1px">
-      <div><div class="so">${kq.gioMat}<span style="font-size:20px;color:var(--mute)"> giờ</span></div>
-        <div style="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:4px">mỗi tuần đang mất cho việc lặp lại</div></div>
-      <div class="mo">Với hiện trạng này, phần lấy lại được vào khoảng <b>${kq.gioLay} giờ mỗi tuần</b> — tương đương ${viet(kq.gioLay * 4)} giờ một tháng.
-        Quy ra tiền bao nhiêu thì nằm ở bản đầy đủ, vì còn phụ thuộc giá giờ công của anh chị.</div>
-    </div>
-
-    <h2>Năm việc nên làm trước</h2>
-    <p class="lead" style="margin-bottom:16px">Xếp theo thứ tự nên làm, không phải theo thứ tự anh chị chọn. Việc ngốn thời gian nhất được đẩy lên đầu.</p>
-    ${uu.map((x, i) => `
-      <div class="uu">
-        <span class="so">ƯU TIÊN ${i + 1}${x.id === d.ngonnhat ? ' · NGỐN THỜI GIAN NHẤT' : ''}</span>
-        <h3>${esc(tenNV(x))}</h3>
-        <p style="margin:0 0 4px;font-size:14.5px"><b>Chỗ hay vướng:</b> ${esc(x.vuong)}</p>
-        <p style="margin:0;font-size:13.5px;color:var(--mute)">Vướng thì chuyển cho: ${esc(x.cho)}</p>
-        <div class="kin">
-          <div class="nhan">🔒 Phần đang khoá · AI làm gì · mức cho từng tác vụ · người giữ · giờ tiết kiệm</div>
-          <div class="mo" aria-hidden="true">Nội dung này chỉ có trong bản đầy đủ, không nằm trong trang đang xem.</div>
-        </div>
-      </div>`).join('')}
-
-    <h2>Bộ máy của anh chị theo ${khoiTheoMo().length} khối</h2>
-    <div class="map">
-      ${Object.keys(theoKhoi).map(k => `<div class="k"><h3>${tenKhoi(k)}</h3>
-        ${theoKhoi[k].map(x => `<p><span>${esc(tenNV(x))}</span>${dauSet.has(x.id)
-          ? '<b class="do">đang đau</b>' : '<b style="color:var(--mute)">khoá</b>'}</p>`).join('')}
-      </div>`).join('')}
-    </div>
-    <p class="sau">Trong bản đầy đủ, mỗi tác vụ AI của từng nghiệp vụ có một mức từ L0 đến L5 cho biết hiện AI đang gánh tới đâu và nên nâng lên mức nào; bảng tổng ghi mức cao nhất của các tác vụ trong nghiệp vụ.</p>
-    <p class="sau">Khuyến nghị tối đa L3; L4–L5 hiếm dùng, chỉ cho việc rủi ro thấp, đảo ngược được.</p>
-
-    <div class="mokhoa">
-      <h3>Gói LATTICE Scan</h3>
-      <p style="margin:0 0 4px">Đi sâu hơn bản đồ này cùng chuyên gia LATTICE:</p>
-      <ul>
-        <li>Bảng câu hỏi riêng cho doanh nghiệp của anh chị</li>
-        <li>Một buổi Zoom 60 phút rà từng chỗ đang đau</li>
-        <li>Bản tóm tắt 1–2 trang sau buổi làm việc</li>
-        <li>Kèm theo: báo cáo khảo sát đầy đủ — AI làm gì và ở mức L0–L5 nào cho từng tác vụ trong ${nvTheoMo().length} nghiệp vụ, việc người luôn giữ, nơi ghi nhận</li>
-      </ul>
-      <p class="gia">499.000đ</p>
-      <p style="margin:2px 0 14px;font-size:14px;color:var(--mute)">Không khấu trừ vào hợp đồng sau. Cần hồ sơ 8–12 trang và lộ trình 90 ngày thì xem gói LATTICE Blueprint ở trang đăng ký.</p>
-      <a class="btn do" style="display:inline-block;text-decoration:none" href="../dang-ky/?ma=${encodeURIComponent(ma)}">ĐĂNG KÝ LATTICE SCAN →</a>
-    </div>
-
+  const html = `<div class="bc">
+    <p class="ma">Mã hồ sơ ${esc(ma)} · ${esc(d.ten)}${d.congty ? ' · ' + esc(d.congty) : ''}</p>
+    ${ks ? baoCaoKS(d, ma) : baoCaoVH(d, kq, uu, ma)}
     <p class="sau">${GUI_URL
-      ? 'Bản tóm tắt này đã gửi vào ' + esc(d.email) + '. Anh chị cứ giữ mã hồ sơ <b>' + ma + '</b> để tiếp tục sau.'
-      : 'Kết quả này chỉ hiện trên trang, chưa gửi đi đâu — anh chị lưu hoặc in trang để xem lại. Giữ mã hồ sơ <b>' + ma + '</b>; muốn được tư vấn thì đăng ký Scan hoặc viết thư tới <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a> kèm mã này.'}</p>
-    <p class="sau">Có chỗ nào chưa đúng với thực tế của anh chị? Viết thư cho chúng tôi qua <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a>, chấm lại không mất phí.</p>
+      ? 'Báo cáo này đã gửi vào ' + esc(d.email) + '. Anh chị giữ mã hồ sơ <b>' + esc(ma) + '</b> để tiếp tục sau.'
+      : 'Kết quả này chỉ hiện trên trang, chưa gửi đi đâu. Anh chị lưu hoặc in trang để xem lại, và giữ mã hồ sơ <b>' + esc(ma) + '</b> khi đăng ký hoặc viết thư.'}</p>
+    <p class="sau">Có chỗ nào chưa đúng với thực tế? Viết thư qua <a href="mailto:lattice.consultant@gmail.com">lattice.consultant@gmail.com</a>, chấm lại không mất phí.</p>
   </div>`;
 
   document.querySelector('h1').textContent = 'Kết quả khảo sát';
   document.querySelectorAll('.lead').forEach((p, i) => { if (i < 2) p.remove(); });
-  $('tien').remove(); $('tien-chu').remove();
+  if ($('tien')) $('tien').remove();
+  if ($('tien-chu')) $('tien-chu').remove();
   $('ks').innerHTML = html;
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (laQT) moBanDayDu(d, kq, uu);
+  if (laQT && !ks) moBanDayDu(d, kq, uu);
 };
 
-/* Bản đầy đủ nằm ở file riêng, chỉ tải khi ở chế độ quản trị. Sau này Apps
-   Script sẽ trả file này về sau khi xác nhận khách đã trả phí. */
+/* Bản đầy đủ (NOI_DUNG_DAY_DU trong day-du.js) chỉ hiện ở chế độ quản trị. */
 function moBanDayDu(d, kq, uu) {
   const xong = function () {
     if (typeof window.NOI_DUNG_DAY_DU !== 'function') return;
     const o = document.createElement('div');
     o.className = 'bc';
-    o.innerHTML = '<div class="qt-bang" style="margin-top:30px">PHẦN DƯỚI ĐÂY KHÁCH KHÔNG THẤY · chỉ mở sau khi trả phí</div>'
+    o.innerHTML = '<div class="qt-bang" style="margin-top:30px">PHẦN DƯỚI ĐÂY KHÁCH KHÔNG THẤY · bản đầy đủ để kiểm tra nội bộ</div>'
       + window.NOI_DUNG_DAY_DU(d, kq, uu, tenNV, nvTheoMo);
     document.querySelector('.bc').after(o);
-    document.querySelectorAll('.kin').forEach(function (x) { x.style.display = 'none'; });
   };
   if (typeof window.NOI_DUNG_DAY_DU === 'function') { xong(); return; }
   const s = document.createElement('script');

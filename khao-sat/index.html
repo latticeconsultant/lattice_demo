@@ -46,7 +46,17 @@ h1{font-size:clamp(26px,4.4vw,38px);line-height:1.08;letter-spacing:-.025em;marg
 .tien i.dang{background:var(--red)}
 .tien-chu{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:18px}
 fieldset{border:0;margin:0;padding:0}
-.cau{background:var(--card);border:1px solid var(--line);padding:20px 22px;margin-bottom:12px}
+.cau{background:var(--card);border:1px solid var(--line);padding:20px 22px;margin-bottom:12px;position:relative}
+.cau .hoi{padding-right:46px}
+.hd-nut{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:2px solid var(--ink);
+  background:transparent;color:var(--ink);font:inherit;font-weight:800;font-size:15px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;padding:0}
+.hd-nut:hover,.hd-nut[aria-expanded="true"]{background:var(--ink);color:var(--inv)}
+.hd-nut:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.hd{clear:both;border-left:3px solid var(--ink);background:var(--bg);padding:12px 16px;margin:4px 0 14px;font-size:14px;line-height:1.6}
+.hd[hidden]{display:none}
+.hd .hd-t{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
+.hd p{margin:0 0 6px}.hd ul{margin:4px 0 0;padding-left:18px}.hd li{margin:3px 0}
 .cau legend,.cau .hoi{font-weight:700;font-size:16px;display:block;margin-bottom:4px}
 .cau .goi{font-size:13.5px;color:var(--mute);margin-bottom:14px}
 .chon{display:grid;gap:8px}
@@ -298,6 +308,116 @@ const CAU = [
    ['khachtra','Đủ số khách trả tiền đã đặt ra'],['hoavon','Doanh thu tháng đủ bù chi phí tháng'],
    ['quaylai','Khách mua lại lần hai'],['chua','Chưa đặt mốc']]}
 ];
+/* ---------- hướng dẫn trả lời từng câu ----------
+   Nút "?" ở góc phải mỗi câu mở phần này. vi: câu này dùng để làm gì; ds: cách
+   trả lời cho đúng. Câu có hai nhánh dùng ks cho nhánh khởi sự. */
+const HD = {
+  giaidoan: { vi: 'Chọn bộ câu hỏi. Đang vận hành đi 20 câu về bộ máy đang chạy; khởi sự đi 19 câu kiểm chứng ý tưởng.',
+    ds: ['"Doanh thu đều" là có đơn hoặc hợp đồng gần như mỗi tháng trong 3 tháng gần nhất.',
+         'Đã bán thử vài chục đơn nhưng chưa đều: chọn Đang khởi sự.',
+         'Doanh nghiệp đang chạy nhưng muốn mở mảng mới hoàn toàn: chọn theo mảng muốn hỏi; mảng mới thì chọn Đang khởi sự.'] },
+  q2: { vi: 'Xác định kiến trúc tham chiếu: số khối, chuỗi tạo giá trị và danh sách việc ở câu 9.',
+    ds: ['Thương mại & Hàng hóa: mua về rồi bán lại, có tồn kho (phân phối, bán lẻ, bán sàn, nhập khẩu).',
+         'Dịch vụ: thứ bán là giờ công, chỗ phục vụ hoặc chuyên môn (spa, phòng khám, tư vấn, đào tạo, sửa chữa).',
+         'Sản xuất: tự làm ra sản phẩm hoặc thuê gia công theo công thức của mình rồi xuất kho.',
+         'Làm cả hai: chọn mảng tạo nhiều doanh thu nhất. Ô ngành viết ngắn, đủ để hiểu: "mỹ phẩm bán sàn", "cơ khí chính xác".'] },
+  q3: { vi: 'Ước quy mô bộ máy và chỗ dễ gãy khi một người phải giữ nhiều việc.',
+    ds: ['Đếm người làm toàn thời gian, kể cả chủ. Người bán thời gian hoặc thuê ngoài: hai người tính là một.',
+         'Đánh dấu "kiêm nhiều vai" nếu có ai vừa giữ việc bán hàng vừa giữ tiền, kho hoặc duyệt chi.'] },
+  doanhthu: { vi: 'Ước quy mô để gợi ý gói và mức chi phí AI hợp lý.',
+    ds: ['Lấy trung bình 3–6 tháng gần nhất, tính tiền khách trả, đã gồm VAT nếu có.',
+         'Mùa vụ lệch nhiều thì lấy trung bình cả năm chia 12.'] },
+  kenh: { vi: 'Biết khối Thị trường, Kinh doanh cần chăm những kênh nào.', ks: 'Biết kênh nào cần kiểm chứng chi phí đưa khách tới.',
+    ds: ['Chọn mọi kênh mang lại đơn hoặc khách hỏi thật trong 3 tháng gần nhất, hoặc kênh anh chị chắc sẽ mở.',
+         'Zalo dùng để chăm khách cũ thì vẫn chọn "Facebook, Zalo, TikTok".',
+         'Không chọn kênh chỉ có trang nhưng không có khách.'] },
+  luong: { vi: 'Đo khối lượng việc lặp lại theo từng đơn. Khối lượng càng lớn, việc trả lời khách và xử lý đơn càng đáng giao cho AI.',
+    ds: ['Tính mọi kênh cộng lại: đơn sàn, đơn sỉ, lịch hẹn, lệnh sản xuất trong một ngày làm việc bình thường.',
+         'Lấy số của tháng gần nhất chia cho số ngày làm việc. Ngày cao điểm không tính.'] },
+  pm: { vi: 'Chấm điểm phần Công cụ: nền đã có để nối AI vào.',
+    ds: ['Chỉ chọn công cụ đang dùng hằng tuần, không chọn công cụ đã mua mà bỏ.',
+         '"Đã dùng ChatGPT hoặc công cụ AI" là có người dùng cho việc của công ty ít nhất mỗi tuần.',
+         'Phần mềm bán hàng có kèm kế toán thì chọn cả hai.'] },
+  q8: { vi: 'Chấm điểm phần Dữ liệu, phần nặng nhất (30%) của điểm sẵn sàng. AI chỉ làm đúng khi dữ liệu có một nguồn chuẩn.',
+    ds: ['Một nơi: mọi người tra cùng một phần mềm hoặc một file, số ở đó là số đúng.',
+         'Vài nơi: phải ghép từ hai chỗ trở lên (phần mềm + Sheet + nhóm chat), hay lệch nhau.',
+         'Trong điện thoại, trong đầu: chủ yếu ở tin nhắn, danh bạ hoặc trí nhớ của một người.',
+         'Không chắc thì chọn mức thấp hơn, báo cáo sẽ sát thực tế hơn.'] },
+  dau: { vi: 'Phần quyết định bản đồ khối và ba việc nên làm trước.',
+    ds: ['Chọn việc đang làm chậm, hay sai hoặc tốn người, không chọn việc anh chị muốn làm thêm.',
+         'Gợi ý cách nghĩ: tuần trước việc gì phải làm lại, việc gì khách phàn nàn, việc gì chỉ một người biết làm.',
+         'Không cần đủ năm. Hai đến ba việc chọn đúng tốt hơn năm việc chọn cho đủ.'] },
+  q10: { vi: 'Việc ngốn thời gian nhất luôn đứng đầu ba việc nên làm trước; số giờ dùng để ước giờ lấy lại được.',
+    ds: ['Giờ lặp lại là việc ai làm cũng ra kết quả như nhau: nhập liệu, trả lời câu hỏi giống nhau, đối soát, làm báo cáo.',
+         'Cộng giờ của cả nhóm văn phòng trong một tuần, không chỉ của anh chị.',
+         'Cách ước nhanh: hỏi mỗi người "tuần trước mất bao nhiêu giờ cho việc lặp lại", cộng lại rồi chọn khoảng gần nhất.'] },
+  quyet: { vi: 'Chấm điểm phần Bộ máy và tìm chỗ quyết định đang dồn về một người.',
+    ds: ['Nghĩ tới các việc ngoài khuôn tuần trước: giảm giá ngoài bảng, hoàn tiền, khiếu nại lớn, chi ngoài kế hoạch.',
+         '"Hay hỏi lại tôi" là phần lớn những việc đó vẫn chờ anh chị gật đầu, dù đã có người phụ trách.',
+         'Chỉ chọn "Có quy định rõ" khi quy định đã viết ra, có ngưỡng tiền và ai duyệt.'] },
+  suco: { vi: 'Nối sự cố với việc gây ra nó. Việc là gốc của sự cố được đưa lên ba việc nên làm trước.',
+    ds: ['Chỉ chọn sự cố lặp lại từ hai lần trở lên trong 3 tháng.',
+         'Nhầm giá gồm áp sai bảng giá đại lý, sai khuyến mãi, sai báo giá.',
+         'Thiếu hàng hoặc kín lịch: hết hàng bán chạy, khách phải chờ hoặc bỏ đi.'] },
+  tien: { vi: 'Đánh giá nguồn lực Vốn & Tài sản. Tiền mỏng thì việc thu tiền, công nợ, tồn kho được ưu tiên.',
+    ds: ['Lấy tiền mặt và tiền tài khoản hiện có, chia cho chi phí cố định một tháng (lương, thuê, công cụ, trả nợ).',
+         'Không tính tiền khách còn nợ hay hàng tồn, vì chưa thu về được ngay.'] },
+  khachcu: { vi: 'Đánh giá nguồn lực Thị trường & Quan hệ: doanh nghiệp giữ được khách tới đâu.',
+    ds: ['Tính phần doanh thu từ người đã mua trước đây hoặc được khách cũ giới thiệu.',
+         'Không có số: xem 20 đơn gần nhất, đếm đơn của khách cũ rồi quy ra phần trăm.'] },
+  quytrinh: { vi: 'Chấm điểm phần Quy trình và nguồn lực Tri thức. AI chỉ học được việc đã viết thành các bước.',
+    ds: ['"Có quy trình" là có văn bản hoặc file người mới đọc vào làm được, không cần hỏi lại.',
+         'Vài việc có ghi chú: một ít hướng dẫn rời trong nhóm chat hoặc sổ tay.'] },
+  dung: { vi: 'Đánh giá nguồn lực Con người: chỗ gãy khi người chủ chốt vắng.',
+    ds: ['Hình dung người giữ nhiều việc nhất (thường là anh chị) nghỉ hẳn hai tuần, không liên lạc được.',
+         'Chọn việc sẽ dừng hoặc phải chờ người đó về, không chọn việc chỉ chậm hơn một chút.',
+         'Duyệt chi dừng nghĩa là quyền chưa được giao; báo cáo sẽ gộp ý này vào điều cần sửa về quyền.'] },
+  danhgia: { vi: 'Đánh giá nguồn lực Thương hiệu & Uy tín.',
+    ds: ['Lấy điểm trung bình ở kênh có nhiều đánh giá nhất (sàn, Google, fanpage).',
+         'Nhiều kênh thì lấy trung bình theo số lượt đánh giá. Chưa có kênh nào có điểm: chọn Chưa đo.'] },
+  muon: { vi: 'Xếp thứ tự ba việc theo mục tiêu 90 ngày; việc thuộc khối hợp mục tiêu được cộng điểm.',
+    ds: ['Chọn một điều, điều mà nếu đạt thì 90 ngày tới coi như thành công.',
+         'Lấy lại thời gian: anh chị đang là người làm việc lặp lại nhiều nhất.',
+         'Kiểm soát bộ máy: việc hay sót, phải hỏi lại, không biết ai đang làm gì.'] },
+  muonks: { vi: 'Xếp thứ tự việc nên làm trong 90 ngày đầu.',
+    ds: ['Chọn một điều. Chưa có ai trả tiền thì gần như luôn là "Có những khách trả tiền đầu tiên".'] },
+  cantro: { vi: 'Điều chỉnh lời khuyên và phần Thời gian của điểm sẵn sàng.',
+    ds: ['Chọn rào cản lớn nhất ngay lúc này, không phải rào cản có thể gặp sau này.',
+         '"Không có thời gian làm" bị trừ điểm Thời gian, vì chuyển đổi cần người dành ra vài giờ mỗi tuần.'] },
+  ngansach: { vi: 'Gợi ý gói và cách làm vừa túi tiền.',
+    ds: ['Tính cả tiền công cụ, tư vấn và giờ công của người trong công ty trong 3 tháng đầu.',
+         'Chưa nghĩ tới cũng được; báo cáo sẽ gợi ý bước nhỏ nhất.'] },
+  ks_khach: { vi: 'Bằng chứng mạnh nhất cho giả định "có người chịu mua".',
+    ds: ['Chỉ tính người đã trả tiền hoặc đặt cọc thật. Lời khen, lượt thích, lời hứa không tính.',
+         'Người quen mua ủng hộ vẫn tính, nhưng nhớ con số này khi đọc báo cáo.'] },
+  ks_noichuyen: { vi: 'Đo anh chị đã hỏi thị trường kỹ tới đâu trước khi bỏ vốn.',
+    ds: ['Tính người anh chị đã hỏi trực tiếp về nhu cầu: gặp, gọi hoặc nhắn trao đổi qua lại.',
+         'Không tính lượt xem, lượt thích hay khảo sát gửi đại trà không ai trả lời.'] },
+  ks_gia: { vi: 'Kiểm chứng giả định giá. Giá chỉ dựa vào ước đoán là rủi ro cao nhất.',
+    ds: ['Ghi giá một đơn vị bán như khách thấy: một hộp, một buổi, một gói tháng.',
+         'Chọn mức căn cứ mạnh nhất anh chị thật sự có. Đã bán thử ở giá này mạnh hơn hỏi khách.'] },
+  ks_gd: { vi: 'Giả định anh chị chọn được cộng điểm rủi ro, nên được kiểm chứng trước.',
+    ds: ['Chọn giả định mà nếu sai thì cả kế hoạch hỏng, không phải giả định khó nhất.'] },
+  ks_nguon: { vi: 'Đánh giá rủi ro nguồn cung hoặc nguồn lực thực hiện.',
+    ds: ['Đã chốt: có báo giá, đơn tối thiểu, thời gian giao và điều khoản lỗi bằng văn bản.',
+         'Đang đàm phán: đã có ít nhất một bên trả lời cụ thể về giá và số lượng.'] },
+  ks_von: { vi: 'Ước số tháng chạy được trước khi có lãi.',
+    ds: ['Tính số tiền đã sẵn sàng bỏ vào trong 12 tháng đầu, gồm cả lô hàng đầu, thuê chỗ, lương.',
+         'Không tính khoản vay chưa được duyệt.'] },
+  ks_nguoi6: { vi: 'Dựng bộ máy tối thiểu và chỗ AI nên đỡ việc.',
+    ds: ['Đếm người làm toàn thời gian dự kiến, kể cả nhà sáng lập. Thuê ngoài theo giờ không tính.'] },
+  ks_manh: { vi: 'Tìm mảng còn hụt để đề xuất người kiêm, thuê ngoài hoặc AI hỗ trợ.',
+    ds: ['Chọn mảng anh chị đã làm tốt ở công việc trước hoặc đã tự làm có kết quả.',
+         'Mảng không chọn là mảng báo cáo sẽ đề xuất cách bù.'] },
+  ks_phep: { vi: 'Xem ngành có điều kiện kinh doanh cần làm trước khi chi tiền.',
+    ds: ['Ví dụ ngành cần điều kiện: thực phẩm, mỹ phẩm, y tế, giáo dục, tài chính, vận tải.',
+         'Không chắc thì chọn Chưa tìm hiểu; báo cáo sẽ đưa việc này vào danh sách kiểm chứng.'] },
+  ks_lo: { vi: 'Mỗi nỗi lo được cộng vào giả định liên quan để xếp hạng rủi ro.',
+    ds: ['Chọn tối đa ba điều anh chị thật sự mất ngủ vì nó.'] },
+  ks_moc: { vi: 'Đặt điều kiện chuyển từ "làm nhỏ để thử" sang "làm thật".',
+    ds: ['Mốc tốt là con số đo được trong 3–6 tháng: số khách trả tiền, doanh thu tháng, tỷ lệ mua lại.',
+         'Chưa đặt mốc: báo cáo sẽ đề xuất một mốc theo loại hình.'] }
+};
 /* Thứ tự câu theo từng nhánh, chia năm phần A–E. */
 const BO = {
   vh: [['giaidoan','q2','q3','doanhthu'], ['kenh','luong','pm','q8','dau','q10'], ['quyet','suco'],
@@ -352,8 +472,12 @@ function ve(cuon) {
 
 function oCau(c) {
   const don = !c.con;
+  const h = HD[c.id], vi = h && nhanh() === 'ks' && h.ks ? h.ks : h && h.vi;
   return `<fieldset class="cau" data-cau="${c.id}"><legend class="hoi"><span class="stt">Câu ${soCau(c.id)} / ${dsId().length}</span>${esc(hoiCua(c))}</legend>`
+    + (h ? `<button type="button" class="hd-nut" aria-expanded="false" aria-controls="hd-${c.id}" title="Hướng dẫn trả lời câu này" aria-label="Hướng dẫn trả lời câu này">?</button>
+` : '')
     + (c.goi ? `<p class="goi">${esc(c.goi)}</p>` : '')
+    + (h ? `<div class="hd" id="hd-${c.id}" hidden><p class="hd-t">Hướng dẫn trả lời</p><p><b>Câu này dùng để:</b> ${esc(vi)}</p><ul>${h.ds.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : '')
     + conCua(c).map(s => oCon(s, don)).join('') + '</fieldset>';
 }
 
@@ -480,6 +604,11 @@ $('toi').addEventListener('click', function () {
   gui();
 });
 $('lui').addEventListener('click', function () { if (phan > 0) { phan--; ve(); } });
+$('noi').addEventListener('click', function (e) {
+  const n = e.target.closest('.hd-nut'); if (!n) return;
+  const o = document.getElementById(n.getAttribute('aria-controls')), mo = n.getAttribute('aria-expanded') !== 'true';
+  n.setAttribute('aria-expanded', mo ? 'true' : 'false'); o.hidden = !mo;
+});
 
 /* ---------- gửi ---------- */
 function gui() {

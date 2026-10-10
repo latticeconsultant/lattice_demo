@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LATTICE Compass · Công ty ABZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&display=swap">
+<style>
+/* KHUÔN CHUNG cho mọi tài liệu mẫu gửi khách. Trang giấy A4 xếp dọc trên nền xám; in ra mỗi .trang một tờ. */
+:root{--paper:#FFFFFF;--desk:#E9E7E6;--ink:#201E1D;--mute:#5E5A58;--line:#D3CFCD;--soft:#F3F2F2;--red:#EC3013;--redtx:#B3200A;--redbg:#FBE3DE;--ok:#2E6B4F;--okbg:#DCEBE2;--warn:#8A5A00;--warnbg:#F6E9CC;
+  --f:'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--desk);color:var(--ink);font-family:var(--f);font-size:10.5pt;line-height:1.5}
+.trang{width:210mm;min-height:297mm;margin:24px auto;background:var(--paper);padding:18mm 18mm 22mm;position:relative;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+@media (max-width:820px){.trang{width:auto;min-height:0;margin:12px;padding:22px 18px 40px}}
+@media print{body{background:#fff}.trang{margin:0;box-shadow:none;page-break-after:always;min-height:auto}}
+/* đầu trang, chân trang */
+.dau{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:14px;font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.dau b{color:var(--ink);letter-spacing:.18em}
+.dau .logo{display:flex;align-items:center;gap:8px}
+.chan{position:absolute;left:18mm;right:18mm;bottom:10mm;display:flex;justify-content:space-between;font-size:7.5pt;color:var(--mute);border-top:1px solid var(--line);padding-top:5px}
+@media (max-width:820px){.chan{left:18px;right:18px;bottom:12px}}
+/* bìa */
+.bia{display:flex;flex-direction:column;justify-content:space-between}
+.bia .tem{display:inline-block;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--warn);border:1px solid currentColor;padding:3px 8px}
+.bia h1{font-size:32pt;line-height:1.02;font-weight:800;letter-spacing:-.02em;margin:18mm 0 6mm;font-stretch:88%}
+.bia .phu{font-size:13pt;color:var(--mute);max-width:130mm}
+.bia dl{display:grid;grid-template-columns:42mm 1fr;gap:4px 10px;font-size:10pt;margin-top:14mm;border-top:2px solid var(--ink);padding-top:8px}
+.bia dt{color:var(--mute)} .bia dd{margin:0;font-weight:600}
+/* chữ */
+h2{font-size:16pt;font-weight:800;letter-spacing:-.015em;margin:0 0 8px}
+h3{font-size:11.5pt;font-weight:800;margin:14px 0 6px}
+p{margin:0 0 8px}
+.so{font-variant-numeric:tabular-nums}
+.nho{font-size:8.5pt;color:var(--mute)}
+ul,ol{margin:4px 0 10px;padding-left:18px} li{margin:2px 0}
+/* bảng */
+table{width:100%;border-collapse:collapse;font-size:9pt;margin:6px 0 12px}
+th,td{border:1px solid var(--line);padding:5px 7px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-size:8pt;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.bang-cuon{overflow-x:auto}
+/* khối nhấn */
+.tomtat{border:2px solid var(--ink);padding:10px 12px;margin:8px 0 12px}
+.canh{border-left:4px solid var(--red);background:var(--redbg);padding:8px 12px;margin:8px 0 12px}
+.ok{color:var(--ok)} .vang{color:var(--warn)} .do{color:var(--redtx)}
+.pill{display:inline-block;font-size:7.5pt;font-weight:700;letter-spacing:.04em;padding:1px 6px;border:1px solid currentColor;white-space:nowrap}
+.pill.do{background:var(--redbg)} .pill.vang{background:var(--warnbg)} .pill.ok{background:var(--okbg)}
+.o-luoi{display:grid;grid-template-columns:repeat(auto-fit,minmax(42mm,1fr));gap:6px;margin:6px 0 12px}
+.o-luoi>div{border:1px solid var(--line);padding:7px 9px}
+.o-luoi span{display:block;font-size:7.5pt;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.o-luoi b{font-size:12pt}
+.thanh{display:grid;grid-template-columns:30mm 1fr 10mm;gap:6px;align-items:center;font-size:9pt;margin:3px 0}
+.thanh i{display:block;height:7px;background:var(--soft);position:relative}
+.thanh i::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--ink)}
+.thanh i.yeu::after{background:var(--red)}
+/* sơ đồ luồng (dùng HTML hoặc SVG nội tuyến; mũi tên → ) */
+.luong{display:flex;flex-wrap:wrap;gap:4px;align-items:stretch;margin:6px 0 10px;font-size:8.5pt}
+.luong>div{border:1px solid var(--ink);padding:5px 7px;flex:1 1 30mm;min-width:28mm}
+.luong>div.ai{border-style:dashed} .luong>div.nguoi{border-color:var(--red);background:var(--redbg)}
+.luong>span{align-self:center;color:var(--mute)}
+</style>
+</head>
+
+<body>
+<style>.ve-mau{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#201E1D;color:#fff;font:600 12px/1.4 'Archivo',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:10px 16px}.ve-mau a{color:#fff;text-decoration:none}.ve-mau a:hover{text-decoration:underline}@media print{.ve-mau{display:none}}</style>
+<nav class="ve-mau"><a href="./">← Tất cả mẫu hồ sơ</a><span><a href="../dang-ky/">Đăng ký gói</a> · <a href="../">lattice.business</a></span></nav>
+
+
+<!-- ============ TRANG 1 · EMAIL XÁC NHẬN THANH TOÁN ============ -->
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.6 17.4 10 10 17.4 2.6 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Email 1 · LTC14102290</span></div>
+  <p><span class="pill vang">HỒ SƠ MẪU · DOANH NGHIỆP HƯ CẤU</span></p>
+  <h2>Xác nhận thanh toán LATTICE Compass và lộ trình làm việc</h2>
+  <div class="bang-cuon"><table>
+    <tr><th style="width:24mm">Từ</th><td>LATTICE Next Solutions &lt;lattice.consultant@gmail.com&gt;</td></tr>
+    <tr><th>Đến</th><td>Anh Trần Minh An, chị Lê Thu Hà &lt;nhom.abz@example.com&gt;</td></tr>
+    <tr><th>Ngày gửi</th><td>Thứ Tư, 14/10/2026, 16:20</td></tr>
+    <tr><th>Tiêu đề</th><td><b>[LTC14102290] Đã nhận thanh toán LATTICE Compass. Lộ trình 14/10 → 28/10/2026</b></td></tr>
+  </table></div>
+
+  <p>Chào anh An, chị Hà. LATTICE đã nhận khoản thanh toán cho gói <b>LATTICE Compass</b> lúc 15:02 ngày 14/10/2026. Mọi trao đổi về sau xin ghi mã <b>LTC14102290</b> ở tiêu đề.</p>
+
+  <div class="o-luoi">
+    <div><span>Số tiền</span><b class="so">1.950.000đ</b><br><span class="nho">đã gồm VAT 10%</span></div>
+    <div><span>Nội dung chuyển khoản</span><b>COMPASS</b></div>
+    <div><span>Mã hồ sơ</span><b class="so">LTC14102290</b></div>
+    <div><span>Hình thức</span><b>Qua email</b><br><span class="nho">không có buổi Zoom</span></div>
+  </div>
+  <p class="nho">Đây là phí tạo lập hồ sơ và quản lý, không phải phí tư vấn theo giờ. Hóa đơn điện tử gửi qua email trong 3 ngày làm việc.</p>
+
+  <h3>Lộ trình</h3>
+  <div class="bang-cuon"><table>
+    <tr><th style="width:34mm">Ngày</th><th>Việc</th></tr>
+    <tr><td class="so">14/10/2026</td><td>LATTICE xác nhận thanh toán, mở hồ sơ (email này)</td></tr>
+    <tr><td class="so">Đến hết 15/10/2026</td><td>LATTICE gửi 8 câu hỏi bổ sung và danh sách tài liệu ý tưởng (2 ngày làm việc)</td></tr>
+    <tr><td>Khi anh chị sẵn sàng</td><td>Anh chị trả lời, gửi tài liệu; ngày đủ tài liệu là ngày bắt đầu tính hạn</td></tr>
+    <tr><td>7 ngày làm việc sau khi đủ</td><td>LATTICE giao <b>Báo cáo kiểm chứng 6–8 trang</b>. Ví dụ: đủ thứ Hai 19/10 thì giao chậm nhất thứ Tư 28/10/2026</td></tr>
+    <tr><td>14 ngày sau khi giao</td><td>Hỏi đáp qua email một lần, tối đa 3 câu</td></tr>
+    <tr><td class="so">Đến hết 13/11/2026</td><td>Hạn trừ 100% phí Compass nếu nâng lên LATTICE Foundry (30 ngày kể từ ngày thanh toán)</td></tr>
+  </table></div>
+  <p><b>Báo cáo trả lời một câu chính:</b> với 1,8 tỷ, nên làm, làm nhỏ để thử, hay chưa nên làm? Nếu chưa nên, báo cáo nói thẳng.</p>
+
+  <h3>Chính sách phí</h3>
+  <ul>
+    <li>Trước khi LATTICE gửi câu hỏi bổ sung: đổi ý thì hoàn 100%. Đã gửi câu hỏi: không hoàn; chưa kịp trả lời thì bảo lưu 90 ngày.</li>
+    <li>LATTICE trễ bất kỳ hạn nào ở trên: hoàn 100%, hoặc nâng lên Foundry không thu thêm, anh chị chọn.</li>
+    <li>Kết luận bất lợi, kể cả khuyên chưa nên bắt đầu, không thuộc diện hoàn phí.</li>
+  </ul>
+  <p><b>Bảo mật:</b> tài liệu chỉ gửi qua email này hoặc thư mục chia sẻ riêng của hồ sơ. File có thông tin người mua (tên, số điện thoại, địa chỉ) xin che trước khi gửi; không gửi mật khẩu sàn, ngân hàng. LATTICE chỉ làm việc qua <b>lattice.consultant@gmail.com</b>; thư xưng là LATTICE từ địa chỉ khác, anh chị bỏ qua. Kèm thư: cam kết bảo mật CKBM-ABZ-261014.</p>
+  <p>Trân trọng,<br><b>Phan Thu Trang</b> — tư vấn khởi sự, LATTICE Next Solutions</p>
+
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261014 · chỉ dành cho ABZ</span><span>Trang 1 / 12</span></div>
+</section>
+
+<!-- ============ TRANG 2 · EMAIL CÂU HỎI BỔ SUNG ============ -->
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.6 17.4 10 10 17.4 2.6 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Email 2 · LTC14102290</span></div>
+  <h2>Câu hỏi bổ sung</h2>
+  <div class="bang-cuon"><table>
+    <tr><th style="width:24mm">Từ</th><td>LATTICE Next Solutions &lt;lattice.consultant@gmail.com&gt;</td></tr>
+    <tr><th>Đến</th><td>Anh Trần Minh An, chị Lê Thu Hà &lt;nhom.abz@example.com&gt;</td></tr>
+    <tr><th>Ngày gửi</th><td>Thứ Năm, 15/10/2026, 10:05</td></tr>
+    <tr><th>Tiêu đề</th><td><b>[LTC14102290] 8 câu hỏi bổ sung và danh sách tài liệu</b></td></tr>
+  </table></div>
+  <p>Chào anh An, chị Hà. Từ phiếu khảo sát khởi sự anh chị đã điền, LATTICE chọn 8 câu dưới đây. Câu nào phiếu đã trả lời đủ rõ thì không hỏi lại. Trả lời ngắn, có số là đủ; chưa biết thì ghi "chưa biết", đừng đoán cho đẹp.</p>
+  <div class="bang-cuon"><table>
+    <tr><th style="width:7mm">#</th><th>Câu hỏi</th><th style="width:62mm">Vì sao hỏi</th></tr>
+    <tr><td>1</td><td>Trong 120 đơn bán thử, bao nhiêu đơn đến từ người quen, đồng nghiệp cũ, và bao nhiêu từ người lạ qua quảng cáo? Đã chi bao nhiêu cho quảng cáo?</td><td>Đơn của người quen không chứng minh được giá và nhu cầu trên sàn. Tiền quảng cáo chia cho số đơn người lạ cho biết chi phí có một khách.</td></tr>
+    <tr><td>2</td><td>Mức 420.000đ/đơn so với cùng loại hàng đang bán trên Shopee, TikTok Shop thế nào? Cho 3 ví dụ cụ thể.</td><td>Anh chị đánh dấu giá là giả định chưa chắc nhất. Cần biết mình đứng ở đâu giữa hàng rẻ không thương hiệu và hàng chính hãng.</td></tr>
+    <tr><td>3</td><td>Ba nhà cung cấp: đơn tối thiểu, điều khoản thanh toán, điều khoản đổi hàng lỗi, giao trễ của từng nơi?</td><td>Lô tối thiểu 80–150 triệu và 35–50 ngày hàng về quyết định bao nhiêu vốn nằm ở hàng trước khi bán được đơn đầu.</td></tr>
+    <tr><td>4</td><td>Anh chị định chia 1,8 tỷ thế nào trong 12 tháng: lô nhập đầu, kho, người, quảng cáo, dự phòng?</td><td>Để dựng dòng tiền theo tháng và tìm tháng tiền có thể thiếu.</td></tr>
+    <tr><td>5</td><td>Điều kiện 4 cửa hàng đồng ý ký gửi là gì? 11 cửa hàng còn lại từ chối vì sao, họ đòi điều kiện gì?</td><td>Ký gửi chưa phải là mua. Mốc "10 đại lý trả đúng hạn" cần biết khoảng cách từ ký gửi đến mua đứt.</td></tr>
+    <tr><td>6</td><td>Từ nay đến tháng 3/2027, mỗi người dành được bao nhiêu giờ mỗi tuần? Ai còn đang đi làm?</td><td>Bộ máy 1–3 người chỉ chạy được nếu biết thật có bao nhiêu giờ người.</td></tr>
+    <tr><td>7</td><td>Trong 120 đơn, mấy mã hàng chiếm phần lớn số đơn? Gửi kèm số đơn theo từng mã.</td><td>Lô nhập đầu chỉ nên gồm những mã đã có người mua thật; mã còn lại dễ thành hàng chậm.</td></tr>
+    <tr><td>8</td><td>Nhà cung cấp đã có giấy kiểm nghiệm cho hàng tiếp xúc thực phẩm (nồi, chảo, hộp bảo quản) chưa? Anh chị đã tìm hiểu thủ tục công bố, nhãn phụ tiếng Việt chưa?</td><td>Hàng nhập để chứa, nấu thực phẩm thường có thủ tục riêng trước khi bán. Thiếu giấy tờ thì lô hàng có thể kẹt ở khâu thông quan hoặc bị sàn gỡ.</td></tr>
+  </table></div>
+
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261014 · chỉ dành cho ABZ</span><span>Trang 2 / 12</span></div>
+</section>
+
+<!-- ============ EMAIL 2 (TIẾP) · TÀI LIỆU ============ -->
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.6 17.4 10 10 17.4 2.6 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Email 2 (tiếp) · LTC14102290</span></div>
+  <h2>Tài liệu ý tưởng cần gửi</h2>
+  <div class="bang-cuon"><table>
+    <tr><th style="width:7mm">#</th><th>Tài liệu</th><th style="width:52mm">Ghi chú</th></tr>
+    <tr><td>1</td><td>Mô tả ý tưởng 1–2 trang: bán gì, cho ai, khác hàng rẻ trên sàn ở điểm nào, kế hoạch nhãn riêng</td><td>Viết tay chụp lại cũng được</td></tr>
+    <tr><td>2</td><td>Mô tả khách nhắm tới: ai mua trên sàn, ai là cửa hàng gia dụng, mua bao nhiêu một lần</td><td>Ghi điều anh chị đã thấy, không cần nghiên cứu thị trường</td></tr>
+    <tr><td>3</td><td>Bảng giá dự kiến cho từng mã, kèm giá 2–3 đối thủ trên sàn cho cùng loại</td><td>Có đường dẫn gian hàng đối thủ càng tốt</td></tr>
+    <tr><td>4</td><td>Báo giá của 3 nhà cung cấp (Hàn Quốc 1, Trung Quốc 2)</td><td>Che tên người liên hệ nếu muốn</td></tr>
+    <tr><td>5</td><td>Kết quả bán thử 120 đơn: file xuất đơn có mã hàng, giá, ngày, khách mới hay cũ</td><td><b>Che tên, số điện thoại, địa chỉ người mua</b></td></tr>
+    <tr><td>6</td><td>Bảng vốn: ai góp bao nhiêu, dự kiến chi 12 tháng theo hạng mục</td><td>Số tròn triệu là đủ</td></tr>
+    <tr><td>7</td><td>Danh sách 15 cửa hàng đã gặp: khu vực, kết quả, điều kiện họ đưa ra</td><td>Không cần tên chủ cửa hàng</td></tr>
+  </table></div>
+  <p class="nho">Gửi bằng cách trả lời email này. Đủ tài liệu ngày nào, LATTICE xác nhận ngày đó và tính 7 ngày làm việc để giao báo cáo. Liên hệ duy nhất: lattice.consultant@gmail.com. — Phan Thu Trang, tư vấn khởi sự</p>
+
+  <h3 style="margin-top:16px">Ghi nhận của LATTICE: tài liệu đã nhận</h3>
+  <p class="nho">Cập nhật vào hồ sơ ngày 19/10/2026, gửi kèm email xác nhận "đã đủ tài liệu, báo cáo giao chậm nhất 28/10/2026".</p>
+    <div class="bang-cuon"><table>
+    <tr><th>Tài liệu</th><th style="width:28mm">Ngày nhận</th><th style="width:44mm">Tình trạng</th></tr>
+    <tr><td>Mô tả ý tưởng (2 trang)</td><td class="so">17/10/2026</td><td class="ok">Đủ</td></tr>
+    <tr><td>Mô tả khách nhắm tới</td><td class="so">17/10/2026</td><td class="ok">Đủ</td></tr>
+    <tr><td>Bảng giá dự kiến 12 mã + giá đối thủ</td><td class="so">19/10/2026</td><td class="ok">Đủ</td></tr>
+    <tr><td>Báo giá 3 nhà cung cấp</td><td class="so">17/10/2026</td><td class="vang">Đủ, TQ2 thiếu điều khoản hàng lỗi</td></tr>
+    <tr><td>File 120 đơn bán thử (đã che thông tin người mua)</td><td class="so">19/10/2026</td><td class="ok">Đủ</td></tr>
+    <tr><td>Bảng vốn 1,8 tỷ và kế hoạch chi</td><td class="so">19/10/2026</td><td class="ok">Đủ</td></tr>
+    <tr><td>Danh sách 15 cửa hàng đã gặp</td><td class="so">19/10/2026</td><td class="ok">Đủ</td></tr>
+  </table></div>
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261014 · chỉ dành cho ABZ</span><span>Trang 3 / 12</span></div>
+</section>
+
+<!-- ============ TRANG 3 · TRẢ LỜI CỦA HAI NHÀ SÁNG LẬP ============ -->
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.6 17.4 10 10 17.4 2.6 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ đầu vào · LTC14102290</span></div>
+  <h2>Trả lời của anh An và chị Hà (tóm tắt)</h2>
+  <p class="nho">Nhận ngày thứ Bảy 17/10/2026. Tài liệu đủ ngày thứ Hai 19/10/2026 → hạn giao báo cáo 28/10/2026. LATTICE tóm tắt lại, giữ nguyên số anh chị đưa.</p>
+  <div class="bang-cuon"><table>
+    <tr><th style="width:7mm">#</th><th>Trả lời tóm tắt</th></tr>
+    <tr><td>1</td><td>Khoảng 45 đơn từ người quen và đồng nghiệp cũ của chị Hà; 75 đơn từ người lạ qua quảng cáo Facebook, đã chi <b>6 triệu</b>. 9 đơn là khách quay lại mua lần hai. (LATTICE tính: 6.000.000 ÷ 75 = <b>80.000đ</b> cho một đơn người lạ, bằng 19% giá đơn.)</td></tr>
+    <tr><td>2</td><td>Chảo chống dính Hàn 28 cm: shop chính hãng bán 450.000–520.000đ; hàng Trung Quốc không thương hiệu cùng cỡ 150.000–220.000đ. Bộ hộp bảo quản 5 hộp: chính hãng 390.000đ, không thương hiệu 120.000đ. ABZ định vị giữa hai nhóm, giá trung bình đơn khoảng 420.000đ.</td></tr>
+    <tr><td>3</td><td>Hàn Quốc: tối thiểu 80 triệu, cọc 30%, 70% trước khi xuất hàng, đổi hàng lỗi theo biên bản nhận hàng. Trung Quốc 1: tối thiểu 100 triệu, cùng điều khoản thanh toán, chưa có điều khoản hàng lỗi. Trung Quốc 2: tối thiểu 150 triệu, đòi trả 100% trước. Hàng về 35–50 ngày. Chưa ký hợp đồng nào.</td></tr>
+    <tr><td>4</td><td>Dự định: lô đầu khoảng <b>900 triệu</b> từ cả 3 nhà cung cấp, khoảng 70 mã; thuê kho 150 m² ở Long Biên 20 triệu/tháng; tuyển đủ 6 người từ tháng 12/2026; KOL, livestream 15 triệu/tháng; thành lập, sửa kho, ảnh sản phẩm khoảng 120 triệu; còn lại làm dự phòng.</td></tr>
+    <tr><td>5</td><td>4 cửa hàng nhận ký gửi 30 ngày, chiết khấu 30% trên giá bán lẻ, bán được mới trả tiền, không bán được trả lại hàng. 11 cửa hàng còn lại muốn chiết khấu 35% và trả chậm 45–60 ngày, hoặc chưa tin hàng mới.</td></tr>
+    <tr><td>6</td><td>Anh An nghỉ việc từ 01/11/2026, làm toàn thời gian. Chị Hà còn đi làm đến 31/12/2026, dành khoảng <b>20 giờ/tuần</b> (tối và cuối tuần), toàn thời gian từ 01/2027.</td></tr>
+    <tr><td>7</td><td>12 mã đã bán; 5 mã chiếm 77/120 đơn (64%): chảo 28 cm, nồi 3 lớp 20 cm, bộ dao 3 món, bộ hộp 5 hộp, khuôn bánh. 7 mã còn lại mỗi mã dưới 10 đơn.</td></tr>
+    <tr><td>8</td><td>Nhà cung cấp Hàn Quốc có giấy kiểm nghiệm. Hai nhà cung cấp Trung Quốc chưa gửi. Chưa tìm hiểu thủ tục công bố và nhãn phụ.</td></tr>
+  </table></div>
+
+  <div class="tomtat"><b>Điều LATTICE thấy ngay khi đọc:</b> chi phí có một đơn người lạ đang là 80.000đ (19%), cao hơn gấp rưỡi mức 12% mà mô hình cần để có lãi. Kế hoạch dồn 900 triệu vào lô đầu 70 mã, trong khi chỉ 5 mã có người mua thật. Hai điểm này quyết định phần lớn kết luận ở báo cáo.</div>
+
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261014 · chỉ dành cho ABZ</span><span>Trang 4 / 12</span></div>
+</section>
+
+<!-- ============ TRANG 4 · BÌA BÁO CÁO ============ -->
+<section class="trang bia">
+  <div>
+    <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.6 17.4 10 10 17.4 2.6 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>LATTICE Compass · LTC14102290</span></div>
+    <span class="tem">HỒ SƠ MẪU · DOANH NGHIỆP HƯ CẤU</span>
+    <h1>Báo cáo kiểm chứng ý tưởng<br>Công ty ABZ</h1>
+    <p class="phu">Phân phối đồ gia dụng nhà bếp nhập khẩu tầm trung qua Shopee, TikTok Shop và cửa hàng gia dụng tại Hà Nội. Với 1,8 tỷ và 12 tháng: nên làm, làm nhỏ để thử, hay chưa nên làm?</p>
+    <div class="tomtat" style="margin-top:10mm"><span class="nho">KẾT LUẬN</span><br><b style="font-size:18pt">Làm nhỏ để thử</b><br>Đủ tín hiệu có người mua. Chưa đủ bằng chứng về giá bán và chi phí quảng cáo trên sàn. Chạy 4 thử nghiệm trong 30 ngày (29/10 → 27/11/2026), nhập lô nhỏ theo từng mã đã bán chạy, chưa nhập lô 900 triệu.</div>
+  </div>
+  <dl style="grid-template-columns:minmax(0,42mm) minmax(0,1fr);overflow-wrap:anywhere">
+    <dt>Khách hàng</dt><dd>Anh Trần Minh An, chị Lê Thu Hà — hai nhà sáng lập dự kiến Công ty TNHH Thương mại ABZ</dd>
+    <dt>Gói</dt><dd>LATTICE Compass · 1.950.000đ · qua email</dd>
+    <dt>Mã hồ sơ</dt><dd class="so">LTC14102290</dd>
+    <dt>Loại hình</dt><dd>Thương mại &amp; hàng hóa · kiến trúc tham chiếu 8 khối, 7 chuỗi</dd>
+    <dt>Tài liệu đủ</dt><dd class="so">19/10/2026</dd>
+    <dt>Ngày giao</dt><dd class="so">28/10/2026</dd>
+    <dt>Soạn</dt><dd>Team AI LATTICE, mức L2 (AI soạn, người duyệt)</dd>
+    <dt>Đọc và duyệt</dt><dd>Phan Thu Trang — tư vấn khởi sự</dd>
+    <dt>Liên hệ</dt><dd>lattice.consultant@gmail.com (chỉ qua email)</dd>
+  </dl>
+  <p class="nho" style="margin-top:6mm">Số liệu trong báo cáo dựa trên câu trả lời và tài liệu anh chị gửi, cộng các giả định LATTICE ghi rõ ở từng bảng. Phí sàn, thuế là ước tính, cần kiểm tra lại với biểu phí hiện hành và kế toán trước khi dùng để quyết định.</p>
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261014 · chỉ dành cho ABZ</span><span>Trang 5 / 12</span></div>
+</section>
+
+<!-- ============ TRANG 5 · KẾT LUẬN ============ -->
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.6 17.4 10 10 17.4 2.6 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Báo cáo kiểm chứng · LTC14102290</span></div>
+  <h2>1. Kết luận cho hai nhà sáng lập</h2>
+  <p>Anh chị có thứ mà phần lớn người khởi sự chưa có: 120 đơn thật, 8 năm kinh nghiệm mua hàng của anh An, 6 năm bán sàn của chị Hà, và 4 cửa hàng chịu nhận hàng. Nhưng những con số quyết định sống còn trên sàn, là giá bán thực nhận và chi phí quảng cáo cho một đơn, thì <b>chưa có một đơn sàn nào để đo</b>. Kế hoạch hiện tại đặt 900 triệu vào lô đầu trước khi đo được hai con số đó.</p>
+
+  <div class="bang-cuon"><table>
+    <tr><th style="width:30mm">Lựa chọn</th><th>Nghĩa là</th><th style="width:58mm">Đánh giá với ABZ</th></tr>
+    <tr><td><b>Nên làm</b></td><td>Đi theo kế hoạch hiện tại: lô đầu 900 triệu, 70 mã, kho 150 m², 6 người từ tháng 12.</td><td class="do">Chưa. Nếu giá bị ép xuống 380.000đ và quảng cáo 18%, tiền âm từ tháng 9/2027 (mục 5). Hai giả định đứng đầu chưa có bằng chứng.</td></tr>
+    <tr><td><b class="ok">Làm nhỏ để thử</b><br><span class="pill ok">KHUYẾN NGHỊ</span></td><td>Lập công ty, mở gian hàng sàn với 12 mã có sẵn, nhập lô tối thiểu 80 triệu từ nhà cung cấp Hàn Quốc, 2 người + AI, chạy 4 thử nghiệm 30 ngày, sau đó nhập theo từng mã bán chạy.</td><td class="ok">Vốn bị dùng tối đa khoảng 585 triệu trong 12 tháng, giữ lại trên 1,2 tỷ. Kể cả khi giá và quảng cáo đều xấu, cuối tháng 10/2027 vẫn còn khoảng 940 triệu.</td></tr>
+    <tr><td><b>Chưa nên làm</b></td><td>Dừng, không lập công ty, tiếp tục đi làm.</td><td class="vang">Không hợp lý: đã có người mua thật, hai người có kinh nghiệm đúng ngành, và cái giá để thử chỉ khoảng 47 triệu tiền mất hẳn nếu thất bại.</td></tr>
+  </table></div>
+
+  <h3>Vì sao chọn mức giữa</h3>
+  <ol>
+    <li><b>Có người mua, nhưng chưa phải ở chỗ anh chị sẽ bán.</b> 75 đơn người lạ là tín hiệu thật. Nhưng đó là fanpage, không có hàng rẻ 150.000–220.000đ đứng cạnh như trên sàn.</li>
+    <li><b>Chi phí quảng cáo đã cho thấy dấu hiệu xấu.</b> 80.000đ cho một đơn người lạ (19% giá đơn). Mô hình chỉ có lãi rõ khi con số này về dưới 12%.</li>
+    <li><b>Rủi ro lớn nhất là vốn bị giam, không phải thiếu khách.</b> 900 triệu cho 70 mã, trong khi 5 mã chiếm 64% đơn. Nếu 30% lô thành hàng chậm, 270 triệu nằm kho cả năm.</li>
+    <li><b>Thử nhỏ gần như không mất cơ hội.</b> Lô Hàn Quốc 80 triệu đặt đầu tháng 11 vẫn về trước Tết Đinh Mùi (06/02/2027), mùa bán đồ bếp tốt nhất năm.</li>
+  </ol>
+
+  <div class="o-luoi">
+    <div><span>Lãi một đơn sàn (cơ sở)</span><b class="so">58.000đ</b><br><span class="nho">13,8% giá đơn, mục 4</span></div>
+    <div><span>Hòa vốn hoạt động</span><b class="so">600 đơn + 10 đại lý</b><br><span class="nho">khớp mốc anh chị đặt</span></div>
+    <div><span>Tiền thấp nhất 12 tháng</span><b class="so">1.215 triệu</b><br><span class="nho">kế hoạch làm nhỏ, tháng 9/2027</span></div>
+    <div><span>Chi phí AI và công cụ</span><b class="so">3,2 triệu/tháng</b><br><span class="nho">mục 7</span></div>
+  </div>
+  <div class="canh"><b>Điều bất lợi cần nói thẳng:</b> ở mức 600 đơn/tháng, chỉ bán sàn thì <b>chưa hòa vốn</b>. Bán sàn đơn thuần cần khoảng 840 đơn/tháng. Kênh cửa hàng không phải phần phụ: 10 đại lý mua đứt, trả đúng hạn mang về khoảng 20 triệu lãi mỗi tháng, đúng phần còn thiếu.</div>
+  <p class="nho">Việc anh chị cần làm trong tuần này: (1) đăng ký công ty, mở gian hàng; (2) đặt cọc lô Hàn Quốc 80 triệu chỉ cho 5 mã bán chạy; (3) hoãn thuê kho 150 m² và hoãn tuyển 4 người. Chi tiết ở mục 3 và mục 7.</p>
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261014 · chỉ dành cho ABZ</span><span>Trang 6 / 12</span></div>
+</section>
+
+<!-- ============ TRANG 6 · NĂM GIẢ ĐỊNH ============ -->
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.6 17.4 10 10 17.4 2.6 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Báo cáo kiểm chứng · LTC14102290</span></div>
+  <h2>2. Năm giả định rủi ro nhất, xếp hạng</h2>
+  <p>Điểm rủi ro = khả năng sai (1–5) × mức hậu quả nếu sai (1–5). Từ 15 điểm: <span class="pill do">Cao</span> · 9–14: <span class="pill vang">Vừa</span> · dưới 9: Thấp.</p>
+  <div class="thanh"><span>1. Giá bán trên sàn</span><i class="yeu" style="--w:80%"></i><b class="so">20</b></div>
+  <div class="thanh"><span>2. Chi phí quảng cáo</span><i class="yeu" style="--w:64%"></i><b class="so">16</b></div>
+  <div class="thanh"><span>3. Nguồn cung</span><i class="yeu" style="--w:60%"></i><b class="so">15</b></div>
+  <div class="thanh"><span>4. Đại lý trả tiền</span><i style="--w:48%"></i><b class="so">12</b></div>
+  <div class="thanh"><span>5. Vòng quay tồn kho</span><i style="--w:36%"></i><b class="so">9</b></div>
+
+  <div class="bang-cuon"><table>
+    <tr><th style="width:42mm">Giả định</th><th>Bằng chứng đang có</th><th style="width:18mm">Mức</th><th style="width:52mm">Hậu quả nếu sai</th></tr>
+    <tr><td><b>1. Khách trên sàn trả trung bình từ 400.000đ/đơn</b> dù hàng không thương hiệu cùng loại chỉ 150.000–220.000đ</td><td>120 đơn ở 420.000đ nhưng qua fanpage, 45 đơn là người quen. Chưa có đơn sàn. Hàng chính hãng Hàn 450.000–520.000đ.</td><td><span class="pill do">Cao</span><br><span class="so nho">4 × 5</span></td><td>Ở 380.000đ, lãi một đơn giảm từ 58.000đ còn 33.600đ (−42%). Chỉ bán sàn thì cần khoảng 1.450 đơn/tháng mới hòa vốn.</td></tr>
+    <tr><td><b>2. Quảng cáo cho một đơn không quá 12% giá đơn</b> (≈ 50.000đ)</td><td>Đang là 19%: 6 triệu cho 75 đơn người lạ trên Facebook. Kinh nghiệm sàn của chị Hà là ở shop đã có đánh giá, chưa phải shop mới.</td><td><span class="pill do">Cao</span><br><span class="so nho">4 × 4</span></td><td>Ở 18%, lãi còn 32.800đ/đơn. Nếu sai cùng giả định 1: còn khoảng 10.800đ/đơn, không hòa vốn được trong 12 tháng.</td></tr>
+    <tr><td><b>3. Nguồn cung ổn định:</b> hàng về trong 50 ngày, lỗi dưới 2%, giữ giá 2 lô liền</td><td>3 báo giá, chưa ký hợp đồng. Chỉ nhà cung cấp Hàn có điều khoản hàng lỗi và giấy kiểm nghiệm. Anh An có 8 năm làm mua hàng.</td><td><span class="pill do">Cao</span><br><span class="so nho">3 × 5</span></td><td>Hết 5 mã chủ lực đúng mùa Tết (nhà máy Trung Quốc nghỉ dài quanh Tết); lô lỗi 5% làm mất 4–7 triệu mỗi lô và kéo đánh giá gian hàng xuống.</td></tr>
+    <tr><td><b>4. Cửa hàng chuyển từ ký gửi sang mua đứt và trả đúng hạn 30 ngày</b> (mốc 10 đại lý)</td><td>4/15 nhận ký gửi, chưa ai mua đứt. 11 cửa hàng đòi chiết khấu 35% và trả chậm 45–60 ngày.</td><td><span class="pill vang">Vừa</span><br><span class="so nho">4 × 3</span></td><td>Hàng nằm trên kệ người khác, tiền về chậm 2 tháng. Thiếu khoảng 20 triệu lãi/tháng từ kênh này thì 600 đơn sàn không đủ hòa vốn.</td></tr>
+    <tr><td><b>5. Tồn kho quay vòng trong 45 ngày</b> nếu chỉ nhập sâu những mã đã bán chạy</td><td>5 mã chiếm 64% đơn. 9/120 đơn là mua lại (7,5%). Chưa có dữ liệu bán theo mùa.</td><td><span class="pill vang">Vừa</span><br><span class="so nho">3 × 3</span></td><td>Với kế hoạch 900 triệu: nếu 30% thành hàng chậm thì 270 triệu nằm kho. Với kế hoạch làm nhỏ: mỗi lô sai chỉ giam 30–50 triệu.</td></tr>
+  </table></div>
+
+  <h3>Không vào top 5 nhưng phải xử lý trước lô nhập đầu</h3>
+  <ul>
+    <li><b>Giấy tờ hàng tiếp xúc thực phẩm và nhãn phụ tiếng Việt.</b> Hai nhà cung cấp Trung Quốc chưa có giấy kiểm nghiệm. Cần rà với luật sư hoặc dịch vụ công bố sản phẩm trước khi đặt cọc; đây là lý do lô thử chọn nhà cung cấp Hàn.</li>
+    <li><b>Hóa đơn điện tử và thuế trên sàn.</b> Hóa đơn cho đơn sàn, đơn đại lý; đối chiếu phần thuế sàn khấu trừ thay người bán. Cần rà với kế toán dịch vụ ngay tháng đầu.</li>
+    <li><b>Giờ của chị Hà.</b> Đến 31/12/2026 chỉ 20 giờ/tuần, đúng lúc thử nghiệm sàn. Phần soạn nội dung, trả tin nhắn giao cho AI ở mức L2 để chị Hà chỉ duyệt.</li>
+  </ul>
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261014 · chỉ dành cho ABZ</span><span>Trang 7 / 12</span></div>
+</section>
+
+<!-- ============ TRANG 7 · KIỂM CHỨNG 30 NGÀY ============ -->
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.6 17.4 10 10 17.4 2.6 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Báo cáo kiểm chứng · LTC14102290</span></div>
+  <h2>3. Kiểm chứng rẻ trong 30 ngày (29/10 → 27/11/2026)</h2>
+  <p>Bốn thử nghiệm phủ năm giả định. Tuần 1: 29/10–04/11 · Tuần 2: 05–11/11 · Tuần 3: 12–18/11 · Tuần 4: 19–27/11. Đọc kết quả ngày 28/11/2026.</p>
+  <div class="bang-cuon"><table>
+    <tr><th style="width:30mm">Thử nghiệm</th><th>Việc làm cụ thể</th><th style="width:24mm">Chi phí</th><th style="width:44mm">Chỉ số · ngưỡng</th><th style="width:22mm">Ai · tuần</th></tr>
+    <tr><td><b>TN1. Giá và quảng cáo trên sàn</b><br><span class="nho">giả định 1, 2</span></td><td>Lập công ty, mở gian hàng Shopee và TikTok Shop. Đăng 12 mã từ lô hàng mua trong nước 40 triệu. Chia 5 mã chủ lực thành hai mức giá (bảng giá A trung bình 420.000đ, bảng giá B 390.000đ) chạy luân phiên mỗi 4 ngày. Quảng cáo trần 14 triệu.</td><td>Quảng cáo 14 tr · ảnh, video, gian hàng 20 tr (dùng tiếp về sau) · hàng 40 tr (bán thu lại)</td><td><b>Đạt:</b> ≥ 80 đơn sàn trong tuần 2–4; giá thực nhận trung bình ≥ 395.000đ; quảng cáo ≤ 13% doanh thu.<br><b>Không đạt:</b> &lt; 40 đơn, hoặc giá &lt; 370.000đ, hoặc quảng cáo &gt; 18%.<br>Ở giữa: chạy thêm 2 tuần.</td><td>Chị Hà (AI soạn nội dung L2)<br>Tuần 1 dựng · tuần 2–4 chạy</td></tr>
+    <tr><td><b>TN2. Nguồn cung</b><br><span class="nho">giả định 3</span></td><td>Đặt cọc lô thử 80 triệu với nhà cung cấp Hàn, chỉ 5 mã chủ lực, có điều khoản lỗi và giao trễ trong đơn đặt. Xin mẫu 15 mã từ nhà cung cấp Trung Quốc 1 kèm giấy kiểm nghiệm. Không làm việc tiếp với Trung Quốc 2 (đòi trả trước 100%).</td><td>Cọc 24 tr (hàng bán được) · mẫu và phí gửi 3 tr</td><td><b>Đạt:</b> xác nhận lịch xuất hàng ≤ 7 ngày; ký điều khoản lỗi; TQ1 gửi đủ giấy tờ; mẫu lỗi ≤ 1/15.<br><b>Không đạt:</b> không ký điều khoản lỗi hoặc không có giấy kiểm nghiệm.<br>Ngày hàng về (≤ 50 ngày) đo tiếp ở tháng 12.</td><td>Anh An<br>Tuần 1 đặt · tuần 2–4 theo dõi</td></tr>
+    <tr><td><b>TN3. Cửa hàng mua đứt</b><br><span class="nho">giả định 4</span></td><td>Chào 4 cửa hàng ký gửi và 11 cửa hàng còn lại, thêm 10 cửa hàng mới ở Long Biên, Hoàng Mai, Cầu Giấy: đơn đầu 5–7 triệu, chiết khấu 30%, trả 50% khi nhận, 50% sau 30 ngày. Không mở ký gửi mới.</td><td>Hàng trưng bày 6 tr · đi lại 2 tr</td><td><b>Đạt:</b> ≥ 4 cửa hàng đặt đơn mua đứt và trả 50% trước 27/11.<br><b>Không đạt:</b> ≤ 1 cửa hàng.<br>Phần trả đúng hạn 30 ngày đo tiếp ở tháng 1/2027.</td><td>Anh An<br>Tuần 2–4</td></tr>
+    <tr><td><b>TN4. Mã chủ lực và mua lại</b><br><span class="nho">giả định 5</span></td><td>AI đọc file 120 đơn và đơn sàn trong tháng, xếp mã theo tốc độ bán. Gửi tin chăm sóc kèm mã ưu đãi 10% cho 111 khách đã mua (qua kênh khách đã đồng ý nhận tin).</td><td>Mã ưu đãi và tin nhắn 2 tr</td><td><b>Đạt:</b> 5 mã chủ lực vẫn ≥ 60% đơn; ≥ 9 đơn mua lại từ 111 khách (8%).<br><b>Không đạt:</b> không mã nào bán ≥ 5 đơn/tuần trên sàn.</td><td>AI phân tích L2, anh An duyệt<br>Tuần 3–4</td></tr>
+  </table></div>
+  <div class="o-luoi">
+    <div><span>Tiền mất hẳn nếu cả 4 thất bại</span><b class="so">≈ 47 triệu</b><br><span class="nho">14 + 20 + 3 + 6 + 2 + 2</span></div>
+    <div><span>Tiền nằm ở hàng, bán thu lại</span><b class="so">≈ 64 triệu</b><br><span class="nho">40 lô trong nước + 24 cọc</span></div>
+    <div><span>Quy tắc đọc kết quả</span><b>TN1 bắt buộc đạt</b><br><span class="nho">và ít nhất 2 trong 3 TN còn lại</span></div>
+  </div>
+  <div class="canh"><b>Nếu TN1 không đạt:</b> không nhập lô thứ hai. Bán hết lô Hàn Quốc qua cửa hàng và fanpage, rồi quyết định lại giữa (a) chuyển hẳn sang kênh cửa hàng và khách doanh nghiệp, hoặc (b) dừng. Đến lúc đó anh chị mới dùng khoảng 170 triệu, cộng 56 triệu trả nốt lô Hàn Quốc, còn trên 1,5 tỷ.</div>
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261014 · chỉ dành cho ABZ</span><span>Trang 8 / 12</span></div>
+</section>
+
+<!-- ============ TRANG 8 · KINH TẾ ĐƠN VỊ ============ -->
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.6 17.4 10 10 17.4 2.6 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Báo cáo kiểm chứng · LTC14102290</span></div>
+  <h2>4. Kinh tế một đơn hàng</h2>
+  <p>Một đơn sàn trung bình 420.000đ (giá khách trả). Giá vốn về kho 45% gồm giá nhập, vận chuyển quốc tế, thuế nhập khẩu, theo báo giá Hàn Quốc và Trung Quốc 1. <b>Phí sàn và thuế là ước tính, cần kiểm tra lại</b> với biểu phí Shopee, TikTok Shop tại thời điểm mở gian hàng và với kế toán.</p>
+  <div class="bang-cuon"><table>
+    <tr><th>Khoản, một đơn sàn</th><th style="width:30mm">Giả định</th><th style="width:26mm">Số tiền</th><th style="width:16mm">% giá</th></tr>
+    <tr><td>Giá khách trả (giá thực nhận sau voucher của shop)</td><td>Từ 120 đơn bán thử</td><td class="so">420.000đ</td><td class="so">100%</td></tr>
+    <tr><td>Giá vốn hàng về kho</td><td>45% giá bán</td><td class="so">−189.000đ</td><td class="so">45,0%</td></tr>
+    <tr><td>Phí sàn: hoa hồng, phí thanh toán, phí dịch vụ</td><td>Ước tính 18% (thường 16–20%)</td><td class="so">−75.600đ</td><td class="so">18,0%</td></tr>
+    <tr><td>Đóng gói và phần phí giao hàng người bán chịu</td><td>8.000 + 12.000</td><td class="so">−20.000đ</td><td class="so">4,8%</td></tr>
+    <tr><td>Quảng cáo cho một đơn</td><td>Mục tiêu 12%</td><td class="so">−50.400đ</td><td class="so">12,0%</td></tr>
+    <tr><td>Đổi trả, hư hỏng</td><td>4% đơn × 150.000đ mỗi đơn hoàn</td><td class="so">−6.000đ</td><td class="so">1,4%</td></tr>
+    <tr><td>Thuế GTGT phần chênh lệch</td><td>Ước tính (420.000 − 189.000) ÷ 11</td><td class="so">−21.000đ</td><td class="so">5,0%</td></tr>
+    <tr><td><b>Lãi đóng góp một đơn</b> (trước chi cố định, chưa gồm thuế TNDN)</td><td></td><td class="so"><b>58.000đ</b></td><td class="so"><b>13,8%</b></td></tr>
+  </table></div>
+
+  <p><b>Một đơn cửa hàng (đại lý):</b> 7.000.000đ (hàng giá lẻ 10 triệu, chiết khấu 30%) − giá vốn 4.500.000đ − giao hàng 100.000đ − GTGT chênh lệch ước tính 227.000đ − dự phòng nợ khó đòi 2% 140.000đ = <b>lãi đóng góp 2.033.000đ</b> (29%). Giả định mỗi cửa hàng đặt 1 đơn/tháng.</p>
+  <h3>Nếu giả định 1 và 2 sai</h3>
+  <div class="bang-cuon"><table>
+    <tr><th>Tình huống</th><th style="width:28mm">Lãi một đơn sàn</th><th style="width:46mm">Đơn sàn/tháng để hòa vốn<br><span class="nho">chỉ bán sàn · có 10 đại lý</span></th></tr>
+    <tr><td>Cơ sở: 420.000đ, quảng cáo 12%</td><td class="so ok">58.000đ</td><td class="so">840 · 490</td></tr>
+    <tr><td>Giá bị ép xuống 380.000đ, quảng cáo 12%</td><td class="so vang">33.600đ</td><td class="so">1.450 · 845</td></tr>
+    <tr><td>Giá 420.000đ, quảng cáo 18% (như đang thấy trên fanpage)</td><td class="so vang">32.800đ</td><td class="so">1.485 · 865</td></tr>
+    <tr><td>Cả hai: 380.000đ, quảng cáo 18%</td><td class="so do">10.800đ</td><td class="so do">4.510 · 2.630</td></tr>
+  </table></div>
+  <p class="nho">Hòa vốn tính trên chi cố định 48,7 triệu/tháng của bộ máy 3 người (mục 7). Có 10 đại lý: 48,7 − 10 × 2,033 = 28,4 triệu còn phải bù bằng đơn sàn.</p>
+  <div class="tomtat"><b>Đọc bảng này thế nào:</b> ở mức cơ sở, 600 đơn sàn × 58.000đ = 34,8 triệu, cộng 10 đại lý × 2,033 triệu = 20,3 triệu, tổng 55,1 triệu, vượt chi cố định 48,7 triệu khoảng <b>6,4 triệu/tháng</b>. Mốc "600 đơn và 10 đại lý" anh chị đặt trùng điểm hòa vốn hoạt động, nhưng biên rất mỏng: giá giảm 10% là mất lãi.</div>
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261014 · chỉ dành cho ABZ</span><span>Trang 9 / 12</span></div>
+</section>
+
+<!-- ============ TRANG 9 · DÒNG TIỀN 12 THÁNG ============ -->
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.6 17.4 10 10 17.4 2.6 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Báo cáo kiểm chứng · LTC14102290</span></div>
+  <h2>5. Dòng tiền 12 tháng sơ bộ với 1,8 tỷ</h2>
+  <p><b>A · Làm nhỏ, cơ sở</b> (420.000đ, quảng cáo 12%, thử nghiệm đạt). Đơn vị: <b>triệu đồng</b>; T1 = 11/2026, T12 = 10/2027. Lô nhập: cọc 30% tháng đặt, 70% tháng sau khi hàng về. Tiền sàn về 60% trong tháng, 40% tháng sau; cửa hàng trả tháng sau.</p>
+  <div class="bang-cuon"><table class="so" style="font-size:8pt">
+    <tr><th>Khoản</th><th>T1</th><th>T2</th><th>T3</th><th>T4</th><th>T5</th><th>T6</th><th>T7</th><th>T8</th><th>T9</th><th>T10</th><th>T11</th><th>T12</th></tr>
+    <tr><td>Đơn sàn, fanpage</td><td>80</td><td>150</td><td>280</td><td>380</td><td>480</td><td>600</td><td>620</td><td>650</td><td>680</td><td>700</td><td>750</td><td>800</td></tr>
+    <tr><td>Đơn cửa hàng</td><td>0</td><td>4</td><td>5</td><td>6</td><td>8</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+    <tr><td>Lô đặt trong tháng</td><td>120*</td><td>120</td><td>130</td><td>160</td><td>160</td><td>180</td><td>190</td><td>190</td><td>210</td><td>220</td><td>230</td><td>240</td></tr>
+    <tr><td>+ Thu sàn (sau phí sàn)</td><td>17</td><td>42</td><td>79</td><td>117</td><td>152</td><td>190</td><td>211</td><td>220</td><td>230</td><td>238</td><td>251</td><td>269</td></tr>
+    <tr><td>+ Thu cửa hàng</td><td>0</td><td>0</td><td>27</td><td>34</td><td>41</td><td>55</td><td>69</td><td>75</td><td>82</td><td>89</td><td>96</td><td>103</td></tr>
+    <tr><td>− Trả tiền hàng</td><td>64</td><td>92</td><td>123</td><td>139</td><td>160</td><td>166</td><td>183</td><td>190</td><td>196</td><td>213</td><td>223</td><td>233</td></tr>
+    <tr><td>− Chi theo đơn<sup>1</sup></td><td>8</td><td>16</td><td>29</td><td>39</td><td>49</td><td>62</td><td>64</td><td>67</td><td>70</td><td>73</td><td>78</td><td>83</td></tr>
+    <tr><td>− Chi cố định</td><td>40</td><td>40</td><td>49</td><td>49</td><td>49</td><td>49</td><td>49</td><td>49</td><td>49</td><td>49</td><td>49</td><td>49</td></tr>
+    <tr><td>− Chi một lần<sup>2</sup></td><td>75</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+    <tr><td><b>Dòng tiền ròng</b></td><td class="do">−170</td><td class="do">−106</td><td class="do">−95</td><td class="do">−76</td><td class="do">−65</td><td class="do">−32</td><td class="do">−16</td><td class="do">−11</td><td class="do">−3</td><td class="do">−8</td><td class="do">−3</td><td class="ok">7</td></tr>
+    <tr><td><b>Tiền cuối tháng</b></td><td><b>1.630</b></td><td><b>1.524</b></td><td><b>1.429</b></td><td><b>1.353</b></td><td><b>1.288</b></td><td><b>1.256</b></td><td><b>1.240</b></td><td><b>1.229</b></td><td><b>1.226</b></td><td><b>1.218</b></td><td><b>1.215</b></td><td><b>1.222</b></td></tr>
+    <tr><td>Tồn kho cuối tháng (giá vốn)</td><td>25</td><td>59</td><td>103</td><td>134</td><td>168</td><td>169</td><td>182</td><td>196</td><td>199</td><td>213</td><td>224</td><td>231</td></tr>
+    <tr><td>Lãi hoạt động<sup>3</sup></td><td class="do">−35</td><td class="do">−23</td><td class="do">−22</td><td class="do">−14</td><td class="do">−5</td><td class="ok">6</td><td class="ok">10</td><td class="ok">13</td><td class="ok">17</td><td class="ok">20</td><td class="ok">25</td><td class="ok">30</td></tr>
+  </table></div>
+  <p class="nho">* T1: 40 hàng mua trong nước (trả đủ) + 80 lô thử Hàn Quốc. Từ T5 mỗi lô gộp 2 nhà cung cấp. <sup>1</sup> Đóng gói, giao hàng, quảng cáo, đổi trả, thuế GTGT chênh lệch (mục 4). <sup>2</sup> Thành lập công ty, chữ ký số, hóa đơn điện tử 12 · ảnh, video, gian hàng 20 · kệ, dụng cụ đóng gói 18 · cọc kho 2 tháng 12 · quảng cáo thử nghiệm 10 · khác 3. <sup>3</sup> Lãi đóng góp trừ chi cố định, trước chi một lần. Dòng tiền ròng vẫn âm khi đã có lãi vì tiền chuyển thành hàng tồn, công nợ.</p>
+
+  <div class="bang-cuon"><table class="so" style="font-size:8pt">
+    <tr><th>Tình huống khác</th><th>T1</th><th>T2</th><th>T3</th><th>T4</th><th>T5</th><th>T6</th><th>T7</th><th>T8</th><th>T9</th><th>T10</th><th>T11</th><th>T12</th></tr>
+    <tr><td>B · Làm nhỏ, 380.000đ + QC 18%</td><td>1.627</td><td>1.515</td><td>1.408</td><td>1.316</td><td>1.229</td><td>1.171</td><td>1.126</td><td>1.084</td><td>1.049</td><td>1.009</td><td>971</td><td>940</td></tr>
+    <tr><td>C · Kế hoạch ban đầu, cơ sở</td><td>1.375</td><td>657</td><td>623</td><td>629</td><td>628</td><td>559</td><td>483</td><td>406</td><td class="do">338</td><td class="do">264</td><td class="do">195</td><td class="do">226</td></tr>
+    <tr><td>D · Kế hoạch ban đầu, 380.000đ + QC 18%</td><td>1.372</td><td>647</td><td>600</td><td>587</td><td>562</td><td>462</td><td class="do">353</td><td class="do">242</td><td class="do">137</td><td class="do">25</td><td class="do"><b>−84</b></td><td class="do"><b>−96</b></td></tr>
+  </table></div>
+  <p class="nho">C, D: lô đầu 900 triệu (30% thành hàng chậm), 6 người, kho 150 m², KOL; chi cố định 117,5 triệu/tháng từ T2; chi một lần 120 triệu; đơn sàn hơn A 15%.</p>
+  <div class="canh"><b>Điểm thiếu tiền:</b> làm nhỏ không chạm đáy trong 12 tháng ở cả A và B. Kế hoạch ban đầu xuống dưới mức an toàn 400 triệu từ <b>tháng 7/2027</b> (C) và <b>âm từ tháng 9/2027</b> nếu giá và quảng cáo xấu (D). Vòng tiền: cọc → hàng về 35–50 ngày → bán khoảng 30 ngày → sàn trả 7–14 ngày = <b>75–95 ngày</b>; cửa hàng thêm 30 ngày.</div>
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261014 · chỉ dành cho ABZ</span><span>Trang 10 / 12</span></div>
+</section>
+
+<!-- ============ KIẾN TRÚC TỐI THIỂU VÀ BỘ MÁY ============ -->
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.6 17.4 10 10 17.4 2.6 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Báo cáo kiểm chứng · LTC14102290</span></div>
+  <h2>6. Kiến trúc tối thiểu</h2>
+  <p>Trong 8 khối, 7 chuỗi của kiến trúc Thương mại, lúc khởi sự chỉ dựng phần tạo ra đơn và giữ được tiền. Nguồn lực quyết định: <b>Vốn &amp; Tài sản</b> (vốn lưu động) và <b>Thị trường &amp; Quan hệ</b>.</p>
+  <div class="o-luoi">
+    <div style="border:2px solid var(--ink)"><span>Cần ngay</span><b>Ngành hàng &amp; Nguồn cung</b></div>
+    <div style="border:2px solid var(--ink)"><span>Cần ngay</span><b>Thị trường, Marketing &amp; Tăng trưởng</b></div>
+    <div style="border:2px solid var(--ink)"><span>Cần ngay</span><b>Kinh doanh &amp; Kênh phân phối</b></div>
+    <div style="border:2px solid var(--ink)"><span>Cần ngay</span><b>Đơn hàng, Kho vận &amp; Giao nhận</b></div>
+    <div><span>Ngay, bản tối giản</span><b>Quản trị &amp; Điều hành</b><br><span class="nho">họp tuần, 6 chỉ số</span></div>
+    <div><span>Ngay, bản tối giản</span><b>Năng lực hỗ trợ</b><br><span class="nho">kế toán dịch vụ</span></div>
+    <div style="border-style:dashed"><span>Để sau · 01/2027</span><b>Hoạch định Cung–Cầu &amp; Tồn kho</b></div>
+    <div style="border-style:dashed"><span>Để sau · 04/2027</span><b>Dịch vụ khách hàng &amp; Phát triển quan hệ</b></div>
+  </div>
+  <p><b>Bỏ qua trong 12 tháng:</b> nhãn riêng (xét khi 5 mã chủ lực bán ổn 6 tháng) · Lazada · website bán hàng riêng · khách doanh nghiệp, quà tặng · kho trên 50 m² · nhà cung cấp Trung Quốc 2.</p>
+  <h3>Chuỗi cần chạy từ đầu</h3>
+  <div class="luong">
+    <div><b>Nguồn cung → Thanh toán</b><br><span class="nho">đặt lô, nhận, kiểm, trả tiền</span></div><span>→</span>
+    <div><b>Thị trường → Khách tiềm năng</b><br><span class="nho">nội dung, quảng cáo, tin nhắn</span></div><span>→</span>
+    <div><b>Cơ hội → Đơn hàng</b><br><span class="nho">chào cửa hàng mua đứt</span></div><span>→</span>
+    <div class="nguoi"><b>Đơn hàng → Thu tiền</b><br><span class="nho">đối soát sàn, thu nợ</span></div>
+  </div>
+  <p class="nho">Để sau: Kế hoạch → Hàng sẵn sàng (01/2027) · Khách hàng → Mua lại (04/2027) · Yêu cầu → Giải quyết (trên 400 đơn/tháng).</p>
+
+  <h2 style="margin-top:12px">7. Bộ máy 1–3 người kiêm vai</h2>
+  <p>Thay vì 6 người: <b>2 người đến hết 12/2026, 3 người từ 01/2027</b>; người thứ 4 khi vượt 900 đơn/tháng hoặc 15 cửa hàng. Chi cố định 48,7 triệu/tháng = lương 12 + 12 + 9 + kho 40 m² 6 + kế toán 2,5 + công cụ, AI 3,2 + khác 4 (tháng 11–12/2026 chưa có người thứ ba: 39,7).</p>
+  <div class="bang-cuon"><table>
+    <tr><th style="width:30mm">Người</th><th>Vai trong Ban điều hành · việc trực tiếp</th><th style="width:16mm">Chi/tháng</th></tr>
+    <tr><td><b>Trần Minh An</b><br><span class="nho">toàn thời gian từ 01/11</span></td><td>Giám đốc điều hành · Giám đốc Vận hành &amp; Cung ứng · Giám đốc Tài chính (tạm). Mua hàng, nhập khẩu, kho; bán cho cửa hàng; dòng tiền</td><td class="so">12 tr</td></tr>
+    <tr><td><b>Lê Thu Hà</b><br><span class="nho">20 giờ/tuần đến 31/12</span></td><td>Giám đốc Kinh doanh · Giám đốc Truyền thông – Marketing. Gian hàng sàn, fanpage, quảng cáo, khiếu nại; duyệt hạn mức nợ cửa hàng</td><td class="so">12 tr</td></tr>
+    <tr><td><b>+1 Vận hành đơn, kho</b><br><span class="nho">tuyển 01/2027</span></td><td>Đóng gói, giao nhận, nhận và kiểm hàng nhập, đổi trả, cập nhật tồn. Không giữ tiền</td><td class="so">9 tr</td></tr>
+    <tr><td>Thuê ngoài</td><td>Kế toán dịch vụ (sổ, thuế, hóa đơn); luật sư hoặc dịch vụ công bố sản phẩm theo vụ việc</td><td class="so">2,5 tr</td></tr>
+  </table></div>
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261014 · chỉ dành cho ABZ</span><span>Trang 11 / 12</span></div>
+</section>
+
+<!-- ============ VAI XUNG ĐỘT, TEAM AI, CÔNG CỤ, ĐIỀU KIỆN, BƯỚC TIẾP ============ -->
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.6 17.4 10 10 17.4 2.6 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Báo cáo kiểm chứng · LTC14102290</span></div>
+  <h3 style="margin-top:0">Cặp vai xung đột cần tránh</h3>
+  <ul style="font-size:9.5pt">
+    <li><b>An đặt mua, tự duyệt trả tiền</b> → trên 50 triệu cần chị Hà đồng duyệt; AI đối chiếu đơn mua – hóa đơn – phiếu nhập.</li>
+    <li><b>An bán cho cửa hàng, tự cho nợ</b> → hạn mức, gia hạn do chị Hà duyệt.</li>
+    <li><b>Hà chạy doanh số, tự đặt giảm giá</b> → anh An đặt giá thấp nhất từng mã (≥ giá vốn × 2,0); AI chặn voucher dưới mức này.</li>
+    <li><b>Người vận hành nhận hàng, giữ kho, nhập tồn</b> → kiểm kê chéo cuối tháng; AI báo khi tồn lệch trên 1%.</li>
+  </ul>
+  <h3>Team AI hỗ trợ <span class="nho" style="font-weight:400">· L1 gợi ý · L2 soạn, người duyệt · L3 tự làm trong ngưỡng; không dùng L4, L5</span></h3>
+    <div class="bang-cuon"><table style="font-size:8.5pt">
+    <tr><th>Vai AI</th><th style="width:24mm">Mức</th><th>Ngưỡng · ngoại lệ chuyển ai</th></tr>
+    <tr><td>Soạn mô tả sản phẩm, kịch bản video, bài fanpage</td><td>L2</td><td>Chị Hà duyệt mọi bài đăng</td></tr>
+    <tr><td>Trả lời hỏi giá, tình trạng đơn, cách dùng</td><td>L2 → L3 từ 01/2027</td><td>L3 khi đúng ≥ 95% trên 200 tin rà; khiếu nại, hoàn trên 300.000đ → chị Hà</td></tr>
+    <tr><td>Theo dõi quảng cáo hằng ngày</td><td>L1</td><td>Vượt 13% doanh thu 3 ngày liền → chị Hà</td></tr>
+    <tr><td>Đối soát tiền sàn, nhắc nợ, sổ thu chi, báo cáo tuần</td><td>L2; nhắc nợ L3</td><td>Nợ quá hạn 15 ngày giữ đơn mới → chị Hà; sổ, báo cáo → anh An duyệt</td></tr>
+    <tr><td>Đề xuất đặt hàng lại</td><td>L1; L2 từ 04/2027</td><td>Anh An quyết mọi lô (120–240 triệu)</td></tr>
+  </table></div>
+  <p><b>Công cụ và AI, ước tính 3,2 triệu/tháng</b> = trợ lý AI 2 tài khoản 1,0 · gom tin nhắn trả lời tự động 0,8 · bán hàng đa kênh 0,5 · email, lưu trữ 0,4 · hóa đơn điện tử, chữ ký số 0,3 · thiết kế 0,2. Trên 600 đơn thêm khoảng 1 triệu.</p>
+
+  <h2 style="margin-top:6px">8. Khi nào chuyển sang "nên làm"</h2>
+  <div class="bang-cuon"><table style="font-size:8.5pt">
+    <tr><th style="width:26mm">Mốc</th><th>Phải đo được</th></tr>
+    <tr><td><b>28/11/2026</b></td><td>TN1 đạt + 2 trong 3 thử nghiệm còn lại đạt → đặt lô thứ hai 120 triệu.</td></tr>
+    <tr><td><b>Hết 01/2027</b></td><td>≥ 280 đơn/tháng; lãi thật ≥ 50.000đ/đơn; 5 cửa hàng mua đứt, ≥ 4 trả đúng 30 ngày; lô Hàn về ≤ 50 ngày, lỗi ≤ 2%.</td></tr>
+    <tr><td><b>30/04/2027</b><br>mốc 6 tháng</td><td><b>≥ 600 đơn/tháng và 10 cửa hàng trả đúng hạn 2 kỳ liên tiếp</b>; lãi hoạt động ≥ 0; tồn ≤ 1,3 tháng giá vốn; tiền ≥ 1,2 tỷ → "nên làm".</td></tr>
+    <tr><td class="do"><b>Dừng, thu hẹp</b></td><td>Hết 01/2027 dưới 150 đơn/tháng, hoặc lãi dưới 25.000đ/đơn 2 tháng liền.</td></tr>
+  </table></div>
+  <h3>Bước tiếp theo</h3>
+  <p><b>LATTICE Foundry 4.950.000đ</b>: bản thiết kế 15–20 trang, 2 buổi Zoom, kế hoạch 90 ngày ra mắt, 3 SOP. <b>Trừ 100% phí Compass nếu nâng đến hết 13/11/2026</b>: anh chị trả thêm 3.000.000đ. Gợi ý: TN1 ở vùng đạt sau tuần 2 (11/11) thì nâng; chưa rõ thì không cần vội.</p>
+  <p><b>Hỏi đáp qua email:</b> một lần, tối đa 3 câu, đến hết 11/11/2026, gửi lattice.consultant@gmail.com.</p>
+  <div class="tomtat" style="font-size:9pt;margin-bottom:0"><b>Đọc và duyệt:</b> Phan Thu Trang — tư vấn khởi sự · 28/10/2026. Team AI LATTICE soạn nháp (L2); người duyệt chịu trách nhiệm số liệu và kết luận.</div>
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261014 · chỉ dành cho ABZ</span><span>Trang 12 / 12</span></div>
+</section>
+
+</body>
+</html>

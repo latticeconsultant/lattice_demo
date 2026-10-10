@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[TÊN TÀI LIỆU] · Công ty ABZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&display=swap">
+<style>
+/* KHUÔN CHUNG cho mọi tài liệu mẫu gửi khách. Trang giấy A4 xếp dọc trên nền xám; in ra mỗi .trang một tờ. */
+:root{--paper:#FFFFFF;--desk:#E9E7E6;--ink:#201E1D;--mute:#5E5A58;--line:#D3CFCD;--soft:#F3F2F2;--red:#EC3013;--redtx:#B3200A;--redbg:#FBE3DE;--ok:#2E6B4F;--okbg:#DCEBE2;--warn:#8A5A00;--warnbg:#F6E9CC;
+  --f:'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--desk);color:var(--ink);font-family:var(--f);font-size:10.5pt;line-height:1.5}
+.trang{width:210mm;min-height:297mm;margin:24px auto;background:var(--paper);padding:18mm 18mm 22mm;position:relative;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+@media (max-width:820px){.trang{width:auto;min-height:0;margin:12px;padding:22px 18px 40px}}
+@media print{body{background:#fff}.trang{margin:0;box-shadow:none;page-break-after:always;min-height:auto}}
+/* đầu trang, chân trang */
+.dau{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:14px;font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.dau b{color:var(--ink);letter-spacing:.18em}
+.dau .logo{display:flex;align-items:center;gap:8px}
+.chan{position:absolute;left:18mm;right:18mm;bottom:10mm;display:flex;justify-content:space-between;font-size:7.5pt;color:var(--mute);border-top:1px solid var(--line);padding-top:5px}
+@media (max-width:820px){.chan{left:18px;right:18px;bottom:12px}}
+/* bìa */
+.bia{display:flex;flex-direction:column;justify-content:space-between}
+.bia .tem{display:inline-block;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--warn);border:1px solid currentColor;padding:3px 8px}
+.bia h1{font-size:32pt;line-height:1.02;font-weight:800;letter-spacing:-.02em;margin:18mm 0 6mm;font-stretch:88%}
+.bia .phu{font-size:13pt;color:var(--mute);max-width:130mm}
+.bia dl{display:grid;grid-template-columns:42mm 1fr;gap:4px 10px;font-size:10pt;margin-top:14mm;border-top:2px solid var(--ink);padding-top:8px}
+.bia dt{color:var(--mute)} .bia dd{margin:0;font-weight:600}
+/* chữ */
+h2{font-size:16pt;font-weight:800;letter-spacing:-.015em;margin:0 0 8px}
+h3{font-size:11.5pt;font-weight:800;margin:14px 0 6px}
+p{margin:0 0 8px}
+.so{font-variant-numeric:tabular-nums}
+.nho{font-size:8.5pt;color:var(--mute)}
+ul,ol{margin:4px 0 10px;padding-left:18px} li{margin:2px 0}
+/* bảng */
+table{width:100%;border-collapse:collapse;font-size:9pt;margin:6px 0 12px}
+th,td{border:1px solid var(--line);padding:5px 7px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-size:8pt;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.bang-cuon{overflow-x:auto}
+/* khối nhấn */
+.tomtat{border:2px solid var(--ink);padding:10px 12px;margin:8px 0 12px}
+.canh{border-left:4px solid var(--red);background:var(--redbg);padding:8px 12px;margin:8px 0 12px}
+.ok{color:var(--ok)} .vang{color:var(--warn)} .do{color:var(--redtx)}
+.pill{display:inline-block;font-size:7.5pt;font-weight:700;letter-spacing:.04em;padding:1px 6px;border:1px solid currentColor;white-space:nowrap}
+.pill.do{background:var(--redbg)} .pill.vang{background:var(--warnbg)} .pill.ok{background:var(--okbg)}
+.o-luoi{display:grid;grid-template-columns:repeat(auto-fit,minmax(42mm,1fr));gap:6px;margin:6px 0 12px}
+.o-luoi>div{border:1px solid var(--line);padding:7px 9px}
+.o-luoi span{display:block;font-size:7.5pt;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.o-luoi b{font-size:12pt}
+.thanh{display:grid;grid-template-columns:30mm 1fr 10mm;gap:6px;align-items:center;font-size:9pt;margin:3px 0}
+.thanh i{display:block;height:7px;background:var(--soft);position:relative}
+.thanh i::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--ink)}
+.thanh i.yeu::after{background:var(--red)}
+/* sơ đồ luồng (dùng HTML hoặc SVG nội tuyến; mũi tên → ) */
+.luong{display:flex;flex-wrap:wrap;gap:4px;align-items:stretch;margin:6px 0 10px;font-size:8.5pt}
+.luong>div{border:1px solid var(--ink);padding:5px 7px;flex:1 1 30mm;min-width:28mm}
+.luong>div.ai{border-style:dashed} .luong>div.nguoi{border-color:var(--red);background:var(--redbg)}
+.luong>span{align-self:center;color:var(--mute)}
+
+.dieu{margin:0 0 9px}.dieu h3{margin:10px 0 4px}
+.dieu ol,.dieu ul{margin:2px 0 6px}
+.ky{display:grid;grid-template-columns:1fr 1fr;gap:12mm;margin-top:10mm;font-size:10pt}
+.ky .o{border-top:1px solid var(--ink);padding-top:6px;min-height:34mm}
+@media (max-width:820px){.ky{grid-template-columns:1fr;gap:20px}}
+</style>
+</head>
+<body>
+<style>.ve-mau{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#201E1D;color:#fff;font:600 12px/1.4 'Archivo',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:10px 16px}.ve-mau a{color:#fff;text-decoration:none}.ve-mau a:hover{text-decoration:underline}@media print{.ve-mau{display:none}}</style>
+<nav class="ve-mau"><a href="./">← Tất cả mẫu hồ sơ</a><span><a href="../dang-ky/">Đăng ký gói</a> · <a href="../">lattice.business</a></span></nav>
+
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 17.5 10 10 17.5 2.5 10Z" fill="none" stroke="#201E1D" stroke-width="1.2"/><g fill="#fff" stroke="#201E1D" stroke-width="1.2"><circle cx="10" cy="2.5" r="1.9"/><circle cx="17.5" cy="10" r="1.9"/><circle cx="10" cy="17.5" r="1.9"/><circle cx="2.5" cy="10" r="1.9"/></g><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Cam kết bảo mật · CKBM-ABZ-261013</span></div>
+
+<div class="bia" style="min-height:222mm">
+<div>
+<span class="tem">Hồ sơ mẫu · doanh nghiệp hư cấu</span>
+<h1>Cam kết<br>bảo mật thông tin</h1>
+<p class="phu">LATTICE Next Solutions cam kết với Công ty ABZ về cách nhận, dùng, lưu giữ và xóa mọi thông tin anh chị gửi cho chúng tôi trong quá trình làm hồ sơ.</p>
+</div>
+<dl>
+<dt>Số cam kết</dt><dd>CKBM-ABZ-261013</dd>
+<dt>Bên cam kết</dt><dd>Công ty Cổ phần Giải pháp LATTICE Next (LATTICE Next Solutions)</dd>
+<dt>Bên được cam kết</dt><dd>Công ty TNHH Thương mại ABZ · đại diện: ông Trần Minh An, Giám đốc</dd>
+<dt>Áp dụng cho</dt><dd>Khảo sát nhanh KS-26101 · Scan LTC12104471 · Blueprint LTC05116208 · Kit LTC20117352 và mọi gói ABZ dùng sau này</dd>
+<dt>Ngày hiệu lực</dt><dd>13/10/2026 (ngày ABZ thanh toán gói đầu tiên); phần Khảo sát nhanh tính từ ngày gửi câu trả lời 12/10/2026</dd>
+<dt>Bản cho nhà sáng lập</dt><dd>CKBM-ABZ-261014 (Compass, Foundry): cùng nội dung, bên được cam kết là ông Trần Minh An và bà Lê Thu Hà, hiệu lực 14/10/2026</dd>
+<dt>Cách gửi</dt><dd>Đính kèm email xác nhận thanh toán, bản PDF có chữ ký số của LATTICE</dd>
+<dt>Liên hệ</dt><dd>lattice.consultant@gmail.com (kênh liên hệ duy nhất)</dd>
+</dl>
+</div>
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật, chỉ dành cho Công ty ABZ</span><span>Trang 1 / 4</span></div>
+</section>
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 17.5 10 10 17.5 2.5 10Z" fill="none" stroke="#201E1D" stroke-width="1.2"/><g fill="#fff" stroke="#201E1D" stroke-width="1.2"><circle cx="10" cy="2.5" r="1.9"/><circle cx="17.5" cy="10" r="1.9"/><circle cx="10" cy="17.5" r="1.9"/><circle cx="2.5" cy="10" r="1.9"/></g><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Cam kết bảo mật · CKBM-ABZ-261013</span></div>
+
+<h2>Tóm tắt trong năm dòng</h2>
+<div class="tomtat">
+<ol style="margin:0">
+<li>Thông tin của ABZ chỉ dùng để làm hồ sơ cho ABZ. Không dùng cho việc gì khác.</li>
+<li>Chỉ người có tên trong Điều 4 được đọc. Không bán, không chia sẻ, không đưa ra làm ví dụ.</li>
+<li>Công cụ AI chỉ dùng loại tài khoản doanh nghiệp đã tắt việc lấy dữ liệu để huấn luyện; dữ liệu cá nhân khách hàng của ABZ không đưa vào AI.</li>
+<li>Tài liệu gốc xóa trong 30 ngày sau khi gói kết thúc; ABZ yêu cầu xóa sớm thì xóa trong 7 ngày làm việc và xác nhận bằng email.</li>
+<li>Có sự cố lộ, mất dữ liệu: báo ABZ trong 72 giờ kể từ khi phát hiện.</li>
+</ol>
+</div>
+
+<div class="dieu"><h3>Điều 1. Thông tin được bảo mật</h3>
+<p>Mọi thông tin ABZ cung cấp hoặc LATTICE lập ra cho ABZ, dù ở dạng nào, có đánh dấu "mật" hay không:</p>
+<ul>
+<li>câu trả lời Khảo sát nhanh, câu hỏi bổ sung, câu hỏi chuyên sâu;</li>
+<li>tài liệu ABZ gửi: danh sách nhân sự, danh mục hàng và bảng giá đại lý, doanh thu, tồn kho, công nợ, file xuất đơn hàng, chính sách, quy trình;</li>
+<li>nội dung buổi Zoom, biên bản, thư trao đổi;</li>
+<li>sản phẩm giao: báo cáo, hồ sơ thiết kế, SOP, cấu hình agent, trang mô phỏng riêng.</li>
+</ul></div>
+
+<div class="dieu"><h3>Điều 2. Không thuộc diện bảo mật</h3>
+<p>Thông tin đã công khai không do LATTICE làm lộ; thông tin LATTICE có hợp pháp từ trước; thông tin cơ quan nhà nước có thẩm quyền yêu cầu theo pháp luật — khi đó LATTICE chỉ cung cấp đúng phần được yêu cầu và báo ABZ trước, nếu pháp luật cho phép báo.</p></div>
+
+<div class="dieu"><h3>Điều 3. Mục đích dùng</h3>
+<p>Chỉ để lập, giao và giải đáp hồ sơ của các gói ABZ đã mua. LATTICE <b>không</b>:</p>
+<ul>
+<li>dùng số liệu, tên đại lý, nhà cung cấp, giá của ABZ khi tư vấn cho bên khác;</li>
+<li>liên hệ khách hàng, đại lý, nhà cung cấp hay nhân viên của ABZ khi ABZ chưa đồng ý bằng email;</li>
+<li>dùng hồ sơ ABZ làm ví dụ, tình huống đào tạo, bài viết, video hay tài liệu bán hàng khi chưa có đồng ý bằng văn bản; khi được đồng ý vẫn phải ẩn tên và thay số;</li>
+<li>dùng dữ liệu ABZ để huấn luyện mô hình AI.</li>
+</ul>
+<p>Số liệu gộp từ ít nhất 10 doanh nghiệp, không nhận ra được doanh nghiệp nào (ví dụ: tỷ lệ hàng chậm trung bình ngành gia dụng), có thể dùng để cải tiến chuẩn so sánh. ABZ có quyền từ chối bằng một email.</p></div>
+
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật, chỉ dành cho Công ty ABZ</span><span>Trang 2 / 4</span></div>
+</section>
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 17.5 10 10 17.5 2.5 10Z" fill="none" stroke="#201E1D" stroke-width="1.2"/><g fill="#fff" stroke="#201E1D" stroke-width="1.2"><circle cx="10" cy="2.5" r="1.9"/><circle cx="17.5" cy="10" r="1.9"/><circle cx="10" cy="17.5" r="1.9"/><circle cx="2.5" cy="10" r="1.9"/></g><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Cam kết bảo mật · CKBM-ABZ-261013</span></div>
+
+<div class="dieu"><h3>Điều 4. Ai được đọc</h3>
+<table><thead><tr><th>Người</th><th>Vai</th><th>Được làm</th></tr></thead><tbody>
+<tr><td>Nguyễn Hải Nam</td><td>Tư vấn trưởng, phụ trách hồ sơ</td><td>Đọc toàn bộ, lập và duyệt hồ sơ</td></tr>
+<tr><td>Phạm Khánh Vy</td><td>Chuyên viên phân tích</td><td>Đọc tài liệu đã che dữ liệu cá nhân, ghi biên bản</td></tr>
+<tr><td>Người duyệt chất lượng (1 người, báo tên trước)</td><td>Rà hồ sơ trước khi giao</td><td>Đọc bản nháp hồ sơ, không đọc tài liệu gốc</td></tr>
+</tbody></table>
+<p>Đổi hoặc thêm người: báo ABZ bằng email trước khi người đó đọc. Mọi người trong danh sách đã ký cam kết bảo mật với LATTICE, nghĩa vụ còn hiệu lực cả khi họ nghỉ việc.</p>
+<p><b>Bên cung cấp hạ tầng</b> (email, lưu trữ đám mây, công cụ AI, Zoom) chỉ xử lý dữ liệu như công cụ, theo điều khoản dịch vụ doanh nghiệp của họ. LATTICE chọn loại tài khoản có mã hóa, có xác thực hai lớp và cam kết không dùng dữ liệu khách để huấn luyện. Danh sách công cụ đang dùng gửi kèm khi ABZ hỏi.</p></div>
+
+<div class="dieu"><h3>Điều 5. Dữ liệu cá nhân</h3>
+<ul>
+<li>LATTICE <b>không cần</b> dữ liệu cá nhân của khách hàng, nhân viên ABZ để làm hồ sơ. Danh sách tài liệu luôn kèm hướng dẫn che: tên, số điện thoại, địa chỉ, email, số tài khoản.</li>
+<li>Nếu tài liệu gửi đến còn dữ liệu cá nhân: LATTICE che ngay trên bản lưu, xóa bản gốc trong 2 ngày làm việc và báo ABZ.</li>
+<li>Không đưa dữ liệu cá nhân vào công cụ AI dưới bất kỳ hình thức nào.</li>
+<li>Tin nhắn mẫu dùng để soạn kịch bản trả lời (Blueprint, Kit) phải được ABZ che trước khi gửi.</li>
+<li>Việc thu thập và xử lý dữ liệu cá nhân trong hệ thống của chính ABZ thuộc trách nhiệm của ABZ theo pháp luật về bảo vệ dữ liệu cá nhân; hồ sơ LATTICE chỉ nêu các điểm cần rà, nên rà lại với luật sư.</li>
+</ul></div>
+
+<div class="dieu"><h3>Điều 6. Lưu giữ và bảo vệ</h3>
+<ul>
+<li>Mỗi hồ sơ một thư mục riêng theo mã, chỉ người ở Điều 4 có quyền; mọi tài khoản bật xác thực hai lớp.</li>
+<li>Không lưu trên USB, máy cá nhân không mã hóa, nhóm chat hay ứng dụng nhắn tin.</li>
+<li>Trang mô phỏng riêng: đường dẫn ngẫu nhiên không đoán được, không đưa lên công cụ tìm kiếm, chỉ chứa số đã làm tròn, tự hết hạn sau 90 ngày; ABZ yêu cầu thì tắt ngay.</li>
+<li>Gửi hồ sơ qua email dạng PDF; tệp chứa số liệu tài chính đặt mật khẩu, mật khẩu gửi trong một email riêng.</li>
+</ul></div>
+
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật, chỉ dành cho Công ty ABZ</span><span>Trang 3 / 4</span></div>
+</section>
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 17.5 10 10 17.5 2.5 10Z" fill="none" stroke="#201E1D" stroke-width="1.2"/><g fill="#fff" stroke="#201E1D" stroke-width="1.2"><circle cx="10" cy="2.5" r="1.9"/><circle cx="17.5" cy="10" r="1.9"/><circle cx="10" cy="17.5" r="1.9"/><circle cx="2.5" cy="10" r="1.9"/></g><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Cam kết bảo mật · CKBM-ABZ-261013</span></div>
+
+<div class="dieu"><h3>Điều 7. Thời hạn lưu và xóa</h3>
+<table><thead><tr><th>Loại</th><th>Giữ đến</th><th>Sau đó</th></tr></thead><tbody>
+<tr><td>Tài liệu gốc ABZ gửi</td><td>30 ngày sau khi hết hạn hỏi đáp của gói cuối cùng</td><td>Xóa hẳn, kể cả bản sao lưu trong 30 ngày tiếp theo</td></tr>
+<tr><td>Ghi âm buổi Zoom (chỉ khi ABZ đồng ý ghi)</td><td>14 ngày sau khi gửi biên bản</td><td>Xóa hẳn</td></tr>
+<tr><td>Hồ sơ đã giao (báo cáo, thiết kế, SOP)</td><td>24 tháng, để ABZ nâng gói hoặc hỏi lại</td><td>Xóa, trừ khi ABZ yêu cầu giữ</td></tr>
+<tr><td>Chứng từ thanh toán, hóa đơn</td><td>Theo thời hạn pháp luật kế toán, thuế</td><td>Không chứa nội dung hồ sơ</td></tr>
+</tbody></table>
+<p>ABZ có thể yêu cầu xóa sớm bất kỳ phần nào bằng một email. LATTICE xóa trong 7 ngày làm việc và gửi xác nhận liệt kê những gì đã xóa.</p></div>
+
+<div class="dieu"><h3>Điều 8. Khi có sự cố</h3>
+<p>Có dấu hiệu lộ, mất hoặc truy cập trái phép: LATTICE khóa quyền truy cập ngay, báo ABZ trong <b>72 giờ</b> kể từ khi phát hiện (thông tin gì, bao nhiêu, đã làm gì, ABZ nên làm gì), rồi gửi báo cáo đầy đủ trong 7 ngày. Nếu sự cố do LATTICE vi phạm cam kết này, ABZ được hoàn toàn bộ phí các gói liên quan, không ảnh hưởng quyền yêu cầu bồi thường theo pháp luật.</p></div>
+
+<div class="dieu"><h3>Điều 9. Cam kết thêm cho người khởi sự (Compass, Foundry)</h3>
+<p>Ý tưởng kinh doanh, kế hoạch nguồn hàng, kết quả bán thử và bảng vốn là bí mật của nhà sáng lập, kể cả khi doanh nghiệp chưa thành lập. Nhà sáng lập được nêu tối đa 3 đối thủ trực tiếp: người phụ trách hồ sơ sẽ không phụ trách hồ sơ của các đối thủ đó trong 12 tháng.</p></div>
+
+<div class="dieu"><h3>Điều 10. Thời hạn cam kết</h3>
+<p>Hiệu lực từ ngày ghi ở trang bìa đến hết 3 năm sau ngày giao hồ sơ cuối cùng. Riêng bí mật kinh doanh (giá vốn, giá đại lý, nhà cung cấp, công thức nhãn riêng) được bảo mật chừng nào còn là bí mật. Cam kết này giải thích theo pháp luật Việt Nam; bất đồng giải quyết trước hết bằng thương lượng qua email.</p></div>
+
+<div class="dieu"><h3>Điều 11. ABZ nên làm</h3>
+<p>Không gửi mật khẩu, mã OTP, tài khoản quản trị phần mềm cho LATTICE — chúng tôi không bao giờ cần. Chỉ gửi tài liệu qua email đã đăng ký với hồ sơ; LATTICE không nhận tài liệu qua kênh khác.</p></div>
+
+<div class="ky">
+<div class="o"><b>Đại diện LATTICE Next Solutions</b><br><span class="nho">Ký số ngày 13/10/2026</span><br><br><span class="nho">(chữ ký số)</span><br><b>[Người đại diện theo pháp luật]</b></div>
+<div class="o"><b>Công ty TNHH Thương mại ABZ</b><br><span class="nho">Xác nhận đã nhận bằng email ngày 13/10/2026 — không bắt buộc ký lại</span><br><br><b>Trần Minh An</b> · Giám đốc</div>
+</div>
+
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật, chỉ dành cho Công ty ABZ</span><span>Trang 4 / 4</span></div>
+</section>
+</body>
+</html>

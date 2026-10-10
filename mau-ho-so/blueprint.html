@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bộ hồ sơ Blueprint · Công ty ABZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&display=swap">
+<style>
+/* KHUÔN CHUNG cho mọi tài liệu mẫu gửi khách. Trang giấy A4 xếp dọc trên nền xám; in ra mỗi .trang một tờ. */
+:root{--paper:#FFFFFF;--desk:#E9E7E6;--ink:#201E1D;--mute:#5E5A58;--line:#D3CFCD;--soft:#F3F2F2;--red:#EC3013;--redtx:#B3200A;--redbg:#FBE3DE;--ok:#2E6B4F;--okbg:#DCEBE2;--warn:#8A5A00;--warnbg:#F6E9CC;
+  --f:'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--desk);color:var(--ink);font-family:var(--f);font-size:10.5pt;line-height:1.5}
+.trang{width:210mm;min-height:297mm;margin:24px auto;background:var(--paper);padding:18mm 18mm 22mm;position:relative;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+@media (max-width:820px){.trang{width:auto;min-height:0;margin:12px;padding:22px 18px 40px}}
+@media print{body{background:#fff}.trang{margin:0;box-shadow:none;page-break-after:always;min-height:auto}}
+/* đầu trang, chân trang */
+.dau{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:14px;font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.dau b{color:var(--ink);letter-spacing:.18em}
+.dau .logo{display:flex;align-items:center;gap:8px}
+.chan{position:absolute;left:18mm;right:18mm;bottom:10mm;display:flex;justify-content:space-between;font-size:7.5pt;color:var(--mute);border-top:1px solid var(--line);padding-top:5px}
+@media (max-width:820px){.chan{left:18px;right:18px;bottom:12px}}
+/* bìa */
+.bia{display:flex;flex-direction:column;justify-content:space-between}
+.bia .tem{display:inline-block;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--warn);border:1px solid currentColor;padding:3px 8px}
+.bia h1{font-size:32pt;line-height:1.02;font-weight:800;letter-spacing:-.02em;margin:18mm 0 6mm;font-stretch:88%}
+.bia .phu{font-size:13pt;color:var(--mute);max-width:130mm}
+.bia dl{display:grid;grid-template-columns:42mm 1fr;gap:4px 10px;font-size:10pt;margin-top:14mm;border-top:2px solid var(--ink);padding-top:8px}
+.bia dt{color:var(--mute)} .bia dd{margin:0;font-weight:600}
+/* chữ */
+h2{font-size:16pt;font-weight:800;letter-spacing:-.015em;margin:0 0 8px}
+h3{font-size:11.5pt;font-weight:800;margin:14px 0 6px}
+p{margin:0 0 8px}
+.so{font-variant-numeric:tabular-nums}
+.nho{font-size:8.5pt;color:var(--mute)}
+ul,ol{margin:4px 0 10px;padding-left:18px} li{margin:2px 0}
+/* bảng */
+table{width:100%;border-collapse:collapse;font-size:9pt;margin:6px 0 12px}
+th,td{border:1px solid var(--line);padding:5px 7px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-size:8pt;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.bang-cuon{overflow-x:auto}
+/* khối nhấn */
+.tomtat{border:2px solid var(--ink);padding:10px 12px;margin:8px 0 12px}
+.canh{border-left:4px solid var(--red);background:var(--redbg);padding:8px 12px;margin:8px 0 12px}
+.ok{color:var(--ok)} .vang{color:var(--warn)} .do{color:var(--redtx)}
+.pill{display:inline-block;font-size:7.5pt;font-weight:700;letter-spacing:.04em;padding:1px 6px;border:1px solid currentColor;white-space:nowrap}
+.pill.do{background:var(--redbg)} .pill.vang{background:var(--warnbg)} .pill.ok{background:var(--okbg)}
+.o-luoi{display:grid;grid-template-columns:repeat(auto-fit,minmax(42mm,1fr));gap:6px;margin:6px 0 12px}
+.o-luoi>div{border:1px solid var(--line);padding:7px 9px}
+.o-luoi span{display:block;font-size:7.5pt;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.o-luoi b{font-size:12pt}
+.thanh{display:grid;grid-template-columns:30mm 1fr 10mm;gap:6px;align-items:center;font-size:9pt;margin:3px 0}
+.thanh i{display:block;height:7px;background:var(--soft);position:relative}
+.thanh i::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--ink)}
+.thanh i.yeu::after{background:var(--red)}
+/* sơ đồ luồng (dùng HTML hoặc SVG nội tuyến; mũi tên → ) */
+.luong{display:flex;flex-wrap:wrap;gap:4px;align-items:stretch;margin:6px 0 10px;font-size:8.5pt}
+.luong>div{border:1px solid var(--ink);padding:5px 7px;flex:1 1 30mm;min-width:28mm}
+.luong>div.ai{border-style:dashed} .luong>div.nguoi{border-color:var(--red);background:var(--redbg)}
+.luong>span{align-self:center;color:var(--mute)}
+</style>
+<style>
+/* Bổ sung cho bộ Blueprint: thư, sơ đồ tổ chức, kiến trúc ba lớp, lộ trình. Không đổi các lớp của khuôn. */
+.dau .logo svg{flex:none}
+.thu{display:grid;grid-template-columns:24mm 1fr;gap:2px 10px;font-size:9pt;border:1px solid var(--line);background:var(--soft);padding:8px 10px;margin:0 0 12px}
+.thu dt{color:var(--mute)} .thu dd{margin:0;overflow-wrap:anywhere}
+@media (max-width:820px){.thu{grid-template-columns:70px 1fr}}
+.ky{margin-top:12px;padding-top:6px;border-top:1px solid var(--line);font-size:9.5pt}
+.hoi{list-style:none;padding:0;margin:4px 0 10px}
+.hoi li{border-top:1px solid var(--line);padding:5px 0 6px;margin:0}
+.hoi .q{font-weight:700;display:block}
+.hoi .a{display:block;padding-left:10px;border-left:3px solid var(--line);margin-top:3px}
+.modun{font-size:8pt;letter-spacing:.1em;text-transform:uppercase;color:var(--redtx);font-weight:700;margin:12px 0 2px}
+.lop{border:2px solid var(--ink);padding:8px 10px;margin:0 0 4px}
+.lop>.nhan{display:block;font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+.o-chuoi{display:grid;grid-template-columns:repeat(auto-fit,minmax(36mm,1fr));gap:5px}
+.o-chuoi>div{border:1px solid var(--ink);padding:5px 7px;font-size:8.5pt;line-height:1.35}
+.o-chuoi>div b{display:block;font-size:9pt}
+.o-chuoi>div.uu{border-color:var(--red);background:var(--redbg)}
+.o-chuoi>div.nen{border-style:dashed}
+.mui{text-align:center;color:var(--mute);font-size:8pt;margin:3px 0}
+.thanh i b{position:absolute;top:-3px;bottom:-3px;width:3px;background:var(--red);left:var(--m)}
+.tc{margin:6px 0 10px}
+.tc-hang{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.tc-o{border:1px solid var(--ink);padding:5px 6px;font-size:8pt;text-align:center;flex:1 1 27mm;min-width:25mm;max-width:62mm;line-height:1.3}
+.tc-o b{display:block;font-size:8.5pt}
+.tc-o.ai{border-style:dashed}
+.tc-o.ngoai{border-color:var(--mute);color:var(--mute);background:var(--soft)}
+.tc-o.do{border-color:var(--red);background:var(--redbg)}
+.tc-noi{text-align:center;color:var(--mute);font-size:9pt;line-height:1.1;margin:3px 0}
+.tc-tang{font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-align:center;margin:8px 0 3px}
+.gantt{min-width:168mm;font-size:8pt;margin:6px 0 10px}
+.g-hang{display:grid;grid-template-columns:44mm repeat(12,1fr);align-items:center;border-bottom:1px solid var(--line);min-height:23px}
+.g-hang>*{grid-row:1}
+.g-hang.g-tieu{border-bottom:2px solid var(--ink)}
+.g-hang.g-tieu>div{font-size:7pt;color:var(--mute);text-align:center;line-height:1.2;padding:2px 0}
+.g-hang.g-tieu>div:first-child{text-align:left}
+.g-ten{grid-column:1;padding:3px 6px 3px 0;line-height:1.25}
+.g-bar{background:var(--ink);color:#fff;font-size:7pt;padding:2px 4px;margin:2px 1px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.g-bar.l2{background:var(--mute)}
+.g-bar.l3{background:var(--red)}
+.g-bar.nhe{background:var(--soft);color:var(--ink);border:1px dashed var(--mute)}
+.g-moc{justify-self:center;font-size:7pt;font-weight:700;color:var(--redtx);white-space:nowrap}
+.g-tet{background:var(--warnbg);color:var(--warn);font-size:7pt;text-align:center;padding:2px;margin:2px 1px}
+.muc-luc{list-style:none;padding:0;margin:6px 0 12px}
+.muc-luc li{display:flex;gap:8px;border-bottom:1px dotted var(--line);padding:4px 0}
+.muc-luc li span:first-child{flex:1}
+.muc-luc li span:last-child{font-variant-numeric:tabular-nums;color:var(--mute)}
+.o-luoi small{display:block;font-size:7.5pt;color:var(--mute);margin-top:2px}
+td.c,th.c{text-align:center}
+.sop-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(38mm,1fr));gap:0;border:2px solid var(--ink);margin:4px 0 10px;font-size:8.5pt}
+.sop-meta>div{padding:5px 8px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sop-meta span{display:block;font-size:7pt;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+@media (max-width:820px){.bia dl{grid-template-columns:1fr;gap:0 10px}.bia dd{margin-bottom:5px;overflow-wrap:anywhere}.bia h1{font-size:24pt}}
+/* bảng gọn hơn để mỗi mục vừa một tờ A4 */
+table{font-size:8.6pt;line-height:1.35}
+th,td{padding:3px 6px}
+th{font-size:7.5pt}
+.trang h3{margin:10px 0 4px}
+.trang ul,.trang ol{margin:3px 0 8px}
+
+</style>
+</head>
+<body>
+<style>.ve-mau{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#201E1D;color:#fff;font:600 12px/1.4 'Archivo',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:10px 16px}.ve-mau a{color:#fff;text-decoration:none}.ve-mau a:hover{text-decoration:underline}@media print{.ve-mau{display:none}}</style>
+<nav class="ve-mau"><a href="./">← Tất cả mẫu hồ sơ</a><span><a href="../dang-ky/">Đăng ký gói</a> · <a href="../">lattice.business</a></span></nav>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Bộ hồ sơ Blueprint · LTC05116208</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+<span class="pill vang" style="font-size:8pt;padding:3px 8px">HỒ SƠ MẪU · DOANH NGHIỆP HƯ CẤU</span>
+<span class="nho">Bộ tài liệu khách nhận khi nâng từ Scan lên Blueprint</span></div>
+<h2 style="font-size:24pt;line-height:1.08;margin:14mm 0 4mm;letter-spacing:-.02em">Bộ hồ sơ LATTICE Blueprint<br>Công ty TNHH Thương mại ABZ</h2>
+<p class="nho" style="font-size:10.5pt;max-width:140mm">Đây là toàn bộ những gì ABZ nhận được trong gói Blueprint, xếp theo đúng thứ tự thời gian: từ thư xác nhận nâng gói ngày 05/11/2026 đến hạn hỏi đáp cuối cùng ngày 19/12/2026. Mọi con số lấy từ hồ sơ Khảo sát nhanh KS-26101, báo cáo Scan LTC12104471 và các câu trả lời của ABZ.</p>
+<div class="bang-cuon"><table>
+<tr><th>Phần</th><th>Tài liệu</th><th>Ngày</th><th class="c">Số trang</th></tr>
+<tr><td>a</td><td>Thư xác nhận nâng gói, lộ trình và bộ 16 câu hỏi chuyên sâu theo 4 mô-đun, kèm trả lời tóm tắt của ABZ</td><td class="so">05/11 – 07/11/2026</td><td class="c so">3</td></tr>
+<tr><td>b</td><td>Thư mời Zoom 60 phút, chương trình; biên bản buổi Zoom</td><td class="so">06/11 – 10/11/2026</td><td class="c so">3</td></tr>
+<tr><td>c</td><td><b>Hồ sơ thiết kế</b>: kiến trúc ba lớp, bản đồ 8 khối, bộ máy và phân vai, ma trận quyền, ba chuỗi ưu tiên, dữ liệu nguồn chuẩn, lộ trình 90 ngày, chi phí, rủi ro, chỉ số tuần</td><td class="so">19/11/2026</td><td class="c so">16</td></tr>
+<tr><td>c</td><td>Phụ lục: hai quy trình chuẩn mẫu — đề xuất và duyệt đơn nhập hằng tuần; kiểm soát công nợ và hạn mức đại lý</td><td class="so">19/11/2026</td><td class="c so">4</td></tr>
+<tr><td>d</td><td>Lịch rà lại 30 phút (10/12/2026), quy định hỏi đáp email 30 ngày, khấu trừ vào Build</td><td class="so">19/11/2026</td><td class="c so">1</td></tr>
+</table></div>
+<div class="bia" style="display:block"><dl>
+<dt>Khách hàng</dt><dd>Công ty TNHH Thương mại ABZ · Long Biên, Hà Nội</dd>
+<dt>Gói</dt><dd>LATTICE Blueprint · 2.950.000đ (đã gồm VAT 10%)</dd>
+<dt>Mã hồ sơ</dt><dd>LTC05116208 (nâng từ Scan LTC12104471)</dd>
+<dt>Người phụ trách</dt><dd>Nguyễn Hải Nam — tư vấn trưởng</dd>
+<dt>Liên hệ</dt><dd>lattice.consultant@gmail.com (chỉ qua email)</dd>
+<dt>Bảo mật</dt><dd>Theo cam kết CKBM-ABZ-261013 (gửi 13/10/2026), áp dụng cả buổi Zoom</dd>
+</dl></div>
+<p class="nho" style="margin-top:10mm">Công ty ABZ, mọi tên người và số liệu trong bộ này là hư cấu, dựng để minh họa sản phẩm của LATTICE Next Solutions. Không dùng làm căn cứ pháp lý, thuế hay tài chính cho doanh nghiệp thật.</p>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 1 / 1</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Xác nhận nâng gói · Câu hỏi chuyên sâu · LTC05116208</span></div>
+<h2>Thư xác nhận nâng gói Blueprint</h2>
+<dl class="thu">
+<dt>Từ</dt><dd>Nguyễn Hải Nam — LATTICE Next Solutions &lt;lattice.consultant@gmail.com&gt;</dd>
+<dt>Đến</dt><dd>Trần Minh An &lt;an.tm@abz.example&gt;</dd>
+<dt>Ngày</dt><dd>Thứ Năm, 05/11/2026, 16:40 · đồng gửi chị Phương</dd>
+<dt>Tiêu đề</dt><dd><b>[LTC05116208] Xác nhận nâng lên Blueprint · lộ trình · bộ câu hỏi chuyên sâu</b></dd>
+</dl>
+<p>Chào anh An,</p>
+<p>LATTICE đã nhận <b class="so">2.055.000đ</b> anh chuyển ngày 05/11/2026, nội dung <b>BLUEPRINT</b>. Hồ sơ của ABZ chuyển từ Scan sang Blueprint với mã mới <b>LTC05116208</b>. Tài liệu gửi cho Scan (20/10) và báo cáo Scan (27/10) được dùng tiếp, không phải gửi lại.</p>
+<div class="bang-cuon"><table>
+<tr><th>Khoản</th><th>Số tiền</th><th>Ghi chú</th></tr>
+<tr><td>Giá gói Blueprint</td><td class="so">2.950.000đ</td><td>Đã gồm VAT 10%</td></tr>
+<tr><td>Trừ phí Scan đã trả</td><td class="so">− 895.000đ</td><td>Thanh toán 13/10/2026; nâng gói ngày 05/11 là ngày thứ 23, trong hạn 30 ngày nên trừ 100%</td></tr>
+<tr><td><b>Đã chuyển thêm</b></td><td class="so"><b>2.055.000đ</b></td><td>Hóa đơn điện tử gửi riêng trong 3 ngày làm việc</td></tr>
+</table></div>
+<h3>Lộ trình gói Blueprint của ABZ</h3>
+<div class="bang-cuon"><table>
+<tr><th>Ngày</th><th>Việc</th><th>Ai</th></tr>
+<tr><td class="so">05/11 (hôm nay)</td><td>Gửi bộ câu hỏi chuyên sâu — chỉ mở 4 mô-đun liên quan, 16 câu (trang sau)</td><td>LATTICE</td></tr>
+<tr><td class="so">06/11</td><td>Thư mời Zoom 60 phút, chương trình buổi họp</td><td>LATTICE</td></tr>
+<tr><td class="so">09/11, 12:00</td><td>Hạn ABZ trả lời câu hỏi (trả lời thẳng trong thư, mỗi câu 2–5 dòng là đủ)</td><td>Anh An, chị Phương</td></tr>
+<tr><td class="so">10/11, 9:00–10:00</td><td>Buổi Zoom thiết kế — lần đầu gặp trực tiếp</td><td>Hai bên</td></tr>
+<tr><td class="so">19/11</td><td>Giao hồ sơ thiết kế 12–16 trang và 2 SOP mẫu (7 ngày làm việc sau buổi Zoom)</td><td>LATTICE</td></tr>
+<tr><td class="so">10/12</td><td>Rà lại 30 phút, ba tuần sau khi giao hồ sơ</td><td>Hai bên</td></tr>
+<tr><td class="so">đến 19/12</td><td>Hỏi đáp qua email, tối đa 5 câu, trong 30 ngày kể từ ngày giao hồ sơ</td><td>ABZ hỏi, LATTICE trả lời</td></tr>
+<tr><td class="so">đến 18/01/2027</td><td>Khấu trừ 100% phí Blueprint nếu ký hợp đồng Build trong 60 ngày (không bắt buộc)</td><td>ABZ quyết</td></tr>
+</table></div>
+<div class="canh" style="border-left-color:var(--ink);background:var(--soft)"><b>SOP là gì?</b> SOP (Standard Operating Procedure) — quy trình thao tác chuẩn: văn bản ghi một việc lặp lại được làm thế nào, từng bước, ai làm (người hay AI, mức L0–L3), ngưỡng nào thì AI dừng và chuyển người, ghi nhật ký gì, đo bằng chỉ số nào. SOP vừa là hướng dẫn cho người làm, vừa là luật để cấu hình AI; khi một người nghỉ, việc vẫn chạy.</div>
+<p><b>Người dự Zoom:</b> anh An, chị Hà, chị Phương cả buổi; chị Hồng 12 phút (công nợ), chị Mai Linh 8 phút (tin nhắn khách). Nếu anh không đổi, LATTICE giữ 10/11, 9:00.</p>
+<p class="nho">Câu hỏi chuyên sâu đã gửi nên phí không hoàn. Dời Zoom miễn phí tối đa 2 lần, báo trước 24 giờ. LATTICE giao trễ hạn 19/11: hoàn 100%.</p>
+<div class="ky">Trân trọng,<br><b>Nguyễn Hải Nam</b> — tư vấn trưởng, LATTICE Next Solutions<br>lattice.consultant@gmail.com · LATTICE chỉ làm việc qua email này.</div>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 1 / 3</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Xác nhận nâng gói · Câu hỏi chuyên sâu · LTC05116208</span></div>
+<h2>Bộ câu hỏi chuyên sâu — 16 câu, 4 mô-đun</h2>
+<p class="nho">Gửi 05/11/2026 · ABZ trả lời 07/11/2026 (anh An, chị Phương; chị Hồng bổ sung câu 2.2–2.3; chị Mai Linh trả lời mô-đun 3). Các mô-đun không mở: Nhãn riêng &amp; xưởng gia công, Lương thưởng, Pháp chế hợp đồng — không thuộc ba việc ưu tiên, sẽ xử lý ở giai đoạn sau.</p>
+<div class="modun">Mô-đun 1 · Hoạch định &amp; tồn kho (5 câu)</div>
+<ol class="hoi">
+<li><span class="q">1.1 ABZ đã phân nhóm 380 mã theo doanh thu (A/B/C) chưa? Bao nhiêu mã tạo phần lớn doanh thu?</span><span class="a">Chưa phân nhóm chính thức. Theo phân tích trong báo cáo Scan, 76 mã (20% danh mục) tạo khoảng 70% doanh thu; 14 mã hết hàng tháng 9 đều nằm trong nhóm này.</span></li>
+<li><span class="q">1.2 Thời gian hàng về và đơn tối thiểu của từng nhà cung cấp?</span><span class="a">Hàn Quốc (2 nhà): 35–40 ngày, tối thiểu khoảng 120 triệu/đơn. Thái Lan (1): 35–40 ngày. Trung Quốc (3): 40–50 ngày tính cả thông quan. Hai xưởng ABZ Home trong nước: 15–20 ngày. Thời gian thực tế chỉ ghi trong email, không có bảng tổng hợp.</span></li>
+<li><span class="q">1.3 Có tồn an toàn hoặc điểm đặt hàng lại bằng văn bản không?</span><span class="a">Không. Chị Phương nhớ khoảng 30 mã quan trọng, phần còn lại đặt theo cảm giác bán tuần trước.</span></li>
+<li><span class="q">1.4 Kiểm kê thế nào? 4% mã lệch là bao nhiêu mã, lệch vì đâu?</span><span class="a">Kiểm kê toàn kho mỗi năm một lần vào tháng 12; giữa năm chỉ kiểm khi có mã lệch. 4% là khoảng 15 mã. Nguyên nhân chính: hàng đổi trả nhập lại không qua phần mềm; đơn sỉ xuất trước, nhập phần mềm sau 1–2 ngày.</span></li>
+<li><span class="q">1.5 Mùa vụ ảnh hưởng thế nào đến nhập hàng?</span><span class="a">Tháng 12 và tháng 1 (trước Tết) doanh thu tăng khoảng 35%. Ngày 11/11 và 12/12 đơn sàn gấp 2–3 lần ngày thường. Hàng nhập khẩu cho Tết phải đặt trước giữa tháng 12.</span></li>
+</ol>
+<div class="modun">Mô-đun 2 · Công nợ &amp; tín dụng (4 câu)</div>
+<ol class="hoi">
+<li><span class="q">2.1 Điều khoản thanh toán với đại lý?</span><span class="a">Thỏa thuận miệng 30 ngày; vài đại lý lớn được 45 ngày. Có hợp đồng nguyên tắc với 11/18 đại lý lớn nhưng không ghi hạn mức tín dụng.</span></li>
+<li><span class="q">2.2 Sheet công nợ của chị Hà lấy số từ đâu, có khớp sổ kế toán không?</span><span class="a">Chị Hà tự nhập từ phiếu giao hàng và ảnh chuyển khoản đại lý gửi qua Zalo. Chị Hồng đối chiếu ngày 30/9: lệch 7 đại lý, tổng 64 triệu.</span></li>
+<li><span class="q">2.3 Nợ quá hạn tập trung ở đâu?</span><span class="a">Quá hạn trên 30 ngày khoảng 546 triệu (26% của 2,1 tỷ). 5 đại lý chiếm khoảng 380 triệu; 2 đại lý quá hạn trên 90 ngày, khoảng 95 triệu.</span></li>
+<li><span class="q">2.4 Ai được quyết cho đại lý nợ thêm?</span><span class="a">Chị Hà quyết với đại lý quen, anh An quyết với đại lý lớn. Không ghi lại lần nào.</span></li>
+</ol>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 2 / 3</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Xác nhận nâng gói · Câu hỏi chuyên sâu · LTC05116208</span></div>
+<div class="modun">Mô-đun 3 · Dịch vụ khách hàng (3 câu)</div>
+<ol class="hoi">
+<li><span class="q">3.1 Chính sách đổi trả và hoàn tiền đang áp dụng?</span><span class="a">Đổi trả trong 7 ngày với lỗi nhà sản xuất; đơn sàn theo chính sách từng sàn. Hoàn tiền trên 500.000đ phải hỏi anh An, thường chờ 1–2 ngày.</span></li>
+<li><span class="q">3.2 CSKH đang trả lời dựa trên tài liệu nào?</span><span class="a">File khoảng 80 câu trả lời mẫu, cập nhật lần cuối tháng 5/2026. Trong 380 mã, khoảng 140 mã có hướng dẫn sử dụng đầy đủ.</span></li>
+<li><span class="q">3.3 Ca làm và giờ cao điểm?</span><span class="a">CSKH làm 8:00–17:30. Khoảng 35% trong 340 tin/ngày đến sau 18:00. Chị Ngọc trực tối 3 buổi/tuần bằng điện thoại cá nhân; giờ 20–23h phản hồi chậm 40–90 phút.</span></li>
+</ol>
+<div class="modun">Mô-đun 4 · Bộ máy &amp; quyền (4 câu)</div>
+<ol class="hoi">
+<li><span class="q">4.1 Nếu anh An vắng một tuần, ai duyệt đơn nhập, chiết khấu, hoàn tiền?</span><span class="a">Không ai. Việc dồn lại; tuần anh An đi công tác Hàn Quốc tháng 8, 9 đơn nhập trễ 4–6 ngày.</span></li>
+<li><span class="q">4.2 Ai được sửa bảng giá đại lý trên phần mềm bán hàng?</span><span class="a">Ba người: chị Hà, anh Bình, chị Hồng. Bảng giá cũ không bị xóa, nằm cạnh 3 bảng giá đang dùng — đây là nguyên nhân 3 lần nhầm giá trong quý III.</span></li>
+<li><span class="q">4.3 Mỗi người có tài khoản riêng trên phần mềm không?</span><span class="a">Phần mềm bán hàng có 6 tài khoản cho 11 người dùng; kho dùng chung 1 tài khoản. Không biết ai sửa gì.</span></li>
+<li><span class="q">4.4 ABZ có sẵn sàng tuyển kế toán trưởng toàn thời gian không?</span><span class="a">Có. Ngân sách 18–22 triệu/tháng, muốn có người trước tháng 5/2027.</span></li>
+</ol>
+<h3>LATTICE rút ra gì từ 16 câu trả lời</h3>
+<div class="tomtat">
+<ol style="margin:0">
+<li><b>Tồn lệch có nguyên nhân rõ</b> (hàng trả về, đơn sỉ nhập sau) — sửa được bằng quy tắc nhập liệu, không cần phần mềm mới.</li>
+<li><b>Sổ công nợ có hai bản lệch nhau 64 triệu.</b> Sổ kế toán phải là nguồn duy nhất trước khi cho AI nhắc nợ.</li>
+<li><b>5 đại lý giữ khoảng 70% số nợ quá hạn</b> — xử lý riêng từng đại lý, không áp một luật chung ngay ngày đầu.</li>
+<li><b>Tài khoản dùng chung làm mất dấu vết.</b> Mỗi người một tài khoản là điều kiện bắt buộc trước khi AI được làm ở mức L3.</li>
+<li><b>Mùa Tết trùng lộ trình 90 ngày.</b> Đợt nhập hàng Tết làm theo cách cũ, có AI gợi ý; chưa giao AI đặt hàng trong mùa cao điểm.</li>
+</ol></div>
+<p class="nho">Năm điểm này được đưa vào chương trình buổi Zoom ngày 10/11 và vào hồ sơ thiết kế.</p>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 3 / 3</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Buổi Zoom thiết kế · LTC05116208</span></div>
+<h2>Thư mời buổi Zoom thiết kế</h2>
+<dl class="thu">
+<dt>Từ</dt><dd>Nguyễn Hải Nam — LATTICE Next Solutions &lt;lattice.consultant@gmail.com&gt;</dd>
+<dt>Đến</dt><dd>Trần Minh An; Lê Thu Hà; Đặng Thu Phương</dd>
+<dt>Đồng gửi</dt><dd>Lý Thị Hồng; Hoàng Mai Linh (dự một phần)</dd>
+<dt>Ngày</dt><dd>Thứ Sáu, 06/11/2026, 10:15</dd>
+<dt>Tiêu đề</dt><dd><b>[LTC05116208] Mời họp Zoom 60 phút · Thứ Ba 10/11/2026, 9:00–10:00</b></dd>
+</dl>
+<p>Chào anh An, chị Hà, chị Phương,</p>
+<p>LATTICE mời anh chị dự buổi Zoom thiết kế bộ máy người + AI cho ABZ. Liên kết họp gửi trong lời mời lịch kèm thư này; phòng mở lúc 8:55. Buổi họp không ghi hình; LATTICE ghi biên bản và gửi trong ngày.</p>
+<div class="o-luoi">
+<div><span>Thời gian</span><b>Thứ Ba 10/11/2026</b><small>9:00–10:00 (60 phút)</small></div>
+<div><span>Hình thức</span><b>Zoom</b><small>Bật camera nếu được</small></div>
+<div><span>Chủ trì</span><b>Nguyễn Hải Nam</b><small>Ghi biên bản: Phạm Khánh Vy</small></div>
+</div>
+<h3>Chương trình</h3>
+<div class="bang-cuon"><table>
+<tr><th>Giờ</th><th>Nội dung</th><th>Cần có mặt</th><th>Kết quả cần chốt</th></tr>
+<tr><td class="so">9:00–9:05</td><td>Mục tiêu buổi họp, cách làm việc</td><td>An, Hà, Phương</td><td>—</td></tr>
+<tr><td class="so">9:05–9:15</td><td>Xác nhận kết luận Scan và 5 điểm rút ra từ câu hỏi chuyên sâu</td><td>An, Hà, Phương</td><td>Giữ hay đổi ba việc ưu tiên</td></tr>
+<tr><td class="so">9:15–9:30</td><td>Bộ máy: ai giữ vai giám đốc nào, trưởng khối nào là AI; tách công nợ khỏi chị Hà</td><td>An, Hà, Phương</td><td>Danh sách vai, ngày tách vai</td></tr>
+<tr><td class="so">9:30–9:42</td><td>Công nợ và hạn mức đại lý: công thức hạn mức, giữ đơn, 5 đại lý quá hạn lớn</td><td>+ Hồng</td><td>Nguyên tắc hạn mức</td></tr>
+<tr><td class="so">9:42–9:50</td><td>Tin nhắn khách online: ba nhóm câu hỏi giao AI, giờ trực tối</td><td>+ Mai Linh</td><td>Phạm vi L3, người nhận chuyển</td></tr>
+<tr><td class="so">9:50–9:57</td><td>Đơn nhập: ngưỡng 150/500 triệu, trần vốn tồn kho, mùa Tết; lộ trình 90 ngày</td><td>An, Phương</td><td>Ngưỡng, ngày bắt đầu</td></tr>
+<tr><td class="so">9:57–10:00</td><td>Chốt việc, hạn, người làm</td><td>Tất cả</td><td>Danh sách việc</td></tr>
+</table></div>
+<h3>Anh chị chuẩn bị trước (không bắt buộc, giúp buổi họp nhanh hơn)</h3>
+<ul>
+<li>Anh An: con số trần vốn tồn kho anh chấp nhận được trong mùa Tết.</li>
+<li>Chị Hà, chị Hồng: danh sách 5 đại lý quá hạn lớn nhất, kèm lý do nợ nếu biết.</li>
+<li>Chị Phương: danh sách mã cần nhập cho Tết đã lên đến đâu.</li>
+</ul>
+<p class="nho">Dời lịch: trả lời thư này trước 9:00 ngày 09/11. Miễn phí tối đa 2 lần, báo trước 24 giờ; vắng không báo quá 15 phút tính là đã dùng buổi họp, được dời một lần duy nhất.</p>
+<div class="ky">Trân trọng,<br><b>Nguyễn Hải Nam</b> — tư vấn trưởng · lattice.consultant@gmail.com</div>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 1 / 3</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Buổi Zoom thiết kế · LTC05116208</span></div>
+<h2>Biên bản buổi Zoom thiết kế</h2>
+<div class="bang-cuon"><table>
+<tr><th style="width:30mm">Thời gian</th><td>Thứ Ba 10/11/2026, 9:00–10:04 (quá 4 phút, ABZ đồng ý)</td></tr>
+<tr><th>Người dự — ABZ</th><td>Trần Minh An (Giám đốc, chủ sở hữu); Lê Thu Hà (Phó giám đốc kinh doanh); Đặng Thu Phương (mua hàng &amp; nhập khẩu) — cả buổi. Lý Thị Hồng (kế toán) 9:30–9:43. Hoàng Mai Linh (CSKH) 9:43–9:51.</td></tr>
+<tr><th>Người dự — LATTICE</th><td>Nguyễn Hải Nam (tư vấn trưởng, chủ trì); Phạm Khánh Vy (chuyên viên phân tích, ghi biên bản)</td></tr>
+<tr><th>Gửi biên bản</th><td>10/11/2026, 15:20, qua email cho 5 người dự. ABZ xác nhận không sửa ngày 11/11.</td></tr>
+</table></div>
+<h3>Tám điểm thống nhất</h3>
+<ol>
+<li><b>Giữ ba việc ưu tiên của Scan</b>: Kế hoạch mua &amp; bổ sung hàng; Công nợ phải thu &amp; tín dụng đại lý; Hỗ trợ &amp; tư vấn khách online. Mức AI cao nhất là L3; không dùng L4, L5.</li>
+<li><b>Chị Hà thôi giữ công nợ từ Thứ Hai 21/12/2026</b> (tuần 5 của lộ trình). Sheet công nợ chuyển sang chỉ đọc; sổ công nợ trong phần mềm kế toán là nguồn duy nhất, chị Hồng giữ. Chị Hà vẫn xem được công nợ của đại lý mình phụ trách.</li>
+<li><b>Anh An tạm kiêm Giám đốc Tài chính</b>, giữ quyền hạn mức và mở giữ đơn; tuyển kế toán trưởng toàn thời gian trước 31/05/2027 (ngân sách 18–22 triệu/tháng).</li>
+<li><b>Chị Phương nhận vai Giám đốc Vận hành &amp; Cung ứng từ 23/11/2026</b>, duyệt đơn nhập 150–500 triệu; anh Khánh (trưởng kho) báo cáo chị Phương.</li>
+<li><b>Ngưỡng ma trận quyền giữ như đề xuất Scan</b>: chiết khấu đại lý ngoài bảng ≤ 5% / 5–10% / &gt; 10%; đơn nhập &lt; 150 / 150–500 / &gt; 500 triệu; hoàn tiền ≤ 500.000đ / đến 5 triệu / &gt; 5 triệu.</li>
+<li><b>Chị Mai Linh là Trưởng dịch vụ khách hàng.</b> Khi AI trả lời tin nhắn lên L3, chị Ngọc thôi trực tối bằng điện thoại cá nhân; ca tối luân phiên đến 21:00 trên máy của công ty.</li>
+<li><b>Một bộ bảng giá đại lý</b>: chỉ giữ 3 bảng đang dùng, có ngày hiệu lực; các bảng cũ chuyển lưu trữ trước 30/11. Chỉ chị Hà được sửa; anh Bình, chị Hồng chỉ xem.</li>
+<li><b>Mỗi người một tài khoản, đăng nhập theo vai</b>, xong trước 06/12/2026 (hết tuần 2). Tài khoản kho dùng chung bị khóa.</li>
+</ol>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 2 / 3</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Buổi Zoom thiết kế · LTC05116208</span></div>
+<h3 style="margin-top:0">Ba điểm còn mở</h3>
+<div class="bang-cuon"><table>
+<tr><th>#</th><th>Điểm còn mở</th><th>Phương án đang bàn</th><th>Ai trả lời</th><th>Hạn</th></tr>
+<tr><td>1</td><td>Trần vốn tồn kho trong mùa Tết. Tồn hiện 3,9 tỷ đã vượt trần chuẩn 3,5 tỷ.</td><td>LATTICE đề xuất trần tạm 4,0 tỷ đến 31/01/2027, về 3,5 tỷ từ 15/02/2027</td><td>Anh An, chị Hồng</td><td class="so">13/11</td></tr>
+<tr><td>2</td><td>Công thức hạn mức đại lý, và cách xử lý 5 đại lý đang quá hạn lớn</td><td>Hạn mức = 1,5 hoặc 2 lần doanh số bình quân tháng; 5 đại lý có kế hoạch giảm dư nợ riêng</td><td>Chị Hà, chị Hồng (nháp) · anh An (chốt)</td><td class="so">16/11</td></tr>
+<tr><td>3</td><td>Ai giữ vai Giám đốc Công nghệ (thuê ngoài bán thời gian)</td><td>Người làm tự do hoặc đơn vị cung cấp phần mềm bán hàng</td><td>Anh An</td><td class="so">30/11</td></tr>
+</table></div>
+<div class="canh"><b>Cập nhật sau họp.</b> Điểm 1 chốt qua email 13/11: trần tạm <b>4,0 tỷ</b> đến 31/01/2027. Điểm 2 chốt 16/11: hạn mức = <b>2 lần</b> doanh số bình quân tháng của 3 tháng gần nhất, trần 150 triệu/đại lý; 5 đại lý quá hạn lớn có kế hoạch giảm dư nợ 60 ngày. Điểm 3 còn mở khi giao hồ sơ; hồ sơ ghi “chờ chọn người”.</div>
+<h3>Ai làm gì</h3>
+<div class="bang-cuon"><table>
+<tr><th>Việc</th><th>Người làm</th><th>Hạn</th><th>Gửi cho</th></tr>
+<tr><td>Gửi biên bản buổi họp</td><td>LATTICE (Phạm Khánh Vy)</td><td class="so">10/11</td><td>5 người dự</td></tr>
+<tr><td>Chốt trần vốn tồn kho mùa Tết</td><td>Trần Minh An</td><td class="so">13/11</td><td>LATTICE</td></tr>
+<tr><td>Bảng 6 nhà cung cấp + 2 xưởng: thời gian về, đơn tối thiểu, điều khoản thanh toán</td><td>Đặng Thu Phương</td><td class="so">13/11</td><td>LATTICE</td></tr>
+<tr><td>File 80 câu trả lời mẫu, chính sách đổi trả hiện hành</td><td>Hoàng Mai Linh</td><td class="so">13/11</td><td>LATTICE</td></tr>
+<tr><td>Danh sách tài khoản phần mềm, ai đang dùng chung</td><td>Ngô Thanh Tâm</td><td class="so">13/11</td><td>LATTICE</td></tr>
+<tr><td>Danh sách 42 đại lý: doanh số 3 tháng, dư nợ, hạn mức nháp</td><td>Lê Thu Hà, Lý Thị Hồng</td><td class="so">16/11</td><td>Anh An, LATTICE</td></tr>
+<tr><td>Hồ sơ thiết kế và 2 SOP mẫu</td><td>LATTICE (Nguyễn Hải Nam)</td><td class="so">19/11</td><td>Anh An</td></tr>
+<tr><td>Chọn người giữ vai Giám đốc Công nghệ</td><td>Trần Minh An</td><td class="so">30/11</td><td>Nội bộ ABZ</td></tr>
+</table></div>
+<h3>Ghi nhận khác</h3>
+<ul>
+<li>Chị Hà lo mất quan hệ với đại lý khi bị giữ đơn. Thống nhất: đại lý được báo trước 7 ngày bằng thư của công ty, không phải tin nhắn của chị Hà; giữ đơn là luật chung, không phải quyết định cá nhân.</li>
+<li>Anh An hỏi có nên thay phần mềm bán hàng. LATTICE: chưa — phần mềm hiện tại đủ làm nguồn chuẩn cho mã hàng, đơn và tồn; vấn đề là quy tắc nhập liệu và quyền, không phải công cụ.</li>
+<li>Chị Phương dành được 6 giờ/tuần trong tuần 1–4 cho việc dọn dữ liệu, sau đó 4 giờ/tuần.</li>
+</ul>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 3 / 3</span></div>
+</section>
+
+<section class="trang bia">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<div><span class="tem">HỒ SƠ MẪU · DOANH NGHIỆP HƯ CẤU</span>
+<h1>Hồ sơ thiết kế doanh nghiệp người + AI</h1>
+<p class="phu">Công ty TNHH Thương mại ABZ — bộ máy, ma trận quyền, ba chuỗi ưu tiên vẽ lại và lộ trình 90 ngày từ 23/11/2026 đến 14/02/2027.</p></div>
+<dl>
+<dt>Khách hàng</dt><dd>Công ty TNHH Thương mại ABZ · Long Biên, Hà Nội</dd>
+<dt>Loại hình</dt><dd>Thương mại &amp; hàng hóa · 8 khối, 7 chuỗi, 54 nghiệp vụ</dd>
+<dt>Gói · mã hồ sơ</dt><dd>LATTICE Blueprint · LTC05116208</dd>
+<dt>Căn cứ</dt><dd>Khảo sát nhanh KS-26101 (12/10) · Scan LTC12104471 (27/10) · 16 câu chuyên sâu (07/11) · Zoom 10/11 · email chốt 13/11, 16/11</dd>
+<dt>Ngày giao</dt><dd>Thứ Năm, 19/11/2026 · phiên bản 1.0</dd>
+<dt>Người phụ trách</dt><dd>Nguyễn Hải Nam — tư vấn trưởng</dd>
+<dt>Người nhận</dt><dd>Trần Minh An — Giám đốc, chủ sở hữu</dd>
+<dt>Liên hệ</dt><dd>lattice.consultant@gmail.com</dd>
+</dl>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 1 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h2>Mục lục</h2>
+<ol class="muc-luc">
+<li><span>Tóm tắt cho ban điều hành</span><span>3</span></li>
+<li><span>1. Kiến trúc ba lớp của ABZ</span><span>4</span></li>
+<li><span>2. Bản đồ 8 khối: nghiệp vụ, chủ khối, mức AI</span><span>5</span></li>
+<li><span>3. Bộ máy và phân vai</span><span>6–7</span></li>
+<li><span>4. Ma trận quyền và ngưỡng ngoại lệ</span><span>8</span></li>
+<li><span>5. Ba chuỗi ưu tiên vẽ lại theo người + AI</span><span>9–11</span></li>
+<li><span>6. Dữ liệu nguồn chuẩn</span><span>12</span></li>
+<li><span>7. Lộ trình 90 ngày</span><span>13</span></li>
+<li><span>8. Chi phí AI và giờ tiết kiệm</span><span>14</span></li>
+<li><span>9. Rủi ro và cách kiểm soát</span><span>15</span></li>
+<li><span>10. Chỉ số theo dõi hằng tuần</span><span>16</span></li>
+<li><span>Phụ lục · SOP-01 Đề xuất và duyệt đơn nhập hằng tuần</span><span>PL 1–2</span></li>
+<li><span>Phụ lục · SOP-02 Kiểm soát công nợ và hạn mức đại lý</span><span>PL 3–4</span></li>
+</ol>
+<h3>Cách đọc hồ sơ</h3>
+<div class="bang-cuon"><table>
+<tr><th>Mức</th><th>AI làm gì</th><th>Người làm gì</th><th>Dùng ở ABZ</th></tr>
+<tr><td><b>L0</b></td><td>Không tham gia</td><td>Làm toàn bộ</td><td>Quyết định về tiền, hạn mức, nhà cung cấp mới</td></tr>
+<tr><td><b>L1</b></td><td>Gợi ý, cảnh báo</td><td>Tự làm, tham khảo gợi ý</td><td>Đợt nhập hàng Tết; kiểm kê</td></tr>
+<tr><td><b>L2</b></td><td>Soạn sẵn</td><td>Duyệt từng bản trước khi ra ngoài</td><td>Nội dung đăng công khai; đề xuất hạn mức; hóa đơn</td></tr>
+<tr><td><b>L3</b></td><td>Tự làm trong ngưỡng đã duyệt</td><td>Nhận ngoại lệ, rà mẫu</td><td>Trả lời tin nhắn, nhắc nợ, giữ đơn, đơn nhập &lt; 150 triệu</td></tr>
+<tr><td>L4/L5</td><td>Tự quyết ngoài ngưỡng</td><td>—</td><td><b>Không khuyến nghị</b> cho ABZ</td></tr>
+</table></div>
+<p><b>Ký hiệu ma trận quyền:</b> Đ — đề xuất · D — duyệt · T — thực hiện · B — được báo. <b>Sơ đồ luồng:</b> khung nét liền là người, khung nét đứt là AI, khung đỏ là điểm chuyển người.</p>
+<p><b>Số liệu:</b> trung bình 6 tháng đến 30/9/2026 do ABZ cung cấp, đo lại khi Scan (giờ lặp lại 26 giờ/tuần). Số có ghi “giả định” là ước tính của LATTICE, cần đo lại ở tuần 4 và tuần 12.</p>
+<p class="nho">Gọi tên theo vai, không theo chức danh: một người có thể giữ nhiều vai, mỗi lần đăng nhập chọn một vai và mọi thao tác ghi theo vai đó. “Trưởng hoạch định”, “Trưởng vận hành” trong hồ sơ là vai do AI giữ, có người duyệt đứng sau.</p>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 2 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h2>Tóm tắt cho ban điều hành</h2>
+<div class="tomtat"><b>Kết luận.</b> ABZ đủ người và đủ công cụ. Cái thiếu là <b>quyền được giao bằng văn bản</b> và <b>một nguồn số duy nhất</b> cho tồn kho và công nợ. Hồ sơ này trả quyền về đúng vai, giao phần lặp lại cho AI ở mức cao nhất L3, và giữ người ở mọi quyết định về tiền, giá ngoài khung và quan hệ với đại lý.</div>
+<div class="o-luoi">
+<div><span>Giờ tiết kiệm sau 90 ngày</span><b class="so">≈ 120 giờ/tháng</b><small>Ở trạng thái ổn định: 115–140</small></div>
+<div><span>Chi phí AI, công cụ</span><b class="so">7–11 triệu/tháng</b><small>Tháng 1–3: 7,1 · 8,5 · 9,0 triệu</small></div>
+<div><span>Vốn giải phóng</span><b class="so">600–800 triệu</b><small>Trong 6 tháng, từ tồn chậm và nợ quá hạn</small></div>
+<div><span>Quyết định anh An duyệt</span><b class="so">≈ 45 → ≤ 12/tuần</b><small>Scan đếm ≈ 35 ở 5 loại chính; buổi Zoom bổ sung các loại còn lại</small></div>
+</div>
+<h3>Năm quyết định ban điều hành ký trước Thứ Hai 23/11/2026</h3>
+<ol>
+<li>Ban hành <b>ma trận quyền</b> (mục 4) bằng quyết định của Giám đốc; dán ở nơi làm việc và trong kho tri thức.</li>
+<li>Giao vai: chị Phương — Giám đốc Vận hành &amp; Cung ứng; chị Mai Linh — Trưởng dịch vụ khách hàng; anh An tạm kiêm Giám đốc Tài chính.</li>
+<li>Chuyển công nợ khỏi chị Hà từ 21/12/2026; sổ kế toán là nguồn duy nhất.</li>
+<li>Trần vốn tồn kho: 4,0 tỷ đến 31/01/2027, 3,5 tỷ từ 15/02/2027.</li>
+<li>Mỗi người một tài khoản, đăng nhập theo vai; khóa tài khoản dùng chung trước 06/12/2026.</li>
+</ol>
+<h3>Ba thay đổi lớn nhất</h3>
+<div class="bang-cuon"><table>
+<tr><th>Việc</th><th>Hôm nay</th><th>Sau 90 ngày</th></tr>
+<tr><td>Đơn nhập hàng</td><td>Chị Phương ước theo cảm giác 6–8 giờ/tuần; anh An duyệt mọi đơn</td><td>AI đề xuất thứ Hai 9:00 kèm lý do; tự đặt đơn &lt; 150 triệu với nhà cung cấp quen (L3); chị Phương rà khoảng 1,5 giờ/tuần</td></tr>
+<tr><td>Công nợ đại lý</td><td>Sheet riêng của chị Hà, 2 lần/tuần, nhắc khi nhớ; lệch sổ kế toán 64 triệu</td><td>AI cập nhật hằng ngày từ sổ kế toán, nhắc theo lịch, giữ đơn khi vượt hạn mức hoặc quá hạn 45 ngày (L3); mở giữ chỉ Giám đốc Tài chính</td></tr>
+<tr><td>Tin nhắn khách online</td><td>2 người trả lời 340 tin/ngày; 20–23h chậm 40–90 phút</td><td>AI trả lời giá, tình trạng đơn, cách dùng (L3) trong dưới 1 phút; người nhận khiếu nại, đổi trả ngoài chính sách, hoàn tiền &gt; 500.000đ</td></tr>
+</table></div>
+<h3>Điều chúng tôi không khuyến nghị</h3>
+<ul>
+<li>Không để AI duyệt hạn mức, mở giữ đơn, chọn nhà cung cấp mới hay đăng nội dung có công bố công dụng sản phẩm.</li>
+<li>Không thay phần mềm bán hàng trong 90 ngày này. Không giao AI đặt hàng trong mùa Tết.</li>
+<li>Không đo thành công bằng giờ tiết kiệm. 120 giờ/tháng có giá trị gần bằng chi phí AI; giá trị thật là vốn giải phóng và doanh thu không còn mất vì hết hàng (tháng 9 mất ước 180 triệu doanh thu, tức khoảng 56 triệu lãi gộp).</li>
+</ul>
+<p class="nho">Thời gian ABZ cần bỏ ra: anh An 3 giờ/tuần; chị Phương 6 giờ/tuần trong tuần 1–4, sau đó 4 giờ/tuần; chị Hồng 5 giờ/tuần trong tuần 1–2 (giả định).</p>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 3 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h2>1. Kiến trúc ba lớp của ABZ</h2>
+<p>Doanh nghiệp thương mại tạo giá trị qua 7 chuỗi việc chạy xuyên các khối; năng lực hỗ trợ giữ cho chuỗi đúng và kiểm soát được; năm nguồn lực là thứ chuỗi tiêu hao hoặc bồi đắp. Khung đỏ là ba chuỗi ưu tiên của ABZ.</p>
+<div class="lop"><span class="nhan">Lớp 1 · Chuỗi tạo giá trị — 7 chuỗi, chủ chuỗi tại ABZ</span>
+<div class="o-chuoi">
+<div class="uu"><b>Kế hoạch → Hàng sẵn sàng</b>Trưởng hoạch định (AI) · chị Phương duyệt · <i>ưu tiên 1</i></div>
+<div><b>Nguồn cung → Thanh toán</b>Chị Phương (mua hàng) · chị Hồng đối chiếu</div>
+<div><b>Thị trường → Khách tiềm năng</b>Trưởng marketing (AI hỗ trợ) · chị Hà giữ</div>
+<div><b>Cơ hội → Đơn hàng</b>Chị Hà (Trưởng kinh doanh)</div>
+<div class="uu"><b>Đơn hàng → Thu tiền</b>Giám đốc Tài chính (anh An) · điều phối: chị Hồng · <i>ưu tiên 2</i></div>
+<div><b>Yêu cầu → Giải quyết</b>Chị Mai Linh</div>
+<div class="uu"><b>Khách hàng → Mua lại</b>Chị Mai Linh · phối hợp chị Hà · <i>ưu tiên 3</i></div>
+</div></div>
+<div class="mui">▲ phục vụ ▲ &nbsp;&nbsp; ▼ kiểm soát ▼</div>
+<div class="lop"><span class="nhan">Lớp 2 · Năng lực hỗ trợ — 4 nhóm và nền tảng chung</span>
+<div class="o-chuoi">
+<div><b>Tài chính &amp; Kế toán</b>Anh An (GĐ Tài chính) · chị Hồng · kế toán trưởng thuê ngoài</div>
+<div><b>Nhân sự &amp; Phát triển năng lực</b>Chị Tâm</div>
+<div><b>Pháp chế &amp; Tuân thủ</b>Thuê ngoài theo việc · chị Tâm điều phối</div>
+<div><b>Hành chính &amp; Quản trị tài sản</b>Chị Tâm · kho 600 m²</div>
+</div>
+<div class="o-chuoi" style="margin-top:5px">
+<div class="nen"><b>Dữ liệu chủ</b>Mã hàng, đại lý, bảng giá</div>
+<div class="nen"><b>Hệ thống nghiệp vụ</b>Phần mềm bán hàng, kế toán</div>
+<div class="nen"><b>Tri thức &amp; Quy trình</b>Câu trả lời đã duyệt, SOP</div>
+<div class="nen"><b>Điều phối người–AI</b>Chuyển ngoại lệ đúng vai</div>
+<div class="nen"><b>Quyền, kiểm soát, lưu vết</b>Đăng nhập theo vai, nhật ký</div>
+</div></div>
+<div class="mui">▲ tiêu hao và bồi đắp ▲</div>
+<div class="lop"><span class="nhan">Lớp 3 · Nguồn lực cốt lõi — mức hiện tại và mục tiêu</span>
+<div class="bang-cuon"><table>
+<tr><th>Nguồn lực · GĐ giữ</th><th>Hiện tại</th><th>Chỉ số</th><th>Mục tiêu 90 ngày</th><th>Mục tiêu 6 tháng</th></tr>
+<tr><td>Vốn &amp; Tài sản ★ · GĐ Tài chính</td><td><span class="pill do">Yếu</span></td><td>Tiền đủ chi 1,7 tháng; tồn chậm 22%; nợ quá hạn 26%</td><td class="so">≥ 2,2 tháng · 17% · 18%</td><td class="so">≥ 2,7 tháng · 12% · 12%</td></tr>
+<tr><td>Thị trường &amp; Quan hệ ★ · GĐ Kinh doanh</td><td><span class="pill vang">Trung bình</span></td><td>Doanh thu online từ khách cũ 22%; 18 đại lý lớn = 70% kênh đại lý</td><td class="so">24%</td><td class="so">26%; không đại lý nào &gt; 8% doanh thu kênh</td></tr>
+<tr><td>Thương hiệu &amp; Uy tín · GĐ TT-Marketing</td><td><span class="pill vang">TB/Khá</span></td><td>Đánh giá 4,6; giao sai 1,4%; hoàn 3,8%</td><td class="so">4,6 · 1,0% · 3,5%</td><td class="so">≥ 4,7 · 0,8% · 3,0%</td></tr>
+<tr><td>Tri thức &amp; Công nghệ · GĐ Công nghệ</td><td><span class="pill vang">Trung bình</span></td><td>Tồn lệch 4% mã; 140/380 mã có hướng dẫn; 0 SOP</td><td class="so">≤ 1,5% · 240 mã · 2 SOP</td><td class="so">≤ 1% · 380 mã · 6 SOP</td></tr>
+<tr><td>Con người &amp; Văn hóa · GĐ TC-HC</td><td><span class="pill do">Yếu</span></td><td>Anh An, chị Hà là điểm gãy; 0 vai có người dự phòng</td><td class="so">Mỗi quyết định có người thay khi anh An vắng</td><td class="so">Có kế toán trưởng; 5 vai chính có dự phòng</td></tr>
+</table></div>
+<p class="nho" style="margin:2px 0 0">★ Nguồn lực quyết định của loại hình Thương mại &amp; hàng hóa.</p>
+</div>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 4 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h2>2. Bản đồ 8 khối của ABZ</h2>
+<p>Theo kiến trúc tham chiếu Thương mại &amp; hàng hóa. Mức AI “hiện tại” tính cả ChatGPT dùng lẻ (L1 không chính thức). Mức “đề xuất” là đích sau 90 ngày, không vượt L3.</p>
+<div class="bang-cuon"><table>
+<tr><th>Khối</th><th>Nghiệp vụ chính ở ABZ</th><th>Chủ khối · GĐ phụ trách</th><th class="c">Hiện tại</th><th>Đề xuất 90 ngày</th></tr>
+<tr><td><b>01 Quản trị &amp; Điều hành</b></td><td>Kế hoạch kinh doanh &amp; ngân sách; Quản trị hiệu quả; Quản trị chương trình thay đổi (lộ trình này)</td><td>Anh An · CEO</td><td class="c">L0</td><td><b>L2</b> Trợ lý điều hành AI soạn báo cáo tuần, theo dõi ngoại lệ; không quyết định</td></tr>
+<tr><td><b>02 Ngành hàng &amp; Nguồn cung</b></td><td>Danh mục 380 mã; Nhãn riêng ABZ Home; Tìm kiếm &amp; đánh giá nhà cung cấp; Đàm phán hợp đồng mua; Thông tin sản phẩm</td><td>Anh An (Trưởng ngành hàng, GĐ Sản phẩm) · chị Phương (Trưởng mua hàng, GĐ Vận hành)</td><td class="c">L1</td><td><b>L2</b> AI chuẩn hóa thông tin sản phẩm, so sánh báo giá; nhà cung cấp mới L0</td></tr>
+<tr><td class="do"><b>03 Hoạch định Cung–Cầu &amp; Tồn kho</b></td><td>Dự báo nhu cầu; <b>Kế hoạch mua &amp; bổ sung hàng</b>; Chính sách tồn kho; Hàng chậm luân chuyển</td><td>Trưởng hoạch định (AI) · chị Phương duyệt · GĐ Vận hành</td><td class="c">L0</td><td><b>L3</b> dự báo, đơn nhập &lt; 150 triệu; <b>L2</b> chính sách tồn kho, xả hàng chậm</td></tr>
+<tr><td><b>04 Đơn hàng, Kho vận &amp; Giao nhận</b></td><td>Quản trị đơn hàng; Theo dõi hàng về; Tiếp nhận hàng; Quản lý kho &amp; độ chính xác tồn; Soạn, đóng gói; Vận chuyển</td><td>Trưởng vận hành (AI) · anh Khánh (trưởng kho) · GĐ Vận hành</td><td class="c">L0</td><td><b>L3</b> kiểm đơn, giữ hàng, theo dõi giao; <b>L1</b> cảnh báo lệch tồn; soạn hàng L0</td></tr>
+<tr><td><b>05 Thị trường, Marketing &amp; Tăng trưởng</b></td><td>Nội dung &amp; truyền thông; Livestream; Chiến dịch sàn; Marketing tại đại lý</td><td>Trưởng marketing (AI hỗ trợ) · chị Hà giữ · anh Huy</td><td class="c">L1</td><td><b>L2</b> Team thiết kế AI soạn, người duyệt trước khi đăng</td></tr>
+<tr><td><b>06 Kinh doanh &amp; Kênh phân phối</b></td><td>Phát triển 42 đại lý; 18 đại lý lớn; Giá &amp; chính sách thương mại; Báo giá, tiếp nhận đơn sỉ; Bán đa kênh</td><td>Chị Hà (Trưởng kinh doanh, GĐ Kinh doanh)</td><td class="c">L0</td><td><b>L3</b> kiểm giá theo bảng hiện hành, chiết khấu ≤ 5%; <b>L2</b> báo giá khách doanh nghiệp</td></tr>
+<tr><td class="do"><b>07 Dịch vụ khách hàng &amp; Phát triển quan hệ</b></td><td><b>Hỗ trợ &amp; tư vấn khách</b>; Yêu cầu &amp; khiếu nại; Đổi trả, bồi hoàn; Duy trì khách &amp; tái mua</td><td>Chị Mai Linh (Trưởng DVKH) · GĐ Kinh doanh</td><td class="c">L0</td><td><b>L3</b> trả lời 3 nhóm câu hỏi, hoàn ≤ 500.000đ, nhắc mua lại; <b>L2</b> phản hồi khiếu nại</td></tr>
+<tr><td class="do"><b>08 Năng lực hỗ trợ</b></td><td>Kế toán &amp; thuế; <b>Công nợ phải thu &amp; tín dụng</b>; Phải trả &amp; thanh toán; Ngân quỹ; Nhân sự; Bảo vệ dữ liệu cá nhân</td><td>Anh An (GĐ Tài chính) · chị Hồng · chị Tâm (GĐ TC-HC)</td><td class="c">L0</td><td><b>L3</b> nhắc nợ, giữ đơn, đối chiếu 3 chiều; <b>L2</b> hạn mức, đề nghị thanh toán, dự báo tiền 13 tuần; hóa đơn L2</td></tr>
+</table></div>
+<h3>Đọc bản đồ này thế nào</h3>
+<ul>
+<li><b>Ba khối đỏ</b> chứa ba việc ưu tiên; 90 ngày đầu chỉ đổi sâu ở đây. Các khối khác giữ cách làm, chỉ thêm quyền và nguồn dữ liệu chuẩn.</li>
+<li><b>Hai khối do AI làm trưởng</b> (03, 04) vẫn có người chịu trách nhiệm cuối: chị Phương. AI giữ nhịp, người giữ quyết định ngoài ngưỡng.</li>
+<li><b>Khối 06 và 08 phải tách người.</b> Hôm nay chị Hà vừa bán vừa giữ công nợ — đây là cặp vai xung đột (mục 3).</li>
+<li>54 nghiệp vụ của kiến trúc tham chiếu: ABZ đang làm 41, chưa làm 13 (chủ yếu hoạch định tích hợp, phân tích lợi nhuận theo kênh, truy xuất hàng). Không cần làm đủ 54 trong năm đầu.</li>
+</ul>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 5 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h2>3. Bộ máy và phân vai</h2>
+<p>14 người toàn thời gian, 3 vai thuê ngoài, 7 tác tử AI. Chức danh là tương đối: một người giữ nhiều vai. Khung nét đứt là AI; khung đỏ là vai đang có xung đột cần tách.</p>
+<div class="tc">
+<div class="tc-tang">Chủ sở hữu</div>
+<div class="tc-hang"><div class="tc-o"><b>Chủ sở hữu</b>Trần Minh An</div></div>
+<div class="tc-noi">│</div>
+<div class="tc-tang">Ban điều hành</div>
+<div class="tc-hang"><div class="tc-o"><b>CEO</b>Trần Minh An</div><div class="tc-o ai"><b>Trợ lý điều hành AI</b>L2 · báo cáo tuần</div></div>
+<div class="tc-noi">│</div>
+<div class="tc-hang">
+<div class="tc-o do"><b>GĐ Tài chính</b>Anh An tạm kiêm · tuyển KTT trước 31/05/2027</div>
+<div class="tc-o ngoai"><b>GĐ Công nghệ</b>Thuê ngoài bán thời gian · chờ chọn người</div>
+<div class="tc-o"><b>GĐ Tổ chức Hành chính</b>Ngô Thanh Tâm</div>
+<div class="tc-o"><b>GĐ Truyền thông – Marketing</b>Lê Thu Hà kiêm (giai đoạn đầu)</div>
+<div class="tc-o do"><b>GĐ Kinh doanh</b>Lê Thu Hà · thôi giữ công nợ từ 21/12</div>
+<div class="tc-o"><b>GĐ Sản phẩm &amp; Chuyên môn</b>Anh An kiêm · ngành hàng, ABZ Home</div>
+<div class="tc-o"><b>GĐ Vận hành &amp; Cung ứng</b>Đặng Thu Phương · từ 23/11</div>
+</div>
+<div class="tc-noi">│</div>
+<div class="tc-tang">Trưởng khối (người hoặc AI)</div>
+<div class="tc-hang">
+<div class="tc-o"><b>Kế toán</b>Lý Thị Hồng · giữ sổ công nợ</div>
+<div class="tc-o ngoai"><b>Kế toán trưởng</b>Dịch vụ bán thời gian</div>
+<div class="tc-o ai"><b>Trưởng marketing</b>AI hỗ trợ · chị Hà duyệt</div>
+<div class="tc-o"><b>Trưởng kinh doanh</b>Chị Hà kiêm</div>
+<div class="tc-o"><b>Trưởng DVKH</b>Hoàng Mai Linh</div>
+<div class="tc-o ai"><b>Trưởng hoạch định</b>AI đề xuất · chị Phương duyệt</div>
+<div class="tc-o ai"><b>Trưởng vận hành</b>AI điều phối đơn L3</div>
+<div class="tc-o"><b>Trưởng kho</b>Bùi Văn Khánh</div>
+</div>
+<div class="tc-noi">│</div>
+<div class="tc-tang">Người làm và Team AI</div>
+<div class="tc-hang">
+<div class="tc-o ai"><b>AI Công nợ</b>L3 nhắc nợ, giữ đơn · L2 hạn mức</div>
+<div class="tc-o ai"><b>Team thiết kế AI</b>L2 · anh Huy (nội dung, livestream)</div>
+<div class="tc-o"><b>Kinh doanh sỉ</b>Bình (18 đại lý lớn) · Cúc (24 đại lý) · Dũng (khách DN, quà tặng)</div>
+<div class="tc-o ai"><b>AI CSKH</b>L3 3 nhóm câu hỏi · Ngọc nhận chuyển</div>
+<div class="tc-o ai"><b>AI Chăm sóc vòng đời</b>L3 nhắc mua lại</div>
+<div class="tc-o"><b>Kho</b>Khánh + 2 nhân viên</div>
+<div class="tc-o ngoai"><b>Pháp chế</b>Thuê ngoài theo việc</div>
+</div>
+</div>
+<h3>Nguyên tắc dựng bộ máy này</h3>
+<ul>
+<li><b>Mỗi nguồn lực có một giám đốc giữ.</b> Vốn &amp; Tài sản — GĐ Tài chính; Thị trường &amp; Quan hệ — GĐ Kinh doanh; Thương hiệu — GĐ TT-Marketing; Tri thức &amp; Công nghệ — GĐ Công nghệ; Con người — GĐ TC-HC.</li>
+<li><b>AI giữ vai trưởng khối chỉ ở chỗ việc có nhịp đều và số đo rõ</b> (hoạch định, điều phối đơn). Chỗ nào quyết định dựa vào quan hệ (kinh doanh, DVKH) thì người làm trưởng.</li>
+<li><b>Anh An giữ 4 vai</b> (Chủ sở hữu, CEO, GĐ Tài chính, GĐ Sản phẩm) — chấp nhận trong 6 tháng, vì quyền duyệt hằng ngày đã được giao xuống chị Phương, chị Hà, chị Mai Linh và AI. Số quyết định anh An duyệt giảm từ khoảng 45 xuống ≤ 12 mỗi tuần.</li>
+</ul>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 6 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h3 style="margin-top:0">Bảng vai — ai kiêm vai nào, đăng nhập theo vai</h3>
+<p class="nho">Mỗi người một tài khoản. Khi đăng nhập chọn vai; quyền xem, sửa, duyệt theo vai đó; nhật ký ghi “người + vai”. Người có 2 vai trở lên phải đổi vai để làm việc của vai kia.</p>
+<div class="bang-cuon"><table>
+<tr><th>Người</th><th>Vai đăng nhập</th><th>Được duyệt</th><th>Không được</th></tr>
+<tr><td>Trần Minh An</td><td>CEO · GĐ Tài chính · GĐ Sản phẩm</td><td>Đơn nhập &gt; 500 triệu, hạn mức, mở giữ đơn, chiết khấu &gt; 10%, nhà cung cấp mới, chi thanh toán</td><td>Tự tạo đơn mua</td></tr>
+<tr><td>Lê Thu Hà</td><td>GĐ Kinh doanh · Trưởng kinh doanh · GĐ TT-Marketing</td><td>Chiết khấu 5–10%, hoàn &gt; 5 triệu, nội dung đăng, sửa bảng giá</td><td>Sửa công nợ, mở giữ đơn, đề xuất hạn mức thay Hồng</td></tr>
+<tr><td>Đặng Thu Phương</td><td>GĐ Vận hành &amp; Cung ứng · Trưởng mua hàng · Duyệt hoạch định</td><td>Đơn nhập 150–500 triệu (và &lt; 150 triệu trong giai đoạn L2), xả hàng chậm ≤ 5% dưới giá vốn</td><td>Duyệt chi trả nhà cung cấp, xác nhận nhận hàng</td></tr>
+<tr><td>Lý Thị Hồng</td><td>Kế toán · Điều phối Đơn hàng → Thu tiền</td><td>Đối chiếu 3 chiều, phát hành hóa đơn</td><td>Duyệt chi, duyệt hạn mức</td></tr>
+<tr><td>Hoàng Mai Linh</td><td>Trưởng DVKH · Chủ kho câu trả lời</td><td>Hoàn 500.000đ–5 triệu, câu trả lời mới cho AI</td><td>Thực hiện chi hoàn</td></tr>
+<tr><td>Bùi Văn Khánh</td><td>Trưởng kho</td><td>Nhận hàng, điều chỉnh tồn ≤ 2% mã</td><td>Tạo đơn mua</td></tr>
+<tr><td>Nguyễn Văn Bình · Phạm Thị Cúc · Đỗ Quang Dũng</td><td>Kinh doanh sỉ</td><td>Đề xuất chiết khấu; tạo đơn sỉ</td><td>Sửa bảng giá, duyệt chiết khấu của mình</td></tr>
+<tr><td>Vũ Thị Ngọc</td><td>CSKH</td><td>Trả lời ca chuyển từ AI; rà mẫu hội thoại</td><td>Hoàn &gt; 500.000đ</td></tr>
+<tr><td>Trịnh Gia Huy</td><td>Nội dung, livestream</td><td>Duyệt bước 1 bản AI soạn</td><td>Đăng khi chưa có chị Hà duyệt</td></tr>
+<tr><td>Ngô Thanh Tâm</td><td>GĐ TC-HC · Quản lý danh sách vai</td><td>Đề nghị cấp, thu hồi vai</td><td>Tự cấp quyền trên hệ thống</td></tr>
+<tr><td>2 nhân viên kho</td><td>Kho</td><td>Soạn, đóng gói, đếm hàng nhận</td><td>Sửa tồn</td></tr>
+<tr><td>Thuê ngoài</td><td>GĐ Công nghệ · Kế toán trưởng · Pháp chế</td><td>Cấp quyền theo đề nghị, nâng mức L sau khi CEO ký · Ký báo cáo thuế, rà mẫu · Duyệt công bố công dụng</td><td>Giữ vai nghiệp vụ</td></tr>
+</table></div>
+<h3>Cặp vai xung đột và cách tách</h3>
+<div class="bang-cuon"><table>
+<tr><th>Người</th><th>Cặp vai</th><th>Rủi ro</th><th>Cách tách · từ ngày</th></tr>
+<tr><td class="do"><b>Lê Thu Hà</b></td><td>Bán hàng (GĐ Kinh doanh) × Duyệt công nợ, cho nợ thêm</td><td>Người bán cho nợ để đạt doanh số; nghỉ 2 tuần thì không ai nắm công nợ</td><td>Sổ công nợ về chị Hồng + AI Công nợ; hạn mức và mở giữ đơn về GĐ Tài chính; chị Hà chỉ xem và đề nghị có lý do · 21/12/2026</td></tr>
+<tr><td>Đặng Thu Phương</td><td>Đặt mua × Thanh toán nhà cung cấp</td><td>Người mua tự trả tiền</td><td>Chị Hồng đối chiếu 3 chiều, anh An duyệt chi · 23/11/2026</td></tr>
+<tr><td>Đặng Thu Phương</td><td>Đặt mua × Xác nhận nhận hàng</td><td>Nhận thiếu vẫn ghi đủ</td><td>Anh Khánh đếm và ký nhận; AI đối chiếu với đơn mua · 23/11/2026</td></tr>
+<tr><td>Trần Minh An</td><td>CEO × GĐ Tài chính</td><td>Đơn &gt; 500 triệu cần hai chữ ký nhưng chỉ có một người</td><td>Kế toán trưởng thuê ngoài rà 100% đơn &gt; 500 triệu hằng tháng; tuyển KTT trước 31/05/2027</td></tr>
+<tr><td>Nguyễn Văn Bình</td><td>Đề xuất × Duyệt chiết khấu</td><td>Tự duyệt chiết khấu cho đại lý mình</td><td>Anh Bình chỉ đề xuất; chị Hà duyệt 5–10%</td></tr>
+<tr><td>Hoàng Mai Linh</td><td>Duyệt × Chi hoàn tiền</td><td>Tự duyệt tự chi</td><td>Chị Hồng thực hiện chi</td></tr>
+</table></div>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 7 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h2>4. Ma trận quyền và ngưỡng ngoại lệ</h2>
+<p class="nho">Đ đề xuất · D duyệt · T thực hiện · B được báo. GĐ Tài chính và CEO cùng là anh An nhưng ký ở hai vai; khi có kế toán trưởng chỉ chuyển một cột.</p>
+<div class="bang-cuon"><table style="font-size:8pt">
+<tr><th>Quyết định</th><th class="c">AI</th><th class="c">NV phụ trách</th><th class="c">Mai Linh</th><th class="c">Phương</th><th class="c">Hà</th><th class="c">Hồng</th><th class="c">GĐ TC</th><th class="c">CEO</th></tr>
+<tr><td>Chiết khấu đại lý ngoài bảng ≤ 5%</td><td class="c">T</td><td class="c">Đ</td><td></td><td></td><td class="c">B</td><td></td><td></td><td></td></tr>
+<tr><td>Chiết khấu 5–10%</td><td></td><td class="c">Đ</td><td></td><td></td><td class="c">D</td><td></td><td></td><td class="c">B</td></tr>
+<tr><td>Chiết khấu &gt; 10%</td><td></td><td class="c">Đ</td><td></td><td></td><td class="c">Đ</td><td></td><td></td><td class="c">D</td></tr>
+<tr><td>Đơn nhập &lt; 150 triệu, nhà cung cấp quen, trong trần</td><td class="c">Đ→T*</td><td></td><td></td><td class="c">D→B*</td><td></td><td class="c">B</td><td></td><td></td></tr>
+<tr><td>Đơn nhập 150–500 triệu</td><td class="c">Đ</td><td></td><td></td><td class="c">D</td><td></td><td class="c">B</td><td class="c">B</td><td></td></tr>
+<tr><td>Đơn nhập &gt; 500 triệu hoặc vượt trần vốn tồn kho</td><td class="c">Đ</td><td></td><td></td><td class="c">Đ</td><td></td><td></td><td class="c">D</td><td class="c">D</td></tr>
+<tr><td>Hoàn tiền ≤ 500.000đ theo chính sách</td><td class="c">T</td><td></td><td class="c">B</td><td></td><td></td><td class="c">T chi</td><td></td><td></td></tr>
+<tr><td>Hoàn tiền 500.000đ – 5 triệu</td><td class="c">Đ</td><td></td><td class="c">D</td><td></td><td></td><td class="c">T chi</td><td></td><td></td></tr>
+<tr><td>Hoàn tiền &gt; 5 triệu</td><td></td><td></td><td class="c">Đ</td><td></td><td class="c">D</td><td class="c">T chi</td><td></td><td></td></tr>
+<tr><td>Hạn mức đại lý mới, tăng hạn mức</td><td class="c">Đ</td><td></td><td></td><td></td><td class="c">B</td><td class="c">Đ kiểm</td><td class="c">D</td><td></td></tr>
+<tr><td>Giữ đơn khi vượt hạn mức / quá hạn 45 ngày</td><td class="c">T</td><td class="c">B</td><td></td><td></td><td class="c">B</td><td class="c">B</td><td class="c">B</td><td></td></tr>
+<tr><td>Mở giữ đơn</td><td></td><td class="c">Đ</td><td></td><td></td><td class="c">B</td><td class="c">Đ kiểm</td><td class="c">D</td><td></td></tr>
+<tr><td>Nội dung đăng công khai</td><td class="c">Đ (L2)</td><td class="c">Đ (Huy)</td><td></td><td></td><td class="c">D</td><td></td><td></td><td></td></tr>
+<tr><td>Công bố công dụng sản phẩm</td><td class="c">Đ</td><td class="c">Đ (Huy)</td><td></td><td></td><td class="c">B</td><td></td><td></td><td>Pháp chế D</td></tr>
+<tr><td>Nâng mức L của một tác tử AI</td><td></td><td></td><td></td><td class="c">Đ (chủ quy trình)</td><td></td><td></td><td></td><td class="c">D</td></tr>
+</table></div>
+<p class="nho">* Tuần 5–8 (L2): AI đề xuất, chị Phương duyệt. Từ tuần 9 nếu đạt điều kiện mục 7: AI tự đặt, chị Phương được báo. Xả hàng dưới giá vốn: xem mục 5.1.</p>
+<h3>Ngưỡng ngoại lệ — AI dừng và chuyển người</h3>
+<p class="nho">Chiết khấu, hoàn tiền, tín dụng đại lý: theo ma trận trên, xử lý trong 4 giờ làm việc; nợ quá 60 ngày: SOP-02. Các ngưỡng khác:</p>
+<div class="bang-cuon"><table>
+<tr><th>Ngoại lệ</th><th>Ngưỡng</th><th>Chuyển tới · thời hạn</th></tr>
+<tr><td>Vượt trần vốn tồn kho</td><td>Tồn sau nhập &gt; 4,0 tỷ (đến 31/01/2027) / &gt; 3,5 tỷ (từ 15/02/2027)</td><td>Anh An (GĐ TC + CEO) · trước 12:00 thứ Ba</td></tr>
+<tr><td>Nhà cung cấp mới; giá mua tăng</td><td>Nhà cung cấp chưa có trong danh mục; giá tăng &gt; 5% so với lần mua trước</td><td>Chị Phương đề xuất, anh An (GĐ Sản phẩm) duyệt NCC mới · trong ngày</td></tr>
+<tr><td>Thiếu hàng sau khi nhận đơn</td><td>Đơn sỉ đã xác nhận nhưng tồn khả dụng không đủ</td><td>Chị Phương + NV phụ trách báo khách · 4 giờ</td></tr>
+<tr><td>Chênh lệch kiểm kê</td><td>Một mã lệch &gt; 2% số lượng hoặc &gt; 5 triệu giá vốn; tổng tháng &gt; 20 triệu</td><td>Chị Phương; tổng tháng: anh An</td></tr>
+<tr><td>Đơn online nghi gian lận</td><td>COD &gt; 3 triệu từ khách mới; ≥ 3 đơn cùng địa chỉ trong 24 giờ</td><td>Anh Khánh giữ, CSKH xác minh · trước giờ xuất hàng</td></tr>
+<tr><td>Câu hỏi ngoài nguồn đã duyệt</td><td>AI không tìm thấy câu trả lời đã duyệt; khách dọa đăng mạng xã hội</td><td>CSKH 15 phút (8:00–21:00); sau 21:00 hẹn trước 9:00 sáng; khủng hoảng: chị Hà 2 giờ</td></tr>
+<tr><td>Đổi chính sách lớn</td><td>Đổi bảng giá đại lý, chính sách đổi trả, mở kênh mới; chi marketing vượt ngân sách tháng</td><td>CEO</td></tr>
+</table></div>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 8 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h2>5. Ba chuỗi ưu tiên vẽ lại theo người + AI</h2>
+<h3 style="margin-top:4px">5.1 Kế hoạch → Hàng sẵn sàng · chủ chuỗi: Trưởng hoạch định (AI), chị Phương duyệt</h3>
+<p><b>Trước</b> — mỗi thứ Hai, 6–8 giờ người, mọi đơn qua anh An:</p>
+<div class="luong">
+<div class="nguoi">Chị Phương xuất tồn ra Sheet</div><span>→</span>
+<div class="nguoi">Ước theo cảm giác bán tuần trước</div><span>→</span>
+<div class="nguoi">Gửi anh An duyệt từng đơn</div><span>→</span>
+<div class="nguoi">Email đặt hàng, theo dõi bằng Sheet</div><span>→</span>
+<div class="nguoi">Kho nhận, nhập phần mềm sau</div>
+</div>
+<p><b>Sau</b> — AI giữ nhịp, người duyệt theo ngưỡng:</p>
+<div class="luong">
+<div class="ai">AI lấy số bán 13 tuần, tồn, hàng đang về · L3</div><span>→</span>
+<div class="ai">AI dự báo theo mã, kênh · L3</div><span>→</span>
+<div class="ai">Thứ Hai 9:00 AI đề xuất đơn kèm lý do · L2→L3</div><span>→</span>
+<div class="nguoi">Chị Phương rà; &gt; 150 triệu duyệt; &gt; 500 triệu / vượt trần: anh An</div><span>→</span>
+<div class="ai">AI phát đơn, theo dõi hàng về · L3</div><span>→</span>
+<div>Anh Khánh nhận, AI đối chiếu</div>
+</div>
+<div class="bang-cuon"><table>
+<tr><th>Tác vụ</th><th>Nghiệp vụ</th><th class="c">Nay</th><th class="c">Tuần 5–8</th><th class="c">Tuần 9–12</th><th>Điểm chuyển người</th></tr>
+<tr><td>Gom số bán từ sàn, đại lý, web, khách DN</td><td>Dự báo nhu cầu</td><td class="c">L0</td><td class="c">L3</td><td class="c">L3</td><td>Thiếu số &gt; 3% mã nhóm A → chị Phương</td></tr>
+<tr><td>Dự báo theo mã, kênh; điều chỉnh mùa vụ</td><td>Dự báo nhu cầu</td><td class="c">L0</td><td class="c">L2</td><td class="c">L3</td><td>Lệch thực tế &gt; 25% hai kỳ liền → chị Phương</td></tr>
+<tr><td>Tính điểm đặt hàng lại, tồn an toàn</td><td>Chính sách tồn kho</td><td class="c">L0</td><td class="c">L2</td><td class="c">L2</td><td>Đổi mức phục vụ → anh An</td></tr>
+<tr><td>Đề xuất đơn nhập theo nhà cung cấp</td><td>Kế hoạch mua &amp; bổ sung</td><td class="c">L0</td><td class="c">L2</td><td class="c">L3 &lt; 150 tr</td><td>150–500 tr: chị Phương; &gt; 500 tr / vượt trần: anh An</td></tr>
+<tr><td>Phát đơn mua, theo dõi xác nhận, ngày về</td><td>Thực hiện mua hàng</td><td class="c">L0</td><td class="c">L2</td><td class="c">L3</td><td>Trễ &gt; 5 ngày so cam kết → chị Phương</td></tr>
+<tr><td>Nhận hàng, đếm, kiểm lỗi</td><td>Tiếp nhận hàng nhập</td><td class="c">L0</td><td class="c">L0</td><td class="c">L0</td><td>Người làm; AI đối chiếu đơn mua, lệch &gt; 2% → chị Phương</td></tr>
+<tr><td>Liệt kê hàng chậm &gt; 120 ngày, đề xuất xả</td><td>Hàng chậm luân chuyển</td><td class="c">L0</td><td class="c">L2</td><td class="c">L2</td><td>Dưới giá vốn: ≤ 5% chị Phương, &gt; 5% anh An</td></tr>
+</table></div>
+<p class="nho">Đợt nhập hàng Tết (hàng nhập khẩu đặt trước 15/12, tuần 1–4) làm ở L1: chị Phương làm, AI gợi ý số từ dữ liệu đã dọn ở tuần 1–2.</p>
+<div class="o-luoi">
+<div><span>Mã nhóm A hết hàng</span><b class="so">14 → ≤ 4</b><small>mã/tháng</small></div>
+<div><span>Sai số dự báo nhóm A</span><b class="so">— → ≤ 30%</b><small>giả định, đo từ tuần 5</small></div>
+<div><span>Số ngày tồn kho</span><b class="so">≈ 71 → ≤ 60</b><small>3,9 tỷ / giá vốn 1,656 tỷ/tháng</small></div>
+<div><span>Giờ của chị Phương</span><b class="so">6–8 → ≈ 1,5</b><small>giờ/tuần</small></div>
+</div>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 9 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h3 style="margin-top:0">5.2 Đơn hàng → Thu tiền · chủ chuỗi: GĐ Tài chính (anh An), điều phối: chị Hồng</h3>
+<p>Áp cho đơn sỉ (khoảng 55 đơn/tuần, 42 đại lý) và khách doanh nghiệp. Đơn sàn đã tự đồng bộ, tiền sàn về qua đối soát sàn (khoảng 280 triệu đang chờ về).</p>
+<p><b>Trước</b>:</p>
+<div class="luong">
+<div class="nguoi">Đại lý đặt qua Zalo</div><span>→</span>
+<div class="nguoi">NV kinh doanh nhập tay, tự chọn bảng giá</div><span>→</span>
+<div class="nguoi">Kho xuất trước, nhập phần mềm sau 1–2 ngày</div><span>→</span>
+<div class="nguoi">Chị Hồng xuất hóa đơn</div><span>→</span>
+<div class="nguoi">Chị Hà ghi nợ vào Sheet, nhắc khi nhớ</div>
+</div>
+<p><b>Sau</b>:</p>
+<div class="luong">
+<div>NV tạo đơn trong phần mềm trong 2 giờ</div><span>→</span>
+<div class="ai">AI kiểm giá theo bảng hiện hành · L3</div><span>→</span>
+<div class="ai">AI kiểm tín dụng, giữ đơn nếu vượt · L3</div><span>→</span>
+<div class="ai">AI giữ hàng, xếp thứ tự soạn · L3</div><span>→</span>
+<div>Kho soạn, giao, xác nhận</div><span>→</span>
+<div class="ai">AI soạn hóa đơn · L2 · chị Hồng phát hành</div><span>→</span>
+<div class="ai">AI khớp tiền về, nhắc nợ theo lịch · L3</div><span>→</span>
+<div class="nguoi">Ngoại lệ: anh An (GĐ TC)</div>
+</div>
+<div class="bang-cuon"><table>
+<tr><th>Tác vụ</th><th>Nghiệp vụ</th><th class="c">Nay</th><th class="c">Đích</th><th>Điểm chuyển người</th></tr>
+<tr><td>Ghi đơn sỉ vào phần mềm</td><td>Báo giá, tiếp nhận đơn</td><td class="c">L0</td><td class="c">L0</td><td>NV kinh doanh; ảnh chụp Zalo không còn là chứng từ</td></tr>
+<tr><td>Kiểm mã, giá, chiết khấu so bảng giá hiện hành</td><td>Giá &amp; chính sách thương mại</td><td class="c">L0</td><td class="c">L3</td><td>Chiết khấu &gt; 5% → chị Hà; &gt; 10% → CEO</td></tr>
+<tr><td>Kiểm tín dụng mỗi đơn</td><td>Phải thu &amp; tín dụng</td><td class="c">L0</td><td class="c">L3</td><td>Vượt hạn mức, quá hạn &gt; 45 ngày → giữ đơn; mở giữ: anh An</td></tr>
+<tr><td>Kiểm tồn, giữ hàng</td><td>Quản trị đơn hàng</td><td class="c">L0</td><td class="c">L3</td><td>Thiếu hàng sau nhận đơn → chị Phương</td></tr>
+<tr><td>Soạn, đóng gói, giao, xác nhận đã giao</td><td>Soạn hàng; Vận tải</td><td class="c">L0</td><td class="c">L0 + AI xếp thứ tự</td><td>Giao trễ, khách từ chối → anh Khánh</td></tr>
+<tr><td>Soạn hóa đơn điện tử đúng thời điểm giao</td><td>Kế toán &amp; thuế</td><td class="c">L0</td><td class="c">L2</td><td>Chị Hồng phát hành; cần rà với kế toán trưởng</td></tr>
+<tr><td>Khớp tiền về với công nợ</td><td>Ngân quỹ &amp; dòng tiền</td><td class="c">L0</td><td class="c">L3</td><td>Tiền về không khớp hóa đơn → chị Hồng</td></tr>
+<tr><td>Nhắc nợ theo lịch (−3, 0, +7, +15 ngày); +30 ngày người gọi</td><td>Phải thu &amp; tín dụng</td><td class="c">L0</td><td class="c">L3</td><td>+30 ngày → NV phụ trách gọi; &gt; 60 ngày → anh An</td></tr>
+<tr><td>Đề xuất hạn mức hằng tháng</td><td>Phải thu &amp; tín dụng</td><td class="c">L0</td><td class="c">L2</td><td>Chị Hồng kiểm, anh An duyệt</td></tr>
+</table></div>
+<div class="o-luoi">
+<div><span>Nợ quá hạn &gt; 30 ngày</span><b class="so">26% → 18%</b><small>90 ngày; 12% sau 6 tháng</small></div>
+<div><span>Số ngày thu tiền đại lý</span><b class="so">≈ 69 → ≤ 55</b><small>2,1 tỷ / 912 triệu doanh thu tháng</small></div>
+<div><span>Nhầm giá đại lý</span><b class="so">3/quý → 0</b><small>AI chặn bảng giá hết hiệu lực</small></div>
+<div><span>Lệch sổ công nợ</span><b class="so">64 tr → 0</b><small>một nguồn duy nhất</small></div>
+</div>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 10 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h3 style="margin-top:0">5.3 Khách hàng → Mua lại · chủ chuỗi: chị Mai Linh, phối hợp chị Hà</h3>
+<p>Gồm việc ưu tiên thứ ba — trả lời khách online — vì mỗi câu trả lời tốt là bước đầu của lần mua sau. 340 tin/ngày, 70% là hỏi giá, tình trạng đơn, cách dùng; 35% đến sau 18:00.</p>
+<p><b>Trước</b>:</p>
+<div class="luong">
+<div class="nguoi">2 CSKH trả lời tay 8:00–17:30</div><span>→</span>
+<div class="nguoi">Tối: chị Ngọc trực bằng điện thoại riêng</div><span>→</span>
+<div class="nguoi">Không phân khúc, không nhắc mua lại</div><span>→</span>
+<div class="nguoi">Đại lý: chăm sóc qua Zalo khi có việc</div>
+</div>
+<p><b>Sau</b>:</p>
+<div class="luong">
+<div class="ai">AI trả lời 3 nhóm câu hỏi từ nguồn đã duyệt · L3</div><span>→</span>
+<div class="ai">AI hợp nhất hồ sơ khách sau đơn đầu · L3</div><span>→</span>
+<div class="ai">Hướng dẫn dùng ngày 3, hỏi thăm ngày 14 · L3</div><span>→</span>
+<div class="ai">Nhắc mua lại theo chu kỳ, ưu đãi ≤ 10% · L3</div><span>→</span>
+<div class="nguoi">Khiếu nại, đại lý giảm đơn: người liên hệ</div>
+</div>
+<div class="bang-cuon"><table>
+<tr><th>Tác vụ</th><th>Nghiệp vụ</th><th class="c">Nay</th><th class="c">Tuần 3</th><th class="c">Từ tuần 4</th><th>Điểm chuyển người</th></tr>
+<tr><td>Trả lời hỏi giá, tình trạng đơn, cách dùng</td><td>Hỗ trợ &amp; tư vấn khách</td><td class="c">L0</td><td class="c">L2</td><td class="c">L3</td><td>Ngoài nguồn đã duyệt → CSKH 15 phút</td></tr>
+<tr><td>Phân loại yêu cầu, theo dõi thời hạn</td><td>Yêu cầu &amp; khiếu nại</td><td class="c">L0</td><td class="c">L3</td><td class="c">L3</td><td>—</td></tr>
+<tr><td>Soạn phản hồi khiếu nại</td><td>Yêu cầu &amp; khiếu nại</td><td class="c">L0</td><td class="c">L2</td><td class="c">L2</td><td>Khách dọa đăng mạng xã hội → chị Mai Linh</td></tr>
+<tr><td>Đổi trả, hoàn ≤ 500.000đ theo chính sách</td><td>Đổi trả, bồi hoàn</td><td class="c">L0</td><td class="c">L2</td><td class="c">L3</td><td>&gt; 500.000đ → chị Mai Linh; &gt; 5 triệu → chị Hà</td></tr>
+<tr><td>Hợp nhất hồ sơ, phân khúc khách online</td><td>Duy trì khách &amp; tái mua</td><td class="c">L0</td><td class="c">—</td><td class="c">L3 (tuần 9)</td><td>—</td></tr>
+<tr><td>Nhắc mua lại (khách đã đồng ý nhận tin)</td><td>Duy trì khách &amp; tái mua</td><td class="c">L0</td><td class="c">—</td><td class="c">L3 (tuần 9)</td><td>Ưu đãi &gt; 10% → chị Hà</td></tr>
+<tr><td>Phát hiện đại lý giảm đơn &gt; 30% so với 3 tháng trước</td><td>Duy trì khách &amp; tái mua</td><td class="c">L0</td><td class="c">—</td><td class="c">L3 phát hiện</td><td>NV phụ trách gọi trong 2 ngày; đại lý lớn → chị Hà</td></tr>
+<tr><td>Xin đánh giá sau giao 5 ngày</td><td>Phản hồi &amp; cải tiến</td><td class="c">L0</td><td class="c">—</td><td class="c">L3</td><td>Đánh giá ≤ 3 sao → chị Mai Linh trong ngày</td></tr>
+</table></div>
+<div class="o-luoi">
+<div><span>Phản hồi giờ cao điểm</span><b class="so">40–90 → ≤ 5</b><small>phút, 20–23h</small></div>
+<div><span>AI tự giải quyết</span><b class="so">0 → ≥ 60%</b><small>số hội thoại</small></div>
+<div><span>Doanh thu online khách cũ</span><b class="so">22% → 24%</b><small>90 ngày</small></div>
+<div><span>Điểm đánh giá</span><b class="so">4,6 → ≥ 4,6</b><small>giữ trong lúc chuyển đổi</small></div>
+</div>
+<p class="nho">Chỉ nhắn tin chăm sóc, nhắc mua lại cho khách đã đồng ý nhận tin; dữ liệu gửi cho AI che số điện thoại. Cách xin đồng ý cần rà với luật sư theo quy định bảo vệ dữ liệu cá nhân.</p>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 11 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h2>6. Dữ liệu nguồn chuẩn</h2>
+<p>Mỗi loại dữ liệu chỉ có <b>một nơi đúng</b>. AI chỉ đọc từ nguồn chuẩn; nơi khác giữ bản sao chỉ đọc hoặc bỏ. Hạn dọn: hết tuần 2 (06/12/2026), trừ công nợ (21/12/2026).</p>
+<div class="bang-cuon"><table>
+<tr><th>Loại dữ liệu</th><th>Nguồn chuẩn duy nhất</th><th>Ai giữ (được sửa)</th><th>Nơi bỏ / chuyển chỉ đọc</th></tr>
+<tr><td>Mã hàng, thông tin sản phẩm (380 mã)</td><td>Danh mục trong phần mềm bán hàng đa kênh</td><td>Chị Phương; mã mới anh An duyệt</td><td>Sheet danh mục riêng; file ảnh rời trên máy cá nhân</td></tr>
+<tr><td>Bảng giá bán lẻ và 3 bảng giá đại lý</td><td>Phần mềm bán hàng, mỗi bảng có ngày hiệu lực</td><td>Chị Hà</td><td>Bảng giá cũ (lưu trữ trước 30/11); file giá gửi qua Zalo — thay bằng bản hiện hành</td></tr>
+<tr><td>Tồn kho thực tế</td><td>Phần mềm bán hàng (kho), sau kiểm kê 05–06/12</td><td>Anh Khánh</td><td>Cột tồn trong Sheet kế hoạch nhập</td></tr>
+<tr><td>Hàng trả về</td><td>Phiếu nhập trả trong phần mềm, ghi trong ngày</td><td>Anh Khánh</td><td>Nhập lại kho không qua phần mềm</td></tr>
+<tr><td>Đơn hàng sỉ và online</td><td>Phần mềm bán hàng; đơn sỉ ghi trong 2 giờ</td><td>NV kinh doanh tạo; Trưởng vận hành (AI) theo dõi</td><td>Ảnh chụp đơn trên Zalo làm chứng từ</td></tr>
+<tr><td>Hồ sơ 42 đại lý, hạn mức, điều khoản</td><td>Danh mục khách hàng trong phần mềm kế toán</td><td>Chị Hồng; hạn mức anh An duyệt</td><td>Sheet của chị Hà; danh bạ Zalo</td></tr>
+<tr><td>Công nợ phải thu</td><td>Sổ công nợ phần mềm kế toán</td><td>Chị Hồng</td><td>Sheet công nợ chị Hà — chỉ đọc từ 21/12/2026</td></tr>
+<tr><td>Phải trả nhà cung cấp</td><td>Phần mềm kế toán</td><td>Chị Hồng</td><td>—</td></tr>
+<tr><td>Nhà cung cấp: thời gian về, đơn tối thiểu</td><td>Danh mục nhà cung cấp trong phần mềm kế toán</td><td>Chị Phương</td><td>Thông tin rải trong email</td></tr>
+<tr><td>Kế hoạch nhập, đơn mua</td><td>Đơn mua trong phần mềm bán hàng + bảng đề xuất của AI</td><td>Chị Phương</td><td>Sheet kế hoạch nhập</td></tr>
+<tr><td>Hồ sơ khách online</td><td>Phần mềm bán hàng (khách hàng)</td><td>Chị Mai Linh</td><td>File xuất có số điện thoại trên máy cá nhân — xóa</td></tr>
+<tr><td>Câu trả lời mẫu, hướng dẫn sử dụng</td><td>Kho tri thức đã duyệt (thư mục chung, có phiên bản)</td><td>Chị Mai Linh; công dụng: pháp chế</td><td>File 80 câu cũ (tháng 5/2026)</td></tr>
+<tr><td>Vai, quyền truy cập</td><td>Danh sách vai (chị Tâm) · cấu hình hệ thống (GĐ Công nghệ)</td><td>Chị Tâm đề nghị, GĐ Công nghệ cấp</td><td>Tài khoản dùng chung — khóa trước 06/12</td></tr>
+<tr><td>Nhật ký AI và phê duyệt</td><td>Nhật ký của công cụ điều phối, xuất về ổ của ABZ hằng tuần</td><td>GĐ Công nghệ; CEO xem</td><td>—</td></tr>
+</table></div>
+<h3>Ba quy tắc nhập liệu sửa gốc của lệch tồn</h3>
+<ol>
+<li>Không xuất kho khi chưa có đơn trong phần mềm. Đơn sỉ gấp: NV tạo đơn trước khi kho soạn, không có ngoại lệ.</li>
+<li>Hàng trả về nhập phiếu trong ngày nhận, phân loại bán lại / lỗi / hủy.</li>
+<li>Đếm vòng hằng tuần 19 mã nhóm A (76 mã xoay vòng trong 4 tuần), lệch &gt; 2% điều chỉnh có lý do.</li>
+</ol>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 12 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h2>7. Lộ trình 90 ngày · 23/11/2026 – 14/02/2027</h2>
+<div class="bang-cuon"><div class="gantt">
+<div class="g-hang g-tieu"><div>Việc</div><div>T1<br>23/11</div><div>T2<br>30/11</div><div>T3<br>07/12</div><div>T4<br>14/12</div><div>T5<br>21/12</div><div>T6<br>28/12</div><div>T7<br>04/01</div><div>T8<br>11/01</div><div>T9<br>18/01</div><div>T10<br>25/01</div><div>T11<br>01/02</div><div>T12<br>08/02</div></div>
+<div class="g-hang"><div class="g-ten">Ký ma trận quyền, giao vai</div><div class="g-bar" style="grid-column:2/3">Ký 23/11</div></div>
+<div class="g-hang"><div class="g-ten">Dọn mã hàng, bảng giá, đại lý</div><div class="g-bar" style="grid-column:2/4">Nguồn chuẩn</div></div>
+<div class="g-hang"><div class="g-ten">Kiểm kê toàn kho; đếm vòng</div><div class="g-bar" style="grid-column:3/4">Kiểm kê</div><div class="g-bar nhe" style="grid-column:4/14">Đếm vòng 19 mã nhóm A/tuần</div></div>
+<div class="g-hang"><div class="g-ten">Tài khoản riêng, đăng nhập theo vai</div><div class="g-bar" style="grid-column:2/4">Xong 06/12</div></div>
+<div class="g-hang"><div class="g-ten">Đợt nhập hàng Tết</div><div class="g-bar nhe" style="grid-column:2/6">L1 · đặt trước 15/12</div></div>
+<div class="g-hang"><div class="g-ten">Trả lời tin nhắn khách</div><div class="g-bar l2" style="grid-column:4/5">L2</div><div class="g-bar l3" style="grid-column:5/14">L3 · 3 nhóm câu hỏi</div></div>
+<div class="g-hang"><div class="g-ten">Công nợ, hạn mức đại lý</div><div class="g-bar nhe" style="grid-column:4/6">Duyệt hạn mức</div><div class="g-bar l2" style="grid-column:6/7">Song song</div><div class="g-bar l3" style="grid-column:7/14">L3 nhắc, giữ đơn</div></div>
+<div class="g-hang"><div class="g-ten">Tách vai chị Hà</div><div class="g-bar" style="grid-column:6/10">Bàn giao 21/12 · khóa Sheet</div></div>
+<div class="g-hang"><div class="g-ten">Đề xuất đơn nhập</div><div class="g-bar l2" style="grid-column:6/10">L2 · chị Phương duyệt</div><div class="g-bar l3" style="grid-column:10/12">L3 &lt; 150 tr</div><div class="g-tet" style="grid-column:12/14">Giữ, không nâng</div></div>
+<div class="g-hang"><div class="g-ten">Chăm sóc vòng đời, nhắc mua lại</div><div class="g-bar l3" style="grid-column:10/14">L3</div></div>
+<div class="g-hang"><div class="g-ten">Báo cáo tuần tự động</div><div class="g-bar nhe" style="grid-column:8/10">Bản nháp</div><div class="g-bar l2" style="grid-column:10/14">Thứ Sáu 16:00</div></div>
+<div class="g-hang"><div class="g-ten">Mốc rà</div><div class="g-moc" style="grid-column:4/5">◆ 10/12 rà 30'</div><div class="g-moc" style="grid-column:10/11">◆ 21/01 rà 60 ngày</div><div class="g-tet" style="grid-column:12/14">Tết · 06/02</div></div>
+</div></div>
+<p class="nho">Mùng 1 Tết Đinh Mùi là 06/02/2027, rơi vào tuần 11–12: không nâng mức L nào trong hai tuần này. Rà 90 ngày dời sang Thứ Năm 18/02/2027 (nội bộ ABZ).</p>
+<h3>Mốc kiểm chứng và điều kiện nâng mức</h3>
+<div class="bang-cuon"><table>
+<tr><th>Mốc</th><th>Kiểm gì</th><th>Đạt khi</th><th>Người xác nhận</th></tr>
+<tr><td class="so">06/12 (T2)</td><td>Nguồn chuẩn</td><td>Lệch tồn ≤ 1,5% mã sau kiểm kê; 0 tài khoản dùng chung; 3 bảng giá đại lý duy nhất</td><td>Chị Phương, chị Tâm</td></tr>
+<tr><td class="so">13/12 (T3)</td><td>Tin nhắn L2 → L3</td><td>7 ngày L2, ≥ 300 hội thoại; ≥ 95% bản AI giữ nguyên hoặc sửa nhỏ; 0 lỗi giá, chính sách</td><td>Chị Mai Linh; CEO ký</td></tr>
+<tr><td class="so">20/12 (T4)</td><td>Hạn mức ban hành</td><td>42 đại lý có hạn mức được duyệt; thư báo gửi trước 7 ngày; 5 đại lý quá hạn lớn có kế hoạch 60 ngày</td><td>Anh An</td></tr>
+<tr><td class="so">27/12 (T5)</td><td>Công nợ song song → L3</td><td>5 ngày liên tiếp số dư AI khớp 100% sổ kế toán</td><td>Chị Hồng; CEO ký</td></tr>
+<tr><td class="so">17/01 (T8)</td><td>Đơn nhập L2 → L3</td><td>4 tuần liên tiếp ≥ 85% dòng đề xuất giữ nguyên hoặc sửa &lt; 10%; lệch tồn ≤ 2%; nhật ký đủ</td><td>Chị Phương; GĐ Công nghệ; CEO ký</td></tr>
+<tr><td class="so">14/02 (T12)</td><td>Kết quả 90 ngày</td><td>So bảng chỉ số mục 10; quyết định giữ, hạ hay mở rộng</td><td>Ban điều hành</td></tr>
+</table></div>
+<p class="nho">Không đạt điều kiện thì giữ mức cũ thêm 2 tuần, không nâng “cho kịp lộ trình”.</p>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 13 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h2>8. Chi phí AI và giờ tiết kiệm</h2>
+<p>Giá công cụ là <b>giả định</b> theo mặt bằng tháng 11/2026, đã gồm thuế; ABZ chọn nhà cung cấp cụ thể ở tuần 1. Không có chi phí bản quyền một lần.</p>
+<div class="bang-cuon"><table>
+<tr><th>Hạng mục</th><th>Dùng cho</th><th class="c">Tháng 1</th><th class="c">Tháng 2</th><th class="c">Tháng 3</th></tr>
+<tr><td>Trả lời tin nhắn AI gắn công cụ gom tin sàn (tính theo hội thoại)</td><td>AI CSKH, chăm sóc vòng đời</td><td class="c so">1,8</td><td class="c so">2,5</td><td class="c so">2,8</td></tr>
+<tr><td>Tài khoản mô hình AI qua API</td><td>Hoạch định, công nợ, báo cáo tuần</td><td class="c so">1,2</td><td class="c so">1,8</td><td class="c so">2,0</td></tr>
+<tr><td>4 tài khoản AI bản doanh nghiệp (thay ChatGPT dùng lẻ)</td><td>An, Hà, Phương, Hồng</td><td class="c so">2,4</td><td class="c so">2,4</td><td class="c so">2,4</td></tr>
+<tr><td>Công cụ tự động hóa luồng việc</td><td>Nối phần mềm bán hàng, kế toán, email</td><td class="c so">0,8</td><td class="c so">0,8</td><td class="c so">0,8</td></tr>
+<tr><td>Lưu trữ, sao lưu, nhật ký</td><td>Nhật ký AI, bản sao dữ liệu</td><td class="c so">0,3</td><td class="c so">0,4</td><td class="c so">0,4</td></tr>
+<tr><td>Công cụ thiết kế AI</td><td>Team thiết kế AI, anh Huy</td><td class="c so">0,6</td><td class="c so">0,6</td><td class="c so">0,6</td></tr>
+<tr><th>Tổng (triệu đồng)</th><th></th><th class="c so">7,1</th><th class="c so">8,5</th><th class="c so">9,0</th></tr>
+</table></div>
+<p class="nho">Tháng cao điểm (11/11, 12/12, trước Tết) lượng hội thoại tăng 2–3 lần, tổng có thể lên 11 triệu. Ngoài khung 7–11 triệu: GĐ Công nghệ thuê ngoài 4–6 giờ/tuần, dự trù 6–8 triệu/tháng (giả định, chờ chọn người).</p>
+<h3>Giờ tiết kiệm theo tháng (giờ/tháng)</h3>
+<div class="bang-cuon"><table>
+<tr><th>Việc</th><th class="c">Tháng 1</th><th class="c">Tháng 2</th><th class="c">Tháng 3</th><th>Ổn định (Scan)</th></tr>
+<tr><td>Trả lời tin nhắn khách</td><td class="c so">14</td><td class="c so">55</td><td class="c so">78</td><td>18–22 giờ/tuần</td></tr>
+<tr><td>Đề xuất đơn nhập</td><td class="c so">0</td><td class="c so">10</td><td class="c so">20</td><td>5–6 giờ/tuần</td></tr>
+<tr><td>Công nợ, nhắc nợ</td><td class="c so">2</td><td class="c so">12</td><td class="c so">16</td><td>4–5 giờ/tuần</td></tr>
+<tr><td>Báo cáo tuần</td><td class="c so">0</td><td class="c so">0</td><td class="c so">6</td><td>—</td></tr>
+<tr><td>Trừ: giờ dọn dữ liệu, kiểm kê, học cách làm</td><td class="c so">−30</td><td class="c so">−8</td><td class="c so">0</td><td>—</td></tr>
+<tr><th>Ròng</th><th class="c so">−14</th><th class="c so">69</th><th class="c so">120</th><th>115–140 giờ/tháng</th></tr>
+</table></div>
+<h3>Nói thẳng về giá trị</h3>
+<ul>
+<li>120 giờ/tháng nếu tính khoảng 60.000đ/giờ chi phí nhân sự văn phòng (giả định) là khoảng 7,2 triệu — gần bằng chi phí AI. <b>Giờ tiết kiệm không phải lý do chính để làm.</b></li>
+<li>Lý do chính: (1) vốn — giảm tồn chậm từ 22% xuống 12% và nợ quá hạn từ 26% xuống 12% giải phóng khoảng 600–800 triệu trong 6 tháng; (2) hết hàng bán chạy — tháng 9 mất ước 180 triệu doanh thu, khoảng 56 triệu lãi gộp ở biên 31%.</li>
+<li>Giờ tiết kiệm của CSKH chuyển sang tư vấn bán thêm và chăm khách doanh nghiệp, <b>không cắt người</b> trong 90 ngày.</li>
+</ul>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 14 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h2>9. Rủi ro và cách kiểm soát</h2>
+<div class="bang-cuon"><table>
+<tr><th>Rủi ro</th><th class="c">Mức</th><th>Cách kiểm soát</th><th>Ai giữ</th></tr>
+<tr><td>Tồn lệch làm AI đề xuất sai đơn nhập</td><td class="c"><span class="pill do">Cao</span></td><td>Kiểm kê 05–06/12; đếm vòng nhóm A; AI không đề xuất mã đang có cờ lệch</td><td>Chị Phương, anh Khánh</td></tr>
+<tr><td>AI trả lời sai giá, sai công dụng</td><td class="c"><span class="pill do">Cao</span></td><td>Chỉ trả lời từ nguồn đã duyệt; câu ngoài nguồn chuyển người; rà mẫu hằng ngày</td><td>Chị Mai Linh</td></tr>
+<tr><td>Giữ đơn làm đại lý lớn phật ý</td><td class="c"><span class="pill vang">TB</span></td><td>Thư báo trước 7 ngày; kế hoạch giảm dư nợ 60 ngày; mở giữ trong 4 giờ</td><td>Anh An, chị Hà</td></tr>
+<tr><td>Anh An vừa CEO vừa GĐ Tài chính — không có kiểm tra chéo</td><td class="c"><span class="pill vang">TB</span></td><td>Kế toán trưởng thuê ngoài rà 100% đơn &gt; 500 triệu và mọi lần mở giữ đơn, hằng tháng; tuyển KTT trước 31/05/2027</td><td>Anh An</td></tr>
+<tr><td>Chị Hà quá tải hoặc chưa đồng thuận khi rời công nợ</td><td class="c"><span class="pill vang">TB</span></td><td>Chỉ tiêu kinh doanh không đổi; chị Hà vẫn xem công nợ; bàn giao có biên bản 21/12</td><td>Anh An</td></tr>
+<tr><td>Mùa Tết trùng lộ trình</td><td class="c"><span class="pill vang">TB</span></td><td>Đợt nhập Tết ở L1; không nâng mức trong tuần 11–12</td><td>Chị Phương</td></tr>
+<tr><td>Dữ liệu cá nhân khách (số điện thoại trong file xuất, nhóm Zalo, gửi cho AI)</td><td class="c"><span class="pill vang">TB</span></td><td>Che số điện thoại trước khi gửi AI; dùng bản doanh nghiệp không dùng dữ liệu để huấn luyện; xóa file xuất trên máy cá nhân — cần rà với luật sư</td><td>Chị Tâm, GĐ Công nghệ</td></tr>
+<tr><td>Hóa đơn điện tử, thuế sàn khấu trừ thay</td><td class="c"><span class="pill vang">TB</span></td><td>Hóa đơn giữ L2; đối chiếu số thuế sàn hằng tháng — cần rà với kế toán</td><td>Chị Hồng, KTT</td></tr>
+<tr><td>Phụ thuộc nhà cung cấp công cụ AI</td><td class="c"><span class="pill ok">Thấp</span></td><td>Xuất nhật ký, dữ liệu về ổ ABZ hằng tuần; kịch bản, câu trả lời lưu ở kho tri thức của ABZ</td><td>GĐ Công nghệ</td></tr>
+</table></div>
+<h3>Bốn vòng kiểm soát áp cho mọi tác tử AI</h3>
+<div class="bang-cuon"><table>
+<tr><th>Vòng</th><th>Khi nào</th><th>Làm gì ở ABZ</th></tr>
+<tr><td><b>1. Ngưỡng</b></td><td>Trước khi AI làm</td><td>Mỗi tác tử chỉ làm trong ngưỡng ở mục 4; vượt ngưỡng thì dừng và chuyển đúng vai. Ngưỡng do CEO ký, GĐ Công nghệ cấu hình, không ai khác sửa.</td></tr>
+<tr><td><b>2. Nhật ký</b></td><td>Trong khi làm</td><td>Mỗi hành động ghi: tác tử, mức L, dữ liệu đầu vào, kết quả, người duyệt (nếu có), thời điểm. Lưu 24 tháng. Người duyệt sửa bản AI phải chọn lý do.</td></tr>
+<tr><td><b>3. Rà mẫu</b></td><td>Sau khi làm</td><td>Tin nhắn: 30 hội thoại/ngày tuần 3–4, sau đó 50/tuần. Đơn nhập L3: 20% số đơn. Công nợ: đối chiếu 10 đại lý ngẫu nhiên/tuần. Hoàn tiền ≤ 500.000đ: 10 ca/tuần. Kết quả ghi vào báo cáo tuần.</td></tr>
+<tr><td><b>4. Dừng khẩn</b></td><td>Khi sai</td><td>Chủ quy trình hạ tác tử về L1 ngay, báo CEO trong 24 giờ. Tự động hạ khi: ≥ 3 lỗi cùng loại trong 24 giờ; 1 lỗi về giá hoặc tiền &gt; 5 triệu; một khiếu nại công khai do AI gây ra; nguồn dữ liệu chuẩn mất đồng bộ &gt; 4 giờ. Nâng lại cần CEO ký sau khi rõ nguyên nhân.</td></tr>
+</table></div>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 15 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Hồ sơ thiết kế · LTC05116208</span></div>
+<h2>10. Chỉ số theo dõi hằng tuần</h2>
+<p>AI soạn bảng này mỗi thứ Sáu 16:00 từ nguồn chuẩn; ban điều hành họp 30 phút sáng thứ Hai. Số trong ô dưới đây là <b>số minh họa</b> cho tuần 8 (11–17/01/2027) để ABZ thấy bảng sẽ trông thế nào.</p>
+<div class="o-luoi">
+<div><span>Mã nhóm A hết hàng</span><b class="so">1</b><small>trong tuần · ngưỡng đỏ ≥ 2</small></div>
+<div><span>Tồn kho giá vốn</span><b class="so">3,82 tỷ</b><small>trần mùa Tết 4,0 tỷ</small></div>
+<div><span>Nợ quá hạn &gt; 30 ngày</span><b class="so">21%</b><small>mục tiêu 90 ngày 18%</small></div>
+<div><span>Phản hồi 20–23h</span><b class="so">3 phút</b><small>trước: 40–90 phút</small></div>
+<div><span>Quyết định anh An duyệt</span><b class="so">17</b><small>mục tiêu ≤ 12</small></div>
+<div><span>Ngoại lệ AI chuyển người</span><b class="so">46</b><small>tất cả xử lý trong hạn</small></div>
+</div>
+<div class="bang-cuon"><table>
+<tr><th>Chỉ số</th><th>Gốc (10/2026)</th><th>Mục tiêu 90 ngày</th><th>Ngưỡng đỏ</th><th>Tuần 8 (minh họa)</th><th>Chịu trách nhiệm</th></tr>
+<tr><td colspan="6"><b>Vốn &amp; hàng</b></td></tr>
+<tr><td>Mã nhóm A hết hàng (tháng)</td><td class="so">14</td><td class="so">≤ 4</td><td class="so">≥ 2 trong một tuần</td><td><span class="pill ok">1</span></td><td>Chị Phương</td></tr>
+<tr><td>Tồn chậm &gt; 120 ngày</td><td class="so">22%</td><td class="so">17%</td><td class="so">tăng 2 tuần liền</td><td><span class="pill vang">19%</span></td><td>Chị Phương</td></tr>
+<tr><td>Mã lệch tồn</td><td class="so">4%</td><td class="so">≤ 1,5%</td><td class="so">&gt; 2%</td><td><span class="pill ok">1,2%</span></td><td>Anh Khánh</td></tr>
+<tr><td>Tiền đủ chi</td><td class="so">1,7 tháng</td><td class="so">≥ 2,2 tháng</td><td class="so">&lt; 1,5 tháng</td><td><span class="pill vang">1,9</span></td><td>Anh An</td></tr>
+<tr><td colspan="6"><b>Công nợ</b></td></tr>
+<tr><td>Nợ quá hạn &gt; 30 ngày</td><td class="so">26%</td><td class="so">18%</td><td class="so">&gt; 26%</td><td><span class="pill vang">21%</span></td><td>Chị Hồng</td></tr>
+<tr><td>Số ngày thu tiền đại lý</td><td class="so">≈ 69</td><td class="so">≤ 55</td><td class="so">&gt; 70</td><td><span class="pill vang">61</span></td><td>Anh An</td></tr>
+<tr><td>Đơn bị giữ / mở giữ trong 4 giờ</td><td>—</td><td>100% xử lý trong 4 giờ</td><td>1 đơn quá 4 giờ</td><td><span class="pill ok">6 / 6</span></td><td>Anh An</td></tr>
+<tr><td>Nhầm giá đại lý</td><td class="so">3/quý</td><td class="so">0</td><td class="so">≥ 1</td><td><span class="pill ok">0</span></td><td>Chị Hà</td></tr>
+<tr><td colspan="6"><b>Khách hàng</b></td></tr>
+<tr><td>Phản hồi giờ cao điểm</td><td class="so">40–90 phút</td><td class="so">≤ 5 phút</td><td class="so">&gt; 15 phút</td><td><span class="pill ok">3 phút</span></td><td>Chị Mai Linh</td></tr>
+<tr><td>Hội thoại AI tự giải quyết</td><td class="so">0</td><td class="so">≥ 60%</td><td class="so">&lt; 45%</td><td><span class="pill ok">64%</span></td><td>Chị Mai Linh</td></tr>
+<tr><td>Rà mẫu đạt (không lỗi)</td><td>—</td><td class="so">≥ 97%</td><td class="so">&lt; 95%</td><td><span class="pill ok">49/50</span></td><td>Chị Mai Linh</td></tr>
+<tr><td>Giao sai, thiếu · hoàn trả</td><td class="so">1,4% · 3,8%</td><td class="so">1,0% · 3,5%</td><td class="so">&gt; 1,4% · &gt; 3,8%</td><td><span class="pill vang">1,1% · 3,6%</span></td><td>Anh Khánh · chị Mai Linh</td></tr>
+<tr><td>Điểm đánh giá (Shopee · TikTok Shop)</td><td class="so">4,7 · 4,5</td><td class="so">≥ 4,7 · ≥ 4,5</td><td class="so">giảm 0,1</td><td><span class="pill ok">4,7 · 4,6</span></td><td>Chị Hà</td></tr>
+<tr><td colspan="6"><b>Bộ máy</b></td></tr>
+<tr><td>Quyết định anh An duyệt</td><td class="so">≈ 45/tuần</td><td class="so">≤ 12</td><td class="so">&gt; 25</td><td><span class="pill vang">17</span></td><td>Anh An</td></tr>
+<tr><td>Đề xuất đơn nhập giữ nguyên hoặc sửa &lt; 10%</td><td>—</td><td class="so">≥ 85%</td><td class="so">&lt; 70%</td><td><span class="pill ok">88%</span></td><td>Chị Phương</td></tr>
+</table></div>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 16 / 16</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Phụ lục · SOP mẫu · LTC05116208</span></div>
+<div class="canh" style="border-left-color:var(--ink);background:var(--soft)"><b>SOP là gì?</b> SOP (Standard Operating Procedure) — quy trình thao tác chuẩn: văn bản ghi một việc lặp lại được làm thế nào, từng bước, ai làm (người hay AI, mức L0–L3), ngưỡng nào thì AI dừng và chuyển người, ghi nhật ký gì, đo bằng chỉ số nào. SOP vừa là hướng dẫn cho người làm, vừa là luật để cấu hình AI; khi một người nghỉ, việc vẫn chạy.</div>
+<h2>SOP-01 · Đề xuất và duyệt đơn nhập hằng tuần</h2>
+<div class="sop-meta">
+<div><span>Mã · phiên bản</span>SOP-01 · v1.0</div>
+<div><span>Hiệu lực</span>21/12/2026 (mức L2) · v1.1 dự kiến 18/01/2027 (L3)</div>
+<div><span>Chủ SOP</span>Đặng Thu Phương — GĐ Vận hành &amp; Cung ứng</div>
+<div><span>Người duyệt ban hành</span>Trần Minh An — CEO · ký 23/11/2026</div>
+<div><span>Người soạn</span>Nguyễn Hải Nam (LATTICE) cùng chị Phương</div>
+<div><span>Rà lại</span>Mỗi quý, hoặc khi đổi ngưỡng</div>
+</div>
+<p><b>Mục đích.</b> Mỗi tuần đặt đúng hàng, đúng lượng, trong trần vốn tồn kho; giảm mã nhóm A hết hàng từ 14 xuống ≤ 4 mã/tháng; giảm giờ của chị Phương từ 6–8 xuống khoảng 1,5 giờ/tuần; anh An chỉ duyệt đơn lớn.</p>
+<p><b>Phạm vi.</b> Đơn bổ sung cho 380 mã từ 6 nhà cung cấp nhập khẩu và 2 xưởng ABZ Home. <b>Không áp</b> cho: mã mới, nhà cung cấp mới, đơn hàng mẫu, đợt nhập Tết 2027 (làm ở L1).</p>
+<h3>Vai</h3>
+<div class="bang-cuon"><table>
+<tr><th>Vai</th><th>Người / AI</th><th>Mức</th><th>Việc trong SOP</th></tr>
+<tr><td>Trưởng hoạch định</td><td>AI Hoạch định</td><td>L3 dự báo · L2 → L3 đề xuất, đặt đơn</td><td>Gom số, dự báo, đề xuất, phát đơn, theo dõi</td></tr>
+<tr><td>Người duyệt hoạch định</td><td>Đặng Thu Phương</td><td>L0</td><td>Rà, sửa có lý do, duyệt &lt; 500 triệu</td></tr>
+<tr><td>GĐ Tài chính + CEO</td><td>Trần Minh An</td><td>L0</td><td>Duyệt &gt; 500 triệu hoặc vượt trần</td></tr>
+<tr><td>Trưởng kinh doanh</td><td>Lê Thu Hà</td><td>L0</td><td>Báo khuyến mãi, đơn đại lý lớn biết trước</td></tr>
+<tr><td>Trưởng kho</td><td>Bùi Văn Khánh</td><td>L0</td><td>Nhận, đếm, ký nhận</td></tr>
+<tr><td>Kế toán</td><td>Lý Thị Hồng</td><td>L3 AI đối chiếu · người duyệt</td><td>Đối chiếu 3 chiều trước khi trình chi</td></tr>
+</table></div>
+<h3>Đầu vào</h3>
+<ul>
+<li>Số bán 13 tuần theo mã, theo kênh (phần mềm bán hàng); tồn thực tế; hàng đang về; đơn mua đang mở.</li>
+<li>Danh mục nhà cung cấp: thời gian về (Hàn Quốc, Thái Lan 35–40 ngày; Trung Quốc 40–50 ngày; xưởng 15–20 ngày), đơn tối thiểu, quy cách thùng.</li>
+<li>Nhóm hàng A/B/C (76 mã nhóm A); trần vốn tồn kho; lịch khuyến mãi do chị Hà gửi trước 11:00 thứ Hai.</li>
+</ul>
+<h3>Công thức (tham số do chị Phương giữ, đổi phải ghi lý do)</h3>
+<p>Điểm đặt hàng lại = nhu cầu bình quân ngày × (thời gian về + 7 ngày chu kỳ) + tồn an toàn. Tồn an toàn: nhóm A nhập khẩu 14 ngày bán; nhóm A ABZ Home 7 ngày; nhóm B 7 ngày; nhóm C không giữ, đặt khi có đơn. Lượng đặt làm tròn lên theo thùng, không dưới đơn tối thiểu của nhà cung cấp.</p>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Phụ lục · Trang 1 / 4</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Phụ lục · SOP mẫu · LTC05116208</span></div>
+<h3 style="margin-top:0">Các bước</h3>
+<div class="bang-cuon"><table>
+<tr><th>#</th><th>Bước</th><th>Ai làm</th><th>Thời hạn</th></tr>
+<tr><td>1</td><td>Gom số bán 13 tuần, tồn, hàng đang về, đơn mở</td><td>AI Hoạch định (L3)</td><td>Chủ nhật 22:00</td></tr>
+<tr><td>2</td><td>Kiểm chất lượng dữ liệu. Mã có cờ lệch tồn bị loại khỏi đề xuất tự động. Nếu &gt; 3% mã nhóm A thiếu số: dừng, báo chị Phương</td><td>AI Hoạch định (L3)</td><td>Chủ nhật 23:00</td></tr>
+<tr><td>3</td><td>Tính dự báo, điểm đặt hàng lại, lượng đặt theo công thức</td><td>AI Hoạch định (L3)</td><td>Thứ Hai 7:30</td></tr>
+<tr><td>4</td><td>Gửi bảng đề xuất theo nhà cung cấp (biểu mẫu BM-01a): mã, số lượng, giá trị, lý do, tồn sau nhập, tồn tổng so với trần</td><td>AI Hoạch định (L2)</td><td>Thứ Hai 9:00</td></tr>
+<tr><td>5</td><td>Bổ sung khuyến mãi, đơn đại lý lớn biết trước</td><td>Chị Hà</td><td>Thứ Hai 11:00</td></tr>
+<tr><td>6</td><td>Rà đề xuất; sửa dòng nào phải chọn lý do trong danh sách (khuyến mãi, nhà cung cấp báo trễ, dữ liệu sai, khác)</td><td>Chị Phương</td><td>Thứ Hai 14:00</td></tr>
+<tr><td>7</td><td>Phân luồng duyệt: &lt; 150 triệu, nhà cung cấp quen, trong trần — chị Phương duyệt (v1.0) / AI tự đặt (v1.1); 150–500 triệu — chị Phương; &gt; 500 triệu hoặc vượt trần — anh An, kèm dự báo tiền 13 tuần</td><td>Chị Phương · anh An</td><td>Thứ Hai 17:00 · thứ Ba 12:00</td></tr>
+<tr><td>8</td><td>Phát đơn mua theo mẫu, ghi vào phần mềm; giá khác lần trước &gt; 5% thì dừng, chuyển chị Phương</td><td>AI Hoạch định (L3)</td><td>Thứ Ba 15:00</td></tr>
+<tr><td>9</td><td>Theo dõi xác nhận, ngày giao dự kiến; trễ &gt; 5 ngày so cam kết báo chị Phương</td><td>AI Hoạch định (L3)</td><td>Hằng ngày 8:00</td></tr>
+<tr><td>10</td><td>Nhận hàng, đếm, ký nhận; AI đối chiếu đơn mua – phiếu nhận; lệch &gt; 2% hoặc hàng lỗi → chị Phương xử lý với nhà cung cấp</td><td>Anh Khánh · AI</td><td>Ngày hàng về</td></tr>
+<tr><td>11</td><td>Đối chiếu đơn mua – phiếu nhận – hóa đơn rồi mới trình anh An duyệt chi</td><td>Chị Hồng (AI hỗ trợ L3)</td><td>2 ngày làm việc</td></tr>
+<tr><td>12</td><td>Báo cáo tuần: tỷ lệ giữ nguyên đề xuất, lý do sửa, mã hết hàng, tồn so trần</td><td>AI Hoạch định (L2)</td><td>Thứ Sáu 16:00</td></tr>
+</table></div>
+<h3>Ngưỡng ngoại lệ</h3>
+<ul>
+<li>Tồn sau nhập vượt trần: 4,0 tỷ đến 31/01/2027; 3,5 tỷ từ 15/02/2027 → anh An.</li>
+<li>Nhà cung cấp mới, mã mới → ngoài SOP; chị Phương đề xuất, anh An (GĐ Sản phẩm) duyệt.</li>
+<li>Đề xuất của một mã lệch &gt; 30% so với bình quân 4 tuần → bắt buộc người xem, kể cả ở L3.</li>
+<li>Mã tồn chậm &gt; 120 ngày → không đề xuất mua thêm, trừ khi có đơn đặt trước.</li>
+<li>Dự báo lệch thực tế &gt; 25% hai kỳ liền → chị Phương xem lại tham số.</li>
+</ul>
+<h3>Điều kiện nâng v1.0 (L2) → v1.1 (L3)</h3>
+<p>4 tuần liên tiếp ≥ 85% dòng đề xuất giữ nguyên hoặc sửa &lt; 10%; mã lệch tồn ≤ 2%; nhật ký đủ 100% bước 4–8; GĐ Công nghệ xác nhận; CEO ký. Ở L3, 20% số đơn AI tự đặt được chị Phương rà lại trong tuần.</p>
+<h3>Nhật ký · chỉ số · biểu mẫu</h3>
+<p><b>Nhật ký:</b> mỗi đề xuất lưu phiên bản dữ liệu, tham số, người duyệt, dòng sửa và lý do, thời điểm phát đơn; lưu 24 tháng. <b>Chỉ số:</b> mã nhóm A hết hàng; sai số dự báo nhóm A (đích ≤ 30%); tỷ lệ giữ nguyên đề xuất; tồn so trần; giờ chị Phương bỏ ra. <b>Biểu mẫu:</b> BM-01a Bảng đề xuất đơn nhập (nhà cung cấp, mã, nhóm, tồn, đang về, đề xuất, đã duyệt, lý do sửa, giá trị); BM-01b Phiếu ngoại lệ đơn nhập (lý do, số tiền, tồn sau nhập, người duyệt, thời điểm).</p>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Phụ lục · Trang 2 / 4</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Phụ lục · SOP mẫu · LTC05116208</span></div>
+<h2>SOP-02 · Kiểm soát công nợ và hạn mức đại lý</h2>
+<div class="sop-meta">
+<div><span>Mã · phiên bản</span>SOP-02 · v1.0</div>
+<div><span>Hiệu lực</span>21/12/2026 (chạy song song) · L3 từ 28/12/2026</div>
+<div><span>Chủ SOP</span>GĐ Tài chính — Trần Minh An (tạm kiêm)</div>
+<div><span>Điều phối hằng ngày</span>Lý Thị Hồng — Kế toán</div>
+<div><span>Người duyệt ban hành</span>Trần Minh An — CEO · ký 23/11/2026</div>
+<div><span>Người soạn</span>Nguyễn Hải Nam (LATTICE) cùng chị Hồng</div>
+</div>
+<p><b>Mục đích.</b> Một sổ công nợ duy nhất; nhắc nợ đúng lịch không phụ thuộc trí nhớ; không giao thêm hàng cho đại lý vượt hạn mức; giảm nợ quá hạn &gt; 30 ngày từ 26% xuống 18% sau 90 ngày, 12% sau 6 tháng; tách quyền tín dụng khỏi người bán hàng.</p>
+<p><b>Phạm vi.</b> 42 đại lý và khách doanh nghiệp mua chịu. Không áp cho đơn sàn và khách lẻ trả trước.</p>
+<h3>Vai</h3>
+<div class="bang-cuon"><table>
+<tr><th>Vai</th><th>Người / AI</th><th>Mức</th><th>Việc trong SOP</th></tr>
+<tr><td>AI Công nợ</td><td>Tác tử AI</td><td>L3 cập nhật, nhắc, giữ đơn · L2 đề xuất hạn mức</td><td>Đọc sổ kế toán, tính tuổi nợ, nhắc, kiểm tín dụng, báo cáo</td></tr>
+<tr><td>Kế toán</td><td>Lý Thị Hồng</td><td>L0</td><td>Giữ sổ, kiểm đề xuất hạn mức, đối chiếu tháng</td></tr>
+<tr><td>GĐ Tài chính</td><td>Trần Minh An</td><td>L0</td><td>Duyệt hạn mức, mở giữ đơn, biện pháp &gt; 60 ngày (cùng CEO)</td></tr>
+<tr><td>NV phụ trách đại lý</td><td>Bình (18 đại lý lớn), Cúc (24 đại lý), Dũng (khách DN)</td><td>L0</td><td>Gửi tin mẫu vào nhóm Zalo đại lý, gọi khi +30 ngày, ghi cam kết trả</td></tr>
+<tr><td>GĐ Kinh doanh</td><td>Lê Thu Hà</td><td>Chỉ xem</td><td>Được báo; đề nghị đổi hạn mức có lý do. Không sửa sổ, không mở giữ đơn</td></tr>
+<tr><td>Kế toán trưởng</td><td>Dịch vụ thuê ngoài</td><td>L0</td><td>Rà mẫu hằng tháng mọi lần mở giữ đơn</td></tr>
+</table></div>
+<h3>Đầu vào</h3>
+<ul>
+<li>Sổ công nợ phần mềm kế toán (nguồn chuẩn duy nhất); tiền về đã hạch toán; hóa đơn, phiếu giao.</li>
+<li>Hạn mức và thời hạn thanh toán từng đại lý (BM-02a); danh sách cam kết trả.</li>
+</ul>
+<h3>Quy tắc hạn mức (chốt 16/11/2026)</h3>
+<ul>
+<li>Hạn mức = 2 × doanh số bình quân tháng của 3 tháng gần nhất, làm tròn xuống bội số 5 triệu; trần 150 triệu/đại lý. Thời hạn thanh toán 30 ngày kể từ ngày giao.</li>
+<li>Có khoản quá hạn &gt; 45 ngày trong 3 tháng gần nhất: hạn mức giảm 50% ở lần xét kế tiếp.</li>
+<li>Đại lý mới: thanh toán khi nhận hàng trong 3 đơn đầu; sau đó tối đa 20 triệu khi GĐ Tài chính duyệt hồ sơ.</li>
+<li>Đại lý đang vượt hạn mức ngày 21/12/2026 (gồm 5 đại lý quá hạn lớn): kế hoạch giảm dư nợ 60 ngày, chia 2 đợt; không giữ đơn nếu trả đúng kế hoạch.</li>
+</ul>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Phụ lục · Trang 3 / 4</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Phụ lục · SOP mẫu · LTC05116208</span></div>
+<h3 style="margin-top:0">Các bước</h3>
+<div class="bang-cuon"><table>
+<tr><th>#</th><th>Bước</th><th>Ai làm</th><th>Thời hạn</th></tr>
+<tr><td>1</td><td>Lấy số dư từng đại lý, tiền về đã hạch toán, hóa đơn mới từ phần mềm kế toán</td><td>AI Công nợ (L3)</td><td>Hằng ngày 7:00</td></tr>
+<tr><td>2</td><td>Tính tuổi nợ (chưa đến hạn · 1–15 · 16–30 · 31–45 · 46–60 · &gt; 60 ngày), so hạn mức, gắn trạng thái xanh / vàng / đỏ</td><td>AI Công nợ (L3)</td><td>7:15</td></tr>
+<tr><td>3</td><td>Nhắc nợ theo lịch: 3 ngày trước hạn, đúng hạn, quá hạn 7 và 15 ngày — email theo mẫu BM-02c; tin mẫu gửi NV phụ trách để chuyển vào nhóm Zalo đại lý</td><td>AI Công nợ (L3) · NV phụ trách</td><td>8:00</td></tr>
+<tr><td>4</td><td>Quá hạn 30 ngày: gọi đại lý, ghi cam kết trả (ngày, số tiền) vào phần mềm</td><td>NV phụ trách</td><td>2 ngày làm việc</td></tr>
+<tr><td>5</td><td>Kiểm tín dụng mỗi đơn sỉ mới: dư nợ + giá trị đơn ≤ hạn mức và không có khoản quá hạn &gt; 45 ngày → cho qua; không đạt → giữ đơn, báo NV phụ trách, chị Hồng, anh An</td><td>AI Công nợ (L3)</td><td>Khi đơn vào</td></tr>
+<tr><td>6</td><td>Mở giữ đơn: NV phụ trách đề nghị kèm cam kết trả; chị Hồng kiểm; anh An duyệt hoặc từ chối. Mỗi đơn mở tối đa 1 lần</td><td>Anh An (GĐ Tài chính)</td><td>4 giờ làm việc</td></tr>
+<tr><td>7</td><td>Nợ quá 60 ngày: đề xuất biện pháp (ngừng giao, cấn trừ, thu hồi hàng, chuyển pháp chế)</td><td>Anh An đề xuất · CEO quyết</td><td>5 ngày làm việc</td></tr>
+<tr><td>8</td><td>Đề xuất hạn mức tháng (BM-02a) theo quy tắc; chị Hồng kiểm; anh An duyệt; chị Hà được báo</td><td>AI Công nợ (L2) · Hồng · An</td><td>Ngày 1 hằng tháng · duyệt trước ngày 3</td></tr>
+<tr><td>9</td><td>Báo cáo tuần: tuổi nợ, số ngày thu tiền, 10 đại lý dư nợ lớn nhất, đơn bị giữ, cam kết chưa thực hiện</td><td>AI Công nợ (L2)</td><td>Thứ Sáu 15:00</td></tr>
+<tr><td>10</td><td>Đối chiếu công nợ có xác nhận với 18 đại lý lớn; rà mẫu mọi lần mở giữ đơn</td><td>Chị Hồng · kế toán trưởng</td><td>Ngày 5 tháng sau</td></tr>
+</table></div>
+<h3>Ngưỡng ngoại lệ</h3>
+<ul>
+<li>Vượt hạn mức hoặc có khoản quá hạn &gt; 45 ngày → giữ đơn tự động; chỉ GĐ Tài chính mở.</li>
+<li>Tăng hạn mức, cấp hạn mức mới, gia hạn thanh toán → GĐ Tài chính. Chị Hà không có quyền này.</li>
+<li>Tiền về không khớp hóa đơn nào, hoặc đại lý báo đã trả nhưng sổ chưa có → chị Hồng trong ngày.</li>
+<li>Cam kết trả bị lỡ 2 lần → giữ đơn kể cả khi còn trong hạn mức.</li>
+<li>Nợ &gt; 60 ngày → GĐ Tài chính + CEO.</li>
+</ul>
+<h3>Nhật ký · chỉ số · biểu mẫu</h3>
+<p><b>Nhật ký:</b> mỗi lần nhắc (kênh, mẫu, thời điểm), mỗi lần giữ và mở giữ (lý do, người đề nghị, người duyệt, cam kết), mỗi lần đổi hạn mức (cũ, mới, người duyệt); lưu 24 tháng. <b>Chỉ số:</b> nợ quá hạn &gt; 30 ngày (26% → 18%); số ngày thu tiền (≈ 69 → ≤ 55); số đơn bị giữ và tỷ lệ xử lý trong 4 giờ; cam kết trả đúng hạn; chênh lệch đối chiếu (đích 0). <b>Biểu mẫu:</b> BM-02a Bảng hạn mức đại lý (đại lý, nhóm, doanh số 3 tháng, hạn mức cũ, đề xuất, duyệt, ngày); BM-02b Phiếu mở giữ đơn; BM-02c Ba mẫu thư nhắc nợ (trước hạn, đúng hạn, quá hạn) — lời lẽ do chị Hà góp ý, chị Hồng ban hành.</p>
+<div class="canh"><b>Ngày bàn giao 21/12/2026.</b> Chị Hà và chị Hồng ký biên bản bàn giao Sheet công nợ; số dư chênh 64 triệu (đối chiếu 30/9) phải được giải thích từng đại lý trước khi khóa Sheet. Thư báo đại lý về hạn mức gửi trước 7 ngày, do Giám đốc ký.</div>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Phụ lục · Trang 4 / 4</span></div>
+</section>
+
+<section class="trang">
+<div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.4 17.6 10 10 17.6 2.4 10Z" fill="none" stroke="#201E1D" stroke-width="1.3"/><circle cx="10" cy="2.4" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="17.6" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="17.6" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="2.4" cy="10" r="1.8" fill="#fff" stroke="#201E1D" stroke-width="1.2"/><circle cx="10" cy="10" r="2.3" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Rà lại · Hỏi đáp · LTC05116208</span></div>
+<h2>Lịch rà lại và hỏi đáp 30 ngày</h2>
+<dl class="thu">
+<dt>Từ</dt><dd>Nguyễn Hải Nam — LATTICE Next Solutions &lt;lattice.consultant@gmail.com&gt;</dd>
+<dt>Đến</dt><dd>Trần Minh An &lt;an.tm@abz.example&gt;</dd>
+<dt>Đồng gửi</dt><dd>Lê Thu Hà; Đặng Thu Phương</dd>
+<dt>Ngày</dt><dd>Thứ Năm, 19/11/2026, 17:05</dd>
+<dt>Tiêu đề</dt><dd><b>[LTC05116208] Hồ sơ thiết kế đã giao · lịch rà lại 10/12 · hỏi đáp đến 19/12</b></dd>
+</dl>
+<p>Chào anh An,</p>
+<p>LATTICE gửi kèm hồ sơ thiết kế (16 trang) và phụ lục 2 SOP mẫu, đúng hạn 19/11. Ba việc tiếp theo trong gói Blueprint:</p>
+<h3>1. Rà lại 30 phút — Thứ Năm 10/12/2026, 9:00–9:30, Zoom</h3>
+<p>Ba tuần sau khi giao hồ sơ, đúng cuối tuần 3 của lộ trình. Cần anh An, chị Phương; chị Mai Linh 10 phút đầu. Mục đích: xem tuần 1–2 có đạt không, đọc số đầu tiên của tin nhắn ở L2 và thống nhất điều kiện bật L3 từ 14/12 (CEO ký ngày 13/12 nếu đạt).</p>
+<div class="bang-cuon"><table>
+<tr><th>Anh chị chuẩn bị trước 08/12</th><th>Đích</th></tr>
+<tr><td>Tỷ lệ mã lệch tồn sau kiểm kê 05–06/12</td><td class="so">≤ 1,5%</td></tr>
+<tr><td>Số tài khoản dùng chung còn lại</td><td class="so">0</td></tr>
+<tr><td>Bảng giá đại lý trong phần mềm</td><td>3 bảng, có ngày hiệu lực</td></tr>
+<tr><td>Số câu trả lời đã duyệt trong kho tri thức</td><td>Thay xong file 80 câu cũ</td></tr>
+<tr><td>Kết quả 3 ngày đầu trả lời tin nhắn ở L2 (07–09/12); đủ 7 ngày vào 13/12</td><td>≥ 95% bản AI giữ nguyên hoặc sửa nhỏ</td></tr>
+<tr><td>Hạn mức nháp 42 đại lý</td><td>Sẵn sàng để anh An duyệt</td></tr>
+</table></div>
+<p class="nho">Dời lịch: báo trước 24 giờ qua email, tối đa 2 lần.</p>
+<h3>2. Hỏi đáp qua email — đến hết Thứ Bảy 19/12/2026</h3>
+<ul>
+<li>Tối đa <b>5 câu</b>, gửi về lattice.consultant@gmail.com, tiêu đề bắt đầu bằng [LTC05116208]. LATTICE trả lời trong 2 ngày làm việc.</li>
+<li>Một câu là một vấn đề; câu có nhiều ý liên quan cùng một mục của hồ sơ tính là một câu. Đã dùng: <b>0/5</b>.</li>
+<li>Câu cần LATTICE làm thêm tài liệu mới (SOP thứ ba, cấu hình tác tử AI) nằm ngoài gói; LATTICE sẽ nói rõ trước khi làm.</li>
+</ul>
+<h3>3. Khấu trừ vào Build</h3>
+<p>Nếu ABZ thuê LATTICE triển khai (Build), <b>100% phí Blueprint — 2.950.000đ</b> được trừ vào hợp đồng Build ký trong 60 ngày kể từ ngày giao hồ sơ, tức <b>đến hết Thứ Hai 18/01/2027</b>. Build là lựa chọn, không bắt buộc: hồ sơ này đủ để ABZ tự triển khai lộ trình 90 ngày.</p>
+<div class="tomtat"><b>Mốc cần nhớ:</b> 23/11 ký ma trận quyền và bắt đầu tuần 1 · 06/12 xong nguồn chuẩn · 10/12 rà lại 30 phút · 19/12 hết hạn hỏi đáp · 21/12 chị Hà bàn giao công nợ · 18/01/2027 hết hạn khấu trừ Build.</div>
+<div class="ky">Trân trọng,<br><b>Nguyễn Hải Nam</b> — tư vấn trưởng, LATTICE Next Solutions<br>lattice.consultant@gmail.com · LATTICE chỉ làm việc qua email này.</div>
+<div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 1 / 1</span></div>
+</section>
+</body>
+</html>

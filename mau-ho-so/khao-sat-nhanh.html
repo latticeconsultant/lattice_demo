@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Báo cáo ban đầu · Khảo sát nhanh KS-26101 · Công ty ABZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&display=swap">
+<style>
+/* KHUÔN CHUNG cho mọi tài liệu mẫu gửi khách. Trang giấy A4 xếp dọc trên nền xám; in ra mỗi .trang một tờ. */
+:root{--paper:#FFFFFF;--desk:#E9E7E6;--ink:#201E1D;--mute:#5E5A58;--line:#D3CFCD;--soft:#F3F2F2;--red:#EC3013;--redtx:#B3200A;--redbg:#FBE3DE;--ok:#2E6B4F;--okbg:#DCEBE2;--warn:#8A5A00;--warnbg:#F6E9CC;
+  --f:'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--desk);color:var(--ink);font-family:var(--f);font-size:10.5pt;line-height:1.5}
+.trang{width:210mm;min-height:297mm;margin:24px auto;background:var(--paper);padding:18mm 18mm 22mm;position:relative;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+@media (max-width:820px){.trang{width:auto;min-height:0;margin:12px;padding:22px 18px 40px}}
+@media print{body{background:#fff}.trang{margin:0;box-shadow:none;page-break-after:always;min-height:auto}}
+/* đầu trang, chân trang */
+.dau{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:14px;font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.dau b{color:var(--ink);letter-spacing:.18em}
+.dau .logo{display:flex;align-items:center;gap:8px}
+.chan{position:absolute;left:18mm;right:18mm;bottom:10mm;display:flex;justify-content:space-between;font-size:7.5pt;color:var(--mute);border-top:1px solid var(--line);padding-top:5px}
+@media (max-width:820px){.chan{left:18px;right:18px;bottom:12px}}
+/* bìa */
+.bia{display:flex;flex-direction:column;justify-content:space-between}
+.bia .tem{display:inline-block;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--warn);border:1px solid currentColor;padding:3px 8px}
+.bia h1{font-size:32pt;line-height:1.02;font-weight:800;letter-spacing:-.02em;margin:18mm 0 6mm;font-stretch:88%}
+.bia .phu{font-size:13pt;color:var(--mute);max-width:130mm}
+.bia dl{display:grid;grid-template-columns:42mm 1fr;gap:4px 10px;font-size:10pt;margin-top:14mm;border-top:2px solid var(--ink);padding-top:8px}
+.bia dt{color:var(--mute)} .bia dd{margin:0;font-weight:600}
+/* chữ */
+h2{font-size:16pt;font-weight:800;letter-spacing:-.015em;margin:0 0 8px}
+h3{font-size:11.5pt;font-weight:800;margin:14px 0 6px}
+p{margin:0 0 8px}
+.so{font-variant-numeric:tabular-nums}
+.nho{font-size:8.5pt;color:var(--mute)}
+ul,ol{margin:4px 0 10px;padding-left:18px} li{margin:2px 0}
+/* bảng */
+table{width:100%;border-collapse:collapse;font-size:9pt;margin:6px 0 12px}
+th,td{border:1px solid var(--line);padding:5px 7px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-size:8pt;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.bang-cuon{overflow-x:auto}
+/* khối nhấn */
+.tomtat{border:2px solid var(--ink);padding:10px 12px;margin:8px 0 12px}
+.canh{border-left:4px solid var(--red);background:var(--redbg);padding:8px 12px;margin:8px 0 12px}
+.ok{color:var(--ok)} .vang{color:var(--warn)} .do{color:var(--redtx)}
+.pill{display:inline-block;font-size:7.5pt;font-weight:700;letter-spacing:.04em;padding:1px 6px;border:1px solid currentColor;white-space:nowrap}
+.pill.do{background:var(--redbg)} .pill.vang{background:var(--warnbg)} .pill.ok{background:var(--okbg)}
+.o-luoi{display:grid;grid-template-columns:repeat(auto-fit,minmax(42mm,1fr));gap:6px;margin:6px 0 12px}
+.o-luoi>div{border:1px solid var(--line);padding:7px 9px}
+.o-luoi span{display:block;font-size:7.5pt;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.o-luoi b{font-size:12pt}
+.thanh{display:grid;grid-template-columns:30mm 1fr 10mm;gap:6px;align-items:center;font-size:9pt;margin:3px 0}
+.thanh i{display:block;height:7px;background:var(--soft);position:relative}
+.thanh i::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--ink)}
+.thanh i.yeu::after{background:var(--red)}
+/* sơ đồ luồng (dùng HTML hoặc SVG nội tuyến; mũi tên → ) */
+.luong{display:flex;flex-wrap:wrap;gap:4px;align-items:stretch;margin:6px 0 10px;font-size:8.5pt}
+.luong>div{border:1px solid var(--ink);padding:5px 7px;flex:1 1 30mm;min-width:28mm}
+.luong>div.ai{border-style:dashed} .luong>div.nguoi{border-color:var(--red);background:var(--redbg)}
+.luong>span{align-self:center;color:var(--mute)}
+/* THÊM cho bộ mẫu T0, T1 */
+.dau .logo svg{display:block}
+.bia{min-height:297mm}
+@media (max-width:820px){.bia{min-height:0}.bia h1{font-size:26pt;margin:10mm 0 4mm}.bia dl{grid-template-columns:34% 1fr}}
+.bang-cuon{margin:6px 0 12px}
+.bang-cuon table{margin:0;min-width:540px}
+.tieude-tl{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;align-items:flex-start;margin-bottom:10px}
+.tieude-tl h1{font-size:22pt;line-height:1.05;font-weight:800;letter-spacing:-.02em;margin:0;font-stretch:88%}
+.tem{display:inline-block;font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;color:var(--warn);border:1px solid currentColor;padding:3px 8px}
+.muc{font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--redtx);font-weight:700;margin:16px 0 2px}
+.diem{display:flex;gap:18px;flex-wrap:wrap;align-items:center;border:2px solid var(--ink);padding:12px 14px;margin:6px 0 10px}
+.diem .lon{font-size:40pt;font-weight:800;line-height:1;font-stretch:80%;font-variant-numeric:tabular-nums}
+.diem .lon small{font-size:12pt;color:var(--mute);font-weight:600}
+.diem .cot{flex:1 1 70mm;min-width:0}
+.khoi{display:grid;grid-template-columns:repeat(auto-fit,minmax(44mm,1fr));gap:6px;margin:6px 0 8px}
+.khoi>div{border:1px solid var(--line);padding:7px 9px;font-size:8.8pt;min-width:0}
+.khoi>div b{display:block;font-size:9.5pt;margin-bottom:2px}
+.khoi>div small{display:block;color:var(--mute);font-size:8pt;margin-top:3px}
+.khoi>div.v{border:1.5px solid var(--red);background:var(--redbg)}
+.khoi>div.s{border:1.5px solid var(--warn);background:var(--warnbg)}
+.khoi>div.u{border-style:dashed;color:var(--mute)}
+.khoi .so-k{font-variant-numeric:tabular-nums}
+.chu-giai{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:8pt;color:var(--mute)}
+.chu-giai i{display:inline-block;width:10px;height:10px;border:1.5px solid var(--red);background:var(--redbg);vertical-align:-1px;margin-right:4px}
+.chu-giai i.s{border-color:var(--warn);background:var(--warnbg)} .chu-giai i.u{border:1px dashed var(--mute);background:none}
+.viec{border:1px solid var(--line);padding:8px 11px;margin:6px 0}
+.viec .nhan{font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:700}
+.viec h4{margin:2px 0 4px;font-size:10.5pt}
+.viec p{margin:0 0 3px;font-size:9.2pt}
+.goi{border:2px solid var(--ink);padding:10px 12px;margin:8px 0}
+.goi h4{margin:0 0 4px;font-size:11pt}
+.goi .gia{color:var(--redtx);font-weight:800}
+.danh-sach{columns:2 60mm;column-gap:8mm;font-size:9pt;margin:4px 0 8px}
+.danh-sach li{break-inside:avoid}
+.ky{margin-top:10px;border-top:1px solid var(--line);padding-top:6px;font-size:9pt}
+/* thư điện tử */
+.thu{border:1px solid var(--line);margin:4px 0 10px}
+.thu-dau{background:var(--soft);padding:8px 12px;font-size:8.8pt;display:grid;grid-template-columns:24mm 1fr;gap:2px 8px;border-bottom:1px solid var(--line)}
+.thu-dau dt{color:var(--mute);margin:0} .thu-dau dd{margin:0;font-weight:600;min-width:0;overflow-wrap:anywhere}
+.thu-than{padding:10px 14px;font-size:9.4pt}
+.thu-than p{margin:0 0 6px}
+table.gon{font-size:8.6pt}
+table.gon th,table.gon td{padding:3px 6px}
+.luong.gon{margin:4px 0 6px}
+.thu-than ol>li{margin:0 0 8px}
+.vi-sao{display:block;font-size:8.6pt;color:var(--mute);margin-top:2px}
+.dinh-kem{display:inline-block;font-size:8pt;border:1px solid var(--line);padding:2px 7px;margin:2px 4px 2px 0;background:var(--soft)}
+.trich{border-left:3px solid var(--line);padding:2px 0 2px 10px;color:var(--mute);font-size:9.2pt;margin:4px 0 8px}
+.hoi{font-weight:700;margin-top:10px}
+@media (max-width:820px){.thu-dau{grid-template-columns:76px 1fr}.thu-than{padding:10px}.diem .lon{font-size:34pt}}
+.luong>div b{display:block;font-size:8.6pt}
+.luong>div small{display:block;color:var(--mute);font-size:7.8pt}
+.luong>div.nguoi small{color:var(--redtx)}
+.hai-cot{display:grid;grid-template-columns:repeat(auto-fit,minmax(70mm,1fr));gap:10px}
+.hai-cot>div{min-width:0}
+.mau-l{font-weight:700;white-space:nowrap}
+.khoi.k4{grid-template-columns:repeat(4,1fr);font-size:8.4pt}
+.khoi.k4>div{font-size:8.3pt;padding:6px 7px;line-height:1.4}
+@media (max-width:820px){.khoi.k4{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}}
+@media (max-width:820px){.dau{flex-wrap:wrap;gap:4px 10px;letter-spacing:.08em}.dau .logo{white-space:nowrap}}
+</style>
+</head>
+<body>
+<style>.ve-mau{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:#201E1D;color:#fff;font:600 12px/1.4 'Archivo',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:10px 16px}.ve-mau a{color:#fff;text-decoration:none}.ve-mau a:hover{text-decoration:underline}@media print{.ve-mau{display:none}}</style>
+<nav class="ve-mau"><a href="./">← Tất cả mẫu hồ sơ</a><span><a href="../dang-ky/">Đăng ký gói</a> · <a href="../">lattice.business</a></span></nav>
+
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 17.5 10 10 17.5 2.5 10Z" fill="none" stroke="#201E1D" stroke-width="1.2"/><g fill="#fff" stroke="#201E1D" stroke-width="1.2"><circle cx="10" cy="2.5" r="1.9"/><circle cx="17.5" cy="10" r="1.9"/><circle cx="10" cy="17.5" r="1.9"/><circle cx="2.5" cy="10" r="1.9"/></g><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Báo cáo ban đầu · KS-26101</span></div>
+  <div class="tieude-tl">
+    <div>
+      <div class="nho">Khảo sát nhanh · 20 câu · máy tự lập ngay sau câu cuối · 12/10/2026, 21:47</div>
+      <h1>Báo cáo ban đầu</h1>
+      <div class="nho">Công ty TNHH Thương mại ABZ · mã khảo sát <b class="so">KS-26101</b></div>
+    </div>
+    <span class="tem">Hồ sơ mẫu · doanh nghiệp hư cấu</span>
+  </div>
+  <p class="nho" style="border-top:1px solid var(--line);padding-top:6px">Báo cáo này do máy lập từ 20 câu anh chị vừa trả lời, chưa có người LATTICE đọc. Anh chị lưu lại bằng mã KS-26101; khi đăng ký gói tiếp theo, câu trả lời được chuyển sang hồ sơ, không phải khai lại.</p>
+
+  <div class="muc">1 · Hồ sơ</div>
+  <div class="o-luoi">
+    <div><span>Giai đoạn</span><b>Đang vận hành</b></div>
+    <div><span>Loại hình</span><b>Thương mại &amp; hàng hóa</b></div>
+    <div><span>Ngành</span><b style="font-size:10pt">Đồ gia dụng nhà bếp, nhập khẩu và nhãn riêng</b></div>
+    <div><span>Quy mô</span><b>11–20 người</b><div class="nho">có người kiêm nhiều vai</div></div>
+    <div><span>Doanh thu / tháng</span><b>2–10 tỷ</b></div>
+    <div><span>Đơn / ngày</span><b>Trên 200</b></div>
+  </div>
+  <p><b>Kênh khách:</b> sàn thương mại điện tử, mạng xã hội, website, đại lý và cộng tác viên, khách doanh nghiệp (5 kênh). <b>Công cụ:</b> bảng tính, phần mềm bán hàng, phần mềm kế toán, công cụ gom tin nhắn, công cụ AI.</p>
+
+  <h3>Kiến trúc tham chiếu cho loại hình này</h3>
+  <p><b>8 khối · 7 chuỗi · 54 nghiệp vụ.</b> Nguồn lực quyết định với thương mại &amp; hàng hóa: <b>vốn &amp; tài sản</b> (vốn lưu động nằm ở hàng và công nợ) và <b>thị trường &amp; quan hệ</b> (kênh bán, đại lý, khách quay lại).</p>
+  <div class="hai-cot">
+    <div>
+      <div class="nho" style="text-transform:uppercase;letter-spacing:.1em">8 khối</div>
+      <ol style="font-size:9pt">
+        <li>Quản trị &amp; Điều hành</li>
+        <li>Ngành hàng &amp; Nguồn cung</li>
+        <li>Hoạch định Cung–Cầu &amp; Tồn kho</li>
+        <li>Thị trường, Marketing &amp; Tăng trưởng</li>
+        <li>Kinh doanh &amp; Kênh phân phối</li>
+        <li>Đơn hàng, Kho vận &amp; Giao nhận</li>
+        <li>Dịch vụ khách hàng &amp; Phát triển quan hệ</li>
+        <li>Năng lực hỗ trợ (tài chính, kế toán, nhân sự, pháp chế, công nghệ)</li>
+      </ol>
+    </div>
+    <div>
+      <div class="nho" style="text-transform:uppercase;letter-spacing:.1em">7 chuỗi xuyên khối</div>
+      <ol style="font-size:9pt">
+        <li>Kế hoạch → Hàng sẵn sàng bán</li>
+        <li>Nguồn cung → Thanh toán</li>
+        <li>Thị trường → Khách tiềm năng</li>
+        <li>Cơ hội → Đơn hàng</li>
+        <li>Đơn hàng → Thu tiền</li>
+        <li>Yêu cầu → Giải quyết</li>
+        <li>Khách hàng → Mua lại</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="muc">2 · Điểm sẵn sàng</div>
+  <div class="diem">
+    <div><div class="lon">44<small> / 100</small></div><div class="nho" style="max-width:48mm">Mức dưới 45: <b style="color:var(--ink)">còn sớm để giao quyền cho AI; dọn nền dữ liệu và quy trình trước</b></div></div>
+    <div class="cot">
+      <div class="thanh"><span>Dữ liệu</span><i class="yeu" style="--w:38%"></i><b class="so">38</b></div>
+      <div class="thanh"><span>Quy trình</span><i class="yeu" style="--w:30%"></i><b class="so">30</b></div>
+      <div class="thanh"><span>Bộ máy</span><i class="yeu" style="--w:35%"></i><b class="so">35</b></div>
+      <div class="thanh"><span>Công cụ</span><i style="--w:70%"></i><b class="so">70</b></div>
+      <div class="thanh"><span>Thời gian</span><i style="--w:60%"></i><b class="so">60</b></div>
+    </div>
+  </div>
+  <p class="nho">Điểm tổng có trọng số, dữ liệu nặng nhất: 30% Dữ liệu + 20% Quy trình + 20% Bộ máy + 15% Công cụ + 15% Thời gian = 11,4 + 6 + 7 + 10,5 + 9 = 43,9, làm tròn 44. Thang: dưới 45 còn sớm · 45–69 bắt đầu được · từ 70 giao việc cho AI được ngay. Thanh đỏ: dưới 40. Công cụ đã đủ (anh chị có phần mềm bán hàng, kế toán, gom tin nhắn và đã dùng AI); chỗ yếu nằm ở dữ liệu rải nhiều nơi, quy trình mới có ghi chú lẻ, và quyết định còn quay về giám đốc.</p>
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 1 / 5</span></div>
+</section>
+
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 17.5 10 10 17.5 2.5 10Z" fill="none" stroke="#201E1D" stroke-width="1.2"/><g fill="#fff" stroke="#201E1D" stroke-width="1.2"><circle cx="10" cy="2.5" r="1.9"/><circle cx="17.5" cy="10" r="1.9"/><circle cx="10" cy="17.5" r="1.9"/><circle cx="2.5" cy="10" r="1.9"/></g><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Báo cáo ban đầu · KS-26101</span></div>
+  <div class="muc">3 · Bản đồ khối</div>
+  <p>Tô theo câu 9 (năm việc vướng), câu 12 (sự cố hay gặp) và câu 11, 16 (ai quyết, ai là điểm gãy). Máy chưa có số liệu thật, nên mỗi ô chỉ ghi điều anh chị đã khai.</p>
+  <div class="khoi">
+    <div class="s"><b>1 · Quản trị &amp; Điều hành</b>Người phụ trách hay hỏi lại giám đốc (câu 11). Duyệt chi và bán cho đại lý lớn dừng nếu người chủ chốt nghỉ (câu 16).<small>Mức: cần chú ý</small></div>
+    <div class="u"><b>2 · Ngành hàng &amp; Nguồn cung</b>Khảo sát chưa có thông tin. Ngành có hàng nhập khẩu và nhãn riêng, nên Scan sẽ hỏi thời gian hàng về.<small>Mức: chưa rõ</small></div>
+    <div class="v"><b>3 · Hoạch định Cung–Cầu &amp; Tồn kho</b>Vướng: Kế hoạch mua &amp; bổ sung hàng (ngốn nhất, 15–30 giờ/tuần). Sự cố: thiếu hàng.<small>Mức: vướng nặng</small></div>
+    <div class="v"><b>4 · Thị trường, Marketing &amp; Tăng trưởng</b>Vướng: Nội dung &amp; truyền thông.<small>Mức: vướng</small></div>
+    <div class="s"><b>5 · Kinh doanh &amp; Kênh phân phối</b>Không chọn là việc vướng, nhưng có sự cố nhầm giá.<small>Mức: có sự cố</small></div>
+    <div class="v"><b>6 · Đơn hàng, Kho vận &amp; Giao nhận</b>Vướng: Quản lý kho &amp; độ chính xác tồn kho. Sự cố: giao sai, sót đơn.<small>Mức: vướng</small></div>
+    <div class="v"><b>7 · Dịch vụ khách hàng &amp; Phát triển quan hệ</b>Vướng: Hỗ trợ &amp; tư vấn khách hàng. Trên 200 đơn/ngày qua 5 kênh.<small>Mức: vướng</small></div>
+    <div class="v"><b>8 · Năng lực hỗ trợ</b>Vướng: Công nợ phải thu &amp; tín dụng khách hàng. Sự cố: công nợ quá hạn. Tiền chỉ đủ chi 1–3 tháng.<small>Mức: vướng nặng</small></div>
+  </div>
+  <div class="chu-giai"><span><i></i>Có việc anh chị chọn là vướng</span><span><i class="s"></i>Có sự cố hoặc điểm gãy, chưa chọn là vướng</span><span><i class="u"></i>Chưa có thông tin</span></div>
+  <p class="nho" style="margin-top:6px">"Vướng nặng": khối vừa có việc vướng, vừa có sự cố, và chạm tới nguồn lực quyết định của loại hình (vốn lưu động).</p>
+
+  <div class="muc">4 · Năm nguồn lực · mức sơ bộ</div>
+  <div class="bang-cuon"><table>
+    <thead><tr><th style="width:30%">Nguồn lực</th><th>Anh chị trả lời</th><th style="width:16%">Mức sơ bộ</th></tr></thead>
+    <tbody>
+      <tr><td><b>Vốn &amp; Tài sản</b><br><span class="nho">Quyết định với loại hình này</span></td><td>Đủ chi 1–3 tháng nếu doanh thu dừng (câu 13)</td><td><span class="pill do">Yếu</span></td></tr>
+      <tr><td><b>Thị trường &amp; Quan hệ</b><br><span class="nho">Quyết định với loại hình này</span></td><td>10–30% doanh thu từ khách cũ, khách giới thiệu (câu 14)</td><td><span class="pill vang">Trung bình</span></td></tr>
+      <tr><td><b>Thương hiệu &amp; Uy tín</b></td><td>Điểm đánh giá trung bình 4,3–4,6 (câu 17)</td><td><span class="pill vang">Trung bình</span></td></tr>
+      <tr><td><b>Tri thức &amp; Công nghệ</b></td><td>Vài việc có ghi chú (câu 15); công cụ đủ (câu 7)</td><td><span class="pill vang">Trung bình</span></td></tr>
+      <tr><td><b>Con người &amp; Văn hóa</b></td><td>Người chủ chốt nghỉ hai tuần thì duyệt chi và bán hàng cho đại lý lớn dừng (câu 16)</td><td><span class="pill do">Yếu</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="nho">Mức sơ bộ chấm theo khoảng anh chị chọn, chưa đối chiếu sổ sách. Hai nguồn lực yếu, trong đó một là nguồn lực quyết định (vốn). Đây là lý do ba việc ở trang sau đều đi qua tiền: hàng nhập, công nợ, và khách online.</p>
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 2 / 5</span></div>
+</section>
+
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 17.5 10 10 17.5 2.5 10Z" fill="none" stroke="#201E1D" stroke-width="1.2"/><g fill="#fff" stroke="#201E1D" stroke-width="1.2"><circle cx="10" cy="2.5" r="1.9"/><circle cx="17.5" cy="10" r="1.9"/><circle cx="10" cy="17.5" r="1.9"/><circle cx="2.5" cy="10" r="1.9"/></g><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Báo cáo ban đầu · KS-26101</span></div>
+  <div class="muc">5 · Ba việc nên làm trước</div>
+  <p>Anh chị khai việc lặp lại mất <b>15–30 giờ/tuần</b> (máy lấy mức giữa: 22 giờ). Với điểm 44, phần lấy lại được ước <b>khoảng 11 giờ/tuần</b> (22 × 48%), chia cho ba việc theo tỷ trọng 50 / 30 / 20. Mức AI khuyến nghị tối đa L3.</p>
+  <div class="viec">
+    <div class="nhan">Việc 1 · ngốn thời gian nhất · khối Hoạch định</div>
+    <h4>Kế hoạch mua &amp; bổ sung hàng</h4>
+    <p><b>AI làm:</b> <span class="mau-l">L3</span> · AI làm trong ngưỡng đã duyệt, ngoài ngưỡng chuyển người. Ví dụ: tính lượng cần mua theo điểm đặt hàng lại và thời gian hàng về; đề xuất đơn bổ sung mỗi tuần.</p>
+    <p><b>Vai giữ quyền:</b> Trưởng hoạch định (hoặc người phụ trách mua hàng). Đơn mua vượt hạn mức hoặc ngoài kế hoạch → Trưởng hoạch định; đổi trần vốn tồn kho → Kế toán trưởng.</p>
+    <p><b>Ước tiết kiệm:</b> 4–7 giờ/tuần</p>
+  </div>
+  <div class="viec">
+    <div class="nhan">Việc 2 · khối Năng lực hỗ trợ · hợp mục tiêu "kiểm soát bộ máy"</div>
+    <h4>Công nợ phải thu &amp; tín dụng khách hàng</h4>
+    <p><b>AI làm:</b> <span class="mau-l">L3</span> · nhắc nợ theo tuổi nợ, theo lịch và mẫu đã duyệt. Đề xuất hạn mức tín dụng cho từng khách sỉ ở mức L2 (người duyệt).</p>
+    <p><b>Vai giữ quyền:</b> Kế toán trưởng. Cấp hoặc tăng hạn mức, nợ quá 60 ngày → Kế toán trưởng. Người bán hàng không giữ quyền gia hạn nợ.</p>
+    <p><b>Ước tiết kiệm:</b> 2–5 giờ/tuần</p>
+  </div>
+  <div class="viec">
+    <div class="nhan">Việc 3 · khối Dịch vụ khách hàng</div>
+    <h4>Hỗ trợ &amp; tư vấn khách hàng</h4>
+    <p><b>AI làm:</b> <span class="mau-l">L3</span> · trả lời hỏi giá, tình trạng đơn, cách dùng từ nguồn thông tin đã duyệt, cả ngoài giờ.</p>
+    <p><b>Vai giữ quyền:</b> Trưởng dịch vụ khách hàng. Câu hỏi ngoài nguồn đã duyệt, khiếu nại, đổi trả ngoài chính sách → Trưởng dịch vụ khách hàng.</p>
+    <p><b>Ước tiết kiệm:</b> 1–3 giờ/tuần <span class="nho">(có thể thấp hơn thực tế nhiều, xem mục 7)</span></p>
+  </div>
+  <p class="nho">Tổng ba việc: 7–15 giờ/tuần, giữa khoảng là 11 giờ. "Quản lý kho &amp; độ chính xác tồn kho" và "Nội dung &amp; truyền thông" chưa vào ba việc đầu: kho là điều kiện của việc 1 (xem mục 6), nội dung chưa chạm tới tiền.</p>
+
+  <div class="muc">6 · Hai điều cần sửa trước khi đưa AI vào</div>
+  <div class="canh"><b>Quyết định dồn về giám đốc.</b> Người phụ trách có, nhưng vẫn hỏi lại; duyệt chi và đại lý lớn dừng khi người chủ chốt vắng. Giao việc cho AI lúc này chỉ dời nút cổ chai sang chỗ chờ duyệt. Cần viết ra ai được duyệt việc gì, tới ngưỡng tiền nào.</div>
+  <div class="canh"><b>Dữ liệu khách, hàng, tiền đều nằm ở vài nơi.</b> Không loại nào có nguồn chuẩn. AI đề xuất đơn nhập từ tồn kho lệch, hay nhắc nợ từ một bảng tính chưa cập nhật, sẽ sai nhanh hơn người. Cần chọn một nơi chính thức cho từng loại trước khi nối AI.</div>
+
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 3 / 5</span></div>
+</section>
+
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 17.5 10 10 17.5 2.5 10Z" fill="none" stroke="#201E1D" stroke-width="1.2"/><g fill="#fff" stroke="#201E1D" stroke-width="1.2"><circle cx="10" cy="2.5" r="1.9"/><circle cx="17.5" cy="10" r="1.9"/><circle cx="10" cy="17.5" r="1.9"/><circle cx="2.5" cy="10" r="1.9"/></g><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Báo cáo ban đầu · KS-26101</span></div>
+  <div class="muc" style="margin-top:0">7 · Báo cáo này chưa biết gì</div>
+  <ul style="font-size:9.2pt">
+    <li>Mọi con số là khoảng anh chị tự khai, chưa đối chiếu với sổ sách, file đơn hàng hay bảng tồn kho. Chưa có tài liệu nào được gửi.</li>
+    <li>Không biết ai đang làm việc gì, ai kiêm vai nào, nên vai giữ quyền ở mục 5 là vai chuẩn của loại hình, chưa gắn tên người.</li>
+    <li>Giờ tiết kiệm ước từ câu 10 và mức chuẩn, chỉ tính phần lặp lại anh chị khai. Lượng tin nhắn khách mỗi ngày chưa được hỏi, nên việc 3 dễ bị ước thấp.</li>
+    <li>Không biết tiền đang kẹt ở đâu (tồn kho, công nợ, tiền sàn), bao nhiêu hàng chậm bán, bao nhiêu nợ quá hạn.</li>
+    <li>Chưa xét hóa đơn, thuế, dữ liệu cá nhân của khách và nhãn hàng nhập khẩu.</li>
+  </ul>
+
+  <div class="muc">8 · Bước tiếp theo phù hợp</div>
+  <div class="goi">
+    <h4>LATTICE Scan · <span class="gia">895.000đ</span> · làm việc qua email, không cần Zoom</h4>
+    <ul style="font-size:9.2pt;margin-bottom:4px">
+      <li>Trong 2 ngày làm việc sau khi thanh toán: 5–10 câu hỏi bổ sung chọn theo câu trả lời này (với hồ sơ của anh chị, dự kiến khoảng 7 câu về ba việc trên, các quyết định giám đốc đang duyệt, tiền nằm ở đâu, ai thay được người chủ chốt) và danh sách tài liệu cần gửi.</li>
+      <li>Người LATTICE đọc và duyệt. Báo cáo 5–7 trang trong 5 ngày làm việc sau khi đủ tài liệu: bản đồ khối có số thật, ba quy trình vẽ hiện tại và đề xuất người + AI cho từng tác vụ, giờ tiết kiệm và chi phí AI, năm nguồn lực có bằng chứng, rủi ro hóa đơn, thuế, dữ liệu cá nhân, trang mô phỏng riêng.</li>
+      <li>Hỏi đáp email 1 lần, tối đa 3 câu, trong 14 ngày. Trừ 100% phí Scan vào Blueprint nếu nâng trong 30 ngày.</li>
+    </ul>
+  </div>
+  <p style="font-size:9.2pt"><b>Nếu đã chắc muốn làm:</b> ngân sách anh chị dự tính (10–50 triệu) đủ cho <b>LATTICE Blueprint · 2.950.000đ</b>: toàn bộ Scan, buổi Zoom 60 phút, hồ sơ thiết kế 12–16 trang có bộ máy, ma trận quyền và lộ trình 90 ngày, 2 SOP mẫu.</p>
+  <p class="nho">Báo cáo dựa trên câu trả lời tự khai, chưa kiểm chứng. Mọi trao đổi qua email lattice.consultant@gmail.com. Khi đăng ký, ghi mã KS-26101.</p>
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 4 / 5</span></div>
+</section>
+
+<section class="trang">
+  <div class="dau"><span class="logo"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 17.5 10 10 17.5 2.5 10Z" fill="none" stroke="#201E1D" stroke-width="1.2"/><g fill="#fff" stroke="#201E1D" stroke-width="1.2"><circle cx="10" cy="2.5" r="1.9"/><circle cx="17.5" cy="10" r="1.9"/><circle cx="10" cy="17.5" r="1.9"/><circle cx="2.5" cy="10" r="1.9"/></g><circle cx="10" cy="10" r="2.2" fill="#EC3013"/></svg><b>LATTICE</b> Next Solutions</span><span>Báo cáo ban đầu · KS-26101 · Phụ lục</span></div>
+  <h2>Phụ lục · 20 câu trả lời của ABZ</h2>
+  <p class="nho">Nguyên lựa chọn ngày 12/10/2026; cột cuối cho biết câu đó dùng ở phần nào của báo cáo.</p>
+  <div class="bang-cuon"><table class="gon">
+    <thead><tr><th style="width:5%">#</th><th style="width:36%">Câu hỏi</th><th>ABZ trả lời</th><th style="width:22%">Dùng cho</th></tr></thead>
+    <tbody>
+      <tr><td colspan="4" style="background:var(--soft);font-weight:800;font-size:7.5pt;letter-spacing:.1em;padding:1px 6px">A · HỒ SƠ</td></tr>
+      <tr><td>1</td><td>Doanh nghiệp đang ở giai đoạn nào?</td><td>Đang vận hành, có doanh thu đều</td><td>Rẽ nhánh: gợi ý Scan</td></tr>
+      <tr><td>2</td><td>Thuộc loại hình nào, ngành cụ thể là gì?</td><td>Thương mại &amp; hàng hóa · "đồ gia dụng nhà bếp, nhập khẩu và nhãn riêng"</td><td>Kiến trúc tham chiếu (mục 1)</td></tr>
+      <tr><td>3</td><td>Bao nhiêu người làm toàn thời gian? Có ai làm nhiều mảng cùng lúc?</td><td>11–20 người · có người kiêm nhiều vai</td><td>Quy mô; điểm Bộ máy</td></tr>
+      <tr><td>4</td><td>Doanh thu trung bình một tháng?</td><td>2–10 tỷ</td><td>Quy mô, gói phù hợp</td></tr>
+      <tr><td colspan="4" style="background:var(--soft);font-weight:800;font-size:7.5pt;letter-spacing:.1em;padding:1px 6px">B · VẬN HÀNH</td></tr>
+      <tr><td>5</td><td>Khách đến từ đâu?</td><td>Sàn TMĐT, mạng xã hội, website, đại lý/cộng tác viên, khách doanh nghiệp</td><td>Khối 4, 5</td></tr>
+      <tr><td>6</td><td>Mỗi ngày xử lý khoảng bao nhiêu đơn?</td><td>Trên 200 đơn/ngày</td><td>Khối lượng việc</td></tr>
+      <tr><td>7</td><td>Đang dùng những công cụ nào?</td><td>Bảng tính, phần mềm bán hàng, kế toán, gom tin nhắn, công cụ AI</td><td>Điểm Công cụ 70</td></tr>
+      <tr><td>8</td><td>Ba loại dữ liệu đang nằm ở đâu?</td><td>Khách hàng: vài nơi · Hàng, tồn kho: vài nơi · Tiền, công nợ: vài nơi</td><td>Điểm Dữ liệu 38; điều cần sửa 2</td></tr>
+      <tr><td>9</td><td>Năm việc nào đang vướng nhất?</td><td>Kế hoạch mua &amp; bổ sung hàng · Công nợ phải thu &amp; tín dụng khách hàng · Hỗ trợ &amp; tư vấn khách hàng · Nội dung &amp; truyền thông · Quản lý kho &amp; độ chính xác tồn kho</td><td>Bản đồ khối; ba việc</td></tr>
+      <tr><td>10</td><td>Việc nào ngốn thời gian nhất, mỗi tuần mất bao nhiêu giờ cho việc lặp lại?</td><td>Kế hoạch mua &amp; bổ sung hàng · 15–30 giờ/tuần</td><td>Thứ tự ưu tiên; giờ tiết kiệm</td></tr>
+      <tr><td colspan="4" style="background:var(--soft);font-weight:800;font-size:7.5pt;letter-spacing:.1em;padding:1px 6px">C · BỘ MÁY VÀ NGOẠI LỆ</td></tr>
+      <tr><td>11</td><td>Khi có việc vượt quy định, ai quyết?</td><td>Có người phụ trách nhưng hay hỏi lại tôi</td><td>Điểm Bộ máy; điều cần sửa 1</td></tr>
+      <tr><td>12</td><td>Ba tháng qua, sự cố nào hay gặp nhất?</td><td>Thiếu hàng · công nợ quá hạn · giao sai/sót đơn · nhầm giá</td><td>Bản đồ khối; điểm Quy trình</td></tr>
+      <tr><td colspan="4" style="background:var(--soft);font-weight:800;font-size:7.5pt;letter-spacing:.1em;padding:1px 6px">D · NĂM NGUỒN LỰC</td></tr>
+      <tr><td>13</td><td>Nếu doanh thu dừng hôm nay, tiền đủ chi bao lâu?</td><td>1–3 tháng</td><td>Vốn &amp; Tài sản: Yếu</td></tr>
+      <tr><td>14</td><td>Bao nhiêu phần doanh thu từ khách cũ, khách giới thiệu?</td><td>10–30%</td><td>Thị trường &amp; Quan hệ: Trung bình</td></tr>
+      <tr><td>15</td><td>Cách làm việc đã viết thành quy trình chưa?</td><td>Vài việc có ghi chú</td><td>Tri thức &amp; Công nghệ; điểm Quy trình 30</td></tr>
+      <tr><td>16</td><td>Nếu người chủ chốt nghỉ hai tuần, việc gì dừng?</td><td>Duyệt chi · bán hàng (đại lý lớn)</td><td>Con người &amp; Văn hóa: Yếu</td></tr>
+      <tr><td>17</td><td>Khách đang đánh giá anh chị thế nào?</td><td>4,3–4,6</td><td>Thương hiệu &amp; Uy tín: Trung bình</td></tr>
+      <tr><td colspan="4" style="background:var(--soft);font-weight:800;font-size:7.5pt;letter-spacing:.1em;padding:1px 6px">E · MỤC TIÊU</td></tr>
+      <tr><td>18</td><td>Trong 90 ngày tới, điều gì quan trọng nhất?</td><td>Kiểm soát được bộ máy</td><td>Thứ tự ba việc</td></tr>
+      <tr><td>19</td><td>Điều gì đang cản đưa AI vào vận hành?</td><td>Dữ liệu lộn xộn</td><td>Điểm Thời gian 60</td></tr>
+      <tr><td>20</td><td>Dự tính dành bao nhiêu cho giai đoạn đầu?</td><td>10–50 triệu</td><td>Gợi ý Scan, nêu Blueprint</td></tr>
+    </tbody>
+  </table></div>
+  <div class="chan"><span>Hồ sơ mẫu · doanh nghiệp hư cấu · Bảo mật theo cam kết CKBM-ABZ-261013 · chỉ dành cho ABZ</span><span>Trang 5 / 5</span></div>
+</section>
+
+</body>
+</html>

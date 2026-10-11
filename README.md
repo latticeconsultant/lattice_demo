@@ -48,6 +48,7 @@ register/index.html         biểu mẫu đăng ký bốn bước, bản Anh —
 quan-tri/index.html         trang quản trị: hồ sơ, thanh toán, lịch làm việc
 mophong/index.html          trang mô phỏng: kiến trúc (đơn giản / nâng cao), bộ máy và năm nguồn lực, luồng vận hành, người + AI, dashboard cho ba loại hình — NGUỒN DỮ LIỆU NGHIỆP VỤ
 bang-goi/                   bảng gói và giá, mỗi gói có link mẫu báo cáo
+tu-soi/                     sáu câu hỏi trước khi đưa AI vào (14 câu tự soi, máy tính 52 tuần); ba câu đầu cũng nằm ở đầu Khảo sát nhanh
 mau-ho-so/                  mẫu hồ sơ khách nhận của từng gói (Công ty ABZ hư cấu) + thỏa thuận bảo mật
 khao-sat/                   khảo sát nhanh; nv.js và dòng đầu day-du.js SINH TỰ ĐỘNG từ mophong, không sửa tay
 tailieunoibo/                tài liệu nội bộ (kế hoạch, kịch bản video) — đang công khai theo đường dẫn, CẦN CHẶN hoặc gỡ

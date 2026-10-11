@@ -11,7 +11,7 @@ Website giới thiệu 10 trang song ngữ Việt / Anh, kèm luồng đăng ký
 
 ## 1. Nội dung website
 
-Đầu trang chủ là khung đọc **Tài liệu nền tảng** "Doanh nghiệp một người" (21 mục, có mục lục và nút lưu PDF) — xem tự do. Mười trang dưới đây nằm sau rào mật khẩu (xem mục 9).
+Đầu trang chủ là khung đọc **Tài liệu nền tảng** "Doanh nghiệp một người" (21 mục, có mục lục và nút lưu PDF) — xem tự do. Mười trang dưới đây trước đây nằm sau rào mật khẩu; rào đang tạm tắt (xem mục 10).
 
 | Trang | Nội dung |
 | --- | --- |
@@ -221,6 +221,8 @@ Chỉ deploy lại Worker khi sửa `cloudflare/worker.js`. Xem `cloudflare/READ
 File `.nojekyll` để GitHub phục vụ nguyên trạng, không qua Jekyll.
 
 ## 10. Rào mật khẩu — và giới hạn của nó
+
+> **Đang tắt từ 11/10/2026** (anh yêu cầu để ai cũng xem được): biến `RAO_BAT = false` ở đầu `index.html` và `en/index.html`, nút "Khóa lại" ẩn bằng `.lnx-khoalai`. Bật lại: đổi `RAO_BAT` thành `true` và bỏ dòng CSS `.lnx-khoalai`.
 
 Khối **Tài liệu nền tảng** ở đầu trang chủ xem tự do. Toàn bộ phần còn lại — header, mười trang, footer — bị ẩn cho tới khi nhập đúng mật khẩu. Trạng thái mở khóa lưu ở `localStorage`, nên chỉ cần nhập một lần trên mỗi trình duyệt. Áp dụng cho cả hai bản ngôn ngữ. Hai trang đăng ký nằm **ngoài** rào này, để khách quét QR là vào thẳng.
 

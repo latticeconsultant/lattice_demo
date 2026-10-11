@@ -28,9 +28,12 @@
 <script>
   // Cờ khóa phải đặt trước khi trang vẽ, nếu đợi React mount thì nội dung
   // sẽ lóe ra một nhịp rồi mới bị che — người xem kịp đọc và kịp chụp màn hình.
+  // TẠM TẮT rào mật khẩu từ 11/10/2026 để ai cũng xem được. Bật lại: đổi RAO_BAT thành true
+  // và bỏ dòng ẩn nút "Khóa lại" (.lnx-khoalai) trong CSS.
+  var RAO_BAT = false;
   try {
-    if (localStorage.getItem('lnx-unlocked') !== '1') document.documentElement.classList.add('lnx-locked');
-  } catch (e) { document.documentElement.classList.add('lnx-locked'); }
+    if (RAO_BAT && localStorage.getItem('lnx-unlocked') !== '1') document.documentElement.classList.add('lnx-locked');
+  } catch (e) { if (RAO_BAT) document.documentElement.classList.add('lnx-locked'); }
 </script>
 <script>
   // Bản bundle gốc ánh xạ CDN sang blob URL. Bản tĩnh này trỏ thẳng vào
@@ -719,6 +722,7 @@ textarea.input { min-height: 90px; resize: vertical; }
     html.lnx-locked .lnx-stage > footer { display: none !important; }
     html.lnx-locked .lnx-stage > div > *:not(.lnx-docwrap):not(.lnx-lock) { display: none !important; }
     .lnx-lock { display: none; }
+    .lnx-khoalai { display: none !important; }  /* rào mật khẩu đang tắt */
     html.lnx-locked .lnx-lock { display: block; }
 
     .lnx-lock { background: var(--color-text); color: var(--color-bg);
@@ -3690,7 +3694,7 @@ review_cycle: monthly</pre>
             </div>
           </div>
         </div>
-        <button type="button" sc-camel-on-click="{{ lockAgain }}" style="appearance:none;background:none;border:0;padding:0;margin-top:26px;color:var(--color-neutral-600);cursor:pointer;font-family:inherit;font-size:11.5px;letter-spacing:.1em;text-align:left" style-hover="color:var(--color-accent-400)">LOCK THE RESTRICTED AREA AGAIN</button>
+        <button type="button" class="lnx-khoalai" sc-camel-on-click="{{ lockAgain }}" style="appearance:none;background:none;border:0;padding:0;margin-top:26px;color:var(--color-neutral-600);cursor:pointer;font-family:inherit;font-size:11.5px;letter-spacing:.1em;text-align:left" style-hover="color:var(--color-accent-400)">LOCK THE RESTRICTED AREA AGAIN</button>
         <p style="padding-top:14px;font-size:11.5px;line-height:1.7;color:var(--color-neutral-600);margin:0;max-width:110ch">Compiled from data published to August 2026: Gartner, IDC, Forrester, Deloitte, BCG, McKinsey and market research firms, together with the regulatory instruments cited. Industry figures differ between sources because survey methods differ — read the trend, not the absolute number. This is an interface preview; contact details and forms are not yet configured.</p>
       </div>
     </footer>

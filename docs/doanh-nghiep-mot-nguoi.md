@@ -733,7 +733,7 @@ Ba điều đáng nhớ nhất từ toàn bộ tài liệu này:
 
 3. **Với Việt Nam, 2026 là cửa sổ hiếm.** Chính sách đang ép minh bạch dữ liệu và hỗ trợ chuyển đổi số; thị trường thương mại điện tử vẫn tăng trên 40%/năm; hạ tầng AI đang rẻ đi nhanh. Nhưng cửa sổ này đóng theo hai hướng: khi mọi người đều dùng AI, lợi thế chuyển từ *có AI* sang *có hệ thống và dữ liệu riêng mà AI vận hành trên đó*. Thứ không sao chép được không phải công cụ — mà là tri thức tích lũy trong knowledge base, quan hệ khách hàng thật, và uy tín của một con người cụ thể đứng phía trước.
 
-Xem kiến trúc đầy đủ cho ba loại hình: lattice.business/mophong/ · Tự đánh giá: Khảo sát nhanh 15 câu, khoảng 7 phút: lattice.business/khao-sat/
+Xem kiến trúc đầy đủ cho ba loại hình: lattice.business/mophong/ · Tự soi: sáu câu hỏi trước khi đưa AI vào: lattice.business/tu-soi/ · Tự đánh giá: Khảo sát nhanh 20 câu, khoảng 8–10 phút: lattice.business/khao-sat/
 
 ---
 

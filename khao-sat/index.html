@@ -771,11 +771,12 @@ ve();
 .blocks small{display:block;color:var(--mute);font-size:12.5px;margin-top:2px}
 .blocks div.v small{color:var(--ink)}
 .nl{display:grid;gap:6px;margin:8px 0}
-.nl div{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr) auto;gap:10px;align-items:baseline;border-bottom:1px solid var(--line2);padding:7px 0;font-size:14px}
+.nl div{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr) 104px;gap:10px;align-items:baseline;border-bottom:1px solid var(--line2);padding:7px 0;font-size:14px}
 .nl div:last-child{border:0}
 .nl em{font-style:normal;font-size:11.5px;color:var(--redtx);display:block}
 .tag{font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:2px 8px;border:1px solid currentColor;white-space:nowrap}
 .tag.yeu{color:var(--redtx);background:var(--redbg)} .tag.tb{color:var(--mute)} .tag.kha{color:var(--ok)}
+.nl div .tag{justify-self:start}
 @media (max-width:560px){.nl div{grid-template-columns:1fr auto}.nl div span.tl{grid-column:1/-1;order:3;color:var(--mute);font-size:13px}}
 .uu{border:1px solid var(--line);background:var(--bg);padding:15px 17px;margin-bottom:8px}
 .uu .so{font-size:12px;letter-spacing:.18em;color:var(--redtx);font-weight:700}
@@ -791,7 +792,7 @@ ve();
 .sau{font-size:13.5px;color:var(--mute);margin-top:10px}
 .diem{display:flex;gap:22px;align-items:center;flex-wrap:wrap;background:var(--card);border:2px solid var(--ink);padding:20px 22px;margin:14px 0 10px}
 .diem .so{font-size:54px;font-weight:800;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.diem .mo{font-size:14px;color:var(--mute);max-width:46ch}
+.diem .mo{font-size:14px;color:var(--mute);flex:1 1 320px;min-width:0}
 .uu ul{margin:0;padding-left:20px;font-size:14.5px;color:var(--ink)}
 .uu h3{margin:4px 0 8px;font-size:19px;letter-spacing:-.01em}
 </style>

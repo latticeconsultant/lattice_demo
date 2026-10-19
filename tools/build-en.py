@@ -179,6 +179,10 @@ def main():
             t = t.replace(vi, en)
             tong += 1
 
+    # tiền: bản Anh ghi US$, tỷ giá cố định 25.000 VND/US$ (tools/tien_te.py)
+    from tien_te import doi_tien
+    t = doi_tien(t)
+
     # đường dẫn tài nguyên lùi một cấp
     for thu_muc in ('assets/', 'brand/', 'mophong/', 'khao-sat/', 'mau-ho-so/', 'bang-goi/', 'tu-soi/'):
         t = re.sub(r'(?<=["\'(])' + thu_muc, '../' + thu_muc, t)

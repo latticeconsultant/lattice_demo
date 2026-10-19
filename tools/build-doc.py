@@ -220,6 +220,11 @@ NHAN = {
 def build(md_path, target_path, lang='vi'):
     with open(md_path, encoding='utf-8') as f:
         md = f.read()
+    if lang != 'vi':  # bản Anh/Lào ghi tiền bằng US$ (tools/tien_te.py)
+        import os, sys
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from tien_te import doi_tien
+        md = doi_tien(md)
 
     body, toc = convert(md)
     nav = build_toc(toc)

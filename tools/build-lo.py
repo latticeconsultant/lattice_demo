@@ -53,8 +53,11 @@ def main():
             sys.exit('en/index.html thiếu khối nút ngôn ngữ chuẩn — chạy lại build-en.py')
         t = t.replace(khoi_en, khoi_lo)
 
+    # Bản Anh đã đổi tiền sang US$ (tools/tien_te.py): đổi cả hai vế từ điển để khóa khớp chữ trên trang.
+    from tien_te import doi_tien
+    t = doi_tien(t)
     cap = json.load(io.open(TU_DIEN, encoding='utf-8'))
-    tu_dien = sorted({(x['en'], x['lo']) for x in cap if x.get('lo') and x['lo'] != x['en']},
+    tu_dien = sorted({(doi_tien(x['en']), doi_tien(x['lo'])) for x in cap if x.get('lo') and x['lo'] != x['en']},
                      key=lambda x: -len(x[0]))
 
     phan = re.split(r'(<script[^>]*>.*?</script>)', t, flags=re.S)

@@ -85,8 +85,74 @@ const traJson = (than, status = 200) => new Response(JSON.stringify(than), {
   status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' },
 });
 
+// ── Đăng nhập bằng email + mật khẩu (thay cho Access nếu chưa cấu hình) ─────────
+// Secret ADMIN_DANG_NHAP = JSON {email, muoi, bam, vong} — chỉ có bản băm PBKDF2-SHA256,
+// đặt bằng `node dat-mat-khau-admin.mjs` (anh tự gõ mật khẩu; không nằm trong repo).
+// Secret ADMIN_BI_MAT = chuỗi ngẫu nhiên ký cookie phiên. Phiên 8 giờ, cookie HttpOnly, Path=/admin.
+const PHIEN_GIAY = 8 * 3600;
+const hex = (b) => [...new Uint8Array(b)].map((x) => x.toString(16).padStart(2, '0')).join('');
+const tuHex = (h) => Uint8Array.from(h.match(/../g) || [], (x) => parseInt(x, 16));
+const b64 = (x) => btoa(String.fromCharCode(...new TextEncoder().encode(x))).replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_');
+const tuB64 = (x) => new TextDecoder().decode(b64url(x));
+
+async function hmac(env, du) {
+  const k = await crypto.subtle.importKey('raw', new TextEncoder().encode(env.ADMIN_BI_MAT), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  return hex(await crypto.subtle.sign('HMAC', k, new TextEncoder().encode(du)));
+}
+
+function soSanh(a, b) {
+  if (a.length !== b.length) return false;
+  let d = 0;
+  for (let i = 0; i < a.length; i++) d |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return d === 0;
+}
+
+async function emailPhien(request, env) {
+  if (!env.ADMIN_BI_MAT) return null;
+  const m = (request.headers.get('cookie') || '').match(/(?:^|;\s*)lnx_admin=([^;]+)/);
+  if (!m) return null;
+  const [than, ky] = m[1].split('.');
+  if (!than || !ky || !soSanh(await hmac(env, than), ky)) return null;
+  try {
+    const p = JSON.parse(tuB64(than));
+    return p.het > Date.now() / 1000 ? p.email : null;
+  } catch (e) { return null; }
+}
+
+async function apiDangNhap(request, env, url) {
+  if (request.method !== 'POST') return traJson({ loi: 'khong_ho_tro' }, 405);
+  if (request.headers.get('origin') !== url.origin) return traJson({ loi: 'sai_nguon_goc' }, 403);
+  if (!env.ADMIN_DANG_NHAP || !env.ADMIN_BI_MAT || !env.SITE) return traJson({ loi: 'chua_cau_hinh' }, 503);
+  // Chặn đoán mật khẩu: tối đa 5 lần sai mỗi IP trong 15 phút.
+  const ip = request.headers.get('cf-connecting-ip') || 'x';
+  const khoaSai = 'sai:' + ip;
+  const soSai = Number(await env.SITE.get(khoaSai)) || 0;
+  if (soSai >= 5) return traJson({ loi: 'tam_khoa', phu: 'Sai quá 5 lần. Thử lại sau 15 phút.' }, 429);
+  let than;
+  try { than = await request.json(); } catch (e) { return traJson({ loi: 'du_lieu_sai' }, 422); }
+  let cfg;
+  try { cfg = JSON.parse(env.ADMIN_DANG_NHAP); } catch (e) { return traJson({ loi: 'chua_cau_hinh' }, 503); }
+  const email = String(than.email || '').trim().toLowerCase();
+  const k = await crypto.subtle.importKey('raw', new TextEncoder().encode(String(than.mat_khau || '')), 'PBKDF2', false, ['deriveBits']);
+  const bam = hex(await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: tuHex(cfg.muoi), iterations: cfg.vong }, k, 256));
+  if (!(soSanh(email, cfg.email) & soSanh(bam, cfg.bam))) {
+    await env.SITE.put(khoaSai, String(soSai + 1), { expirationTtl: 900 });
+    return traJson({ loi: 'sai_dang_nhap', phu: 'Email hoặc mật khẩu không đúng.' }, 401);
+  }
+  const p = b64(JSON.stringify({ email, het: Math.floor(Date.now() / 1000) + PHIEN_GIAY }));
+  const res = traJson({ ok: true, email });
+  res.headers.append('set-cookie', `lnx_admin=${p}.${await hmac(env, p)}; Path=/admin; HttpOnly; Secure; SameSite=Strict; Max-Age=${PHIEN_GIAY}`);
+  return res;
+}
+
+function apiDangXuat() {
+  const res = traJson({ ok: true });
+  res.headers.append('set-cookie', 'lnx_admin=; Path=/admin; HttpOnly; Secure; SameSite=Strict; Max-Age=0');
+  return res;
+}
+
 async function apiCauHinh(request, env, url) {
-  const email = await emailAccess(request, env);
+  const email = (await emailPhien(request, env)) || (await emailAccess(request, env));
   if (!email) return traJson({ loi: 'chua_dang_nhap' }, 401);
   if (!env.SITE) return traJson({ loi: 'thieu_kv' }, 500);
   if (request.method === 'GET') {
@@ -115,6 +181,8 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === '/admin/api/cau-hinh') return apiCauHinh(request, env, url);
+    if (url.pathname === '/admin/api/dang-nhap') return apiDangNhap(request, env, url);
+    if (url.pathname === '/admin/api/dang-xuat') return apiDangXuat();
 
     // /demo, /demo/, /demo/dang-ky/ … → bỏ tiền tố, giữ nguyên phần còn lại.
     if (url.pathname === CU || url.pathname.startsWith(CU + '/')) {

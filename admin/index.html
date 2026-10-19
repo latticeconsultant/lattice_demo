@@ -41,11 +41,24 @@ h2{font-size:15px;margin:32px 0 8px;letter-spacing:.06em}
 table{width:100%;border-collapse:collapse;font-size:12.5px}
 td{padding:6px 8px;border-top:1px solid var(--line);vertical-align:top}
 a{color:inherit}
+#dn{max-width:380px;margin:40px auto;border:2px solid var(--ink);background:var(--card);padding:22px}
+#dn label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+#dn input{width:100%;padding:11px 12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+#dn input:focus{border-color:var(--ink);outline:0}
+#dn button{width:100%;margin-top:18px}
+#dnTb{font-size:13px;color:var(--red);min-height:18px;margin-top:10px}
 </style>
 </head>
 <body>
-<header><b>LATTICE</b><small>Quản trị trang chủ</small><span class="sp"></span><span id="ai" style="font-size:12px;color:var(--muted)"></span></header>
-<main>
+<header><b>LATTICE</b><small>Quản trị trang chủ</small><span class="sp"></span><span id="ai" style="font-size:12px;color:var(--muted)"></span><button class="phu" id="thoat" hidden style="padding:8px 12px;font-size:11px">Đăng xuất</button></header>
+<form id="dn" hidden>
+  <h1 style="font-size:20px">Đăng nhập</h1>
+  <label for="em">Email</label><input id="em" type="email" autocomplete="username" required>
+  <label for="mk">Mật khẩu</label><input id="mk" type="password" autocomplete="current-password" required>
+  <button type="submit">Đăng nhập</button>
+  <div id="dnTb" role="alert"></div>
+</form>
+<main id="noiDung" hidden>
   <h1>Công tắc tính năng</h1>
   <p class="fine">Bật = hiện trên trang chủ (Việt, Anh, Lào). Bấm Lưu để áp dụng; khách thấy thay đổi trong khoảng 1 phút. <a href="../" target="_blank" rel="noopener">Mở trang chủ ↗</a></p>
   <div class="list" id="ds"><div class="row">Đang tải…</div></div>
@@ -81,9 +94,10 @@ function doiTrangThai() { const doi = JSON.stringify(dangTat()) !== ban; $('#luu
 async function nap() {
   try {
     const tl = await fetch('api/cau-hinh', { credentials: 'same-origin', cache: 'no-store' });
-    if (tl.status === 401) { bao('Phiên đăng nhập hết hạn hoặc chưa cấu hình Access. Tải lại trang để đăng nhập.', true); return; }
+    if (tl.status === 401) { $('#noiDung').hidden = true; $('#thoat').hidden = true; $('#dn').hidden = false; $('#em').focus(); return; }
     if (!tl.ok) throw new Error('Máy chủ trả ' + tl.status);
     duLieu = await tl.json();
+    $('#dn').hidden = true; $('#noiDung').hidden = false; $('#thoat').hidden = false;
     $('#ai').textContent = duLieu.email;
     ve();
   } catch (e) { bao('Không tải được cấu hình: ' + e.message, true); }
@@ -99,6 +113,21 @@ $('#luu').onclick = async () => {
     bao('Đã lưu. Trang chủ cập nhật trong khoảng 1 phút.');
   } catch (e) { bao('Lưu không được: ' + e.message, true); $('#luu').disabled = false; }
 };
+$('#dn').onsubmit = async (e) => {
+  e.preventDefault();
+  $('#dnTb').textContent = '';
+  const nut = $('#dn button'); nut.disabled = true;
+  try {
+    const tl = await fetch('api/dang-nhap', { method: 'POST', credentials: 'same-origin', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ email: $('#em').value, mat_khau: $('#mk').value }) });
+    const j = await tl.json().catch(() => ({}));
+    if (!tl.ok) { $('#dnTb').textContent = j.phu || (tl.status === 503 ? 'Chưa đặt tài khoản quản trị.' : 'Đăng nhập không được (' + tl.status + ').'); return; }
+    $('#mk').value = '';
+    await nap();
+  } catch (er) { $('#dnTb').textContent = 'Lỗi mạng: ' + er.message; }
+  finally { nut.disabled = false; }
+};
+$('#thoat').onclick = async () => { await fetch('api/dang-xuat', { method: 'POST', credentials: 'same-origin' }); duLieu = null; nap(); };
 $('#tatca').onclick = () => { document.querySelectorAll('.sw').forEach((c) => { c.checked = true; c.parentElement.querySelector('.st').textContent = 'HIỆN'; }); doiTrangThai(); };
 nap();
 </script>

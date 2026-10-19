@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""Nút chọn ngôn ngữ dùng chung cho ba bản trang chủ: EN · VN · LO (thứ tự anh chốt 19/10/2026).
+"""Nút chọn ngôn ngữ dùng chung cho ba bản trang chủ: EN · VN · LO (thứ tự anh chốt 19/10/2026),
+đặt bên phải nút Đặt lịch chẩn đoán, sát lề phải (anh chốt 20/10/2026).
 
 Bản Việt (index.html) viết sẵn đúng markup của NHOM('vi') và MENU('vi').
 build-en.py / build-lo.py thay nguyên khối đó bằng NHOM('en') / NHOM('lo'),
@@ -26,16 +27,17 @@ def _duong_dan(tu, toi):
 
 
 def _lop(ma):
-    return ' tn-tieng-lao' if ma == 'lo' else ''
+    """Mỗi nút một công tắc riêng trong /admin/: tn-nut-en, tn-nut-vn, tn-nut-lo."""
+    return ' tn-nut-' + ('vn' if ma == 'vi' else ma)
 
 
 def NHOM(hien):
-    """Nhóm nút trên thanh đầu trang, đặt ngay trước nút Đặt lịch chẩn đoán."""
+    """Nhóm nút trên thanh đầu trang, đặt ngay sau (bên phải) nút Đặt lịch chẩn đoán."""
     nut = []
     for ma, ngan, ten, _ in NGON_NGU:
         dang = ' lnx-lang-on" aria-current="page' if ma == hien else ''
         nut.append(f'<a class="lnx-lang{_lop(ma)}{dang}" href="{_duong_dan(hien, ma)}" hreflang="{ma}" lang="{ma}" title="{ten}">{ngan}</a>')
-    return f'<span class="lnx-langs tn-ngon-ngu" role="group" aria-label="{NHAN_NHOM[hien]}">' + ''.join(nut) + '</span>'
+    return f'<span class="lnx-langs" role="group" aria-label="{NHAN_NHOM[hien]}">' + ''.join(nut) + '</span>'
 
 
 def MENU(hien):
@@ -43,7 +45,7 @@ def MENU(hien):
     muc = []
     for ma, ngan, ten, _ in NGON_NGU:
         dang = ' lnx-lang-on" aria-current="page' if ma == hien else ''
-        muc.append(f'<a class="lnx-lang lnx-lang-menu tn-ngon-ngu{_lop(ma)}{dang}" href="{_duong_dan(hien, ma)}" hreflang="{ma}" lang="{ma}">{ngan} · {ten.upper() if ma != "lo" else ten}</a>')
+        muc.append(f'<a class="lnx-lang lnx-lang-menu{_lop(ma)}{dang}" href="{_duong_dan(hien, ma)}" hreflang="{ma}" lang="{ma}">{ngan} · {ten.upper() if ma != "lo" else ten}</a>')
     return ''.join(muc)
 
 

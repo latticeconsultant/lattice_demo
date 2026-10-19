@@ -543,7 +543,7 @@ textarea.input { min-height: 90px; resize: vertical; }
       font-weight: 600; padding: 11px 14px; color: var(--color-text);
       border: 2px solid var(--color-neutral-400); background: transparent; }
     .lnx-lang:hover { border-color: var(--color-text); color: var(--color-text); }
-    /* Nhóm EN · VN · LO đặt cạnh nút Đặt lịch chẩn đoán; ba ô dính nhau, ô đang xem tô đặc. */
+    /* Nhóm EN · VN · LO bên phải nút Đặt lịch chẩn đoán, sát lề phải; ba ô dính nhau, ô đang xem tô đặc. */
     .lnx-langs { flex: none; display: inline-flex; align-items: stretch; }
     .lnx-langs .lnx-lang { padding: 11px 10px; min-width: 44px; }
     .lnx-langs .lnx-lang + .lnx-lang { margin-left: -2px; }
@@ -551,8 +551,9 @@ textarea.input { min-height: 90px; resize: vertical; }
     .lnx-lang-menu.lnx-lang-on { background: var(--color-text); color: var(--color-bg); }
     /* Công tắc từ trang /admin/: Worker gắn data-tat="<tên> <tên>…" lên <html> trước khi trả trang. */
     html[data-tat~="nut-dat-lich"] .tn-nut-dat-lich,
-    html[data-tat~="ngon-ngu"] .tn-ngon-ngu,
-    html[data-tat~="tieng-lao"] .tn-tieng-lao:not(.lnx-lang-on),
+    html[data-tat~="nut-en"] .tn-nut-en,
+    html[data-tat~="nut-vn"] .tn-nut-vn,
+    html[data-tat~="nut-lo"] .tn-nut-lo,
     html[data-tat~="ngay-dem"] .tn-ngay-dem,
     html[data-tat~="cau-truc"] .tn-cau-truc,
     html[data-tat~="tu-soi"] .tn-tu-soi,
@@ -935,8 +936,8 @@ textarea.input { min-height: 90px; resize: vertical; }
         <a class="lnx-icon tn-cau-truc" href="mophong/" aria-label="Cấu trúc doanh nghiệp và Dashboard CEO" title="Cấu trúc doanh nghiệp và Dashboard CEO"><svg sc-camel-view-box="0 0 24 24" width="20" height="20" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:2"><rect x="3" y="3" width="7.5" height="7.5"></rect><rect x="13.5" y="3" width="7.5" height="7.5"></rect><rect x="3" y="13.5" width="7.5" height="7.5"></rect><rect x="13.5" y="13.5" width="7.5" height="7.5"></rect></svg></a>
         <a class="lnx-icon tn-tu-soi" href="tu-soi/" aria-label="Sáu câu hỏi trước khi đưa AI vào (tự soi)" title="Tự soi · sáu câu hỏi trước khi đưa AI vào"><svg sc-camel-view-box="0 0 24 24" width="20" height="20" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:2"><path d="M12 2.5 21.5 12 12 21.5 2.5 12Z"></path><path d="M9.8 9.6a2.3 2.3 0 1 1 3.2 2.1c-.6.3-1 .8-1 1.5v.4"></path><circle cx="12" cy="16.3" r="0.6" fill="currentColor"></circle></svg></a>
         <a class="lnx-icon lnx-icon-moi tn-khao-sat" href="khao-sat/" aria-label="Khảo sát nhanh, 20 câu, khoảng 8–10 phút" title="Khảo sát nhanh · 20 câu · khoảng 8–10 phút"><svg sc-camel-view-box="0 0 24 24" width="20" height="20" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:2"><rect x="5" y="4" width="14" height="17" rx="1"></rect><path d="M9 4V2.8h6V4"></path><path d="M8.5 10h7M8.5 14h4"></path><path d="m13 17 2 2 3.5-4"></path></svg></a>
-        <span class="lnx-langs tn-ngon-ngu" role="group" aria-label="Ngôn ngữ"><a class="lnx-lang" href="en/" hreflang="en" lang="en" title="English">EN</a><a class="lnx-lang lnx-lang-on" aria-current="page" href="./" hreflang="vi" lang="vi" title="Tiếng Việt">VN</a><a class="lnx-lang tn-tieng-lao" href="lo/" hreflang="lo" lang="lo" title="ພາສາລາວ">LO</a></span>
         <button type="button" class="btn btn-primary tn-nut-dat-lich" sc-camel-on-click="{{ openDlg }}" style="{{ ctaStyle }};justify-content:flex-start;text-align:left">ĐẶT LỊCH CHẨN ĐOÁN</button>
+        <span class="lnx-langs" role="group" aria-label="Ngôn ngữ"><a class="lnx-lang tn-nut-en" href="en/" hreflang="en" lang="en" title="English">EN</a><a class="lnx-lang tn-nut-vn lnx-lang-on" aria-current="page" href="./" hreflang="vi" lang="vi" title="Tiếng Việt">VN</a><a class="lnx-lang tn-nut-lo" href="lo/" hreflang="lo" lang="lo" title="ພາສາລາວ">LO</a></span>
         <button type="button" sc-camel-on-click="{{ toggleMenu }}" aria-label="Mở menu" style="{{ burgerStyle }}">
           <svg width="20" height="20" sc-camel-view-box="0 0 24 24" style="display:block;stroke:currentColor;fill:none;stroke-width:2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
         </button>
@@ -949,7 +950,7 @@ textarea.input { min-height: 90px; resize: vertical; }
           <a class="lnx-lang lnx-lang-menu tn-cau-truc" href="mophong/">CẤU TRÚC &amp; DASHBOARD CEO</a>
           <a class="lnx-lang lnx-lang-menu tn-tu-soi" href="tu-soi/">SÁU CÂU HỎI TỰ SOI</a>
           <a class="lnx-lang lnx-lang-menu tn-khao-sat" href="khao-sat/">KHẢO SÁT NHANH · 20 CÂU</a>
-          <a class="lnx-lang lnx-lang-menu tn-ngon-ngu" href="en/" hreflang="en" lang="en">EN · ENGLISH</a><a class="lnx-lang lnx-lang-menu tn-ngon-ngu lnx-lang-on" aria-current="page" href="./" hreflang="vi" lang="vi">VN · TIẾNG VIỆT</a><a class="lnx-lang lnx-lang-menu tn-ngon-ngu tn-tieng-lao" href="lo/" hreflang="lo" lang="lo">LO · ພາສາລາວ</a>
+          <a class="lnx-lang lnx-lang-menu tn-nut-en" href="en/" hreflang="en" lang="en">EN · ENGLISH</a><a class="lnx-lang lnx-lang-menu tn-nut-vn lnx-lang-on" aria-current="page" href="./" hreflang="vi" lang="vi">VN · TIẾNG VIỆT</a><a class="lnx-lang lnx-lang-menu tn-nut-lo" href="lo/" hreflang="lo" lang="lo">LO · ພາສາລາວ</a>
             <button type="button" class="btn btn-primary tn-nut-dat-lich" sc-camel-on-click="{{ openDlgClose }}" style="width:100%;border:0;font-size:14.5px;letter-spacing:.14em;padding:18px 20px;font-weight:600;justify-content:flex-start">ĐẶT LỊCH CHẨN ĐOÁN</button>
         </div>
       </sc-if>

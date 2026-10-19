@@ -91,7 +91,7 @@ python3 tools/build-lo.py           # sinh lo/index.html (tiếng Lào) từ b�
 
 **Tiếng Lào** (`/lo/`) dịch **nguyên văn từ bản Anh** (anh chốt 19/10/2026), không phải từ bản Việt. Từ điển `tools/i18n/strings.lo.json` (EN → LO) và tài liệu `docs/one-person-business.lo.md`. `build-lo.py` liệt kê chuỗi tiếng Anh chưa có bản Lào; thêm `{"en": …, "lo": …}` rồi chạy lại. Bản Lào do máy dịch (Claude) — nên nhờ người bản ngữ rà trước khi quảng bá rộng.
 
-**Nút ngôn ngữ EN · VN · LO** đặt cạnh nút Đặt lịch chẩn đoán, sinh từ `tools/ngon_ngu.py`. Bản Việt giữ đúng markup của `NHOM('vi')` / `MENU('vi')`; hai script dựng thay bằng bản của ngôn ngữ mình. Đổi nhãn hay thứ tự thì sửa `ngon_ngu.py`, dán lại khối vào `index.html`, rồi dựng lại cả hai bản.
+**Nút ngôn ngữ EN · VN · LO** đặt bên phải nút Đặt lịch chẩn đoán (sát lề phải), sinh từ `tools/ngon_ngu.py`. Bản Việt giữ đúng markup của `NHOM('vi')` / `MENU('vi')`; hai script dựng thay bằng bản của ngôn ngữ mình. Đổi nhãn hay thứ tự thì sửa `ngon_ngu.py`, dán lại khối vào `index.html`, rồi dựng lại cả hai bản.
 
 `build-en.py` quét bản Anh sau khi sinh và liệt kê **mọi chữ Việt còn sót**, kể cả chuỗi mà `extract-strings.py` bỏ lỡ (chuỗi xuống nhiều dòng, chuỗi mở đầu bằng số). Chỉ đẩy lên khi dòng `chu Viet con` báo `0` và `cu phap JS` báo `hop le`.
 
@@ -173,9 +173,9 @@ Giao dịch không chứa chữ "LTC" bị bỏ qua im lặng — tài khoản c
 
 ### Công tắc tính năng — https://lattice.business/admin/
 
-Bật/tắt từng phần trên thanh đầu trang chủ (cả ba ngôn ngữ): nút Đặt lịch chẩn đoán, nút ngôn ngữ, lựa chọn tiếng Lào, nút ngày/đêm, ba biểu tượng Cấu trúc · Tự soi · Khảo sát. Có lịch sử ai đổi gì.
+Bật/tắt từng phần trên thanh đầu trang chủ (cả ba ngôn ngữ): nút Đặt lịch chẩn đoán, từng nút ngôn ngữ EN / VN / LO riêng, nút ngày/đêm, ba biểu tượng Cấu trúc · Tự soi · Khảo sát. Có lịch sử ai đổi gì.
 
-- **Đăng nhập:** Cloudflare Access (nhóm `lattice-ns`, ứng dụng "LATTICE Admin" cho `lattice.business/admin`, policy email). Worker còn tự kiểm JWT của Access (`ACCESS_AUD` trong `cloudflare/wrangler.toml`).
+- **Đăng nhập:** email + mật khẩu ngay trên trang. Chỉ bản băm PBKDF2 lưu ở secret `ADMIN_DANG_NHAP` của Worker; đặt hoặc đổi bằng `cd cloudflare && node dat-mat-khau-admin.mjs` (thêm `--dang-xuat-het` để đăng xuất mọi phiên). Phiên 8 giờ, sai 5 lần khóa 15 phút. (Worker vẫn nhận JWT Cloudflare Access nếu sau này điền `ACCESS_AUD`.)
 - **Cách chạy:** trạng thái lưu ở Cloudflare KV (`SITE`, khóa `tat`). Worker `lattice-demo` gắn `data-tat="…"` lên thẻ `<html>` ngay ở biên; CSS trong `index.html` ẩn phần tử có lớp `tn-<tên>`. Không có lúc hiện rồi mới ẩn. Khách thấy thay đổi trong khoảng 1 phút.
 - **Thêm công tắc mới:** thêm một dòng vào `TINH_NANG` trong `cloudflare/worker.js`, gắn lớp `tn-<tên>` cho phần tử trong `index.html`, thêm luật CSS cạnh các luật `html[data-tat~=…]`, dựng lại bản Anh/Lào, rồi `npx wrangler deploy` trong `cloudflare/`.
 

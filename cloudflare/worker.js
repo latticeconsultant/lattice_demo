@@ -21,8 +21,9 @@ const CU = '/demo';
 // Thêm tính năng mới: thêm một dòng ở đây + lớp tn-<tên> và luật CSS trong index.html.
 const TINH_NANG = [
   { ten: 'nut-dat-lich', nhan: 'Nút "Đặt lịch chẩn đoán" trên thanh đầu trang và trong menu' },
-  { ten: 'ngon-ngu', nhan: 'Nút chọn ngôn ngữ EN · VN · LO' },
-  { ten: 'tieng-lao', nhan: 'Lựa chọn tiếng Lào (LO) trong nút ngôn ngữ' },
+  { ten: 'nut-en', nhan: 'Nút ngôn ngữ EN (English)' },
+  { ten: 'nut-vn', nhan: 'Nút ngôn ngữ VN (Tiếng Việt)' },
+  { ten: 'nut-lo', nhan: 'Nút ngôn ngữ LO (ພາສາລາວ)' },
   { ten: 'ngay-dem', nhan: 'Nút đổi ngày / đêm' },
   { ten: 'cau-truc', nhan: 'Biểu tượng "Cấu trúc & Dashboard CEO"' },
   { ten: 'tu-soi', nhan: 'Biểu tượng "Tự soi · sáu câu hỏi"' },

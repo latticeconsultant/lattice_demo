@@ -549,6 +549,9 @@ textarea.input { min-height: 90px; resize: vertical; }
     .lnx-langs .lnx-lang + .lnx-lang { margin-left: -2px; }
     .lnx-lang.lnx-lang-on { background: var(--color-text); border-color: var(--color-text); color: var(--color-bg); position: relative; }
     .lnx-lang-menu.lnx-lang-on { background: var(--color-text); color: var(--color-bg); }
+    /* Nút Đặt lịch bị tắt (admin) thì không còn gì đẩy cụm sang phải: nhóm ngôn ngữ tự sát lề phải,
+       giữ đúng vị trí như khi nút Đặt lịch đang hiện. */
+    html[data-tat~="nut-dat-lich"] .lnx-head > .lnx-langs { margin-left: auto; }
     /* Công tắc từ trang /admin/: Worker gắn data-tat="<tên> <tên>…" lên <html> trước khi trả trang. */
     html[data-tat~="nut-dat-lich"] .tn-nut-dat-lich,
     html[data-tat~="nut-en"] .tn-nut-en,

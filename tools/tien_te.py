@@ -9,11 +9,22 @@ import re
 
 TY_GIA = 25000  # VND cho 1 US$, cố định
 
+# Giá gói ghi tròn bằng US$ (anh chốt 20/10/2026), thay cho số quy đổi theo tỷ giá.
+GIA_GOI_USD = {
+    895000: 35,     # Scan
+    1950000: 75,    # Compass
+    2950000: 125,   # Blueprint
+    4950000: 195,   # Foundry
+    8950000: 345,   # LATTICE Kit
+}
+
 _VND = re.compile(r'(\d{1,3}(?:,\d{3})+|\d+)\s*VND\b')
 _USD = re.compile(r'\bUSD\s?(?=[~\d])')
 
 
 def _usd(vnd):
+    if vnd in GIA_GOI_USD:
+        return f'US${GIA_GOI_USD[vnd]:,}'
     x = vnd / TY_GIA
     return f'US${x:,.0f}' if abs(x - round(x)) < 1e-9 else f'US${x:,.2f}'
 

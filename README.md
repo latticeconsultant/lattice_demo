@@ -91,7 +91,7 @@ python3 tools/build-lo.py           # sinh lo/index.html (tiếng Lào) từ b�
 
 **Tiếng Lào** (`/lo/`) dịch **nguyên văn từ bản Anh** (anh chốt 19/10/2026), không phải từ bản Việt. Từ điển `tools/i18n/strings.lo.json` (EN → LO) và tài liệu `docs/one-person-business.lo.md`. `build-lo.py` liệt kê chuỗi tiếng Anh chưa có bản Lào; thêm `{"en": …, "lo": …}` rồi chạy lại. Bản Lào do máy dịch (Claude) — nên nhờ người bản ngữ rà trước khi quảng bá rộng.
 
-**Tiền ở bản Anh và Lào ghi US$**, tỷ giá **cố định 25.000 VND/US$** (anh chốt 20/10/2026), đặt ở `TY_GIA` trong `tools/tien_te.py`. Build tự đổi "895,000 VND" → "US$35.80" và "USD 10bn" → "US$10bn", cả trong phần tài liệu. Bản Việt giữ VND. Đổi tỷ giá: sửa `TY_GIA` rồi dựng lại bản Anh và Lào.
+**Tiền ở bản Anh và Lào ghi US$**, tỷ giá **cố định 25.000 VND/US$** (anh chốt 20/10/2026), đặt ở `TY_GIA` trong `tools/tien_te.py`. Build tự đổi "895,000 VND" → "US$35.80" và "USD 10bn" → "US$10bn", cả trong phần tài liệu. Riêng giá năm gói ghi tròn theo bảng `GIA_GOI_USD`: Scan US$35 · Compass US$75 · Blueprint US$125 · Foundry US$195 · Kit US$345. Bản Việt giữ VND. Đổi tỷ giá: sửa `TY_GIA` rồi dựng lại bản Anh và Lào.
 
 **Nút ngôn ngữ EN · VN · LO** đặt bên phải nút Đặt lịch chẩn đoán (sát lề phải), sinh từ `tools/ngon_ngu.py`. Bản Việt giữ đúng markup của `NHOM('vi')` / `MENU('vi')`; hai script dựng thay bằng bản của ngôn ngữ mình. Đổi nhãn hay thứ tự thì sửa `ngon_ngu.py`, dán lại khối vào `index.html`, rồi dựng lại cả hai bản.
 

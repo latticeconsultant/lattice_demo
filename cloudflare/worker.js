@@ -31,16 +31,26 @@ const TINH_NANG = [
 ];
 const TEN_HOP_LE = new Set(TINH_NANG.map((t) => t.ten));
 
+// Công tắc theo TỪNG bản ngôn ngữ (anh chốt 20/10/2026): KV 'tat' = {vi:[…], en:[…], lo:[…]}.
+// Bản cũ lưu một mảng chung → coi là áp cho cả ba ngôn ngữ.
+const NGON_NGU = ['vi', 'en', 'lo'];
+const ngonNguTrang = (duong) => (duong === '/en' || duong.startsWith('/en/') ? 'en'
+  : duong === '/lo' || duong.startsWith('/lo/') ? 'lo' : 'vi');
+
+function chuanTat(v) {
+  const sach = (a) => (Array.isArray(a) ? [...new Set(a.filter((x) => TEN_HOP_LE.has(x)))] : []);
+  if (Array.isArray(v)) return { vi: sach(v), en: sach(v), lo: sach(v) };
+  const o = v && typeof v === 'object' ? v : {};
+  return { vi: sach(o.vi), en: sach(o.en), lo: sach(o.lo) };
+}
+
 // Đọc KV tối đa mỗi 30 giây mỗi isolate (KV là nhất quán dần, chậm vài giây cũng được).
-let boNho = { het: 0, tat: [] };
+let boNho = { het: 0, tat: chuanTat(null) };
 async function docTat(env) {
-  if (!env.SITE) return [];
+  if (!env.SITE) return chuanTat(null);
   if (Date.now() < boNho.het) return boNho.tat;
-  let tat = [];
-  try {
-    const v = await env.SITE.get('tat', 'json');
-    if (Array.isArray(v)) tat = v.filter((x) => TEN_HOP_LE.has(x));
-  } catch (e) { /* KV lỗi: coi như không tắt gì */ }
+  let tat = chuanTat(null);
+  try { tat = chuanTat(await env.SITE.get('tat', 'json')); } catch (e) { /* KV lỗi: coi như không tắt gì */ }
   boNho = { het: Date.now() + 30000, tat };
   return tat;
 }
@@ -157,21 +167,25 @@ async function apiCauHinh(request, env, url) {
   if (!email) return traJson({ loi: 'chua_dang_nhap' }, 401);
   if (!env.SITE) return traJson({ loi: 'thieu_kv' }, 500);
   if (request.method === 'GET') {
-    const tat = await env.SITE.get('tat', 'json');
+    const tat = chuanTat(await env.SITE.get('tat', 'json'));
     const lich = (await env.SITE.get('lich_su', 'json')) || [];
-    return traJson({ email, tinh_nang: TINH_NANG, tat: Array.isArray(tat) ? tat : [], lich_su: lich.slice(0, 20) });
+    return traJson({ email, tinh_nang: TINH_NANG, ngon_ngu: NGON_NGU, tat, lich_su: lich.slice(0, 20) });
   }
   if (request.method === 'POST') {
     if (request.headers.get('origin') !== url.origin) return traJson({ loi: 'sai_nguon_goc' }, 403);
     let than;
     try { than = await request.json(); } catch (e) { return traJson({ loi: 'du_lieu_sai' }, 422); }
-    if (!than || !Array.isArray(than.tat) || than.tat.some((x) => !TEN_HOP_LE.has(x))) return traJson({ loi: 'du_lieu_sai' }, 422);
-    const tat = [...new Set(than.tat)];
+    const vao = than && than.tat;
+    if (!vao || typeof vao !== 'object' || Array.isArray(vao)
+      || NGON_NGU.some((n) => !Array.isArray(vao[n]) || vao[n].some((x) => !TEN_HOP_LE.has(x)))) {
+      return traJson({ loi: 'du_lieu_sai' }, 422);
+    }
+    const tat = chuanTat(vao);
     const lich = (await env.SITE.get('lich_su', 'json')) || [];
     lich.unshift({ luc: new Date().toISOString(), email, tat });
     await env.SITE.put('tat', JSON.stringify(tat));
     await env.SITE.put('lich_su', JSON.stringify(lich.slice(0, 50)));
-    boNho = { het: 0, tat: [] };
+    boNho = { het: 0, tat: chuanTat(null) };
     return traJson({ ok: true, tat });
   }
   return traJson({ loi: 'khong_ho_tro' }, 405);
@@ -231,7 +245,7 @@ export default {
 
     // Gắn công tắc lên <html> của trang HTML (trừ trang admin — admin luôn thấy đủ).
     if (type.includes('text/html') && !url.pathname.startsWith('/admin')) {
-      const tat = await docTat(env);
+      const tat = (await docTat(env))[ngonNguTrang(url.pathname)];
       if (tat.length) {
         res.headers.set('cache-control', 'public, max-age=60');
         return new HTMLRewriter()

@@ -35,12 +35,22 @@ def inline(text):
     return out
 
 
+_DA_DUNG = set()
+
+
 def slug(text):
+    """Mã neo từ tiêu đề. Tiêu đề tiếng Lào không có chữ Latin nên chỉ còn phần số;
+    mã trùng thì thêm -2, -3… để mục lục vẫn nhảy đúng chỗ."""
     t = unicodedata.normalize('NFD', text)
     t = ''.join(c for c in t if unicodedata.category(c) != 'Mn')
     t = t.replace('đ', 'd').replace('Đ', 'D').lower()
     t = re.sub(r'[^a-z0-9]+', '-', t).strip('-')
-    return 'doc-' + (t[:48] or 'muc')
+    goc = 'doc-' + (t[:48] or 'muc')
+    sid, k = goc, 2
+    while sid in _DA_DUNG:
+        sid, k = f'{goc}-{k}', k + 1
+    _DA_DUNG.add(sid)
+    return sid
 
 
 def split_row(line):
@@ -53,6 +63,7 @@ def is_sep(line):
 
 # ── chuyển markdown → HTML ──────────────────────────────────────────────────
 def convert(md):
+    _DA_DUNG.clear()
     lines = md.split('\n')
     out, toc = [], []
     i, n = 0, len(lines)
@@ -87,7 +98,7 @@ def convert(md):
         if m:
             level, text = len(m.group(1)), m.group(2).strip()
             body = inline(text)
-            if level == 1 and text.startswith(('PHẦN', 'PART')):
+            if level == 1 and text.startswith(('PHẦN', 'PART', 'ພາກ')):
                 sid = slug(text)
                 toc.append((1, text, sid))
                 out.append(f'<h2 class="doc-part" id="{sid}">{body}</h2>')
@@ -188,6 +199,13 @@ NHAN = {
         'luu': 'LƯU PDF ↓',
         'muc_luc': 'Mục lục',
         'nhan_muc_luc': 'Mục lục tài liệu',
+    },
+    'lo': {
+        'kicker': 'ເອກະສານພື້ນຖານ',
+        'ten': 'ທຸລະກິດຄົນດຽວ — ສະຖາປັດຕະຍະກຳ AI-native ສຳລັບຂະໜາດ 1–3 ຄົນ',
+        'luu': 'ບັນທຶກ PDF ↓',
+        'muc_luc': 'ສາລະບານ',
+        'nhan_muc_luc': 'ສາລະບານເອກະສານ',
     },
     'en': {
         'kicker': 'Foundation paper',

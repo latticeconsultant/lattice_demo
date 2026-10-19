@@ -7,3 +7,12 @@ compatibility_date = "2026-09-08"
 [[routes]]
 pattern = "lattice.business/*"
 zone_name = "lattice.business"
+
+# Công tắc tính năng cho trang /admin/ (README mục "Trang admin").
+[[kv_namespaces]]
+binding = "SITE"
+id = "0bad0f9f706747cfad6bed89319a3600"
+
+[vars]
+ACCESS_TEAM = "lattice-ns"
+ACCESS_AUD = ""   # AUD của ứng dụng Access "LATTICE Admin" (lattice.business/admin)

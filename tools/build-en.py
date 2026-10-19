@@ -118,7 +118,7 @@ CHU_VIET = re.compile('[àáảãạăằắẳẵặâầấẩẫậđèéẻ�
 
 # Chữ Việt được phép còn lại trong bản EN: nút quay về bản Việt, và nhãn nhóm
 # trong manifest của trình biên tập dc-runtime (thuộc tính ẩn, người xem không thấy).
-CHO_PHEP = ('VI · PHIÊN BẢN TIẾNG VIỆT', '&quot;Hiển thị&quot;',
+CHO_PHEP = ('VN · TIẾNG VIỆT', 'Tiếng Việt', '&quot;Hiển thị&quot;',
             'Kiến trúc mô hình kinh doanh mới.')
 
 
@@ -141,6 +141,14 @@ def con_tieng_viet(t):
 
 def main():
     t = io.open(SRC, encoding='utf-8').read()
+    # Nhóm nút EN · VN · LO: thay nguyên khối TRƯỚC bước dịch để từ điển không chạm vào
+    # chữ "Tiếng Việt" trong khối (xem tools/ngon_ngu.py).
+    sys.path.insert(0, os.path.join(ROOT, 'tools'))
+    from ngon_ngu import NHOM, MENU
+    for khoi_vi, khoi_en in ((NHOM('vi'), NHOM('en')), (MENU('vi'), MENU('en'))):
+        if khoi_vi not in t:
+            sys.exit('index.html thiếu khối nút ngôn ngữ chuẩn — sửa theo tools/ngon_ngu.py')
+        t = t.replace(khoi_vi, khoi_en)
     with io.open(os.path.join(I18N, 'strings.vi.json'), encoding='utf-8') as f:
         chuoi = json.load(f)
 
@@ -172,7 +180,7 @@ def main():
             tong += 1
 
     # đường dẫn tài nguyên lùi một cấp
-    for thu_muc in ('assets/', 'brand/', 'mophong/', 'khao-sat/', 'mau-ho-so/', 'bang-goi/'):
+    for thu_muc in ('assets/', 'brand/', 'mophong/', 'khao-sat/', 'mau-ho-so/', 'bang-goi/', 'tu-soi/'):
         t = re.sub(r'(?<=["\'(])' + thu_muc, '../' + thu_muc, t)
     t = t.replace('"../../', '"../')
     # srcset có nhiều đường dẫn; chỉ đường đầu đứng sau dấu nháy nên regex trên
@@ -180,17 +188,8 @@ def main():
     t = re.sub(r'srcset="([^"]*)"',
                lambda m: 'srcset="' + re.sub(r'(,\s*)(assets/|brand/)', r'\1../\2', m.group(1)) + '"', t)
 
-    # ngôn ngữ trang và nút chuyển ngữ
+    # ngôn ngữ trang (nút chuyển ngữ đã thay ở đầu hàm)
     t = t.replace('<html lang="vi">', '<html lang="en">', 1)
-    for vi_html, en_html in (
-        ('<a class="lnx-lang" href="en/" hreflang="en" aria-label="English version">EN</a>',
-         '<a class="lnx-lang" href="../" hreflang="vi" aria-label="Vietnamese version">VI</a>'),
-        ('<a class="lnx-lang lnx-lang-menu" href="en/" hreflang="en">EN · ENGLISH VERSION</a>',
-         '<a class="lnx-lang lnx-lang-menu" href="../" hreflang="vi">VI · PHIÊN BẢN TIẾNG VIỆT</a>'),
-    ):
-        if vi_html not in t:
-            thieu.append(vi_html[:76])
-        t = t.replace(vi_html, en_html)
 
     loi = kiem_cu_phap(t)
 

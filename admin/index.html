@@ -307,7 +307,7 @@ async function taiHoSo(im) {
   try { kq = await hoSo('danhSach'); } catch (e) { return; }
   if (kq.chua_noi) {
     $('#hsNoiDung').hidden = true; $('#hsChuaNoi').hidden = false; $('#dem').textContent = '';
-    $('#hsChuaNoi').innerHTML = '<b>Chưa nối Google Sheet đăng ký.</b><br>Trong Terminal, chạy <code>cd cloudflare &amp;&amp; node dat-token-ho-so.mjs</code> rồi gõ tên đăng nhập và mật khẩu của trang /quan-tri/ cũ — chỉ cần làm một lần.';
+    $('#hsChuaNoi').innerHTML = '<b>Chưa nối Google Sheet đăng ký.</b><br>Trong Terminal, chạy <code>cd cloudflare &amp;&amp; node dat-token-ho-so.mjs</code> rồi dán mã (đã nằm trong clipboard) vào Apps Script → Cài đặt dự án → Thuộc tính tập lệnh → <code>ADMIN_TOKEN</code> → Lưu.';
     return;
   }
   $('#hsNoiDung').hidden = false; $('#hsChuaNoi').hidden = true;

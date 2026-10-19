@@ -185,7 +185,7 @@ Một trang, một lần đăng nhập, ba thẻ. Trang `/quan-tri/` cũ đã g�
 - **Đổi mật khẩu** thường ngày: nút ĐỔI MẬT KHẨU trên trang. Bản băm mới lưu ở KV `SITE` khóa `dang_nhap` và được ưu tiên hơn secret; mọi phiên cũ ở máy khác tự hết hiệu lực. Chạy lại `dat-mat-khau-admin.mjs` sẽ xoá khóa này.
 
 **Hồ sơ lấy từ đâu:** Google Sheet sau Apps Script (mục 8). Worker gọi hộ qua `/admin/api/ho-so`, giữ mã truy cập ở secret `APPS_SCRIPT_TOKEN` — trình duyệt không bao giờ cầm mã. Chỉ cho các việc `danhSach`, `capNhat`, `xacNhanThu`, `guiLaiThu`, `nhatKy`, `phienBan`.
-- Nối lần đầu (hoặc khi đổi `ADMIN_TOKEN`): `cd cloudflare && node dat-token-ho-so.mjs`, gõ tên đăng nhập + mật khẩu của trang `/quan-tri/` cũ — script tự mở khoá mã ngay trên máy, thử với Apps Script rồi lưu secret. Không nhớ mật khẩu cũ: `node dat-token-ho-so.mjs --dan-tay` và dán `ADMIN_TOKEN` từ Thuộc tính tập lệnh.
+- Nối lần đầu, hoặc đổi mã khi nghi lộ: `cd cloudflare && node dat-token-ho-so.mjs` — sinh mã mới, lưu secret Worker, chép vào clipboard (không in ra). Dán vào Apps Script → Thuộc tính tập lệnh → `ADMIN_TOKEN` → Lưu (không cần triển khai lại). Kiểm: `node dat-token-ho-so.mjs --kiem`.
 - Địa chỉ Apps Script ở `APPS_SCRIPT_URL` trong `cloudflare/wrangler.toml`.
 
 **Công tắc tính năng chạy thế nào:** trạng thái lưu ở KV `SITE` khóa `tat` = `{vi, en, lo}`. Worker `lattice-demo` gắn `data-tat="…"` lên thẻ `<html>` ngay ở biên; CSS trong `index.html` ẩn phần tử có lớp `tn-<tên>`. Không có lúc hiện rồi mới ẩn. Khách thấy thay đổi trong khoảng 1 phút.
@@ -201,7 +201,7 @@ Toàn bộ nghiệp vụ phía máy chủ nằm trong `tools/google-apps-script.
 | --- | --- |
 | `ADMIN_TOKEN` | Trang /admin/ gọi cổng dữ liệu (Worker giữ bản sao ở secret `APPS_SCRIPT_TOKEN`) |
 | `SEPAY_SECRET` | Webhook SePay — đi kèm trong địa chỉ `…/exec?sepay=<mật mã>`, vì Apps Script không đọc được header |
-| `ADMIN_LOGIN` | Khoá đăng nhập của trang /quan-tri/ cũ — không còn dùng, `dat-token-ho-so.mjs` chỉ đọc nó một lần để mở mã |
+| `ADMIN_LOGIN` | Khoá đăng nhập của trang /quan-tri/ cũ — không còn dùng, xoá được |
 
 **Triển khai lại sau khi sửa mã — luôn tạo triển khai MỚI:**
 

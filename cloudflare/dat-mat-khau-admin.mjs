@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // Đặt (hoặc đổi) email + mật khẩu đăng nhập trang lattice.business/admin.
+// Cũng là cách cứu khi quên mật khẩu đã đổi trên trang.
 //
 //   cd cloudflare && node dat-mat-khau-admin.mjs
 //
@@ -39,4 +40,6 @@ const coSan = spawnSync('npx', ['wrangler', 'secret', 'list'], { encoding: 'utf8
 if (process.argv.includes('--dang-xuat-het') || !coSan.includes('ADMIN_BI_MAT')) {
   datSecret('ADMIN_BI_MAT', randomBytes(32).toString('hex'));
 }
+// Mật khẩu đổi trên trang (KV 'dang_nhap') được ưu tiên hơn secret — xoá để secret vừa đặt có hiệu lực.
+spawnSync('npx', ['wrangler', 'kv', 'key', 'delete', 'dang_nhap', '--binding', 'SITE', '--remote'], { stdio: 'ignore' });
 console.log(`\nXong. Đăng nhập tại https://lattice.business/admin/ bằng ${email}.`);

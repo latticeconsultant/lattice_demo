@@ -7,7 +7,7 @@
  *  3. Triển khai → TÙY CHỌN TRIỂN KHAI MỚI (New deployment), KHÔNG sửa bản cũ.
  *     Loại: Ứng dụng web · Thực thi với tư cách: Tôi · Ai truy cập: Bất kỳ ai.
  *  4. Copy URL mới, rồi thay ở BỐN chỗ:
- *       dang-ky/index.html · register/index.html · quan-tri/index.html
+ *       dang-ky/index.html · register/index.html · APPS_SCRIPT_URL trong cloudflare/wrangler.toml
  *       và địa chỉ webhook trong SePay (giữ nguyên đuôi ?sepay=<mật mã>)
  *  5. Kiểm tra: mở <URL>?viec=phienBanCongKhai — phải ra đúng PHIEN_BAN bên dưới.
  *
@@ -27,7 +27,7 @@
  *      SEPAY_SECRET  mật mã webhook SePay
  *      ADMIN_LOGIN   khoá đăng nhập trang quản trị — TỰ GHI khi đổi mật khẩu trên
  *                    trang, không tạo tay. Xoá thuộc tính này là quay về khoá gốc
- *                    nằm trong quan-tri/index.html (cách cứu khi quên mật khẩu).
+ *                    của trang /quan-tri/ cũ, nay đã gộp vào /admin/ (Worker giữ mã ở secret APPS_SCRIPT_TOKEN).
  */
 
 // Dấu phiên bản: đổi mỗi lần sửa file này. Gọi ?token=...&viec=phienBan để biết

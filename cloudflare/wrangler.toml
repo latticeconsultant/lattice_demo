@@ -15,4 +15,7 @@ id = "0bad0f9f706747cfad6bed89319a3600"
 
 [vars]
 ACCESS_TEAM = "lattice-ns"
-ACCESS_AUD = ""   # AUD của ứng dụng Access "LATTICE Admin" (lattice.business/admin)
+ACCESS_AUD = ""   # để trống: /admin đăng nhập bằng email + mật khẩu trên chính trang
+# Apps Script nhận đăng ký (tools/google-apps-script.gs). Triển khai mới → thay URL ở đây,
+# ở dang-ky/index.html, register/index.html và webhook SePay. Mã truy cập là secret APPS_SCRIPT_TOKEN.
+APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7EDVxuAem13qXELI1E_gtqLUkE4RpKp20vlDxt2jtiZwi-PTO3ft4F4Xxe7bVLD-Q/exec"

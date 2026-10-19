@@ -45,7 +45,7 @@ index.html                  bản tiếng Việt — NGUỒN DUY NHẤT của 10
 en/index.html               bản tiếng Anh — SINH TỰ ĐỘNG, không sửa tay
 dang-ky/index.html          biểu mẫu đăng ký bốn bước, bản Việt — viết tay
 register/index.html         biểu mẫu đăng ký bốn bước, bản Anh — viết tay
-quan-tri/index.html         trang quản trị: hồ sơ, thanh toán, lịch làm việc
+admin/index.html            trang quản trị: hồ sơ đăng ký, nhật ký, công tắc tính năng (quan-tri/ chỉ còn chuyển hướng)
 mophong/index.html          trang mô phỏng: kiến trúc (đơn giản / nâng cao), bộ máy và năm nguồn lực, luồng vận hành, người + AI, dashboard cho ba loại hình — NGUỒN DỮ LIỆU NGHIỆP VỤ
 bang-goi/                   bảng gói và giá, mỗi gói có link mẫu báo cáo
 tu-soi/                     sáu câu hỏi trước khi đưa AI vào (14 câu tự soi, máy tính 52 tuần); ba câu đầu cũng nằm ở đầu Khảo sát nhanh
@@ -65,7 +65,6 @@ tools/
   google-apps-script.gs     toàn bộ nghiệp vụ phía máy chủ: nhận đăng ký, webhook SePay, cổng dữ liệu quản trị, thư
   make-qr.py                sinh mã QR trỏ tới hai trang đăng ký
   make-favicon.py           sinh favicon nền đỏ (vẽ lại hình học, bản 16px rút gọn riêng)
-  make-admin-key.mjs        sinh khoá đăng nhập trang quản trị
 assets/
   js/dc-runtime.js          runtime render template
   js/modernist-ds.js        design system Modernist
@@ -171,30 +170,26 @@ Giao dịch không chứa chữ "LTC" bị bỏ qua im lặng — tài khoản c
 
 Đã thử bằng tiền thật ngày 13/9/2026: đăng ký lúc 00:18, SePay báo và hệ thống tự xác nhận lúc 00:20:22.
 
-## 7. Trang quản trị
+## 7. Trang quản trị — https://lattice.business/admin/
 
-### Công tắc tính năng — https://lattice.business/admin/
+Một trang, một lần đăng nhập, ba thẻ. Trang `/quan-tri/` cũ đã gộp vào đây (20/10/2026); mở địa chỉ cũ sẽ tự chuyển sang `/admin/#ho-so`.
 
-Bật/tắt từng phần trên thanh đầu trang chủ (cả ba ngôn ngữ): nút Đặt lịch chẩn đoán, từng nút ngôn ngữ EN / VN / LO riêng, nút ngày/đêm, ba biểu tượng Cấu trúc · Tự soi · Khảo sát. Có lịch sử ai đổi gì.
+| Thẻ | Làm gì |
+| --- | --- |
+| **Hồ sơ đăng ký** (`#ho-so`) | Danh sách hồ sơ, lọc theo trạng thái, tìm kiếm, đổi trạng thái, ghi lịch làm việc, xác nhận đã nhận tiền bằng tay (tự gửi phiếu thu), gửi lại thư. Tự tải lại mỗi 45 giây. |
+| **Nhật ký** (`#nhat-ky`) | 200 sự kiện gần nhất của sheet Nhật ký: đăng ký, tiền về, sửa tay, gửi thư. |
+| **Tính năng trang chủ** (`#tinh-nang`) | Công tắc riêng cho từng bản VN / EN / LO: nút Đặt lịch chẩn đoán, từng nút ngôn ngữ, nút sáng/tối, ba biểu tượng Cấu trúc · Tự soi · Khảo sát. Có lịch sử ai đổi gì. |
 
-- **Đăng nhập:** email + mật khẩu ngay trên trang. Chỉ bản băm PBKDF2 lưu ở secret `ADMIN_DANG_NHAP` của Worker; đặt hoặc đổi bằng `cd cloudflare && node dat-mat-khau-admin.mjs` (thêm `--dang-xuat-het` để đăng xuất mọi phiên). Phiên 8 giờ, sai 5 lần khóa 15 phút. (Worker vẫn nhận JWT Cloudflare Access nếu sau này điền `ACCESS_AUD`.)
-- **Cách chạy:** trạng thái lưu ở Cloudflare KV (`SITE`, khóa `tat`). Worker `lattice-demo` gắn `data-tat="…"` lên thẻ `<html>` ngay ở biên; CSS trong `index.html` ẩn phần tử có lớp `tn-<tên>`. Không có lúc hiện rồi mới ẩn. Khách thấy thay đổi trong khoảng 1 phút.
+**Đăng nhập:** email + mật khẩu ngay trên trang. Phiên 8 giờ (cookie HttpOnly), sai 5 lần khóa 15 phút.
+- Đặt tài khoản lần đầu hoặc cứu khi quên mật khẩu: `cd cloudflare && node dat-mat-khau-admin.mjs` (bản băm PBKDF2 vào secret `ADMIN_DANG_NHAP`; thêm `--dang-xuat-het` để đổi cả khóa ký phiên).
+- **Đổi mật khẩu** thường ngày: nút ĐỔI MẬT KHẨU trên trang. Bản băm mới lưu ở KV `SITE` khóa `dang_nhap` và được ưu tiên hơn secret; mọi phiên cũ ở máy khác tự hết hiệu lực. Chạy lại `dat-mat-khau-admin.mjs` sẽ xoá khóa này.
+
+**Hồ sơ lấy từ đâu:** Google Sheet sau Apps Script (mục 8). Worker gọi hộ qua `/admin/api/ho-so`, giữ mã truy cập ở secret `APPS_SCRIPT_TOKEN` — trình duyệt không bao giờ cầm mã. Chỉ cho các việc `danhSach`, `capNhat`, `xacNhanThu`, `guiLaiThu`, `nhatKy`, `phienBan`.
+- Nối lần đầu (hoặc khi đổi `ADMIN_TOKEN`): `cd cloudflare && node dat-token-ho-so.mjs`, gõ tên đăng nhập + mật khẩu của trang `/quan-tri/` cũ — script tự mở khoá mã ngay trên máy, thử với Apps Script rồi lưu secret. Không nhớ mật khẩu cũ: `node dat-token-ho-so.mjs --dan-tay` và dán `ADMIN_TOKEN` từ Thuộc tính tập lệnh.
+- Địa chỉ Apps Script ở `APPS_SCRIPT_URL` trong `cloudflare/wrangler.toml`.
+
+**Công tắc tính năng chạy thế nào:** trạng thái lưu ở KV `SITE` khóa `tat` = `{vi, en, lo}`. Worker `lattice-demo` gắn `data-tat="…"` lên thẻ `<html>` ngay ở biên; CSS trong `index.html` ẩn phần tử có lớp `tn-<tên>`. Không có lúc hiện rồi mới ẩn. Khách thấy thay đổi trong khoảng 1 phút.
 - **Thêm công tắc mới:** thêm một dòng vào `TINH_NANG` trong `cloudflare/worker.js`, gắn lớp `tn-<tên>` cho phần tử trong `index.html`, thêm luật CSS cạnh các luật `html[data-tat~=…]`, dựng lại bản Anh/Lào, rồi `npx wrangler deploy` trong `cloudflare/`.
-
-### Hồ sơ đăng ký — https://lattice.business/quan-tri/
-
-https://lattice.business/quan-tri/ — danh sách hồ sơ, lọc theo trạng thái, tìm kiếm, đổi trạng thái, ghi lịch làm việc, xác nhận đã nhận tiền bằng tay (tự gửi phiếu thu), gửi lại thư. Tự tải lại mỗi 45 giây.
-
-Cổng đăng nhập: mã truy cập Apps Script được **mã hoá AES-GCM bằng khoá dẫn xuất từ chính mật khẩu**, nên trang công khai không lộ mã. Tên đăng nhập, mật khẩu và `ADMIN_TOKEN` **không** nằm trong repo.
-
-**Đổi mật khẩu:** nút **ĐỔI MẬT KHẨU** trên thanh trên cùng (cần Apps Script bản 8 trở lên). Trình duyệt kiểm mật khẩu hiện tại, băm mật khẩu mới và mã hoá lại mã truy cập, tự mở thử, rồi mới gửi lên lưu ở thuộc tính `ADMIN_LOGIN`. Máy chủ không bao giờ thấy mật khẩu; `ADMIN_TOKEN` giữ nguyên nên trang đăng ký và SePay không bị ảnh hưởng. Đổi xong trang tự đăng xuất. Phiên đang mở ở máy khác vẫn dùng được tới hết hạn 8 giờ.
-
-- Khi đăng nhập, trang hỏi máy chủ khoá hiện hành. Mất kết nối thì **không** cho vào, thay vì lùi về khoá gốc — nếu lùi, mật khẩu cũ sẽ vào được mỗi lần mạng chập chờn.
-- **Quên mật khẩu:** Apps Script → Thuộc tính tập lệnh → xoá `ADMIN_LOGIN`. Trang quay về khoá gốc trong `quan-tri/index.html` (mật khẩu ban đầu).
-- Thay khoá gốc: `node tools/make-admin-key.mjs <tên đăng nhập> <mật khẩu> <muối> <ADMIN_TOKEN>` rồi dán ba dòng in ra vào `quan-tri/index.html`.
-- Đổi mật khẩu **không** thu hồi được mã truy cập ai đó đã mở ra trước đó. Nghi lộ thì phải đổi `ADMIN_TOKEN`, rồi sinh lại khoá gốc và xoá `ADMIN_LOGIN`.
-
-Đây vẫn là rào phía trình duyệt: lớp bảo vệ thật là `ADMIN_TOKEN` phía Apps Script. Mật khẩu yếu thì lớp này cũng yếu.
 
 ## 8. Apps Script, bí mật và cách triển khai lại
 
@@ -204,15 +199,15 @@ Toàn bộ nghiệp vụ phía máy chủ nằm trong `tools/google-apps-script.
 
 | Tên | Dùng cho |
 | --- | --- |
-| `ADMIN_TOKEN` | Trang quản trị gọi cổng dữ liệu |
+| `ADMIN_TOKEN` | Trang /admin/ gọi cổng dữ liệu (Worker giữ bản sao ở secret `APPS_SCRIPT_TOKEN`) |
 | `SEPAY_SECRET` | Webhook SePay — đi kèm trong địa chỉ `…/exec?sepay=<mật mã>`, vì Apps Script không đọc được header |
-| `ADMIN_LOGIN` | Khoá đăng nhập sau khi đổi mật khẩu — trang **tự ghi**, không tạo tay. Xoá là về mật khẩu gốc |
+| `ADMIN_LOGIN` | Khoá đăng nhập của trang /quan-tri/ cũ — không còn dùng, `dat-token-ho-so.mjs` chỉ đọc nó một lần để mở mã |
 
 **Triển khai lại sau khi sửa mã — luôn tạo triển khai MỚI:**
 
 1. Dán file, Lưu.
 2. Triển khai → **Tùy chọn triển khai mới** → Ứng dụng web · Thực thi: Tôi · Truy cập: Bất kỳ ai.
-3. Copy URL mới, thay ở **bốn chỗ**: `dang-ky/index.html`, `register/index.html`, `quan-tri/index.html`, và địa chỉ webhook trong SePay.
+3. Copy URL mới, thay ở **bốn chỗ**: `dang-ky/index.html`, `register/index.html`, `APPS_SCRIPT_URL` trong `cloudflare/wrangler.toml` (rồi `npx wrangler deploy`), và địa chỉ webhook trong SePay.
 4. Đổi `PHIEN_BAN` trong file mỗi lần sửa, rồi kiểm: `<URL>?viec=phienBanCongKhai` phải ra đúng phiên bản đó.
 
 Đừng "sửa bản đang có": Apps Script phục vụ bản đã triển khai chứ không phải mã vừa lưu; ô "Phiên bản" để nguyên số cũ là bấm Triển khai vẫn báo thành công mà mã mới không chạy. Đã dính ba lần liền.

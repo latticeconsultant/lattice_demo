@@ -45,6 +45,7 @@ index.html                  bản tiếng Việt — NGUỒN DUY NHẤT của 10
 en/index.html               bản tiếng Anh — SINH TỰ ĐỘNG, không sửa tay
 dang-ky/index.html          biểu mẫu đăng ký bốn bước, bản Việt — viết tay
 register/index.html         biểu mẫu đăng ký bốn bước, bản Anh — viết tay
+abz/                        mô hình DEMO "ABZ Corporation" — doanh nghiệp thương mại hư cấu vận hành theo kiến trúc người + AI (nhận diện riêng, dữ liệu giả lập)
 admin/index.html            trang quản trị: hồ sơ đăng ký, nhật ký, công tắc tính năng (quan-tri/ chỉ còn chuyển hướng)
 mophong/index.html          trang mô phỏng: kiến trúc (đơn giản / nâng cao), bộ máy và năm nguồn lực, luồng vận hành, người + AI, dashboard cho ba loại hình — NGUỒN DỮ LIỆU NGHIỆP VỤ
 bang-goi/                   bảng gói và giá, mỗi gói có link mẫu báo cáo
@@ -169,6 +170,15 @@ Giao dịch không chứa chữ "LTC" bị bỏ qua im lặng — tài khoản c
 **Phiếu thu** bóc tách VAT 10% và ghi rõ không thay thế hoá đơn GTGT. Hoá đơn hợp lệ phải xuất từ phần mềm hoá đơn điện tử của công ty.
 
 Đã thử bằng tiền thật ngày 13/9/2026: đăng ký lúc 00:18, SePay báo và hệ thống tự xác nhận lúc 00:20:22.
+
+### Mô hình demo ABZ Corporation — https://lattice.business/abz/
+
+Cho đối tác thấy một doanh nghiệp đã tái cấu trúc theo Lattice vận hành ra sao. ABZ = chính công ty trong `mau-ho-so/` (phân phối đồ gia dụng nhà bếp, 14 người). Nhận diện riêng của ABZ, không dùng nhận diện LATTICE.
+
+- `abz/data.js` — dữ liệu giả lập có hạt giống cố định (20 mã hàng, 5 NCC, 21 khách, 14 người, 8 AI agent, 15 nghiệp vụ, 90 ngày lịch sử). Đổi số liệu nền ở đây.
+- `abz/engine.js` — trạng thái chung + 6 tình huống giả lập (async, từng bước). Mỗi bước gọi `xuLy(nghiệp vụ, giá trị, …)`: mức AI trong Thiết lập quyết định AI tự làm / AI soạn chờ duyệt / người làm. AI Giám sát quét sau mỗi bước.
+- `abz/charts.js` — biểu đồ SVG tự vẽ theo quy ước dataviz (màu chuỗi đã kiểm định mù màu). `abz/app.js` — các màn, chuyển vai, thanh giả lập.
+- Hai chế độ: **Tự chạy có lời dẫn** (gửi link cho đối tác) và **Trình bày** (bấm Bước tiếp, phím Space; người thuyết trình tự bấm Duyệt hoặc chuyển vai để duyệt). Mức AI chỉnh ở Thiết lập lưu trên trình duyệt người xem.
 
 ### Nút ← và ✕ trên mọi trang con
 

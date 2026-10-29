@@ -221,6 +221,7 @@ tr.row{cursor:pointer} tr.row:hover td{background:var(--bg2)}
 .drawer.left{right:auto;left:0;border-left:0;border-right:2px solid var(--ink);transform:translateX(-102%)}
 .drawer.left.on{transform:none}
 .dclose{float:right}
+.dback:not([hidden]){display:inline-flex;margin:0 0 14px}
 .drawer h2{font-size:28px;font-weight:800;line-height:1.08;margin:8px 0 2px;font-stretch:90%}
 .drawer .en{color:var(--mute);margin-bottom:16px}
 .drawer h3{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin:22px 0 8px}
@@ -794,7 +795,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 .nt2 .tic.kpi{font-size:10.5px;font-weight:800;width:auto;min-width:44px;padding:0 6px}
 @container page (max-width:760px){.wall,.dmrow{grid-template-columns:1fr}.wbar{max-width:none;border:0;border-top:3px solid #EC3013;border-bottom:3px solid #EC3013}}
 </style>
-<script src="../assets/dieu-huong.js?v=20261029e" defer></script>
+<script src="../assets/dieu-huong.js?v=20261030a" defer></script>
 </head>
 <body>
 <div class="stage" id="stage">
@@ -964,6 +965,7 @@ button.ck-h:hover .nm{text-decoration:underline;text-underline-offset:3px}
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="d-title" hidden>
   <button class="btn ghost sm dclose" id="d-close">Đóng</button>
+  <button class="btn ghost sm dback" id="d-back" hidden>‹ Quay lại</button>
   <div id="d-body"></div>
 </aside>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -1004,14 +1006,26 @@ function tienHTML(){
 }
 
 /* ---------- drawer ---------- */
-function openDrawer(html,ben){
-  lastFocus=document.activeElement; const d=$("drawer");
+/* Lịch sử trong khung chi tiết: mở mục con khi khung đang mở thì nhớ màn trước để nút "Quay lại" về đúng chỗ. */
+let dStack=[], dDangMo=false;
+function openDrawer(html,ben,quayLai){
+  const d=$("drawer");
+  if(!quayLai){
+    if(dDangMo) dStack.push({html:$("d-body").innerHTML,ben:d.classList.contains("left")?"left":"right",cuon:d.scrollTop});
+    else { dStack=[]; lastFocus=document.activeElement; }
+  }
+  $("d-back").hidden=!dStack.length; dDangMo=true;
   d.classList.toggle("left",ben==="left");
-  $("d-body").innerHTML=html; d.hidden=false; d.scrollTop=0;
+  $("d-body").innerHTML=html; d.hidden=false; d.scrollTop=quayLai?quayLai.cuon:0;
   requestAnimationFrame(()=>{d.classList.add("on");$("scrim").classList.add("on");});
   $("d-close").focus(); document.body.style.overflow="hidden";
 }
+function backDrawer(){
+  const p=dStack.pop(); if(!p){closeDrawer();return;}
+  openDrawer(p.html,p.ben,p);
+}
 function closeDrawer(){
+  dStack=[]; dDangMo=false;
   const d=$("drawer"); d.classList.remove("on"); $("scrim").classList.remove("on");
   document.body.style.overflow=""; setTimeout(()=>{d.hidden=true;},260); if(lastFocus) lastFocus.focus();
 }
@@ -3256,6 +3270,7 @@ document.addEventListener("keydown",e=>{
   if((e.key==="Enter"||e.key===" ")&&e.target.matches('[role="button"][data-id],[role="button"][data-khoi],[role="button"][data-pf],[role="button"][data-role],[role="button"][data-step],[role="button"][data-lv],[role="button"][data-exinfo],[role="button"][data-simex],[role="button"][data-nl],[role="button"][data-bmtop],tr.row')){e.preventDefault();e.target.click();}
 });
 $("d-close").addEventListener("click",closeDrawer);
+$("d-back").addEventListener("click",backDrawer);
 $("scrim").addEventListener("click",closeDrawer);
 
 

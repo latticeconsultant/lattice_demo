@@ -43,9 +43,11 @@
   }
 
   // Có trang trước trong cùng site thì lùi lại; còn không (mở thẳng, đến từ Google…) thì về trang chủ.
+  // Trang tự đổi mục bằng #… (Academy, ABZ) thì lùi về mục trước trong trang trước đã.
+  var dauTrang = history.length;
   function quayLai() {
     var cungSite = document.referrer && document.referrer.indexOf(location.origin) === 0;
-    if (cungSite && history.length > 1) history.back();
+    if (history.length > dauTrang || (cungSite && history.length > 1)) history.back();
     else location.href = TRANG_CHU;
   }
 

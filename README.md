@@ -180,6 +180,8 @@ Giao dịch không chứa chữ "LTC" bị bỏ qua im lặng — tài khoản c
 
 Đổi file này thì tăng `?v=` ở mọi trang (Worker cho JS lưu đệm 1 ngày). Thanh đầu tìm theo thứ tự `[data-dh]` → `header.top .khung` → `header.top` → `header .head` → `header` → `nav.ve`; `<html data-dh-noi>` (LATTICE Work) dùng nút nổi. Khung trợ giúp trong LATTICE Work có nút ← riêng (về mục trợ giúp trước).
 
+Riêng `/tailieunoibo/` do Worker `lattice-noibo` phục vụ (không qua GitHub Pages): sửa `tailieunoibo/index.html` xong phải chép sang `../lattice-noibo/public/tailieunoibo/` rồi `npx wrangler deploy` trong `lattice-noibo/`.
+
 ## 7. Trang quản trị — https://lattice.business/admin/
 
 Một trang, một lần đăng nhập, ba thẻ. Trang `/quan-tri/` cũ đã gộp vào đây (20/10/2026); mở địa chỉ cũ sẽ tự chuyển sang `/admin/#ho-so`.

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-dh-noi>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -187,6 +187,11 @@ fieldset.picks .fine{padding:8px 14px 10px;border-top:1px solid var(--line)}
 .app{display:grid;grid-template-columns:84px minmax(0,1fr);min-height:100vh;min-height:100dvh}
 .rail{position:sticky;top:0;height:100vh;height:100dvh;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 0 14px;background:var(--deep);color:#fff;z-index:20}
 .rail .mk{width:34px;height:34px}
+/* Nút ← ✕ chung của site (assets/dieu-huong.js): máy tính đặt dọc trên thanh tối bên trái, trên ảnh đại diện;
+   điện thoại đặt góc trái, trên thanh tab; ẩn khi đang mở khung trợ giúp hay hộp thoại. */
+html .lnx-dh-noi{top:auto;right:auto;left:25px;bottom:76px;flex-direction:column;color:#fff;z-index:30}
+html .lnx-dh-noi .lnx-dh{background:transparent}
+@media (max-width:759px){html .lnx-dh-noi{left:12px;bottom:calc(92px + var(--sab,0px));flex-direction:row;color:var(--ink)}html .lnx-dh-noi .lnx-dh{background:var(--card)}body.locked .lnx-dh-noi{display:none}}
 .r-logo{margin-bottom:12px}
 .r-new{display:flex;align-items:center;justify-content:center;width:48px;height:48px;margin-bottom:14px;border:0;border-radius:15px;background:var(--red);color:#fff;transition:background .15s,transform .1s}
 .r-new:hover{background:var(--red-d)}
@@ -876,6 +881,7 @@ img.av.tile{object-fit:cover}
 .tc-a .chipbtn{flex:1;justify-content:center}
 .tc-wait{display:flex;align-items:center;gap:6px;margin:8px 0 0;font-size:calc(12px*var(--fs));color:var(--muted)}
 </style>
+<script src="../assets/dieu-huong.js?v=20261029e" defer></script>
 </head>
 <body>
 <div id="app"></div>
@@ -884,9 +890,9 @@ img.av.tile{object-fit:cover}
 <div id="ctx" hidden></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <noscript>LATTICE Work cần JavaScript.</noscript>
-<script src="i18n.js?v=20260921g"></script>
-<script src="help.js?v=20260921g"></script>
-<script src="data.js?v=20260921g"></script>
-<script src="app.js?v=20260921g"></script>
+<script src="i18n.js?v=20261029a"></script>
+<script src="help.js?v=20261029a"></script>
+<script src="data.js?v=20261029a"></script>
+<script src="app.js?v=20261029a"></script>
 </body>
 </html>

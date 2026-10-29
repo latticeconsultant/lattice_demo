@@ -1045,10 +1045,20 @@
   function openHelp(ctx, obj) {
     closeMenu();
     var same = S.help && S.help.ctx === ctx && S.help.obj === (obj || null);
+    // Mở mục khác khi khung trợ giúp đang mở → nhớ mục cũ để nút ← quay lại được.
+    if (S.help && !same) (S.helpStack = S.helpStack || []).push({ ctx: S.help.ctx, obj: S.help.obj, tab: S.help.tab });
+    if (!S.help) S.helpStack = [];
     S.help = { ctx: ctx, obj: obj || null, tab: same ? S.help.tab : 'guide', anim: !S.help };
     renderHelp();
   }
-  function closeHelp() { S.help = null; var r = document.getElementById('help'); r.hidden = true; r.innerHTML = ''; syncLock(); }
+  // ← trong khung trợ giúp: về mục trợ giúp trước; hết mục thì đóng khung, về màn hình đang làm.
+  function backHelp() {
+    var p = S.helpStack && S.helpStack.pop();
+    if (!p) return closeHelp();
+    S.help = { ctx: p.ctx, obj: p.obj, tab: p.tab, anim: false };
+    renderHelp();
+  }
+  function closeHelp() { S.help = null; S.helpStack = []; var r = document.getElementById('help'); r.hidden = true; r.innerHTML = ''; syncLock(); }
   function closeHelpIfNarrow() { if (narrow()) closeHelp(); }
   function helpKey() { return S.help.ctx + ':' + (S.help.obj || ''); }
   function uniq(a) { return a.filter(function (x, i) { return a.indexOf(x) === i; }); }
@@ -1090,7 +1100,7 @@
         '<form data-form="help-ask" class="composer"><textarea name="q" rows="1" required placeholder="' + esc(t('h.ph', L.title)) + '"></textarea><button class="send" aria-label="' + t('send') + '">' + ic('send') + '</button></form></div>';
     }
     root.innerHTML = '<div class="h-scrim' + (h.anim ? ' enter' : '') + '" data-act="help-x"></div><aside class="help' + (h.anim ? ' enter' : '') + '" role="dialog" aria-label="' + esc(t('h.help')) + '">' +
-      '<div class="grab"></div><header class="h-top"><span class="av tile ink md">' + ic('help') + '</span><div class="tt"><small>' + t('h.assistant') + '</small><h1>' + esc(L.title) + '</h1></div>' +
+      '<div class="grab"></div><header class="h-top">' + ib('back', 'help-back', '', t('back')) + '<span class="av tile ink md">' + ic('help') + '</span><div class="tt"><small>' + t('h.assistant') + '</small><h1>' + esc(L.title) + '</h1></div>' +
       (h.tab === 'chat' ? ib('refresh', 'help-clear', '', t('h.clear')) : '') + ib('close', 'help-x', '', t('close')) + '</header>' +
       '<div class="h-seg"><button class="' + (h.tab === 'guide' ? 'on' : '') + '" data-act="help-tab" data-id="guide">' + ic('book', 'xs') + t('h.guide') + '</button><button class="' + (h.tab === 'chat' ? 'on' : '') + '" data-act="help-tab" data-id="chat">' + ic('spark', 'xs') + t('h.ask') + '</button></div>' +
       body + '</aside>';
@@ -1553,6 +1563,7 @@
     'tab': function (el) { S.tab = el.dataset.id; S.sub = null; S.task = null; if (S.tab === 'chat') S.chatOpen = false; closeMenu(); render(); scrollTop(); },
     'help': function (el) { openHelp(el.dataset.h, el.dataset.o); },
     'help-x': function () { closeHelp(); },
+    'help-back': function () { backHelp(); },
     'help-tab': function (el) { if (S.help) { S.help.tab = el.dataset.id; renderHelp(); } },
     'help-q': function (el) { helpAsk(el.dataset.q); },
     'help-run': function (el) { var m = helpLog()[+el.dataset.m], a = m && m.acts && m.acts[+el.dataset.a]; if (a) a.run(); },

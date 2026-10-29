@@ -170,6 +170,16 @@ Giao dịch không chứa chữ "LTC" bị bỏ qua im lặng — tài khoản c
 
 Đã thử bằng tiền thật ngày 13/9/2026: đăng ký lúc 00:18, SePay báo và hệ thống tự xác nhận lúc 00:20:22.
 
+### Nút ← và ✕ trên mọi trang con
+
+`assets/dieu-huong.js` (anh chốt 29/10/2026) gắn hai nút vào thanh đầu của mọi trang con: **←** quay lại trang vừa xem (mở thẳng thì về trang chủ), **✕** đóng trang (tab mở mới thì đóng tab, còn lại về trang chủ; trang `lang="en"` về `/en/`, `lang="lo"` về `/lo/`). Trang mới chỉ cần thêm vào `<head>`:
+
+```html
+<script src="../assets/dieu-huong.js?v=<ngày>" defer></script>
+```
+
+Đổi file này thì tăng `?v=` ở mọi trang (Worker cho JS lưu đệm 1 ngày). Thanh đầu tìm theo thứ tự `[data-dh]` → `header.top .khung` → `header.top` → `header .head` → `header` → `nav.ve`; `<html data-dh-noi>` (LATTICE Work) dùng nút nổi. Khung trợ giúp trong LATTICE Work có nút ← riêng (về mục trợ giúp trước).
+
 ## 7. Trang quản trị — https://lattice.business/admin/
 
 Một trang, một lần đăng nhập, ba thẻ. Trang `/quan-tri/` cũ đã gộp vào đây (20/10/2026); mở địa chỉ cũ sẽ tự chuyển sang `/admin/#ho-so`.
